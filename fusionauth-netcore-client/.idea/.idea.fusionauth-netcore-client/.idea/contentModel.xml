@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.1.0/build/netcoreapp1.0" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.13.0/build/netcoreapp1.0/nunit.engine.netstandard.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.13.0/build/netcoreapp1.0/NUnit3.TestAdapter.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.13.0/build/netcoreapp1.0/NUnit3.TestAdapter.pdb" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="domain" t="Include">
+        <e p="com" t="Include">
+          <e p="inversoft" t="Include">
+            <e p="error" t="Include">
+              <e p="Error.cs" t="Include" />
+              <e p="Errors.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="io" t="Include">
+          <e p="fusionauth" t="Include">
+            <e p="domain" t="Include">
+              <e p="api" t="Include">
+                <e p="ApplicationRequest.cs" t="Include" />
+                <e p="ApplicationResponse.cs" t="Include" />
+                <e p="AuditLogRequest.cs" t="Include" />
+                <e p="AuditLogResponse.cs" t="Include" />
+                <e p="AuditLogSearchRequest.cs" t="Include" />
+                <e p="AuditLogSearchResponse.cs" t="Include" />
+                <e p="BaseLoginRequest.cs" t="Include" />
+                <e p="cache" t="Include">
+                  <e p="ReloadRequest.cs" t="Include" />
+                </e>
+                <e p="email" t="Include">
+                  <e p="EmailTemplateErrors.cs" t="Include" />
+                  <e p="SendRequest.cs" t="Include" />
+                  <e p="SendResponse.cs" t="Include" />
+                </e>
+                <e p="EmailTemplateRequest.cs" t="Include" />
+                <e p="EmailTemplateResponse.cs" t="Include" />
+                <e p="EventLogResponse.cs" t="Include" />
+                <e p="EventLogSearchRequest.cs" t="Include" />
+                <e p="EventLogSearchResponse.cs" t="Include" />
+                <e p="GroupRequest.cs" t="Include" />
+                <e p="GroupResponse.cs" t="Include" />
+                <e p="identityProvider" t="Include">
+                  <e p="IdentityProviderLoginRequest.cs" t="Include" />
+                  <e p="LookupResponse.cs" t="Include" />
+                </e>
+                <e p="IdentityProviderRequest.cs" t="Include" />
+                <e p="IdentityProviderResponse.cs" t="Include" />
+                <e p="IntegrationRequest.cs" t="Include" />
+                <e p="IntegrationResponse.cs" t="Include" />
+                <e p="jwt" t="Include">
+                  <e p="IssueResponse.cs" t="Include" />
+                  <e p="RefreshRequest.cs" t="Include" />
+                  <e p="RefreshResponse.cs" t="Include" />
+                  <e p="ValidateResponse.cs" t="Include" />
+                </e>
+                <e p="KeyRequest.cs" t="Include" />
+                <e p="KeyResponse.cs" t="Include" />
+                <e p="LambdaRequest.cs" t="Include" />
+                <e p="LambdaResponse.cs" t="Include" />
+                <e p="LoginPreventedResponse.cs" t="Include" />
+                <e p="LoginRequest.cs" t="Include" />
+                <e p="LoginResponse.cs" t="Include" />
+                <e p="MemberDeleteRequest.cs" t="Include" />
+                <e p="MemberRequest.cs" t="Include" />
+                <e p="MemberResponse.cs" t="Include" />
+                <e p="OAuthConfigurationResponse.cs" t="Include" />
+                <e p="passwordless" t="Include">
+                  <e p="PasswordlessLoginRequest.cs" t="Include" />
+                  <e p="PasswordlessSendRequest.cs" t="Include" />
+                </e>
+                <e p="PasswordValidationRulesResponse.cs" t="Include" />
+                <e p="PreviewRequest.cs" t="Include" />
+                <e p="PreviewResponse.cs" t="Include" />
+                <e p="PublicKeyResponse.cs" t="Include" />
+                <e p="report" t="Include">
+                  <e p="Count.cs" t="Include" />
+                  <e p="DailyActiveUserReportResponse.cs" t="Include" />
+                  <e p="LoginReportResponse.cs" t="Include" />
+                  <e p="MonthlyActiveUserReportResponse.cs" t="Include" />
+                  <e p="RegistrationReportResponse.cs" t="Include" />
+                  <e p="Totals.cs" t="Include" />
+                  <e p="TotalsReportResponse.cs" t="Include" />
+                </e>
+                <e p="SystemConfigurationRequest.cs" t="Include" />
+                <e p="SystemConfigurationResponse.cs" t="Include" />
+                <e p="TenantRequest.cs" t="Include" />
+                <e p="TenantResponse.cs" t="Include" />
+                <e p="twoFactor" t="Include">
+                  <e p="SecretResponse.cs" t="Include" />
+                  <e p="TwoFactorLoginRequest.cs" t="Include" />
+                  <e p="TwoFactorSendRequest.cs" t="Include" />
+                </e>
+                <e p="TwoFactorRequest.cs" t="Include" />
+                <e p="user" t="Include">
+                  <e p="ActionData.cs" t="Include" />
+                  <e p="ActionRequest.cs" t="Include" />
+                  <e p="ActionResponse.cs" t="Include" />
+                  <e p="ChangePasswordRequest.cs" t="Include" />
+                  <e p="ChangePasswordResponse.cs" t="Include" />
+                  <e p="ForgotPasswordRequest.cs" t="Include" />
+                  <e p="ForgotPasswordResponse.cs" t="Include" />
+                  <e p="ImportRequest.cs" t="Include" />
+                  <e p="RecentLoginResponse.cs" t="Include" />
+                  <e p="RegistrationRequest.cs" t="Include" />
+                  <e p="RegistrationResponse.cs" t="Include" />
+                  <e p="SearchRequest.cs" t="Include" />
+                  <e p="SearchResponse.cs" t="Include" />
+                  <e p="VerifyEmailResponse.cs" t="Include" />
+                  <e p="VerifyRegistrationResponse.cs" t="Include" />
+                </e>
+                <e p="UserActionReasonRequest.cs" t="Include" />
+                <e p="UserActionReasonResponse.cs" t="Include" />
+                <e p="UserActionRequest.cs" t="Include" />
+                <e p="UserActionResponse.cs" t="Include" />
+                <e p="UserCommentRequest.cs" t="Include" />
+                <e p="UserCommentResponse.cs" t="Include" />
+                <e p="UserDeleteRequest.cs" t="Include" />
+                <e p="UserRequest.cs" t="Include" />
+                <e p="UserResponse.cs" t="Include" />
+                <e p="WebhookRequest.cs" t="Include" />
+                <e p="WebhookResponse.cs" t="Include" />
+              </e>
+              <e p="Application.cs" t="Include" />
+              <e p="ApplicationRole.cs" t="Include" />
+              <e p="AuditLog.cs" t="Include" />
+              <e p="AuthenticationTokenConfiguration.cs" t="Include" />
+              <e p="CanonicalizationMethod.cs" t="Include" />
+              <e p="CertificateInformation.cs" t="Include" />
+              <e p="CleanSpeakConfiguration.cs" t="Include" />
+              <e p="ContentStatus.cs" t="Include" />
+              <e p="DisplayableRawLogin.cs" t="Include" />
+              <e p="email" t="Include">
+                <e p="Attachment.cs" t="Include" />
+                <e p="Email.cs" t="Include" />
+                <e p="EmailAddress.cs" t="Include" />
+                <e p="EmailTemplate.cs" t="Include" />
+              </e>
+              <e p="EmailConfiguration.cs" t="Include" />
+              <e p="EmailSecurityType.cs" t="Include" />
+              <e p="Enableable.cs" t="Include" />
+              <e p="event" t="Include">
+                <e p="ApplicationEvent.cs" t="Include" />
+                <e p="BaseEvent.cs" t="Include" />
+                <e p="EventRequest.cs" t="Include" />
+                <e p="EventType.cs" t="Include" />
+                <e p="JWTPublicKeyUpdateEvent.cs" t="Include" />
+                <e p="JWTRefreshTokenRevokeEvent.cs" t="Include" />
+                <e p="TestEvent.cs" t="Include" />
+                <e p="UserActionEvent.cs" t="Include" />
+                <e p="UserActionPhase.cs" t="Include" />
+                <e p="UserBulkCreateEvent.cs" t="Include" />
+                <e p="UserCreateEvent.cs" t="Include" />
+                <e p="UserDeactivateEvent.cs" t="Include" />
+                <e p="UserDeleteEvent.cs" t="Include" />
+                <e p="UserLoginFailedEvent.cs" t="Include" />
+                <e p="UserLoginSuccessEvent.cs" t="Include" />
+                <e p="UserReactivateEvent.cs" t="Include" />
+                <e p="UserRegistrationCreateEvent.cs" t="Include" />
+                <e p="UserRegistrationDeleteEvent.cs" t="Include" />
+                <e p="UserRegistrationUpdateEvent.cs" t="Include" />
+                <e p="UserUpdateEvent.cs" t="Include" />
+              </e>
+              <e p="EventConfiguration.cs" t="Include" />
+              <e p="EventConfigurationData.cs" t="Include" />
+              <e p="EventLog.cs" t="Include" />
+              <e p="EventLogConfiguration.cs" t="Include" />
+              <e p="EventLogType.cs" t="Include" />
+              <e p="ExpiryUnit.cs" t="Include" />
+              <e p="ExternalIdentifierConfiguration.cs" t="Include" />
+              <e p="FailedAuthenticationConfiguration.cs" t="Include" />
+              <e p="Group.cs" t="Include" />
+              <e p="GroupMember.cs" t="Include" />
+              <e p="HistoryItem.cs" t="Include" />
+              <e p="HTTPHeaders.cs" t="Include" />
+              <e p="Integrations.cs" t="Include" />
+              <e p="IntervalCount.cs" t="Include" />
+              <e p="IntervalUser.cs" t="Include" />
+              <e p="jwt" t="Include">
+                <e p="DeviceInfo.cs" t="Include" />
+                <e p="DeviceType.cs" t="Include" />
+                <e p="MetaData.cs" t="Include" />
+                <e p="RefreshToken.cs" t="Include" />
+              </e>
+              <e p="JWTConfiguration.cs" t="Include" />
+              <e p="KafkaConfiguration.cs" t="Include" />
+              <e p="Key.cs" t="Include" />
+              <e p="KeyAlgorithm.cs" t="Include" />
+              <e p="KeyType.cs" t="Include" />
+              <e p="Lambda.cs" t="Include" />
+              <e p="LambdaConfiguration.cs" t="Include" />
+              <e p="LambdaType.cs" t="Include" />
+              <e p="LocalizedStrings.cs" t="Include" />
+              <e p="LogHistory.cs" t="Include" />
+              <e p="LoginConfiguration.cs" t="Include" />
+              <e p="LoginIdType.cs" t="Include" />
+              <e p="LoginTheme.cs" t="Include" />
+              <e p="MaximumPasswordAge.cs" t="Include" />
+              <e p="MinimumPasswordAge.cs" t="Include" />
+              <e p="oauth2" t="Include">
+                <e p="AccessToken.cs" t="Include" />
+                <e p="GrantType.cs" t="Include" />
+                <e p="IntrospectResponse.cs" t="Include" />
+                <e p="JWKSResponse.cs" t="Include" />
+                <e p="OAuth2Configuration.cs" t="Include" />
+                <e p="OAuthError.cs" t="Include" />
+                <e p="OAuthErrorReason.cs" t="Include" />
+                <e p="OAuthErrorType.cs" t="Include" />
+                <e p="OAuthResponse.cs" t="Include" />
+                <e p="TokenType.cs" t="Include" />
+                <e p="UserinfoResponse.cs" t="Include" />
+                <e p="UserState.cs" t="Include" />
+              </e>
+              <e p="OpenIdConfiguration.cs" t="Include" />
+              <e p="PasswordEncryptionConfiguration.cs" t="Include" />
+              <e p="PasswordlessConfiguration.cs" t="Include" />
+              <e p="PasswordValidationRules.cs" t="Include" />
+              <e p="provider" t="Include">
+                <e p="BaseIdentityProvider.cs" t="Include" />
+                <e p="BaseIdentityProviderApplicationConfiguration.cs" t="Include" />
+                <e p="DomainBasedIdentityProvider.cs" t="Include" />
+                <e p="ExternalJWTApplicationConfiguration.cs" t="Include" />
+                <e p="ExternalJWTIdentityProvider.cs" t="Include" />
+                <e p="FacebookApplicationConfiguration.cs" t="Include" />
+                <e p="FacebookIdentityProvider.cs" t="Include" />
+                <e p="GoogleApplicationConfiguration.cs" t="Include" />
+                <e p="GoogleIdentityProvider.cs" t="Include" />
+                <e p="IdentityProviderOauth2Configuration.cs" t="Include" />
+                <e p="IdentityProviderType.cs" t="Include" />
+                <e p="LambdaConfiguration.cs" t="Include" />
+                <e p="OpenIdConnectApplicationConfiguration.cs" t="Include" />
+                <e p="OpenIdConnectIdentityProvider.cs" t="Include" />
+                <e p="SAML2ApplicationConfiguration.cs" t="Include" />
+                <e p="SAML2IdentityProvider.cs" t="Include" />
+                <e p="SAMLv2ApplicationConfiguration.cs" t="Include" />
+                <e p="SAMLv2IdentityProvider.cs" t="Include" />
+                <e p="TwitterApplicationConfiguration.cs" t="Include" />
+                <e p="TwitterIdentityProvider.cs" t="Include" />
+              </e>
+              <e p="RawLogin.cs" t="Include" />
+              <e p="RegistrationConfiguration.cs" t="Include" />
+              <e p="RememberPreviousPasswords.cs" t="Include" />
+              <e p="Requirable.cs" t="Include" />
+              <e p="SAMLv2Configuration.cs" t="Include" />
+              <e p="search" t="Include">
+                <e p="AuditLogSearchCriteria.cs" t="Include" />
+                <e p="BaseSearchCriteria.cs" t="Include" />
+                <e p="EventLogSearchCriteria.cs" t="Include" />
+                <e p="SearchResults.cs" t="Include" />
+                <e p="Sort.cs" t="Include" />
+                <e p="SortField.cs" t="Include" />
+                <e p="UserSearchCriteria.cs" t="Include" />
+              </e>
+              <e p="SecureIdentity.cs" t="Include" />
+              <e p="SystemConfiguration.cs" t="Include" />
+              <e p="Tenant.cs" t="Include" />
+              <e p="TenantEmailConfiguration.cs" t="Include" />
+              <e p="TransactionType.cs" t="Include" />
+              <e p="TwilioConfiguration.cs" t="Include" />
+              <e p="TwoFactorDelivery.cs" t="Include" />
+              <e p="UIConfiguration.cs" t="Include" />
+              <e p="User.cs" t="Include" />
+              <e p="UserAction.cs" t="Include" />
+              <e p="UserActionLog.cs" t="Include" />
+              <e p="UserActionOption.cs" t="Include" />
+              <e p="UserActionReason.cs" t="Include" />
+              <e p="UserComment.cs" t="Include" />
+              <e p="UsernameModeration.cs" t="Include" />
+              <e p="UserRegistration.cs" t="Include" />
+              <e p="util" t="Include">
+                <e p="Normalizer.cs" t="Include" />
+              </e>
+              <e p="Webhook.cs" t="Include" />
+              <e p="WebhookData.cs" t="Include" />
+            </e>
+            <e p="jwt" t="Include">
+              <e p="domain" t="Include">
+                <e p="Algorithm.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="fusionauth-netcore-client.csproj" t="IncludeRecursive" />
+      <e p="fusionauth-netcore-client.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="fusionauth-netcore-client.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="src" t="Include">
+        <e p="io" t="Include">
+          <e p="fusionauth" t="Include">
+            <e p="ClientResponse.cs" t="Include" />
+            <e p="converters" t="Include">
+              <e p="DateTimeOffsetConverter.cs" t="Include" />
+              <e p="helpers" t="Include">
+                <e p="IdentityProvider.cs" t="Include" />
+              </e>
+              <e p="IdentityProviderConverter.cs" t="Include" />
+            </e>
+            <e p="DefaultRESTClient.cs" t="Include" />
+            <e p="FusionAuthClient.cs" t="Include" />
+            <e p="IRESTClient.cs" t="Include" />
+            <e p="IRESTClientBuilder.cs" t="Include" />
+            <e p="RESTVoid.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../fusionauth-netcore-client-test/fusionauth-netcore-client-test" t="IncludeRecursive">
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="fusionauth-netcore-client-test.csproj" t="IncludeRecursive" />
+      <e p="fusionauth-netcore-client-test.csproj.DotSettings" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="fusionauth-netcore-client-test.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="test" t="Include">
+        <e p="io" t="Include">
+          <e p="fusionauth" t="Include">
+            <e p="Example.cs" t="Include" />
+            <e p="FusionAuthClientTest.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.1/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.1/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_fusionauth-netcore-client.-1482316662.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+  </component>
+</project>
