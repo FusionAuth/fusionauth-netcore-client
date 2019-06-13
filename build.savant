@@ -15,7 +15,7 @@
  */
 savantVersion = "1.0.0"
 
-project(group: "io.fusionauth", name: "fusionauth-netcore-client", version: "1.6.2", licenses: ["ApacheV2_0"]) {
+project(group: "io.fusionauth", name: "fusionauth-netcore-client", version: "1.7.0", licenses: ["ApacheV2_0"]) {
   workflow {
     standard()
   }
@@ -23,67 +23,27 @@ project(group: "io.fusionauth", name: "fusionauth-netcore-client", version: "1.6
   publishWorkflow {
     subversion(repository: "http://svn.inversoft.org/savant")
   }
-
-//  dependencies {
-//    group(name: "compile") {
-//      dependency(id: "com.inversoft:restify:3.0.2-{integration}:dll")
-//      dependency(id: "com.newtonsoft:Newtonsoft.Json:8.0.3+net20:dll")
-//    }
-//    group(name: "test-compile") {
-//      dependency(id: "org.nunit:nunit.framework:2.6.4:dll")
-//    }
-//  }
-
-//  publications {
-//    main {
-//      publication(name: "fusionauth-csharp-client", type: "dll", file: "build/dlls/fusionauth-csharp-client.dll")
-//    }
-//  }
 }
 
 // Plugins
-//dependency = loadPlugin(id: "org.savantbuild.plugin:dependency:${savantVersion}")
-//file = loadPlugin(id: "org.savantbuild.plugin:file:${savantVersion}")
-//idea = loadPlugin(id: "org.savantbuild.plugin:idea:1.0.1")
 release = loadPlugin(id: "org.savantbuild.plugin:release-git:${savantVersion}")
-//csharp = loadPlugin(id: "org.savantbuild.plugin:csharp:0.1.0-{integration}")
-//csharpNUnit = loadPlugin(id: "org.savantbuild.plugin:csharp-nunit:0.1.0-{integration}")
-
-// Plugin settings
-//csharp.settings.sdkVersion = "2.0"
-//csharp.settings.compilerExecutable = "gmcs"
-//csharpNUnit.settings.nunitVersion = "2.6.4"
-//csharpNUnit.settings.sdkVersion = "2.0"
-//csharpNUnit.settings.nunitArguments = ["-config=Debug", "-framework=2.0"]
 
 target(name: "clean", description: "Cleans build directory") {
-//  csharp.clean()
-//  file.prune(dir: "build")
 }
 
 target(name: "compile", description: "Compiles the source code") {
-//  csharp.compile()
 }
 
 target(name: "test", description: "Runs the project's unit tests", dependsOn: ["compile"]) {
-//  csharpNUnit.test()
 }
 
 target(name: "int", description: "Releases a local integration build of the project", dependsOn: ["test"]) {
-//  dependency.integrate()
 }
 
 target(name: "idea", description: "Updates the IntelliJ IDEA module file") {
-//  idea.iml()
 }
 
 target(name: "bundle", description: "Builds the project release bundle", dependsOn: "int") {
-  // Copy the zip to the bundle directory
-//  file.prune(dir: "build/bundles/")
-//  file.mkdir(dir: "build/bundles")
-//  file.zip(file: "build/bundles/fusionauth-csharp-client.zip") {
-//    fileSet(dir: "build/dlls", includePatterns: [/fusionauth-csharp-client.dll/])
-//  }
 }
 
 target(name: "release", description: "Releases a full version of the project", dependsOn: ["int"]) {
