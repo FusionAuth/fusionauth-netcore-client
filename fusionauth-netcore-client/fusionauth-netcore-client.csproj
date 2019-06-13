@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp2.2</TargetFramework>
         <RootNamespace></RootNamespace>
-        <PackageVersion>1.6.2</PackageVersion>
+        <PackageVersion>1.7.0</PackageVersion>
         <Title>FusionAuth .net Core Client</Title>
     </PropertyGroup>
 
