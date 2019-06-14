@@ -77,6 +77,24 @@ namespace io.fusionauth {
           .go<ActionResponse>();
     }
     /**
+     * Adds a user to an existing family. The family id must be specified.
+     *
+     * @param familyId The id of the family.
+     * @param request The request object that contains all of the information used to determine which user to add to the family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse> AddUserToFamily(Guid? familyId, FamilyRequest request) {
+      return buildClient()
+          .withUri("/api/user/family")
+          .withUriSegment(familyId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .go<FamilyResponse>();
+    }
+    /**
      * Cancels the user action.
      *
      * @param actionId The action id of the action to cancel.
@@ -206,6 +224,24 @@ namespace io.fusionauth {
           .go<AuditLogResponse>();
     }
     /**
+     * Creates a user consent type. You can optionally specify an Id for the consent type, if not provided one will be generated.
+     *
+     * @param consentId (Optional) The Id for the consent. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the consent.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse> CreateConsent(Guid? consentId, ConsentRequest request) {
+      return buildClient()
+          .withUri("/api/consent")
+          .withUriSegment(consentId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<ConsentResponse>();
+    }
+    /**
      * Creates an email template. You can optionally specify an Id for the template, if not provided one will be generated.
      *
      * @param emailTemplateId (Optional) The Id for the template. If not provided a secure random UUID will be generated.
@@ -222,6 +258,25 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .go<EmailTemplateResponse>();
+    }
+    /**
+     * Creates a family with the user id in the request as the owner and sole member of the family. You can optionally specify an id for the
+     * family, if not provided one will be generated.
+     *
+     * @param familyId (Optional) The id for the family. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse> CreateFamily(Guid? familyId, FamilyRequest request) {
+      return buildClient()
+          .withUri("/api/user/family")
+          .withUriSegment(familyId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<FamilyResponse>();
     }
     /**
      * Creates a group. You can optionally specify an Id for the group, if not provided one will be generated.
@@ -368,6 +423,24 @@ namespace io.fusionauth {
           .go<UserActionReasonResponse>();
     }
     /**
+     * Creates a single User consent.
+     *
+     * @param userConsentId (Optional) The Id for the User consent. If not provided a secure random UUID will be generated.
+     * @param request The request that contains the user consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse> CreateUserConsent(Guid? userConsentId, UserConsentRequest request) {
+      return buildClient()
+          .withUri("/api/user/consent")
+          .withUriSegment(userConsentId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<UserConsentResponse>();
+    }
+    /**
      * Creates a webhook. You can optionally specify an Id for the webhook, if not provided one will be generated.
      *
      * @param webhookId (Optional) The Id for the webhook. If not provided a secure random UUID will be generated.
@@ -486,6 +559,22 @@ namespace io.fusionauth {
           .withUriSegment(applicationId)
           .withUriSegment("role")
           .withUriSegment(roleId)
+          .withMethod("Delete")
+          .go<RESTVoid>();
+    }
+    /**
+     * Deletes the consent for the given Id.
+     *
+     * @param consentId The Id of the consent to delete.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid> DeleteConsent(Guid? consentId) {
+      return buildClient()
+          .withUri("/api/consent")
+          .withUriSegment(consentId)
           .withMethod("Delete")
           .go<RESTVoid>();
     }
@@ -1141,6 +1230,24 @@ namespace io.fusionauth {
           .go<RegistrationResponse>();
     }
     /**
+     * Removes a user from the family with the given id.
+     *
+     * @param familyId The id of the family to remove the user from.
+     * @param userId The id of the user to remove from the family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid> RemoveUserFromFamily(Guid? familyId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/user/family")
+          .withUriSegment(familyId)
+          .withUriSegment(userId)
+          .withMethod("Delete")
+          .go<RESTVoid>();
+    }
+    /**
      * Re-sends the verification email to the user.
      *
      * @param email The email address of the user that needs a new verification email.
@@ -1289,6 +1396,36 @@ namespace io.fusionauth {
           .go<AuditLogResponse>();
     }
     /**
+     * Retrieves the Consent for the given Id.
+     *
+     * @param consentId The Id of the consent.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse> RetrieveConsent(Guid? consentId) {
+      return buildClient()
+          .withUri("/api/consent")
+          .withUriSegment(consentId)
+          .withMethod("Get")
+          .go<ConsentResponse>();
+    }
+    /**
+     * Retrieves all of the consent.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse> RetrieveConsents() {
+      return buildClient()
+          .withUri("/api/consent")
+          .withMethod("Get")
+          .go<ConsentResponse>();
+    }
+    /**
      * Retrieves the daily active user report between the two instants. If you specify an application id, it will only
      * return the daily active counts for that application.
      *
@@ -1372,6 +1509,38 @@ namespace io.fusionauth {
           .withUriSegment(eventLogId)
           .withMethod("Get")
           .go<EventLogResponse>();
+    }
+    /**
+     * Retrieves all of the families that a user belongs to.
+     *
+     * @param userId The User's id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse> RetrieveFamilies(Guid? userId) {
+      return buildClient()
+          .withUri("/api/user/family")
+          .withParameter("userId", userId)
+          .withMethod("Get")
+          .go<FamilyResponse>();
+    }
+    /**
+     * Retrieves all of the members of a family by the unique Family Id.
+     *
+     * @param familyId The unique Id of the Family.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<FamilyResponse> RetrieveFamilyMembersByFamilyId(Guid? familyId) {
+      return buildClient()
+          .withUri("/api/user/family")
+          .withUriSegment(familyId)
+          .withMethod("Get")
+          .go<FamilyResponse>();
     }
     /**
      * Retrieves the group for the given Id.
@@ -1675,6 +1844,22 @@ namespace io.fusionauth {
           .withUri("/api/system-configuration/password-validation-rules")
           .withMethod("Get")
           .go<PasswordValidationRulesResponse>();
+    }
+    /**
+     * Retrieves all of the children for the given parent email address.
+     *
+     * @param parentEmail The email of the parent.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<PendingResponse> RetrievePendingChildren(string parentEmail) {
+      return buildClient()
+          .withUri("/api/user/family/pending")
+          .withParameter("parentEmail", parentEmail)
+          .withMethod("Get")
+          .go<PendingResponse>();
     }
     /**
      * Retrieves the last number of login records.
@@ -1985,6 +2170,38 @@ namespace io.fusionauth {
           .go<UserCommentResponse>();
     }
     /**
+     * Retrieve a single User consent by Id.
+     *
+     * @param userConsentId The User consent Id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse> RetrieveUserConsent(Guid? userConsentId) {
+      return buildClient()
+          .withUri("/api/user/consent")
+          .withUriSegment(userConsentId)
+          .withMethod("Get")
+          .go<UserConsentResponse>();
+    }
+    /**
+     * Retrieves all of the consents for a User.
+     *
+     * @param userId The User's Id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse> RetrieveUserConsents(Guid? userId) {
+      return buildClient()
+          .withUri("/api/user/consent")
+          .withParameter("userId", userId)
+          .withMethod("Get")
+          .go<UserConsentResponse>();
+    }
+    /**
      * Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
      * login counts for that application.
      *
@@ -2118,6 +2335,22 @@ namespace io.fusionauth {
           .go<RESTVoid>();
     }
     /**
+     * Revokes a single User consent by Id.
+     *
+     * @param userConsentId The User Consent Id
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid> RevokeUserConsent(Guid? userConsentId) {
+      return buildClient()
+          .withUri("/api/user/consent")
+          .withUriSegment(userConsentId)
+          .withMethod("Delete")
+          .go<RESTVoid>();
+    }
+    /**
      * Searches the audit logs with the specified criteria and pagination.
      *
      * @param request The search criteria and pagination information.
@@ -2148,6 +2381,22 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .go<EventLogSearchResponse>();
+    }
+    /**
+     * Searches the login records with the specified criteria and pagination.
+     *
+     * @param request The search criteria and pagination information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<LoginRecordSearchResponse> SearchLoginRecords(LoginRecordSearchRequest request) {
+      return buildClient()
+          .withUri("/api/system/login-record/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<LoginRecordSearchResponse>();
     }
     /**
      * Retrieves the users for the given ids. If any id is invalid, it is ignored.
@@ -2200,6 +2449,22 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .go<SendResponse>();
+    }
+    /**
+     * Sends out an email to a parent that they need to register and create a family or need to log in and add a child to their existing family.
+     *
+     * @param request The request object that contains the parent email.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid> SendFamilyRequestEmail(FamilyEmailRequest request) {
+      return buildClient()
+          .withUri("/api/user/family/request")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<RESTVoid>();
     }
     /**
      * Send a passwordless authentication code in an email to complete login.
@@ -2303,6 +2568,24 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .go<ApplicationResponse>();
+    }
+    /**
+     * Updates the consent with the given Id.
+     *
+     * @param consentId The Id of the consent to update.
+     * @param request The request that contains all of the new consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ConsentResponse> UpdateConsent(Guid? consentId, ConsentRequest request) {
+      return buildClient()
+          .withUri("/api/consent")
+          .withUriSegment(consentId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .go<ConsentResponse>();
     }
     /**
      * Updates the email template with the given Id.
@@ -2515,6 +2798,24 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .go<UserActionReasonResponse>();
+    }
+    /**
+     * Updates a single User consent by Id.
+     *
+     * @param userConsentId The User Consent Id
+     * @param request The request that contains the user consent information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<UserConsentResponse> UpdateUserConsent(Guid? userConsentId, UserConsentRequest request) {
+      return buildClient()
+          .withUri("/api/user/consent")
+          .withUriSegment(userConsentId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .go<UserConsentResponse>();
     }
     /**
      * Updates the webhook with the given Id.

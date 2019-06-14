@@ -28,6 +28,7 @@ namespace io.fusionauth.domain.api {
     public string code;
     public TwoFactorDelivery delivery;
     public string secret;
+    public string secretBase32Encoded;
 
     public TwoFactorRequest with(Action<TwoFactorRequest> action) {
       action(this);

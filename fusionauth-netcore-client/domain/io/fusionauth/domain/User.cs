@@ -45,6 +45,7 @@ namespace io.fusionauth.domain {
     public string middleName;
     public string mobilePhone;
     public string name;
+    public string parentEmail;
     public List<string> preferredLanguages;
     public List<UserRegistration> registrations;
     public Guid? tenantId;

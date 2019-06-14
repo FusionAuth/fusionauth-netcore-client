@@ -26,6 +26,8 @@ namespace io.fusionauth.domain {
     public string helpers;
     public DateTimeOffset? lastModified;
     public string oauth2Authorize;
+    public string oauth2ChildRegistrationNotAllowed;
+    public string oauth2ChildRegistrationNotAllowedComplete;
     public string oauth2CompleteRegistration;
     public string oauth2Error;
     public string oauth2Register;

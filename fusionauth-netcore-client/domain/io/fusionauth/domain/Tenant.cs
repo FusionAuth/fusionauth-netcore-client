@@ -26,6 +26,7 @@ namespace io.fusionauth.domain {
   public class Tenant {
     public Dictionary<string, object> data;
     public TenantEmailConfiguration emailConfiguration;
+    public FamilyConfiguration familyConfiguration;
     public Guid? id;
     public string name;
 

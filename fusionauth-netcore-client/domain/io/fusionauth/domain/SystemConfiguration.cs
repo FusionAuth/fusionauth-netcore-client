@@ -24,6 +24,7 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class SystemConfiguration {
+    public AuditLogConfiguration auditLogConfiguration;
     public string cookieEncryptionIV;
     public string cookieEncryptionKey;
     public Dictionary<string, object> data;
@@ -35,6 +36,7 @@ namespace io.fusionauth.domain {
     public int? httpSessionMaxInactiveInterval;
     public string issuer;
     public JWTConfiguration jwtConfiguration;
+    public LoginRecordConfiguration loginRecordConfiguration;
     public string logoutURL;
     public MaximumPasswordAge maximumPasswordAge;
     public MinimumPasswordAge minimumPasswordAge;
