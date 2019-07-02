@@ -5,8 +5,7 @@ If you're integrating FusionAuth with a .NET Core application, this library will
 
 For additional information and documentation on FusionAuth refer to [https://fusionauth.io](https://fusionauth.io).
 
-> **WARNING**: This project is still in development, feel free to use, but it may not work. You may still feel free to open issues or submit PRs. 
-
+https://www.nuget.org/packages/FusionAuth.Client/
 
 Refer to the FusionAuth API documentation to for request and response formats.
 * https://fusionauth.io/docs/v1/tech/apis/
