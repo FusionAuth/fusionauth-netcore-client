@@ -35,4 +35,5 @@ out/
 # Editor-based Rest Client
 .idea/httpRequests
 
+.vs
 .DS_Store

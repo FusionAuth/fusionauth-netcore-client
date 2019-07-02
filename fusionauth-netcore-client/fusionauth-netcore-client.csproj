@@ -4,8 +4,14 @@
         <RootNamespace></RootNamespace>
         <PackageVersion>1.7.2</PackageVersion>
         <Title>FusionAuth .net Core Client</Title>
+        <AssemblyName>FusionAuth.Client</AssemblyName>
         <TargetFrameworks>netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageProjectUrl>https://github.com/FusionAuth/fusionauth-netcore-client</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/FusionAuth/fusionauth-netcore-client</RepositoryUrl>
+        <Authors>Tyler Scott</Authors>
+        <Owners>FusionAuth</Owners>
+        <Summary>FusionAuth client for .NET Core</Summary>
     </PropertyGroup>
 
     <ItemGroup>
