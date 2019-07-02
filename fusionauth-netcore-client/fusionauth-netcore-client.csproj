@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
         <RootNamespace></RootNamespace>
         <PackageVersion>1.7.2</PackageVersion>
         <Title>FusionAuth .net Core Client</Title>
+        <TargetFrameworks>netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
