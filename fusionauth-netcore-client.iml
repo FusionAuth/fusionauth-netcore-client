@@ -6,6 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/fusionauth-netcore-client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/fusionauth-netcore-client/domain" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/fusionauth-netcore-client-test/fusionauth-netcore-client-test/test" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/fusionauth-netcore-client-test/fusionauth-netcore-client-test/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/fusionauth-netcore-client-test/fusionauth-netcore-client-test/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/fusionauth-netcore-client/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/fusionauth-netcore-client/obj" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
