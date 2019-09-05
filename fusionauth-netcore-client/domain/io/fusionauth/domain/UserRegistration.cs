@@ -26,7 +26,6 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class UserRegistration {
-    public Application application;
     public Guid? applicationId;
     public string authenticationToken;
     public Guid? cleanSpeakId;
@@ -38,7 +37,6 @@ namespace io.fusionauth.domain {
     public List<string> roles;
     public string timezone;
     public Dictionary<string, string> tokens;
-    public Guid? userId;
     public string username;
     public ContentStatus usernameStatus;
     public bool? verified;

@@ -26,6 +26,7 @@ namespace io.fusionauth.domain.provider {
   public class BaseIdentityProvider<D>: Enableable, IdentityProvider {
     public Dictionary<Guid, D> applicationConfiguration;
     public Dictionary<string, object> data;
+    public bool? debug;
     public Guid? id;
     public string name;
     public IdentityProviderType type;

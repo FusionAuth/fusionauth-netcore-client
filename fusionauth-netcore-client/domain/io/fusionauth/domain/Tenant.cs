@@ -24,11 +24,24 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class Tenant {
+    public bool? configured;
     public Dictionary<string, object> data;
-    public TenantEmailConfiguration emailConfiguration;
+    public EmailConfiguration emailConfiguration;
+    public EventConfiguration @eventConfiguration;
+    public ExternalIdentifierConfiguration externalIdentifierConfiguration;
+    public FailedAuthenticationConfiguration failedAuthenticationConfiguration;
     public FamilyConfiguration familyConfiguration;
+    public int? httpSessionMaxInactiveInterval;
     public Guid? id;
+    public string issuer;
+    public JWTConfiguration jwtConfiguration;
+    public string logoutURL;
+    public MaximumPasswordAge maximumPasswordAge;
+    public MinimumPasswordAge minimumPasswordAge;
     public string name;
+    public PasswordEncryptionConfiguration passwordEncryptionConfiguration;
+    public PasswordValidationRules passwordValidationRules;
+    public Guid? themeId;
 
     public Tenant with(Action<Tenant> action) {
       action(this);

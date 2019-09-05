@@ -28,6 +28,7 @@ namespace io.fusionauth.domain.@event {
   public class BaseEvent {
     public DateTimeOffset? createInstant;
     public Guid? id;
+    public Guid? tenantId;
     public EventType type;
 
     public BaseEvent with(Action<BaseEvent> action) {

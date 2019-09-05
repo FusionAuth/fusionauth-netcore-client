@@ -40,6 +40,8 @@ namespace io.fusionauth.domain.@event {
     UserRegistrationCreate, 
     UserRegistrationUpdate, 
     UserRegistrationDelete, 
+    UserRegistrationVerified, 
+    UserEmailVerified, 
     Test
   }
 }

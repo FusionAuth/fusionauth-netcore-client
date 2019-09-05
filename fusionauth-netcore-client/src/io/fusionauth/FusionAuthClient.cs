@@ -367,6 +367,24 @@ namespace io.fusionauth {
           .go<TenantResponse>();
     }
     /**
+     * Creates a Theme. You can optionally specify an Id for the theme, if not provided one will be generated.
+     *
+     * @param themeId (Optional) The Id for the theme. If not provided a secure random UUID will be generated.
+     * @param request The request object that contains all of the information used to create the theme.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse> CreateTheme(Guid? themeId, ThemeRequest request) {
+      return buildClient()
+          .withUri("/api/theme")
+          .withUriSegment(themeId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<ThemeResponse>();
+    }
+    /**
      * Creates a user. You can optionally specify an Id for the user, if not provided one will be generated.
      *
      * @param userId (Optional) The Id for the user. If not provided a secure random UUID will be generated.
@@ -709,6 +727,22 @@ namespace io.fusionauth {
           .go<RESTVoid>();
     }
     /**
+     * Deletes the theme for the given Id.
+     *
+     * @param themeId The Id of the theme to delete.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid> DeleteTheme(Guid? themeId) {
+      return buildClient()
+          .withUri("/api/theme")
+          .withUriSegment(themeId)
+          .withMethod("Delete")
+          .go<RESTVoid>();
+    }
+    /**
      * Deletes the user for the given Id. This permanently deletes all information, metrics, reports and data associated
      * with the user.
      *
@@ -874,7 +908,7 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/user/verify-email")
           .withParameter("email", email)
-          .withParameter("sendVerifyPasswordEmail", false)
+          .withParameter("sendVerifyEmail", false)
           .withMethod("Put")
           .go<VerifyEmailResponse>();
     }
@@ -1027,7 +1061,9 @@ namespace io.fusionauth {
           .go<IssueResponse>();
     }
     /**
-     * Logs a user in.
+     * Authenticates a user to FusionAuth. 
+     * 
+     * This API optionally requires an API key. See <code>Application.loginConfiguration.requireAuthentication</code>.
      *
      * @param request The login request that contains the user credentials used to log them in.
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
@@ -1206,6 +1242,23 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .go<LoginResponse>();
+    }
+    /**
+     * Request a refresh of the User search index. This API is not generally necessary and the search index will become consistent in a
+     * reasonable amount of time. There may be scenarios where you may wish to manually request an index refresh. One example may be 
+     * if you are using the Search API or Delete Tenant API immediately following a User Create etc, you may wish to request a refresh to
+     *  ensure the index immediately current before making a query request to the search index.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<RESTVoid> RefreshUserSearchIndex() {
+      return buildClient()
+          .withUri("/api/user/search")
+          .withMethod("Put")
+          .go<RESTVoid>();
     }
     /**
      * Registers a user for an application. If you provide the User and the UserRegistration object on this request, it
@@ -1665,11 +1718,9 @@ namespace io.fusionauth {
           .go<IntegrationResponse>();
     }
     /**
-     * Retrieves the Public Key configured for verifying JSON Web Tokens (JWT) by the key Id. If the key Id is provided a
-     * single public key will be returned if one is found by that id. If the optional parameter key Id is not provided all
-     * public keys will be returned.
+     * Retrieves the Public Key configured for verifying JSON Web Tokens (JWT) by the key Id (kid).
      *
-     * @param keyId (Optional) The Id of the public key.
+     * @param keyId The Id of the public key (kid).
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
@@ -1678,7 +1729,23 @@ namespace io.fusionauth {
     public ClientResponse<PublicKeyResponse> RetrieveJWTPublicKey(string keyId) {
       return buildClient()
           .withUri("/api/jwt/public-key")
-          .withUriSegment(keyId)
+          .withParameter("kid", keyId)
+          .withMethod("Get")
+          .go<PublicKeyResponse>();
+    }
+    /**
+     * Retrieves the Public Key configured for verifying the JSON Web Tokens (JWT) issued by the Login API by the Application Id.
+     *
+     * @param applicationId The Id of the Application for which this key is used.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<PublicKeyResponse> RetrieveJWTPublicKeyByApplicationId(string applicationId) {
+      return buildClient()
+          .withUri("/api/jwt/public-key")
+          .withParameter("applicationId", applicationId)
           .withMethod("Get")
           .go<PublicKeyResponse>();
     }
@@ -1832,7 +1899,10 @@ namespace io.fusionauth {
           .go<OAuthConfigurationResponse>();
     }
     /**
-     * Retrieves the password validation rules.
+     * Retrieves the password validation rules for a specific tenant. This method requires a tenantId to be provided 
+     * through the use of a Tenant scoped API key or an HTTP header X-FusionAuth-TenantId to specify the Tenant Id.
+     * 
+     * This API does not require an API key.
      *
      * @return When successful, the response will contain the log of the action. If there was a validation error or any
      * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1841,7 +1911,25 @@ namespace io.fusionauth {
      */
     public ClientResponse<PasswordValidationRulesResponse> RetrievePasswordValidationRules() {
       return buildClient()
-          .withUri("/api/system-configuration/password-validation-rules")
+          .withUri("/api/tenant/password-validation-rules")
+          .withMethod("Get")
+          .go<PasswordValidationRulesResponse>();
+    }
+    /**
+     * Retrieves the password validation rules for a specific tenant.
+     * 
+     * This API does not require an API key.
+     *
+     * @param tenantId The Id of the tenant.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<PasswordValidationRulesResponse> RetrievePasswordValidationRulesWithTenantId(Guid? tenantId) {
+      return buildClient()
+          .withUri("/api/tenant/password-validation-rules")
+          .withUriSegment(tenantId)
           .withMethod("Get")
           .go<PasswordValidationRulesResponse>();
     }
@@ -1977,6 +2065,36 @@ namespace io.fusionauth {
           .withUri("/api/tenant")
           .withMethod("Get")
           .go<TenantResponse>();
+    }
+    /**
+     * Retrieves the theme for the given Id.
+     *
+     * @param themeId The Id of the theme.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse> RetrieveTheme(Guid? themeId) {
+      return buildClient()
+          .withUri("/api/theme")
+          .withUriSegment(themeId)
+          .withMethod("Get")
+          .go<ThemeResponse>();
+    }
+    /**
+     * Retrieves all of the themes.
+     *
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse> RetrieveThemes() {
+      return buildClient()
+          .withUri("/api/theme")
+          .withMethod("Get")
+          .go<ThemeResponse>();
     }
     /**
      * Retrieves the totals report. This contains all of the total counts for each application and the global registration
@@ -2744,6 +2862,24 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .go<TenantResponse>();
+    }
+    /**
+     * Updates the theme with the given Id.
+     *
+     * @param themeId The Id of the theme to update.
+     * @param request The request that contains all of the new theme information.
+     * @return When successful, the response will contain the log of the action. If there was a validation error or any
+     * other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     * contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     * IOException.
+     */
+    public ClientResponse<ThemeResponse> UpdateTheme(Guid? themeId, ThemeRequest request) {
+      return buildClient()
+          .withUri("/api/theme")
+          .withUriSegment(themeId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .go<ThemeResponse>();
     }
     /**
      * Updates the user with the given Id.

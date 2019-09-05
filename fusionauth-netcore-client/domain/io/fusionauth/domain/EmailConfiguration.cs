@@ -19,7 +19,11 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
-  public class EmailConfiguration: Enableable {
+
+  /**
+   * @author Brian Pontarelli
+   */
+  public class EmailConfiguration {
     public Guid? forgotPasswordEmailTemplateId;
     public string host;
     public string password;

@@ -27,21 +27,10 @@ namespace io.fusionauth.domain {
     public AuditLogConfiguration auditLogConfiguration;
     public string cookieEncryptionIV;
     public string cookieEncryptionKey;
+    public CORSConfiguration corsConfiguration;
     public Dictionary<string, object> data;
-    public EmailConfiguration emailConfiguration;
-    public EventConfiguration @eventConfiguration;
     public EventLogConfiguration @eventLogConfiguration;
-    public ExternalIdentifierConfiguration externalIdentifierConfiguration;
-    public FailedAuthenticationConfiguration failedAuthenticationConfiguration;
-    public int? httpSessionMaxInactiveInterval;
-    public string issuer;
-    public JWTConfiguration jwtConfiguration;
     public LoginRecordConfiguration loginRecordConfiguration;
-    public string logoutURL;
-    public MaximumPasswordAge maximumPasswordAge;
-    public MinimumPasswordAge minimumPasswordAge;
-    public PasswordEncryptionConfiguration passwordEncryptionConfiguration;
-    public PasswordValidationRules passwordValidationRules;
     public string reportTimezone;
     public UIConfiguration uiConfiguration;
 

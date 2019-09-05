@@ -20,6 +20,10 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
+  /**
+   * @author Brian Pontarelli
+   */
   public class EventConfiguration {
     public Dictionary<EventType, EventConfigurationData> @events;
 

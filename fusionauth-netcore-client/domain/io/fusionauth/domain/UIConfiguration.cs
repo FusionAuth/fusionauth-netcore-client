@@ -21,7 +21,6 @@ using System;
 namespace io.fusionauth.domain {
   public class UIConfiguration {
     public string headerColor;
-    public LoginTheme loginTheme;
     public string logoURL;
     public string menuFontColor;
 
