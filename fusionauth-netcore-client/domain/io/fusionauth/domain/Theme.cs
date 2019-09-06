@@ -27,7 +27,6 @@ namespace io.fusionauth.domain {
     public Dictionary<string, object> data;
     public Guid? id;
     public DateTimeOffset? insertInstant;
-    public bool? isDefault;
     public DateTimeOffset? lastUpdateInstant;
     public string name;
     public string stylesheet;
