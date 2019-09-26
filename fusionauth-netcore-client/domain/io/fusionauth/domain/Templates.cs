@@ -29,6 +29,7 @@ namespace io.fusionauth.domain {
     public string oauth2ChildRegistrationNotAllowedComplete;
     public string oauth2CompleteRegistration;
     public string oauth2Error;
+    public string oauth2Logout;
     public string oauth2Passwordless;
     public string oauth2Register;
     public string oauth2TwoFactor;

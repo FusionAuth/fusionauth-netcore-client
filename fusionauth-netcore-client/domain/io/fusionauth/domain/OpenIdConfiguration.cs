@@ -28,7 +28,10 @@ namespace io.fusionauth.domain {
    */
   public class OpenIdConfiguration {
     public string authorization_endpoint;
+    public bool? backchannel_logout_supported;
     public List<string> claims_supported;
+    public string end_session_endpoint;
+    public bool? frontchannel_logout_supported;
     public List<string> grant_types_supported;
     public List<string> id_token_signing_alg_values_supported;
     public string issuer;

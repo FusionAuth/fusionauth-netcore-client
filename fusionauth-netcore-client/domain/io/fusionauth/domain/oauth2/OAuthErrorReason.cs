@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.oauth2 {
     invalid_pkce_code_challenge_method, 
     invalid_redirect_uri, 
     invalid_response_type, 
+    invalid_id_token_hint, 
+    invalid_post_logout_redirect_uri, 
     grant_type_disabled, 
     missing_client_id, 
     missing_code, 
