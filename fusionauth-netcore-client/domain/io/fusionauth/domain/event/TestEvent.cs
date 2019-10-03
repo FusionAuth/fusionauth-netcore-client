@@ -25,7 +25,6 @@ namespace io.fusionauth.domain.@event {
    */
   public class TestEvent: BaseEvent {
     public string message;
-    public EventType type;
 
     public TestEvent with(Action<TestEvent> action) {
       action(this);

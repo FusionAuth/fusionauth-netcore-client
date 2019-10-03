@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
+
   public class LambdaConfiguration {
     public Guid? reconcileId;
 

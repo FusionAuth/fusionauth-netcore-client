@@ -19,12 +19,13 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.util {
+
   public enum HTTPMethod {
-    GET, 
-    POST, 
-    PUT, 
-    DELETE, 
-    HEAD, 
-    OPTIONS
+            GET, 
+            POST, 
+            PUT, 
+            DELETE, 
+            HEAD, 
+            OPTIONS
   }
 }

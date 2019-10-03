@@ -19,9 +19,10 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public enum KeyType {
-    EC, 
-    RSA, 
-    HMAC
+            EC, 
+            RSA, 
+            HMAC
   }
 }

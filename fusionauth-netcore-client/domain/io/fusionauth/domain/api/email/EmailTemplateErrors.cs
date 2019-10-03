@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api.email {
+
   public class EmailTemplateErrors {
     public Dictionary<string, string> parseErrors;
     public Dictionary<string, string> renderErrors;

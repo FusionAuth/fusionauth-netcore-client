@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public class PasswordlessConfiguration: Enableable {
 
     public PasswordlessConfiguration with(Action<PasswordlessConfiguration> action) {

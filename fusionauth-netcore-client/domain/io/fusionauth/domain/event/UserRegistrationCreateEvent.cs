@@ -29,7 +29,6 @@ namespace io.fusionauth.domain.@event {
   public class UserRegistrationCreateEvent: BaseEvent {
     public Guid? applicationId;
     public UserRegistration registration;
-    public EventType type;
     public User user;
 
     public UserRegistrationCreateEvent with(Action<UserRegistrationCreateEvent> action) {

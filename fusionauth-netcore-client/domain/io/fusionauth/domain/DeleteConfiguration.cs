@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public class DeleteConfiguration: Enableable {
     public int? numberOfDaysToRetain;
 

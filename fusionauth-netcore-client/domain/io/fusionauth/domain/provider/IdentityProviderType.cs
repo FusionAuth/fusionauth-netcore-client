@@ -19,12 +19,13 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
+
   public enum IdentityProviderType {
-    ExternalJWT, 
-    OpenIDConnect, 
-    Facebook, 
-    Google, 
-    Twitter, 
-    SAMLv2
+            ExternalJWT, 
+            OpenIDConnect, 
+            Facebook, 
+            Google, 
+            Twitter, 
+            SAMLv2
   }
 }

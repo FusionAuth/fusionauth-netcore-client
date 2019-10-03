@@ -30,11 +30,11 @@ namespace io.fusionauth.domain.oauth2 {
    * @author Daniel DeGroff
    */
   public enum GrantType {
-    authorization_code, 
-    @implicit, 
-    password, 
-    client_credentials, 
-    refresh_token, 
-    unknown
+            authorization_code, 
+            @implicit, 
+            password, 
+            client_credentials, 
+            refresh_token, 
+            unknown
   }
 }

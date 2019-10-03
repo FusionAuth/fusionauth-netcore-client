@@ -27,7 +27,6 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class UserDeactivateEvent: BaseEvent {
-    public EventType type;
     public User user;
 
     public UserDeactivateEvent with(Action<UserDeactivateEvent> action) {

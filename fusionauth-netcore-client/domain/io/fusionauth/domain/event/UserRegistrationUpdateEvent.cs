@@ -30,7 +30,6 @@ namespace io.fusionauth.domain.@event {
     public Guid? applicationId;
     public UserRegistration original;
     public UserRegistration registration;
-    public EventType type;
     public User user;
 
     public UserRegistrationUpdateEvent with(Action<UserRegistrationUpdateEvent> action) {

@@ -35,7 +35,6 @@ namespace io.fusionauth.domain.provider {
     public string issuer;
     public Guid? keyId;
     public LambdaConfiguration lambdaConfiguration;
-    public IdentityProviderType type;
     public bool? useNameIdForEmail;
 
     public SAMLv2IdentityProvider with(Action<SAMLv2IdentityProvider> action) {

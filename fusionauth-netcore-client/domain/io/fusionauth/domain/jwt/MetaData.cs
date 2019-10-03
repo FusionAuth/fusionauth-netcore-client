@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.jwt {
+
   public class MetaData {
     public DeviceInfo device;
     public List<string> scopes;

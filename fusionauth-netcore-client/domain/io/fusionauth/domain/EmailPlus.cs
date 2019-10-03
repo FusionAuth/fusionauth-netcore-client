@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public class EmailPlus: Enableable {
     public Guid? emailTemplateId;
     public int? maximumTimeToSendEmailInHours;

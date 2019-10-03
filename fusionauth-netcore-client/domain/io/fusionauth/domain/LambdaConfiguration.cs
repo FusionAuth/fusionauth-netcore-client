@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public class LambdaConfiguration {
     public Guid? accessTokenPopulateId;
     public Guid? idTokenPopulateId;

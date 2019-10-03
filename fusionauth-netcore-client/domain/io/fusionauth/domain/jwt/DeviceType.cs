@@ -19,15 +19,16 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.jwt {
+
   public enum DeviceType {
-    BROWSER, 
-    DESKTOP, 
-    LAPTOP, 
-    MOBILE, 
-    OTHER, 
-    SERVER, 
-    TABLET, 
-    TV, 
-    UNKNOWN
+            BROWSER, 
+            DESKTOP, 
+            LAPTOP, 
+            MOBILE, 
+            OTHER, 
+            SERVER, 
+            TABLET, 
+            TV, 
+            UNKNOWN
   }
 }

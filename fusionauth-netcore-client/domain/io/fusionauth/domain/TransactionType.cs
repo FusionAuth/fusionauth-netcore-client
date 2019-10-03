@@ -26,10 +26,10 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public enum TransactionType {
-    None, 
-    Any, 
-    SimpleMajority, 
-    SuperMajority, 
-    AbsoluteMajority
+            None, 
+            Any, 
+            SimpleMajority, 
+            SuperMajority, 
+            AbsoluteMajority
   }
 }

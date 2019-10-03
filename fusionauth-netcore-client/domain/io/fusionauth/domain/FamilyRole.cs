@@ -19,9 +19,10 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public enum FamilyRole {
-    Child, 
-    Teen, 
-    Adult
+            Child, 
+            Teen, 
+            Adult
   }
 }

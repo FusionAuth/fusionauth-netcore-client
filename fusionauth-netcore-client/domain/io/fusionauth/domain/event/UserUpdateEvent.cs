@@ -28,7 +28,6 @@ namespace io.fusionauth.domain.@event {
    */
   public class UserUpdateEvent: BaseEvent {
     public User original;
-    public EventType type;
     public User user;
 
     public UserUpdateEvent with(Action<UserUpdateEvent> action) {

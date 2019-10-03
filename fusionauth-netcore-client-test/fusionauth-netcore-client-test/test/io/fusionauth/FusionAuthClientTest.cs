@@ -238,7 +238,6 @@ namespace io.fusionauth {
       //test update
       var userRegistration = new UserRegistration()
                              .with(ur => ur.applicationId = TestBuilder.ApplicationId)
-                             .with(ur => ur.userId = test.user.id)
                              .with(ur => ur.username = test.user.username)
                              .with(ur => ur.usernameStatus = ContentStatus.ACTIVE)
                              .with(ur => ur.cleanSpeakId = new Guid("9af3fc1d-9236-4793-93df-aeac5f67f23e"));

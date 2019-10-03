@@ -29,7 +29,6 @@ namespace io.fusionauth.domain.@event {
   public class UserRegistrationDeleteEvent: BaseEvent {
     public Guid? applicationId;
     public UserRegistration registration;
-    public EventType type;
     public User user;
 
     public UserRegistrationDeleteEvent with(Action<UserRegistrationDeleteEvent> action) {

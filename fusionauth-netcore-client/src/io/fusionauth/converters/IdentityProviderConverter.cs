@@ -37,7 +37,7 @@ namespace io.fusionauth.converters {
       }
 
       if (json["type"].Value<string>() == "SAML2") {
-        return json.ToObject<SAML2IdentityProvider>(serializer);
+        return json.ToObject<SAMLv2IdentityProvider>(serializer);
       }
 
       return null;

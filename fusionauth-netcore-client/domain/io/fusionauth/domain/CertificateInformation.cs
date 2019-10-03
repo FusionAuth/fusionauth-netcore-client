@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public class CertificateInformation {
     public string issuer;
     public string md5Fingerprint;

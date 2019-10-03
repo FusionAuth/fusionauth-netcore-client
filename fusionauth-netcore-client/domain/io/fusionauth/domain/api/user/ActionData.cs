@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api.user {
+
   public class ActionData {
     public UserAction action;
     public User actionee;

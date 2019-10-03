@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -8,6 +9,7 @@ using com.inversoft.error;
 using io.fusionauth.converters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace io.fusionauth {
   class DefaultRESTClient : IRESTClient {
@@ -23,14 +25,18 @@ namespace io.fusionauth {
 
     public Dictionary<string, string> headers = new Dictionary<string, string>();
 
-    private JsonSerializerSettings serializerSettings = new JsonSerializerSettings {
-      NullValueHandling = NullValueHandling.Ignore,
-      Converters = {
-        new StringEnumConverter(),
-        new DateTimeOffsetConverter(),
-        new IdentityProviderConverter()
-      }
-    };
+    static DefaultRESTClient() {
+      JsonConvert.DefaultSettings = () =>
+        new JsonSerializerSettings {
+          NullValueHandling = NullValueHandling.Ignore,
+          Converters = new List<JsonConverter> {
+            new StringEnumConverter(),
+            new DateTimeOffsetConverter(),
+            new IdentityProviderConverter()
+          },
+          ContractResolver = new DefaultContractResolver() 
+        };
+    }
 
     public DefaultRESTClient(string host) {
       httpClient = new HttpClient {BaseAddress = new Uri(host)};
@@ -80,7 +86,8 @@ namespace io.fusionauth {
      * @param body The object to be written to the request body as JSON.
      */
     public override IRESTClient withJSONBody(object body) {
-      content = new StringContent(JsonConvert.SerializeObject(body, serializerSettings), Encoding.UTF8, "application/json");
+      content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8,
+        "application/json");
       return this;
     }
 
@@ -119,7 +126,7 @@ namespace io.fusionauth {
 
     private String getFullUri() {
       String paramString = "?";
-      foreach (var (key, value) in parameters) {
+      foreach (var (key, value) in parameters.Select(x => (x.Key, x.Value))) {
         if (!paramString.EndsWith("?")) {
           paramString += "&";
         }
@@ -131,7 +138,7 @@ namespace io.fusionauth {
     }
 
     private Task<HttpResponseMessage> baseRequest() {
-      foreach (var (key, value) in headers) {
+      foreach (var (key, value) in headers.Select(x => (x.Key, x.Value))) {
         httpClient.DefaultRequestHeaders.Add(key, value);
       }
 
@@ -145,8 +152,8 @@ namespace io.fusionauth {
           return httpClient.PutAsync(requestUri, content);
         case "POST":
           return httpClient.PostAsync(requestUri, content);
-        case "PATCH":
-          return httpClient.PatchAsync(requestUri, content);
+//        case "PATCH":
+//          return httpClient.PatchAsync(requestUri, content);
         default:
           throw new MissingMethodException("This REST client does not support that method. (yet?)");
       }
@@ -161,11 +168,11 @@ namespace io.fusionauth {
             clientResponse.statusCode = (int) result.StatusCode;
             if (result.StatusCode != HttpStatusCode.OK) {
               clientResponse.errorResponse =
-                JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result, serializerSettings);
+                JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result);
             }
             else {
               clientResponse.successResponse =
-                JsonConvert.DeserializeObject<T>(result.Content.ReadAsStringAsync().Result, serializerSettings);
+                JsonConvert.DeserializeObject<T>(result.Content.ReadAsStringAsync().Result);
             }
           }
           catch (Exception e) {

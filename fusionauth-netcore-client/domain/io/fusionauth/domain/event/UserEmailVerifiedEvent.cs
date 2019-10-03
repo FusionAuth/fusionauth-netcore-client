@@ -27,7 +27,6 @@ namespace io.fusionauth.domain.@event {
    * @author Trevor Smith
    */
   public class UserEmailVerifiedEvent: BaseEvent {
-    public EventType type;
     public User user;
 
     public UserEmailVerifiedEvent with(Action<UserEmailVerifiedEvent> action) {

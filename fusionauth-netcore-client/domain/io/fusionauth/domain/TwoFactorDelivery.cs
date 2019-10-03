@@ -24,7 +24,7 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public enum TwoFactorDelivery {
-    None, 
-    TextMessage
+            None, 
+            TextMessage
   }
 }

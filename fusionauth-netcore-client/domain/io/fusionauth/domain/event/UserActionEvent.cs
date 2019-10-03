@@ -45,7 +45,6 @@ namespace io.fusionauth.domain.@event {
     public UserActionPhase phase;
     public string reason;
     public string reasonCode;
-    public EventType type;
 
     public UserActionEvent with(Action<UserActionEvent> action) {
       action(this);

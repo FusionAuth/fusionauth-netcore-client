@@ -3,19 +3,23 @@
     <PropertyGroup>
         <RootNamespace></RootNamespace>
         <PackageVersion>1.10.2</PackageVersion>
-        <Title>FusionAuth .net Core Client</Title>
+        <Title>FusionAuth .net Standard Client</Title>
         <AssemblyName>FusionAuth.Client</AssemblyName>
-        <TargetFrameworks>netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageProjectUrl>https://github.com/FusionAuth/fusionauth-netcore-client</PackageProjectUrl>
         <RepositoryUrl>https://github.com/FusionAuth/fusionauth-netcore-client</RepositoryUrl>
         <Authors>Tyler Scott</Authors>
         <Owners>FusionAuth</Owners>
         <Summary>FusionAuth client for .NET Core</Summary>
+        <TargetFrameworks>netstandard2.0;netcoreapp2.2</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="domain\io\fusionauth\domain" />
     </ItemGroup>
 
 </Project>

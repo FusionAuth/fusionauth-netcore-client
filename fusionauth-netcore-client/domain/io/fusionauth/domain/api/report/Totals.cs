@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api.report {
+
   public class Totals {
     public long? logins;
     public long? registrations;

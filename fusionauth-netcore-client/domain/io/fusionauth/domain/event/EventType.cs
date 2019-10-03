@@ -15,6 +15,7 @@
  */
 
 
+  using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -26,22 +27,39 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public enum EventType {
-    UserDelete, 
-    UserCreate, 
-    UserUpdate, 
-    UserDeactivate, 
-    UserBulkCreate, 
-    UserReactivate, 
-    UserAction, 
-    JWTRefreshTokenRevoke, 
-    JWTPublicKeyUpdate, 
-    UserLoginSuccess, 
-    UserLoginFailed, 
-    UserRegistrationCreate, 
-    UserRegistrationUpdate, 
-    UserRegistrationDelete, 
-    UserRegistrationVerified, 
-    UserEmailVerified, 
-    Test
+              [EnumMember(Value = "user.delete")]
+            UserDelete, 
+              [EnumMember(Value = "user.create")]
+            UserCreate, 
+              [EnumMember(Value = "user.update")]
+            UserUpdate, 
+              [EnumMember(Value = "user.deactivate")]
+            UserDeactivate, 
+              [EnumMember(Value = "user.bulk.create")]
+            UserBulkCreate, 
+              [EnumMember(Value = "user.reactivate")]
+            UserReactivate, 
+              [EnumMember(Value = "user.action")]
+            UserAction, 
+              [EnumMember(Value = "jwt.refresh-token.revoke")]
+            JWTRefreshTokenRevoke, 
+              [EnumMember(Value = "jwt.public-key.update")]
+            JWTPublicKeyUpdate, 
+              [EnumMember(Value = "user.login.success")]
+            UserLoginSuccess, 
+              [EnumMember(Value = "user.login.failed")]
+            UserLoginFailed, 
+              [EnumMember(Value = "user.registration.create")]
+            UserRegistrationCreate, 
+              [EnumMember(Value = "user.registration.update")]
+            UserRegistrationUpdate, 
+              [EnumMember(Value = "user.registration.delete")]
+            UserRegistrationDelete, 
+              [EnumMember(Value = "user.registration.verified")]
+            UserRegistrationVerified, 
+              [EnumMember(Value = "user.email.verified")]
+            UserEmailVerified, 
+              [EnumMember(Value = "test")]
+            Test
   }
 }

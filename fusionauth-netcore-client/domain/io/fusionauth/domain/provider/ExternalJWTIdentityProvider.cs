@@ -32,7 +32,6 @@ namespace io.fusionauth.domain.provider {
     public string headerKeyParameter;
     public Dictionary<string, string> keys;
     public IdentityProviderOauth2Configuration oauth2;
-    public IdentityProviderType type;
     public string uniqueIdentityClaim;
 
     public ExternalJWTIdentityProvider with(Action<ExternalJWTIdentityProvider> action) {

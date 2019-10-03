@@ -24,7 +24,7 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public enum SecureGeneratorType {
-    randomDigits, 
-    randomBytes
+            randomDigits, 
+            randomBytes
   }
 }

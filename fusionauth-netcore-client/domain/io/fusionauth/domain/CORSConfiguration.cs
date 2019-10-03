@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
   public class CORSConfiguration: Enableable {
     public bool? allowCredentials;
     public List<string> allowedHeaders;

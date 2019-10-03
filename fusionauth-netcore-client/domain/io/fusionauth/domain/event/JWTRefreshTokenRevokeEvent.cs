@@ -30,7 +30,6 @@ namespace io.fusionauth.domain.@event {
   public class JWTRefreshTokenRevokeEvent: BaseEvent {
     public Guid? applicationId;
     public Dictionary<Guid, int> applicationTimeToLiveInSeconds;
-    public EventType type;
     public User user;
     public Guid? userId;
 

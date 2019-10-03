@@ -31,7 +31,6 @@ namespace io.fusionauth.domain.@event {
     public string authenticationType;
     public Guid? identityProviderId;
     public string identityProviderName;
-    public EventType type;
     public User user;
 
     public UserLoginSuccessEvent with(Action<UserLoginSuccessEvent> action) {

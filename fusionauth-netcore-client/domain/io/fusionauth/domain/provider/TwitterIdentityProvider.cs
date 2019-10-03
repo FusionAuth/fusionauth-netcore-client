@@ -30,7 +30,6 @@ namespace io.fusionauth.domain.provider {
     public string buttonText;
     public string consumerKey;
     public string consumerSecret;
-    public IdentityProviderType type;
 
     public TwitterIdentityProvider with(Action<TwitterIdentityProvider> action) {
       action(this);

@@ -19,6 +19,10 @@ using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
+
+  /**
+   * @author Brian Pontarelli
+   */
   public class FamilyConfiguration: Enableable {
     public bool? allowChildRegistrations;
     public Guid? confirmChildEmailTemplateId;

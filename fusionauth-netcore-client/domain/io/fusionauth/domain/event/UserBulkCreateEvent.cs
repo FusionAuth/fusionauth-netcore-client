@@ -27,7 +27,6 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class UserBulkCreateEvent: BaseEvent {
-    public EventType type;
     public List<User> users;
 
     public UserBulkCreateEvent with(Action<UserBulkCreateEvent> action) {
