@@ -26,9 +26,13 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class RawLogin {
+
     public Guid? applicationId;
+
     public DateTimeOffset? instant;
+
     public string ipAddress;
+
     public Guid? userId;
 
     public RawLogin with(Action<RawLogin> action) {

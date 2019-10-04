@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Seth Musselman
    */
   public class UserCommentResponse {
+
     public UserComment userComment;
+
     public List<UserComment> userComments;
 
     public UserCommentResponse with(Action<UserCommentResponse> action) {

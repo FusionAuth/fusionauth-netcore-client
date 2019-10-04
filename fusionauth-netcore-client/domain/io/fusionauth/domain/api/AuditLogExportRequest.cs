@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class AuditLogExportRequest: BaseExportRequest {
+
     public AuditLogSearchCriteria criteria;
 
     public AuditLogExportRequest with(Action<AuditLogExportRequest> action) {

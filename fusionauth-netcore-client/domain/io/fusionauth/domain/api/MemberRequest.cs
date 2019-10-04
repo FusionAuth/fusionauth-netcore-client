@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class MemberRequest {
+
     public Dictionary<Guid, List<GroupMember>> members;
 
     public MemberRequest with(Action<MemberRequest> action) {

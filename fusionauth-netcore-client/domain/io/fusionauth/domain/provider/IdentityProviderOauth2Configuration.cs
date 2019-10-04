@@ -24,12 +24,19 @@ namespace io.fusionauth.domain.provider {
    * @author Daniel DeGroff
    */
   public class IdentityProviderOauth2Configuration {
+
     public string authorization_endpoint;
+
     public string client_id;
+
     public string client_secret;
+
     public string issuer;
+
     public string scope;
+
     public string token_endpoint;
+
     public string userinfo_endpoint;
 
     public IdentityProviderOauth2Configuration with(Action<IdentityProviderOauth2Configuration> action) {

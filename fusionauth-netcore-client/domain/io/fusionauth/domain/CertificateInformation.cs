@@ -21,15 +21,25 @@ using System;
 namespace io.fusionauth.domain {
 
   public class CertificateInformation {
+
     public string issuer;
+
     public string md5Fingerprint;
+
     public string serialNumber;
+
     public string sha1Fingerprint;
+
     public string sha1Thumbprint;
+
     public string sha256Fingerprint;
+
     public string sha256Thumbprint;
+
     public string subject;
+
     public DateTimeOffset? validFrom;
+
     public DateTimeOffset? validTo;
 
     public CertificateInformation with(Action<CertificateInformation> action) {

@@ -24,7 +24,9 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class KafkaConfiguration: Enableable {
+
     public string defaultTopic;
+
     public Dictionary<string, string> producer;
 
     public KafkaConfiguration with(Action<KafkaConfiguration> action) {

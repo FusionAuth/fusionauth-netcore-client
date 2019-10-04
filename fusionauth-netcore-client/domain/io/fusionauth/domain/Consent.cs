@@ -26,14 +26,23 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class Consent {
+
     public Guid? consentEmailTemplateId;
+
     public LocalizedIntegers countryMinimumAgeForSelfConsent;
+
     public Dictionary<string, object> data;
+
     public int? defaultMinimumAgeForSelfConsent;
+
     public EmailPlus emailPlus;
+
     public Guid? id;
+
     public bool? multipleValuesAllowed;
+
     public string name;
+
     public List<string> values;
 
     public Consent with(Action<Consent> action) {

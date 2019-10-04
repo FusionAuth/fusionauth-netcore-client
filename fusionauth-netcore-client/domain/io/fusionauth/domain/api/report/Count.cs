@@ -24,7 +24,9 @@ namespace io.fusionauth.domain.api.report {
    * @author Brian Pontarelli
    */
   public class Count {
+
     public int? count;
+
     public int? interval;
 
     public Count with(Action<Count> action) {

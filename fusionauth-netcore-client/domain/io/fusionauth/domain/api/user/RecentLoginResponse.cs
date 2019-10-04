@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api.user {
    * @author Seth Musselman
    */
   public class RecentLoginResponse {
+
     public List<DisplayableRawLogin> logins;
 
     public RecentLoginResponse with(Action<RecentLoginResponse> action) {

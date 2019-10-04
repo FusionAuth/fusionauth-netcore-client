@@ -24,7 +24,9 @@ namespace io.fusionauth.domain.api.jwt {
    * @author Daniel DeGroff
    */
   public class IssueResponse {
+
     public string refreshToken;
+
     public string token;
 
     public IssueResponse with(Action<IssueResponse> action) {

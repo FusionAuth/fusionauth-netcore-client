@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class KeyRequest {
+
     public Key key;
 
     public KeyRequest with(Action<KeyRequest> action) {

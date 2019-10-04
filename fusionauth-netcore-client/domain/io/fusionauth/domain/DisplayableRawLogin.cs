@@ -26,7 +26,9 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class DisplayableRawLogin: RawLogin {
+
     public string applicationName;
+
     public string loginId;
 
     public DisplayableRawLogin with(Action<DisplayableRawLogin> action) {

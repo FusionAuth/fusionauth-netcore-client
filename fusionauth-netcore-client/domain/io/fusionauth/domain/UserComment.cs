@@ -26,10 +26,15 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class UserComment {
+
     public string comment;
+
     public Guid? commenterId;
+
     public DateTimeOffset? createInstant;
+
     public Guid? id;
+
     public Guid? userId;
 
     public UserComment with(Action<UserComment> action) {

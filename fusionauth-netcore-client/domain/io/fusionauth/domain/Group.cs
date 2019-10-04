@@ -24,10 +24,15 @@ namespace io.fusionauth.domain {
    * @author Tyler Scott
    */
   public class Group {
+
     public Dictionary<string, object> data;
+
     public Guid? id;
+
     public string name;
+
     public Dictionary<Guid, List<ApplicationRole>> roles;
+
     public Guid? tenantId;
 
     public Group with(Action<Group> action) {

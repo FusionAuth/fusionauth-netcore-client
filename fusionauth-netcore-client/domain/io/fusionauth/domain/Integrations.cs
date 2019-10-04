@@ -26,8 +26,11 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class Integrations {
+
     public CleanSpeakConfiguration cleanspeak;
+
     public KafkaConfiguration kafka;
+
     public TwilioConfiguration twilio;
 
     public Integrations with(Action<Integrations> action) {

@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class IntegrationResponse {
+
     public Integrations integrations;
 
     public IntegrationResponse with(Action<IntegrationResponse> action) {

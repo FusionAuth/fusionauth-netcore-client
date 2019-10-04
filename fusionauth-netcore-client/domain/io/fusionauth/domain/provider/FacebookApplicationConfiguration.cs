@@ -25,10 +25,15 @@ namespace io.fusionauth.domain.provider {
    * @author Daniel DeGroff
    */
   public class FacebookApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
+
     public string appId;
+
     public string buttonText;
+
     public string client_secret;
+
     public string fields;
+
     public string permissions;
 
     public FacebookApplicationConfiguration with(Action<FacebookApplicationConfiguration> action) {

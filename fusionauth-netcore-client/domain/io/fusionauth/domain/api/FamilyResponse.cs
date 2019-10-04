@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class FamilyResponse {
+
     public List<Family> families;
+
     public Family family;
 
     public FamilyResponse with(Action<FamilyResponse> action) {

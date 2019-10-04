@@ -26,11 +26,17 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class ForgotPasswordRequest {
+
     public string changePasswordId;
+
     public string email;
+
     public string loginId;
+
     public bool? sendForgotPasswordEmail;
+
     public Dictionary<string, object> state;
+
     public string username;
 
     public ForgotPasswordRequest with(Action<ForgotPasswordRequest> action) {

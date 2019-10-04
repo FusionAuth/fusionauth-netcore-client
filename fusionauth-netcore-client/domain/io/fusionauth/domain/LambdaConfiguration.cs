@@ -22,8 +22,11 @@ using System;
 namespace io.fusionauth.domain {
 
   public class LambdaConfiguration {
+
     public Guid? accessTokenPopulateId;
+
     public Guid? idTokenPopulateId;
+
     public Guid? samlv2PopulateId;
 
     public LambdaConfiguration with(Action<LambdaConfiguration> action) {

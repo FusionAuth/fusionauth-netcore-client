@@ -24,8 +24,11 @@ namespace io.fusionauth.domain.search {
    * @author Daniel DeGroff
    */
   public class SortField {
+
     public string missing;
+
     public string name;
+
     public Sort order;
 
     public SortField with(Action<SortField> action) {

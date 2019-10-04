@@ -25,8 +25,11 @@ namespace io.fusionauth.domain.api.twoFactor {
    * @author Daniel DeGroff
    */
   public class TwoFactorLoginRequest: BaseLoginRequest {
+
     public string code;
+
     public bool? trustComputer;
+
     public string twoFactorId;
 
     public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {

@@ -26,14 +26,23 @@ namespace io.fusionauth.domain.email {
    * @author Brian Pontarelli
    */
   public class Email {
+
     public List<Attachment> attachments;
+
     public List<EmailAddress> bcc;
+
     public List<EmailAddress> cc;
+
     public EmailAddress from;
+
     public string html;
+
     public EmailAddress replyTo;
+
     public string subject;
+
     public string text;
+
     public List<EmailAddress> to;
 
     public Email with(Action<Email> action) {

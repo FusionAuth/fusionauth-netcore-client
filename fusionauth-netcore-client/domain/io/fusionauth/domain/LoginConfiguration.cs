@@ -21,8 +21,11 @@ using System;
 namespace io.fusionauth.domain {
 
   public class LoginConfiguration {
+
     public bool? allowTokenRefresh;
+
     public bool? generateRefreshTokens;
+
     public bool? requireAuthentication;
 
     public LoginConfiguration with(Action<LoginConfiguration> action) {

@@ -25,9 +25,13 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class TwoFactorRequest {
+
     public string code;
+
     public TwoFactorDelivery delivery;
+
     public string secret;
+
     public string secretBase32Encoded;
 
     public TwoFactorRequest with(Action<TwoFactorRequest> action) {

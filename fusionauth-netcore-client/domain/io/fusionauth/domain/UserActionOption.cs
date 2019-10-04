@@ -26,7 +26,9 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class UserActionOption {
+
     public LocalizedStrings localizedNames;
+
     public string name;
 
     public UserActionOption with(Action<UserActionOption> action) {

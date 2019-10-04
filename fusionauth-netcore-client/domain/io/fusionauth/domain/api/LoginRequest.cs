@@ -26,9 +26,13 @@ namespace io.fusionauth.domain.api {
    * @author Seth Musselman
    */
   public class LoginRequest: BaseLoginRequest {
+
     public string loginId;
+
     public string oneTimePassword;
+
     public string password;
+
     public string twoFactorTrustId;
 
     public LoginRequest with(Action<LoginRequest> action) {

@@ -24,14 +24,23 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class SystemConfiguration {
+
     public AuditLogConfiguration auditLogConfiguration;
+
     public string cookieEncryptionIV;
+
     public string cookieEncryptionKey;
+
     public CORSConfiguration corsConfiguration;
+
     public Dictionary<string, object> data;
+
     public EventLogConfiguration @eventLogConfiguration;
+
     public LoginRecordConfiguration loginRecordConfiguration;
+
     public string reportTimezone;
+
     public UIConfiguration uiConfiguration;
 
     public SystemConfiguration with(Action<SystemConfiguration> action) {

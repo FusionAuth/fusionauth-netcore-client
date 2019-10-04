@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class EventLogSearchResponse {
+
     public List<EventLog> @eventLogs;
+
     public long? total;
 
     public EventLogSearchResponse with(Action<EventLogSearchResponse> action) {

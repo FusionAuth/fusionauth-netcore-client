@@ -25,7 +25,9 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class PreviewRequest {
+
     public EmailTemplate emailTemplate;
+
     public string locale;
 
     public PreviewRequest with(Action<PreviewRequest> action) {

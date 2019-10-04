@@ -27,6 +27,7 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class Requirable: Enableable {
+
     public bool? required;
 
     public Requirable with(Action<Requirable> action) {

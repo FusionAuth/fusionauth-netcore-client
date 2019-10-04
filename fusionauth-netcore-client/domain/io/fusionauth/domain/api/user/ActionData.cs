@@ -15,27 +15,31 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api.user {
 
   public class ActionData {
-    public UserAction action;
-    public User actionee;
+
     public Guid? actioneeUserId;
-    public User actioner;
+
     public Guid? actionerUserId;
+
     public List<Guid> applicationIds;
+
     public string comment;
+
     public bool? emailUser;
+
     public DateTimeOffset? expiry;
-    public UserActionLog log;
+
     public bool? notifyUser;
+
     public string option;
-    public UserActionReason reason;
+
     public Guid? reasonId;
+
     public Guid? userActionId;
 
     public ActionData with(Action<ActionData> action) {

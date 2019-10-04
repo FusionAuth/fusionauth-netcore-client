@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class KeyResponse {
+
     public Key key;
+
     public List<Key> keys;
 
     public KeyResponse with(Action<KeyResponse> action) {

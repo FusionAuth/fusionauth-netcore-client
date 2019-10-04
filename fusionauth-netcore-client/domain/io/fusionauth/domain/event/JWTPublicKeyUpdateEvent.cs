@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class JWTPublicKeyUpdateEvent: BaseEvent {
+
     public List<Guid> applicationIds;
 
     public JWTPublicKeyUpdateEvent with(Action<JWTPublicKeyUpdateEvent> action) {

@@ -24,6 +24,7 @@ namespace io.fusionauth.domain.api.cache {
    * @author Daniel DeGroff
    */
   public class ReloadRequest {
+
     public List<string> names;
 
     public ReloadRequest with(Action<ReloadRequest> action) {

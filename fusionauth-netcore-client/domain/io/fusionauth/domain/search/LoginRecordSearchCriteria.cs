@@ -24,9 +24,13 @@ namespace io.fusionauth.domain.search {
    * @author Daniel DeGroff
    */
   public class LoginRecordSearchCriteria: BaseSearchCriteria {
+
     public Guid? applicationId;
+
     public DateTimeOffset? end;
+
     public DateTimeOffset? start;
+
     public Guid? userId;
 
     public LoginRecordSearchCriteria with(Action<LoginRecordSearchCriteria> action) {

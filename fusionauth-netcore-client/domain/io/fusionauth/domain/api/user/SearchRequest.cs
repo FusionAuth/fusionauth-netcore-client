@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class SearchRequest {
+
     public UserSearchCriteria search;
 
     public SearchRequest with(Action<SearchRequest> action) {

@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class SystemConfigurationResponse {
+
     public SystemConfiguration systemConfiguration;
 
     public SystemConfigurationResponse with(Action<SystemConfigurationResponse> action) {

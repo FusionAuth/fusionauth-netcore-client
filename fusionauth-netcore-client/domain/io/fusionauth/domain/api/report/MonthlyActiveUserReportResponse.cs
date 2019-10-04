@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api.report {
    * @author Brian Pontarelli
    */
   public class MonthlyActiveUserReportResponse {
+
     public List<Count> monthlyActiveUsers;
+
     public long? total;
 
     public MonthlyActiveUserReportResponse with(Action<MonthlyActiveUserReportResponse> action) {

@@ -26,9 +26,13 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class IntervalCount {
+
     public Guid? applicationId;
+
     public int? count;
+
     public int? decrementedCount;
+
     public int? period;
 
     public IntervalCount with(Action<IntervalCount> action) {

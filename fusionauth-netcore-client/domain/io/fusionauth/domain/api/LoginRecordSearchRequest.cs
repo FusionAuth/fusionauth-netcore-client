@@ -25,7 +25,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class LoginRecordSearchRequest {
+
     public bool? retrieveTotal;
+
     public LoginRecordSearchCriteria search;
 
     public LoginRecordSearchRequest with(Action<LoginRecordSearchRequest> action) {

@@ -28,6 +28,7 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class UserDeleteEvent: BaseEvent {
+
     public User user;
 
     public UserDeleteEvent with(Action<UserDeleteEvent> action) {

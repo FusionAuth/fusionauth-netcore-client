@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class GroupResponse {
+
     public Group group;
+
     public List<Group> groups;
 
     public GroupResponse with(Action<GroupResponse> action) {

@@ -24,11 +24,17 @@ namespace io.fusionauth.domain {
    * @author Derek Klatt
    */
   public class PasswordValidationRules {
+
     public int? maxLength;
+
     public int? minLength;
+
     public RememberPreviousPasswords rememberPreviousPasswords;
+
     public bool? requireMixedCase;
+
     public bool? requireNonAlpha;
+
     public bool? requireNumber;
 
     public PasswordValidationRules with(Action<PasswordValidationRules> action) {

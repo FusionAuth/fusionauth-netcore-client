@@ -26,13 +26,21 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class AuditLog {
+
     public Dictionary<string, object> data;
+
     public long? id;
+
     public DateTimeOffset? insertInstant;
+
     public string insertUser;
+
     public string message;
+
     public object newValue;
+
     public object oldValue;
+
     public string reason;
 
     public AuditLog with(Action<AuditLog> action) {

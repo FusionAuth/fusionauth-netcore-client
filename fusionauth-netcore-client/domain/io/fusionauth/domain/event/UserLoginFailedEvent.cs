@@ -27,8 +27,11 @@ namespace io.fusionauth.domain.@event {
    * @author Daniel DeGroff
    */
   public class UserLoginFailedEvent: BaseEvent {
+
     public Guid? applicationId;
+
     public string authenticationType;
+
     public User user;
 
     public UserLoginFailedEvent with(Action<UserLoginFailedEvent> action) {

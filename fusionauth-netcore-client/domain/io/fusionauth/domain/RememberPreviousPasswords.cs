@@ -24,6 +24,7 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class RememberPreviousPasswords: Enableable {
+
     public int? count;
 
     public RememberPreviousPasswords with(Action<RememberPreviousPasswords> action) {

@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class AuditLogSearchRequest {
+
     public AuditLogSearchCriteria search;
 
     public AuditLogSearchRequest with(Action<AuditLogSearchRequest> action) {

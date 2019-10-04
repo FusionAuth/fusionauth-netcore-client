@@ -21,6 +21,7 @@ using System;
 namespace io.fusionauth.domain {
 
   public class UsernameModeration: Enableable {
+
     public Guid? applicationId;
 
     public UsernameModeration with(Action<UsernameModeration> action) {

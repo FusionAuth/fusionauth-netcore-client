@@ -24,6 +24,7 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class MaximumPasswordAge: Enableable {
+
     public int? days;
 
     public MaximumPasswordAge with(Action<MaximumPasswordAge> action) {

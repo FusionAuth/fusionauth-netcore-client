@@ -26,10 +26,15 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class FailedAuthenticationConfiguration {
+
     public long? actionDuration;
+
     public ExpiryUnit actionDurationUnit;
+
     public int? resetCountInSeconds;
+
     public int? tooManyAttempts;
+
     public Guid? userActionId;
 
     public FailedAuthenticationConfiguration with(Action<FailedAuthenticationConfiguration> action) {

@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class LoginRecordSearchResponse {
+
     public List<DisplayableRawLogin> logins;
+
     public long? total;
 
     public LoginRecordSearchResponse with(Action<LoginRecordSearchResponse> action) {

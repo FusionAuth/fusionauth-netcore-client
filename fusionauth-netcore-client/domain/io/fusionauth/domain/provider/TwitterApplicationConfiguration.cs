@@ -25,8 +25,11 @@ namespace io.fusionauth.domain.provider {
    * @author Daniel DeGroff
    */
   public class TwitterApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
+
     public string buttonText;
+
     public string consumerKey;
+
     public string consumerSecret;
 
     public TwitterApplicationConfiguration with(Action<TwitterApplicationConfiguration> action) {

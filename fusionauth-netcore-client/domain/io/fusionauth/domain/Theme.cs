@@ -24,14 +24,23 @@ namespace io.fusionauth.domain {
    * @author Trevor Smith
    */
   public class Theme {
+
     public Dictionary<string, object> data;
+
     public string defaultMessages;
+
     public Guid? id;
+
     public DateTimeOffset? insertInstant;
+
     public DateTimeOffset? lastUpdateInstant;
+
     public LocalizedStrings localizedMessages;
+
     public string name;
+
     public string stylesheet;
+
     public Templates templates;
 
     public Theme with(Action<Theme> action) {

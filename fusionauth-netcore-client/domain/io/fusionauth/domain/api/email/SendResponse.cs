@@ -24,6 +24,7 @@ namespace io.fusionauth.domain.api.email {
    * @author Daniel DeGroff
    */
   public class SendResponse {
+
     public Dictionary<Guid, EmailTemplateErrors> results;
 
     public SendResponse with(Action<SendResponse> action) {

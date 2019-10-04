@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class PasswordValidationRulesResponse {
+
     public PasswordValidationRules passwordValidationRules;
 
     public PasswordValidationRulesResponse with(Action<PasswordValidationRulesResponse> action) {

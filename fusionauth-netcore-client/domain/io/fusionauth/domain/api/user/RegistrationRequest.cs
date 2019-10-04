@@ -27,11 +27,17 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class RegistrationRequest {
+
     public bool? generateAuthenticationToken;
+
     public UserRegistration registration;
+
     public bool? sendSetPasswordEmail;
+
     public bool? skipRegistrationVerification;
+
     public bool? skipVerification;
+
     public User user;
 
     public RegistrationRequest with(Action<RegistrationRequest> action) {

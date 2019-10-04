@@ -26,21 +26,35 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class Key {
+
     public KeyAlgorithm algorithm;
+
     public string certificate;
+
     public CertificateInformation certificateInformation;
-    public string displayName;
+
     public DateTimeOffset? expirationInstant;
+
     public Guid? id;
+
     public DateTimeOffset? insertInstant;
+
     public string issuer;
+
     public string kid;
+
     public int? length;
+
     public string name;
+
     public bool? pair;
+
     public string privateKey;
+
     public string publicKey;
+
     public string secret;
+
     public KeyType type;
 
     public Key with(Action<Key> action) {

@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class LambdaRequest {
+
     public Lambda lambda;
 
     public LambdaRequest with(Action<LambdaRequest> action) {

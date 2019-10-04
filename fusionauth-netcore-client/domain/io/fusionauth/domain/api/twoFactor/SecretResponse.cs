@@ -24,7 +24,9 @@ namespace io.fusionauth.domain.api.twoFactor {
    * @author Daniel DeGroff
    */
   public class SecretResponse {
+
     public string secret;
+
     public string secretBase32Encoded;
 
     public SecretResponse with(Action<SecretResponse> action) {

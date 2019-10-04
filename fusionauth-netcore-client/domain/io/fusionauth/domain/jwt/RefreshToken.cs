@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,12 +26,17 @@ namespace io.fusionauth.domain.jwt {
    * @author Daniel DeGroff
    */
   public class RefreshToken {
-    public Application application;
+
     public Guid? applicationId;
+
     public DateTimeOffset? insertInstant;
+
     public MetaData metaData;
+
     public DateTimeOffset? startInstant;
+
     public string token;
+
     public Guid? userId;
 
     public RefreshToken with(Action<RefreshToken> action) {

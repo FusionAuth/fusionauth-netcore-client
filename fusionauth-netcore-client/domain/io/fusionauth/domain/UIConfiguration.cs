@@ -21,8 +21,11 @@ using System;
 namespace io.fusionauth.domain {
 
   public class UIConfiguration {
+
     public string headerColor;
+
     public string logoURL;
+
     public string menuFontColor;
 
     public UIConfiguration with(Action<UIConfiguration> action) {

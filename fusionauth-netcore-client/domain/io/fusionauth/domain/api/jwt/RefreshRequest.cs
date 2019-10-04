@@ -24,6 +24,7 @@ namespace io.fusionauth.domain.api.jwt {
    * @author Daniel DeGroff
    */
   public class RefreshRequest {
+
     public string refreshToken;
 
     public RefreshRequest with(Action<RefreshRequest> action) {

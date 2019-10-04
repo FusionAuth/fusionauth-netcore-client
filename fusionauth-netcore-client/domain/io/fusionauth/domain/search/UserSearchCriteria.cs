@@ -26,12 +26,19 @@ namespace io.fusionauth.domain.search {
    * @author Brian Pontarelli
    */
   public class UserSearchCriteria: BaseSearchCriteria {
+
     public string email;
+
     public string fullName;
+
     public Guid? id;
+
     public List<Guid> ids;
+
     public string queryString;
+
     public List<SortField> sortFields;
+
     public string username;
 
     public UserSearchCriteria with(Action<UserSearchCriteria> action) {

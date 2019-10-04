@@ -26,6 +26,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class IdentityProviderRequest {
+
     // Due to c#'s lack of generics we have to use an empty interface for this.
     // The concrete classes all implement BaseIdentityProvider
     // This also allows for serialization to and from json

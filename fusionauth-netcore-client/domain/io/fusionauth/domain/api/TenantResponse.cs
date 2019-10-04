@@ -25,7 +25,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class TenantResponse {
+
     public Tenant tenant;
+
     public List<Tenant> tenants;
 
     public TenantResponse with(Action<TenantResponse> action) {

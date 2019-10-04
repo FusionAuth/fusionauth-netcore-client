@@ -27,9 +27,13 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class ImportRequest {
+
     public string encryptionScheme;
+
     public int? factor;
+
     public List<User> users;
+
     public bool? validateDbConstraints;
 
     public ImportRequest with(Action<ImportRequest> action) {

@@ -26,10 +26,15 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class FamilyMember {
+
     public Dictionary<string, object> data;
+
     public DateTimeOffset? insertInstant;
+
     public bool? owner;
+
     public FamilyRole role;
+
     public Guid? userId;
 
     public FamilyMember with(Action<FamilyMember> action) {

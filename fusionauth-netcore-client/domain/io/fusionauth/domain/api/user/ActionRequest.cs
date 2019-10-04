@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class ActionRequest {
+
     public ActionData action;
+
     public bool? broadcast;
 
     public ActionRequest with(Action<ActionRequest> action) {

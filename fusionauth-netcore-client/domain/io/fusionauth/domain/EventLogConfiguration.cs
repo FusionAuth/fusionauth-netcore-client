@@ -21,6 +21,7 @@ using System;
 namespace io.fusionauth.domain {
 
   public class EventLogConfiguration {
+
     public int? numberToRetain;
 
     public EventLogConfiguration with(Action<EventLogConfiguration> action) {

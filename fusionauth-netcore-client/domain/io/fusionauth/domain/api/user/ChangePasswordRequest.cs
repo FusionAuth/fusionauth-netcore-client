@@ -26,9 +26,13 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class ChangePasswordRequest {
+
     public string currentPassword;
+
     public string loginId;
+
     public string password;
+
     public string refreshToken;
 
     public ChangePasswordRequest with(Action<ChangePasswordRequest> action) {

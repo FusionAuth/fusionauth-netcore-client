@@ -27,23 +27,41 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class UserActionEvent: BaseEvent {
+
     public string action;
+
     public Guid? actionId;
+
     public Guid? actioneeUserId;
+
     public Guid? actionerUserId;
+
     public List<Guid> applicationIds;
+
     public string comment;
+
     public Email email;
+
     public bool? emailedUser;
+
     public DateTimeOffset? expiry;
+
     public string localizedAction;
+
     public string localizedDuration;
+
     public string localizedOption;
+
     public string localizedReason;
+
     public bool? notifyUser;
+
     public string option;
+
     public UserActionPhase phase;
+
     public string reason;
+
     public string reasonCode;
 
     public UserActionEvent with(Action<UserActionEvent> action) {

@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class IntegrationRequest {
+
     public Integrations integrations;
 
     public IntegrationRequest with(Action<IntegrationRequest> action) {

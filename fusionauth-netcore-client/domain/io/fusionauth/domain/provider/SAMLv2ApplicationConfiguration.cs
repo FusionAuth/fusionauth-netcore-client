@@ -25,7 +25,9 @@ namespace io.fusionauth.domain.provider {
    * @author Brian Pontarelli
    */
   public class SAMLv2ApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
+
     public string buttonImageURL;
+
     public string buttonText;
 
     public SAMLv2ApplicationConfiguration with(Action<SAMLv2ApplicationConfiguration> action) {

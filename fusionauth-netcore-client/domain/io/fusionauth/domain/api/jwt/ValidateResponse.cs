@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.jwt.domain;
 using System.Collections.Generic;
 using System;
 
@@ -24,7 +25,8 @@ namespace io.fusionauth.domain.api.jwt {
    * @author Daniel DeGroff
    */
   public class ValidateResponse {
-    public Dictionary<string, object> jwt;
+
+    public JWT jwt;
 
     public ValidateResponse with(Action<ValidateResponse> action) {
       action(this);

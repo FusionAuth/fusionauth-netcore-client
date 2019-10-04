@@ -25,9 +25,13 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class BaseLoginRequest {
+
     public Guid? applicationId;
+
     public string ipAddress;
+
     public MetaData metaData;
+
     public bool? noJWT;
 
     public BaseLoginRequest with(Action<BaseLoginRequest> action) {

@@ -27,11 +27,17 @@ namespace io.fusionauth.domain.provider {
    * @author Daniel DeGroff and Brian Pontarelli
    */
   public class ExternalJWTIdentityProvider: BaseIdentityProvider<ExternalJWTApplicationConfiguration> {
+
     public Dictionary<string, string> claimMap;
+
     public List<string> domains;
+
     public string headerKeyParameter;
+
     public Dictionary<string, string> keys;
+
     public IdentityProviderOauth2Configuration oauth2;
+
     public string uniqueIdentityClaim;
 
     public ExternalJWTIdentityProvider with(Action<ExternalJWTIdentityProvider> action) {

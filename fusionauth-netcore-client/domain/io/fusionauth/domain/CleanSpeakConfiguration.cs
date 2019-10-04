@@ -26,9 +26,13 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class CleanSpeakConfiguration: Enableable {
+
     public string apiKey;
+
     public List<Guid> applicationIds;
+
     public string url;
+
     public UsernameModeration usernameModeration;
 
     public CleanSpeakConfiguration with(Action<CleanSpeakConfiguration> action) {

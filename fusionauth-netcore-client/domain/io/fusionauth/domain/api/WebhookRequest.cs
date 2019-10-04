@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class WebhookRequest {
+
     public Webhook webhook;
 
     public WebhookRequest with(Action<WebhookRequest> action) {

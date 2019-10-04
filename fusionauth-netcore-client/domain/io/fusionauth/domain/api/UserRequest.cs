@@ -27,8 +27,11 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class UserRequest {
+
     public bool? sendSetPasswordEmail;
+
     public bool? skipVerification;
+
     public User user;
 
     public UserRequest with(Action<UserRequest> action) {

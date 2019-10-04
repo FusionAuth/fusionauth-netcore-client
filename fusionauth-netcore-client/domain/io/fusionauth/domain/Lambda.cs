@@ -26,11 +26,17 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class Lambda: Enableable {
+
     public string body;
+
     public bool? debug;
+
     public Guid? id;
+
     public DateTimeOffset? insertInstant;
+
     public string name;
+
     public LambdaType type;
 
     public Lambda with(Action<Lambda> action) {

@@ -24,17 +24,29 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class EmailConfiguration {
+
     public Guid? forgotPasswordEmailTemplateId;
+
     public string host;
+
     public string password;
+
     public Guid? passwordlessEmailTemplateId;
+
     public int? port;
+
     public string properties;
+
     public EmailSecurityType security;
+
     public Guid? setPasswordEmailTemplateId;
+
     public string username;
+
     public Guid? verificationEmailTemplateId;
+
     public bool? verifyEmail;
+
     public bool? verifyEmailWhenChanged;
 
     public EmailConfiguration with(Action<EmailConfiguration> action) {

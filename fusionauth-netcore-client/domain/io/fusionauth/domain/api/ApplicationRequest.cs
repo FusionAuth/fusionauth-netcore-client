@@ -27,8 +27,11 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class ApplicationRequest {
+
     public Application application;
+
     public ApplicationRole role;
+
     public List<Guid> webhookIds;
 
     public ApplicationRequest with(Action<ApplicationRequest> action) {

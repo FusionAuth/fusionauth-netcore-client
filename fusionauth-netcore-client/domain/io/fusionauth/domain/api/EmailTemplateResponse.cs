@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class EmailTemplateResponse {
+
     public EmailTemplate emailTemplate;
+
     public List<EmailTemplate> emailTemplates;
 
     public EmailTemplateResponse with(Action<EmailTemplateResponse> action) {

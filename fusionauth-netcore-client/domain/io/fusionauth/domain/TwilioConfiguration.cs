@@ -26,10 +26,15 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class TwilioConfiguration: Enableable {
+
     public string accountSID;
+
     public string authToken;
+
     public string fromPhoneNumber;
+
     public string messagingServiceSid;
+
     public string url;
 
     public TwilioConfiguration with(Action<TwilioConfiguration> action) {

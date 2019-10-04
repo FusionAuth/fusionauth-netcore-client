@@ -26,15 +26,25 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class LoginPreventedResponse {
+
     public Guid? actionId;
+
     public Guid? actionerUserId;
+
     public DateTimeOffset? expiry;
+
     public string localizedName;
+
     public string localizedOption;
+
     public string localizedReason;
+
     public string name;
+
     public string option;
+
     public string reason;
+
     public string reasonCode;
 
     public LoginPreventedResponse with(Action<LoginPreventedResponse> action) {

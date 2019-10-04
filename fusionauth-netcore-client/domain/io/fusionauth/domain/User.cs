@@ -27,33 +27,55 @@ namespace io.fusionauth.domain {
    * @author Seth Musselman
    */
   public class User: SecureIdentity {
+
     public bool? active;
-    public int? age;
+
     public string birthDate;
+
     public Guid? cleanSpeakId;
+
     public Dictionary<string, object> data;
+
     public string email;
+
     public DateTimeOffset? expiry;
+
     public string firstName;
+
     public string fullName;
+
     public string imageUrl;
+
     public DateTimeOffset? insertInstant;
+
     public DateTimeOffset? lastLoginInstant;
+
     public string lastName;
-    public string login;
+
     public List<GroupMember> memberships;
+
     public string middleName;
+
     public string mobilePhone;
-    public string name;
+
     public string parentEmail;
+
     public List<string> preferredLanguages;
+
     public List<UserRegistration> registrations;
+
     public Guid? tenantId;
+
     public string timezone;
+
     public TwoFactorDelivery twoFactorDelivery;
+
     public bool? twoFactorEnabled;
+
     public string twoFactorSecret;
+
     public string username;
+
     public ContentStatus usernameStatus;
 
     public User with(Action<User> action) {

@@ -26,9 +26,13 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class EventLog {
+
     public long? id;
+
     public DateTimeOffset? insertInstant;
+
     public string message;
+
     public EventLogType type;
 
     public EventLog with(Action<EventLog> action) {

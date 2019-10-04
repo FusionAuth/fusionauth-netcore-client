@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class SearchResponse {
+
     public long? total;
+
     public List<User> users;
 
     public SearchResponse with(Action<SearchResponse> action) {

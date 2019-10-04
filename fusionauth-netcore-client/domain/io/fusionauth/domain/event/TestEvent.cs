@@ -24,6 +24,7 @@ namespace io.fusionauth.domain.@event {
    * @author Daniel DeGroff
    */
   public class TestEvent: BaseEvent {
+
     public string message;
 
     public TestEvent with(Action<TestEvent> action) {

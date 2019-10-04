@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.search {
    * @author Brian Pontarelli
    */
   public class SearchResults<T> {
+
     public List<T> results;
+
     public long? total;
 
     public SearchResults<T> with(Action<SearchResults<T>> action) {

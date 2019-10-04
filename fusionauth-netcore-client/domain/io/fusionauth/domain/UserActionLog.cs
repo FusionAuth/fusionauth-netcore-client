@@ -26,24 +26,43 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class UserActionLog {
+
     public Guid? actioneeUserId;
+
     public Guid? actionerUserId;
+
     public List<Guid> applicationIds;
+
     public string comment;
+
     public DateTimeOffset? createInstant;
+
     public bool? emailUserOnEnd;
+
     public bool? endEventSent;
+
     public DateTimeOffset? expiry;
+
     public LogHistory history;
+
     public Guid? id;
+
     public string localizedName;
+
     public string localizedOption;
+
     public string localizedReason;
+
     public string name;
+
     public bool? notifyUserOnEnd;
+
     public string option;
+
     public string reason;
+
     public string reasonCode;
+
     public Guid? userActionId;
 
     public UserActionLog with(Action<UserActionLog> action) {

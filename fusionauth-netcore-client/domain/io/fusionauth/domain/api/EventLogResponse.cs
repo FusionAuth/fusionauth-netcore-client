@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class EventLogResponse {
+
     public EventLog @eventLog;
 
     public EventLogResponse with(Action<EventLogResponse> action) {

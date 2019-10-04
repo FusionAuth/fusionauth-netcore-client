@@ -27,9 +27,13 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class JWTConfiguration: Enableable {
+
     public Guid? accessTokenKeyId;
+
     public Guid? idTokenKeyId;
+
     public int? refreshTokenTimeToLiveInMinutes;
+
     public int? timeToLiveInSeconds;
 
     public JWTConfiguration with(Action<JWTConfiguration> action) {

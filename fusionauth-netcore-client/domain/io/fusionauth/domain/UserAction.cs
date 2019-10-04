@@ -26,21 +26,37 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class UserAction {
+
     public bool? active;
+
     public Guid? cancelEmailTemplateId;
+
     public Guid? endEmailTemplateId;
+
     public Guid? id;
+
     public bool? includeEmailInEventJSON;
+
     public LocalizedStrings localizedNames;
+
     public Guid? modifyEmailTemplateId;
+
     public string name;
+
     public List<UserActionOption> options;
+
     public bool? preventLogin;
+
     public bool? sendEndEvent;
+
     public Guid? startEmailTemplateId;
+
     public bool? temporal;
+
     public TransactionType transactionType;
+
     public bool? userEmailingEnabled;
+
     public bool? userNotificationsEnabled;
 
     public UserAction with(Action<UserAction> action) {

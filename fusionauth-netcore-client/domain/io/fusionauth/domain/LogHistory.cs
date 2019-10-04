@@ -26,6 +26,7 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class LogHistory {
+
     public List<HistoryItem> historyItems;
 
     public LogHistory with(Action<LogHistory> action) {

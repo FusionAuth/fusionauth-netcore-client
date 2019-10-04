@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.provider {
    * @author Daniel DeGroff
    */
   public class BaseIdentityProviderApplicationConfiguration: Enableable {
+
     public bool? createRegistration;
+
     public Dictionary<string, object> data;
 
     public BaseIdentityProviderApplicationConfiguration with(Action<BaseIdentityProviderApplicationConfiguration> action) {

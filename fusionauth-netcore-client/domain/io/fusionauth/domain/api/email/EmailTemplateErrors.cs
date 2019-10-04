@@ -21,7 +21,9 @@ using System;
 namespace io.fusionauth.domain.api.email {
 
   public class EmailTemplateErrors {
+
     public Dictionary<string, string> parseErrors;
+
     public Dictionary<string, string> renderErrors;
 
     public EmailTemplateErrors with(Action<EmailTemplateErrors> action) {

@@ -24,10 +24,15 @@ namespace io.fusionauth.domain.jwt {
    * @author Daniel DeGroff
    */
   public class DeviceInfo {
+
     public string description;
+
     public string lastAccessedAddress;
+
     public DateTimeOffset? lastAccessedInstant;
+
     public string name;
+
     public DeviceType type;
 
     public DeviceInfo with(Action<DeviceInfo> action) {

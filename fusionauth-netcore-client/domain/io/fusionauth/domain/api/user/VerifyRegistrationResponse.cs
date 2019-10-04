@@ -24,6 +24,7 @@ namespace io.fusionauth.domain.api.user {
    * @author Daniel DeGroff
    */
   public class VerifyRegistrationResponse {
+
     public string verificationId;
 
     public VerifyRegistrationResponse with(Action<VerifyRegistrationResponse> action) {

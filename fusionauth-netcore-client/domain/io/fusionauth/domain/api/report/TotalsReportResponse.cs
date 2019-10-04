@@ -26,8 +26,11 @@ namespace io.fusionauth.domain.api.report {
    * @author Brian Pontarelli
    */
   public class TotalsReportResponse {
+
     public Dictionary<Guid, Totals> applicationTotals;
+
     public long? globalRegistrations;
+
     public long? totalGlobalRegistrations;
 
     public TotalsReportResponse with(Action<TotalsReportResponse> action) {

@@ -21,13 +21,21 @@ using System;
 namespace io.fusionauth.domain {
 
   public class RegistrationConfiguration: Enableable {
+
     public Requirable birthDate;
+
     public bool? confirmPassword;
+
     public Requirable firstName;
+
     public Requirable fullName;
+
     public Requirable lastName;
+
     public LoginIdType loginIdType;
+
     public Requirable middleName;
+
     public Requirable mobilePhone;
 
     public RegistrationConfiguration with(Action<RegistrationConfiguration> action) {

@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class TenantRequest {
+
     public Tenant tenant;
 
     public TenantRequest with(Action<TenantRequest> action) {

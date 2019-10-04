@@ -190,7 +190,7 @@ namespace io.fusionauth {
       var response = test.client.ValidateJWT(test.token);
       test.assertSuccess(response);
 
-      Assert.AreEqual(response.successResponse.jwt["sub"].ToString(), test.user.id.ToString());
+      Assert.AreEqual(response.successResponse.jwt.sub.ToString(), test.user.id.ToString());
       Assert.AreEqual(response.successResponse.jwt["applicationId"].ToString(), test.application.id.ToString());
     }
 

@@ -24,13 +24,21 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class SecureIdentity {
+
     public string encryptionScheme;
+
     public int? factor;
+
     public Guid? id;
+
     public string password;
+
     public bool? passwordChangeRequired;
+
     public DateTimeOffset? passwordLastUpdateInstant;
+
     public string salt;
+
     public bool? verified;
 
     public SecureIdentity with(Action<SecureIdentity> action) {

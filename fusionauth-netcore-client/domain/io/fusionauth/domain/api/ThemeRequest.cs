@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Trevor Smith
    */
   public class ThemeRequest {
+
     public Guid? sourceThemeId;
+
     public Theme theme;
 
     public ThemeRequest with(Action<ThemeRequest> action) {

@@ -21,25 +21,45 @@ using System;
 namespace io.fusionauth.domain {
 
   public class Templates {
+
     public string emailComplete;
+
     public string emailSend;
+
     public string emailVerify;
+
     public string helpers;
+
     public string oauth2Authorize;
+
     public string oauth2ChildRegistrationNotAllowed;
+
     public string oauth2ChildRegistrationNotAllowedComplete;
+
     public string oauth2CompleteRegistration;
+
     public string oauth2Error;
+
     public string oauth2Logout;
+
     public string oauth2Passwordless;
+
     public string oauth2Register;
+
     public string oauth2TwoFactor;
+
     public string passwordChange;
+
     public string passwordComplete;
+
     public string passwordForgot;
+
     public string passwordSent;
+
     public string registrationComplete;
+
     public string registrationSend;
+
     public string registrationVerify;
 
     public Templates with(Action<Templates> action) {

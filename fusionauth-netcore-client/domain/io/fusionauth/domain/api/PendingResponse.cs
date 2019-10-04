@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class PendingResponse {
+
     public List<User> users;
 
     public PendingResponse with(Action<PendingResponse> action) {

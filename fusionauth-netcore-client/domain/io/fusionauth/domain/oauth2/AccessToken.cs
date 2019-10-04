@@ -24,14 +24,19 @@ namespace io.fusionauth.domain.oauth2 {
    * @author Daniel DeGroff
    */
   public class AccessToken {
+
     public string access_token;
-    public string clientId;
+
     public int? expires_in;
+
     public string id_token;
-    public string redirectURI;
+
     public string refresh_token;
+
     public string scope;
+
     public TokenType token_type;
+
     public Guid? userId;
 
     public AccessToken with(Action<AccessToken> action) {

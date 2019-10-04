@@ -26,9 +26,13 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class UserActionReason {
+
     public string code;
+
     public Guid? id;
+
     public LocalizedStrings localizedTexts;
+
     public string text;
 
     public UserActionReason with(Action<UserActionReason> action) {

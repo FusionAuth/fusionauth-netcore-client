@@ -21,9 +21,13 @@ using System;
 namespace io.fusionauth.domain {
 
   public class HistoryItem {
+
     public Guid? actionerUserId;
+
     public string comment;
+
     public DateTimeOffset? createInstant;
+
     public DateTimeOffset? expiry;
 
     public HistoryItem with(Action<HistoryItem> action) {

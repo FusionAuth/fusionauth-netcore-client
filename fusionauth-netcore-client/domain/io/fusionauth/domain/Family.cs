@@ -26,7 +26,9 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class Family {
+
     public Guid? id;
+
     public List<FamilyMember> members;
 
     public Family with(Action<Family> action) {

@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class MemberDeleteRequest {
+
     public List<Guid> memberIds;
+
     public Dictionary<Guid, List<Guid>> members;
 
     public MemberDeleteRequest with(Action<MemberDeleteRequest> action) {

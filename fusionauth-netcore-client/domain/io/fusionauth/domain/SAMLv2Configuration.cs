@@ -21,12 +21,19 @@ using System;
 namespace io.fusionauth.domain {
 
   public class SAMLv2Configuration: Enableable {
+
     public string audience;
+
     public string callbackURL;
+
     public bool? debug;
+
     public string issuer;
+
     public Guid? keyId;
+
     public string logoutURL;
+
     public CanonicalizationMethod xmlSignatureC14nMethod;
 
     public SAMLv2Configuration with(Action<SAMLv2Configuration> action) {

@@ -25,13 +25,21 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class LoginResponse {
+
     public List<LoginPreventedResponse> actions;
+
     public string changePasswordId;
+
     public string refreshToken;
+
     public Dictionary<string, object> state;
+
     public string token;
+
     public string twoFactorId;
+
     public string twoFactorTrustId;
+
     public User user;
 
     public LoginResponse with(Action<LoginResponse> action) {

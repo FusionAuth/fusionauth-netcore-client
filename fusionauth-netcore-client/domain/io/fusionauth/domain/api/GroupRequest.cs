@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class GroupRequest {
+
     public Group group;
+
     public List<Guid> roleIds;
 
     public GroupRequest with(Action<GroupRequest> action) {

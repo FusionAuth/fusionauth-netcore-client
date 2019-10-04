@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class UserConsentResponse {
+
     public UserConsent userConsent;
+
     public List<UserConsent> userConsents;
 
     public UserConsentResponse with(Action<UserConsentResponse> action) {

@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class UserDeleteRequest {
+
     public bool? hardDelete;
+
     public List<Guid> userIds;
 
     public UserDeleteRequest with(Action<UserDeleteRequest> action) {

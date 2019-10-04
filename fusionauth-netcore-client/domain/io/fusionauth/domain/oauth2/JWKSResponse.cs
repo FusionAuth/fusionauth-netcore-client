@@ -24,7 +24,8 @@ namespace io.fusionauth.domain.oauth2 {
    * @author Daniel DeGroff
    */
   public class JWKSResponse {
-    public List<Dictionary<string, object>> keys;
+
+    public List<object> keys;
 
     public JWKSResponse with(Action<JWKSResponse> action) {
       action(this);

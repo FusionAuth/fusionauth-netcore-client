@@ -24,13 +24,21 @@ namespace io.fusionauth.domain.oauth2 {
    * @author Daniel DeGroff
    */
   public class OAuth2Configuration {
+
     public List<string> authorizedOriginURLs;
+
     public List<string> authorizedRedirectURLs;
+
     public string clientId;
+
     public string clientSecret;
+
     public List<GrantType> enabledGrants;
+
     public bool? generateRefreshTokens;
+
     public string logoutURL;
+
     public bool? requireClientAuthentication;
 
     public OAuth2Configuration with(Action<OAuth2Configuration> action) {

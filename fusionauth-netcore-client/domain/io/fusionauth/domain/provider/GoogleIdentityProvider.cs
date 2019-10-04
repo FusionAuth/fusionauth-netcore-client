@@ -27,9 +27,13 @@ namespace io.fusionauth.domain.provider {
    * @author Daniel DeGroff
    */
   public class GoogleIdentityProvider: BaseIdentityProvider<GoogleApplicationConfiguration> {
+
     public string buttonText;
+
     public string client_id;
+
     public string client_secret;
+
     public string scope;
 
     public GoogleIdentityProvider with(Action<GoogleIdentityProvider> action) {

@@ -22,11 +22,17 @@ using System;
 namespace io.fusionauth.domain {
 
   public class CORSConfiguration: Enableable {
+
     public bool? allowCredentials;
+
     public List<string> allowedHeaders;
+
     public List<HTTPMethod> allowedMethods;
+
     public List<string> allowedOrigins;
+
     public List<string> exposedHeaders;
+
     public int? preflightMaxAgeInSeconds;
 
     public CORSConfiguration with(Action<CORSConfiguration> action) {

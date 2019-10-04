@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class EventLogSearchRequest {
+
     public EventLogSearchCriteria search;
 
     public EventLogSearchRequest with(Action<EventLogSearchRequest> action) {

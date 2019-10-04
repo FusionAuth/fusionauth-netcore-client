@@ -25,10 +25,15 @@ namespace io.fusionauth.domain.provider {
    * @author Daniel DeGroff
    */
   public class OpenIdConnectIdentityProvider: BaseIdentityProvider<OpenIdConnectApplicationConfiguration> {
+
     public string buttonImageURL;
+
     public string buttonText;
+
     public List<string> domains;
+
     public LambdaConfiguration lambdaConfiguration;
+
     public IdentityProviderOauth2Configuration oauth2;
 
     public OpenIdConnectIdentityProvider with(Action<OpenIdConnectIdentityProvider> action) {

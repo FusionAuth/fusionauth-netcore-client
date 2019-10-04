@@ -26,9 +26,10 @@ namespace com.inversoft.error {
    * @author Brian Pontarelli
    */
   public class Error {
+
     public string code;
+
     public string message;
-    public List<object> values;
 
     public Error with(Action<Error> action) {
       action(this);

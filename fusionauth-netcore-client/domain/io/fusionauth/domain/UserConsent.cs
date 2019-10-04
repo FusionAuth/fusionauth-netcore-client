@@ -26,15 +26,25 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class UserConsent {
+
     public Consent consent;
+
     public Guid? consentId;
+
     public Dictionary<string, object> data;
+
     public Guid? giverUserId;
+
     public Guid? id;
+
     public DateTimeOffset? insertInstant;
+
     public DateTimeOffset? lastUpdateInstant;
+
     public ConsentStatus status;
+
     public Guid? userId;
+
     public List<string> values;
 
     public UserConsent with(Action<UserConsent> action) {

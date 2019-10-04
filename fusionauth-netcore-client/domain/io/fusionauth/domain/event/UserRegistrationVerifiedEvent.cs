@@ -27,8 +27,11 @@ namespace io.fusionauth.domain.@event {
    * @author Trevor Smith
    */
   public class UserRegistrationVerifiedEvent: BaseEvent {
+
     public Guid? applicationId;
+
     public UserRegistration registration;
+
     public User user;
 
     public UserRegistrationVerifiedEvent with(Action<UserRegistrationVerifiedEvent> action) {

@@ -26,22 +26,39 @@ namespace io.fusionauth.domain {
    * @author Seth Musselman
    */
   public class Application {
+
     public bool? active;
+
     public AuthenticationTokenConfiguration authenticationTokenConfiguration;
+
     public CleanSpeakConfiguration cleanSpeakConfiguration;
+
     public Dictionary<string, object> data;
+
     public Guid? id;
+
     public JWTConfiguration jwtConfiguration;
+
     public LambdaConfiguration lambdaConfiguration;
+
     public LoginConfiguration loginConfiguration;
+
     public string name;
+
     public OAuth2Configuration oauthConfiguration;
+
     public PasswordlessConfiguration passwordlessConfiguration;
+
     public RegistrationConfiguration registrationConfiguration;
+
     public List<ApplicationRole> roles;
+
     public SAMLv2Configuration samlv2Configuration;
+
     public Guid? tenantId;
+
     public Guid? verificationEmailTemplateId;
+
     public bool? verifyRegistration;
 
     public Application with(Action<Application> action) {

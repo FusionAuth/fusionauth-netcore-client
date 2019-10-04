@@ -26,8 +26,11 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class PasswordEncryptionConfiguration {
+
     public string encryptionScheme;
+
     public int? encryptionSchemeFactor;
+
     public bool? modifyEncryptionSchemeOnLogin;
 
     public PasswordEncryptionConfiguration with(Action<PasswordEncryptionConfiguration> action) {

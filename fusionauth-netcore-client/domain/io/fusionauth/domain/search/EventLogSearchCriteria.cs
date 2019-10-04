@@ -26,9 +26,13 @@ namespace io.fusionauth.domain.search {
    * @author Brian Pontarelli
    */
   public class EventLogSearchCriteria: BaseSearchCriteria {
+
     public DateTimeOffset? end;
+
     public string message;
+
     public DateTimeOffset? start;
+
     public EventLogType type;
 
     public EventLogSearchCriteria with(Action<EventLogSearchCriteria> action) {

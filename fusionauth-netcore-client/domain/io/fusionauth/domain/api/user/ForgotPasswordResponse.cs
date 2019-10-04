@@ -26,6 +26,7 @@ namespace io.fusionauth.domain.api.user {
    * @author Daniel DeGroff
    */
   public class ForgotPasswordResponse {
+
     public string changePasswordId;
 
     public ForgotPasswordResponse with(Action<ForgotPasswordResponse> action) {

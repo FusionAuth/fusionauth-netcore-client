@@ -24,19 +24,33 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class ExternalIdentifierConfiguration {
+
     public int? authorizationGrantIdTimeToLiveInSeconds;
+
     public SecureGeneratorConfiguration changePasswordIdGenerator;
+
     public int? changePasswordIdTimeToLiveInSeconds;
+
     public SecureGeneratorConfiguration emailVerificationIdGenerator;
+
     public int? emailVerificationIdTimeToLiveInSeconds;
+
     public int? oneTimePasswordTimeToLiveInSeconds;
+
     public SecureGeneratorConfiguration passwordlessLoginGenerator;
+
     public int? passwordlessLoginTimeToLiveInSeconds;
+
     public SecureGeneratorConfiguration registrationVerificationIdGenerator;
+
     public int? registrationVerificationIdTimeToLiveInSeconds;
+
     public SecureGeneratorConfiguration setupPasswordIdGenerator;
+
     public int? setupPasswordIdTimeToLiveInSeconds;
+
     public int? twoFactorIdTimeToLiveInSeconds;
+
     public int? twoFactorTrustIdTimeToLiveInSeconds;
 
     public ExternalIdentifierConfiguration with(Action<ExternalIdentifierConfiguration> action) {

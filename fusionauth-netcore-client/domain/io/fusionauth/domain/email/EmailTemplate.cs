@@ -27,17 +27,27 @@ namespace io.fusionauth.domain.email {
    * @author Brian Pontarelli
    */
   public class EmailTemplate {
+
     public string defaultFromName;
+
     public string defaultHtmlTemplate;
+
     public string defaultSubject;
+
     public string defaultTextTemplate;
+
     public string fromEmail;
+
     public Guid? id;
-    public List<string> localizations;
+
     public LocalizedStrings localizedFromNames;
+
     public LocalizedStrings localizedHtmlTemplates;
+
     public LocalizedStrings localizedSubjects;
+
     public LocalizedStrings localizedTextTemplates;
+
     public string name;
 
     public EmailTemplate with(Action<EmailTemplate> action) {

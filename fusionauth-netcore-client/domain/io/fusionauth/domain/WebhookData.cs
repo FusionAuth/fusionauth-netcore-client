@@ -22,6 +22,7 @@ using System;
 namespace io.fusionauth.domain {
 
   public class WebhookData {
+
     public Dictionary<EventType, bool> @eventsEnabled;
 
     public WebhookData with(Action<WebhookData> action) {

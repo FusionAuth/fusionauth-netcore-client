@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class PublicKeyResponse {
+
     public string publicKey;
+
     public Dictionary<string, string> publicKeys;
 
     public PublicKeyResponse with(Action<PublicKeyResponse> action) {

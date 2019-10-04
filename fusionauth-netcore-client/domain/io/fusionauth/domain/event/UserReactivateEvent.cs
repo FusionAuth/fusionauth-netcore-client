@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class UserReactivateEvent: BaseEvent {
+
     public User user;
 
     public UserReactivateEvent with(Action<UserReactivateEvent> action) {

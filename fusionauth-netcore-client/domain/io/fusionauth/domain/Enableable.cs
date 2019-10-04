@@ -26,6 +26,7 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class Enableable {
+
     public bool? enabled;
 
     public Enableable with(Action<Enableable> action) {

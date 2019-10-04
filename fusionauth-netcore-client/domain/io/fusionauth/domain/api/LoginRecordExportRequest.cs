@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class LoginRecordExportRequest: BaseExportRequest {
+
     public LoginRecordSearchCriteria criteria;
 
     public LoginRecordExportRequest with(Action<LoginRecordExportRequest> action) {

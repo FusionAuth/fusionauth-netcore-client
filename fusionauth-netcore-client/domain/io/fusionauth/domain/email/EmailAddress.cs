@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.email {
    * @author Brian Pontarelli
    */
   public class EmailAddress {
+
     public string address;
+
     public string display;
 
     public EmailAddress with(Action<EmailAddress> action) {

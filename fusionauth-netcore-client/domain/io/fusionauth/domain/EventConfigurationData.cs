@@ -21,6 +21,7 @@ using System;
 namespace io.fusionauth.domain {
 
   public class EventConfigurationData: Enableable {
+
     public TransactionType transactionType;
 
     public EventConfigurationData with(Action<EventConfigurationData> action) {

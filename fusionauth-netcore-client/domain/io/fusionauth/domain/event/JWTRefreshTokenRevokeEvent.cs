@@ -28,9 +28,13 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class JWTRefreshTokenRevokeEvent: BaseEvent {
+
     public Guid? applicationId;
+
     public Dictionary<Guid, int> applicationTimeToLiveInSeconds;
+
     public User user;
+
     public Guid? userId;
 
     public JWTRefreshTokenRevokeEvent with(Action<JWTRefreshTokenRevokeEvent> action) {

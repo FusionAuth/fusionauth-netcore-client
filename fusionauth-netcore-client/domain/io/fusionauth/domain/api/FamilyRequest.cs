@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class FamilyRequest {
+
     public FamilyMember familyMember;
 
     public FamilyRequest with(Action<FamilyRequest> action) {

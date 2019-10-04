@@ -24,7 +24,9 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class SecureGeneratorConfiguration {
+
     public int? length;
+
     public SecureGeneratorType type;
 
     public SecureGeneratorConfiguration with(Action<SecureGeneratorConfiguration> action) {

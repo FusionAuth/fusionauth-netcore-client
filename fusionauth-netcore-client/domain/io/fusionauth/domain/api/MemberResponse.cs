@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class MemberResponse {
+
     public Dictionary<Guid, List<GroupMember>> members;
 
     public MemberResponse with(Action<MemberResponse> action) {

@@ -27,8 +27,11 @@ namespace io.fusionauth.domain.@event {
    * @author Daniel DeGroff
    */
   public class UserRegistrationCreateEvent: BaseEvent {
+
     public Guid? applicationId;
+
     public UserRegistration registration;
+
     public User user;
 
     public UserRegistrationCreateEvent with(Action<UserRegistrationCreateEvent> action) {

@@ -24,6 +24,7 @@ namespace io.fusionauth.domain.api.user {
    * @author Daniel DeGroff
    */
   public class VerifyEmailResponse {
+
     public string verificationId;
 
     public VerifyEmailResponse with(Action<VerifyEmailResponse> action) {

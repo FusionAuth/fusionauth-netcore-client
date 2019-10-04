@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api.user {
    * @author Brian Pontarelli
    */
   public class RegistrationResponse {
+
     public UserRegistration registration;
+
     public User user;
 
     public RegistrationResponse with(Action<RegistrationResponse> action) {

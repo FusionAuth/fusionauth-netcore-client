@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api.report {
    * @author Brian Pontarelli
    */
   public class LoginReportResponse {
+
     public List<Count> hourlyCounts;
+
     public long? total;
 
     public LoginReportResponse with(Action<LoginReportResponse> action) {

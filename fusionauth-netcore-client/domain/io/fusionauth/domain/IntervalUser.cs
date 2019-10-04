@@ -26,8 +26,11 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class IntervalUser {
+
     public Guid? applicationId;
+
     public int? period;
+
     public Guid? userId;
 
     public IntervalUser with(Action<IntervalUser> action) {

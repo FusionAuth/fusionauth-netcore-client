@@ -25,7 +25,9 @@ namespace io.fusionauth.domain.api.passwordless {
    * @author Daniel DeGroff
    */
   public class PasswordlessLoginRequest: BaseLoginRequest {
+
     public string code;
+
     public string twoFactorTrustId;
 
     public PasswordlessLoginRequest with(Action<PasswordlessLoginRequest> action) {

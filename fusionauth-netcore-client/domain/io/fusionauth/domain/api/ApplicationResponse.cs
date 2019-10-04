@@ -27,8 +27,11 @@ namespace io.fusionauth.domain.api {
    * @author Brian Pontarelli
    */
   public class ApplicationResponse {
+
     public Application application;
+
     public List<Application> applications;
+
     public ApplicationRole role;
 
     public ApplicationResponse with(Action<ApplicationResponse> action) {

@@ -27,21 +27,37 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class OpenIdConfiguration {
+
     public string authorization_endpoint;
+
     public bool? backchannel_logout_supported;
+
     public List<string> claims_supported;
+
     public string end_session_endpoint;
+
     public bool? frontchannel_logout_supported;
+
     public List<string> grant_types_supported;
+
     public List<string> id_token_signing_alg_values_supported;
+
     public string issuer;
+
     public string jwks_uri;
+
     public List<string> response_types_supported;
+
     public List<string> scopes_supported;
+
     public List<string> subject_types_supported;
+
     public string token_endpoint;
+
     public List<string> token_endpoint_auth_methods_supported;
+
     public string userinfo_endpoint;
+
     public List<string> userinfo_signing_alg_values_supported;
 
     public OpenIdConfiguration with(Action<OpenIdConfiguration> action) {

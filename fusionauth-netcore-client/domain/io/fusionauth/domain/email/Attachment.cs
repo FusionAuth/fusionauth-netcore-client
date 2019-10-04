@@ -26,8 +26,11 @@ namespace io.fusionauth.domain.email {
    * @author Brian Pontarelli
    */
   public class Attachment {
+
     public List<byte> attachment;
+
     public string mime;
+
     public string name;
 
     public Attachment with(Action<Attachment> action) {

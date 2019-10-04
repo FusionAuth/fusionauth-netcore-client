@@ -24,9 +24,13 @@ namespace io.fusionauth.domain.api.email {
    * @author Daniel DeGroff
    */
   public class SendRequest {
+
     public List<string> bccAddresses;
+
     public List<string> ccAddresses;
+
     public Dictionary<string, object> requestData;
+
     public List<Guid> userIds;
 
     public SendRequest with(Action<SendRequest> action) {

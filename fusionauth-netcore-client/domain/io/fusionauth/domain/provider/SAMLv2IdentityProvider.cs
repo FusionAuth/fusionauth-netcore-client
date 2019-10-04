@@ -27,14 +27,23 @@ namespace io.fusionauth.domain.provider {
    * @author Brian Pontarelli
    */
   public class SAMLv2IdentityProvider: BaseIdentityProvider<SAMLv2ApplicationConfiguration> {
+
     public string buttonImageURL;
+
     public string buttonText;
+
     public List<string> domains;
+
     public string emailClaim;
+
     public string idpEndpoint;
+
     public string issuer;
+
     public Guid? keyId;
+
     public LambdaConfiguration lambdaConfiguration;
+
     public bool? useNameIdForEmail;
 
     public SAMLv2IdentityProvider with(Action<SAMLv2IdentityProvider> action) {

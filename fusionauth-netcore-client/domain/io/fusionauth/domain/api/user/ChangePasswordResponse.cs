@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api.user {
    * @author Daniel DeGroff
    */
   public class ChangePasswordResponse {
+
     public string oneTimePassword;
+
     public Dictionary<string, object> state;
 
     public ChangePasswordResponse with(Action<ChangePasswordResponse> action) {

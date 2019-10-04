@@ -26,19 +26,33 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class UserRegistration {
+
     public Guid? applicationId;
+
     public string authenticationToken;
+
     public Guid? cleanSpeakId;
+
     public Dictionary<string, object> data;
+
     public Guid? id;
+
     public DateTimeOffset? insertInstant;
+
     public DateTimeOffset? lastLoginInstant;
+
     public List<string> preferredLanguages;
+
     public List<string> roles;
+
     public string timezone;
+
     public Dictionary<string, string> tokens;
+
     public string username;
+
     public ContentStatus usernameStatus;
+
     public bool? verified;
 
     public UserRegistration with(Action<UserRegistration> action) {

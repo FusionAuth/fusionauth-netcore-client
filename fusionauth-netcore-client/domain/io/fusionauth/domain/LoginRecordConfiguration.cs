@@ -21,6 +21,7 @@ using System;
 namespace io.fusionauth.domain {
 
   public class LoginRecordConfiguration {
+
     public DeleteConfiguration delete;
 
     public LoginRecordConfiguration with(Action<LoginRecordConfiguration> action) {

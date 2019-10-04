@@ -26,10 +26,15 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public class GroupMember {
+
     public Dictionary<string, object> data;
+
     public Guid? groupId;
+
     public Guid? id;
+
     public DateTimeOffset? insertInstant;
+
     public Guid? userId;
 
     public GroupMember with(Action<GroupMember> action) {

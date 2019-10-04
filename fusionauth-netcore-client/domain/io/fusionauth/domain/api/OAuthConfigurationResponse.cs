@@ -25,8 +25,11 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class OAuthConfigurationResponse {
+
     public int? httpSessionMaxInactiveInterval;
+
     public string logoutURL;
+
     public OAuth2Configuration oauthConfiguration;
 
     public OAuthConfigurationResponse with(Action<OAuthConfigurationResponse> action) {

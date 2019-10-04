@@ -26,17 +26,29 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class Webhook {
+
     public List<Guid> applicationIds;
+
     public int? connectTimeout;
+
     public WebhookData data;
+
     public string description;
+
     public bool? global;
+
     public HTTPHeaders headers;
+
     public string httpAuthenticationPassword;
+
     public string httpAuthenticationUsername;
+
     public Guid? id;
+
     public int? readTimeout;
+
     public string sslCertificate;
+
     public string url;
 
     public Webhook with(Action<Webhook> action) {

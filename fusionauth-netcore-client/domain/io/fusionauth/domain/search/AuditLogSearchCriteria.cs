@@ -24,9 +24,13 @@ namespace io.fusionauth.domain.search {
    * @author Brian Pontarelli
    */
   public class AuditLogSearchCriteria: BaseSearchCriteria {
+
     public DateTimeOffset? end;
+
     public string message;
+
     public DateTimeOffset? start;
+
     public string user;
 
     public AuditLogSearchCriteria with(Action<AuditLogSearchCriteria> action) {

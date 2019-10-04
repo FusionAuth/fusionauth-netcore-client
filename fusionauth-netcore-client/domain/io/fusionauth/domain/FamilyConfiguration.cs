@@ -24,14 +24,23 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public class FamilyConfiguration: Enableable {
+
     public bool? allowChildRegistrations;
+
     public Guid? confirmChildEmailTemplateId;
+
     public bool? deleteOrphanedAccounts;
+
     public int? deleteOrphanedAccountsDays;
+
     public Guid? familyRequestEmailTemplateId;
+
     public int? maximumChildAge;
+
     public int? minimumOwnerAge;
+
     public bool? parentEmailRequired;
+
     public Guid? parentRegistrationEmailTemplateId;
 
     public FamilyConfiguration with(Action<FamilyConfiguration> action) {

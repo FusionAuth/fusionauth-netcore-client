@@ -26,12 +26,15 @@ namespace io.fusionauth.domain {
    * @author Seth Musselman
    */
   public class ApplicationRole {
-    public Guid? applicationId;
+
     public string description;
-    public string display;
+
     public Guid? id;
+
     public bool? isDefault;
+
     public bool? isSuperRole;
+
     public string name;
 
     public ApplicationRole with(Action<ApplicationRole> action) {

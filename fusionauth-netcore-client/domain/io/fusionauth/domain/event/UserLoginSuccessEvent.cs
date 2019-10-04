@@ -27,10 +27,15 @@ namespace io.fusionauth.domain.@event {
    * @author Daniel DeGroff
    */
   public class UserLoginSuccessEvent: BaseEvent {
+
     public Guid? applicationId;
+
     public string authenticationType;
+
     public Guid? identityProviderId;
+
     public string identityProviderName;
+
     public User user;
 
     public UserLoginSuccessEvent with(Action<UserLoginSuccessEvent> action) {

@@ -21,8 +21,11 @@ using System;
 namespace io.fusionauth.domain {
 
   public class EmailPlus: Enableable {
+
     public Guid? emailTemplateId;
+
     public int? maximumTimeToSendEmailInHours;
+
     public int? minimumTimeToSendEmailInHours;
 
     public EmailPlus with(Action<EmailPlus> action) {

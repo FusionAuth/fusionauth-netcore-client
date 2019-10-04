@@ -21,8 +21,11 @@ using System;
 namespace io.fusionauth.domain.api.report {
 
   public class Totals {
+
     public long? logins;
+
     public long? registrations;
+
     public long? totalRegistrations;
 
     public Totals with(Action<Totals> action) {

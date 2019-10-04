@@ -26,7 +26,9 @@ namespace com.inversoft.error {
    * @author Brian Pontarelli
    */
   public class Errors {
+
     public Dictionary<string, List<Error>> fieldErrors;
+
     public List<Error> generalErrors;
 
     public Errors with(Action<Errors> action) {

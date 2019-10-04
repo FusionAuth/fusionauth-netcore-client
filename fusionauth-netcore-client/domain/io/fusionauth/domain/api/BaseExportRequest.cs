@@ -24,7 +24,9 @@ namespace io.fusionauth.domain.api {
    * @author Daniel DeGroff
    */
   public class BaseExportRequest {
+
     public string dateTimeSecondsFormat;
+
     public string zoneId;
 
     public BaseExportRequest with(Action<BaseExportRequest> action) {

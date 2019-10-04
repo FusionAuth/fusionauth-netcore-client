@@ -26,7 +26,9 @@ namespace io.fusionauth.domain.api {
    * @author Seth Musselman
    */
   public class PreviewResponse {
+
     public Email email;
+
     public Errors errors;
 
     public PreviewResponse with(Action<PreviewResponse> action) {

@@ -26,6 +26,7 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public class EventRequest {
+
     public BaseEvent @event;
 
     public EventRequest with(Action<EventRequest> action) {
