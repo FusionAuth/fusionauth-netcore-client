@@ -23,17 +23,11 @@ namespace io.fusionauth.domain.api.passwordless {
   /**
    * @author Daniel DeGroff
    */
-  public class PasswordlessSendRequest {
-
-    public Guid? applicationId;
+  public class PasswordlessStartResponse {
 
     public string code;
 
-    public string loginId;
-
-    public Dictionary<string, object> state;
-
-    public PasswordlessSendRequest with(Action<PasswordlessSendRequest> action) {
+    public PasswordlessStartResponse with(Action<PasswordlessStartResponse> action) {
       action(this);
       return this;
     }
