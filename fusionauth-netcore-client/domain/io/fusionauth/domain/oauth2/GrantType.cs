@@ -15,6 +15,7 @@
  */
 
 
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -30,11 +31,19 @@ namespace io.fusionauth.domain.oauth2 {
    * @author Daniel DeGroff
    */
   public enum GrantType {
+              [EnumMember(Value = "authorization_code")]
             authorization_code, 
+              [EnumMember(Value = "implicit")]
             @implicit, 
+              [EnumMember(Value = "password")]
             password, 
+              [EnumMember(Value = "client_credentials")]
             client_credentials, 
+              [EnumMember(Value = "refresh_token")]
             refresh_token, 
-            unknown
+              [EnumMember(Value = "unknown")]
+            unknown, 
+              [EnumMember(Value = "urn:ietf:params:oauth:grant-type:device_code")]
+            device_code
   }
 }

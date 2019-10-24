@@ -31,6 +31,8 @@ namespace io.fusionauth.domain.oauth2 {
             unsupported_grant_type, 
             unsupported_response_type, 
             change_password_required, 
-            two_factor_required
+            two_factor_required, 
+            authorization_pending, 
+            expired_token
   }
 }

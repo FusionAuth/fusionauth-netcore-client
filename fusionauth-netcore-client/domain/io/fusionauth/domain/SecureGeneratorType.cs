@@ -25,6 +25,8 @@ namespace io.fusionauth.domain {
    */
   public enum SecureGeneratorType {
             randomDigits, 
-            randomBytes
+            randomBytes, 
+            randomAlpha, 
+            randomAlphaNumeric
   }
 }

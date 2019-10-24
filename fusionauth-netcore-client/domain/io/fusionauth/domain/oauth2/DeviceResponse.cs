@@ -21,21 +21,23 @@ using System;
 namespace io.fusionauth.domain.oauth2 {
 
   /**
-   * @author Daniel DeGroff
+   * @author Trevor Smith
    */
-  public class OAuth2Configuration {
-    public List<string> authorizedOriginURLs;
-    public List<string> authorizedRedirectURLs;
-    public string clientId;
-    public string clientSecret;
-    public string deviceVerificationURL;
-    public List<GrantType> enabledGrants;
-    public bool? generateRefreshTokens;
-    public LogoutBehavior logoutBehavior;
-    public string logoutURL;
-    public bool? requireClientAuthentication;
+  public class DeviceResponse {
 
-    public OAuth2Configuration with(Action<OAuth2Configuration> action) {
+    public string device_code;
+
+    public int? expires_in;
+
+    public int? interval;
+
+    public string user_code;
+
+    public string verification_uri;
+
+    public string verification_uri_complete;
+
+    public DeviceResponse with(Action<DeviceResponse> action) {
       action(this);
       return this;
     }

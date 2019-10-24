@@ -21,23 +21,10 @@ using System;
 namespace io.fusionauth.domain.oauth2 {
 
   /**
-   * @author Daniel DeGroff
+   * @author Matthew Altman
    */
-  public class OAuth2Configuration {
-    public List<string> authorizedOriginURLs;
-    public List<string> authorizedRedirectURLs;
-    public string clientId;
-    public string clientSecret;
-    public string deviceVerificationURL;
-    public List<GrantType> enabledGrants;
-    public bool? generateRefreshTokens;
-    public LogoutBehavior logoutBehavior;
-    public string logoutURL;
-    public bool? requireClientAuthentication;
-
-    public OAuth2Configuration with(Action<OAuth2Configuration> action) {
-      action(this);
-      return this;
-    }
+  public enum LogoutBehavior {
+            RedirectOnly, 
+            AllApplications
   }
 }

@@ -21,7 +21,7 @@ using System;
 namespace io.fusionauth.domain {
 
   /**
-   * OpenID Configuration as described by the <a href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata">OpenID
+   * OpenID Connect Configuration as described by the <a href="https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata">OpenID
    * Provider Metadata</a>.
    *
    * @author Daniel DeGroff
@@ -34,6 +34,8 @@ namespace io.fusionauth.domain {
 
     public List<string> claims_supported;
 
+    public string device_authorization_endpoint;
+
     public string end_session_endpoint;
 
     public bool? frontchannel_logout_supported;
@@ -45,6 +47,8 @@ namespace io.fusionauth.domain {
     public string issuer;
 
     public string jwks_uri;
+
+    public List<string> response_modes_supported;
 
     public List<string> response_types_supported;
 
