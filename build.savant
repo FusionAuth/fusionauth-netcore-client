@@ -46,6 +46,35 @@ target(name: "idea", description: "Updates the IntelliJ IDEA module file") {
 target(name: "bundle", description: "Builds the project release bundle", dependsOn: "int") {
 }
 
-target(name: "release", description: "Releases a full version of the project", dependsOn: ["int"]) {
+target(name: "release", description: "Releases a full version of the project", dependsOn: ["clean", "int"]) {
   release.release()
+}
+
+target(name: "pack", description: "Releases a full version of the project", dependsOn: ["clean", "int"]) {
+  ProcessBuilder pb = new ProcessBuilder(
+      "dotnet", "pack")
+      .inheritIO()
+      .directory(new File("./fusionauth-netcore-client"))
+
+  def process = pb.start()
+  process.consumeProcessOutput(System.out, System.err)
+  process.waitFor()
+  return process.exitValue() == 0
+}
+
+target(name: "publish", description: "Releases a full version of the project", dependsOn: ["pack"]) {
+  ProcessBuilder pb = new ProcessBuilder(
+      "dotnet", "nuget", "push",
+      "./bin/Release/FusionAuth.Client.${project.version}.nupkg",
+      "-k",
+      "${global.nugetAPIKey}",
+      "-s",
+      "https://api.nuget.org/v3/index.json")
+      .inheritIO()
+      .directory(new File("./fusionauth-netcore-client"))
+
+  def process = pb.start()
+  process.consumeProcessOutput(System.out, System.err)
+  process.waitFor()
+  return process.exitValue() == 0
 }
