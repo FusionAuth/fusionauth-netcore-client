@@ -35,7 +35,7 @@ namespace io.fusionauth {
       var message = response.exception == null ? "No Errors" : response.exception.ToString();
       Assert.IsNull(response.exception);
       Assert.AreEqual(200, response.statusCode,
-                      response.errorResponse != null ? JsonConvert.SerializeObject(response.errorResponse) : message);
+        response.errorResponse != null ? JsonConvert.SerializeObject(response.errorResponse) : message);
       Assert.IsNull(response.errorResponse);
 
       return this;
@@ -43,7 +43,7 @@ namespace io.fusionauth {
 
     public TestBuilder assertStatusCode<T>(ClientResponse<T> response, int expectedCode) {
       Assert.AreEqual(expectedCode, response.statusCode,
-                      response.errorResponse != null ? response.errorResponse.ToString() : "No errors");
+        response.errorResponse != null ? response.errorResponse.ToString() : "No errors");
       Assert.IsNull(response.exception);
       if (expectedCode == 400) {
         Assert.IsNotNull(response.errorResponse);
@@ -59,7 +59,7 @@ namespace io.fusionauth {
 
     public TestBuilder assertMissing<T>(ClientResponse<T> response) {
       Assert.AreEqual(404, response.statusCode,
-                      response.errorResponse != null ? response.errorResponse.ToString() : "No errors");
+        response.errorResponse != null ? response.errorResponse.ToString() : "No errors");
       Assert.IsNull(response.exception);
       Assert.IsNull(response.errorResponse);
       Assert.IsNull(response.successResponse);
@@ -79,18 +79,18 @@ namespace io.fusionauth {
       }
 
       var newUser = new User()
-                    .with(u => u.email = emailAddress)
-                    .with(u => u.username = "csharpclient")
-                    .with(u => u.password = "password");
+        .with(u => u.email = emailAddress)
+        .with(u => u.username = "csharpclient")
+        .with(u => u.password = "password");
 
       var newRegistration = new UserRegistration()
-                            .with(r => r.applicationId = ApplicationId)
-                            .with(r => r.username = "csharpclient");
+        .with(r => r.applicationId = ApplicationId)
+        .with(r => r.username = "csharpclient");
 
       var response = client.Register(null, new RegistrationRequest().with(rr => rr.user = newUser)
-                                                                    .with(rr => rr.registration = newRegistration)
-                                                                    .with(rr => rr.sendSetPasswordEmail = false)
-                                                                    .with(rr => rr.skipVerification = true));
+        .with(rr => rr.registration = newRegistration)
+        .with(rr => rr.sendSetPasswordEmail = false)
+        .with(rr => rr.skipVerification = true));
       assertSuccess(response);
       Assert.AreEqual(newUser.username, response.successResponse.user.username);
 
@@ -100,9 +100,9 @@ namespace io.fusionauth {
 
     public TestBuilder login() {
       var response = client.Login(new LoginRequest()
-                                  .with(lr => lr.applicationId = application.id)
-                                  .with(lr => lr.loginId = user.email)
-                                  .with(lr => lr.password = "password"));
+        .with(lr => lr.applicationId = application.id)
+        .with(lr => lr.loginId = user.email)
+        .with(lr => lr.password = "password"));
       assertSuccess(response);
 
       token = response.successResponse.token;
@@ -112,7 +112,7 @@ namespace io.fusionauth {
 
     public TestBuilder updateApplication(Application application) {
       var response = client.UpdateApplication(ApplicationId, new ApplicationRequest()
-                                                .with(ar => ar.application = application));
+        .with(ar => ar.application = application));
       assertSuccess(response);
 
       this.application = response.successResponse.application;
@@ -128,9 +128,9 @@ namespace io.fusionauth {
       var application = new Application()
         .with(app => app.name = "CSharp Client Test");
       var response = client.CreateApplication(ApplicationId,
-                                              new ApplicationRequest()
-                                                .with(ar => ar.application = new Application()
-                                                        .with(app => app.name = "CSharp Client Test")));
+        new ApplicationRequest()
+          .with(ar => ar.application = new Application()
+            .with(app => app.name = "CSharp Client Test")));
 
       assertSuccess(response);
       Assert.AreEqual(application.name, response.successResponse.application.name);
@@ -152,7 +152,7 @@ namespace io.fusionauth {
     [Test]
     public void Retrieve_Application_Test() {
       test.createApplication()
-          .callClient(client => client.RetrieveApplication(test.application.id));
+        .callClient(client => client.RetrieveApplication(test.application.id));
 
       var response = test.client.RetrieveApplication(test.application.id);
       Assert.AreEqual("CSharp Client Test", response.successResponse.application.name);
@@ -162,7 +162,7 @@ namespace io.fusionauth {
     [Test]
     public void Retrieve_RefreshTokens_Test() {
       test.createApplication()
-          .createUser();
+        .createUser();
 
       var response = test.client.RetrieveRefreshTokens((Guid) test.user.id);
       test.assertSuccess(response);
@@ -172,13 +172,13 @@ namespace io.fusionauth {
     [Test]
     public void Update_Application_Test() {
       test.createApplication()
-          .updateApplication(test.application.with(a => a.name = "CSharp Client Test (Updated)"));
+        .updateApplication(test.application.with(a => a.name = "CSharp Client Test (Updated)"));
 
       var application = new Application()
         .with(app => app.name = "CSharp Client Test (updated)");
       var response = test.client.UpdateApplication(TestBuilder.ApplicationId,
-                                                   new ApplicationRequest()
-                                                     .with(ar => ar.application = application));
+        new ApplicationRequest()
+          .with(ar => ar.application = application));
       Assert.AreEqual("CSharp Client Test (updated)", response.successResponse.application.name);
       test.assertSuccess(response);
     }
@@ -209,7 +209,7 @@ namespace io.fusionauth {
     [Test]
     public void Deactivate_Application_Test() {
       var response = test.createApplication()
-                         .client.DeactivateApplication(TestBuilder.ApplicationId);
+        .client.DeactivateApplication(TestBuilder.ApplicationId);
       test.assertSuccess(response);
     }
 
@@ -237,14 +237,14 @@ namespace io.fusionauth {
 
       //test update
       var userRegistration = new UserRegistration()
-                             .with(ur => ur.applicationId = TestBuilder.ApplicationId)
-                             .with(ur => ur.username = test.user.username)
-                             .with(ur => ur.usernameStatus = ContentStatus.ACTIVE)
-                             .with(ur => ur.cleanSpeakId = new Guid("9af3fc1d-9236-4793-93df-aeac5f67f23e"));
+        .with(ur => ur.applicationId = TestBuilder.ApplicationId)
+        .with(ur => ur.username = test.user.username)
+        .with(ur => ur.usernameStatus = ContentStatus.ACTIVE)
+        .with(ur => ur.cleanSpeakId = new Guid("9af3fc1d-9236-4793-93df-aeac5f67f23e"));
 
       var updateResponse = test.client.UpdateRegistration(test.user.id,
-                                                          new RegistrationRequest()
-                                                            .with(rr => rr.registration = userRegistration));
+        new RegistrationRequest()
+          .with(rr => rr.registration = userRegistration));
       Assert.AreEqual(test.user.username, updateResponse.successResponse.registration.username);
       test.assertSuccess(updateResponse);
 
@@ -277,7 +277,7 @@ namespace io.fusionauth {
       }
 
       var createResponse = test.client.CreateGroup(null, new GroupRequest()
-                                                     .with(gr => gr.@group = new Group().with(g => g.name = "C# Group")));
+        .with(gr => gr.@group = new Group().with(g => g.name = "C# Group")));
       test.assertSuccess(createResponse);
       retrieveResponse = test.client.RetrieveGroups();
       test.assertSuccess(retrieveResponse);
@@ -301,11 +301,12 @@ namespace io.fusionauth {
       // 404, Wrong tenant Id
       var createTenantResponse =
         test.client.CreateTenant(null, new TenantRequest()
-                                   .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant")));
+          .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant")));
       test.assertSuccess(createTenantResponse);
 
       var wrongTenantClient =
-        test.newClientWithTenantId(createTenantResponse.successResponse.tenant.id ?? throw new NullReferenceException());
+        test.newClientWithTenantId(createTenantResponse.successResponse.tenant.id ??
+                                   throw new NullReferenceException());
 
       tenantGroupRetrieveResponse = wrongTenantClient.RetrieveGroup(createResponse.successResponse.group.id);
       test.assertMissing(tenantGroupRetrieveResponse);
@@ -333,11 +334,11 @@ namespace io.fusionauth {
 
       var createResponse =
         test.client.CreateIdentityProvider(null,
-                                           new IdentityProviderRequest()
-                                             .with(ipr => ipr.identityProvider = new ExternalJWTIdentityProvider()
-                                                                                 .with(idp => idp.name = "C# IdentityProvider")
-                                                                                 .with(idp => idp.headerKeyParameter = "kid")
-                                                                                 .with(idp => idp.uniqueIdentityClaim = "username")));
+          new IdentityProviderRequest()
+            .with(ipr => ipr.identityProvider = new ExternalJWTIdentityProvider()
+              .with(idp => idp.name = "C# IdentityProvider")
+              .with(idp => idp.headerKeyParameter = "kid")
+              .with(idp => idp.uniqueIdentityClaim = "username")));
 
       test.assertSuccess(createResponse);
       retrieveResponse = test.client.RetrieveIdentityProviders();
@@ -356,12 +357,12 @@ namespace io.fusionauth {
     [Test]
     public void Login_Test() {
       test.createApplication()
-          .createUser()
-          .callClient(client => test.assertSuccess(client.Login(new LoginRequest()
-                                                                .with(lr => lr.applicationId = TestBuilder.ApplicationId)
-                                                                .with(lr => lr.loginId = TestBuilder.emailAddress)
-                                                                .with(lr => lr.password = "password")
-                                                                .with(lr => lr.ipAddress = "10.0.1.129"))));
+        .createUser()
+        .callClient(client => test.assertSuccess(client.Login(new LoginRequest()
+          .with(lr => lr.applicationId = TestBuilder.ApplicationId)
+          .with(lr => lr.loginId = TestBuilder.emailAddress)
+          .with(lr => lr.password = "password")
+          .with(lr => lr.ipAddress = "10.0.1.129"))));
     }
 
     [Test]
@@ -370,17 +371,77 @@ namespace io.fusionauth {
       test.assertSuccess(response);
 
       Assert.IsNotNull(response.successResponse.tenants);
-      Assert.AreEqual(response.successResponse.tenants[0].name, "default");
+      Assert.AreEqual(response.successResponse.tenants[0].name, "Default");
 
       var createResponse =
         test.client.CreateTenant(null, new TenantRequest()
-                                   .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant")));
+          .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant")));
       test.assertSuccess(createResponse);
       Assert.AreEqual(createResponse.successResponse.tenant.name, "C# Tenant");
       Assert.IsNotNull(createResponse.successResponse.tenant.id);
 
       var deleteResponse = test.client.DeleteTenant(createResponse.successResponse.tenant.id);
       test.assertSuccess(deleteResponse);
+    }
+
+    [Test]
+    public void UnverifiedUserLogin_Test() {
+      var tenantResponse = test.client.RetrieveTenants();
+
+      test.assertSuccess(tenantResponse);
+
+      var verificationRequiredTenant =
+        tenantResponse.successResponse.tenants.Find(tenant => tenant.name.Equals("Verification Required Tenant"));
+
+      if (verificationRequiredTenant == null) {
+        var defaultTenant = tenantResponse.successResponse.tenants.Find(tenant => tenant.name.Equals("Default"));
+
+        defaultTenant.emailConfiguration.verifyEmail = true;
+        defaultTenant.emailConfiguration.verificationEmailTemplateId = new Guid("2ce4449e-fc1e-4ed6-b380-92c3414549e3");
+        defaultTenant.name = "Verification Required Tenant";
+        defaultTenant.id = null;
+
+        tenantResponse =
+          test.client.CreateTenant(null, new TenantRequest().with(request => request.tenant = defaultTenant));
+
+        test.assertSuccess(tenantResponse);
+
+        verificationRequiredTenant = tenantResponse.successResponse.tenant;
+      }
+      
+      var applicationResponse = test.client.RetrieveApplications();
+
+      test.assertSuccess(applicationResponse);
+
+      var verificationRequiredApplication = applicationResponse.successResponse.applications.Find(application =>
+        application.name.Equals("Verification Required Application"));
+
+      var tenantClient = test.newClientWithTenantId((Guid) verificationRequiredTenant.id);
+      
+      if (verificationRequiredApplication == null) {
+        applicationResponse = tenantClient.CreateApplication(null,
+          new ApplicationRequest().with(request => request.application = new Application()
+            .with(application => application.name = "Verification Required Application")
+            .with(application => application.tenantId = verificationRequiredTenant.id)));
+
+        test.assertSuccess(applicationResponse);
+
+        verificationRequiredApplication = applicationResponse.successResponse.application;
+      }
+
+      var userRequest = tenantClient.CreateUser(null, new UserRequest()
+        .with(request => request.user = new User()
+          .with(user => user.email = new Guid() + "@example.com")
+          .with(user => user.password = "password")));
+
+      test.assertSuccess(userRequest);
+
+      var loginResponse = tenantClient.Login(new LoginRequest()
+        .with(request => request.applicationId = verificationRequiredApplication.id)
+        .with(request => request.loginId = userRequest.successResponse.user.email)
+        .with(request => request.password = "password"));
+
+      test.assertSuccess(loginResponse);
     }
   }
 }
