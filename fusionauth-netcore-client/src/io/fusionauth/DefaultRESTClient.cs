@@ -34,7 +34,7 @@ namespace io.fusionauth {
             new DateTimeOffsetConverter(),
             new IdentityProviderConverter()
           },
-          ContractResolver = new DefaultContractResolver() 
+          ContractResolver = new DefaultContractResolver()
         };
     }
 
@@ -166,7 +166,7 @@ namespace io.fusionauth {
           try {
             var result = task.Result;
             clientResponse.statusCode = (int) result.StatusCode;
-            if (result.StatusCode != HttpStatusCode.OK) {
+            if (clientResponse.statusCode >= 300) {
               clientResponse.errorResponse =
                 JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result);
             }

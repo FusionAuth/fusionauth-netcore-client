@@ -397,7 +397,7 @@ namespace io.fusionauth {
         var defaultTenant = tenantResponse.successResponse.tenants.Find(tenant => tenant.name.Equals("Default"));
 
         defaultTenant.emailConfiguration.verifyEmail = true;
-        defaultTenant.emailConfiguration.verificationEmailTemplateId = new Guid("2ce4449e-fc1e-4ed6-b380-92c3414549e3");
+        defaultTenant.emailConfiguration.verificationEmailTemplateId = new Guid("4d9e1e1c-1bae-4412-97cd-576825ce14c7"); // TODO create a dummy template or find our default one
         defaultTenant.name = "Verification Required Tenant";
         defaultTenant.id = null;
 
@@ -408,7 +408,7 @@ namespace io.fusionauth {
 
         verificationRequiredTenant = tenantResponse.successResponse.tenant;
       }
-      
+
       var applicationResponse = test.client.RetrieveApplications();
 
       test.assertSuccess(applicationResponse);
@@ -417,7 +417,7 @@ namespace io.fusionauth {
         application.name.Equals("Verification Required Application"));
 
       var tenantClient = test.newClientWithTenantId((Guid) verificationRequiredTenant.id);
-      
+
       if (verificationRequiredApplication == null) {
         applicationResponse = tenantClient.CreateApplication(null,
           new ApplicationRequest().with(request => request.application = new Application()
@@ -429,19 +429,23 @@ namespace io.fusionauth {
         verificationRequiredApplication = applicationResponse.successResponse.application;
       }
 
-      var userRequest = tenantClient.CreateUser(null, new UserRequest()
-        .with(request => request.user = new User()
-          .with(user => user.email = new Guid() + "@example.com")
-          .with(user => user.password = "password")));
+      var registrationRequest =
+        tenantClient.Register(null, new RegistrationRequest()
+          .with(request => request.user = new User()
+            .with(user => user.email = Guid.NewGuid() + "@example.com")
+            .with(user => user.password = "password"))
+          .with(request => request.registration = new UserRegistration()
+            .with(registration => registration.applicationId = verificationRequiredApplication.id)));
 
-      test.assertSuccess(userRequest);
+      test.assertSuccess(registrationRequest);
 
       var loginResponse = tenantClient.Login(new LoginRequest()
         .with(request => request.applicationId = verificationRequiredApplication.id)
-        .with(request => request.loginId = userRequest.successResponse.user.email)
+        .with(request => request.loginId = registrationRequest.successResponse.user.email)
         .with(request => request.password = "password"));
 
-      test.assertSuccess(loginResponse);
+      Assert.AreEqual(loginResponse.statusCode, 212);
+      Assert.NotNull(loginResponse.successResponse);
     }
   }
 }
