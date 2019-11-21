@@ -15,19 +15,23 @@
  */
 
 
+using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api.identityProvider {
 
-  /**
-   * @author Daniel DeGroff
-   */
-  public class LookupResponse {
+  public class IdentityProviderDetails {
 
-    public IdentityProviderDetails identityProvider;
+    public Guid? id;
 
-    public LookupResponse with(Action<LookupResponse> action) {
+    public string name;
+
+    public IdentityProviderOauth2Configuration oauth2;
+
+    public IdentityProviderType type;
+
+    public IdentityProviderDetails with(Action<IdentityProviderDetails> action) {
       action(this);
       return this;
     }
