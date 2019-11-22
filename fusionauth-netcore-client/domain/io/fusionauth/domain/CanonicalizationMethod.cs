@@ -21,9 +21,9 @@ using System;
 namespace io.fusionauth.domain {
 
   public enum CanonicalizationMethod {
-            exclusive, 
-            exclusive_with_comments, 
-            inclusive, 
-            inclusive_with_comments
+        exclusive, 
+        exclusive_with_comments, 
+        inclusive, 
+        inclusive_with_comments
   }
 }

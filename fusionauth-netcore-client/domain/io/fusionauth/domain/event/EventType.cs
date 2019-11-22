@@ -27,39 +27,39 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public enum EventType {
-              [EnumMember(Value = "user.delete")]
-            UserDelete, 
-              [EnumMember(Value = "user.create")]
-            UserCreate, 
-              [EnumMember(Value = "user.update")]
-            UserUpdate, 
-              [EnumMember(Value = "user.deactivate")]
-            UserDeactivate, 
-              [EnumMember(Value = "user.bulk.create")]
-            UserBulkCreate, 
-              [EnumMember(Value = "user.reactivate")]
-            UserReactivate, 
-              [EnumMember(Value = "user.action")]
-            UserAction, 
-              [EnumMember(Value = "jwt.refresh-token.revoke")]
-            JWTRefreshTokenRevoke, 
-              [EnumMember(Value = "jwt.public-key.update")]
-            JWTPublicKeyUpdate, 
-              [EnumMember(Value = "user.login.success")]
-            UserLoginSuccess, 
-              [EnumMember(Value = "user.login.failed")]
-            UserLoginFailed, 
-              [EnumMember(Value = "user.registration.create")]
-            UserRegistrationCreate, 
-              [EnumMember(Value = "user.registration.update")]
-            UserRegistrationUpdate, 
-              [EnumMember(Value = "user.registration.delete")]
-            UserRegistrationDelete, 
-              [EnumMember(Value = "user.registration.verified")]
-            UserRegistrationVerified, 
-              [EnumMember(Value = "user.email.verified")]
-            UserEmailVerified, 
-              [EnumMember(Value = "test")]
-            Test
+        [EnumMember(Value = "user.delete")]
+        UserDelete, 
+        [EnumMember(Value = "user.create")]
+        UserCreate, 
+        [EnumMember(Value = "user.update")]
+        UserUpdate, 
+        [EnumMember(Value = "user.deactivate")]
+        UserDeactivate, 
+        [EnumMember(Value = "user.bulk.create")]
+        UserBulkCreate, 
+        [EnumMember(Value = "user.reactivate")]
+        UserReactivate, 
+        [EnumMember(Value = "user.action")]
+        UserAction, 
+        [EnumMember(Value = "jwt.refresh-token.revoke")]
+        JWTRefreshTokenRevoke, 
+        [EnumMember(Value = "jwt.public-key.update")]
+        JWTPublicKeyUpdate, 
+        [EnumMember(Value = "user.login.success")]
+        UserLoginSuccess, 
+        [EnumMember(Value = "user.login.failed")]
+        UserLoginFailed, 
+        [EnumMember(Value = "user.registration.create")]
+        UserRegistrationCreate, 
+        [EnumMember(Value = "user.registration.update")]
+        UserRegistrationUpdate, 
+        [EnumMember(Value = "user.registration.delete")]
+        UserRegistrationDelete, 
+        [EnumMember(Value = "user.registration.verified")]
+        UserRegistrationVerified, 
+        [EnumMember(Value = "user.email.verified")]
+        UserEmailVerified, 
+        [EnumMember(Value = "test")]
+        Test
   }
 }

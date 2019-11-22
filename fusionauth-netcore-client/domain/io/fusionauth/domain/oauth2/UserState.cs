@@ -24,7 +24,7 @@ namespace io.fusionauth.domain.oauth2 {
    * @author Daniel DeGroff
    */
   public enum UserState {
-            Authenticated, 
-            AuthenticatedNotRegistered
+        Authenticated, 
+        AuthenticatedNotRegistered
   }
 }

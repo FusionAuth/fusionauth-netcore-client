@@ -26,9 +26,9 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public enum UserActionPhase {
-            start, 
-            modify, 
-            cancel, 
-            end
+        start, 
+        modify, 
+        cancel, 
+        end
   }
 }

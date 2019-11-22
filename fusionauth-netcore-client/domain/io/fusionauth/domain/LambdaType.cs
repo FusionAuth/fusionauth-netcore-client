@@ -15,7 +15,6 @@
  */
 
 
-using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -27,13 +26,9 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public enum LambdaType {
-              [EnumMember(Value = "populate")]
-            JWTPopulate, 
-              [EnumMember(Value = "reconcile")]
-            OpenIDReconcile, 
-              [EnumMember(Value = "reconcile")]
-            SAMLv2Reconcile, 
-              [EnumMember(Value = "populate")]
-            SAMLv2Populate
+        JWTPopulate, 
+        OpenIDReconcile, 
+        SAMLv2Reconcile, 
+        SAMLv2Populate
   }
 }

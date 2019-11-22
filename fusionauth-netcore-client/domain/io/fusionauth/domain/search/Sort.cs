@@ -24,7 +24,7 @@ namespace io.fusionauth.domain.search {
    * @author Daniel DeGroff
    */
   public enum Sort {
-            asc, 
-            desc
+        asc, 
+        desc
   }
 }

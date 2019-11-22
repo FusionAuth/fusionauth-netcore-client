@@ -26,7 +26,7 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public enum ConsentStatus {
-            Active, 
-            Revoked
+        Active, 
+        Revoked
   }
 }

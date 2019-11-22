@@ -26,8 +26,8 @@ namespace io.fusionauth.domain {
    * @author Daniel DeGroff
    */
   public enum EventLogType {
-            Information, 
-            Debug, 
-            Error
+        Information, 
+        Debug, 
+        Error
   }
 }

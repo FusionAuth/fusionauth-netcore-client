@@ -24,7 +24,7 @@ namespace io.fusionauth.domain.oauth2 {
    * @author Matthew Altman
    */
   public enum LogoutBehavior {
-            RedirectOnly, 
-            AllApplications
+        RedirectOnly, 
+        AllApplications
   }
 }

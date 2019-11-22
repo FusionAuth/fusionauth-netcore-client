@@ -26,8 +26,8 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public enum ContentStatus {
-            ACTIVE, 
-            PENDING, 
-            REJECTED
+        ACTIVE, 
+        PENDING, 
+        REJECTED
   }
 }

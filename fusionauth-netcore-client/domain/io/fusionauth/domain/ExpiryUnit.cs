@@ -24,11 +24,11 @@ namespace io.fusionauth.domain {
    * @author Brian Pontarelli
    */
   public enum ExpiryUnit {
-            MINUTES, 
-            HOURS, 
-            DAYS, 
-            WEEKS, 
-            MONTHS, 
-            YEARS
+        MINUTES, 
+        HOURS, 
+        DAYS, 
+        WEEKS, 
+        MONTHS, 
+        YEARS
   }
 }

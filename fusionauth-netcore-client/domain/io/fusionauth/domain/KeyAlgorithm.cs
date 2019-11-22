@@ -22,23 +22,23 @@ using System;
 namespace io.fusionauth.domain {
 
   public enum KeyAlgorithm {
-              [EnumMember(Value = "SHA256withECDSA")]
-            ES256, 
-              [EnumMember(Value = "SHA384withECDSA")]
-            ES384, 
-              [EnumMember(Value = "SHA512withECDSA")]
-            ES512, 
-              [EnumMember(Value = "HmacSHA256")]
-            HS256, 
-              [EnumMember(Value = "HmacSHA384")]
-            HS384, 
-              [EnumMember(Value = "HmacSHA512")]
-            HS512, 
-              [EnumMember(Value = "SHA256withRSA")]
-            RS256, 
-              [EnumMember(Value = "SHA384withRSA")]
-            RS384, 
-              [EnumMember(Value = "SHA512withRSA")]
-            RS512
+        [EnumMember(Value = "SHA256withECDSA")]
+        ES256, 
+        [EnumMember(Value = "SHA384withECDSA")]
+        ES384, 
+        [EnumMember(Value = "SHA512withECDSA")]
+        ES512, 
+        [EnumMember(Value = "HmacSHA256")]
+        HS256, 
+        [EnumMember(Value = "HmacSHA384")]
+        HS384, 
+        [EnumMember(Value = "HmacSHA512")]
+        HS512, 
+        [EnumMember(Value = "SHA256withRSA")]
+        RS256, 
+        [EnumMember(Value = "SHA384withRSA")]
+        RS384, 
+        [EnumMember(Value = "SHA512withRSA")]
+        RS512
   }
 }
