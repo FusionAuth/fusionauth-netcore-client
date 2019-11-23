@@ -31,6 +31,7 @@ namespace io.fusionauth.domain.oauth2 {
         invalid_user_credentials, 
         invalid_grant_type, 
         invalid_origin, 
+        invalid_origin_opaque, 
         invalid_pkce_code_verifier, 
         invalid_pkce_code_challenge, 
         invalid_pkce_code_challenge_method, 
