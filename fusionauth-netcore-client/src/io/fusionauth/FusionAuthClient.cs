@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
 using io.fusionauth.domain.api.email;
@@ -45,8 +46,11 @@ namespace io.fusionauth {
     }
 
     public IRESTClient buildClient() {
-      var client = clientBuilder.build(host)
-                                .withAuthorization(apiKey);
+      return buildAnonymousClient().withAuthorization(apiKey);
+    }
+
+    public IRESTClient buildAnonymousClient() {
+      var client = clientBuilder.build(host);
 
       if (tenantId != null) {
         client.withHeader("X-FusionAuth-TenantId", tenantId);
@@ -128,7 +132,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<ChangePasswordResponse> ChangePassword(string changePasswordId, ChangePasswordRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user/change-password")
           .withUriSegment(changePasswordId)
           .withJSONBody(request)
@@ -910,6 +914,64 @@ namespace io.fusionauth {
     }
 
      /// <summary>
+     /// Exchanges an OAuth authorization code for an access token.
+     /// If you will be using the Authorization Code grant, you will make a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
+     /// </summary>
+     ///
+     /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
+     /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+     /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<AccessToken> ExchangeOAuthCodeForAccessToken(string code, string client_id, string client_secret, string redirect_uri) {
+      List<KeyValuePair<string, string>> body = new List<KeyValuePair<string, string>> {
+          { new KeyValuePair<string, string>("code", code) },
+          { new KeyValuePair<string, string>("client_id", client_id) },
+          { new KeyValuePair<string, string>("client_secret", client_secret) },
+          { new KeyValuePair<string, string>("grant_type", "authorization_code") },
+          { new KeyValuePair<string, string>("redirect_uri", redirect_uri) },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .go<AccessToken>();
+    }
+
+     /// <summary>
+     /// Exchange a Refresh Token for an Access Token.
+     /// If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
+     /// </summary>
+     ///
+     /// <param name="refresh_token"> The refresh token that you would like to use to exchange for an access token.</param>
+     /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+     /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
+     /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code) {
+      List<KeyValuePair<string, string>> body = new List<KeyValuePair<string, string>> {
+          { new KeyValuePair<string, string>("refresh_token", refresh_token) },
+          { new KeyValuePair<string, string>("client_id", client_id) },
+          { new KeyValuePair<string, string>("client_secret", client_secret) },
+          { new KeyValuePair<string, string>("grant_type", "refresh_token") },
+          { new KeyValuePair<string, string>("scope", scope) },
+          { new KeyValuePair<string, string>("user_code", user_code) },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .go<AccessToken>();
+    }
+
+     /// <summary>
      /// Exchange a refresh token for a new JWT.
      /// </summary>
      ///
@@ -919,11 +981,43 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<RefreshResponse> ExchangeRefreshTokenForJWT(RefreshRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/jwt/refresh")
           .withJSONBody(request)
           .withMethod("Post")
           .go<RefreshResponse>();
+    }
+
+     /// <summary>
+     /// Exchange User Credentials for a Token.
+     /// If you will be using the Resource Owner Password Credential Grant, you will make a request to the Token endpoint to exchange the user’s email and password for an access token.
+     /// </summary>
+     ///
+     /// <param name="username"> The login identifier of the user. The login identifier can be either the email or the username.</param>
+     /// <param name="password"> The user’s password.</param>
+     /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+     /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
+     /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<AccessToken> ExchangeUserCredentialsForAccessToken(string username, string password, string client_id, string client_secret, string scope, string user_code) {
+      List<KeyValuePair<string, string>> body = new List<KeyValuePair<string, string>> {
+          { new KeyValuePair<string, string>("username", username) },
+          { new KeyValuePair<string, string>("password", password) },
+          { new KeyValuePair<string, string>("client_id", client_id) },
+          { new KeyValuePair<string, string>("client_secret", client_secret) },
+          { new KeyValuePair<string, string>("grant_type", "password") },
+          { new KeyValuePair<string, string>("scope", scope) },
+          { new KeyValuePair<string, string>("user_code", user_code) },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .go<AccessToken>();
     }
 
      /// <summary>
@@ -936,7 +1030,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<ForgotPasswordResponse> ForgotPassword(ForgotPasswordRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user/forgot-password")
           .withJSONBody(request)
           .withMethod("Post")
@@ -1050,7 +1144,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<LoginResponse> IdentityProviderLogin(IdentityProviderLoginRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/identity-provider/login")
           .withJSONBody(request)
           .withMethod("Post")
@@ -1177,7 +1271,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<RESTVoid> Logout(bool? global, string refreshToken) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/logout")
           .withParameter("global", global)
           .withParameter("refreshToken", refreshToken)
@@ -1233,11 +1327,314 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<LoginResponse> PasswordlessLogin(PasswordlessLoginRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/passwordless/login")
           .withJSONBody(request)
           .withMethod("Post")
           .go<LoginResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the application with the given Id.
+     /// </summary>
+     ///
+     /// <param name="applicationId"> The Id of the application to update.</param>
+     /// <param name="request"> The request that contains just the new application information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<ApplicationResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the application role with the given id for the application.
+     /// </summary>
+     ///
+     /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
+     /// <param name="roleId"> The Id of the role to update.</param>
+     /// <param name="request"> The request that contains just the new role information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<ApplicationResponse> PatchApplicationRole(Guid? applicationId, Guid? roleId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("role")
+          .withUriSegment(roleId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<ApplicationResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the consent with the given Id.
+     /// </summary>
+     ///
+     /// <param name="consentId"> The Id of the consent to update.</param>
+     /// <param name="request"> The request that contains just the new consent information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<ConsentResponse> PatchConsent(Guid? consentId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/consent")
+          .withUriSegment(consentId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<ConsentResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the email template with the given Id.
+     /// </summary>
+     ///
+     /// <param name="emailTemplateId"> The Id of the email template to update.</param>
+     /// <param name="request"> The request that contains just the new email template information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<EmailTemplateResponse> PatchEmailTemplate(Guid? emailTemplateId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/email/template")
+          .withUriSegment(emailTemplateId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<EmailTemplateResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the group with the given Id.
+     /// </summary>
+     ///
+     /// <param name="groupId"> The Id of the group to update.</param>
+     /// <param name="request"> The request that contains just the new group information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<GroupResponse> PatchGroup(Guid? groupId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/group")
+          .withUriSegment(groupId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<GroupResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the identity provider with the given Id.
+     /// </summary>
+     ///
+     /// <param name="identityProviderId"> The Id of the identity provider to update.</param>
+     /// <param name="request"> The request object that contains just the updated identity provider information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<IdentityProviderResponse> PatchIdentityProvider(Guid? identityProviderId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/identity-provider")
+          .withUriSegment(identityProviderId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<IdentityProviderResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the available integrations.
+     /// </summary>
+     ///
+     /// <param name="request"> The request that contains just the new integration information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<IntegrationResponse> PatchIntegrations(Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/integration")
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<IntegrationResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the lambda with the given Id.
+     /// </summary>
+     ///
+     /// <param name="lambdaId"> The Id of the lambda to update.</param>
+     /// <param name="request"> The request that contains just the new lambda information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/lambda")
+          .withUriSegment(lambdaId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<LambdaResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
+     /// </summary>
+     ///
+     /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
+     /// <param name="request"> The request that contains just the new registration information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<RegistrationResponse> PatchRegistration(Guid? userId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/user/registration")
+          .withUriSegment(userId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<RegistrationResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the system configuration.
+     /// </summary>
+     ///
+     /// <param name="request"> The request that contains just the new system configuration information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<SystemConfigurationResponse> PatchSystemConfiguration(Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/system-configuration")
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<SystemConfigurationResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the tenant with the given Id.
+     /// </summary>
+     ///
+     /// <param name="tenantId"> The Id of the tenant to update.</param>
+     /// <param name="request"> The request that contains just the new tenant information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<TenantResponse> PatchTenant(Guid? tenantId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/tenant")
+          .withUriSegment(tenantId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<TenantResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the theme with the given Id.
+     /// </summary>
+     ///
+     /// <param name="themeId"> The Id of the theme to update.</param>
+     /// <param name="request"> The request that contains just the new theme information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<ThemeResponse> PatchTheme(Guid? themeId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/theme")
+          .withUriSegment(themeId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<ThemeResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the user with the given Id.
+     /// </summary>
+     ///
+     /// <param name="userId"> The Id of the user to update.</param>
+     /// <param name="request"> The request that contains just the new user information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<UserResponse> PatchUser(Guid? userId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/user")
+          .withUriSegment(userId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<UserResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the user action with the given Id.
+     /// </summary>
+     ///
+     /// <param name="userActionId"> The Id of the user action to update.</param>
+     /// <param name="request"> The request that contains just the new user action information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<UserActionResponse> PatchUserAction(Guid? userActionId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/user-action")
+          .withUriSegment(userActionId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<UserActionResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, the user action reason with the given Id.
+     /// </summary>
+     ///
+     /// <param name="userActionReasonId"> The Id of the user action reason to update.</param>
+     /// <param name="request"> The request that contains just the new user action reason information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<UserActionReasonResponse> PatchUserActionReason(Guid? userActionReasonId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/user-action-reason")
+          .withUriSegment(userActionReasonId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<UserActionReasonResponse>();
+    }
+
+     /// <summary>
+     /// Updates, via PATCH, a single User consent by Id.
+     /// </summary>
+     ///
+     /// <param name="userConsentId"> The User Consent Id</param>
+     /// <param name="request"> The request that contains just the new user consent information.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<UserConsentResponse> PatchUserConsent(Guid? userConsentId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/user/consent")
+          .withUriSegment(userConsentId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .go<UserConsentResponse>();
     }
 
      /// <summary>
@@ -1304,7 +1701,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<LoginResponse> ReconcileJWT(IdentityProviderLoginRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/jwt/reconcile")
           .withJSONBody(request)
           .withMethod("Post")
@@ -1381,7 +1778,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<VerifyEmailResponse> ResendEmailVerification(string email) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user/verify-email")
           .withParameter("email", email)
           .withMethod("Put")
@@ -1399,7 +1796,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user/verify-registration")
           .withParameter("email", email)
           .withParameter("applicationId", applicationId)
@@ -1824,7 +2221,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<PublicKeyResponse> RetrieveJWTPublicKey(string keyId) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/jwt/public-key")
           .withParameter("kid", keyId)
           .withMethod("Get")
@@ -1841,7 +2238,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<PublicKeyResponse> RetrieveJWTPublicKeyByApplicationId(string applicationId) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/jwt/public-key")
           .withParameter("applicationId", applicationId)
           .withMethod("Get")
@@ -1857,10 +2254,25 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<PublicKeyResponse> RetrieveJWTPublicKeys() {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/jwt/public-key")
           .withMethod("Get")
           .go<PublicKeyResponse>();
+    }
+
+     /// <summary>
+     /// Returns public keys used by FusionAuth to cryptographically verify JWTs using the JSON Web Key format.
+     /// </summary>
+     ///
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<JWKSResponse> RetrieveJsonWebKeySet() {
+      return buildAnonymousClient()
+          .withUri("/.well-known/jwks.json")
+          .withMethod("Get")
+          .go<JWKSResponse>();
     }
 
      /// <summary>
@@ -2007,6 +2419,21 @@ namespace io.fusionauth {
     }
 
      /// <summary>
+     /// Returns the well known OpenID Configuration JSON document
+     /// </summary>
+     ///
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<OpenIdConfiguration> RetrieveOpenIdConfiguration() {
+      return buildAnonymousClient()
+          .withUri("/.well-known/openid-configuration")
+          .withMethod("Get")
+          .go<OpenIdConfiguration>();
+    }
+
+     /// <summary>
      /// Retrieves the password validation rules for a specific tenant. This method requires a tenantId to be provided 
      /// through the use of a Tenant scoped API key or an HTTP header X-FusionAuth-TenantId to specify the Tenant Id.
      /// 
@@ -2018,7 +2445,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<PasswordValidationRulesResponse> RetrievePasswordValidationRules() {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/tenant/password-validation-rules")
           .withMethod("Get")
           .go<PasswordValidationRulesResponse>();
@@ -2036,7 +2463,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<PasswordValidationRulesResponse> RetrievePasswordValidationRulesWithTenantId(Guid? tenantId) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/tenant/password-validation-rules")
           .withUriSegment(tenantId)
           .withMethod("Get")
@@ -2532,7 +2959,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<UserResponse> RetrieveUserUsingJWT(string encodedJWT) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user")
           .withAuthorization("JWT " + encodedJWT)
           .withMethod("Get")
@@ -2743,7 +3170,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<RESTVoid> SendPasswordlessCode(PasswordlessSendRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/passwordless/send")
           .withJSONBody(request)
           .withMethod("Post")
@@ -2777,7 +3204,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<RESTVoid> SendTwoFactorCodeForLogin(string twoFactorId) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/two-factor/send")
           .withUriSegment(twoFactorId)
           .withMethod("Post")
@@ -2812,7 +3239,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/two-factor/login")
           .withJSONBody(request)
           .withMethod("Post")
@@ -3161,6 +3588,26 @@ namespace io.fusionauth {
     }
 
      /// <summary>
+     /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
+     /// If you build your own activation form you should validate the user provided code prior to beginning the Authorization grant.
+     /// </summary>
+     ///
+     /// <param name="user_code"> The end-user verification code.</param>
+     /// <param name="client_id"> The client id.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<RESTVoid> ValidateDevice(string user_code, string client_id) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/device/validate")
+          .withParameter("user_code", user_code)
+          .withParameter("client_id", client_id)
+          .withMethod("Get")
+          .go<RESTVoid>();
+    }
+
+     /// <summary>
      /// Validates the provided JWT (encoded JWT string) to ensure the token is valid. A valid access token is properly
      /// signed and not expired.
      /// <p>
@@ -3173,7 +3620,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<ValidateResponse> ValidateJWT(string encodedJWT) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/jwt/validate")
           .withAuthorization("JWT " + encodedJWT)
           .withMethod("Get")
@@ -3190,7 +3637,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<RESTVoid> VerifyEmail(string verificationId) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user/verify-email")
           .withUriSegment(verificationId)
           .withMethod("Post")
@@ -3207,7 +3654,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<RESTVoid> VerifyRegistration(string verificationId) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user/verify-registration")
           .withUriSegment(verificationId)
           .withMethod("Post")

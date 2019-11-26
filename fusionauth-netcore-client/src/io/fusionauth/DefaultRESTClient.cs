@@ -83,6 +83,16 @@ namespace io.fusionauth {
     /**
      * Sets the body of the client request.
      *
+     * @param body The object to be written to the request body as form data.
+     */
+    public override IRESTClient withFormData(FormUrlEncodedContent body) {
+      content = body
+      return this;
+    }
+
+    /**
+     * Sets the body of the client request.
+     *
      * @param body The object to be written to the request body as JSON.
      */
     public override IRESTClient withJSONBody(object body) {
@@ -152,8 +162,8 @@ namespace io.fusionauth {
           return httpClient.PutAsync(requestUri, content);
         case "POST":
           return httpClient.PostAsync(requestUri, content);
-//        case "PATCH":
-//          return httpClient.PatchAsync(requestUri, content);
+        case "PATCH":
+          return httpClient.PatchAsync(requestUri, content);
         default:
           throw new MissingMethodException("This REST client does not support that method. (yet?)");
       }

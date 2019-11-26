@@ -43,9 +43,16 @@ namespace io.fusionauth {
     /**
      * Sets the body of the client request.
      *
+     * @param body The object to be written to the request body as form data.
+     */
+    public override IRESTClient withFormData(FormUrlEncodedContent body);
+
+    /**
+     * Sets the body of the client request.
+     *
      * @param body The object to be written to the request body as JSON.
      */
-    public abstract IRESTClient withJSONBody(Object body);
+    public abstract IRESTClient withJSONBody(object body);
 
     /**
      * Sets the http method for the request

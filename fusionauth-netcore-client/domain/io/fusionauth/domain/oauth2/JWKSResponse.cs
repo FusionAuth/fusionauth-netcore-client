@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.jwks.domain;
 using System.Collections.Generic;
 using System;
 
@@ -25,7 +26,7 @@ namespace io.fusionauth.domain.oauth2 {
    */
   public class JWKSResponse {
 
-    public List<object> keys;
+    public List<JSONWebKey> keys;
 
     public JWKSResponse with(Action<JWKSResponse> action) {
       action(this);
