@@ -15,18 +15,28 @@
  */
 
 
+using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
 
-  public enum IdentityProviderType {
-        ExternalJWT, 
-        OpenIDConnect, 
-        Facebook, 
-        Google, 
-        Twitter, 
-        SAMLv2, 
-        HYPR
+  /**
+   * @author Daniel DeGroff
+   */
+  public class HYPRIdentityProvider: BaseIdentityProvider<HYPRApplicationConfiguration> {
+
+    public bool? licensingEnabled;
+
+    public string licensingURL;
+
+    public string relyingPartyApplicationId;
+
+    public string relyingPartyURL;
+
+    public HYPRIdentityProvider with(Action<HYPRIdentityProvider> action) {
+      action(this);
+      return this;
+    }
   }
 }

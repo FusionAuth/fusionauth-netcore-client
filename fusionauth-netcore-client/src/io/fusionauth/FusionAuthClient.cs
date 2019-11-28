@@ -3212,6 +3212,24 @@ namespace io.fusionauth {
     }
 
      /// <summary>
+     /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
+     /// </summary>
+     ///
+     /// <param name="request"> The third-party login request that contains information from the third-party login
+     /// providers that FusionAuth uses to reconcile the user's account.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<IdentityProviderStartLoginResponse> StartIdentityProviderLogin(IdentityProviderStartLoginRequest request) {
+      return buildClient()
+          .withUri("/api/identity-provider/start")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<IdentityProviderStartLoginResponse>();
+    }
+
+     /// <summary>
      /// Start a passwordless login request by generating a passwordless code. This code can be sent to the User using the Send
      /// Passwordless Code API or using a mechanism outside of FusionAuth. The passwordless login is completed by using the Passwordless Login API with this code.
      /// </summary>

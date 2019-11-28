@@ -20,13 +20,14 @@ using System;
 
 namespace io.fusionauth.domain.provider {
 
-  public enum IdentityProviderType {
-        ExternalJWT, 
-        OpenIDConnect, 
-        Facebook, 
-        Google, 
-        Twitter, 
-        SAMLv2, 
-        HYPR
+  /**
+   * Interface for all identity providers that are passwordless and do not accept a password.
+   */
+  public class PasswordlessIdentityProvider {
+
+    public PasswordlessIdentityProvider with(Action<PasswordlessIdentityProvider> action) {
+      action(this);
+      return this;
+    }
   }
 }

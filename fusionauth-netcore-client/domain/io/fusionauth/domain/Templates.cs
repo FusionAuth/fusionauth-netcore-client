@@ -50,6 +50,8 @@ namespace io.fusionauth.domain {
 
     public string oauth2TwoFactor;
 
+    public string oauth2Wait;
+
     public string passwordChange;
 
     public string passwordComplete;

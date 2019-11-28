@@ -15,18 +15,26 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.api.identityProvider {
 
-  public enum IdentityProviderType {
-        ExternalJWT, 
-        OpenIDConnect, 
-        Facebook, 
-        Google, 
-        Twitter, 
-        SAMLv2, 
-        HYPR
+  /**
+   * @author Daniel DeGroff
+   */
+  public class IdentityProviderStartLoginRequest: BaseLoginRequest {
+
+    public Guid? identityProviderId;
+
+    public string loginId;
+
+    public Dictionary<string, object> state;
+
+    public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {
+      action(this);
+      return this;
+    }
   }
 }
