@@ -40,6 +40,8 @@ namespace io.fusionauth.domain {
 
     public string oauth2Device;
 
+    public string oauth2DeviceComplete;
+
     public string oauth2Error;
 
     public string oauth2Logout;
