@@ -18,26 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
   /**
-   * User API delete request object.
+   * A Application-level policy for deleting Users.
    *
-   * @author Daniel DeGroff
+   * @author Trevor Smith
    */
-  public class UserDeleteRequest {
+  public class ApplicationRegistrationDeletePolicy {
 
-    public bool? dryRun;
+    public TimeBasedDeletePolicy unverified;
 
-    public bool? hardDelete;
-
-    public string query;
-
-    public string queryString;
-
-    public List<Guid> userIds;
-
-    public UserDeleteRequest with(Action<UserDeleteRequest> action) {
+    public ApplicationRegistrationDeletePolicy with(Action<ApplicationRegistrationDeletePolicy> action) {
       action(this);
       return this;
     }

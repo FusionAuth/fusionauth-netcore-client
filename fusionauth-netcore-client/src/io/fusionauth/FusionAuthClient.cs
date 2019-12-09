@@ -564,12 +564,34 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    public ClientResponse<RESTVoid> DeactivateUsers(List<string> userIds) {
+    public ClientResponse<UserDeleteResponse> DeactivateUsers(List<string> userIds) {
       return buildClient()
           .withUri("/api/user/bulk")
           .withParameter("userId", userIds)
+          .withParameter("dryRun", false)
+          .withParameter("hardDelete", false)
           .withMethod("Delete")
-          .go<RESTVoid>();
+          .go<UserDeleteResponse>();
+    }
+
+     /// <summary>
+     /// Deactivates the users found with the given search query string.
+     /// </summary>
+     ///
+     /// <param name="queryString"> The search query string.</param>
+     /// <param name="dryRun"> Whether to preview or deactivate the users found by the queryString</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<UserDeleteResponse> DeactivateUsersByQuery(string queryString, bool? dryRun) {
+      return buildClient()
+          .withUri("/api/user/bulk")
+          .withParameter("queryString", queryString)
+          .withParameter("dryRun", dryRun)
+          .withParameter("hardDelete", false)
+          .withMethod("Delete")
+          .go<UserDeleteResponse>();
     }
 
      /// <summary>
@@ -842,20 +864,42 @@ namespace io.fusionauth {
     }
 
      /// <summary>
-     /// Deletes the users with the given ids.
+     /// Deletes the users with the given ids, or users matching the provided queryString.
+     /// If you provide both userIds and queryString, the userIds will be honored.  This can be used to deactivate or hard-delete 
+     /// a user based on the hardDelete request body parameter.
      /// </summary>
      ///
-     /// <param name="request"> The ids of the users to delete.</param>
+     /// <param name="request"> The UserDeleteRequest.</param>
      /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    public ClientResponse<RESTVoid> DeleteUsers(UserDeleteRequest request) {
+    public ClientResponse<UserDeleteResponse> DeleteUsers(UserDeleteRequest request) {
       return buildClient()
           .withUri("/api/user/bulk")
           .withJSONBody(request)
           .withMethod("Delete")
-          .go<RESTVoid>();
+          .go<UserDeleteResponse>();
+    }
+
+     /// <summary>
+     /// Delete the users found with the given search query string.
+     /// </summary>
+     ///
+     /// <param name="queryString"> The search query string.</param>
+     /// <param name="dryRun"> Whether to preview or delete the users found by the queryString</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<UserDeleteResponse> DeleteUsersByQuery(string queryString, bool? dryRun) {
+      return buildClient()
+          .withUri("/api/user/bulk")
+          .withParameter("queryString", queryString)
+          .withParameter("dryRun", dryRun)
+          .withParameter("hardDelete", true)
+          .withMethod("Delete")
+          .go<UserDeleteResponse>();
     }
 
      /// <summary>

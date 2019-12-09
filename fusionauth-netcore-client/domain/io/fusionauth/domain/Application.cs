@@ -51,6 +51,8 @@ namespace io.fusionauth.domain {
 
     public RegistrationConfiguration registrationConfiguration;
 
+    public ApplicationRegistrationDeletePolicy registrationDeletePolicy;
+
     public List<ApplicationRole> roles;
 
     public SAMLv2Configuration samlv2Configuration;

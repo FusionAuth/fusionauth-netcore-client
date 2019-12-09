@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.search {
 
     public List<Guid> ids;
 
+    public string query;
+
     public string queryString;
 
     public List<SortField> sortFields;

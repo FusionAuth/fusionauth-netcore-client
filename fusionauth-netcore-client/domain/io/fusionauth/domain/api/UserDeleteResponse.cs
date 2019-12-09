@@ -21,23 +21,21 @@ using System;
 namespace io.fusionauth.domain.api {
 
   /**
-   * User API delete request object.
+   * User API bulk response object.
    *
-   * @author Daniel DeGroff
+   * @author Trevor Smith
    */
-  public class UserDeleteRequest {
+  public class UserDeleteResponse {
 
     public bool? dryRun;
 
     public bool? hardDelete;
 
-    public string query;
+    public int? total;
 
-    public string queryString;
+    public List<string> userIds;
 
-    public List<Guid> userIds;
-
-    public UserDeleteRequest with(Action<UserDeleteRequest> action) {
+    public UserDeleteResponse with(Action<UserDeleteResponse> action) {
       action(this);
       return this;
     }

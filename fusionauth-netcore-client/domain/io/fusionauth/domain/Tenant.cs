@@ -61,6 +61,8 @@ namespace io.fusionauth.domain {
 
     public Guid? themeId;
 
+    public TenantUserDeletePolicy userDeletePolicy;
+
     public Tenant with(Action<Tenant> action) {
       action(this);
       return this;
