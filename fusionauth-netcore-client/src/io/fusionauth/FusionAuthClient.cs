@@ -132,7 +132,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<ChangePasswordResponse> ChangePassword(string changePasswordId, ChangePasswordRequest request) {
-      return buildAnonymousClient()
+      return buildClient()
           .withUri("/api/user/change-password")
           .withUriSegment(changePasswordId)
           .withJSONBody(request)
@@ -1074,7 +1074,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<ForgotPasswordResponse> ForgotPassword(ForgotPasswordRequest request) {
-      return buildAnonymousClient()
+      return buildClient()
           .withUri("/api/user/forgot-password")
           .withJSONBody(request)
           .withMethod("Post")
@@ -1822,7 +1822,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<VerifyEmailResponse> ResendEmailVerification(string email) {
-      return buildAnonymousClient()
+      return buildClient()
           .withUri("/api/user/verify-email")
           .withParameter("email", email)
           .withMethod("Put")
