@@ -1840,7 +1840,7 @@ namespace io.fusionauth {
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
     public ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId) {
-      return buildAnonymousClient()
+      return buildClient()
           .withUri("/api/user/verify-registration")
           .withParameter("email", email)
           .withParameter("applicationId", applicationId)
