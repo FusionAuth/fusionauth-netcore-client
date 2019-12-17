@@ -3283,12 +3283,12 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    public ClientResponse<RESTVoid> StartPasswordlessLogin(PasswordlessStartRequest request) {
+    public ClientResponse<PasswordlessStartResponse> StartPasswordlessLogin(PasswordlessStartRequest request) {
       return buildClient()
           .withUri("/api/passwordless/start")
           .withJSONBody(request)
           .withMethod("Post")
-          .go<RESTVoid>();
+          .go<PasswordlessStartResponse>();
     }
 
      /// <summary>
