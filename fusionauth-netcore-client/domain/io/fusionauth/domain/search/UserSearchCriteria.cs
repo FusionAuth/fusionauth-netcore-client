@@ -27,12 +27,6 @@ namespace io.fusionauth.domain.search {
    */
   public class UserSearchCriteria: BaseSearchCriteria {
 
-    public string email;
-
-    public string fullName;
-
-    public Guid? id;
-
     public List<Guid> ids;
 
     public string query;
@@ -40,8 +34,6 @@ namespace io.fusionauth.domain.search {
     public string queryString;
 
     public List<SortField> sortFields;
-
-    public string username;
 
     public UserSearchCriteria with(Action<UserSearchCriteria> action) {
       action(this);

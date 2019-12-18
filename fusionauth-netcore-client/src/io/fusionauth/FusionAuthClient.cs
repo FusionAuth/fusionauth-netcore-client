@@ -564,6 +564,7 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
+    [Obsolete("This method has been renamed to DeactivateUsersByIds, use this method instead.")]
     public ClientResponse<UserDeleteResponse> DeactivateUsers(List<string> userIds) {
       return buildClient()
           .withUri("/api/user/bulk")
@@ -575,20 +576,19 @@ namespace io.fusionauth {
     }
 
      /// <summary>
-     /// Deactivates the users found with the given search query string.
+     /// Deactivates the users with the given ids.
      /// </summary>
      ///
-     /// <param name="queryString"> The search query string.</param>
-     /// <param name="dryRun"> Whether to preview or deactivate the users found by the queryString</param>
+     /// <param name="userIds"> The ids of the users to deactivate.</param>
      /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    public ClientResponse<UserDeleteResponse> DeactivateUsersByQuery(string queryString, bool? dryRun) {
+    public ClientResponse<UserDeleteResponse> DeactivateUsersByIds(List<string> userIds) {
       return buildClient()
           .withUri("/api/user/bulk")
-          .withParameter("queryString", queryString)
-          .withParameter("dryRun", dryRun)
+          .withParameter("userId", userIds)
+          .withParameter("dryRun", false)
           .withParameter("hardDelete", false)
           .withMethod("Delete")
           .go<UserDeleteResponse>();
@@ -864,9 +864,11 @@ namespace io.fusionauth {
     }
 
      /// <summary>
-     /// Deletes the users with the given ids, or users matching the provided queryString.
-     /// If you provide both userIds and queryString, the userIds will be honored.  This can be used to deactivate or hard-delete 
-     /// a user based on the hardDelete request body parameter.
+     /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
+     /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+     /// 
+     /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
+     /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
      /// </summary>
      ///
      /// <param name="request"> The UserDeleteRequest.</param>
@@ -874,6 +876,7 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
+    [Obsolete("This method has been renamed to DeleteUsersByQuery, use this method instead.")]
     public ClientResponse<UserDeleteResponse> DeleteUsers(UserDeleteRequest request) {
       return buildClient()
           .withUri("/api/user/bulk")
@@ -883,21 +886,22 @@ namespace io.fusionauth {
     }
 
      /// <summary>
-     /// Delete the users found with the given search query string.
+     /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
+     /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+     /// 
+     /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
+     /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
      /// </summary>
      ///
-     /// <param name="queryString"> The search query string.</param>
-     /// <param name="dryRun"> Whether to preview or delete the users found by the queryString</param>
+     /// <param name="request"> The UserDeleteRequest.</param>
      /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    public ClientResponse<UserDeleteResponse> DeleteUsersByQuery(string queryString, bool? dryRun) {
+    public ClientResponse<UserDeleteResponse> DeleteUsersByQuery(UserDeleteRequest request) {
       return buildClient()
           .withUri("/api/user/bulk")
-          .withParameter("queryString", queryString)
-          .withParameter("dryRun", dryRun)
-          .withParameter("hardDelete", true)
+          .withJSONBody(request)
           .withMethod("Delete")
           .go<UserDeleteResponse>();
     }
@@ -3141,7 +3145,25 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
+    [Obsolete("This method has been renamed to SearchUsersByIds, use this method instead.")]
     public ClientResponse<SearchResponse> SearchUsers(List<string> ids) {
+      return buildClient()
+          .withUri("/api/user/search")
+          .withParameter("ids", ids)
+          .withMethod("Get")
+          .go<SearchResponse>();
+    }
+
+     /// <summary>
+     /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
+     /// </summary>
+     ///
+     /// <param name="ids"> The user ids to search for.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    public ClientResponse<SearchResponse> SearchUsersByIds(List<string> ids) {
       return buildClient()
           .withUri("/api/user/search")
           .withParameter("ids", ids)
@@ -3153,12 +3175,31 @@ namespace io.fusionauth {
      /// Retrieves the users for the given search criteria and pagination.
      /// </summary>
      ///
-     /// <param name="request"> The search criteria and pagination constraints. Fields used: queryString, numberOfResults, startRow,
-     /// and sort fields.</param>
+     /// <param name="request"> The search criteria and pagination constraints. Fields used: ids, query, queryString, numberOfResults, orderBy, startRow,
+     /// and sortFields.</param>
      /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
+    public ClientResponse<SearchResponse> SearchUsersByQuery(SearchRequest request) {
+      return buildClient()
+          .withUri("/api/user/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .go<SearchResponse>();
+    }
+
+     /// <summary>
+     /// Retrieves the users for the given search criteria and pagination.
+     /// </summary>
+     ///
+     /// <param name="request"> The search criteria and pagination constraints. Fields used: ids, query, queryString, numberOfResults, orderBy, startRow,
+     /// and sortFields.</param>
+     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
+     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+     /// IOException.</returns>
+    [Obsolete("This method has been renamed to SearchUsersByQuery, use this method instead.")]
     public ClientResponse<SearchResponse> SearchUsersByQueryString(SearchRequest request) {
       return buildClient()
           .withUri("/api/user/search")
