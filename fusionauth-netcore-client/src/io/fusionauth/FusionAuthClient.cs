@@ -564,7 +564,7 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    [Obsolete("This method has been renamed to DeactivateUsersByIds, use this method instead.")]
+    [Obsolete("This method has been renamed to DeactivateUsersByIds, use that method instead.")]
     public ClientResponse<UserDeleteResponse> DeactivateUsers(List<string> userIds) {
       return buildClient()
           .withUri("/api/user/bulk")
@@ -876,7 +876,7 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    [Obsolete("This method has been renamed to DeleteUsersByQuery, use this method instead.")]
+    [Obsolete("This method has been renamed to DeleteUsersByQuery, use that method instead.")]
     public ClientResponse<UserDeleteResponse> DeleteUsers(UserDeleteRequest request) {
       return buildClient()
           .withUri("/api/user/bulk")
@@ -3145,7 +3145,7 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    [Obsolete("This method has been renamed to SearchUsersByIds, use this method instead.")]
+    [Obsolete("This method has been renamed to SearchUsersByIds, use that method instead.")]
     public ClientResponse<SearchResponse> SearchUsers(List<string> ids) {
       return buildClient()
           .withUri("/api/user/search")
@@ -3199,7 +3199,7 @@ namespace io.fusionauth {
      /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
      /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
      /// IOException.</returns>
-    [Obsolete("This method has been renamed to SearchUsersByQuery, use this method instead.")]
+    [Obsolete("This method has been renamed to SearchUsersByQuery, use that method instead.")]
     public ClientResponse<SearchResponse> SearchUsersByQueryString(SearchRequest request) {
       return buildClient()
           .withUri("/api/user/search")
