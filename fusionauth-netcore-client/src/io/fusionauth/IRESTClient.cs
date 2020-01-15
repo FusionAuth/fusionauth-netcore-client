@@ -1,4 +1,5 @@
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace io.fusionauth {
@@ -45,7 +46,7 @@ namespace io.fusionauth {
      *
      * @param body The object to be written to the request body as form data.
      */
-    public override IRESTClient withFormData(FormUrlEncodedContent body);
+    public abstract IRESTClient withFormData(FormUrlEncodedContent body);
 
     /**
      * Sets the body of the client request.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, FusionAuth, All Rights Reserved
+ * Copyright (c) 2019-2020, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,27 @@ project(group: "io.fusionauth", name: "fusionauth-netcore-client", version: "1.1
 release = loadPlugin(id: "org.savantbuild.plugin:release-git:${savantVersion}")
 
 target(name: "clean", description: "Cleans build directory") {
+  ProcessBuilder pb = new ProcessBuilder(
+      "dotnet", "clean")
+      .inheritIO()
+      .directory(new File("./fusionauth-netcore-client"))
+
+  def process = pb.start()
+  process.consumeProcessOutput(System.out, System.err)
+  process.waitFor()
+  return process.exitValue() == 0
 }
 
 target(name: "compile", description: "Compiles the source code") {
+  ProcessBuilder pb = new ProcessBuilder(
+      "dotnet", "build")
+      .inheritIO()
+      .directory(new File("./fusionauth-netcore-client"))
+
+  def process = pb.start()
+  process.consumeProcessOutput(System.out, System.err)
+  process.waitFor()
+  return process.exitValue() == 0
 }
 
 target(name: "test", description: "Runs the project's unit tests", dependsOn: ["compile"]) {

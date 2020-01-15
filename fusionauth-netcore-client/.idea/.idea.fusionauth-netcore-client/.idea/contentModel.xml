@@ -56,7 +56,10 @@
                 <e p="GroupRequest.cs" t="Include" />
                 <e p="GroupResponse.cs" t="Include" />
                 <e p="identityProvider" t="Include">
+                  <e p="IdentityProviderDetails.cs" t="Include" />
                   <e p="IdentityProviderLoginRequest.cs" t="Include" />
+                  <e p="IdentityProviderStartLoginRequest.cs" t="Include" />
+                  <e p="IdentityProviderStartLoginResponse.cs" t="Include" />
                   <e p="LookupResponse.cs" t="Include" />
                 </e>
                 <e p="IdentityProviderRequest.cs" t="Include" />
@@ -141,12 +144,14 @@
                 <e p="UserConsentRequest.cs" t="Include" />
                 <e p="UserConsentResponse.cs" t="Include" />
                 <e p="UserDeleteRequest.cs" t="Include" />
+                <e p="UserDeleteResponse.cs" t="Include" />
                 <e p="UserRequest.cs" t="Include" />
                 <e p="UserResponse.cs" t="Include" />
                 <e p="WebhookRequest.cs" t="Include" />
                 <e p="WebhookResponse.cs" t="Include" />
               </e>
               <e p="Application.cs" t="Include" />
+              <e p="ApplicationRegistrationDeletePolicy.cs" t="Include" />
               <e p="ApplicationRole.cs" t="Include" />
               <e p="AuditLog.cs" t="Include" />
               <e p="AuditLogConfiguration.cs" t="Include" />
@@ -265,11 +270,14 @@
                 <e p="FacebookIdentityProvider.cs" t="Include" />
                 <e p="GoogleApplicationConfiguration.cs" t="Include" />
                 <e p="GoogleIdentityProvider.cs" t="Include" />
+                <e p="HYPRApplicationConfiguration.cs" t="Include" />
+                <e p="HYPRIdentityProvider.cs" t="Include" />
                 <e p="IdentityProviderOauth2Configuration.cs" t="Include" />
                 <e p="IdentityProviderType.cs" t="Include" />
                 <e p="LambdaConfiguration.cs" t="Include" />
                 <e p="OpenIdConnectApplicationConfiguration.cs" t="Include" />
                 <e p="OpenIdConnectIdentityProvider.cs" t="Include" />
+                <e p="PasswordlessIdentityProvider.cs" t="Include" />
                 <e p="SAMLv2ApplicationConfiguration.cs" t="Include" />
                 <e p="SAMLv2IdentityProvider.cs" t="Include" />
                 <e p="TwitterApplicationConfiguration.cs" t="Include" />
@@ -297,7 +305,9 @@
               <e p="Templates.cs" t="Include" />
               <e p="Tenant.cs" t="Include" />
               <e p="Tenantable.cs" t="Include" />
+              <e p="TenantUserDeletePolicy.cs" t="Include" />
               <e p="Theme.cs" t="Include" />
+              <e p="TimeBasedDeletePolicy.cs" t="Include" />
               <e p="TransactionType.cs" t="Include" />
               <e p="TwilioConfiguration.cs" t="Include" />
               <e p="TwoFactorDelivery.cs" t="Include" />
@@ -317,6 +327,11 @@
               </e>
               <e p="Webhook.cs" t="Include" />
               <e p="WebhookData.cs" t="Include" />
+            </e>
+            <e p="jwks" t="Include">
+              <e p="domain" t="Include">
+                <e p="JSONWebKey.cs" t="Include" />
+              </e>
             </e>
             <e p="jwt" t="Include">
               <e p="domain" t="Include">
@@ -390,7 +405,8 @@
         </e>
       </e>
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_fusionauth-netcore-client.-2135643460.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_fusionauth-netcore-client.-217816243.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
   </component>
 </project>
