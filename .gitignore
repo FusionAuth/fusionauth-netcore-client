@@ -25,6 +25,8 @@ bin
 */.idea/**/uiDesigner.xml
 */.idea/**/dbnavigator.xml
 
+*/fusionauth-netcore-client.sln.DotSettings.user
+
 
 # File-based project format
 *.iws
