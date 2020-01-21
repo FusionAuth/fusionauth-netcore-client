@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace></RootNamespace>
-        <PackageVersion>1.13.2</PackageVersion>
+        <PackageVersion>1.14.0</PackageVersion>
         <Title>FusionAuth .net Standard Client</Title>
         <AssemblyName>FusionAuth.Client</AssemblyName>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -11,7 +11,8 @@
         <Authors>Tyler Scott</Authors>
         <Owners>FusionAuth</Owners>
         <Summary>FusionAuth client for .NET Core</Summary>
-        <TargetFrameworks>netstandard2.0;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
+        <TargetFrameworks>netcoreapp2.1;netcoreapp2.2</TargetFrameworks>
+        <LangVersion>7.3</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

@@ -26,6 +26,8 @@ namespace io.fusionauth.domain.api {
    */
   public class TenantRequest {
 
+    public Guid? sourceTenantId;
+
     public Tenant tenant;
 
     public TenantRequest with(Action<TenantRequest> action) {
