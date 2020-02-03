@@ -20,42 +20,42 @@ using io.fusionauth.domain.@event;
 
 namespace io.fusionauth.domain
 {
-    /**
-     * A server where events are sent. This includes user action events and any other events sent by FusionAuth.
-     *
-     * @author Brian Pontarelli
-     */
+  /**
+   * A server where events are sent. This includes user action events and any other events sent by FusionAuth.
+   *
+   * @author Brian Pontarelli
+   */
 
-    public class Webhook
+  public class Webhook
+  {
+    public List<Guid> applicationIds;
+
+    public int? connectTimeout;
+
+    public IDictionary<EventType, bool> eventsEnabled;
+
+    public string description;
+
+    public bool? global;
+
+    public HTTPHeaders headers;
+
+    public string httpAuthenticationPassword;
+
+    public string httpAuthenticationUsername;
+
+    public Guid? id;
+
+    public int? readTimeout;
+
+    public string sslCertificate;
+
+    public string url;
+
+    public Webhook with(Action<Webhook> action)
     {
-        public List<Guid> applicationIds;
-
-        public int? connectTimeout;
-
-        public IDictionary<EventType, bool> eventsEnabled;
-
-        public string description;
-
-        public bool? global;
-
-        public HTTPHeaders headers;
-
-        public string httpAuthenticationPassword;
-
-        public string httpAuthenticationUsername;
-
-        public Guid? id;
-
-        public int? readTimeout;
-
-        public string sslCertificate;
-
-        public string url;
-
-        public Webhook with(Action<Webhook> action)
-        {
-            action(this);
-            return this;
-        }
+      action(this);
+      return this;
     }
+  }
 }
