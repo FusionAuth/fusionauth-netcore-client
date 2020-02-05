@@ -18,7 +18,7 @@ namespace io.fusionauth {
 
     public string method = "GET";
 
-    public String uri = "";
+    public string uri = "";
 
     public Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -134,8 +134,8 @@ namespace io.fusionauth {
       return this;
     }
 
-    private String getFullUri() {
-      String paramString = "?";
+    private string getFullUri() {
+      var paramString = "?";
       foreach (var (key, value) in parameters.Select(x => (x.Key, x.Value))) {
         if (!paramString.EndsWith("?")) {
           paramString += "&";
@@ -169,28 +169,28 @@ namespace io.fusionauth {
       }
     }
 
-    public override Task<ClientResponse<T>> goAsync<T>() {
-      return baseRequest()
-        .ContinueWith(task => {
-          var clientResponse = new ClientResponse<T>();
-          try {
-            var result = task.Result;
-            clientResponse.statusCode = (int) result.StatusCode;
-            if (clientResponse.statusCode >= 300) {
-              clientResponse.errorResponse =
-                JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result);
-            }
-            else {
-              clientResponse.successResponse =
-                JsonConvert.DeserializeObject<T>(result.Content.ReadAsStringAsync().Result);
-            }
-          }
-          catch (Exception e) {
-            clientResponse.exception = e;
-          }
+    public override async Task<ClientResponse<T>> goAsync<T>() {
+      var clientResponse = new ClientResponse<T>();
+      try
+      {
+        var result = await baseRequest();
+        clientResponse.statusCode = (int)result.StatusCode;
+        var contentResult = await result.Content.ReadAsStringAsync();
+        if (result.IsSuccessStatusCode)
+        {
+          clientResponse.successResponse = JsonConvert.DeserializeObject<T>(contentResult);
+        }
+        else
+        {
+          clientResponse.errorResponse = JsonConvert.DeserializeObject<Errors>(contentResult);
+        }
+      }
+      catch (Exception e)
+      {
+        clientResponse.exception = e;
+      }
 
-          return clientResponse;
-        });
+      return clientResponse;
     }
   }
 }
