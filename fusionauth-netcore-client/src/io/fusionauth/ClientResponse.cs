@@ -12,7 +12,7 @@ namespace io.fusionauth {
     public Exception exception;
 
     public bool WasSuccessful() {
-      return statusCode == 200;
+      return status >= 200 && status <= 299 && exception == null;
     }
   }
 }
