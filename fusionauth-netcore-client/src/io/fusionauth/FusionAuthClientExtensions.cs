@@ -1,0 +1,3223 @@
+/*
+ * Copyright (c) 2018-2020, FusionAuth, All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific
+ * language governing permissions and limitations under the License.
+ */
+
+using System;
+using System.Collections.Generic;
+using io.fusionauth.domain;
+using io.fusionauth.domain.api;
+using io.fusionauth.domain.api.email;
+using io.fusionauth.domain.api.identityProvider;
+using io.fusionauth.domain.api.jwt;
+using io.fusionauth.domain.api.passwordless;
+using io.fusionauth.domain.api.report;
+using io.fusionauth.domain.api.twoFactor;
+using io.fusionauth.domain.api.user;
+using io.fusionauth.domain.oauth2;
+
+namespace io.fusionauth {
+  public static class FusionAuthClientExtensions {
+
+    /// <summary>
+    /// Takes an action on a user. The user being actioned is called the "actionee" and the user taking the action is called the
+    /// "actioner". Both user ids are required. You pass the actionee's user id into the method and the actioner's is put into the
+    /// request object.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="actioneeUserId"> The actionee's user id.</param>
+    /// <param name="request"> The action request that includes all of the information about the action being taken including
+     /// the id of the action, any options and the duration (if applicable).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> ActionUser(this IFusionAuthClient client, Guid? actioneeUserId, ActionRequest request) {
+      return client.ActionUserAsync(actioneeUserId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Adds a user to an existing family. The family id must be specified.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="familyId"> The id of the family.</param>
+    /// <param name="request"> The request object that contains all of the information used to determine which user to add to the family.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<FamilyResponse> AddUserToFamily(this IFusionAuthClient client, Guid? familyId, FamilyRequest request) {
+      return client.AddUserToFamilyAsync(familyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Cancels the user action.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="actionId"> The action id of the action to cancel.</param>
+    /// <param name="request"> The action request that contains the information about the cancellation.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> CancelAction(this IFusionAuthClient client, Guid? actionId, ActionRequest request) {
+      return client.CancelActionAsync(actionId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Changes a user's password using the change password Id. This usually occurs after an email has been sent to the user
+    /// and they clicked on a link to reset their password.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="changePasswordId"> The change password Id used to find the user. This value is generated by FusionAuth once the change password workflow has been initiated.</param>
+    /// <param name="request"> The change password request that contains all of the information used to change the password.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ChangePasswordResponse> ChangePassword(this IFusionAuthClient client, string changePasswordId, ChangePasswordRequest request) {
+      return client.ChangePasswordAsync(changePasswordId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Changes a user's password using their identity (login id and password). Using a loginId instead of the changePasswordId
+    /// bypasses the email verification and allows a password to be changed directly without first calling the #forgotPassword
+    /// method.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The change password request that contains all of the information used to change the password.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> ChangePasswordByIdentity(this IFusionAuthClient client, ChangePasswordRequest request) {
+      return client.ChangePasswordByIdentityAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Adds a comment to the user's account.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the user comment.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> CommentOnUser(this IFusionAuthClient client, UserCommentRequest request) {
+      return client.CommentOnUserAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates an application. You can optionally specify an Id for the application, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The Id to use for the application. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the application.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> CreateApplication(this IFusionAuthClient client, Guid? applicationId, ApplicationRequest request) {
+      return client.CreateApplicationAsync(applicationId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a new role for an application. You must specify the id of the application you are creating the role for.
+    /// You can optionally specify an Id for the role inside the ApplicationRole object itself, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application to create the role on.</param>
+    /// <param name="roleId"> (Optional) The Id of the role. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the application role.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> CreateApplicationRole(this IFusionAuthClient client, Guid? applicationId, Guid? roleId, ApplicationRequest request) {
+      return client.CreateApplicationRoleAsync(applicationId, roleId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates an audit log with the message and user name (usually an email). Audit logs should be written anytime you
+    /// make changes to the FusionAuth database. When using the FusionAuth App web interface, any changes are automatically
+    /// written to the audit log. However, if you are accessing the API, you must write the audit logs yourself.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the audit log entry.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<AuditLogResponse> CreateAuditLog(this IFusionAuthClient client, AuditLogRequest request) {
+      return client.CreateAuditLogAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a user consent type. You can optionally specify an Id for the consent type, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="consentId"> (Optional) The Id for the consent. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the consent.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ConsentResponse> CreateConsent(this IFusionAuthClient client, Guid? consentId, ConsentRequest request) {
+      return client.CreateConsentAsync(consentId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates an email template. You can optionally specify an Id for the template, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="emailTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the email template.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<EmailTemplateResponse> CreateEmailTemplate(this IFusionAuthClient client, Guid? emailTemplateId, EmailTemplateRequest request) {
+      return client.CreateEmailTemplateAsync(emailTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a family with the user id in the request as the owner and sole member of the family. You can optionally specify an id for the
+    /// family, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="familyId"> (Optional) The id for the family. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the family.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<FamilyResponse> CreateFamily(this IFusionAuthClient client, Guid? familyId, FamilyRequest request) {
+      return client.CreateFamilyAsync(familyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a group. You can optionally specify an Id for the group, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="groupId"> (Optional) The Id for the group. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the group.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<GroupResponse> CreateGroup(this IFusionAuthClient client, Guid? groupId, GroupRequest request) {
+      return client.CreateGroupAsync(groupId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a member in a group.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the group member(s).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<MemberResponse> CreateGroupMembers(this IFusionAuthClient client, MemberRequest request) {
+      return client.CreateGroupMembersAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates an identity provider. You can optionally specify an Id for the identity provider, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="identityProviderId"> (Optional) The Id of the identity provider. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the identity provider.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IdentityProviderResponse> CreateIdentityProvider(this IFusionAuthClient client, Guid? identityProviderId, IdentityProviderRequest request) {
+      return client.CreateIdentityProviderAsync(identityProviderId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a Lambda. You can optionally specify an Id for the lambda, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="lambdaId"> (Optional) The Id for the lambda. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the lambda.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LambdaResponse> CreateLambda(this IFusionAuthClient client, Guid? lambdaId, LambdaRequest request) {
+      return client.CreateLambdaAsync(lambdaId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="tenantId"> (Optional) The Id for the tenant. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the tenant.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<TenantResponse> CreateTenant(this IFusionAuthClient client, Guid? tenantId, TenantRequest request) {
+      return client.CreateTenantAsync(tenantId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a Theme. You can optionally specify an Id for the theme, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="themeId"> (Optional) The Id for the theme. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the theme.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ThemeResponse> CreateTheme(this IFusionAuthClient client, Guid? themeId, ThemeRequest request) {
+      return client.CreateThemeAsync(themeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a user. You can optionally specify an Id for the user, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> (Optional) The Id for the user. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> CreateUser(this IFusionAuthClient client, Guid? userId, UserRequest request) {
+      return client.CreateUserAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a user action. This action cannot be taken on a user until this call successfully returns. Anytime after
+    /// that the user action can be applied to any user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionId"> (Optional) The Id for the user action. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the user action.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionResponse> CreateUserAction(this IFusionAuthClient client, Guid? userActionId, UserActionRequest request) {
+      return client.CreateUserActionAsync(userActionId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a user reason. This user action reason cannot be used when actioning a user until this call completes
+    /// successfully. Anytime after that the user action reason can be used.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionReasonId"> (Optional) The Id for the user action reason. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the user action reason.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionReasonResponse> CreateUserActionReason(this IFusionAuthClient client, Guid? userActionReasonId, UserActionReasonRequest request) {
+      return client.CreateUserActionReasonAsync(userActionReasonId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a single User consent.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userConsentId"> (Optional) The Id for the User consent. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request that contains the user consent information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserConsentResponse> CreateUserConsent(this IFusionAuthClient client, Guid? userConsentId, UserConsentRequest request) {
+      return client.CreateUserConsentAsync(userConsentId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a webhook. You can optionally specify an Id for the webhook, if not provided one will be generated.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="webhookId"> (Optional) The Id for the webhook. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the webhook.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<WebhookResponse> CreateWebhook(this IFusionAuthClient client, Guid? webhookId, WebhookRequest request) {
+      return client.CreateWebhookAsync(webhookId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deactivates the application with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application to deactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeactivateApplication(this IFusionAuthClient client, Guid? applicationId) {
+      return client.DeactivateApplicationAsync(applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deactivates the user with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to deactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeactivateUser(this IFusionAuthClient client, Guid? userId) {
+      return client.DeactivateUserAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deactivates the user action with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionId"> The Id of the user action to deactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeactivateUserAction(this IFusionAuthClient client, Guid? userActionId) {
+      return client.DeactivateUserActionAsync(userActionId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deactivates the users with the given ids.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userIds"> The ids of the users to deactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    [Obsolete("This method has been renamed to DeactivateUsersByIds, use that method instead.")]
+    public static ClientResponse<UserDeleteResponse> DeactivateUsers(this IFusionAuthClient client, List<string> userIds) {
+      return client.DeactivateUsersAsync(userIds).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deactivates the users with the given ids.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userIds"> The ids of the users to deactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserDeleteResponse> DeactivateUsersByIds(this IFusionAuthClient client, List<string> userIds) {
+      return client.DeactivateUsersByIdsAsync(userIds).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Hard deletes an application. This is a dangerous operation and should not be used in most circumstances. This will
+    /// delete the application, any registrations for that application, metrics and reports for the application, all the
+    /// roles for the application, and any other data associated with the application. This operation could take a very
+    /// long time, depending on the amount of data in your database.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteApplication(this IFusionAuthClient client, Guid? applicationId) {
+      return client.DeleteApplicationAsync(applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Hard deletes an application role. This is a dangerous operation and should not be used in most circumstances. This
+    /// permanently removes the given role from all users that had it.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application to deactivate.</param>
+    /// <param name="roleId"> The Id of the role to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteApplicationRole(this IFusionAuthClient client, Guid? applicationId, Guid? roleId) {
+      return client.DeleteApplicationRoleAsync(applicationId, roleId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the consent for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="consentId"> The Id of the consent to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteConsent(this IFusionAuthClient client, Guid? consentId) {
+      return client.DeleteConsentAsync(consentId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the email template for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="emailTemplateId"> The Id of the email template to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteEmailTemplate(this IFusionAuthClient client, Guid? emailTemplateId) {
+      return client.DeleteEmailTemplateAsync(emailTemplateId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the group for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="groupId"> The Id of the group to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteGroup(this IFusionAuthClient client, Guid? groupId) {
+      return client.DeleteGroupAsync(groupId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Removes users as members of a group.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The member request that contains all of the information used to remove members to the group.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteGroupMembers(this IFusionAuthClient client, MemberDeleteRequest request) {
+      return client.DeleteGroupMembersAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the identity provider for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="identityProviderId"> The Id of the identity provider to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteIdentityProvider(this IFusionAuthClient client, Guid? identityProviderId) {
+      return client.DeleteIdentityProviderAsync(identityProviderId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the key for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="keyOd"> The Id of the key to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteKey(this IFusionAuthClient client, Guid? keyOd) {
+      return client.DeleteKeyAsync(keyOd).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the lambda for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="lambdaId"> The Id of the lambda to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteLambda(this IFusionAuthClient client, Guid? lambdaId) {
+      return client.DeleteLambdaAsync(lambdaId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the user registration for the given user and application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user whose registration is being deleted.</param>
+    /// <param name="applicationId"> The Id of the application to remove the registration for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteRegistration(this IFusionAuthClient client, Guid? userId, Guid? applicationId) {
+      return client.DeleteRegistrationAsync(userId, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the tenant for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="tenantId"> The Id of the tenant to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteTenant(this IFusionAuthClient client, Guid? tenantId) {
+      return client.DeleteTenantAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the theme for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="themeId"> The Id of the theme to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteTheme(this IFusionAuthClient client, Guid? themeId) {
+      return client.DeleteThemeAsync(themeId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the user for the given Id. This permanently deletes all information, metrics, reports and data associated
+    /// with the user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteUser(this IFusionAuthClient client, Guid? userId) {
+      return client.DeleteUserAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the user action for the given Id. This permanently deletes the user action and also any history and logs of
+    /// the action being applied to any users.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionId"> The Id of the user action to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteUserAction(this IFusionAuthClient client, Guid? userActionId) {
+      return client.DeleteUserActionAsync(userActionId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the user action reason for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionReasonId"> The Id of the user action reason to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteUserActionReason(this IFusionAuthClient client, Guid? userActionReasonId) {
+      return client.DeleteUserActionReasonAsync(userActionReasonId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
+    /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+    /// 
+    /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
+    /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The UserDeleteRequest.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    [Obsolete("This method has been renamed to DeleteUsersByQuery, use that method instead.")]
+    public static ClientResponse<UserDeleteResponse> DeleteUsers(this IFusionAuthClient client, UserDeleteRequest request) {
+      return client.DeleteUsersAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
+    /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+    /// 
+    /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
+    /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The UserDeleteRequest.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserDeleteResponse> DeleteUsersByQuery(this IFusionAuthClient client, UserDeleteRequest request) {
+      return client.DeleteUsersByQueryAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Deletes the webhook for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="webhookId"> The Id of the webhook to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DeleteWebhook(this IFusionAuthClient client, Guid? webhookId) {
+      return client.DeleteWebhookAsync(webhookId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Disable Two Factor authentication for a user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+    /// <param name="code"> The Two Factor code used verify the the caller knows the Two Factor secret.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> DisableTwoFactor(this IFusionAuthClient client, Guid? userId, string code) {
+      return client.DisableTwoFactorAsync(userId, code).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Enable Two Factor authentication for a user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to enable Two Factor authentication.</param>
+    /// <param name="request"> The two factor enable request information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> EnableTwoFactor(this IFusionAuthClient client, Guid? userId, TwoFactorRequest request) {
+      return client.EnableTwoFactorAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Exchanges an OAuth authorization code for an access token.
+    /// If you will be using the Authorization Code grant, you will make a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
+    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+    /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<AccessToken> ExchangeOAuthCodeForAccessToken(this IFusionAuthClient client, string code, string client_id, string client_secret, string redirect_uri) {
+      return client.ExchangeOAuthCodeForAccessTokenAsync(code, client_id, client_secret, redirect_uri).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Exchange a Refresh Token for an Access Token.
+    /// If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="refresh_token"> The refresh token that you would like to use to exchange for an access token.</param>
+    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+    /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
+    /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(this IFusionAuthClient client, string refresh_token, string client_id, string client_secret, string scope, string user_code) {
+      return client.ExchangeRefreshTokenForAccessTokenAsync(refresh_token, client_id, client_secret, scope, user_code).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Exchange a refresh token for a new JWT.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The refresh request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RefreshResponse> ExchangeRefreshTokenForJWT(this IFusionAuthClient client, RefreshRequest request) {
+      return client.ExchangeRefreshTokenForJWTAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Exchange User Credentials for a Token.
+    /// If you will be using the Resource Owner Password Credential Grant, you will make a request to the Token endpoint to exchange the user’s email and password for an access token.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="username"> The login identifier of the user. The login identifier can be either the email or the username.</param>
+    /// <param name="password"> The user’s password.</param>
+    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+    /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
+    /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<AccessToken> ExchangeUserCredentialsForAccessToken(this IFusionAuthClient client, string username, string password, string client_id, string client_secret, string scope, string user_code) {
+      return client.ExchangeUserCredentialsForAccessTokenAsync(username, password, client_id, client_secret, scope, user_code).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Begins the forgot password sequence, which kicks off an email to the user so that they can reset their password.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request that contains the information about the user so that they can be emailed.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ForgotPasswordResponse> ForgotPassword(this IFusionAuthClient client, ForgotPasswordRequest request) {
+      return client.ForgotPasswordAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Generate a new Email Verification Id to be used with the Verify Email API. This API will not attempt to send an
+    /// email to the User. This API may be used to collect the verificationId for use with a third party system.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="email"> The email address of the user that needs a new verification email.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<VerifyEmailResponse> GenerateEmailVerificationId(this IFusionAuthClient client, string email) {
+      return client.GenerateEmailVerificationIdAsync(email).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Generate a new RSA or EC key pair or an HMAC secret.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="keyId"> (Optional) The Id for the key. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the key.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<KeyResponse> GenerateKey(this IFusionAuthClient client, Guid? keyId, KeyRequest request) {
+      return client.GenerateKeyAsync(keyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Generate a new Application Registration Verification Id to be used with the Verify Registration API. This API will not attempt to send an
+    /// email to the User. This API may be used to collect the verificationId for use with a third party system.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="email"> The email address of the user that needs a new verification email.</param>
+    /// <param name="applicationId"> The Id of the application to be verified.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<VerifyRegistrationResponse> GenerateRegistrationVerificationId(this IFusionAuthClient client, string email, Guid? applicationId) {
+      return client.GenerateRegistrationVerificationIdAsync(email, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Generate a Two Factor secret that can be used to enable Two Factor authentication for a User. The response will contain
+    /// both the secret and a Base32 encoded form of the secret which can be shown to a User when using a 2 Step Authentication
+    /// application such as Google Authenticator.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SecretResponse> GenerateTwoFactorSecret(this IFusionAuthClient client) {
+      return client.GenerateTwoFactorSecretAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Generate a Two Factor secret that can be used to enable Two Factor authentication for a User. The response will contain
+    /// both the secret and a Base32 encoded form of the secret which can be shown to a User when using a 2 Step Authentication
+    /// application such as Google Authenticator.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SecretResponse> GenerateTwoFactorSecretUsingJWT(this IFusionAuthClient client, string encodedJWT) {
+      return client.GenerateTwoFactorSecretUsingJWTAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Handles login via third-parties including Social login, external OAuth and OpenID Connect, and other
+    /// login systems.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The third-party login request that contains information from the third-party login
+     /// providers that FusionAuth uses to reconcile the user's account.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginResponse> IdentityProviderLogin(this IFusionAuthClient client, IdentityProviderLoginRequest request) {
+      return client.IdentityProviderLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Import an existing RSA or EC key pair or an HMAC secret.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="keyId"> (Optional) The Id for the key. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the key.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<KeyResponse> ImportKey(this IFusionAuthClient client, Guid? keyId, KeyRequest request) {
+      return client.ImportKeyAsync(keyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Bulk imports multiple users. This does some validation, but then tries to run batch inserts of users. This reduces
+    /// latency when inserting lots of users. Therefore, the error response might contain some information about failures,
+    /// but it will likely be pretty generic.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request that contains all of the information about all of the users to import.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> ImportUsers(this IFusionAuthClient client, ImportRequest request) {
+      return client.ImportUsersAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
+    /// access token is properly signed and not expired.
+    /// <p>
+    /// This API may be used in an SSO configuration to issue new tokens for another application after the user has
+    /// obtained a valid token from authentication.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Application Id for which you are requesting a new access token be issued.</param>
+    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IssueResponse> IssueJWT(this IFusionAuthClient client, Guid? applicationId, string encodedJWT) {
+      return client.IssueJWTAsync(applicationId, encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Authenticates a user to FusionAuth. 
+    /// 
+    /// This API optionally requires an API key. See <code>Application.loginConfiguration.requireAuthentication</code>.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The login request that contains the user credentials used to log them in.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginResponse> Login(this IFusionAuthClient client, LoginRequest request) {
+      return client.LoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Sends a ping to FusionAuth indicating that the user was automatically logged into an application. When using
+    /// FusionAuth's SSO or your own, you should call this if the user is already logged in centrally, but accesses an
+    /// application where they no longer have a session. This helps correctly track login counts, times and helps with
+    /// reporting.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user that was logged in.</param>
+    /// <param name="applicationId"> The Id of the application that they logged into.</param>
+    /// <param name="callerIPAddress"> (Optional) The IP address of the end-user that is logging in. If a null value is provided
+     /// the IP address will be that of the client or last proxy that sent the request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> LoginPing(this IFusionAuthClient client, Guid? userId, Guid? applicationId, string callerIPAddress) {
+      return client.LoginPingAsync(userId, applicationId, callerIPAddress).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// The Logout API is intended to be used to remove the refresh token and access token cookies if they exist on the
+    /// client and revoke the refresh token stored. This API does nothing if the request does not contain an access
+    /// token or refresh token cookies.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="global"> When this value is set to true all of the refresh tokens issued to the owner of the
+     /// provided token will be revoked.</param>
+    /// <param name="refreshToken"> (Optional) The refresh_token as a request parameter instead of coming in via a cookie.
+     /// If provided this takes precedence over the cookie.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> Logout(this IFusionAuthClient client, bool? global, string refreshToken) {
+      return client.LogoutAsync(global, refreshToken).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the identity provider for the given domain. A 200 response code indicates the domain is managed
+    /// by a registered identity provider. A 404 indicates the domain is not managed.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="domain"> The domain or email address to lookup.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LookupResponse> LookupIdentityProvider(this IFusionAuthClient client, string domain) {
+      return client.LookupIdentityProviderAsync(domain).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Modifies a temporal user action by changing the expiration of the action and optionally adding a comment to the
+    /// action.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="actionId"> The Id of the action to modify. This is technically the user action log id.</param>
+    /// <param name="request"> The request that contains all of the information about the modification.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> ModifyAction(this IFusionAuthClient client, Guid? actionId, ActionRequest request) {
+      return client.ModifyActionAsync(actionId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Complete a login request using a passwordless code
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The passwordless login request that contains all of the information used to complete login.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginResponse> PasswordlessLogin(this IFusionAuthClient client, PasswordlessLoginRequest request) {
+      return client.PasswordlessLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the application with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application to update.</param>
+    /// <param name="request"> The request that contains just the new application information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> PatchApplication(this IFusionAuthClient client, Guid? applicationId, Dictionary<string, object> request) {
+      return client.PatchApplicationAsync(applicationId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the application role with the given id for the application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
+    /// <param name="roleId"> The Id of the role to update.</param>
+    /// <param name="request"> The request that contains just the new role information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> PatchApplicationRole(this IFusionAuthClient client, Guid? applicationId, Guid? roleId, Dictionary<string, object> request) {
+      return client.PatchApplicationRoleAsync(applicationId, roleId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the consent with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="consentId"> The Id of the consent to update.</param>
+    /// <param name="request"> The request that contains just the new consent information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ConsentResponse> PatchConsent(this IFusionAuthClient client, Guid? consentId, Dictionary<string, object> request) {
+      return client.PatchConsentAsync(consentId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the email template with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="emailTemplateId"> The Id of the email template to update.</param>
+    /// <param name="request"> The request that contains just the new email template information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<EmailTemplateResponse> PatchEmailTemplate(this IFusionAuthClient client, Guid? emailTemplateId, Dictionary<string, object> request) {
+      return client.PatchEmailTemplateAsync(emailTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the group with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="groupId"> The Id of the group to update.</param>
+    /// <param name="request"> The request that contains just the new group information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<GroupResponse> PatchGroup(this IFusionAuthClient client, Guid? groupId, Dictionary<string, object> request) {
+      return client.PatchGroupAsync(groupId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the identity provider with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="identityProviderId"> The Id of the identity provider to update.</param>
+    /// <param name="request"> The request object that contains just the updated identity provider information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IdentityProviderResponse> PatchIdentityProvider(this IFusionAuthClient client, Guid? identityProviderId, Dictionary<string, object> request) {
+      return client.PatchIdentityProviderAsync(identityProviderId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the available integrations.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request that contains just the new integration information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IntegrationResponse> PatchIntegrations(this IFusionAuthClient client, Dictionary<string, object> request) {
+      return client.PatchIntegrationsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the lambda with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="lambdaId"> The Id of the lambda to update.</param>
+    /// <param name="request"> The request that contains just the new lambda information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LambdaResponse> PatchLambda(this IFusionAuthClient client, Guid? lambdaId, Dictionary<string, object> request) {
+      return client.PatchLambdaAsync(lambdaId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
+    /// <param name="request"> The request that contains just the new registration information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RegistrationResponse> PatchRegistration(this IFusionAuthClient client, Guid? userId, Dictionary<string, object> request) {
+      return client.PatchRegistrationAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the system configuration.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request that contains just the new system configuration information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SystemConfigurationResponse> PatchSystemConfiguration(this IFusionAuthClient client, Dictionary<string, object> request) {
+      return client.PatchSystemConfigurationAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the tenant with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="tenantId"> The Id of the tenant to update.</param>
+    /// <param name="request"> The request that contains just the new tenant information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<TenantResponse> PatchTenant(this IFusionAuthClient client, Guid? tenantId, Dictionary<string, object> request) {
+      return client.PatchTenantAsync(tenantId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the theme with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="themeId"> The Id of the theme to update.</param>
+    /// <param name="request"> The request that contains just the new theme information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ThemeResponse> PatchTheme(this IFusionAuthClient client, Guid? themeId, Dictionary<string, object> request) {
+      return client.PatchThemeAsync(themeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the user with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to update.</param>
+    /// <param name="request"> The request that contains just the new user information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> PatchUser(this IFusionAuthClient client, Guid? userId, Dictionary<string, object> request) {
+      return client.PatchUserAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the user action with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionId"> The Id of the user action to update.</param>
+    /// <param name="request"> The request that contains just the new user action information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionResponse> PatchUserAction(this IFusionAuthClient client, Guid? userActionId, Dictionary<string, object> request) {
+      return client.PatchUserActionAsync(userActionId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, the user action reason with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionReasonId"> The Id of the user action reason to update.</param>
+    /// <param name="request"> The request that contains just the new user action reason information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionReasonResponse> PatchUserActionReason(this IFusionAuthClient client, Guid? userActionReasonId, Dictionary<string, object> request) {
+      return client.PatchUserActionReasonAsync(userActionReasonId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates, via PATCH, a single User consent by Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userConsentId"> The User Consent Id</param>
+    /// <param name="request"> The request that contains just the new user consent information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserConsentResponse> PatchUserConsent(this IFusionAuthClient client, Guid? userConsentId, Dictionary<string, object> request) {
+      return client.PatchUserConsentAsync(userConsentId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Reactivates the application with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application to reactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> ReactivateApplication(this IFusionAuthClient client, Guid? applicationId) {
+      return client.ReactivateApplicationAsync(applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Reactivates the user with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to reactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> ReactivateUser(this IFusionAuthClient client, Guid? userId) {
+      return client.ReactivateUserAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Reactivates the user action with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionId"> The Id of the user action to reactivate.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionResponse> ReactivateUserAction(this IFusionAuthClient client, Guid? userActionId) {
+      return client.ReactivateUserActionAsync(userActionId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Reconcile a User to FusionAuth using JWT issued from another Identity Provider.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The reconcile request that contains the data to reconcile the User.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginResponse> ReconcileJWT(this IFusionAuthClient client, IdentityProviderLoginRequest request) {
+      return client.ReconcileJWTAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Request a refresh of the User search index. This API is not generally necessary and the search index will become consistent in a
+    /// reasonable amount of time. There may be scenarios where you may wish to manually request an index refresh. One example may be 
+    /// if you are using the Search API or Delete Tenant API immediately following a User Create etc, you may wish to request a refresh to
+    ///  ensure the index immediately current before making a query request to the search index.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> RefreshUserSearchIndex(this IFusionAuthClient client) {
+      return client.RefreshUserSearchIndexAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Registers a user for an application. If you provide the User and the UserRegistration object on this request, it
+    /// will create the user as well as register them for the application. This is called a Full Registration. However, if
+    /// you only provide the UserRegistration object, then the user must already exist and they will be registered for the
+    /// application. The user id can also be provided and it will either be used to look up an existing user or it will be
+    /// used for the newly created User.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> (Optional) The Id of the user being registered for the application and optionally created.</param>
+    /// <param name="request"> The request that optionally contains the User and must contain the UserRegistration.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RegistrationResponse> Register(this IFusionAuthClient client, Guid? userId, RegistrationRequest request) {
+      return client.RegisterAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Removes a user from the family with the given id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="familyId"> The id of the family to remove the user from.</param>
+    /// <param name="userId"> The id of the user to remove from the family.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> RemoveUserFromFamily(this IFusionAuthClient client, Guid? familyId, Guid? userId) {
+      return client.RemoveUserFromFamilyAsync(familyId, userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Re-sends the verification email to the user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="email"> The email address of the user that needs a new verification email.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<VerifyEmailResponse> ResendEmailVerification(this IFusionAuthClient client, string email) {
+      return client.ResendEmailVerificationAsync(email).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Re-sends the application registration verification email to the user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="email"> The email address of the user that needs a new verification email.</param>
+    /// <param name="applicationId"> The Id of the application to be verified.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(this IFusionAuthClient client, string email, Guid? applicationId) {
+      return client.ResendRegistrationVerificationAsync(email, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves a single action log (the log of a user action that was taken on a user previously) for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="actionId"> The Id of the action to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> RetrieveAction(this IFusionAuthClient client, Guid? actionId) {
+      return client.RetrieveActionAsync(actionId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the actions for the user with the given Id. This will return all time based actions that are active,
+    /// and inactive as well as non-time based actions.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> RetrieveActions(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveActionsAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the actions for the user with the given Id that are currently preventing the User from logging in.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> RetrieveActionsPreventingLogin(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveActionsPreventingLoginAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the actions for the user with the given Id that are currently active.
+    /// An active action means one that is time based and has not been canceled, and has not ended.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> RetrieveActiveActions(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveActiveActionsAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the application for the given id or all of the applications if the id is null.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> RetrieveApplication(this IFusionAuthClient client, Guid? applicationId) {
+      return client.RetrieveApplicationAsync(applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the applications.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> RetrieveApplications(this IFusionAuthClient client) {
+      return client.RetrieveApplicationsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves a single audit log for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="auditLogId"> The Id of the audit log to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<AuditLogResponse> RetrieveAuditLog(this IFusionAuthClient client, int? auditLogId) {
+      return client.RetrieveAuditLogAsync(auditLogId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the Consent for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="consentId"> The Id of the consent.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ConsentResponse> RetrieveConsent(this IFusionAuthClient client, Guid? consentId) {
+      return client.RetrieveConsentAsync(consentId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the consent.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ConsentResponse> RetrieveConsents(this IFusionAuthClient client) {
+      return client.RetrieveConsentsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the daily active user report between the two instants. If you specify an application id, it will only
+    /// return the daily active counts for that application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<DailyActiveUserReportResponse> RetrieveDailyActiveReport(this IFusionAuthClient client, Guid? applicationId, long? start, long? end) {
+      return client.RetrieveDailyActiveReportAsync(applicationId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the email template for the given Id. If you don't specify the id, this will return all of the email templates.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="emailTemplateId"> (Optional) The Id of the email template.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<EmailTemplateResponse> RetrieveEmailTemplate(this IFusionAuthClient client, Guid? emailTemplateId) {
+      return client.RetrieveEmailTemplateAsync(emailTemplateId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Creates a preview of the email template provided in the request. This allows you to preview an email template that
+    /// hasn't been saved to the database yet. The entire email template does not need to be provided on the request. This
+    /// will create the preview based on whatever is given.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request that contains the email template and optionally a locale to render it in.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PreviewResponse> RetrieveEmailTemplatePreview(this IFusionAuthClient client, PreviewRequest request) {
+      return client.RetrieveEmailTemplatePreviewAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the email templates.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<EmailTemplateResponse> RetrieveEmailTemplates(this IFusionAuthClient client) {
+      return client.RetrieveEmailTemplatesAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves a single event log for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="eventLogId"> The Id of the event log to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<EventLogResponse> RetrieveEventLog(this IFusionAuthClient client, int? eventLogId) {
+      return client.RetrieveEventLogAsync(eventLogId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the families that a user belongs to.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The User's id</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<FamilyResponse> RetrieveFamilies(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveFamiliesAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the members of a family by the unique Family Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="familyId"> The unique Id of the Family.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<FamilyResponse> RetrieveFamilyMembersByFamilyId(this IFusionAuthClient client, Guid? familyId) {
+      return client.RetrieveFamilyMembersByFamilyIdAsync(familyId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the group for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="groupId"> The Id of the group.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<GroupResponse> RetrieveGroup(this IFusionAuthClient client, Guid? groupId) {
+      return client.RetrieveGroupAsync(groupId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the groups.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<GroupResponse> RetrieveGroups(this IFusionAuthClient client) {
+      return client.RetrieveGroupsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the identity provider for the given id or all of the identity providers if the id is null.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="identityProviderId"> (Optional) The identity provider id.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IdentityProviderResponse> RetrieveIdentityProvider(this IFusionAuthClient client, Guid? identityProviderId) {
+      return client.RetrieveIdentityProviderAsync(identityProviderId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the identity providers.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IdentityProviderResponse> RetrieveIdentityProviders(this IFusionAuthClient client) {
+      return client.RetrieveIdentityProvidersAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the actions for the user with the given Id that are currently inactive.
+    /// An inactive action means one that is time based and has been canceled or has expired, or is not time based.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ActionResponse> RetrieveInactiveActions(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveInactiveActionsAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the applications that are currently inactive.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> RetrieveInactiveApplications(this IFusionAuthClient client) {
+      return client.RetrieveInactiveApplicationsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the user actions that are currently inactive.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionResponse> RetrieveInactiveUserActions(this IFusionAuthClient client) {
+      return client.RetrieveInactiveUserActionsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the available integrations.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IntegrationResponse> RetrieveIntegration(this IFusionAuthClient client) {
+      return client.RetrieveIntegrationAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the Public Key configured for verifying JSON Web Tokens (JWT) by the key Id (kid).
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="keyId"> The Id of the public key (kid).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PublicKeyResponse> RetrieveJWTPublicKey(this IFusionAuthClient client, string keyId) {
+      return client.RetrieveJWTPublicKeyAsync(keyId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the Public Key configured for verifying the JSON Web Tokens (JWT) issued by the Login API by the Application Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the Application for which this key is used.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PublicKeyResponse> RetrieveJWTPublicKeyByApplicationId(this IFusionAuthClient client, string applicationId) {
+      return client.RetrieveJWTPublicKeyByApplicationIdAsync(applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all Public Keys configured for verifying JSON Web Tokens (JWT).
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PublicKeyResponse> RetrieveJWTPublicKeys(this IFusionAuthClient client) {
+      return client.RetrieveJWTPublicKeysAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Returns public keys used by FusionAuth to cryptographically verify JWTs using the JSON Web Key format.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<JWKSResponse> RetrieveJsonWebKeySet(this IFusionAuthClient client) {
+      return client.RetrieveJsonWebKeySetAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the key for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="keyId"> The Id of the key.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<KeyResponse> RetrieveKey(this IFusionAuthClient client, Guid? keyId) {
+      return client.RetrieveKeyAsync(keyId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the keys.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<KeyResponse> RetrieveKeys(this IFusionAuthClient client) {
+      return client.RetrieveKeysAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the lambda for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="lambdaId"> The Id of the lambda.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LambdaResponse> RetrieveLambda(this IFusionAuthClient client, Guid? lambdaId) {
+      return client.RetrieveLambdaAsync(lambdaId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the lambdas.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LambdaResponse> RetrieveLambdas(this IFusionAuthClient client) {
+      return client.RetrieveLambdasAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the lambdas for the provided type.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="type"> The type of the lambda to return.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LambdaResponse> RetrieveLambdasByType(this IFusionAuthClient client, LambdaType type) {
+      return client.RetrieveLambdasByTypeAsync(type).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the login report between the two instants. If you specify an application id, it will only return the
+    /// login counts for that application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginReportResponse> RetrieveLoginReport(this IFusionAuthClient client, Guid? applicationId, long? start, long? end) {
+      return client.RetrieveLoginReportAsync(applicationId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the monthly active user report between the two instants. If you specify an application id, it will only
+    /// return the monthly active counts for that application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<MonthlyActiveUserReportResponse> RetrieveMonthlyActiveReport(this IFusionAuthClient client, Guid? applicationId, long? start, long? end) {
+      return client.RetrieveMonthlyActiveReportAsync(applicationId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the Oauth2 configuration for the application for the given Application Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the Application to retrieve OAuth configuration.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<OAuthConfigurationResponse> RetrieveOauthConfiguration(this IFusionAuthClient client, Guid? applicationId) {
+      return client.RetrieveOauthConfigurationAsync(applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Returns the well known OpenID Configuration JSON document
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<OpenIdConfiguration> RetrieveOpenIdConfiguration(this IFusionAuthClient client) {
+      return client.RetrieveOpenIdConfigurationAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the password validation rules for a specific tenant. This method requires a tenantId to be provided 
+    /// through the use of a Tenant scoped API key or an HTTP header X-FusionAuth-TenantId to specify the Tenant Id.
+    /// 
+    /// This API does not require an API key.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PasswordValidationRulesResponse> RetrievePasswordValidationRules(this IFusionAuthClient client) {
+      return client.RetrievePasswordValidationRulesAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the password validation rules for a specific tenant.
+    /// 
+    /// This API does not require an API key.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="tenantId"> The Id of the tenant.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PasswordValidationRulesResponse> RetrievePasswordValidationRulesWithTenantId(this IFusionAuthClient client, Guid? tenantId) {
+      return client.RetrievePasswordValidationRulesWithTenantIdAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the children for the given parent email address.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="parentEmail"> The email of the parent.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PendingResponse> RetrievePendingChildren(this IFusionAuthClient client, string parentEmail) {
+      return client.RetrievePendingChildrenAsync(parentEmail).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the last number of login records.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="offset"> The initial record. e.g. 0 is the last login, 100 will be the 100th most recent login.</param>
+    /// <param name="limit"> (Optional, defaults to 10) The number of records to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RecentLoginResponse> RetrieveRecentLogins(this IFusionAuthClient client, int? offset, int? limit) {
+      return client.RetrieveRecentLoginsAsync(offset, limit).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the refresh tokens that belong to the user with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RefreshResponse> RetrieveRefreshTokens(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveRefreshTokensAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user registration for the user with the given id and the given application id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user.</param>
+    /// <param name="applicationId"> The Id of the application.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RegistrationResponse> RetrieveRegistration(this IFusionAuthClient client, Guid? userId, Guid? applicationId) {
+      return client.RetrieveRegistrationAsync(userId, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the registration report between the two instants. If you specify an application id, it will only return
+    /// the registration counts for that application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RegistrationReportResponse> RetrieveRegistrationReport(this IFusionAuthClient client, Guid? applicationId, long? start, long? end) {
+      return client.RetrieveRegistrationReportAsync(applicationId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the system configuration.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SystemConfigurationResponse> RetrieveSystemConfiguration(this IFusionAuthClient client) {
+      return client.RetrieveSystemConfigurationAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the tenant for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="tenantId"> The Id of the tenant.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<TenantResponse> RetrieveTenant(this IFusionAuthClient client, Guid? tenantId) {
+      return client.RetrieveTenantAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the tenants.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<TenantResponse> RetrieveTenants(this IFusionAuthClient client) {
+      return client.RetrieveTenantsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the theme for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="themeId"> The Id of the theme.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ThemeResponse> RetrieveTheme(this IFusionAuthClient client, Guid? themeId) {
+      return client.RetrieveThemeAsync(themeId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the themes.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ThemeResponse> RetrieveThemes(this IFusionAuthClient client) {
+      return client.RetrieveThemesAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the totals report. This contains all of the total counts for each application and the global registration
+    /// count.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<TotalsReportResponse> RetrieveTotalReport(this IFusionAuthClient client) {
+      return client.RetrieveTotalReportAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user for the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> RetrieveUser(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveUserAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user action for the given Id. If you pass in null for the id, this will return all of the user
+    /// actions.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionId"> (Optional) The Id of the user action.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionResponse> RetrieveUserAction(this IFusionAuthClient client, Guid? userActionId) {
+      return client.RetrieveUserActionAsync(userActionId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user action reason for the given Id. If you pass in null for the id, this will return all of the user
+    /// action reasons.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionReasonId"> (Optional) The Id of the user action reason.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionReasonResponse> RetrieveUserActionReason(this IFusionAuthClient client, Guid? userActionReasonId) {
+      return client.RetrieveUserActionReasonAsync(userActionReasonId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all the user action reasons.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionReasonResponse> RetrieveUserActionReasons(this IFusionAuthClient client) {
+      return client.RetrieveUserActionReasonsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the user actions.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionResponse> RetrieveUserActions(this IFusionAuthClient client) {
+      return client.RetrieveUserActionsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user by a change password Id. The intended use of this API is to retrieve a user after the forgot
+    /// password workflow has been initiated and you may not know the user's email or username.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="changePasswordId"> The unique change password Id that was sent via email or returned by the Forgot Password API.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> RetrieveUserByChangePasswordId(this IFusionAuthClient client, string changePasswordId) {
+      return client.RetrieveUserByChangePasswordIdAsync(changePasswordId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user for the given email.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="email"> The email of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> RetrieveUserByEmail(this IFusionAuthClient client, string email) {
+      return client.RetrieveUserByEmailAsync(email).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user for the loginId. The loginId can be either the username or the email.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="loginId"> The email or username of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> RetrieveUserByLoginId(this IFusionAuthClient client, string loginId) {
+      return client.RetrieveUserByLoginIdAsync(loginId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user for the given username.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="username"> The username of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> RetrieveUserByUsername(this IFusionAuthClient client, string username) {
+      return client.RetrieveUserByUsernameAsync(username).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user by a verificationId. The intended use of this API is to retrieve a user after the forgot
+    /// password workflow has been initiated and you may not know the user's email or username.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="verificationId"> The unique verification Id that has been set on the user object.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> RetrieveUserByVerificationId(this IFusionAuthClient client, string verificationId) {
+      return client.RetrieveUserByVerificationIdAsync(verificationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the comments for the user with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserCommentResponse> RetrieveUserComments(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveUserCommentsAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieve a single User consent by Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userConsentId"> The User consent Id</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserConsentResponse> RetrieveUserConsent(this IFusionAuthClient client, Guid? userConsentId) {
+      return client.RetrieveUserConsentAsync(userConsentId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all of the consents for a User.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The User's Id</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserConsentResponse> RetrieveUserConsents(this IFusionAuthClient client, Guid? userId) {
+      return client.RetrieveUserConsentsAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
+    /// login counts for that application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="userId"> The userId id.</param>
+    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginReportResponse> RetrieveUserLoginReport(this IFusionAuthClient client, Guid? applicationId, Guid? userId, long? start, long? end) {
+      return client.RetrieveUserLoginReportAsync(applicationId, userId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the login report between the two instants for a particular user by login Id. If you specify an application id, it will only return the
+    /// login counts for that application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="loginId"> The userId id.</param>
+    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(this IFusionAuthClient client, Guid? applicationId, string loginId, long? start, long? end) {
+      return client.RetrieveUserLoginReportByLoginIdAsync(applicationId, loginId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the last number of login records for a user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user.</param>
+    /// <param name="offset"> The initial record. e.g. 0 is the last login, 100 will be the 100th most recent login.</param>
+    /// <param name="limit"> (Optional, defaults to 10) The number of records to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RecentLoginResponse> RetrieveUserRecentLogins(this IFusionAuthClient client, Guid? userId, int? offset, int? limit) {
+      return client.RetrieveUserRecentLoginsAsync(userId, offset, limit).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the user for the given Id. This method does not use an API key, instead it uses a JSON Web Token (JWT) for authentication.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> RetrieveUserUsingJWT(this IFusionAuthClient client, string encodedJWT) {
+      return client.RetrieveUserUsingJWTAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="webhookId"> (Optional) The Id of the webhook.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<WebhookResponse> RetrieveWebhook(this IFusionAuthClient client, Guid? webhookId) {
+      return client.RetrieveWebhookAsync(webhookId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves all the webhooks.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<WebhookResponse> RetrieveWebhooks(this IFusionAuthClient client) {
+      return client.RetrieveWebhooksAsync().GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Revokes a single refresh token, all tokens for a user or all tokens for an application. If you provide a user id
+    /// and an application id, this will delete all the refresh tokens for that user for that application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="token"> (Optional) The refresh token to delete.</param>
+    /// <param name="userId"> (Optional) The user id whose tokens to delete.</param>
+    /// <param name="applicationId"> (Optional) The application id of the tokens to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> RevokeRefreshToken(this IFusionAuthClient client, string token, Guid? userId, Guid? applicationId) {
+      return client.RevokeRefreshTokenAsync(token, userId, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Revokes a single User consent by Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userConsentId"> The User Consent Id</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> RevokeUserConsent(this IFusionAuthClient client, Guid? userConsentId) {
+      return client.RevokeUserConsentAsync(userConsentId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Searches the audit logs with the specified criteria and pagination.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<AuditLogSearchResponse> SearchAuditLogs(this IFusionAuthClient client, AuditLogSearchRequest request) {
+      return client.SearchAuditLogsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Searches the event logs with the specified criteria and pagination.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<EventLogSearchResponse> SearchEventLogs(this IFusionAuthClient client, EventLogSearchRequest request) {
+      return client.SearchEventLogsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Searches the login records with the specified criteria and pagination.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginRecordSearchResponse> SearchLoginRecords(this IFusionAuthClient client, LoginRecordSearchRequest request) {
+      return client.SearchLoginRecordsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="ids"> The user ids to search for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    [Obsolete("This method has been renamed to SearchUsersByIds, use that method instead.")]
+    public static ClientResponse<SearchResponse> SearchUsers(this IFusionAuthClient client, List<string> ids) {
+      return client.SearchUsersAsync(ids).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="ids"> The user ids to search for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SearchResponse> SearchUsersByIds(this IFusionAuthClient client, List<string> ids) {
+      return client.SearchUsersByIdsAsync(ids).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the users for the given search criteria and pagination.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The search criteria and pagination constraints. Fields used: ids, query, queryString, numberOfResults, orderBy, startRow,
+     /// and sortFields.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SearchResponse> SearchUsersByQuery(this IFusionAuthClient client, SearchRequest request) {
+      return client.SearchUsersByQueryAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Retrieves the users for the given search criteria and pagination.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The search criteria and pagination constraints. Fields used: ids, query, queryString, numberOfResults, orderBy, startRow,
+     /// and sortFields.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    [Obsolete("This method has been renamed to SearchUsersByQuery, use that method instead.")]
+    public static ClientResponse<SearchResponse> SearchUsersByQueryString(this IFusionAuthClient client, SearchRequest request) {
+      return client.SearchUsersByQueryStringAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Send an email using an email template id. You can optionally provide <code>requestData</code> to access key value
+    /// pairs in the email template.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="emailTemplateId"> The id for the template.</param>
+    /// <param name="request"> The send email request that contains all of the information used to send the email.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SendResponse> SendEmail(this IFusionAuthClient client, Guid? emailTemplateId, SendRequest request) {
+      return client.SendEmailAsync(emailTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Sends out an email to a parent that they need to register and create a family or need to log in and add a child to their existing family.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request object that contains the parent email.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> SendFamilyRequestEmail(this IFusionAuthClient client, FamilyEmailRequest request) {
+      return client.SendFamilyRequestEmailAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Send a passwordless authentication code in an email to complete login.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The passwordless send request that contains all of the information used to send an email containing a code.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> SendPasswordlessCode(this IFusionAuthClient client, PasswordlessSendRequest request) {
+      return client.SendPasswordlessCodeAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Send a Two Factor authentication code to assist in setting up Two Factor authentication or disabling.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request object that contains all of the information used to send the code.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> SendTwoFactorCode(this IFusionAuthClient client, TwoFactorSendRequest request) {
+      return client.SendTwoFactorCodeAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Send a Two Factor authentication code to allow the completion of Two Factor authentication.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="twoFactorId"> The Id returned by the Login API necessary to complete Two Factor authentication.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> SendTwoFactorCodeForLogin(this IFusionAuthClient client, string twoFactorId) {
+      return client.SendTwoFactorCodeForLoginAsync(twoFactorId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The third-party login request that contains information from the third-party login
+     /// providers that FusionAuth uses to reconcile the user's account.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IdentityProviderStartLoginResponse> StartIdentityProviderLogin(this IFusionAuthClient client, IdentityProviderStartLoginRequest request) {
+      return client.StartIdentityProviderLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Start a passwordless login request by generating a passwordless code. This code can be sent to the User using the Send
+    /// Passwordless Code API or using a mechanism outside of FusionAuth. The passwordless login is completed by using the Passwordless Login API with this code.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The passwordless start request that contains all of the information used to begin the passwordless login request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<PasswordlessStartResponse> StartPasswordlessLogin(this IFusionAuthClient client, PasswordlessStartRequest request) {
+      return client.StartPasswordlessLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Complete login using a 2FA challenge
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The login request that contains the user credentials used to log them in.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LoginResponse> TwoFactorLogin(this IFusionAuthClient client, TwoFactorLoginRequest request) {
+      return client.TwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the application with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application to update.</param>
+    /// <param name="request"> The request that contains all of the new application information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> UpdateApplication(this IFusionAuthClient client, Guid? applicationId, ApplicationRequest request) {
+      return client.UpdateApplicationAsync(applicationId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the application role with the given id for the application.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
+    /// <param name="roleId"> The Id of the role to update.</param>
+    /// <param name="request"> The request that contains all of the new role information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ApplicationResponse> UpdateApplicationRole(this IFusionAuthClient client, Guid? applicationId, Guid? roleId, ApplicationRequest request) {
+      return client.UpdateApplicationRoleAsync(applicationId, roleId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the consent with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="consentId"> The Id of the consent to update.</param>
+    /// <param name="request"> The request that contains all of the new consent information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ConsentResponse> UpdateConsent(this IFusionAuthClient client, Guid? consentId, ConsentRequest request) {
+      return client.UpdateConsentAsync(consentId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the email template with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="emailTemplateId"> The Id of the email template to update.</param>
+    /// <param name="request"> The request that contains all of the new email template information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<EmailTemplateResponse> UpdateEmailTemplate(this IFusionAuthClient client, Guid? emailTemplateId, EmailTemplateRequest request) {
+      return client.UpdateEmailTemplateAsync(emailTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the group with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="groupId"> The Id of the group to update.</param>
+    /// <param name="request"> The request that contains all of the new group information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<GroupResponse> UpdateGroup(this IFusionAuthClient client, Guid? groupId, GroupRequest request) {
+      return client.UpdateGroupAsync(groupId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the identity provider with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="identityProviderId"> The Id of the identity provider to update.</param>
+    /// <param name="request"> The request object that contains the updated identity provider.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IdentityProviderResponse> UpdateIdentityProvider(this IFusionAuthClient client, Guid? identityProviderId, IdentityProviderRequest request) {
+      return client.UpdateIdentityProviderAsync(identityProviderId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the available integrations.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request that contains all of the new integration information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<IntegrationResponse> UpdateIntegrations(this IFusionAuthClient client, IntegrationRequest request) {
+      return client.UpdateIntegrationsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the key with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="keyId"> The Id of the key to update.</param>
+    /// <param name="request"> The request that contains all of the new key information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<KeyResponse> UpdateKey(this IFusionAuthClient client, Guid? keyId, KeyRequest request) {
+      return client.UpdateKeyAsync(keyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the lambda with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="lambdaId"> The Id of the lambda to update.</param>
+    /// <param name="request"> The request that contains all of the new lambda information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<LambdaResponse> UpdateLambda(this IFusionAuthClient client, Guid? lambdaId, LambdaRequest request) {
+      return client.UpdateLambdaAsync(lambdaId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the registration for the user with the given id and the application defined in the request.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
+    /// <param name="request"> The request that contains all of the new registration information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RegistrationResponse> UpdateRegistration(this IFusionAuthClient client, Guid? userId, RegistrationRequest request) {
+      return client.UpdateRegistrationAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the system configuration.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="request"> The request that contains all of the new system configuration information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<SystemConfigurationResponse> UpdateSystemConfiguration(this IFusionAuthClient client, SystemConfigurationRequest request) {
+      return client.UpdateSystemConfigurationAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the tenant with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="tenantId"> The Id of the tenant to update.</param>
+    /// <param name="request"> The request that contains all of the new tenant information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<TenantResponse> UpdateTenant(this IFusionAuthClient client, Guid? tenantId, TenantRequest request) {
+      return client.UpdateTenantAsync(tenantId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the theme with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="themeId"> The Id of the theme to update.</param>
+    /// <param name="request"> The request that contains all of the new theme information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ThemeResponse> UpdateTheme(this IFusionAuthClient client, Guid? themeId, ThemeRequest request) {
+      return client.UpdateThemeAsync(themeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the user with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userId"> The Id of the user to update.</param>
+    /// <param name="request"> The request that contains all of the new user information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserResponse> UpdateUser(this IFusionAuthClient client, Guid? userId, UserRequest request) {
+      return client.UpdateUserAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the user action with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionId"> The Id of the user action to update.</param>
+    /// <param name="request"> The request that contains all of the new user action information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionResponse> UpdateUserAction(this IFusionAuthClient client, Guid? userActionId, UserActionRequest request) {
+      return client.UpdateUserActionAsync(userActionId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the user action reason with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userActionReasonId"> The Id of the user action reason to update.</param>
+    /// <param name="request"> The request that contains all of the new user action reason information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserActionReasonResponse> UpdateUserActionReason(this IFusionAuthClient client, Guid? userActionReasonId, UserActionReasonRequest request) {
+      return client.UpdateUserActionReasonAsync(userActionReasonId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates a single User consent by Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="userConsentId"> The User Consent Id</param>
+    /// <param name="request"> The request that contains the user consent information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<UserConsentResponse> UpdateUserConsent(this IFusionAuthClient client, Guid? userConsentId, UserConsentRequest request) {
+      return client.UpdateUserConsentAsync(userConsentId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Updates the webhook with the given Id.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="webhookId"> The Id of the webhook to update.</param>
+    /// <param name="request"> The request that contains all of the new webhook information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<WebhookResponse> UpdateWebhook(this IFusionAuthClient client, Guid? webhookId, WebhookRequest request) {
+      return client.UpdateWebhookAsync(webhookId, request).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
+    /// If you build your own activation form you should validate the user provided code prior to beginning the Authorization grant.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="user_code"> The end-user verification code.</param>
+    /// <param name="client_id"> The client id.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> ValidateDevice(this IFusionAuthClient client, string user_code, string client_id) {
+      return client.ValidateDeviceAsync(user_code, client_id).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Validates the provided JWT (encoded JWT string) to ensure the token is valid. A valid access token is properly
+    /// signed and not expired.
+    /// <p>
+    /// This API may be used to verify the JWT as well as decode the encoded JWT into human readable identity claims.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<ValidateResponse> ValidateJWT(this IFusionAuthClient client, string encodedJWT) {
+      return client.ValidateJWTAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Confirms a email verification. The Id given is usually from an email sent to the user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="verificationId"> The email verification id sent to the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> VerifyEmail(this IFusionAuthClient client, string verificationId) {
+      return client.VerifyEmailAsync(verificationId).GetAwaiter().GetResult();
+    }
+
+    /// <summary>
+    /// Confirms an application registration. The Id given is usually from an email sent to the user.
+    /// </summary>
+    /// <param name="client">The <see cref="IFusionAuthClient"> to extend.</param>
+    /// <param name="verificationId"> The registration verification Id sent to the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    public static ClientResponse<RESTVoid> VerifyRegistration(this IFusionAuthClient client, string verificationId) {
+      return client.VerifyRegistrationAsync(verificationId).GetAwaiter().GetResult();
+    }
+  }
+}
