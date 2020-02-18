@@ -28,7 +28,7 @@ namespace io.fusionauth {
     public Exception exception;
 
     public bool WasSuccessful() {
-      return status >= 200 && status <= 299 && exception == null;
+      return statusCode >= 200 && statusCode <= 299 && exception == null;
     }
   }
 }

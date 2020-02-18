@@ -30,9 +30,13 @@
               <e p="AuditLog.cs" t="Include" />
               <e p="AuditLogConfiguration.cs" t="Include" />
               <e p="AuthenticationTokenConfiguration.cs" t="Include" />
+              <e p="BreachAction.cs" t="Include" />
+              <e p="BreachMatchMode.cs" t="Include" />
+              <e p="BreachedPasswordStatus.cs" t="Include" />
               <e p="CORSConfiguration.cs" t="Include" />
               <e p="CanonicalizationMethod.cs" t="Include" />
               <e p="CertificateInformation.cs" t="Include" />
+              <e p="ChangePasswordReason.cs" t="Include" />
               <e p="CleanSpeakConfiguration.cs" t="Include" />
               <e p="Consent.cs" t="Include" />
               <e p="ConsentStatus.cs" t="Include" />
@@ -79,6 +83,7 @@
               <e p="MaximumPasswordAge.cs" t="Include" />
               <e p="MinimumPasswordAge.cs" t="Include" />
               <e p="OpenIdConfiguration.cs" t="Include" />
+              <e p="PasswordBreachDetection.cs" t="Include" />
               <e p="PasswordEncryptionConfiguration.cs" t="Include" />
               <e p="PasswordValidationRules.cs" t="Include" />
               <e p="PasswordlessConfiguration.cs" t="Include" />
@@ -111,7 +116,6 @@
               <e p="UserRegistration.cs" t="Include" />
               <e p="UsernameModeration.cs" t="Include" />
               <e p="Webhook.cs" t="Include" />
-              <e p="WebhookData.cs" t="Include" />
               <e p="api" t="Include">
                 <e p="ApplicationRequest.cs" t="Include" />
                 <e p="ApplicationResponse.cs" t="Include" />
@@ -260,6 +264,7 @@
                 <e p="UserEmailVerifiedEvent.cs" t="Include" />
                 <e p="UserLoginFailedEvent.cs" t="Include" />
                 <e p="UserLoginSuccessEvent.cs" t="Include" />
+                <e p="UserPasswordBreachEvent.cs" t="Include" />
                 <e p="UserReactivateEvent.cs" t="Include" />
                 <e p="UserRegistrationCreateEvent.cs" t="Include" />
                 <e p="UserRegistrationDeleteEvent.cs" t="Include" />
