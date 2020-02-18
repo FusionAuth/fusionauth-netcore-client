@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2018-2020, FusionAuth, All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific
+ * language governing permissions and limitations under the License.
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +34,7 @@ namespace io.fusionauth {
 
     public string method = "GET";
 
-    public string uri = "";
+    public String uri = "";
 
     public Dictionary<string, string> parameters = new Dictionary<string, string>();
 
@@ -169,20 +185,21 @@ namespace io.fusionauth {
       }
     }
 
-    public override async Task<ClientResponse<T>> goAsync<T>() {
+    public override Task<ClientResponse<T>> goAsync<T>() {
+      return baseRequest()
+        .ContinueWith(task => {
       var clientResponse = new ClientResponse<T>();
       try
       {
-        var result = await baseRequest();
+            var result = task.Result;
         clientResponse.statusCode = (int)result.StatusCode;
-        var contentResult = await result.Content.ReadAsStringAsync();
-        if (result.IsSuccessStatusCode)
-        {
-          clientResponse.successResponse = JsonConvert.DeserializeObject<T>(contentResult);
+            if (clientResponse.statusCode >= 300) {
+              clientResponse.errorResponse =
+                JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result);
         }
-        else
-        {
-          clientResponse.errorResponse = JsonConvert.DeserializeObject<Errors>(contentResult);
+            else {
+              clientResponse.successResponse =
+                JsonConvert.DeserializeObject<T>(result.Content.ReadAsStringAsync().Result);
         }
       }
       catch (Exception e)
@@ -191,6 +208,7 @@ namespace io.fusionauth {
       }
 
       return clientResponse;
+        });
     }
   }
 }

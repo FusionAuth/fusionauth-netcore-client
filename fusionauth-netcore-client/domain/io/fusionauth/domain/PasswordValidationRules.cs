@@ -25,6 +25,8 @@ namespace io.fusionauth.domain {
    */
   public class PasswordValidationRules {
 
+    public PasswordBreachDetection breachDetection;
+
     public int? maxLength;
 
     public int? minLength;
@@ -36,6 +38,8 @@ namespace io.fusionauth.domain {
     public bool? requireNonAlpha;
 
     public bool? requireNumber;
+
+    public bool? validateOnLogin;
 
     public PasswordValidationRules with(Action<PasswordValidationRules> action) {
       action(this);

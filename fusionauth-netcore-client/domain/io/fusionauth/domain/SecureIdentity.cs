@@ -25,6 +25,10 @@ namespace io.fusionauth.domain {
    */
   public class SecureIdentity {
 
+    public DateTimeOffset? breachedPasswordLastCheckedInstant;
+
+    public BreachedPasswordStatus breachedPasswordStatus;
+
     public string encryptionScheme;
 
     public int? factor;
@@ -32,6 +36,8 @@ namespace io.fusionauth.domain {
     public Guid? id;
 
     public string password;
+
+    public ChangePasswordReason passwordChangeReason;
 
     public bool? passwordChangeRequired;
 

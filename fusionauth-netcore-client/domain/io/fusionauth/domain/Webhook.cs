@@ -14,27 +14,29 @@
  * language governing permissions and limitations under the License.
  */
 
+
+using io.fusionauth.domain.@event;
 using System.Collections.Generic;
 using System;
-using io.fusionauth.domain.@event;
 
-namespace io.fusionauth.domain
-{
+namespace io.fusionauth.domain {
+
   /**
    * A server where events are sent. This includes user action events and any other events sent by FusionAuth.
    *
    * @author Brian Pontarelli
    */
+  public class Webhook {
 
-  public class Webhook
-  {
     public List<Guid> applicationIds;
 
     public int? connectTimeout;
 
-    public IDictionary<EventType, bool> eventsEnabled;
+    public Dictionary<string, object> data;
 
     public string description;
+
+    public Dictionary<EventType, bool> @eventsEnabled;
 
     public bool? global;
 
@@ -52,8 +54,7 @@ namespace io.fusionauth.domain
 
     public string url;
 
-    public Webhook with(Action<Webhook> action)
-    {
+    public Webhook with(Action<Webhook> action) {
       action(this);
       return this;
     }

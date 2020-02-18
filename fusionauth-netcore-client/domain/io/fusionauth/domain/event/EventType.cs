@@ -59,6 +59,8 @@ namespace io.fusionauth.domain.@event {
         UserRegistrationVerified, 
         [EnumMember(Value = "user.email.verified")]
         UserEmailVerified, 
+        [EnumMember(Value = "user.password.breach")]
+        UserPasswordBreach, 
         [EnumMember(Value = "test")]
         Test
   }

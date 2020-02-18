@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2020, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,25 @@
  * language governing permissions and limitations under the License.
  */
 
-namespace io.fusionauth {
-  public class RESTVoid {
+
+using io.fusionauth.domain;
+using System.Collections.Generic;
+using System;
+
+namespace io.fusionauth.domain.@event {
+
+  /**
+   * Models the User Password Breach Event.
+   *
+   * @author Matthew Altman
+   */
+  public class UserPasswordBreachEvent: BaseEvent {
+
+    public User user;
+
+    public UserPasswordBreachEvent with(Action<UserPasswordBreachEvent> action) {
+      action(this);
+      return this;
+    }
   }
 }

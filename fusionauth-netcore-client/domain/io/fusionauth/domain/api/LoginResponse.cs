@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.api {
 
     public string changePasswordId;
 
+    public ChangePasswordReason changePasswordReason;
+
     public string refreshToken;
 
     public Dictionary<string, object> state;

@@ -63,6 +63,10 @@ namespace io.fusionauth.domain.oauth2 {
         invalid_client_authentication_scheme, 
         invalid_client_authentication, 
         client_id_mismatch, 
+        change_password_administrative, 
+        change_password_breached, 
+        change_password_expired, 
+        change_password_validation, 
         unknown
   }
 }
