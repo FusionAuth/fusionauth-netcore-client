@@ -3,9 +3,9 @@ using io.fusionauth.domain;
 
 namespace io.fusionauth {
   public class Example {
-    private readonly string apiKey = "6b87a398-39f2-4692-927b-13188a81a9a3";
+    private const string apiKey = "6b87a398-39f2-4692-927b-13188a81a9a3";
 
-    private readonly string fusionAuthURL = "http://localhost:9011";
+    private const string fusionAuthURL = "http://localhost:9011";
 
     private readonly FusionAuthClient client;
 

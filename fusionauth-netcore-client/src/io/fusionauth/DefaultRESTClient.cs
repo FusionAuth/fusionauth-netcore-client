@@ -173,7 +173,13 @@ namespace io.fusionauth {
         case "GET":
           return httpClient.GetAsync(requestUri);
         case "DELETE":
-          return httpClient.DeleteAsync(requestUri);
+          if (content != null) {
+            var request = new HttpRequestMessage(HttpMethod.Delete, requestUri);
+            request.Content = content;
+            return httpClient.SendAsync(request);
+          } else {
+            return httpClient.DeleteAsync(requestUri);
+          }
         case "PUT":
           return httpClient.PutAsync(requestUri, content);
         case "POST":

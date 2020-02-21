@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using com.inversoft.error;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
@@ -22,6 +23,10 @@ namespace io.fusionauth {
     public string token;
 
     public User user;
+
+    public UserAction userAction;
+
+    public UserActionLog userActionLog;
 
     public TestBuilder() {
       client = new FusionAuthClient(apiKey, "http://localhost:9011");
@@ -98,6 +103,46 @@ namespace io.fusionauth {
       return this;
     }
 
+    public TestBuilder createUserAction(string actionName, bool isTemporal) {
+      var retrieveResponse = client.RetrieveUserActions();
+      assertSuccess(retrieveResponse);
+      foreach (UserAction userAction in retrieveResponse.successResponse.userActions) {
+        if (userAction.name.Equals(actionName)) {
+          assertSuccess(client.DeleteUserAction(userAction.id));
+        }
+      }
+
+      var request = new UserActionRequest()
+      {
+        userAction = new UserAction() {
+          name = actionName,
+          temporal = isTemporal
+        }
+      };
+      var response = client.CreateUserAction(null, request);
+      assertSuccess(response);
+      this.userAction = response.successResponse.userAction;
+      return this;
+    }
+
+    public TestBuilder actionUser() {
+      var actionRequest = new ActionRequest()
+      {
+        broadcast = false,
+        action = new ActionData()
+        {
+          actionerUserId = this.user.id,
+          actioneeUserId = this.user.id,
+          expiry = (this.userAction.temporal.Value) ? DateTimeOffset.Now.AddHours(1) : (DateTimeOffset?)null,
+          userActionId = this.userAction.id
+        }
+      };
+      var actionResponse = client.ActionUser(actionRequest.action.actioneeUserId, actionRequest);
+      assertSuccess(actionResponse);
+      this.userActionLog = actionResponse.successResponse.action;
+      return this;
+    }
+
     public TestBuilder login() {
       var response = client.Login(new LoginRequest()
         .with(lr => lr.applicationId = application.id)
@@ -150,9 +195,49 @@ namespace io.fusionauth {
     }
 
     [Test]
+    public void Patch_Application_Test() {
+      test.createApplication();
+
+      var response = test.client.PatchApplication(test.application.id, new Dictionary<string, object> {
+        {
+          "application", new Dictionary<string, object> {
+            {"passwordlessConfiguration", new Dictionary<string, object> {
+              {"enabled", false}
+            }},
+            {"registrationConfiguration", new Dictionary<string, object> {
+              {"enabled", true}
+            }}
+          }
+        }
+      });
+      test.assertSuccess(response);
+
+      response = test.client.RetrieveApplication(test.application.id);
+      Assert.IsFalse(response.successResponse.application.passwordlessConfiguration.enabled);
+      Assert.IsTrue(response.successResponse.application.registrationConfiguration.enabled);
+    }
+
+    [Test]
+    public void Cancel_Action_Test() {
+      test.createUserAction("CSharpClientUserAction", true)
+          .createUser()
+          .actionUser();
+
+      var request = new ActionRequest()
+      {
+        action = new ActionData()
+        {
+          actionerUserId = test.user.id,
+          comment = "Cancel Action"
+        }
+      };
+      var cancelResponse =  test.client.CancelAction(test.userActionLog.id, request);
+      test.assertSuccess(cancelResponse);
+    }
+
+    [Test]
     public void Retrieve_Application_Test() {
-      test.createApplication()
-        .callClient(client => client.RetrieveApplication(test.application.id));
+      test.createApplication();
 
       var response = test.client.RetrieveApplication(test.application.id);
       Assert.AreEqual("CSharp Client Test", response.successResponse.application.name);
