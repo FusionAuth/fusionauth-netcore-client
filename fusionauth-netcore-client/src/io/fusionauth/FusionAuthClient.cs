@@ -64,21 +64,18 @@ namespace io.fusionauth {
 
     /// <summary>
     /// Takes an action on a user. The user being actioned is called the "actionee" and the user taking the action is called the
-    /// "actioner". Both user ids are required. You pass the actionee's user id into the method and the actioner's is put into the
-    /// request object.
+    /// "actioner". Both user ids are required in the request object.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="actioneeUserId"> The actionee's user id.</param>
     /// <param name="request"> The action request that includes all of the information about the action being taken including
     /// the id of the action, any options and the duration (if applicable).</param>
     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.</returns>
-    public Task<ClientResponse<ActionResponse>> ActionUserAsync(Guid? actioneeUserId, ActionRequest request) {
+    public Task<ClientResponse<ActionResponse>> ActionUserAsync(ActionRequest request) {
       return buildClient()
           .withUri("/api/user/action")
-          .withUriSegment(actioneeUserId)
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<ActionResponse>();
@@ -86,18 +83,16 @@ namespace io.fusionauth {
 		
     /// <summary>
     /// Takes an action on a user. The user being actioned is called the "actionee" and the user taking the action is called the
-    /// "actioner". Both user ids are required. You pass the actionee's user id into the method and the actioner's is put into the
-    /// request object.
+    /// "actioner". Both user ids are required in the request object.
     /// </summary>
-    /// <param name="actioneeUserId"> The actionee's user id.</param>
     /// <param name="request"> The action request that includes all of the information about the action being taken including
      /// the id of the action, any options and the duration (if applicable).</param>
     /// <returns>When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.</returns>
-    public ClientResponse<ActionResponse> ActionUser(Guid? actioneeUserId, ActionRequest request) {
-      return ActionUserAsync(actioneeUserId, request).GetAwaiter().GetResult();
+    public ClientResponse<ActionResponse> ActionUser(ActionRequest request) {
+      return ActionUserAsync(request).GetAwaiter().GetResult();
     }
 
     /// <summary>

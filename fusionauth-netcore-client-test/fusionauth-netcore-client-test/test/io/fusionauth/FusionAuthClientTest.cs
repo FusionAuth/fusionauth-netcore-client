@@ -137,7 +137,7 @@ namespace io.fusionauth {
           userActionId = this.userAction.id
         }
       };
-      var actionResponse = client.ActionUser(actionRequest.action.actioneeUserId, actionRequest);
+      var actionResponse = client.ActionUser(actionRequest);
       assertSuccess(actionResponse);
       this.userActionLog = actionResponse.successResponse.action;
       return this;
