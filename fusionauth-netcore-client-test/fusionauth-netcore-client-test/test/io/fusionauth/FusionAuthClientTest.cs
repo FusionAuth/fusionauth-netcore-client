@@ -4,6 +4,7 @@ using com.inversoft.error;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
 using io.fusionauth.domain.api.user;
+using io.fusionauth.domain.@event;
 using io.fusionauth.domain.provider;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -233,6 +234,34 @@ namespace io.fusionauth {
       };
       var cancelResponse =  test.client.CancelAction(test.userActionLog.id, request);
       test.assertSuccess(cancelResponse);
+    }
+
+    [Test]
+    public void Create_Tenant_Test() {
+      var tenantResponse = test.client.RetrieveTenants();
+      test.assertSuccess(tenantResponse);
+
+      var tenant = tenantResponse.successResponse.tenants[0];
+      tenant.id = null;
+      tenant.name = "C# Tenant";
+      tenant.eventConfiguration = new EventConfiguration()
+          .with(ec => ec.events = new Dictionary<domain.@event.EventType, EventConfigurationData> {
+            {
+              EventType.UserDelete, new EventConfigurationData().with(ecd => ecd.enabled = true)
+            }
+          });
+
+      var createTenantResponse = test.client.CreateTenant(null, new TenantRequest().with(tr => tr.tenant = tenant));
+      test.assertSuccess(createTenantResponse);
+
+      var retrieveTenantResponse = test.client.RetrieveTenant(createTenantResponse.successResponse.tenant.id);
+      test.assertSuccess(retrieveTenantResponse);
+      var userDeleteEvent = retrieveTenantResponse.successResponse.tenant.eventConfiguration.events[EventType.UserDelete];
+      Assert.NotNull(userDeleteEvent);
+      Assert.True(userDeleteEvent.enabled);
+
+      var deleteTenantResponse = test.client.DeleteTenant(createTenantResponse.successResponse.tenant.id);
+      test.assertSuccess(deleteTenantResponse);
     }
 
     [Test]
