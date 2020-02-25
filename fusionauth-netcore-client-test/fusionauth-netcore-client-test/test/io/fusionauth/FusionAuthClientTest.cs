@@ -19,7 +19,7 @@ namespace io.fusionauth {
 
     public Application application;
 
-    public FusionAuthClient client;
+    public FusionAuthSyncClient client;
 
     public string token;
 
@@ -30,11 +30,11 @@ namespace io.fusionauth {
     public UserActionLog userActionLog;
 
     public TestBuilder() {
-      client = new FusionAuthClient(apiKey, "http://localhost:9011");
+      client = new FusionAuthSyncClient(apiKey, "http://localhost:9011");
     }
 
-    public FusionAuthClient newClientWithTenantId(Guid tenantId) {
-      return new FusionAuthClient(apiKey, "http://localhost:9011", tenantId.ToString());
+    public FusionAuthSyncClient newClientWithTenantId(Guid tenantId) {
+      return new FusionAuthSyncClient(apiKey, "http://localhost:9011", tenantId.ToString());
     }
 
     public TestBuilder assertSuccess<T>(ClientResponse<T> response) {
@@ -73,7 +73,7 @@ namespace io.fusionauth {
       return this;
     }
 
-    public TestBuilder callClient(Action<FusionAuthClient> action) {
+    public TestBuilder callClient(Action<FusionAuthSyncClient> action) {
       action(client);
       return this;
     }

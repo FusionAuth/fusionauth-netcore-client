@@ -7,10 +7,10 @@ namespace io.fusionauth {
 
     private const string fusionAuthURL = "http://localhost:9011";
 
-    private readonly FusionAuthClient client;
+    private readonly FusionAuthSyncClient client;
 
     public Example(string apiKey, string fusionAuthURL) {
-      client = new FusionAuthClient(apiKey, fusionAuthURL);
+      client = new FusionAuthSyncClient(apiKey, fusionAuthURL);
     }
 
     public User GetUserByEmail(string email) {
