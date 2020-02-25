@@ -27,6 +27,8 @@ namespace io.fusionauth.domain.provider {
 
     public string authorization_endpoint;
 
+    public ClientAuthenticationMethod clientAuthenticationMethod;
+
     public string client_id;
 
     public string client_secret;
