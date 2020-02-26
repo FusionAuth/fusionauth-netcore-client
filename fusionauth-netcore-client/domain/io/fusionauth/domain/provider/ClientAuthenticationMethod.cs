@@ -15,14 +15,18 @@
  */
 
 
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
 
   public enum ClientAuthenticationMethod {
+        [EnumMember(Value = "None (none)")]
         none, 
+        [EnumMember(Value = "HTTP Basic authentication (client_secret_basic)")]
         client_secret_basic, 
+        [EnumMember(Value = "Client credentials in the request body (client_secret_post)")]
         client_secret_post
   }
 }

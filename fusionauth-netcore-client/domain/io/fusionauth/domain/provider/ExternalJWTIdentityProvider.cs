@@ -36,8 +36,6 @@ namespace io.fusionauth.domain.provider {
 
     public string headerKeyParameter;
 
-    public List<Guid> keyIds;
-
     public IdentityProviderOauth2Configuration oauth2;
 
     public string uniqueIdentityClaim;
