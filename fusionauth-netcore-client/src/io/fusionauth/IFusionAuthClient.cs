@@ -911,13 +911,16 @@ namespace io.fusionauth {
     /// </summary>
     /// <param name="applicationId"> The Application Id for which you are requesting a new access token be issued.</param>
     /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <param name="refreshToken"> (Optional) An existing refresh token used to request a refresh token in addition to a JWT in the response.
+    /// <p>The target application represented by the applicationid request parameter must have refresh 
+    /// tokens enabled in order to receive a refresh token in the response.</p></param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<IssueResponse>> IssueJWTAsync(Guid? applicationId, string encodedJWT);
+    Task<ClientResponse<IssueResponse>> IssueJWTAsync(Guid? applicationId, string encodedJWT, string refreshToken);
 
     /// <summary>
     /// Authenticates a user to FusionAuth. 
@@ -3638,13 +3641,16 @@ namespace io.fusionauth {
    /// </summary>
    /// <param name="applicationId"> The Application Id for which you are requesting a new access token be issued.</param>
    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+   /// <param name="refreshToken"> (Optional) An existing refresh token used to request a refresh token in addition to a JWT in the response.
+    /// <p>The target application represented by the applicationid request parameter must have refresh 
+    /// tokens enabled in order to receive a refresh token in the response.</p></param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<IssueResponse> IssueJWT(Guid? applicationId, string encodedJWT);
+   ClientResponse<IssueResponse> IssueJWT(Guid? applicationId, string encodedJWT, string refreshToken);
 
    /// <summary>
    /// Authenticates a user to FusionAuth. 

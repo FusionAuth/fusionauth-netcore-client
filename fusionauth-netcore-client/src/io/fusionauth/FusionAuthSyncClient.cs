@@ -343,8 +343,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<IssueResponse> IssueJWT(Guid? applicationId, string encodedJWT) {
-      return client.IssueJWTAsync(applicationId, encodedJWT).GetAwaiter().GetResult();
+    public ClientResponse<IssueResponse> IssueJWT(Guid? applicationId, string encodedJWT, string refreshToken) {
+      return client.IssueJWTAsync(applicationId, encodedJWT, refreshToken).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

@@ -673,11 +673,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<IssueResponse>> IssueJWTAsync(Guid? applicationId, string encodedJWT) {
+    public Task<ClientResponse<IssueResponse>> IssueJWTAsync(Guid? applicationId, string encodedJWT, string refreshToken) {
       return buildClient()
           .withUri("/api/jwt/issue")
           .withAuthorization("JWT " + encodedJWT)
           .withParameter("applicationId", applicationId)
+          .withParameter("refreshToken", refreshToken)
           .withMethod("Get")
           .goAsync<IssueResponse>();
     }
