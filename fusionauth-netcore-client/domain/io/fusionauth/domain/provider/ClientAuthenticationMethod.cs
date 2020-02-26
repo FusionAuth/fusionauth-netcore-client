@@ -21,6 +21,7 @@ using System;
 namespace io.fusionauth.domain.provider {
 
   public enum ClientAuthenticationMethod {
+        none, 
         client_secret_basic, 
         client_secret_post
   }
