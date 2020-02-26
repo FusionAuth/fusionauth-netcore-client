@@ -30,11 +30,13 @@ namespace io.fusionauth.domain.provider {
 
     public Dictionary<string, string> claimMap;
 
+    public Guid? defaultKeyId;
+
     public List<string> domains;
 
     public string headerKeyParameter;
 
-    public Dictionary<string, string> keys;
+    public List<Guid> keyIds;
 
     public IdentityProviderOauth2Configuration oauth2;
 
