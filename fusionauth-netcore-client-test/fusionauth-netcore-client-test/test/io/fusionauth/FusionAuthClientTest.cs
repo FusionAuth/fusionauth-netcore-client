@@ -11,9 +11,9 @@ using NUnit.Framework;
 
 namespace io.fusionauth {
   public class TestBuilder {
-    public const string apiKey = Environment.GetEnvironmentVariable("FUSIONAUTH_API_KEY") ?? "bf69486b-4733-4470-a592-f1bfce7af580";
+    public string apiKey = Environment.GetEnvironmentVariable("FUSIONAUTH_API_KEY") ?? "bf69486b-4733-4470-a592-f1bfce7af580";
 
-    public const string fusionauthUrl = Environment.GetEnvironmentVariable("FUSIONAUTH_URL") ?? "http://localhost:9011";
+    public string fusionauthUrl = Environment.GetEnvironmentVariable("FUSIONAUTH_URL") ?? "http://localhost:9011";
 
     public static readonly Guid ApplicationId = new Guid("4eedf18a-9360-40f6-a36c-88269ed5ec55");
 
