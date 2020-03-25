@@ -49,13 +49,13 @@ namespace io.fusionauth.jwks.domain {
 
     public string n;
 
-    public object this[string claim] {
+    public dynamic this[string claim] {
       get => other[claim];
       set => other[claim] = value;
     }
 
     [JsonExtensionData]
-    private readonly Dictionary<string, object> other = new Dictionary<string, object>();
+    private readonly Dictionary<string, dynamic> other = new Dictionary<string, dynamic>();
 
     public string p;
 

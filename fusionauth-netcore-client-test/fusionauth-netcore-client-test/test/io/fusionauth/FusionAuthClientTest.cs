@@ -1,17 +1,27 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using com.inversoft.error;
+using io.fusionauth.converters;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.@event;
 using io.fusionauth.domain.provider;
+using io.fusionauth.jwt.domain;
+using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
 
 namespace io.fusionauth {
   public class TestBuilder {
-    public string apiKey = Environment.GetEnvironmentVariable("FUSIONAUTH_API_KEY") ?? "bf69486b-4733-4470-a592-f1bfce7af580";
+    public string apiKey = Environment.GetEnvironmentVariable("FUSIONAUTH_API_KEY") ??
+                           "bf69486b-4733-4470-a592-f1bfce7af580";
 
     public string fusionauthUrl = Environment.GetEnvironmentVariable("FUSIONAUTH_URL") ?? "http://localhost:9011";
 
@@ -115,8 +125,7 @@ namespace io.fusionauth {
         }
       }
 
-      var request = new UserActionRequest()
-      {
+      var request = new UserActionRequest() {
         userAction = new UserAction() {
           name = actionName,
           temporal = isTemporal
@@ -129,14 +138,12 @@ namespace io.fusionauth {
     }
 
     public TestBuilder actionUser() {
-      var actionRequest = new ActionRequest()
-      {
+      var actionRequest = new ActionRequest() {
         broadcast = false,
-        action = new ActionData()
-        {
+        action = new ActionData() {
           actionerUserId = this.user.id,
           actioneeUserId = this.user.id,
-          expiry = (this.userAction.temporal.Value) ? DateTimeOffset.Now.AddHours(1) : (DateTimeOffset?)null,
+          expiry = (this.userAction.temporal.Value) ? DateTimeOffset.Now.AddHours(1) : (DateTimeOffset?) null,
           userActionId = this.userAction.id
         }
       };
@@ -204,12 +211,15 @@ namespace io.fusionauth {
       var response = test.client.PatchApplication(test.application.id, new Dictionary<string, object> {
         {
           "application", new Dictionary<string, object> {
-            {"passwordlessConfiguration", new Dictionary<string, object> {
-              {"enabled", false}
-            }},
-            {"registrationConfiguration", new Dictionary<string, object> {
-              {"enabled", true}
-            }}
+            {
+              "passwordlessConfiguration", new Dictionary<string, object> {
+                {"enabled", false}
+              }
+            }, {
+              "registrationConfiguration", new Dictionary<string, object> {
+                {"enabled", true}
+              }
+            }
           }
         }
       });
@@ -223,18 +233,16 @@ namespace io.fusionauth {
     [Test]
     public void Cancel_Action_Test() {
       test.createUserAction("CSharpClientUserAction", true)
-          .createUser()
-          .actionUser();
+        .createUser()
+        .actionUser();
 
-      var request = new ActionRequest()
-      {
-        action = new ActionData()
-        {
+      var request = new ActionRequest() {
+        action = new ActionData() {
           actionerUserId = test.user.id,
           comment = "Cancel Action"
         }
       };
-      var cancelResponse =  test.client.CancelAction(test.userActionLog.id, request);
+      var cancelResponse = test.client.CancelAction(test.userActionLog.id, request);
       test.assertSuccess(cancelResponse);
     }
 
@@ -247,18 +255,19 @@ namespace io.fusionauth {
       tenant.id = null;
       tenant.name = "C# Tenant";
       tenant.eventConfiguration = new EventConfiguration()
-          .with(ec => ec.events = new Dictionary<domain.@event.EventType, EventConfigurationData> {
-            {
-              EventType.UserDelete, new EventConfigurationData().with(ecd => ecd.enabled = true)
-            }
-          });
+        .with(ec => ec.events = new Dictionary<domain.@event.EventType, EventConfigurationData> {
+          {
+            EventType.UserDelete, new EventConfigurationData().with(ecd => ecd.enabled = true)
+          }
+        });
 
       var createTenantResponse = test.client.CreateTenant(null, new TenantRequest().with(tr => tr.tenant = tenant));
       test.assertSuccess(createTenantResponse);
 
       var retrieveTenantResponse = test.client.RetrieveTenant(createTenantResponse.successResponse.tenant.id);
       test.assertSuccess(retrieveTenantResponse);
-      var userDeleteEvent = retrieveTenantResponse.successResponse.tenant.eventConfiguration.events[EventType.UserDelete];
+      var userDeleteEvent =
+        retrieveTenantResponse.successResponse.tenant.eventConfiguration.events[EventType.UserDelete];
       Assert.NotNull(userDeleteEvent);
       Assert.True(userDeleteEvent.enabled);
 
@@ -513,7 +522,8 @@ namespace io.fusionauth {
         var defaultTenant = tenantResponse.successResponse.tenants.Find(tenant => tenant.name.Equals("Default"));
 
         defaultTenant.emailConfiguration.verifyEmail = true;
-        defaultTenant.emailConfiguration.verificationEmailTemplateId = new Guid("4d9e1e1c-1bae-4412-97cd-576825ce14c7"); // TODO create a dummy template or find our default one
+        defaultTenant.emailConfiguration.verificationEmailTemplateId =
+          new Guid("4d9e1e1c-1bae-4412-97cd-576825ce14c7"); // TODO create a dummy template or find our default one
         defaultTenant.name = "Verification Required Tenant";
         defaultTenant.id = null;
 
@@ -562,6 +572,62 @@ namespace io.fusionauth {
 
       Assert.AreEqual(loginResponse.statusCode, 212);
       Assert.NotNull(loginResponse.successResponse);
+    }
+  }
+
+  /// <summary>
+  /// A collection of unit tests that are separate from any network calls. Simply testing that the code behaves as expected.
+  /// </summary>
+  [TestFixture]
+  public class FusionAuthClientUnitTest {
+
+    /// <summary>
+    /// Copied from the DefaultRestClient. You will need to update both if you have issues with converters.
+    /// </summary>
+    static FusionAuthClientUnitTest() {
+      JsonConvert.DefaultSettings = () =>
+        new JsonSerializerSettings {
+          NullValueHandling = NullValueHandling.Ignore,
+          Converters = new List<JsonConverter> {
+            new StringEnumConverter(),
+            new DateTimeOffsetConverter(),
+            new IdentityProviderConverter()
+          },
+          ContractResolver = new DefaultContractResolver()
+        };
+    }
+    
+    [Test]
+    public void JWTOtherFieldsTest() {
+      var json = ReadManifestData<FusionAuthClientUnitTest>("JWTOtherFieldsTest.json");
+
+      var jwt = JsonConvert.DeserializeObject<JWT>(json);
+
+      Assert.AreEqual(jwt["0"], new JArray() {"role 1"});
+      Assert.AreEqual(jwt["1"], "Test");
+      Assert.AreEqual(jwt["2"], 2);
+      Assert.AreEqual(jwt["3"], new JArray() {
+        "a",
+        "list",
+        "of",
+        "roles"
+      });
+    }
+
+    public static string ReadManifestData<TSource>(string embeddedFileName) where TSource : class {
+      var assembly = typeof(TSource).GetTypeInfo().Assembly;
+      var resourceName = assembly.GetManifestResourceNames()
+        .First(s => s.EndsWith(embeddedFileName, StringComparison.CurrentCultureIgnoreCase));
+
+      using (var stream = assembly.GetManifestResourceStream(resourceName)) {
+        if (stream == null) {
+          throw new InvalidOperationException("Could not load manifest resource stream.");
+        }
+
+        using (var reader = new StreamReader(stream)) {
+          return reader.ReadToEnd();
+        }
+      }
     }
   }
 }
