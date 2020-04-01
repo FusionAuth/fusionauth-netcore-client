@@ -45,13 +45,13 @@ namespace io.fusionauth.jwt.domain {
 
     public DateTimeOffset? nbf;
 
-    public object this[string claim] {
+    public dynamic this[string claim] {
       get => otherClaims[claim];
       set => otherClaims[claim] = value;
     }
 
     [JsonExtensionData]
-    private readonly Dictionary<string, object> otherClaims = new Dictionary<string, object>();
+    private readonly Dictionary<string, dynamic> otherClaims = new Dictionary<string, dynamic>();
 
     public string sub;
 
