@@ -185,7 +185,11 @@ namespace io.fusionauth {
         case "POST":
           return httpClient.PostAsync(requestUri, content);
         case "PATCH":
-          return httpClient.PatchAsync(requestUri, content);
+          var patchRequest = new HttpRequestMessage();
+          patchRequest.Method = new HttpMethod("PATCH");
+          patchRequest.Content = content;
+          patchRequest.RequestUri = new Uri(requestUri, UriKind.Relative);
+          return httpClient.SendAsync(patchRequest);
         default:
           throw new MissingMethodException("This REST client does not support that method. (yet?)");
       }
