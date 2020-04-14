@@ -13,6 +13,10 @@ Refer to the FusionAuth API documentation for request and response formats.
 * https://fusionauth.io/docs/v1/tech/apis/
 * https://fusionauth.io/docs/v1/tech/client-libraries/netcore
 
+## Supported Frameworks
+* .Net Standard 2.0, 2.1
+* .Net Core 2.1, 3.1
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/FusionAuth/fusionauth-netcore-client.
