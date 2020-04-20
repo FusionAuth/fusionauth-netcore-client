@@ -8,6 +8,7 @@ using io.fusionauth.converters;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
 using io.fusionauth.domain.api.user;
+using io.fusionauth.domain.@email;
 using io.fusionauth.domain.@event;
 using io.fusionauth.domain.provider;
 using io.fusionauth.jwt.domain;
@@ -119,9 +120,11 @@ namespace io.fusionauth {
     public TestBuilder createUserAction(string actionName, bool isTemporal) {
       var retrieveResponse = client.RetrieveUserActions();
       assertSuccess(retrieveResponse);
-      foreach (UserAction userAction in retrieveResponse.successResponse.userActions) {
-        if (userAction.name.Equals(actionName)) {
-          assertSuccess(client.DeleteUserAction(userAction.id));
+      if (retrieveResponse.successResponse.userActions != null) {
+        foreach (UserAction userAction in retrieveResponse.successResponse.userActions) {
+          if (userAction.name.Equals(actionName)) {
+            assertSuccess(client.DeleteUserAction(userAction.id));
+          }
         }
       }
 
@@ -426,7 +429,8 @@ namespace io.fusionauth {
       // 404, Wrong tenant Id
       var createTenantResponse =
         test.client.CreateTenant(null, new TenantRequest()
-          .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant")));
+          .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant"))
+          .with(tr => tr.sourceTenantId = tenantId));
       test.assertSuccess(createTenantResponse);
 
       var wrongTenantClient =
@@ -498,9 +502,11 @@ namespace io.fusionauth {
       Assert.IsNotNull(response.successResponse.tenants);
       Assert.AreEqual(response.successResponse.tenants[0].name, "Default");
 
+      // Make a copy of the default tenant
       var createResponse =
         test.client.CreateTenant(null, new TenantRequest()
-          .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant")));
+          .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant"))
+          .with(tr => tr.sourceTenantId = response.successResponse.tenants[0].id));
       test.assertSuccess(createResponse);
       Assert.AreEqual(createResponse.successResponse.tenant.name, "C# Tenant");
       Assert.IsNotNull(createResponse.successResponse.tenant.id);
@@ -515,26 +521,26 @@ namespace io.fusionauth {
 
       test.assertSuccess(tenantResponse);
 
-      var verificationRequiredTenant =
-        tenantResponse.successResponse.tenants.Find(tenant => tenant.name.Equals("Verification Required Tenant"));
+      // Retrieve the default verification template
+      var emailTemplateResponse = test.client.RetrieveEmailTemplates();
+      test.assertSuccess(emailTemplateResponse);
+      var emailVerificationTemplate = emailTemplateResponse.successResponse.emailTemplates[0];
+      Assert.IsNotNull(emailVerificationTemplate);
 
-      if (verificationRequiredTenant == null) {
-        var defaultTenant = tenantResponse.successResponse.tenants.Find(tenant => tenant.name.Equals("Default"));
+      // Create a second tenant, based on the default tenant, with email verification enabled
+      var defaultTenant = tenantResponse.successResponse.tenants.Find(tenant => tenant.name.Equals("Default"));
 
-        defaultTenant.emailConfiguration.verifyEmail = true;
-        defaultTenant.emailConfiguration.verificationEmailTemplateId =
-          new Guid("4d9e1e1c-1bae-4412-97cd-576825ce14c7"); // TODO create a dummy template or find our default one
-        defaultTenant.name = "Verification Required Tenant";
-        defaultTenant.id = null;
+      defaultTenant.emailConfiguration.verifyEmail = true;
+      defaultTenant.emailConfiguration.verificationEmailTemplateId = emailVerificationTemplate.id;
+      defaultTenant.name = "Verification Required Tenant";
+      defaultTenant.id = null;
 
-        tenantResponse =
-          test.client.CreateTenant(null, new TenantRequest().with(request => request.tenant = defaultTenant));
+      tenantResponse =
+        test.client.CreateTenant(null, new TenantRequest().with(request => request.tenant = defaultTenant));
+      test.assertSuccess(tenantResponse);
+      var verificationRequiredTenant = tenantResponse.successResponse.tenant;
 
-        test.assertSuccess(tenantResponse);
-
-        verificationRequiredTenant = tenantResponse.successResponse.tenant;
-      }
-
+      // Create a new application within the new tenant requiring email verification
       var applicationResponse = test.client.RetrieveApplications();
 
       test.assertSuccess(applicationResponse);
@@ -572,6 +578,10 @@ namespace io.fusionauth {
 
       Assert.AreEqual(loginResponse.statusCode, 212);
       Assert.NotNull(loginResponse.successResponse);
+
+      // Cleanup the verificationRequiredTenant, this will also delete the verificationRequiredApplication
+      var deleteTenantResponse = test.client.DeleteTenant(verificationRequiredTenant.id);
+      test.assertSuccess(deleteTenantResponse);
     }
   }
 
