@@ -25,6 +25,10 @@ namespace io.fusionauth.domain {
    */
   public class EmailConfiguration {
 
+    public string defaultFromEmail;
+
+    public string defaultFromName;
+
     public Guid? forgotPasswordEmailTemplateId;
 
     public string host;

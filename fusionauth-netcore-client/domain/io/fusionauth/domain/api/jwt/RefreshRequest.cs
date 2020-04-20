@@ -27,6 +27,8 @@ namespace io.fusionauth.domain.api.jwt {
 
     public string refreshToken;
 
+    public string token;
+
     public RefreshRequest with(Action<RefreshRequest> action) {
       action(this);
       return this;

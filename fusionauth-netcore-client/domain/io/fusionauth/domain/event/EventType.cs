@@ -43,6 +43,8 @@ namespace io.fusionauth.domain.@event {
         UserAction, 
         [EnumMember(Value = "jwt.refresh-token.revoke")]
         JWTRefreshTokenRevoke, 
+        [EnumMember(Value = "jwt.refresh")]
+        JWTRefresh, 
         [EnumMember(Value = "jwt.public-key.update")]
         JWTPublicKeyUpdate, 
         [EnumMember(Value = "user.login.success")]

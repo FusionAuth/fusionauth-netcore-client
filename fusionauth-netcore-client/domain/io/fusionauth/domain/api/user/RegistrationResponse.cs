@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.api.user {
 
     public UserRegistration registration;
 
+    public string token;
+
     public User user;
 
     public RegistrationResponse with(Action<RegistrationResponse> action) {

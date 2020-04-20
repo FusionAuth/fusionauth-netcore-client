@@ -15,24 +15,29 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.@event {
 
   /**
-   * User API response object.
+   * Models the JWT Refresh Event. This event will be fired when a JWT is "refreshed" (generated) using a Refresh Token.
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserResponse {
+  public class JWTRefreshEvent: BaseEvent {
+
+    public Guid? applicationId;
+
+    public string original;
+
+    public string refreshToken;
 
     public string token;
 
-    public User user;
+    public Guid? userId;
 
-    public UserResponse with(Action<UserResponse> action) {
+    public JWTRefreshEvent with(Action<JWTRefreshEvent> action) {
       action(this);
       return this;
     }

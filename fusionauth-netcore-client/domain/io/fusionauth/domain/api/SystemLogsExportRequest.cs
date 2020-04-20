@@ -15,24 +15,19 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api {
 
   /**
-   * User API response object.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserResponse {
+  public class SystemLogsExportRequest: BaseExportRequest {
 
-    public string token;
+    public int? lastNBytes;
 
-    public User user;
-
-    public UserResponse with(Action<UserResponse> action) {
+    public SystemLogsExportRequest with(Action<SystemLogsExportRequest> action) {
       action(this);
       return this;
     }
