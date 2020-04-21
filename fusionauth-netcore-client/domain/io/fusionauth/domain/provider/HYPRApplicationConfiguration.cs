@@ -26,12 +26,6 @@ namespace io.fusionauth.domain.provider {
    */
   public class HYPRApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
 
-    public bool? licensingEnabled;
-
-    public bool? licensingEnabledOverride;
-
-    public string licensingURL;
-
     public string relyingPartyApplicationId;
 
     public string relyingPartyURL;
