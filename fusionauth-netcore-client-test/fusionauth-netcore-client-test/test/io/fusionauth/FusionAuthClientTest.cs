@@ -235,7 +235,8 @@ namespace io.fusionauth {
 
     [Test]
     public void Cancel_Action_Test() {
-      test.createUserAction("CSharpClientUserAction", true)
+      test.createApplication()
+        .createUserAction("CSharpClientUserAction", true)
         .createUser()
         .actionUser();
 
