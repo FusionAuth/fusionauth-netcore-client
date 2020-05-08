@@ -23,7 +23,11 @@ namespace io.fusionauth.domain.api.identityProvider {
 
   public class IdentityProviderDetails {
 
+    public List<Guid> applicationIds;
+
     public Guid? id;
+
+    public string idpEndpoint;
 
     public string name;
 
