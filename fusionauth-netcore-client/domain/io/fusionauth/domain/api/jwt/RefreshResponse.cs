@@ -26,6 +26,8 @@ namespace io.fusionauth.domain.api.jwt {
    */
   public class RefreshResponse {
 
+    public string refreshToken;
+
     public List<RefreshToken> refreshTokens;
 
     public string token;

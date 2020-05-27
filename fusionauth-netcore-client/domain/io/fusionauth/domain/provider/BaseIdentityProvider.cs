@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.provider {
 
     public Guid? id;
 
+    public LambdaConfiguration lambdaConfiguration;
+
     public string name;
 
     public IdentityProviderType type;

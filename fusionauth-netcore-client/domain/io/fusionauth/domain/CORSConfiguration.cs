@@ -21,6 +21,9 @@ using System;
 
 namespace io.fusionauth.domain {
 
+  /**
+   * @author Trevor Smith
+   */
   public class CORSConfiguration: Enableable {
 
     public bool? allowCredentials;

@@ -32,7 +32,13 @@ namespace io.fusionauth.domain {
 
     public Guid? idTokenKeyId;
 
+    public RefreshTokenExpirationPolicy refreshTokenExpirationPolicy;
+
+    public RefreshTokenRevocationPolicy refreshTokenRevocationPolicy;
+
     public int? refreshTokenTimeToLiveInMinutes;
+
+    public RefreshTokenUsagePolicy refreshTokenUsagePolicy;
 
     public int? timeToLiveInSeconds;
 

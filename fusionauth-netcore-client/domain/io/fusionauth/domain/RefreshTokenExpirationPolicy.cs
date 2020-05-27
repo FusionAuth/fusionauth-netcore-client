@@ -15,39 +15,16 @@
  */
 
 
-using io.fusionauth.domain;
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain {
 
   /**
-   * SAML v2 identity provider configuration.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class SAMLv2IdentityProvider: BaseIdentityProvider<SAMLv2ApplicationConfiguration> {
-
-    public string buttonImageURL;
-
-    public string buttonText;
-
-    public List<string> domains;
-
-    public string emailClaim;
-
-    public string idpEndpoint;
-
-    public string issuer;
-
-    public Guid? keyId;
-
-    public bool? useNameIdForEmail;
-
-    public SAMLv2IdentityProvider with(Action<SAMLv2IdentityProvider> action) {
-      action(this);
-      return this;
-    }
+  public enum RefreshTokenExpirationPolicy {
+        Fixed, 
+        SlidingWindow
   }
 }

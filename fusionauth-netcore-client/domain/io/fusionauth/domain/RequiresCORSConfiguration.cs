@@ -21,43 +21,13 @@ using System;
 namespace io.fusionauth.domain {
 
   /**
-   * Domain for a public key, key pair or an HMAC secret. This is used by KeyMaster to manage keys for JWTs, SAML, etc.
+   * Interface describing the need for CORS configuration.
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class Key {
+  public class RequiresCORSConfiguration {
 
-    public KeyAlgorithm algorithm;
-
-    public string certificate;
-
-    public CertificateInformation certificateInformation;
-
-    public DateTimeOffset? expirationInstant;
-
-    public bool? hasPrivateKey;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public string issuer;
-
-    public string kid;
-
-    public int? length;
-
-    public string name;
-
-    public string privateKey;
-
-    public string publicKey;
-
-    public string secret;
-
-    public KeyType type;
-
-    public Key with(Action<Key> action) {
+    public RequiresCORSConfiguration with(Action<RequiresCORSConfiguration> action) {
       action(this);
       return this;
     }

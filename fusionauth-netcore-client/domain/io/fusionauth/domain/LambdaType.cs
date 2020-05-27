@@ -29,6 +29,7 @@ namespace io.fusionauth.domain {
         JWTPopulate, 
         OpenIDReconcile, 
         SAMLv2Reconcile, 
-        SAMLv2Populate
+        SAMLv2Populate, 
+        GenericIdpReconcile
   }
 }

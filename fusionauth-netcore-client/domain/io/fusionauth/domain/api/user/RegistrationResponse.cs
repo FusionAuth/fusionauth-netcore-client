@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.api.user {
    */
   public class RegistrationResponse {
 
+    public string refreshToken;
+
     public UserRegistration registration;
 
     public string token;

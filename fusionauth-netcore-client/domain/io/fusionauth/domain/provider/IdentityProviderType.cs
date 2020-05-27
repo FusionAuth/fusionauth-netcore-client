@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.provider {
         Google, 
         Twitter, 
         SAMLv2, 
-        HYPR
+        HYPR, 
+        Apple
   }
 }

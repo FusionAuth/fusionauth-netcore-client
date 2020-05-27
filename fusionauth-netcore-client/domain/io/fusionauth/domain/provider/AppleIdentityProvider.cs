@@ -15,49 +15,30 @@
  */
 
 
+using io.fusionauth.domain;
+using io.fusionauth.domain.jwks;
+using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.provider {
 
   /**
-   * Domain for a public key, key pair or an HMAC secret. This is used by KeyMaster to manage keys for JWTs, SAML, etc.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class Key {
+  public class AppleIdentityProvider: BaseIdentityProvider<AppleApplicationConfiguration> {
 
-    public KeyAlgorithm algorithm;
+    public string buttonText;
 
-    public string certificate;
+    public Guid? keyId;
 
-    public CertificateInformation certificateInformation;
+    public string scope;
 
-    public DateTimeOffset? expirationInstant;
+    public string servicesId;
 
-    public bool? hasPrivateKey;
+    public string teamId;
 
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public string issuer;
-
-    public string kid;
-
-    public int? length;
-
-    public string name;
-
-    public string privateKey;
-
-    public string publicKey;
-
-    public string secret;
-
-    public KeyType type;
-
-    public Key with(Action<Key> action) {
+    public AppleIdentityProvider with(Action<AppleIdentityProvider> action) {
       action(this);
       return this;
     }

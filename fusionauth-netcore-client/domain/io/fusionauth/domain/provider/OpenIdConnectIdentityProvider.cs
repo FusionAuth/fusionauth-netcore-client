@@ -32,8 +32,6 @@ namespace io.fusionauth.domain.provider {
 
     public List<string> domains;
 
-    public LambdaConfiguration lambdaConfiguration;
-
     public IdentityProviderOauth2Configuration oauth2;
 
     public OpenIdConnectIdentityProvider with(Action<OpenIdConnectIdentityProvider> action) {
