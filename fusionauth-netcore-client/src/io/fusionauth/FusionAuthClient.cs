@@ -405,10 +405,10 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> DeleteKeyAsync(Guid? keyOd) {
+    public Task<ClientResponse<RESTVoid>> DeleteKeyAsync(Guid? keyId) {
       return buildClient()
           .withUri("/api/key")
-          .withUriSegment(keyOd)
+          .withUriSegment(keyId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }

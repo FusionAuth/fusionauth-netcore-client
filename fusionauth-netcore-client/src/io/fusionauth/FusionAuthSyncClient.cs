@@ -212,8 +212,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> DeleteKey(Guid? keyOd) {
-      return client.DeleteKeyAsync(keyOd).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> DeleteKey(Guid? keyId) {
+      return client.DeleteKeyAsync(keyId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

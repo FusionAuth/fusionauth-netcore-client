@@ -526,14 +526,14 @@ namespace io.fusionauth {
     /// Deletes the key for the given Id.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="keyOd"> The Id of the key to delete.</param>
+    /// <param name="keyId"> The Id of the key to delete.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> DeleteKeyAsync(Guid? keyOd);
+    Task<ClientResponse<RESTVoid>> DeleteKeyAsync(Guid? keyId);
 
     /// <summary>
     /// Deletes the lambda for the given Id.
@@ -3282,14 +3282,14 @@ namespace io.fusionauth {
    /// <summary>
    /// Deletes the key for the given Id.
    /// </summary>
-   /// <param name="keyOd"> The Id of the key to delete.</param>
+   /// <param name="keyId"> The Id of the key to delete.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> DeleteKey(Guid? keyOd);
+   ClientResponse<RESTVoid> DeleteKey(Guid? keyId);
 
    /// <summary>
    /// Deletes the lambda for the given Id.
