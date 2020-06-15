@@ -103,12 +103,12 @@ namespace io.fusionauth {
       return withParameter(name, value.ToString());
     }
 
-    public IRESTClient withParameter<T>(string name, IEnumerable<T> value)
-    {
-        if (value == null)
-            return this;
+    public IRESTClient withParameter<T>(string name, IEnumerable<T> value) {
+      if (value == null) {
+        return this;
+      }
 
-        return value.Aggregate(this, (current, val) => current.withParameter(name, val));
+      return value.Aggregate(this, (current, val) => current.withParameter(name, val));
     }
     
     /**
