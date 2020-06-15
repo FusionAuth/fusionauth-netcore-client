@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -101,6 +103,14 @@ namespace io.fusionauth {
       return withParameter(name, value.ToString());
     }
 
+    public IRESTClient withParameter<T>(string name, IEnumerable<T> value)
+    {
+        if (value == null)
+            return this;
+
+        return value.Aggregate(this, (current, val) => current.withParameter(name, val));
+    }
+    
     /**
      * Run the request and return a promise. This promise will resolve if the request is successful
      * and reject otherwise.

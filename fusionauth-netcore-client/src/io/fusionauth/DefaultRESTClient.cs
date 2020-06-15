@@ -36,7 +36,7 @@ namespace io.fusionauth {
 
     public String uri = "";
 
-    public Dictionary<string, string> parameters = new Dictionary<string, string>();
+    public List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>();
 
     public Dictionary<string, string> headers = new Dictionary<string, string>();
 
@@ -146,7 +146,7 @@ namespace io.fusionauth {
      * @param value The value of the parameter, may be a string, object or number.
      */
     public override IRESTClient withParameter(string name, string value) {
-      parameters[name] = value;
+      parameters.Add(new KeyValuePair<string, string>(name, value));
       return this;
     }
 
