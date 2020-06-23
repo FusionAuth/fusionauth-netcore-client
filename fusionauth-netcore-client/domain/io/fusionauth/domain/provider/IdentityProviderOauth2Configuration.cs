@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.provider {
 
     public string client_secret;
 
+    public string emailClaim;
+
     public string issuer;
 
     public string scope;
