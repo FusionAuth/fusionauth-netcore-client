@@ -35,8 +35,6 @@ namespace io.fusionauth.domain {
 
     public string comment;
 
-    public DateTimeOffset? createInstant;
-
     public bool? emailUserOnEnd;
 
     public bool? endEventSent;
@@ -46,6 +44,8 @@ namespace io.fusionauth.domain {
     public LogHistory history;
 
     public Guid? id;
+
+    public DateTimeOffset? insertInstant;
 
     public string localizedName;
 

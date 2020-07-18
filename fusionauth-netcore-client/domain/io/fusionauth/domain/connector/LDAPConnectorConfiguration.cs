@@ -15,27 +15,42 @@
  */
 
 
+using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.connector {
 
   /**
-   * Models a family grouping of users.
+   * Models an LDAP connector.
    *
-   * @author Brian Pontarelli
+   * @author Trevor Smith
    */
-  public class Family {
+  public class LDAPConnectorConfiguration: BaseConnectorConfiguration {
 
-    public Guid? id;
+    public string authenticationURL;
 
-    public DateTimeOffset? insertInstant;
+    public string baseStructure;
 
-    public DateTimeOffset? lastUpdateInstant;
+    public int? connectTimeout;
 
-    public List<FamilyMember> members;
+    public string identifyingAttribute;
 
-    public Family with(Action<Family> action) {
+    public LambdaConfiguration lambdaConfiguration;
+
+    public string loginIdAttribute;
+
+    public int? readTimeout;
+
+    public List<string> requestedAttributes;
+
+    public LDAPSecurityMethod securityMethod;
+
+    public string systemAccountDN;
+
+    public string systemAccountPassword;
+
+    public LDAPConnectorConfiguration with(Action<LDAPConnectorConfiguration> action) {
       action(this);
       return this;
     }

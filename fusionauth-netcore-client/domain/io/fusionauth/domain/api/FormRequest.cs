@@ -15,27 +15,24 @@
  */
 
 
+using io.fusionauth.domain.form;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
-   * The types of lambdas that indicate how they are invoked by FusionAuth.
+   * Form response.
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public enum LambdaType {
-        JWTPopulate, 
-        OpenIDReconcile, 
-        SAMLv2Reconcile, 
-        SAMLv2Populate, 
-        AppleReconcile, 
-        ExternalJWTReconcile, 
-        FacebookReconcile, 
-        GoogleReconcile, 
-        HYPRReconcile, 
-        TwitterReconcile, 
-        LDAPConnectorReconcile
+  public class FormRequest {
+
+    public Form form;
+
+    public FormRequest with(Action<FormRequest> action) {
+      action(this);
+      return this;
+    }
   }
 }

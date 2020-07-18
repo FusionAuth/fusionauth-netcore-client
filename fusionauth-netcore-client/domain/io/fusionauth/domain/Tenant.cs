@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.connector;
 using System.Collections.Generic;
 using System;
 
@@ -26,6 +27,8 @@ namespace io.fusionauth.domain {
   public class Tenant {
 
     public bool? configured;
+
+    public List<ConnectorPolicy> connectorPolicies;
 
     public Dictionary<string, object> data;
 
@@ -43,9 +46,13 @@ namespace io.fusionauth.domain {
 
     public Guid? id;
 
+    public DateTimeOffset? insertInstant;
+
     public string issuer;
 
     public JWTConfiguration jwtConfiguration;
+
+    public DateTimeOffset? lastUpdateInstant;
 
     public string logoutURL;
 

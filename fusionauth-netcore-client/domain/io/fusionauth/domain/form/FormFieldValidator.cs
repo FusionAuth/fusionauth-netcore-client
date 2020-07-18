@@ -19,42 +19,16 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.email {
+namespace io.fusionauth.domain.form {
 
   /**
-   * Stores an email template used to send emails to users.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class EmailTemplate {
+  public class FormFieldValidator: Enableable {
 
-    public string defaultFromName;
+    public string expression;
 
-    public string defaultHtmlTemplate;
-
-    public string defaultSubject;
-
-    public string defaultTextTemplate;
-
-    public string fromEmail;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public LocalizedStrings localizedFromNames;
-
-    public LocalizedStrings localizedHtmlTemplates;
-
-    public LocalizedStrings localizedSubjects;
-
-    public LocalizedStrings localizedTextTemplates;
-
-    public string name;
-
-    public EmailTemplate with(Action<EmailTemplate> action) {
+    public FormFieldValidator with(Action<FormFieldValidator> action) {
       action(this);
       return this;
     }

@@ -18,46 +18,42 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.form {
 
   /**
-   * User registration information for a single application.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserRegistration {
+  public class FormField {
 
-    public Guid? applicationId;
+    public bool? confirm;
 
-    public string authenticationToken;
+    public Guid? consentId;
 
-    public Guid? cleanSpeakId;
+    public FormControl control;
 
     public Dictionary<string, object> data;
+
+    public string description;
 
     public Guid? id;
 
     public DateTimeOffset? insertInstant;
 
-    public DateTimeOffset? lastLoginInstant;
+    public string key;
 
     public DateTimeOffset? lastUpdateInstant;
 
-    public List<string> preferredLanguages;
+    public string name;
 
-    public List<string> roles;
+    public List<string> options;
 
-    public string timezone;
+    public bool? required;
 
-    public Dictionary<string, string> tokens;
+    public FormDataType type;
 
-    public string username;
+    public FormFieldValidator validator;
 
-    public ContentStatus usernameStatus;
-
-    public bool? verified;
-
-    public UserRegistration with(Action<UserRegistration> action) {
+    public FormField with(Action<FormField> action) {
       action(this);
       return this;
     }

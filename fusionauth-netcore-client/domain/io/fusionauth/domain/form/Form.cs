@@ -18,20 +18,12 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.form {
 
   /**
-   * User registration information for a single application.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserRegistration {
-
-    public Guid? applicationId;
-
-    public string authenticationToken;
-
-    public Guid? cleanSpeakId;
+  public class Form {
 
     public Dictionary<string, object> data;
 
@@ -39,25 +31,15 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? insertInstant;
 
-    public DateTimeOffset? lastLoginInstant;
-
     public DateTimeOffset? lastUpdateInstant;
 
-    public List<string> preferredLanguages;
+    public string name;
 
-    public List<string> roles;
+    public List<FormStep> steps;
 
-    public string timezone;
+    public FormType type;
 
-    public Dictionary<string, string> tokens;
-
-    public string username;
-
-    public ContentStatus usernameStatus;
-
-    public bool? verified;
-
-    public UserRegistration with(Action<UserRegistration> action) {
+    public Form with(Action<Form> action) {
       action(this);
       return this;
     }

@@ -18,24 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.connector {
 
   /**
-   * The types of lambdas that indicate how they are invoked by FusionAuth.
+   * Models the FusionAuth connector.
    *
-   * @author Brian Pontarelli
+   * @author Trevor Smith
    */
-  public enum LambdaType {
-        JWTPopulate, 
-        OpenIDReconcile, 
-        SAMLv2Reconcile, 
-        SAMLv2Populate, 
-        AppleReconcile, 
-        ExternalJWTReconcile, 
-        FacebookReconcile, 
-        GoogleReconcile, 
-        HYPRReconcile, 
-        TwitterReconcile, 
-        LDAPConnectorReconcile
+  public class FusionAuthConnectorConfiguration: BaseConnectorConfiguration {
+
+    public FusionAuthConnectorConfiguration with(Action<FusionAuthConnectorConfiguration> action) {
+      action(this);
+      return this;
+    }
   }
 }

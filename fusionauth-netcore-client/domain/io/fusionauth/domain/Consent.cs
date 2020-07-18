@@ -39,6 +39,10 @@ namespace io.fusionauth.domain {
 
     public Guid? id;
 
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
     public bool? multipleValuesAllowed;
 
     public string name;

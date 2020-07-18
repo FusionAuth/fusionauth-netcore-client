@@ -37,6 +37,10 @@ namespace io.fusionauth.domain {
 
     public EventLogConfiguration @eventLogConfiguration;
 
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
     public LoginRecordConfiguration loginRecordConfiguration;
 
     public string reportTimezone;

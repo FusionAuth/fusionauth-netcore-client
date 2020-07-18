@@ -15,27 +15,19 @@
  */
 
 
+using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.connector {
 
-  /**
-   * The types of lambdas that indicate how they are invoked by FusionAuth.
-   *
-   * @author Brian Pontarelli
-   */
-  public enum LambdaType {
-        JWTPopulate, 
-        OpenIDReconcile, 
-        SAMLv2Reconcile, 
-        SAMLv2Populate, 
-        AppleReconcile, 
-        ExternalJWTReconcile, 
-        FacebookReconcile, 
-        GoogleReconcile, 
-        HYPRReconcile, 
-        TwitterReconcile, 
-        LDAPConnectorReconcile
+  public class LambdaConfiguration {
+
+    public Guid? reconcileId;
+
+    public LambdaConfiguration with(Action<LambdaConfiguration> action) {
+      action(this);
+      return this;
+    }
   }
 }

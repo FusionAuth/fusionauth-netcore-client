@@ -19,42 +19,30 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.email {
+namespace io.fusionauth.domain.connector {
 
   /**
-   * Stores an email template used to send emails to users.
+   * Models a generic connector.
    *
-   * @author Brian Pontarelli
+   * @author Trevor Smith
    */
-  public class EmailTemplate {
+  public class GenericConnectorConfiguration: BaseConnectorConfiguration {
 
-    public string defaultFromName;
+    public string authenticationURL;
 
-    public string defaultHtmlTemplate;
+    public int? connectTimeout;
 
-    public string defaultSubject;
+    public HTTPHeaders headers;
 
-    public string defaultTextTemplate;
+    public string httpAuthenticationPassword;
 
-    public string fromEmail;
+    public string httpAuthenticationUsername;
 
-    public Guid? id;
+    public int? readTimeout;
 
-    public DateTimeOffset? insertInstant;
+    public Guid? sslCertificateKeyId;
 
-    public DateTimeOffset? lastUpdateInstant;
-
-    public LocalizedStrings localizedFromNames;
-
-    public LocalizedStrings localizedHtmlTemplates;
-
-    public LocalizedStrings localizedSubjects;
-
-    public LocalizedStrings localizedTextTemplates;
-
-    public string name;
-
-    public EmailTemplate with(Action<EmailTemplate> action) {
+    public GenericConnectorConfiguration with(Action<GenericConnectorConfiguration> action) {
       action(this);
       return this;
     }

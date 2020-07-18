@@ -31,9 +31,13 @@ namespace io.fusionauth.domain {
 
     public Guid? id;
 
+    public DateTimeOffset? insertInstant;
+
     public bool? isDefault;
 
     public bool? isSuperRole;
+
+    public DateTimeOffset? lastUpdateInstant;
 
     public string name;
 

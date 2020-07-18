@@ -33,7 +33,11 @@ namespace io.fusionauth.domain.provider {
 
     public Guid? id;
 
+    public DateTimeOffset? insertInstant;
+
     public LambdaConfiguration lambdaConfiguration;
+
+    public DateTimeOffset? lastUpdateInstant;
 
     public string name;
 

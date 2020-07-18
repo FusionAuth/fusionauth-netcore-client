@@ -29,6 +29,10 @@ namespace io.fusionauth.domain {
 
     public Guid? id;
 
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
     public string name;
 
     public Dictionary<Guid, List<ApplicationRole>> roles;

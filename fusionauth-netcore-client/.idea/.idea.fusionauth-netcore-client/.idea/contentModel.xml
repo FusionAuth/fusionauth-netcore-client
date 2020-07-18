@@ -41,6 +41,7 @@
               <e p="Consent.cs" t="Include" />
               <e p="ConsentStatus.cs" t="Include" />
               <e p="ContentStatus.cs" t="Include" />
+              <e p="CustomRegistration.cs" t="Include" />
               <e p="DeleteConfiguration.cs" t="Include" />
               <e p="DisplayableRawLogin.cs" t="Include" />
               <e p="EmailConfiguration.cs" t="Include" />
@@ -92,6 +93,7 @@
               <e p="RefreshTokenRevocationPolicy.cs" t="Include" />
               <e p="RefreshTokenUsagePolicy.cs" t="Include" />
               <e p="RegistrationConfiguration.cs" t="Include" />
+              <e p="RegistrationType.cs" t="Include" />
               <e p="RememberPreviousPasswords.cs" t="Include" />
               <e p="Requirable.cs" t="Include" />
               <e p="RequiresCORSConfiguration.cs" t="Include" />
@@ -130,6 +132,8 @@
                 <e p="AuditLogSearchResponse.cs" t="Include" />
                 <e p="BaseExportRequest.cs" t="Include" />
                 <e p="BaseLoginRequest.cs" t="Include" />
+                <e p="ConnectorRequest.cs" t="Include" />
+                <e p="ConnectorResponse.cs" t="Include" />
                 <e p="ConsentRequest.cs" t="Include" />
                 <e p="ConsentResponse.cs" t="Include" />
                 <e p="EmailTemplateRequest.cs" t="Include" />
@@ -140,6 +144,10 @@
                 <e p="FamilyEmailRequest.cs" t="Include" />
                 <e p="FamilyRequest.cs" t="Include" />
                 <e p="FamilyResponse.cs" t="Include" />
+                <e p="FormFieldRequest.cs" t="Include" />
+                <e p="FormFieldResponse.cs" t="Include" />
+                <e p="FormRequest.cs" t="Include" />
+                <e p="FormResponse.cs" t="Include" />
                 <e p="GroupRequest.cs" t="Include" />
                 <e p="GroupResponse.cs" t="Include" />
                 <e p="IdentityProviderRequest.cs" t="Include" />
@@ -246,6 +254,16 @@
                   <e p="VerifyRegistrationResponse.cs" t="Include" />
                 </e>
               </e>
+              <e p="connector" t="Include">
+                <e p="BaseConnectorConfiguration.cs" t="Include" />
+                <e p="ConnectorPolicy.cs" t="Include" />
+                <e p="ConnectorType.cs" t="Include" />
+                <e p="FusionAuthConnectorConfiguration.cs" t="Include" />
+                <e p="GenericConnectorConfiguration.cs" t="Include" />
+                <e p="LDAPConnectorConfiguration.cs" t="Include" />
+                <e p="LDAPSecurityMethod.cs" t="Include" />
+                <e p="LambdaConfiguration.cs" t="Include" />
+              </e>
               <e p="email" t="Include">
                 <e p="Attachment.cs" t="Include" />
                 <e p="Email.cs" t="Include" />
@@ -277,6 +295,16 @@
                 <e p="UserRegistrationUpdateEvent.cs" t="Include" />
                 <e p="UserRegistrationVerifiedEvent.cs" t="Include" />
                 <e p="UserUpdateEvent.cs" t="Include" />
+              </e>
+              <e p="form" t="Include">
+                <e p="Form.cs" t="Include" />
+                <e p="FormControl.cs" t="Include" />
+                <e p="FormDataType.cs" t="Include" />
+                <e p="FormField.cs" t="Include" />
+                <e p="FormFieldAdminPolicy.cs" t="Include" />
+                <e p="FormFieldValidator.cs" t="Include" />
+                <e p="FormStep.cs" t="Include" />
+                <e p="FormType.cs" t="Include" />
               </e>
               <e p="jwks" t="Include">
                 <e p="JSONWebKeyInfoProvider.cs" t="Include" />

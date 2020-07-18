@@ -48,6 +48,10 @@ namespace io.fusionauth.domain {
 
     public Guid? id;
 
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
     public int? readTimeout;
 
     public string sslCertificate;

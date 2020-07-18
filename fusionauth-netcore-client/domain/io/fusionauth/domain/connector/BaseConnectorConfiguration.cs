@@ -18,46 +18,26 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.connector {
 
-  /**
-   * User registration information for a single application.
-   *
-   * @author Brian Pontarelli
-   */
-  public class UserRegistration {
-
-    public Guid? applicationId;
-
-    public string authenticationToken;
-
-    public Guid? cleanSpeakId;
+  // Do not require a setter for 'type', it is defined by the concrete class and is not mutable
+  public class BaseConnectorConfiguration {
 
     public Dictionary<string, object> data;
+
+    public bool? debug;
 
     public Guid? id;
 
     public DateTimeOffset? insertInstant;
 
-    public DateTimeOffset? lastLoginInstant;
-
     public DateTimeOffset? lastUpdateInstant;
 
-    public List<string> preferredLanguages;
+    public string name;
 
-    public List<string> roles;
+    public ConnectorType type;
 
-    public string timezone;
-
-    public Dictionary<string, string> tokens;
-
-    public string username;
-
-    public ContentStatus usernameStatus;
-
-    public bool? verified;
-
-    public UserRegistration with(Action<UserRegistration> action) {
+    public BaseConnectorConfiguration with(Action<BaseConnectorConfiguration> action) {
       action(this);
       return this;
     }

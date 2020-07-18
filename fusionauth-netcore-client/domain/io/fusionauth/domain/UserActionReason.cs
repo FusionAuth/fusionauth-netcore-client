@@ -31,6 +31,10 @@ namespace io.fusionauth.domain {
 
     public Guid? id;
 
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
     public LocalizedStrings localizedTexts;
 
     public string text;

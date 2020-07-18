@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.@event {
 
     public string authenticationType;
 
+    public Guid? connectorId;
+
     public Guid? identityProviderId;
 
     public string identityProviderName;

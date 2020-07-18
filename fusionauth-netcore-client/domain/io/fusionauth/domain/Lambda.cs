@@ -35,6 +35,8 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? insertInstant;
 
+    public DateTimeOffset? lastUpdateInstant;
+
     public string name;
 
     public LambdaType type;

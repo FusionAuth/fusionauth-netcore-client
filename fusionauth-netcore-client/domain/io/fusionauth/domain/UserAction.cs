@@ -37,6 +37,10 @@ namespace io.fusionauth.domain {
 
     public bool? includeEmailInEventJSON;
 
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
     public LocalizedStrings localizedNames;
 
     public Guid? modifyEmailTemplateId;

@@ -20,22 +20,8 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  /**
-   * The types of lambdas that indicate how they are invoked by FusionAuth.
-   *
-   * @author Brian Pontarelli
-   */
-  public enum LambdaType {
-        JWTPopulate, 
-        OpenIDReconcile, 
-        SAMLv2Reconcile, 
-        SAMLv2Populate, 
-        AppleReconcile, 
-        ExternalJWTReconcile, 
-        FacebookReconcile, 
-        GoogleReconcile, 
-        HYPRReconcile, 
-        TwitterReconcile, 
-        LDAPConnectorReconcile
+  public enum RegistrationType {
+        basic, 
+        advanced
   }
 }

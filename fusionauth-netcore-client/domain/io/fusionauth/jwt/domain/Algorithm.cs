@@ -31,7 +31,7 @@ namespace io.fusionauth.jwt.domain {
         ES512, 
         HS256, 
         HS384, 
-        HS512,
+        HS512, 
         RS256, 
         RS384, 
         RS512, 

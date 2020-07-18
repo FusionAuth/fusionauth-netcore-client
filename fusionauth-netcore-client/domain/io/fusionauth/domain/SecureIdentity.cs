@@ -29,11 +29,15 @@ namespace io.fusionauth.domain {
 
     public BreachedPasswordStatus breachedPasswordStatus;
 
+    public Guid? connectorId;
+
     public string encryptionScheme;
 
     public int? factor;
 
     public Guid? id;
+
+    public DateTimeOffset? lastLoginInstant;
 
     public string password;
 
@@ -44,6 +48,16 @@ namespace io.fusionauth.domain {
     public DateTimeOffset? passwordLastUpdateInstant;
 
     public string salt;
+
+    public TwoFactorDelivery twoFactorDelivery;
+
+    public bool? twoFactorEnabled;
+
+    public string twoFactorSecret;
+
+    public string username;
+
+    public ContentStatus usernameStatus;
 
     public bool? verified;
 

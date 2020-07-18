@@ -28,6 +28,8 @@ namespace io.fusionauth.domain {
 
     public Requirable firstName;
 
+    public Guid? formId;
+
     public Requirable fullName;
 
     public Requirable lastName;
@@ -37,6 +39,8 @@ namespace io.fusionauth.domain {
     public Requirable middleName;
 
     public Requirable mobilePhone;
+
+    public RegistrationType type;
 
     public RegistrationConfiguration with(Action<RegistrationConfiguration> action) {
       action(this);

@@ -18,46 +18,22 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.connector {
 
   /**
-   * User registration information for a single application.
-   *
-   * @author Brian Pontarelli
+   * @author Trevor Smith
    */
-  public class UserRegistration {
+  public class ConnectorPolicy {
 
-    public Guid? applicationId;
-
-    public string authenticationToken;
-
-    public Guid? cleanSpeakId;
+    public Guid? connectorId;
 
     public Dictionary<string, object> data;
 
-    public Guid? id;
+    public List<string> domains;
 
-    public DateTimeOffset? insertInstant;
+    public bool? migrate;
 
-    public DateTimeOffset? lastLoginInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public List<string> preferredLanguages;
-
-    public List<string> roles;
-
-    public string timezone;
-
-    public Dictionary<string, string> tokens;
-
-    public string username;
-
-    public ContentStatus usernameStatus;
-
-    public bool? verified;
-
-    public UserRegistration with(Action<UserRegistration> action) {
+    public ConnectorPolicy with(Action<ConnectorPolicy> action) {
       action(this);
       return this;
     }

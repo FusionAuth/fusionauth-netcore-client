@@ -15,27 +15,27 @@
  */
 
 
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.form {
 
   /**
-   * The types of lambdas that indicate how they are invoked by FusionAuth.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public enum LambdaType {
-        JWTPopulate, 
-        OpenIDReconcile, 
-        SAMLv2Reconcile, 
-        SAMLv2Populate, 
-        AppleReconcile, 
-        ExternalJWTReconcile, 
-        FacebookReconcile, 
-        GoogleReconcile, 
-        HYPRReconcile, 
-        TwitterReconcile, 
-        LDAPConnectorReconcile
+  public enum FormDataType {
+        [EnumMember(Value = "bool")]
+         Bool, 
+        [EnumMember(Value = "consent")]
+         Consent, 
+        [EnumMember(Value = "date")]
+         Date, 
+        [EnumMember(Value = "email")]
+         Email, 
+        [EnumMember(Value = "number")]
+         Number, 
+        [EnumMember(Value = "string")]
+         String
   }
 }

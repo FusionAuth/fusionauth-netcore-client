@@ -31,9 +31,9 @@ namespace io.fusionauth.domain {
 
     public Guid? commenterId;
 
-    public DateTimeOffset? createInstant;
-
     public Guid? id;
+
+    public DateTimeOffset? insertInstant;
 
     public Guid? userId;
 
