@@ -792,8 +792,8 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
-    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
-    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate.</param>
+    /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
     /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -3741,8 +3741,8 @@ namespace io.fusionauth {
    /// If you will be using the Authorization Code grant, you will make a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
    /// </summary>
    /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
-   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
-   /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+   /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate.</param>
+   /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
    /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
