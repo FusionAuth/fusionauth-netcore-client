@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.provider {
    */
   public class SAMLv2IdentityProvider: BaseIdentityProvider<SAMLv2ApplicationConfiguration> {
 
+    public bool? allowResponseReplay;
+
     public string buttonImageURL;
 
     public string buttonText;
