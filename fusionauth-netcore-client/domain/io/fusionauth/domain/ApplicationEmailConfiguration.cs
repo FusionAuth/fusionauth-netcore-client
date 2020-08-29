@@ -18,32 +18,19 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.jwt {
+namespace io.fusionauth.domain {
 
-  /**
-   * Models a JWT Refresh Token.
-   *
-   * @author Daniel DeGroff
-   */
-  public class RefreshToken {
+  public class ApplicationEmailConfiguration {
 
-    public Guid? applicationId;
+    public Guid? emailVerificationEmailTemplateId;
 
-    public Dictionary<string, object> data;
+    public Guid? forgotPasswordEmailTemplateId;
 
-    public Guid? id;
+    public Guid? passwordlessEmailTemplateId;
 
-    public DateTimeOffset? insertInstant;
+    public Guid? setPasswordEmailTemplateId;
 
-    public MetaData metaData;
-
-    public DateTimeOffset? startInstant;
-
-    public string token;
-
-    public Guid? userId;
-
-    public RefreshToken with(Action<RefreshToken> action) {
+    public ApplicationEmailConfiguration with(Action<ApplicationEmailConfiguration> action) {
       action(this);
       return this;
     }

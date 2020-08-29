@@ -27,6 +27,8 @@ namespace io.fusionauth.domain.api.user {
    */
   public class ForgotPasswordRequest {
 
+    public Guid? applicationId;
+
     public string changePasswordId;
 
     public string email;

@@ -368,6 +368,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> ImportRefreshTokens(RefreshTokenImportRequest request) {
+      return client.ImportRefreshTokensAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> ImportUsers(ImportRequest request) {
       return client.ImportUsersAsync(request).GetAwaiter().GetResult();
     }

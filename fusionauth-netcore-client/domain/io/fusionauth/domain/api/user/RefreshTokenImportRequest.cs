@@ -15,35 +15,24 @@
  */
 
 
+using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.jwt {
+namespace io.fusionauth.domain.api.user {
 
   /**
-   * Models a JWT Refresh Token.
+   * Refresh Token Import request.
    *
-   * @author Daniel DeGroff
+   * @author Brett Guy
    */
-  public class RefreshToken {
+  public class RefreshTokenImportRequest {
 
-    public Guid? applicationId;
+    public List<RefreshToken> refreshTokens;
 
-    public Dictionary<string, object> data;
+    public bool? validateDbConstraints;
 
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public MetaData metaData;
-
-    public DateTimeOffset? startInstant;
-
-    public string token;
-
-    public Guid? userId;
-
-    public RefreshToken with(Action<RefreshToken> action) {
+    public RefreshTokenImportRequest with(Action<RefreshTokenImportRequest> action) {
       action(this);
       return this;
     }

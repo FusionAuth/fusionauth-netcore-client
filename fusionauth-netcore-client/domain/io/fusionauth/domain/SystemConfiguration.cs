@@ -27,8 +27,6 @@ namespace io.fusionauth.domain {
 
     public AuditLogConfiguration auditLogConfiguration;
 
-    public string cookieEncryptionIV;
-
     public string cookieEncryptionKey;
 
     public CORSConfiguration corsConfiguration;
