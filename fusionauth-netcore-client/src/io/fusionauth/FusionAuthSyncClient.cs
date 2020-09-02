@@ -538,6 +538,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<VerifyEmailResponse> ResendEmailVerificationWithApplicationTemplate(Guid? applicationId, string email) {
+      return client.ResendEmailVerificationWithApplicationTemplateAsync(applicationId, email).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId) {
       return client.ResendRegistrationVerificationAsync(email, applicationId).GetAwaiter().GetResult();
     }

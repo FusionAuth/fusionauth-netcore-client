@@ -1054,6 +1054,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<VerifyEmailResponse>> ResendEmailVerificationWithApplicationTemplateAsync(Guid? applicationId, string email) {
+      return buildClient()
+          .withUri("/api/user/verify-email")
+          .withParameter("applicationId", applicationId)
+          .withParameter("email", email)
+          .withMethod("Put")
+          .goAsync<VerifyEmailResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<VerifyRegistrationResponse>> ResendRegistrationVerificationAsync(string email, Guid? applicationId) {
       return buildClient()
           .withUri("/api/user/verify-registration")

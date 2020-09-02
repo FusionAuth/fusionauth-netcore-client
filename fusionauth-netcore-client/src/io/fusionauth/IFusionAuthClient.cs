@@ -1472,6 +1472,21 @@ namespace io.fusionauth {
     Task<ClientResponse<VerifyEmailResponse>> ResendEmailVerificationAsync(string email);
 
     /// <summary>
+    /// Re-sends the verification email to the user. If the Application has configured a specific email template this will be used
+    /// instead of the tenant configuration.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The unique Application Id to used to resolve an application specific email template.</param>
+    /// <param name="email"> The email address of the user that needs a new verification email.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<VerifyEmailResponse>> ResendEmailVerificationWithApplicationTemplateAsync(Guid? applicationId, string email);
+
+    /// <summary>
     /// Re-sends the application registration verification email to the user.
     /// This is an asynchronous method.
     /// </summary>
@@ -4399,6 +4414,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<VerifyEmailResponse> ResendEmailVerification(string email);
+
+   /// <summary>
+   /// Re-sends the verification email to the user. If the Application has configured a specific email template this will be used
+   /// instead of the tenant configuration.
+   /// </summary>
+   /// <param name="applicationId"> The unique Application Id to used to resolve an application specific email template.</param>
+   /// <param name="email"> The email address of the user that needs a new verification email.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<VerifyEmailResponse> ResendEmailVerificationWithApplicationTemplate(Guid? applicationId, string email);
 
    /// <summary>
    /// Re-sends the application registration verification email to the user.

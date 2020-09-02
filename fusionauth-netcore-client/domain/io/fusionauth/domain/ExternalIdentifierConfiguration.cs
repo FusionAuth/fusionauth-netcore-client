@@ -51,6 +51,8 @@ namespace io.fusionauth.domain {
 
     public int? registrationVerificationIdTimeToLiveInSeconds;
 
+    public int? samlv2AuthNRequestIdTimeToLiveInSeconds;
+
     public SecureGeneratorConfiguration setupPasswordIdGenerator;
 
     public int? setupPasswordIdTimeToLiveInSeconds;
