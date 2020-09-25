@@ -739,6 +739,19 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token) {
+      var body = new Dictionary<string, string> {
+          { "client_id", client_id },
+          { "token", token },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/introspect")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<IntrospectResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IssueResponse>> IssueJWTAsync(Guid? applicationId, string encodedJWT, string refreshToken) {
       return buildClient()
           .withUri("/api/jwt/issue")
@@ -796,19 +809,6 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<ActionResponse>();
-    }
-
-    /// <inheritdoc/>
-    public Task<ClientResponse<IntrospectResponse>> Oauth2IntrospectAsync(string client_id, string token) {
-      var body = new Dictionary<string, string> {
-          { "client_id", client_id },
-          { "token", token },
-      };
-      return buildAnonymousClient()
-          .withUri("/oauth2/introspect")
-          .withFormData(new FormUrlEncodedContent(body))
-          .withMethod("Post")
-          .goAsync<IntrospectResponse>();
     }
 
     /// <inheritdoc/>

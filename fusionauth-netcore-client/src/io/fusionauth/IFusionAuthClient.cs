@@ -1008,6 +1008,20 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> ImportUsersAsync(ImportRequest request);
 
     /// <summary>
+    /// Inspect an access token issued by FusionAuth.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application for which this token was generated.</param>
+    /// <param name="token"> The access token returned by this OAuth provider as the result of a successful authentication.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token);
+
+    /// <summary>
     /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
     /// access token is properly signed and not expired.
     /// <p>
@@ -1108,20 +1122,6 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<ActionResponse>> ModifyActionAsync(Guid? actionId, ActionRequest request);
-
-    /// <summary>
-    /// Inspect an access token issued by FusionAuth.
-    /// This is an asynchronous method.
-    /// </summary>
-    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application for which this token was generated.</param>
-    /// <param name="token"> The access token returned by this OAuth provider as the result of a successful authentication.</param>
-    /// <returns>
-    /// When successful, the response will contain the log of the action. If there was a validation error or any
-    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-    /// IOException.
-    /// </returns>
-    Task<ClientResponse<IntrospectResponse>> Oauth2IntrospectAsync(string client_id, string token);
 
     /// <summary>
     /// Complete a login request using a passwordless code
@@ -3998,6 +3998,19 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> ImportUsers(ImportRequest request);
 
    /// <summary>
+   /// Inspect an access token issued by FusionAuth.
+   /// </summary>
+   /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application for which this token was generated.</param>
+   /// <param name="token"> The access token returned by this OAuth provider as the result of a successful authentication.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token);
+
+   /// <summary>
    /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
    /// access token is properly signed and not expired.
    /// <p>
@@ -4092,19 +4105,6 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<ActionResponse> ModifyAction(Guid? actionId, ActionRequest request);
-
-   /// <summary>
-   /// Inspect an access token issued by FusionAuth.
-   /// </summary>
-   /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application for which this token was generated.</param>
-   /// <param name="token"> The access token returned by this OAuth provider as the result of a successful authentication.</param>
-   /// <returns>
-   /// When successful, the response will contain the log of the action. If there was a validation error or any
-   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-   /// IOException.
-   /// </returns>
-   ClientResponse<IntrospectResponse> Oauth2Introspect(string client_id, string token);
 
    /// <summary>
    /// Complete a login request using a passwordless code

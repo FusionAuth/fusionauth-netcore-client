@@ -378,6 +378,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token) {
+      return client.IntrospectAccessTokenAsync(client_id, token).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IssueResponse> IssueJWT(Guid? applicationId, string encodedJWT, string refreshToken) {
       return client.IssueJWTAsync(applicationId, encodedJWT, refreshToken).GetAwaiter().GetResult();
     }
@@ -405,11 +410,6 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<ActionResponse> ModifyAction(Guid? actionId, ActionRequest request) {
       return client.ModifyActionAsync(actionId, request).GetAwaiter().GetResult();
-    }
-
-    /// <inheritdoc/>
-    public ClientResponse<IntrospectResponse> Oauth2Introspect(string client_id, string token) {
-      return client.Oauth2IntrospectAsync(client_id, token).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
