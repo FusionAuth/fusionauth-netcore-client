@@ -408,6 +408,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IntrospectResponse> Oauth2Introspect(string client_id, string token) {
+      return client.Oauth2IntrospectAsync(client_id, token).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<LoginResponse> PasswordlessLogin(PasswordlessLoginRequest request) {
       return client.PasswordlessLoginAsync(request).GetAwaiter().GetResult();
     }

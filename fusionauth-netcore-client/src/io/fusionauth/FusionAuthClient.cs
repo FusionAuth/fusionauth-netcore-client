@@ -799,6 +799,19 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IntrospectResponse>> Oauth2IntrospectAsync(string client_id, string token) {
+      var body = new Dictionary<string, string> {
+          { "client_id", client_id },
+          { "token", token },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/introspect")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<IntrospectResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<LoginResponse>> PasswordlessLoginAsync(PasswordlessLoginRequest request) {
       return buildAnonymousClient()
           .withUri("/api/passwordless/login")
