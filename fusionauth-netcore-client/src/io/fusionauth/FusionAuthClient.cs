@@ -694,9 +694,9 @@ namespace io.fusionauth {
 
     /// <inheritdoc/>
     public Task<ClientResponse<SecretResponse>> GenerateTwoFactorSecretUsingJWTAsync(string encodedJWT) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/two-factor/secret")
-          .withAuthorization("JWT " + encodedJWT)
+          .withAuthorization("Bearer " + encodedJWT)
           .withMethod("Get")
           .goAsync<SecretResponse>();
     }
@@ -753,9 +753,9 @@ namespace io.fusionauth {
 
     /// <inheritdoc/>
     public Task<ClientResponse<IssueResponse>> IssueJWTAsync(Guid? applicationId, string encodedJWT, string refreshToken) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/jwt/issue")
-          .withAuthorization("JWT " + encodedJWT)
+          .withAuthorization("Bearer " + encodedJWT)
           .withParameter("applicationId", applicationId)
           .withParameter("refreshToken", refreshToken)
           .withMethod("Get")
@@ -1739,7 +1739,7 @@ namespace io.fusionauth {
     public Task<ClientResponse<UserResponse>> RetrieveUserUsingJWTAsync(string encodedJWT) {
       return buildAnonymousClient()
           .withUri("/api/user")
-          .withAuthorization("JWT " + encodedJWT)
+          .withAuthorization("Bearer " + encodedJWT)
           .withMethod("Get")
           .goAsync<UserResponse>();
     }
@@ -2130,6 +2130,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<UserResponse>> UserInfoAsync(string encodedJWT) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/userinfo")
+          .withAuthorization("Bearer " + encodedJWT)
+          .withMethod("Post")
+          .goAsync<UserResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> ValidateDeviceAsync(string user_code, string client_id) {
       return buildAnonymousClient()
           .withUri("/oauth2/device/validate")
@@ -2143,7 +2152,7 @@ namespace io.fusionauth {
     public Task<ClientResponse<ValidateResponse>> ValidateJWTAsync(string encodedJWT) {
       return buildAnonymousClient()
           .withUri("/api/jwt/validate")
-          .withAuthorization("JWT " + encodedJWT)
+          .withAuthorization("Bearer " + encodedJWT)
           .withMethod("Get")
           .goAsync<ValidateResponse>();
     }

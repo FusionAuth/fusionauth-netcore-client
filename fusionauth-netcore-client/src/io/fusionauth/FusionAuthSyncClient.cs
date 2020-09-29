@@ -1120,6 +1120,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<UserResponse> UserInfo(string encodedJWT) {
+      return client.UserInfoAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> ValidateDevice(string user_code, string client_id) {
       return client.ValidateDeviceAsync(user_code, client_id).GetAwaiter().GetResult();
     }
