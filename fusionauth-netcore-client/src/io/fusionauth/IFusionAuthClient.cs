@@ -2418,6 +2418,19 @@ namespace io.fusionauth {
     Task<ClientResponse<UserConsentResponse>> RetrieveUserConsentsAsync(Guid? userId);
 
     /// <summary>
+    /// Call the UserInfo endpoint to retrieve User Claims from the access token issued by FusionAuth.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<UserResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT);
+
+    /// <summary>
     /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
     /// login counts for that application.
     /// This is an asynchronous method.
@@ -3028,19 +3041,6 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<WebhookResponse>> UpdateWebhookAsync(Guid? webhookId, WebhookRequest request);
-
-    /// <summary>
-    /// Call the UserInfo endpoint to retrieve User Claims from the access token issued by FusionAuth.
-    /// This is an asynchronous method.
-    /// </summary>
-    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
-    /// <returns>
-    /// When successful, the response will contain the log of the action. If there was a validation error or any
-    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-    /// IOException.
-    /// </returns>
-    Task<ClientResponse<UserResponse>> UserInfoAsync(string encodedJWT);
 
     /// <summary>
     /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
@@ -5317,6 +5317,18 @@ namespace io.fusionauth {
    ClientResponse<UserConsentResponse> RetrieveUserConsents(Guid? userId);
 
    /// <summary>
+   /// Call the UserInfo endpoint to retrieve User Claims from the access token issued by FusionAuth.
+   /// </summary>
+   /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<UserResponse> RetrieveUserInfoFromAccessToken(string encodedJWT);
+
+   /// <summary>
    /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
    /// login counts for that application.
    /// </summary>
@@ -5883,18 +5895,6 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<WebhookResponse> UpdateWebhook(Guid? webhookId, WebhookRequest request);
-
-   /// <summary>
-   /// Call the UserInfo endpoint to retrieve User Claims from the access token issued by FusionAuth.
-   /// </summary>
-   /// <param name="encodedJWT"> The encoded JWT (access token).</param>
-   /// <returns>
-   /// When successful, the response will contain the log of the action. If there was a validation error or any
-   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-   /// IOException.
-   /// </returns>
-   ClientResponse<UserResponse> UserInfo(string encodedJWT);
 
    /// <summary>
    /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.

@@ -1701,6 +1701,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<UserResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/userinfo")
+          .withAuthorization("Bearer " + encodedJWT)
+          .withMethod("Get")
+          .goAsync<UserResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportAsync(Guid? applicationId, Guid? userId, long? start, long? end) {
       return buildClient()
           .withUri("/api/report/login")
@@ -2127,15 +2136,6 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<WebhookResponse>();
-    }
-
-    /// <inheritdoc/>
-    public Task<ClientResponse<UserResponse>> UserInfoAsync(string encodedJWT) {
-      return buildAnonymousClient()
-          .withUri("/oauth2/userinfo")
-          .withAuthorization("Bearer " + encodedJWT)
-          .withMethod("Post")
-          .goAsync<UserResponse>();
     }
 
     /// <inheritdoc/>

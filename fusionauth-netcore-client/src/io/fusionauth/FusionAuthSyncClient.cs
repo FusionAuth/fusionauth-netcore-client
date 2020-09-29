@@ -898,6 +898,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<UserResponse> RetrieveUserInfoFromAccessToken(string encodedJWT) {
+      return client.RetrieveUserInfoFromAccessTokenAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<LoginReportResponse> RetrieveUserLoginReport(Guid? applicationId, Guid? userId, long? start, long? end) {
       return client.RetrieveUserLoginReportAsync(applicationId, userId, start, end).GetAwaiter().GetResult();
     }
@@ -1117,11 +1122,6 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<WebhookResponse> UpdateWebhook(Guid? webhookId, WebhookRequest request) {
       return client.UpdateWebhookAsync(webhookId, request).GetAwaiter().GetResult();
-    }
-
-    /// <inheritdoc/>
-    public ClientResponse<UserResponse> UserInfo(string encodedJWT) {
-      return client.UserInfoAsync(encodedJWT).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
