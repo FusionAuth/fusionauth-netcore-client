@@ -43,7 +43,15 @@ namespace io.fusionauth.domain.provider {
 
     public Guid? keyId;
 
+    public bool? postRequest;
+
+    public Guid? requestSigningKeyId;
+
+    public bool? signRequest;
+
     public bool? useNameIdForEmail;
+
+    public CanonicalizationMethod xmlSignatureC14nMethod;
 
     public SAMLv2IdentityProvider with(Action<SAMLv2IdentityProvider> action) {
       action(this);

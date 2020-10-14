@@ -34,6 +34,8 @@ namespace io.fusionauth.domain.provider {
 
     public IdentityProviderOauth2Configuration oauth2;
 
+    public bool? postRequest;
+
     public OpenIdConnectIdentityProvider with(Action<OpenIdConnectIdentityProvider> action) {
       action(this);
       return this;

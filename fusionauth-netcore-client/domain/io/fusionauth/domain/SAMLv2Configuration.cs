@@ -24,15 +24,21 @@ namespace io.fusionauth.domain {
 
     public string audience;
 
+    public List<string> authorizedRedirectURLs;
+
     public string callbackURL;
 
     public bool? debug;
+
+    public Guid? defaultVerificationKeyId;
 
     public string issuer;
 
     public Guid? keyId;
 
     public string logoutURL;
+
+    public bool? requireSignedRequests;
 
     public CanonicalizationMethod xmlSignatureC14nMethod;
 
