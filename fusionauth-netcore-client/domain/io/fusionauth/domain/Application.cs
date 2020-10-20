@@ -37,6 +37,8 @@ namespace io.fusionauth.domain {
 
     public ApplicationEmailConfiguration emailConfiguration;
 
+    public ApplicationFormConfiguration formConfiguration;
+
     public Guid? id;
 
     public DateTimeOffset? insertInstant;

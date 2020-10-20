@@ -18,14 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.form {
+namespace io.fusionauth.domain {
 
   /**
    * @author Daniel DeGroff
    */
-  public enum FormType {
-        registration, 
-        adminRegistration, 
-        adminUser
+  public class ApplicationFormConfiguration {
+
+    public Guid? adminRegistrationFormId;
+
+    public ApplicationFormConfiguration with(Action<ApplicationFormConfiguration> action) {
+      action(this);
+      return this;
+    }
   }
 }

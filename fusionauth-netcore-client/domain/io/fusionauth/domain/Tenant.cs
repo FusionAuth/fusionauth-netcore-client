@@ -42,6 +42,8 @@ namespace io.fusionauth.domain {
 
     public FamilyConfiguration familyConfiguration;
 
+    public TenantFormConfiguration formConfiguration;
+
     public int? httpSessionMaxInactiveInterval;
 
     public Guid? id;
