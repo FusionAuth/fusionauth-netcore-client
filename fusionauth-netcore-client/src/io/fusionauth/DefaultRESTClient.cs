@@ -40,18 +40,17 @@ namespace io.fusionauth {
 
     public Dictionary<string, string> headers = new Dictionary<string, string>();
 
-    static DefaultRESTClient() {
-      JsonConvert.DefaultSettings = () =>
-        new JsonSerializerSettings {
-          NullValueHandling = NullValueHandling.Ignore,
-          Converters = new List<JsonConverter> {
+    private static readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
+    {
+        NullValueHandling = NullValueHandling.Ignore,
+        Converters = new List<JsonConverter>
+        {
             new StringEnumConverter(),
             new DateTimeOffsetConverter(),
             new IdentityProviderConverter()
-          },
-          ContractResolver = new DefaultContractResolver()
-        };
-    }
+        },
+        ContractResolver = new DefaultContractResolver()
+    };
 
     public DefaultRESTClient(string host) {
       httpClient = new HttpClient {BaseAddress = new Uri(host)};
@@ -112,7 +111,7 @@ namespace io.fusionauth {
      * @param body The object to be written to the request body as JSON.
      */
     public override IRESTClient withJSONBody(object body) {
-      content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8,
+      content = new StringContent(JsonConvert.SerializeObject(body, SerializerSettings), Encoding.UTF8,
         "application/json");
       return this;
     }
@@ -205,11 +204,11 @@ namespace io.fusionauth {
         clientResponse.statusCode = (int)result.StatusCode;
             if (clientResponse.statusCode >= 300) {
               clientResponse.errorResponse =
-                JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result);
+                JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result, SerializerSettings);
         }
             else {
               clientResponse.successResponse =
-                JsonConvert.DeserializeObject<T>(result.Content.ReadAsStringAsync().Result);
+                JsonConvert.DeserializeObject<T>(result.Content.ReadAsStringAsync().Result, SerializerSettings);
         }
       }
       catch (Exception e)
