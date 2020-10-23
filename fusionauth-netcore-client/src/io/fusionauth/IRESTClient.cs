@@ -95,6 +95,15 @@ namespace io.fusionauth {
       return withParameter(name, value ? "true" : "false");
     }
 
+    public IRESTClient withParameter(string name, bool? value) {
+        if (!value.HasValue)
+        {
+            return this;
+        }
+
+        return withParameter(name, value.Value);
+    }
+
     public IRESTClient withParameter(string name, object value) {
       if (value == null) {
         return this;
