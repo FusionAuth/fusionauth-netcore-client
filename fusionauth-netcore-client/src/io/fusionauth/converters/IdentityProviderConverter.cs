@@ -36,15 +36,21 @@ namespace io.fusionauth.converters {
         return json.ToObject<OpenIdConnectIdentityProvider>(serializer);
       }
 
-      if (json["type"].Value<string>() == "SAML2") {
+      if (json["type"].Value<string>() == "HYPR") {
+        return json.ToObject<HYPRIdentityProvider>(serializer);
+      }
+
+      if (json["type"].Value<string>() == "Apple") {
+        return json.ToObject<AppleIdentityProvider>(serializer);
+      }
+
+      if (json["type"].Value<string>() == "SAMLv2") {
         return json.ToObject<SAMLv2IdentityProvider>(serializer);
       }
 
       return null;
     }
 
-    public override bool CanConvert(Type objectType) {
-      return objectType == typeof(IdentityProvider);
-    }
+    public override bool CanConvert(Type objectType) => objectType == typeof(IdentityProvider);
   }
 }
