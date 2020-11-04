@@ -38,5 +38,5 @@ out/
 .idea/httpRequests
 
 .vs/
-.DS_Store
+**/.DS_Store
 */.idea/**/projectSettingsUpdater.xml
