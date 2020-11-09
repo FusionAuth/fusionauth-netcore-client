@@ -601,6 +601,23 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(string code, string client_id, string client_secret, string redirect_uri, string code_verifier) {
+      var body = new Dictionary<string, string> {
+          { "code", code },
+          { "client_id", client_id },
+          { "client_secret", client_secret },
+          { "grant_type", "authorization_code" },
+          { "redirect_uri", redirect_uri },
+          { "code_verifier", code_verifier },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<AccessToken>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenAsync(string refresh_token, string client_id, string client_secret, string scope, string user_code) {
       var body = new Dictionary<string, string> {
           { "refresh_token", refresh_token },

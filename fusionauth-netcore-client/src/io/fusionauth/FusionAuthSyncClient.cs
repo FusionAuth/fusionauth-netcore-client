@@ -313,6 +313,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCE(string code, string client_id, string client_secret, string redirect_uri, string code_verifier) {
+      return client.ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(code, client_id, client_secret, redirect_uri, code_verifier).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code) {
       return client.ExchangeRefreshTokenForAccessTokenAsync(refresh_token, client_id, client_secret, scope, user_code).GetAwaiter().GetResult();
     }

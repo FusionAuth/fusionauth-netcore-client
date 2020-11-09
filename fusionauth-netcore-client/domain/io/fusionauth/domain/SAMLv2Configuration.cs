@@ -42,6 +42,8 @@ namespace io.fusionauth.domain {
 
     public CanonicalizationMethod xmlSignatureC14nMethod;
 
+    public XMLSignatureLocation xmlSignatureLocation;
+
     public SAMLv2Configuration with(Action<SAMLv2Configuration> action) {
       action(this);
       return this;

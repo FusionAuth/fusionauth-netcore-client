@@ -788,7 +788,7 @@ namespace io.fusionauth {
 
     /// <summary>
     /// Exchanges an OAuth authorization code for an access token.
-    /// If you will be using the Authorization Code grant, you will make a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
+    /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
@@ -802,6 +802,24 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenAsync(string code, string client_id, string client_secret, string redirect_uri);
+
+    /// <summary>
+    /// Exchanges an OAuth authorization code and code_verifier for an access token.
+    /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint and a code_verifier for an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
+    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+    /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
+    /// <param name="code_verifier"> The random string generated previously. Will be compared with the code_challenge sent previously, which allows the OAuth provider to authenticate your app.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(string code, string client_id, string client_secret, string redirect_uri, string code_verifier);
 
     /// <summary>
     /// Exchange a Refresh Token for an Access Token.
@@ -3805,7 +3823,7 @@ namespace io.fusionauth {
 
    /// <summary>
    /// Exchanges an OAuth authorization code for an access token.
-   /// If you will be using the Authorization Code grant, you will make a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
+   /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
    /// </summary>
    /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate.</param>
@@ -3818,6 +3836,23 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<AccessToken> ExchangeOAuthCodeForAccessToken(string code, string client_id, string client_secret, string redirect_uri);
+
+   /// <summary>
+   /// Exchanges an OAuth authorization code and code_verifier for an access token.
+   /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint and a code_verifier for an access token.
+   /// </summary>
+   /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
+   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+   /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+   /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
+   /// <param name="code_verifier"> The random string generated previously. Will be compared with the code_challenge sent previously, which allows the OAuth provider to authenticate your app.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCE(string code, string client_id, string client_secret, string redirect_uri, string code_verifier);
 
    /// <summary>
    /// Exchange a Refresh Token for an Access Token.
