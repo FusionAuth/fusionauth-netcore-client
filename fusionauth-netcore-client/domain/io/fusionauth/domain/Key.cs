@@ -27,7 +27,7 @@ namespace io.fusionauth.domain {
    */
   public class Key {
 
-    public KeyAlgorithm algorithm;
+    public KeyAlgorithm? algorithm;
 
     public string certificate;
 
@@ -57,7 +57,7 @@ namespace io.fusionauth.domain {
 
     public string secret;
 
-    public KeyType type;
+    public KeyType? type;
 
     public Key with(Action<Key> action) {
       action(this);

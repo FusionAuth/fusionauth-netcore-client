@@ -45,7 +45,7 @@ namespace io.fusionauth.jwks.domain {
 
     public string kid;
 
-    public KeyType kty;
+    public KeyType? kty;
 
     public string n;
 
