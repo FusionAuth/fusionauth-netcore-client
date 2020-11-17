@@ -303,6 +303,20 @@ namespace io.fusionauth {
     Task<ClientResponse<LambdaResponse>> CreateLambdaAsync(Guid? lambdaId, LambdaRequest request);
 
     /// <summary>
+    /// Creates an message template. You can optionally specify an Id for the template, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the message template.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> CreateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request);
+
+    /// <summary>
     /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -628,6 +642,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteLambdaAsync(Guid? lambdaId);
+
+    /// <summary>
+    /// Deletes the message template for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> The Id of the message template to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteMessageTemplateAsync(Guid? messageTemplateId);
 
     /// <summary>
     /// Deletes the user registration for the given user and application.
@@ -1279,6 +1306,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LambdaResponse>> PatchLambdaAsync(Guid? lambdaId, Dictionary<string, object> request);
+
+    /// <summary>
+    /// Updates, via PATCH, the message template with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+    /// <param name="request"> The request that contains just the new message template information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> PatchMessageTemplateAsync(Guid? messageTemplateId, Dictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
@@ -2047,6 +2088,31 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LoginReportResponse>> RetrieveLoginReportAsync(Guid? applicationId, long? start, long? end);
+
+    /// <summary>
+    /// Retrieves the message template for the given Id. If you don't specify the id, this will return all of the message templates.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> (Optional) The Id of the message template.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplateAsync(Guid? messageTemplateId);
+
+    /// <summary>
+    /// Retrieves all of the message templates.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplatesAsync();
 
     /// <summary>
     /// Retrieves the monthly active user report between the two instants. If you specify an application id, it will only
@@ -2936,6 +3002,20 @@ namespace io.fusionauth {
     Task<ClientResponse<LambdaResponse>> UpdateLambdaAsync(Guid? lambdaId, LambdaRequest request);
 
     /// <summary>
+    /// Updates the message template with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+    /// <param name="request"> The request that contains all of the new message template information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> UpdateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request);
+
+    /// <summary>
     /// Updates the registration for the user with the given id and the application defined in the request.
     /// This is an asynchronous method.
     /// </summary>
@@ -3373,6 +3453,19 @@ namespace io.fusionauth {
    ClientResponse<LambdaResponse> CreateLambda(Guid? lambdaId, LambdaRequest request);
 
    /// <summary>
+   /// Creates an message template. You can optionally specify an Id for the template, if not provided one will be generated.
+   /// </summary>
+   /// <param name="messageTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the message template.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> CreateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request);
+
+   /// <summary>
    /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
    /// </summary>
    /// <param name="tenantId"> (Optional) The Id for the tenant. If not provided a secure random UUID will be generated.</param>
@@ -3674,6 +3767,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteLambda(Guid? lambdaId);
+
+   /// <summary>
+   /// Deletes the message template for the given Id.
+   /// </summary>
+   /// <param name="messageTemplateId"> The Id of the message template to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteMessageTemplate(Guid? messageTemplateId);
 
    /// <summary>
    /// Deletes the user registration for the given user and application.
@@ -4282,6 +4387,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, Dictionary<string, object> request);
+
+   /// <summary>
+   /// Updates, via PATCH, the message template with the given Id.
+   /// </summary>
+   /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+   /// <param name="request"> The request that contains just the new message template information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> PatchMessageTemplate(Guid? messageTemplateId, Dictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
@@ -4992,6 +5110,29 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LoginReportResponse> RetrieveLoginReport(Guid? applicationId, long? start, long? end);
+
+   /// <summary>
+   /// Retrieves the message template for the given Id. If you don't specify the id, this will return all of the message templates.
+   /// </summary>
+   /// <param name="messageTemplateId"> (Optional) The Id of the message template.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> RetrieveMessageTemplate(Guid? messageTemplateId);
+
+   /// <summary>
+   /// Retrieves all of the message templates.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> RetrieveMessageTemplates();
 
    /// <summary>
    /// Retrieves the monthly active user report between the two instants. If you specify an application id, it will only
@@ -5814,6 +5955,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LambdaResponse> UpdateLambda(Guid? lambdaId, LambdaRequest request);
+
+   /// <summary>
+   /// Updates the message template with the given Id.
+   /// </summary>
+   /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+   /// <param name="request"> The request that contains all of the new message template information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> UpdateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request);
 
    /// <summary>
    /// Updates the registration for the user with the given id and the application defined in the request.

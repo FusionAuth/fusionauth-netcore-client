@@ -249,6 +249,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> CreateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<MessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<TenantResponse>> CreateTenantAsync(Guid? tenantId, TenantRequest request) {
       return buildClient()
           .withUri("/api/tenant")
@@ -475,6 +485,15 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/lambda")
           .withUriSegment(lambdaId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteMessageTemplateAsync(Guid? messageTemplateId) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -926,6 +945,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Patch")
           .goAsync<LambdaResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> PatchMessageTemplateAsync(Guid? messageTemplateId, Dictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<MessageTemplateResponse>();
     }
 
     /// <inheritdoc/>
@@ -1455,6 +1484,23 @@ namespace io.fusionauth {
           .withParameter("end", end)
           .withMethod("Get")
           .goAsync<LoginReportResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplateAsync(Guid? messageTemplateId) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withMethod("Get")
+          .goAsync<MessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplatesAsync() {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withMethod("Get")
+          .goAsync<MessageTemplateResponse>();
     }
 
     /// <inheritdoc/>
@@ -2064,6 +2110,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<LambdaResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> UpdateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<MessageTemplateResponse>();
     }
 
     /// <inheritdoc/>

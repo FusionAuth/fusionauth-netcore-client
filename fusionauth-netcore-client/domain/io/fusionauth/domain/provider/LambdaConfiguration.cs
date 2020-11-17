@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain.connector;
 using System.Collections.Generic;
 using System;
 

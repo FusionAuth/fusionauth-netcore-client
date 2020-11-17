@@ -131,6 +131,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> CreateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return client.CreateMessageTemplateAsync(messageTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<TenantResponse> CreateTenant(Guid? tenantId, TenantRequest request) {
       return client.CreateTenantAsync(tenantId, request).GetAwaiter().GetResult();
     }
@@ -249,6 +254,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteLambda(Guid? lambdaId) {
       return client.DeleteLambdaAsync(lambdaId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteMessageTemplate(Guid? messageTemplateId) {
+      return client.DeleteMessageTemplateAsync(messageTemplateId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -465,6 +475,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, Dictionary<string, object> request) {
       return client.PatchLambdaAsync(lambdaId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> PatchMessageTemplate(Guid? messageTemplateId, Dictionary<string, object> request) {
+      return client.PatchMessageTemplateAsync(messageTemplateId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -755,6 +770,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LoginReportResponse> RetrieveLoginReport(Guid? applicationId, long? start, long? end) {
       return client.RetrieveLoginReportAsync(applicationId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> RetrieveMessageTemplate(Guid? messageTemplateId) {
+      return client.RetrieveMessageTemplateAsync(messageTemplateId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> RetrieveMessageTemplates() {
+      return client.RetrieveMessageTemplatesAsync().GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1082,6 +1107,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LambdaResponse> UpdateLambda(Guid? lambdaId, LambdaRequest request) {
       return client.UpdateLambdaAsync(lambdaId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> UpdateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return client.UpdateMessageTemplateAsync(messageTemplateId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
