@@ -778,6 +778,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<PreviewMessageTemplateResponse> RetrieveMessageTemplatePreview(PreviewMessageTemplateRequest request) {
+      return client.RetrieveMessageTemplatePreviewAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<MessageTemplateResponse> RetrieveMessageTemplates() {
       return client.RetrieveMessageTemplatesAsync().GetAwaiter().GetResult();
     }

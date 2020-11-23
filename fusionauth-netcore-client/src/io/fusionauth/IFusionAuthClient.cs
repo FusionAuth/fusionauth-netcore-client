@@ -2103,6 +2103,19 @@ namespace io.fusionauth {
     Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplateAsync(Guid? messageTemplateId);
 
     /// <summary>
+    /// Creates a preview of the message template provided in the request, normalized to a given locale.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request that contains the email template and optionally a locale to render it in.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<PreviewMessageTemplateResponse>> RetrieveMessageTemplatePreviewAsync(PreviewMessageTemplateRequest request);
+
+    /// <summary>
     /// Retrieves all of the message templates.
     /// This is an asynchronous method.
     /// </summary>
@@ -5122,6 +5135,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<MessageTemplateResponse> RetrieveMessageTemplate(Guid? messageTemplateId);
+
+   /// <summary>
+   /// Creates a preview of the message template provided in the request, normalized to a given locale.
+   /// </summary>
+   /// <param name="request"> The request that contains the email template and optionally a locale to render it in.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<PreviewMessageTemplateResponse> RetrieveMessageTemplatePreview(PreviewMessageTemplateRequest request);
 
    /// <summary>
    /// Retrieves all of the message templates.

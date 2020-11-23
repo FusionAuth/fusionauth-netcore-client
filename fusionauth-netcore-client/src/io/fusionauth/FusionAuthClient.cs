@@ -1496,6 +1496,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<PreviewMessageTemplateResponse>> RetrieveMessageTemplatePreviewAsync(PreviewMessageTemplateRequest request) {
+      return buildClient()
+          .withUri("/api/message/template/preview")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<PreviewMessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplatesAsync() {
       return buildClient()
           .withUri("/api/message/template")
