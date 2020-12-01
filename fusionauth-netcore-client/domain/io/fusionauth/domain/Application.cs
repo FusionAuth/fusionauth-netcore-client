@@ -65,6 +65,8 @@ namespace io.fusionauth.domain {
 
     public SAMLv2Configuration samlv2Configuration;
 
+    public ObjectState state;
+
     public Guid? tenantId;
 
     public Guid? verificationEmailTemplateId;
