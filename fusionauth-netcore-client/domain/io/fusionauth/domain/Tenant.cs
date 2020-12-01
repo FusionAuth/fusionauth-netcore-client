@@ -68,6 +68,8 @@ namespace io.fusionauth.domain {
 
     public PasswordValidationRules passwordValidationRules;
 
+    public ObjectState state;
+
     public Guid? themeId;
 
     public TenantUserDeletePolicy userDeletePolicy;

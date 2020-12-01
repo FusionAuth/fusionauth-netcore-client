@@ -657,6 +657,20 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteTenantAsync(Guid? tenantId);
 
     /// <summary>
+    /// Deletes the tenant for the given Id asynchronously.
+    /// This method is helpful if you do not want to wait for the delete operation to complete.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="tenantId"> The Id of the tenant to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteTenantAsyncAsync(Guid? tenantId);
+
+    /// <summary>
     /// Deletes the theme for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -3699,6 +3713,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteTenant(Guid? tenantId);
+
+   /// <summary>
+   /// Deletes the tenant for the given Id asynchronously.
+   /// This method is helpful if you do not want to wait for the delete operation to complete.
+   /// </summary>
+   /// <param name="tenantId"> The Id of the tenant to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteTenantAsync(Guid? tenantId);
 
    /// <summary>
    /// Deletes the theme for the given Id.

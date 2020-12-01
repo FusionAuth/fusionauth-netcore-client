@@ -262,6 +262,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteTenantAsync(Guid? tenantId) {
+      return client.DeleteTenantAsyncAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteTheme(Guid? themeId) {
       return client.DeleteThemeAsync(themeId).GetAwaiter().GetResult();
     }
