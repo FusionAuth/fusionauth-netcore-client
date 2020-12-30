@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.form {
 
     public FormControl control;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public string description;
 

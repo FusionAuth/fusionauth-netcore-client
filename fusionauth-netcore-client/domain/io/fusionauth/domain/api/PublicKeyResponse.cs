@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api {
 
     public string publicKey;
 
-    public Dictionary<string, string> publicKeys;
+    public IDictionary<string, string> publicKeys;
 
     public PublicKeyResponse with(Action<PublicKeyResponse> action) {
       action(this);

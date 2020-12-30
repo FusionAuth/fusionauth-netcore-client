@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.jwt {
 
     public Guid? applicationId;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public Guid? id;
 

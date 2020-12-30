@@ -27,7 +27,7 @@ namespace io.fusionauth.domain {
    */
   public class GroupMember {
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public Guid? groupId;
 

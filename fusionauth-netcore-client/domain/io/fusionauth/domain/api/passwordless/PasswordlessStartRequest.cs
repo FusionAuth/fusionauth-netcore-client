@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api.passwordless {
 
     public string loginId;
 
-    public Dictionary<string, object> state;
+    public IDictionary<string, object> state;
 
     public PasswordlessStartRequest with(Action<PasswordlessStartRequest> action) {
       action(this);

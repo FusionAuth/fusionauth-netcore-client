@@ -34,7 +34,7 @@ namespace io.fusionauth.domain.api {
 
     public string refreshToken;
 
-    public Dictionary<string, object> state;
+    public IDictionary<string, object> state;
 
     public string token;
 

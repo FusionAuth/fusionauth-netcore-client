@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api.email {
 
     public List<string> ccAddresses;
 
-    public Dictionary<string, object> requestData;
+    public IDictionary<string, object> requestData;
 
     public List<Guid> userIds;
 

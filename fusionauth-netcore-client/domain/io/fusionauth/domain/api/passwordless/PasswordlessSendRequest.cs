@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.api.passwordless {
 
     public string loginId;
 
-    public Dictionary<string, object> state;
+    public IDictionary<string, object> state;
 
     public PasswordlessSendRequest with(Action<PasswordlessSendRequest> action) {
       action(this);

@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api.user {
 
     public string oneTimePassword;
 
-    public Dictionary<string, object> state;
+    public IDictionary<string, object> state;
 
     public ChangePasswordResponse with(Action<ChangePasswordResponse> action) {
       action(this);

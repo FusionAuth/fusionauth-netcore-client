@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api {
 
     public List<Guid> memberIds;
 
-    public Dictionary<Guid, List<Guid>> members;
+    public IDictionary<Guid, List<Guid>> members;
 
     public MemberDeleteRequest with(Action<MemberDeleteRequest> action) {
       action(this);

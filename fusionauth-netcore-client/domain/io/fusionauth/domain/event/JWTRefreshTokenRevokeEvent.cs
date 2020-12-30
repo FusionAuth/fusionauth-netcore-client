@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.@event {
 
     public Guid? applicationId;
 
-    public Dictionary<Guid, int> applicationTimeToLiveInSeconds;
+    public IDictionary<Guid, int> applicationTimeToLiveInSeconds;
 
     public User user;
 

@@ -25,7 +25,7 @@ namespace io.fusionauth.domain {
    *
    * @author Brian Pontarelli
    */
-  public class HTTPHeaders: Dictionary<string, string> {
+  public class HTTPHeaders: IDictionary<string, string> {
 
     public HTTPHeaders with(Action<HTTPHeaders> action) {
       action(this);

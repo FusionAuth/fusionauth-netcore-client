@@ -28,7 +28,7 @@ namespace io.fusionauth.domain.api.identityProvider {
    */
   public class IdentityProviderLoginRequest: BaseLoginRequest {
 
-    public Dictionary<string, string> data;
+    public IDictionary<string, string> data;
 
     public string encodedJWT;
 

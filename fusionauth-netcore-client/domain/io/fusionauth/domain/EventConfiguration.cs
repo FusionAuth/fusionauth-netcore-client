@@ -26,7 +26,7 @@ namespace io.fusionauth.domain {
    */
   public class EventConfiguration {
 
-    public Dictionary<EventType, EventConfigurationData> @events;
+    public IDictionary<EventType, EventConfigurationData> @events;
 
     public EventConfiguration with(Action<EventConfiguration> action) {
       action(this);

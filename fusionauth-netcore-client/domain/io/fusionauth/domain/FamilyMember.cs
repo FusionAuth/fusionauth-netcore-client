@@ -27,7 +27,7 @@ namespace io.fusionauth.domain {
    */
   public class FamilyMember {
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public DateTimeOffset? insertInstant;
 

@@ -25,7 +25,7 @@ namespace io.fusionauth.domain.api.email {
    */
   public class SendResponse {
 
-    public Dictionary<Guid, EmailTemplateErrors> results;
+    public IDictionary<Guid, EmailTemplateErrors> results;
 
     public SendResponse with(Action<SendResponse> action) {
       action(this);

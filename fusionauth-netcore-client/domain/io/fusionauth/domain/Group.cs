@@ -25,7 +25,7 @@ namespace io.fusionauth.domain {
    */
   public class Group {
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public Guid? id;
 
@@ -35,7 +35,7 @@ namespace io.fusionauth.domain {
 
     public string name;
 
-    public Dictionary<Guid, List<ApplicationRole>> roles;
+    public IDictionary<Guid, List<ApplicationRole>> roles;
 
     public Guid? tenantId;
 

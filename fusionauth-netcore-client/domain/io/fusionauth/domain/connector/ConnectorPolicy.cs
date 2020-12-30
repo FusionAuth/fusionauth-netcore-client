@@ -27,7 +27,7 @@ namespace io.fusionauth.domain.connector {
 
     public Guid? connectorId;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public List<string> domains;
 

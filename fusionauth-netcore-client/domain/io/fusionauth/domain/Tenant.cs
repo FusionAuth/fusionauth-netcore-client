@@ -30,7 +30,7 @@ namespace io.fusionauth.domain {
 
     public List<ConnectorPolicy> connectorPolicies;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public EmailConfiguration emailConfiguration;
 

@@ -26,13 +26,13 @@ namespace io.fusionauth.domain.api.identityProvider {
    */
   public class IdentityProviderStartLoginRequest: BaseLoginRequest {
 
-    public Dictionary<string, string> data;
+    public IDictionary<string, string> data;
 
     public Guid? identityProviderId;
 
     public string loginId;
 
-    public Dictionary<string, object> state;
+    public IDictionary<string, object> state;
 
     public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {
       action(this);

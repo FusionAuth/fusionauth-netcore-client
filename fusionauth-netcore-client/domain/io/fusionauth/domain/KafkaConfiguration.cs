@@ -27,7 +27,7 @@ namespace io.fusionauth.domain {
 
     public string defaultTopic;
 
-    public Dictionary<string, string> producer;
+    public IDictionary<string, string> producer;
 
     public KafkaConfiguration with(Action<KafkaConfiguration> action) {
       action(this);

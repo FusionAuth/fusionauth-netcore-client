@@ -33,7 +33,7 @@ namespace io.fusionauth.domain {
 
     public Guid? cleanSpeakId;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public Guid? id;
 
@@ -49,7 +49,7 @@ namespace io.fusionauth.domain {
 
     public string timezone;
 
-    public Dictionary<string, string> tokens;
+    public IDictionary<string, string> tokens;
 
     public string username;
 

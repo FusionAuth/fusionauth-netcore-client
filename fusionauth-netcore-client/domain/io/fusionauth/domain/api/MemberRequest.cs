@@ -28,7 +28,7 @@ namespace io.fusionauth.domain.api {
    */
   public class MemberRequest {
 
-    public Dictionary<Guid, List<GroupMember>> members;
+    public IDictionary<Guid, List<GroupMember>> members;
 
     public MemberRequest with(Action<MemberRequest> action) {
       action(this);

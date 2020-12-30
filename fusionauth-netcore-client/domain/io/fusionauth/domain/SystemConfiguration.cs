@@ -29,7 +29,7 @@ namespace io.fusionauth.domain {
 
     public CORSConfiguration corsConfiguration;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public EventLogConfiguration @eventLogConfiguration;
 

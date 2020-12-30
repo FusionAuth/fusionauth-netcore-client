@@ -25,7 +25,7 @@ namespace io.fusionauth.domain {
    *
    * @author Brian Pontarelli
    */
-  public class LocalizedStrings: Dictionary<string, string> {
+  public class LocalizedStrings: IDictionary<string, string> {
 
     public LocalizedStrings with(Action<LocalizedStrings> action) {
       action(this);

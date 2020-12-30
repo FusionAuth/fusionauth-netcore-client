@@ -33,7 +33,7 @@ namespace io.fusionauth.domain {
 
     public CleanSpeakConfiguration cleanSpeakConfiguration;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public ApplicationEmailConfiguration emailConfiguration;
 

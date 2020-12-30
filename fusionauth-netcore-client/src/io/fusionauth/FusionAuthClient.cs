@@ -49,7 +49,7 @@ namespace io.fusionauth {
 
     /**
      * Return a new instance of FusionAuthClient using the provided tenantId.
-     * @param tenantId the tenantId to use for this client. 
+     * @param tenantId the tenantId to use for this client.
      */
     // ReSharper disable once ParameterHidesMember
     public FusionAuthClient withTenantId(string tenantId) {
@@ -866,7 +866,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<ApplicationResponse>> PatchApplicationAsync(Guid? applicationId, Dictionary<string, object> request) {
+    public Task<ClientResponse<ApplicationResponse>> PatchApplicationAsync(Guid? applicationId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/application")
           .withUriSegment(applicationId)
@@ -876,7 +876,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<ApplicationResponse>> PatchApplicationRoleAsync(Guid? applicationId, Guid? roleId, Dictionary<string, object> request) {
+    public Task<ClientResponse<ApplicationResponse>> PatchApplicationRoleAsync(Guid? applicationId, Guid? roleId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/application")
           .withUriSegment(applicationId)
@@ -888,7 +888,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<ConnectorResponse>> PatchConnectorAsync(Guid? connectorId, Dictionary<string, object> request) {
+    public Task<ClientResponse<ConnectorResponse>> PatchConnectorAsync(Guid? connectorId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/connector")
           .withUriSegment(connectorId)
@@ -898,7 +898,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<ConsentResponse>> PatchConsentAsync(Guid? consentId, Dictionary<string, object> request) {
+    public Task<ClientResponse<ConsentResponse>> PatchConsentAsync(Guid? consentId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/consent")
           .withUriSegment(consentId)
@@ -908,7 +908,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<EmailTemplateResponse>> PatchEmailTemplateAsync(Guid? emailTemplateId, Dictionary<string, object> request) {
+    public Task<ClientResponse<EmailTemplateResponse>> PatchEmailTemplateAsync(Guid? emailTemplateId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/email/template")
           .withUriSegment(emailTemplateId)
@@ -918,7 +918,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<GroupResponse>> PatchGroupAsync(Guid? groupId, Dictionary<string, object> request) {
+    public Task<ClientResponse<GroupResponse>> PatchGroupAsync(Guid? groupId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/group")
           .withUriSegment(groupId)
@@ -928,7 +928,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<IdentityProviderResponse>> PatchIdentityProviderAsync(Guid? identityProviderId, Dictionary<string, object> request) {
+    public Task<ClientResponse<IdentityProviderResponse>> PatchIdentityProviderAsync(Guid? identityProviderId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/identity-provider")
           .withUriSegment(identityProviderId)
@@ -938,7 +938,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<IntegrationResponse>> PatchIntegrationsAsync(Dictionary<string, object> request) {
+    public Task<ClientResponse<IntegrationResponse>> PatchIntegrationsAsync(IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/integration")
           .withJSONBody(request)
@@ -947,7 +947,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<LambdaResponse>> PatchLambdaAsync(Guid? lambdaId, Dictionary<string, object> request) {
+    public Task<ClientResponse<LambdaResponse>> PatchLambdaAsync(Guid? lambdaId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/lambda")
           .withUriSegment(lambdaId)
@@ -957,7 +957,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RegistrationResponse>> PatchRegistrationAsync(Guid? userId, Dictionary<string, object> request) {
+    public Task<ClientResponse<RegistrationResponse>> PatchRegistrationAsync(Guid? userId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/user/registration")
           .withUriSegment(userId)
@@ -967,7 +967,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<SystemConfigurationResponse>> PatchSystemConfigurationAsync(Dictionary<string, object> request) {
+    public Task<ClientResponse<SystemConfigurationResponse>> PatchSystemConfigurationAsync(IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/system-configuration")
           .withJSONBody(request)
@@ -976,7 +976,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<TenantResponse>> PatchTenantAsync(Guid? tenantId, Dictionary<string, object> request) {
+    public Task<ClientResponse<TenantResponse>> PatchTenantAsync(Guid? tenantId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/tenant")
           .withUriSegment(tenantId)
@@ -986,7 +986,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<ThemeResponse>> PatchThemeAsync(Guid? themeId, Dictionary<string, object> request) {
+    public Task<ClientResponse<ThemeResponse>> PatchThemeAsync(Guid? themeId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/theme")
           .withUriSegment(themeId)
@@ -996,7 +996,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserResponse>> PatchUserAsync(Guid? userId, Dictionary<string, object> request) {
+    public Task<ClientResponse<UserResponse>> PatchUserAsync(Guid? userId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/user")
           .withUriSegment(userId)
@@ -1006,7 +1006,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserActionResponse>> PatchUserActionAsync(Guid? userActionId, Dictionary<string, object> request) {
+    public Task<ClientResponse<UserActionResponse>> PatchUserActionAsync(Guid? userActionId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/user-action")
           .withUriSegment(userActionId)
@@ -1016,7 +1016,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserActionReasonResponse>> PatchUserActionReasonAsync(Guid? userActionReasonId, Dictionary<string, object> request) {
+    public Task<ClientResponse<UserActionReasonResponse>> PatchUserActionReasonAsync(Guid? userActionReasonId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/user-action-reason")
           .withUriSegment(userActionReasonId)
@@ -1026,7 +1026,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserConsentResponse>> PatchUserConsentAsync(Guid? userConsentId, Dictionary<string, object> request) {
+    public Task<ClientResponse<UserConsentResponse>> PatchUserConsentAsync(Guid? userConsentId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/user/consent")
           .withUriSegment(userConsentId)

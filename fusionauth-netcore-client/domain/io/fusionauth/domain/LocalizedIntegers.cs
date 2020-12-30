@@ -25,7 +25,7 @@ namespace io.fusionauth.domain {
    *
    * @author Daniel DeGroff
    */
-  public class LocalizedIntegers: Dictionary<string, int> {
+  public class LocalizedIntegers: IDictionary<string, int> {
 
     public LocalizedIntegers with(Action<LocalizedIntegers> action) {
       action(this);

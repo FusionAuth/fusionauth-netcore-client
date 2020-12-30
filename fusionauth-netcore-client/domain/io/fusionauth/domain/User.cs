@@ -34,7 +34,7 @@ namespace io.fusionauth.domain {
 
     public Guid? cleanSpeakId;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public string email;
 

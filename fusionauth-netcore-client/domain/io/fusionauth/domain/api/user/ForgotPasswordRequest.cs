@@ -37,7 +37,7 @@ namespace io.fusionauth.domain.api.user {
 
     public bool? sendForgotPasswordEmail;
 
-    public Dictionary<string, object> state;
+    public IDictionary<string, object> state;
 
     public string username;
 

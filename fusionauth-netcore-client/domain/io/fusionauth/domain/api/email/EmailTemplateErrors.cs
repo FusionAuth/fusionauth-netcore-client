@@ -22,9 +22,9 @@ namespace io.fusionauth.domain.api.email {
 
   public class EmailTemplateErrors {
 
-    public Dictionary<string, string> parseErrors;
+    public IDictionary<string, string> parseErrors;
 
-    public Dictionary<string, string> renderErrors;
+    public IDictionary<string, string> renderErrors;
 
     public EmailTemplateErrors with(Action<EmailTemplateErrors> action) {
       action(this);

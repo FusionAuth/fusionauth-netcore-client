@@ -31,7 +31,7 @@ namespace io.fusionauth.domain {
 
     public LocalizedIntegers countryMinimumAgeForSelfConsent;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public int? defaultMinimumAgeForSelfConsent;
 

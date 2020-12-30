@@ -31,7 +31,7 @@ namespace io.fusionauth.domain {
 
     public Guid? consentId;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public Guid? giverUserId;
 

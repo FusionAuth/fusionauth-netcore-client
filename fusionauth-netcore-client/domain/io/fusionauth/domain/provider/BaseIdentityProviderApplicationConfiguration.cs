@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.provider {
 
     public bool? createRegistration;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public BaseIdentityProviderApplicationConfiguration with(Action<BaseIdentityProviderApplicationConfiguration> action) {
       action(this);

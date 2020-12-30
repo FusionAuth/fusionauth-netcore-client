@@ -37,7 +37,7 @@ namespace io.fusionauth {
 
     /**
      * Return a new instance of FusionAuthSyncClient using the provided tenantId.
-     * @param tenantId the tenantId to use for this client. 
+     * @param tenantId the tenantId to use for this client.
      */
     // ReSharper disable once ParameterHidesMember
     public FusionAuthSyncClient withTenantId(string tenantId) {
@@ -446,87 +446,87 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, Dictionary<string, object> request) {
+    public ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, IDictionary<string, object> request) {
       return client.PatchApplicationAsync(applicationId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<ApplicationResponse> PatchApplicationRole(Guid? applicationId, Guid? roleId, Dictionary<string, object> request) {
+    public ClientResponse<ApplicationResponse> PatchApplicationRole(Guid? applicationId, Guid? roleId, IDictionary<string, object> request) {
       return client.PatchApplicationRoleAsync(applicationId, roleId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<ConnectorResponse> PatchConnector(Guid? connectorId, Dictionary<string, object> request) {
+    public ClientResponse<ConnectorResponse> PatchConnector(Guid? connectorId, IDictionary<string, object> request) {
       return client.PatchConnectorAsync(connectorId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<ConsentResponse> PatchConsent(Guid? consentId, Dictionary<string, object> request) {
+    public ClientResponse<ConsentResponse> PatchConsent(Guid? consentId, IDictionary<string, object> request) {
       return client.PatchConsentAsync(consentId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<EmailTemplateResponse> PatchEmailTemplate(Guid? emailTemplateId, Dictionary<string, object> request) {
+    public ClientResponse<EmailTemplateResponse> PatchEmailTemplate(Guid? emailTemplateId, IDictionary<string, object> request) {
       return client.PatchEmailTemplateAsync(emailTemplateId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<GroupResponse> PatchGroup(Guid? groupId, Dictionary<string, object> request) {
+    public ClientResponse<GroupResponse> PatchGroup(Guid? groupId, IDictionary<string, object> request) {
       return client.PatchGroupAsync(groupId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<IdentityProviderResponse> PatchIdentityProvider(Guid? identityProviderId, Dictionary<string, object> request) {
+    public ClientResponse<IdentityProviderResponse> PatchIdentityProvider(Guid? identityProviderId, IDictionary<string, object> request) {
       return client.PatchIdentityProviderAsync(identityProviderId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<IntegrationResponse> PatchIntegrations(Dictionary<string, object> request) {
+    public ClientResponse<IntegrationResponse> PatchIntegrations(IDictionary<string, object> request) {
       return client.PatchIntegrationsAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, Dictionary<string, object> request) {
+    public ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, IDictionary<string, object> request) {
       return client.PatchLambdaAsync(lambdaId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RegistrationResponse> PatchRegistration(Guid? userId, Dictionary<string, object> request) {
+    public ClientResponse<RegistrationResponse> PatchRegistration(Guid? userId, IDictionary<string, object> request) {
       return client.PatchRegistrationAsync(userId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<SystemConfigurationResponse> PatchSystemConfiguration(Dictionary<string, object> request) {
+    public ClientResponse<SystemConfigurationResponse> PatchSystemConfiguration(IDictionary<string, object> request) {
       return client.PatchSystemConfigurationAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<TenantResponse> PatchTenant(Guid? tenantId, Dictionary<string, object> request) {
+    public ClientResponse<TenantResponse> PatchTenant(Guid? tenantId, IDictionary<string, object> request) {
       return client.PatchTenantAsync(tenantId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<ThemeResponse> PatchTheme(Guid? themeId, Dictionary<string, object> request) {
+    public ClientResponse<ThemeResponse> PatchTheme(Guid? themeId, IDictionary<string, object> request) {
       return client.PatchThemeAsync(themeId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserResponse> PatchUser(Guid? userId, Dictionary<string, object> request) {
+    public ClientResponse<UserResponse> PatchUser(Guid? userId, IDictionary<string, object> request) {
       return client.PatchUserAsync(userId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserActionResponse> PatchUserAction(Guid? userActionId, Dictionary<string, object> request) {
+    public ClientResponse<UserActionResponse> PatchUserAction(Guid? userActionId, IDictionary<string, object> request) {
       return client.PatchUserActionAsync(userActionId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserActionReasonResponse> PatchUserActionReason(Guid? userActionReasonId, Dictionary<string, object> request) {
+    public ClientResponse<UserActionReasonResponse> PatchUserActionReason(Guid? userActionReasonId, IDictionary<string, object> request) {
       return client.PatchUserActionReasonAsync(userActionReasonId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserConsentResponse> PatchUserConsent(Guid? userConsentId, Dictionary<string, object> request) {
+    public ClientResponse<UserConsentResponse> PatchUserConsent(Guid? userConsentId, IDictionary<string, object> request) {
       return client.PatchUserConsentAsync(userConsentId, request).GetAwaiter().GetResult();
     }
 

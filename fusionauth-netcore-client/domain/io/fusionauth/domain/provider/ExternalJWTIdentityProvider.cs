@@ -28,7 +28,7 @@ namespace io.fusionauth.domain.provider {
    */
   public class ExternalJWTIdentityProvider: BaseIdentityProvider<ExternalJWTApplicationConfiguration> {
 
-    public Dictionary<string, string> claimMap;
+    public IDictionary<string, string> claimMap;
 
     public Guid? defaultKeyId;
 

@@ -32,11 +32,11 @@ namespace io.fusionauth.domain {
 
     public int? connectTimeout;
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public string description;
 
-    public Dictionary<EventType, bool> @eventsEnabled;
+    public IDictionary<EventType, bool> @eventsEnabled;
 
     public bool? global;
 

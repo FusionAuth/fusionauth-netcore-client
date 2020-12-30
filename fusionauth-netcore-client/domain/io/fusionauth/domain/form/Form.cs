@@ -25,7 +25,7 @@ namespace io.fusionauth.domain.form {
    */
   public class Form {
 
-    public Dictionary<string, object> data;
+    public IDictionary<string, object> data;
 
     public Guid? id;
 

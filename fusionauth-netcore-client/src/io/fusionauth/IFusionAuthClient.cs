@@ -1180,7 +1180,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<ApplicationResponse>> PatchApplicationAsync(Guid? applicationId, Dictionary<string, object> request);
+    Task<ClientResponse<ApplicationResponse>> PatchApplicationAsync(Guid? applicationId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the application role with the given id for the application.
@@ -1195,7 +1195,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<ApplicationResponse>> PatchApplicationRoleAsync(Guid? applicationId, Guid? roleId, Dictionary<string, object> request);
+    Task<ClientResponse<ApplicationResponse>> PatchApplicationRoleAsync(Guid? applicationId, Guid? roleId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the connector with the given Id.
@@ -1209,7 +1209,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<ConnectorResponse>> PatchConnectorAsync(Guid? connectorId, Dictionary<string, object> request);
+    Task<ClientResponse<ConnectorResponse>> PatchConnectorAsync(Guid? connectorId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the consent with the given Id.
@@ -1223,7 +1223,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<ConsentResponse>> PatchConsentAsync(Guid? consentId, Dictionary<string, object> request);
+    Task<ClientResponse<ConsentResponse>> PatchConsentAsync(Guid? consentId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the email template with the given Id.
@@ -1237,7 +1237,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<EmailTemplateResponse>> PatchEmailTemplateAsync(Guid? emailTemplateId, Dictionary<string, object> request);
+    Task<ClientResponse<EmailTemplateResponse>> PatchEmailTemplateAsync(Guid? emailTemplateId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the group with the given Id.
@@ -1251,7 +1251,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<GroupResponse>> PatchGroupAsync(Guid? groupId, Dictionary<string, object> request);
+    Task<ClientResponse<GroupResponse>> PatchGroupAsync(Guid? groupId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the identity provider with the given Id.
@@ -1265,7 +1265,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<IdentityProviderResponse>> PatchIdentityProviderAsync(Guid? identityProviderId, Dictionary<string, object> request);
+    Task<ClientResponse<IdentityProviderResponse>> PatchIdentityProviderAsync(Guid? identityProviderId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the available integrations.
@@ -1278,7 +1278,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<IntegrationResponse>> PatchIntegrationsAsync(Dictionary<string, object> request);
+    Task<ClientResponse<IntegrationResponse>> PatchIntegrationsAsync(IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the lambda with the given Id.
@@ -1292,7 +1292,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<LambdaResponse>> PatchLambdaAsync(Guid? lambdaId, Dictionary<string, object> request);
+    Task<ClientResponse<LambdaResponse>> PatchLambdaAsync(Guid? lambdaId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
@@ -1306,7 +1306,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RegistrationResponse>> PatchRegistrationAsync(Guid? userId, Dictionary<string, object> request);
+    Task<ClientResponse<RegistrationResponse>> PatchRegistrationAsync(Guid? userId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the system configuration.
@@ -1319,7 +1319,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<SystemConfigurationResponse>> PatchSystemConfigurationAsync(Dictionary<string, object> request);
+    Task<ClientResponse<SystemConfigurationResponse>> PatchSystemConfigurationAsync(IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the tenant with the given Id.
@@ -1333,7 +1333,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<TenantResponse>> PatchTenantAsync(Guid? tenantId, Dictionary<string, object> request);
+    Task<ClientResponse<TenantResponse>> PatchTenantAsync(Guid? tenantId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the theme with the given Id.
@@ -1347,7 +1347,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<ThemeResponse>> PatchThemeAsync(Guid? themeId, Dictionary<string, object> request);
+    Task<ClientResponse<ThemeResponse>> PatchThemeAsync(Guid? themeId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the user with the given Id.
@@ -1361,7 +1361,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserResponse>> PatchUserAsync(Guid? userId, Dictionary<string, object> request);
+    Task<ClientResponse<UserResponse>> PatchUserAsync(Guid? userId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the user action with the given Id.
@@ -1375,7 +1375,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserActionResponse>> PatchUserActionAsync(Guid? userActionId, Dictionary<string, object> request);
+    Task<ClientResponse<UserActionResponse>> PatchUserActionAsync(Guid? userActionId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the user action reason with the given Id.
@@ -1389,7 +1389,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserActionReasonResponse>> PatchUserActionReasonAsync(Guid? userActionReasonId, Dictionary<string, object> request);
+    Task<ClientResponse<UserActionReasonResponse>> PatchUserActionReasonAsync(Guid? userActionReasonId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, a single User consent by Id.
@@ -1403,7 +1403,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserConsentResponse>> PatchUserConsentAsync(Guid? userConsentId, Dictionary<string, object> request);
+    Task<ClientResponse<UserConsentResponse>> PatchUserConsentAsync(Guid? userConsentId, IDictionary<string, object> request);
 
     /// <summary>
     /// Reactivates the application with the given Id.
@@ -4204,7 +4204,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, Dictionary<string, object> request);
+   ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the application role with the given id for the application.
@@ -4218,7 +4218,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<ApplicationResponse> PatchApplicationRole(Guid? applicationId, Guid? roleId, Dictionary<string, object> request);
+   ClientResponse<ApplicationResponse> PatchApplicationRole(Guid? applicationId, Guid? roleId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the connector with the given Id.
@@ -4231,7 +4231,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<ConnectorResponse> PatchConnector(Guid? connectorId, Dictionary<string, object> request);
+   ClientResponse<ConnectorResponse> PatchConnector(Guid? connectorId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the consent with the given Id.
@@ -4244,7 +4244,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<ConsentResponse> PatchConsent(Guid? consentId, Dictionary<string, object> request);
+   ClientResponse<ConsentResponse> PatchConsent(Guid? consentId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the email template with the given Id.
@@ -4257,7 +4257,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<EmailTemplateResponse> PatchEmailTemplate(Guid? emailTemplateId, Dictionary<string, object> request);
+   ClientResponse<EmailTemplateResponse> PatchEmailTemplate(Guid? emailTemplateId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the group with the given Id.
@@ -4270,7 +4270,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<GroupResponse> PatchGroup(Guid? groupId, Dictionary<string, object> request);
+   ClientResponse<GroupResponse> PatchGroup(Guid? groupId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the identity provider with the given Id.
@@ -4283,7 +4283,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<IdentityProviderResponse> PatchIdentityProvider(Guid? identityProviderId, Dictionary<string, object> request);
+   ClientResponse<IdentityProviderResponse> PatchIdentityProvider(Guid? identityProviderId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the available integrations.
@@ -4295,7 +4295,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<IntegrationResponse> PatchIntegrations(Dictionary<string, object> request);
+   ClientResponse<IntegrationResponse> PatchIntegrations(IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the lambda with the given Id.
@@ -4308,7 +4308,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, Dictionary<string, object> request);
+   ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
@@ -4321,7 +4321,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RegistrationResponse> PatchRegistration(Guid? userId, Dictionary<string, object> request);
+   ClientResponse<RegistrationResponse> PatchRegistration(Guid? userId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the system configuration.
@@ -4333,7 +4333,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<SystemConfigurationResponse> PatchSystemConfiguration(Dictionary<string, object> request);
+   ClientResponse<SystemConfigurationResponse> PatchSystemConfiguration(IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the tenant with the given Id.
@@ -4346,7 +4346,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<TenantResponse> PatchTenant(Guid? tenantId, Dictionary<string, object> request);
+   ClientResponse<TenantResponse> PatchTenant(Guid? tenantId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the theme with the given Id.
@@ -4359,7 +4359,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<ThemeResponse> PatchTheme(Guid? themeId, Dictionary<string, object> request);
+   ClientResponse<ThemeResponse> PatchTheme(Guid? themeId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the user with the given Id.
@@ -4372,7 +4372,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserResponse> PatchUser(Guid? userId, Dictionary<string, object> request);
+   ClientResponse<UserResponse> PatchUser(Guid? userId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the user action with the given Id.
@@ -4385,7 +4385,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserActionResponse> PatchUserAction(Guid? userActionId, Dictionary<string, object> request);
+   ClientResponse<UserActionResponse> PatchUserAction(Guid? userActionId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the user action reason with the given Id.
@@ -4398,7 +4398,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserActionReasonResponse> PatchUserActionReason(Guid? userActionReasonId, Dictionary<string, object> request);
+   ClientResponse<UserActionReasonResponse> PatchUserActionReason(Guid? userActionReasonId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, a single User consent by Id.
@@ -4411,7 +4411,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserConsentResponse> PatchUserConsent(Guid? userConsentId, Dictionary<string, object> request);
+   ClientResponse<UserConsentResponse> PatchUserConsent(Guid? userConsentId, IDictionary<string, object> request);
 
    /// <summary>
    /// Reactivates the application with the given Id.
