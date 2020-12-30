@@ -47,6 +47,13 @@ namespace io.fusionauth {
       clientBuilder = new DefaultRESTClientBuilder();
     }
 
+    /**
+     * Return a new instance of FusionAuthClient using the provided tenantId.
+     */
+    public static IRESTClient withTenantId(string tenantId) {
+       return new FusionAuthClient(apiKey, host, tenantId);
+    }
+
     public IRESTClient buildClient() {
       return buildAnonymousClient().withAuthorization(apiKey);
     }
