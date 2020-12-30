@@ -35,6 +35,24 @@ namespace io.fusionauth {
       client = new FusionAuthClient(apiKey, host, tenantId);
     }
 
+    /**
+     * Return a new instance of FusionAuthSyncClient using the provided tenantId.
+     * @param tenantId the tenantId to use for this client. 
+     */
+    // ReSharper disable once ParameterHidesMember
+    public FusionAuthSyncClient withTenantId(string tenantId) {
+      return tenantId == null ? this : new FusionAuthSyncClient(client.apiKey, client.host, tenantId);
+    }
+
+    /**
+     * Return a new instance of FusionAuthSyncClient using the provided tenantId.
+     * @param tenantId the tenantId to use for this client.
+     */
+    // ReSharper disable once ParameterHidesMember
+    public FusionAuthSyncClient withTenantId(Guid? tenantId) {
+      return tenantId == null ? this : new FusionAuthSyncClient(client.apiKey, client.host, tenantId.ToString());
+    }
+
     /// <inheritdoc/>
     public ClientResponse<ActionResponse> ActionUser(ActionRequest request) {
       return client.ActionUserAsync(request).GetAwaiter().GetResult();

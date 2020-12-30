@@ -8,8 +8,8 @@
     <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.13.0/build/netcoreapp1.0/NUnit3.TestAdapter.pdb" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/nunit3testadapter/3.13.0/build/netcoreapp1.0/nunit.engine.netstandard.dll" t="Include" />
     <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/extResources" t="IncludeRecursive" />
-    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.1/resharper-host/local/Transient/ReSharperHost/v201/SolutionCaches/_fusionauth-netcore-client.-217816243.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.3/resharper-host/local/Transient/Rider/v203/SolutionCaches/_fusionauth-netcore-client.-217816243.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="bin" t="ExcludeRecursive" />
       <e p="domain" t="Include">
@@ -25,6 +25,8 @@
           <e p="fusionauth" t="Include">
             <e p="domain" t="Include">
               <e p="Application.cs" t="Include" />
+              <e p="ApplicationEmailConfiguration.cs" t="Include" />
+              <e p="ApplicationFormConfiguration.cs" t="Include" />
               <e p="ApplicationRegistrationDeletePolicy.cs" t="Include" />
               <e p="ApplicationRole.cs" t="Include" />
               <e p="AuditLog.cs" t="Include" />
@@ -41,7 +43,6 @@
               <e p="Consent.cs" t="Include" />
               <e p="ConsentStatus.cs" t="Include" />
               <e p="ContentStatus.cs" t="Include" />
-              <e p="CustomRegistration.cs" t="Include" />
               <e p="DeleteConfiguration.cs" t="Include" />
               <e p="DisplayableRawLogin.cs" t="Include" />
               <e p="EmailConfiguration.cs" t="Include" />
@@ -72,6 +73,7 @@
               <e p="Key.cs" t="Include" />
               <e p="KeyAlgorithm.cs" t="Include" />
               <e p="KeyType.cs" t="Include" />
+              <e p="KeyUse.cs" t="Include" />
               <e p="Lambda.cs" t="Include" />
               <e p="LambdaConfiguration.cs" t="Include" />
               <e p="LambdaType.cs" t="Include" />
@@ -83,6 +85,7 @@
               <e p="LoginRecordConfiguration.cs" t="Include" />
               <e p="MaximumPasswordAge.cs" t="Include" />
               <e p="MinimumPasswordAge.cs" t="Include" />
+              <e p="ObjectState.cs" t="Include" />
               <e p="OpenIdConfiguration.cs" t="Include" />
               <e p="PasswordBreachDetection.cs" t="Include" />
               <e p="PasswordEncryptionConfiguration.cs" t="Include" />
@@ -104,6 +107,7 @@
               <e p="SystemConfiguration.cs" t="Include" />
               <e p="Templates.cs" t="Include" />
               <e p="Tenant.cs" t="Include" />
+              <e p="TenantFormConfiguration.cs" t="Include" />
               <e p="TenantUserDeletePolicy.cs" t="Include" />
               <e p="Tenantable.cs" t="Include" />
               <e p="Theme.cs" t="Include" />
@@ -122,6 +126,7 @@
               <e p="UserRegistration.cs" t="Include" />
               <e p="UsernameModeration.cs" t="Include" />
               <e p="Webhook.cs" t="Include" />
+              <e p="XMLSignatureLocation.cs" t="Include" />
               <e p="api" t="Include">
                 <e p="ApplicationRequest.cs" t="Include" />
                 <e p="ApplicationResponse.cs" t="Include" />
@@ -246,6 +251,7 @@
                   <e p="ForgotPasswordResponse.cs" t="Include" />
                   <e p="ImportRequest.cs" t="Include" />
                   <e p="RecentLoginResponse.cs" t="Include" />
+                  <e p="RefreshTokenImportRequest.cs" t="Include" />
                   <e p="RegistrationRequest.cs" t="Include" />
                   <e p="RegistrationResponse.cs" t="Include" />
                   <e p="SearchRequest.cs" t="Include" />
@@ -354,6 +360,7 @@
                 <e p="PasswordlessIdentityProvider.cs" t="Include" />
                 <e p="SAMLv2ApplicationConfiguration.cs" t="Include" />
                 <e p="SAMLv2IdentityProvider.cs" t="Include" />
+                <e p="SupportsPostBindings.cs" t="Include" />
                 <e p="TwitterApplicationConfiguration.cs" t="Include" />
                 <e p="TwitterIdentityProvider.cs" t="Include" />
               </e>
