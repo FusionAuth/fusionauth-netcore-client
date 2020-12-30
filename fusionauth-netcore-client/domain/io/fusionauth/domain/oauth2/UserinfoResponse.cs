@@ -23,7 +23,7 @@ namespace io.fusionauth.domain.oauth2 {
   /**
    * @author Daniel DeGroff
    */
-  public class UserinfoResponse: IDictionary<string, object> {
+  public class UserinfoResponse: Dictionary<string, object> {
 
     public UserinfoResponse with(Action<UserinfoResponse> action) {
       action(this);
