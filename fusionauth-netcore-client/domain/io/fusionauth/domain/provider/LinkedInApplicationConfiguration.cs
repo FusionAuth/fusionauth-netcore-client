@@ -15,28 +15,28 @@
  */
 
 
+using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.provider {
 
   /**
-   * The types of lambdas that indicate how they are invoked by FusionAuth.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public enum LambdaType {
-        JWTPopulate, 
-        OpenIDReconcile, 
-        SAMLv2Reconcile, 
-        SAMLv2Populate, 
-        AppleReconcile, 
-        ExternalJWTReconcile, 
-        FacebookReconcile, 
-        GoogleReconcile, 
-        HYPRReconcile, 
-        TwitterReconcile, 
-        LDAPConnectorReconcile, 
-        LinkedInReconcile
+  public class LinkedInApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
+
+    public string buttonText;
+
+    public string client_id;
+
+    public string client_secret;
+
+    public string scope;
+
+    public LinkedInApplicationConfiguration with(Action<LinkedInApplicationConfiguration> action) {
+      action(this);
+      return this;
+    }
   }
 }

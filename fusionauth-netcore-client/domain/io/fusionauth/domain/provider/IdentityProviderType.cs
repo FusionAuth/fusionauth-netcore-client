@@ -28,6 +28,7 @@ namespace io.fusionauth.domain.provider {
         Twitter, 
         SAMLv2, 
         HYPR, 
-        Apple
+        Apple, 
+        LinkedIn
   }
 }

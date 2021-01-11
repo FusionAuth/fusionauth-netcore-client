@@ -24,6 +24,10 @@ namespace io.fusionauth.converters {
         return json.ToObject<GoogleIdentityProvider>(serializer);
       }
 
+      if (json["type"].Value<string>() == "LinkedIn") {
+        return json.ToObject<LinkedInIdentityProvider>(serializer);
+      }
+
       if (json["type"].Value<string>() == "Twitter") {
         return json.ToObject<TwitterIdentityProvider>(serializer);
       }
