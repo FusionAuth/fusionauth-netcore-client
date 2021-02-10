@@ -27,6 +27,8 @@ namespace io.fusionauth.domain.search {
    */
   public class UserSearchCriteria: BaseSearchCriteria {
 
+    public bool? accurateTotal;
+
     public List<Guid> ids;
 
     public string query;

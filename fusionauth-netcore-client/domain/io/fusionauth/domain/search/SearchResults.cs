@@ -31,6 +31,8 @@ namespace io.fusionauth.domain.search {
 
     public long? total;
 
+    public bool? totalEqualToActual;
+
     public SearchResults<T> with(Action<SearchResults<T>> action) {
       action(this);
       return this;

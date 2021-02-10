@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.oauth2 {
         access_token_unavailable_for_processing, 
         access_token_failed_processing, 
         refresh_token_not_found, 
+        refresh_token_type_not_supported, 
         invalid_client_id, 
         invalid_user_credentials, 
         invalid_grant_type, 

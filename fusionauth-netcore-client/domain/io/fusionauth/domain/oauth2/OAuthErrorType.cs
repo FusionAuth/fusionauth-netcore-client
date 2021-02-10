@@ -33,6 +33,7 @@ namespace io.fusionauth.domain.oauth2 {
         change_password_required, 
         two_factor_required, 
         authorization_pending, 
-        expired_token
+        expired_token, 
+        unsupported_token_type
   }
 }
