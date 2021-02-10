@@ -1827,6 +1827,52 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RevokeRefreshTokenByIdAsync(Guid? tokenId) {
+      return buildClient()
+          .withUri("/api/jwt/refresh")
+          .withUriSegment(tokenId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RevokeRefreshTokenByTokenAsync(string token) {
+      return buildClient()
+          .withUri("/api/jwt/refresh")
+          .withParameter("token", token)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RevokeRefreshTokensByApplicationIdAsync(Guid? applicationId) {
+      return buildClient()
+          .withUri("/api/jwt/refresh")
+          .withParameter("applicationId", applicationId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RevokeRefreshTokensByUserIdAsync(Guid? userId) {
+      return buildClient()
+          .withUri("/api/jwt/refresh")
+          .withParameter("userId", userId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RevokeRefreshTokensByUserIdForApplicationAsync(Guid? userId, Guid? applicationId) {
+      return buildClient()
+          .withUri("/api/jwt/refresh")
+          .withParameter("userId", userId)
+          .withParameter("applicationId", applicationId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> RevokeUserConsentAsync(Guid? userConsentId) {
       return buildClient()
           .withUri("/api/user/consent")

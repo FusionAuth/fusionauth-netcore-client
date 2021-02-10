@@ -966,6 +966,31 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RevokeRefreshTokenById(Guid? tokenId) {
+      return client.RevokeRefreshTokenByIdAsync(tokenId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RevokeRefreshTokenByToken(string token) {
+      return client.RevokeRefreshTokenByTokenAsync(token).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RevokeRefreshTokensByApplicationId(Guid? applicationId) {
+      return client.RevokeRefreshTokensByApplicationIdAsync(applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RevokeRefreshTokensByUserId(Guid? userId) {
+      return client.RevokeRefreshTokensByUserIdAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RevokeRefreshTokensByUserIdForApplication(Guid? userId, Guid? applicationId) {
+      return client.RevokeRefreshTokensByUserIdForApplicationAsync(userId, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> RevokeUserConsent(Guid? userConsentId) {
       return client.RevokeUserConsentAsync(userConsentId).GetAwaiter().GetResult();
     }

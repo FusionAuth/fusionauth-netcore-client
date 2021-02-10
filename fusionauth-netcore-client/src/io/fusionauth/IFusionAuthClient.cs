@@ -2550,8 +2550,30 @@ namespace io.fusionauth {
     Task<ClientResponse<WebhookResponse>> RetrieveWebhooksAsync();
 
     /// <summary>
-    /// Revokes a single refresh token, all tokens for a user or all tokens for an application. If you provide a user id
-    /// and an application id, this will delete all the refresh tokens for that user for that application.
+    /// Revokes refresh tokens.
+    /// 
+    /// Usage examples:
+    ///   - Delete a single refresh token, pass in only the token.
+    ///       revokeRefreshToken(token)
+    /// 
+    ///   - Delete all refresh tokens for a user, pass in only the userId.
+    ///       revokeRefreshToken(null, userId)
+    /// 
+    ///   - Delete all refresh tokens for a user for a specific application, pass in both the userId and the applicationId.
+    ///       revokeRefreshToken(null, userId, applicationId)
+    /// 
+    ///   - Delete all refresh tokens for an application
+    ///       revokeRefreshToken(null, null, applicationId)
+    /// 
+    /// Note: <code>null</code> may be handled differently depending upon the programming language.
+    /// 
+    /// See also: (method names may vary by language... but you'll figure it out)
+    /// 
+    ///  - revokeRefreshTokenById
+    ///  - revokeRefreshTokenByToken
+    ///  - revokeRefreshTokensByUserId
+    ///  - revokeRefreshTokensByApplicationId
+    ///  - revokeRefreshTokensByUserIdForApplication
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="token"> (Optional) The refresh token to delete.</param>
@@ -2564,6 +2586,72 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> RevokeRefreshTokenAsync(string token, Guid? userId, Guid? applicationId);
+
+    /// <summary>
+    /// Revokes a single refresh token by the unique Id. The unique Id is not sensitive as it cannot be used to obtain another JWT.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="tokenId"> The unique Id of the token to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RevokeRefreshTokenByIdAsync(Guid? tokenId);
+
+    /// <summary>
+    /// Revokes a single refresh token by using the actual refresh token value. This refresh token value is sensitive, so  be careful with this API request.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="token"> The refresh token to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RevokeRefreshTokenByTokenAsync(string token);
+
+    /// <summary>
+    /// Revoke all refresh tokens that belong to an application by applicationId.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The unique Id of the application that you want to delete all refresh tokens for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RevokeRefreshTokensByApplicationIdAsync(Guid? applicationId);
+
+    /// <summary>
+    /// Revoke all refresh tokens that belong to a user by user Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The unique Id of the user that you want to delete all refresh tokens for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RevokeRefreshTokensByUserIdAsync(Guid? userId);
+
+    /// <summary>
+    /// Revoke all refresh tokens that belong to a user by user Id for a specific application by applicationId.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The unique Id of the user that you want to delete all refresh tokens for.</param>
+    /// <param name="applicationId"> The unique Id of the application that you want to delete refresh tokens for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RevokeRefreshTokensByUserIdForApplicationAsync(Guid? userId, Guid? applicationId);
 
     /// <summary>
     /// Revokes a single User consent by Id.
@@ -5472,8 +5560,30 @@ namespace io.fusionauth {
    ClientResponse<WebhookResponse> RetrieveWebhooks();
 
    /// <summary>
-   /// Revokes a single refresh token, all tokens for a user or all tokens for an application. If you provide a user id
-   /// and an application id, this will delete all the refresh tokens for that user for that application.
+   /// Revokes refresh tokens.
+   /// 
+   /// Usage examples:
+   ///   - Delete a single refresh token, pass in only the token.
+   ///       revokeRefreshToken(token)
+   /// 
+   ///   - Delete all refresh tokens for a user, pass in only the userId.
+   ///       revokeRefreshToken(null, userId)
+   /// 
+   ///   - Delete all refresh tokens for a user for a specific application, pass in both the userId and the applicationId.
+   ///       revokeRefreshToken(null, userId, applicationId)
+   /// 
+   ///   - Delete all refresh tokens for an application
+   ///       revokeRefreshToken(null, null, applicationId)
+   /// 
+   /// Note: <code>null</code> may be handled differently depending upon the programming language.
+   /// 
+   /// See also: (method names may vary by language... but you'll figure it out)
+   /// 
+   ///  - revokeRefreshTokenById
+   ///  - revokeRefreshTokenByToken
+   ///  - revokeRefreshTokensByUserId
+   ///  - revokeRefreshTokensByApplicationId
+   ///  - revokeRefreshTokensByUserIdForApplication
    /// </summary>
    /// <param name="token"> (Optional) The refresh token to delete.</param>
    /// <param name="userId"> (Optional) The user id whose tokens to delete.</param>
@@ -5485,6 +5595,67 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> RevokeRefreshToken(string token, Guid? userId, Guid? applicationId);
+
+   /// <summary>
+   /// Revokes a single refresh token by the unique Id. The unique Id is not sensitive as it cannot be used to obtain another JWT.
+   /// </summary>
+   /// <param name="tokenId"> The unique Id of the token to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RevokeRefreshTokenById(Guid? tokenId);
+
+   /// <summary>
+   /// Revokes a single refresh token by using the actual refresh token value. This refresh token value is sensitive, so  be careful with this API request.
+   /// </summary>
+   /// <param name="token"> The refresh token to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RevokeRefreshTokenByToken(string token);
+
+   /// <summary>
+   /// Revoke all refresh tokens that belong to an application by applicationId.
+   /// </summary>
+   /// <param name="applicationId"> The unique Id of the application that you want to delete all refresh tokens for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RevokeRefreshTokensByApplicationId(Guid? applicationId);
+
+   /// <summary>
+   /// Revoke all refresh tokens that belong to a user by user Id.
+   /// </summary>
+   /// <param name="userId"> The unique Id of the user that you want to delete all refresh tokens for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RevokeRefreshTokensByUserId(Guid? userId);
+
+   /// <summary>
+   /// Revoke all refresh tokens that belong to a user by user Id for a specific application by applicationId.
+   /// </summary>
+   /// <param name="userId"> The unique Id of the user that you want to delete all refresh tokens for.</param>
+   /// <param name="applicationId"> The unique Id of the application that you want to delete refresh tokens for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RevokeRefreshTokensByUserIdForApplication(Guid? userId, Guid? applicationId);
 
    /// <summary>
    /// Revokes a single User consent by Id.
