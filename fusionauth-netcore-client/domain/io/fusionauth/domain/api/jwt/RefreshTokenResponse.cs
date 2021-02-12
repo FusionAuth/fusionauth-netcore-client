@@ -15,17 +15,24 @@
  */
 
 
+using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api.jwt {
 
   /**
+   * API response for retrieving Refresh Tokens
+   *
    * @author Daniel DeGroff
    */
-  public class RefreshResponse {
+  public class RefreshTokenResponse {
 
-    public RefreshResponse with(Action<RefreshResponse> action) {
+    public RefreshToken refreshToken;
+
+    public List<RefreshToken> refreshTokens;
+
+    public RefreshTokenResponse with(Action<RefreshTokenResponse> action) {
       action(this);
       return this;
     }

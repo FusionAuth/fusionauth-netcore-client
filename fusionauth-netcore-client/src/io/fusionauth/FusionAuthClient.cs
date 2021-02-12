@@ -663,12 +663,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RefreshResponse>> ExchangeRefreshTokenForJWTAsync(RefreshRequest request) {
+    public Task<ClientResponse<JWTRefreshResponse>> ExchangeRefreshTokenForJWTAsync(RefreshRequest request) {
       return buildAnonymousClient()
           .withUri("/api/jwt/refresh")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<RefreshResponse>();
+          .goAsync<JWTRefreshResponse>();
     }
 
     /// <inheritdoc/>
@@ -1551,12 +1551,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RefreshResponse>> RetrieveRefreshTokensAsync(Guid? userId) {
+    public Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? userId) {
+      return buildClient()
+          .withUri("/api/jwt/refresh")
+          .withUriSegment(userId)
+          .withMethod("Get")
+          .goAsync<RefreshTokenResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokensAsync(Guid? userId) {
       return buildClient()
           .withUri("/api/jwt/refresh")
           .withParameter("userId", userId)
           .withMethod("Get")
-          .goAsync<RefreshResponse>();
+          .goAsync<RefreshTokenResponse>();
     }
 
     /// <inheritdoc/>

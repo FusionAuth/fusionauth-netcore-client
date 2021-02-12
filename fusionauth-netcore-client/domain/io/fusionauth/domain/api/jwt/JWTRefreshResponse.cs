@@ -21,11 +21,19 @@ using System;
 namespace io.fusionauth.domain.api.jwt {
 
   /**
+   * API response for refreshing a JWT with a Refresh Token.
+   * <p>
+   * Using a different response object from RefreshTokenResponse because the retrieve response will return an object for refreshToken, and this is a string.
+   *
    * @author Daniel DeGroff
    */
-  public class RefreshResponse {
+  public class JWTRefreshResponse {
 
-    public RefreshResponse with(Action<RefreshResponse> action) {
+    public string refreshToken;
+
+    public string token;
+
+    public JWTRefreshResponse with(Action<JWTRefreshResponse> action) {
       action(this);
       return this;
     }

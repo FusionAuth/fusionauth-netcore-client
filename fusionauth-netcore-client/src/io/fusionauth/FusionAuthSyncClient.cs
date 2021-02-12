@@ -346,7 +346,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RefreshResponse> ExchangeRefreshTokenForJWT(RefreshRequest request) {
+    public ClientResponse<JWTRefreshResponse> ExchangeRefreshTokenForJWT(RefreshRequest request) {
       return client.ExchangeRefreshTokenForJWTAsync(request).GetAwaiter().GetResult();
     }
 
@@ -816,7 +816,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RefreshResponse> RetrieveRefreshTokens(Guid? userId) {
+    public ClientResponse<RefreshTokenResponse> RetrieveRefreshTokenById(Guid? userId) {
+      return client.RetrieveRefreshTokenByIdAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RefreshTokenResponse> RetrieveRefreshTokens(Guid? userId) {
       return client.RetrieveRefreshTokensAsync(userId).GetAwaiter().GetResult();
     }
 

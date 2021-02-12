@@ -864,7 +864,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RefreshResponse>> ExchangeRefreshTokenForJWTAsync(RefreshRequest request);
+    Task<ClientResponse<JWTRefreshResponse>> ExchangeRefreshTokenForJWTAsync(RefreshRequest request);
 
     /// <summary>
     /// Exchange User Credentials for a Token.
@@ -2161,6 +2161,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RecentLoginResponse>> RetrieveRecentLoginsAsync(int? offset, int? limit);
 
     /// <summary>
+    /// Retrieves a single refresh token by unique Id. This is not the same thing as the string value of the refresh token, if you have that, you already have what you need..
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The Id of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? userId);
+
+    /// <summary>
     /// Retrieves the refresh tokens that belong to the user with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -2171,7 +2184,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RefreshResponse>> RetrieveRefreshTokensAsync(Guid? userId);
+    Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokensAsync(Guid? userId);
 
     /// <summary>
     /// Retrieves the user registration for the user with the given id and the given application id.
@@ -3996,7 +4009,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RefreshResponse> ExchangeRefreshTokenForJWT(RefreshRequest request);
+   ClientResponse<JWTRefreshResponse> ExchangeRefreshTokenForJWT(RefreshRequest request);
 
    /// <summary>
    /// Exchange User Credentials for a Token.
@@ -5200,6 +5213,18 @@ namespace io.fusionauth {
    ClientResponse<RecentLoginResponse> RetrieveRecentLogins(int? offset, int? limit);
 
    /// <summary>
+   /// Retrieves a single refresh token by unique Id. This is not the same thing as the string value of the refresh token, if you have that, you already have what you need..
+   /// </summary>
+   /// <param name="userId"> The Id of the user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RefreshTokenResponse> RetrieveRefreshTokenById(Guid? userId);
+
+   /// <summary>
    /// Retrieves the refresh tokens that belong to the user with the given Id.
    /// </summary>
    /// <param name="userId"> The Id of the user.</param>
@@ -5209,7 +5234,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RefreshResponse> RetrieveRefreshTokens(Guid? userId);
+   ClientResponse<RefreshTokenResponse> RetrieveRefreshTokens(Guid? userId);
 
    /// <summary>
    /// Retrieves the user registration for the user with the given id and the given application id.
