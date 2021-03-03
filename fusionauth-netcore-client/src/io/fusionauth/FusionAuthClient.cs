@@ -1354,6 +1354,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderResponse>> RetrieveIdentityProviderByTypeAsync(IdentityProviderType type) {
+      return buildClient()
+          .withUri("/api/identity-provider")
+          .withParameter("type", type)
+          .withMethod("Get")
+          .goAsync<IdentityProviderResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IdentityProviderResponse>> RetrieveIdentityProvidersAsync() {
       return buildClient()
           .withUri("/api/identity-provider")

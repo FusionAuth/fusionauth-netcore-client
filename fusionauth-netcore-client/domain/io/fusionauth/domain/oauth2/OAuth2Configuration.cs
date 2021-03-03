@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.oauth2 {
 
     public string clientSecret;
 
+    public bool? debug;
+
     public string deviceVerificationURL;
 
     public List<GrantType> enabledGrants;

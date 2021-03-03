@@ -1862,7 +1862,7 @@ namespace io.fusionauth {
     /// Retrieves the identity provider for the given id or all of the identity providers if the id is null.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="identityProviderId"> (Optional) The identity provider id.</param>
+    /// <param name="identityProviderId"> The identity provider Id.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1870,6 +1870,21 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<IdentityProviderResponse>> RetrieveIdentityProviderAsync(Guid? identityProviderId);
+
+    /// <summary>
+    /// Retrieves one or more identity provider for the given type. For types such as Google, Facebook, Twitter and LinkedIn, only a single 
+    /// identity provider can exist. For types such as OpenID Connect and SAMLv2 more than one identity provider can be configured so this request 
+    /// may return multiple identity providers.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="type"> The type of the identity provider.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IdentityProviderResponse>> RetrieveIdentityProviderByTypeAsync(IdentityProviderType type);
 
     /// <summary>
     /// Retrieves all of the identity providers.
@@ -4936,7 +4951,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Retrieves the identity provider for the given id or all of the identity providers if the id is null.
    /// </summary>
-   /// <param name="identityProviderId"> (Optional) The identity provider id.</param>
+   /// <param name="identityProviderId"> The identity provider Id.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4944,6 +4959,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<IdentityProviderResponse> RetrieveIdentityProvider(Guid? identityProviderId);
+
+   /// <summary>
+   /// Retrieves one or more identity provider for the given type. For types such as Google, Facebook, Twitter and LinkedIn, only a single 
+   /// identity provider can exist. For types such as OpenID Connect and SAMLv2 more than one identity provider can be configured so this request 
+   /// may return multiple identity providers.
+   /// </summary>
+   /// <param name="type"> The type of the identity provider.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IdentityProviderResponse> RetrieveIdentityProviderByType(IdentityProviderType type);
 
    /// <summary>
    /// Retrieves all of the identity providers.

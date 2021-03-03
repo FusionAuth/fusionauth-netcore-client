@@ -706,6 +706,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IdentityProviderResponse> RetrieveIdentityProviderByType(IdentityProviderType type) {
+      return client.RetrieveIdentityProviderByTypeAsync(type).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderResponse> RetrieveIdentityProviders() {
       return client.RetrieveIdentityProvidersAsync().GetAwaiter().GetResult();
     }
