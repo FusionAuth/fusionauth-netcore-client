@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.oauth2;
 using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
@@ -33,6 +34,8 @@ namespace io.fusionauth.domain.provider {
     public string client_id;
 
     public string client_secret;
+
+    public LoginMethod login_method;
 
     public string scope;
 

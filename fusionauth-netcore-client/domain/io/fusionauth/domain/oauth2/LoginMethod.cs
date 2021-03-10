@@ -15,31 +15,16 @@
  */
 
 
-using io.fusionauth.domain.oauth2;
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.oauth2 {
 
   /**
-   * @author Daniel DeGroff
+   * @author Brett Pontarelli
    */
-  public class GoogleApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
-
-    public string buttonText;
-
-    public string client_id;
-
-    public string client_secret;
-
-    public LoginMethod login_method;
-
-    public string scope;
-
-    public GoogleApplicationConfiguration with(Action<GoogleApplicationConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum LoginMethod {
+        UsePopup, 
+        UseRedirect
   }
 }
