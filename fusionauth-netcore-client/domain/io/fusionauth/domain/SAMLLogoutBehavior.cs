@@ -15,34 +15,13 @@
  */
 
 
-using io.fusionauth.domain.util;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
 
-  /**
-   * @author Trevor Smith
-   */
-  public class CORSConfiguration: Enableable {
-
-    public bool? allowCredentials;
-
-    public List<string> allowedHeaders;
-
-    public List<HTTPMethod> allowedMethods;
-
-    public List<string> allowedOrigins;
-
-    public bool? debug;
-
-    public List<string> exposedHeaders;
-
-    public int? preflightMaxAgeInSeconds;
-
-    public CORSConfiguration with(Action<CORSConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum SAMLLogoutBehavior {
+        AllParticipants, 
+        OnlyOriginator
   }
 }

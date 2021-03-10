@@ -68,6 +68,8 @@ namespace io.fusionauth.domain {
 
     public string registrationVerify;
 
+    public string samlv2Logout;
+
     public Templates with(Action<Templates> action) {
       action(this);
       return this;

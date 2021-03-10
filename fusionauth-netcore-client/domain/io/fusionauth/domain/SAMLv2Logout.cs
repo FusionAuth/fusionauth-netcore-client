@@ -15,32 +15,26 @@
  */
 
 
-using io.fusionauth.domain.util;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain {
 
-  /**
-   * @author Trevor Smith
-   */
-  public class CORSConfiguration: Enableable {
+  public class SAMLv2Logout {
 
-    public bool? allowCredentials;
+    public SAMLLogoutBehavior behavior;
 
-    public List<string> allowedHeaders;
+    public Guid? defaultVerificationKeyId;
 
-    public List<HTTPMethod> allowedMethods;
+    public Guid? keyId;
 
-    public List<string> allowedOrigins;
+    public bool? requireSignedRequests;
 
-    public bool? debug;
+    public SAMLv2SingleLogout singleLogout;
 
-    public List<string> exposedHeaders;
+    public CanonicalizationMethod xmlSignatureC14nMethod;
 
-    public int? preflightMaxAgeInSeconds;
-
-    public CORSConfiguration with(Action<CORSConfiguration> action) {
+    public SAMLv2Logout with(Action<SAMLv2Logout> action) {
       action(this);
       return this;
     }

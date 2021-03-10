@@ -36,6 +36,8 @@ namespace io.fusionauth.domain {
 
     public Guid? keyId;
 
+    public SAMLv2Logout logout;
+
     public string logoutURL;
 
     public bool? requireSignedRequests;
