@@ -29,6 +29,7 @@ namespace io.fusionauth.domain.provider {
         SAMLv2, 
         HYPR, 
         Apple, 
-        LinkedIn
+        LinkedIn, 
+        SAMLv2IdPInitiated
   }
 }

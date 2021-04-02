@@ -18,23 +18,26 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain.search {
 
-  public enum OAuthErrorType {
-        invalid_request, 
-        invalid_client, 
-        invalid_grant, 
-        invalid_token, 
-        unauthorized_client, 
-        invalid_scope, 
-        server_error, 
-        unsupported_grant_type, 
-        unsupported_response_type, 
-        change_password_required, 
-        not_licensed, 
-        two_factor_required, 
-        authorization_pending, 
-        expired_token, 
-        unsupported_token_type
+  /**
+   * @author Brian Pontarelli
+   */
+  public class BaseElasticSearchCriteria: BaseSearchCriteria {
+
+    public bool? accurateTotal;
+
+    public List<Guid> ids;
+
+    public string query;
+
+    public string queryString;
+
+    public List<SortField> sortFields;
+
+    public BaseElasticSearchCriteria with(Action<BaseElasticSearchCriteria> action) {
+      action(this);
+      return this;
+    }
   }
 }

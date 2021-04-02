@@ -15,26 +15,31 @@
  */
 
 
+using io.fusionauth.domain;
+using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain.provider {
 
-  public enum OAuthErrorType {
-        invalid_request, 
-        invalid_client, 
-        invalid_grant, 
-        invalid_token, 
-        unauthorized_client, 
-        invalid_scope, 
-        server_error, 
-        unsupported_grant_type, 
-        unsupported_response_type, 
-        change_password_required, 
-        not_licensed, 
-        two_factor_required, 
-        authorization_pending, 
-        expired_token, 
-        unsupported_token_type
+  /**
+   * SAML v2 IdP Initiated identity provider configuration.
+   *
+   * @author Daniel DeGroff
+   */
+  public class SAMLv2IdPInitiatedIdentityProvider: BaseIdentityProvider<SAMLv2IdPInitiatedApplicationConfiguration> {
+
+    public string emailClaim;
+
+    public string issuer;
+
+    public Guid? keyId;
+
+    public bool? useNameIdForEmail;
+
+    public SAMLv2IdPInitiatedIdentityProvider with(Action<SAMLv2IdPInitiatedIdentityProvider> action) {
+      action(this);
+      return this;
+    }
   }
 }

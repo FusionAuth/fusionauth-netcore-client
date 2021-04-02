@@ -90,6 +90,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> ActivateReactorAsync(string licenseId, ReactorRequest request) {
+      return buildClient()
+          .withUri("/api/reactor")
+          .withUriSegment(licenseId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<FamilyResponse>> AddUserToFamilyAsync(Guid? familyId, FamilyRequest request) {
       return buildClient()
           .withUri("/api/user/family")
@@ -196,6 +206,38 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<EmailTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityResponse>> CreateEntityAsync(Guid? entityId, EntityRequest request) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EntityResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> CreateEntityTypeAsync(Guid? entityTypeId, EntityTypeRequest request) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EntityTypeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> CreateEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withUriSegment("permission")
+          .withUriSegment(permissionId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EntityTypeResponse>();
     }
 
     /// <inheritdoc/>
@@ -347,6 +389,14 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeactivateReactorAsync() {
+      return buildClient()
+          .withUri("/api/reactor")
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DeactivateUserAsync(Guid? userId) {
       return buildClient()
           .withUri("/api/user")
@@ -431,6 +481,35 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/email/template")
           .withUriSegment(emailTemplateId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteEntityAsync(Guid? entityId) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteEntityTypeAsync(Guid? entityTypeId) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withUriSegment("permission")
+          .withUriSegment(permissionId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -919,6 +998,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> PatchEntityTypeAsync(Guid? entityTypeId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<EntityTypeResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<GroupResponse>> PatchGroupAsync(Guid? groupId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/group")
@@ -1076,9 +1165,25 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RefreshEntitySearchIndexAsync() {
+      return buildClient()
+          .withUri("/api/entity/search")
+          .withMethod("Put")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> RefreshUserSearchIndexAsync() {
       return buildClient()
           .withUri("/api/user/search")
+          .withMethod("Put")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RegenerateReactorKeysAsync() {
+      return buildClient()
+          .withUri("/api/reactor")
           .withMethod("Put")
           .goAsync<RESTVoid>();
     }
@@ -1265,6 +1370,32 @@ namespace io.fusionauth {
           .withUri("/api/email/template")
           .withMethod("Get")
           .goAsync<EmailTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityResponse>> RetrieveEntityAsync(Guid? entityId) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withMethod("Get")
+          .goAsync<EntityResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> RetrieveEntityTypeAsync(Guid? entityTypeId) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withMethod("Get")
+          .goAsync<EntityTypeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> RetrieveEntityTypesAsync() {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withMethod("Get")
+          .goAsync<EntityTypeResponse>();
     }
 
     /// <inheritdoc/>
@@ -1548,6 +1679,14 @@ namespace io.fusionauth {
           .withParameter("parentEmail", parentEmail)
           .withMethod("Get")
           .goAsync<PendingResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ReactorStatus>> RetrieveReactorStatusAsync() {
+      return buildClient()
+          .withUri("/api/reactor")
+          .withMethod("Get")
+          .goAsync<ReactorStatus>();
     }
 
     /// <inheritdoc/>
@@ -1910,6 +2049,33 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntitySearchResponse>> SearchEntitiesAsync(EntitySearchRequest request) {
+      return buildClient()
+          .withUri("/api/entity/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EntitySearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntitySearchResponse>> SearchEntitiesByIdsAsync(List<string> ids) {
+      return buildClient()
+          .withUri("/api/entity/search")
+          .withParameter("ids", ids)
+          .withMethod("Get")
+          .goAsync<EntitySearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesAsync(EntityTypeSearchRequest request) {
+      return buildClient()
+          .withUri("/api/entity/type/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EntityTypeSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<EventLogSearchResponse>> SearchEventLogsAsync(EventLogSearchRequest request) {
       return buildClient()
           .withUri("/api/system/event-log/search")
@@ -2088,6 +2254,38 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<EmailTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityResponse>> UpdateEntityAsync(Guid? entityId, EntityRequest request) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<EntityResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> UpdateEntityTypeAsync(Guid? entityTypeId, EntityTypeRequest request) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<EntityTypeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> UpdateEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withUriSegment("permission")
+          .withUriSegment(permissionId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<EntityTypeResponse>();
     }
 
     /// <inheritdoc/>

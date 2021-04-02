@@ -60,6 +60,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> ActivateReactor(string licenseId, ReactorRequest request) {
+      return client.ActivateReactorAsync(licenseId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<FamilyResponse> AddUserToFamily(Guid? familyId, FamilyRequest request) {
       return client.AddUserToFamilyAsync(familyId, request).GetAwaiter().GetResult();
     }
@@ -112,6 +117,21 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<EmailTemplateResponse> CreateEmailTemplate(Guid? emailTemplateId, EmailTemplateRequest request) {
       return client.CreateEmailTemplateAsync(emailTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityResponse> CreateEntity(Guid? entityId, EntityRequest request) {
+      return client.CreateEntityAsync(entityId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> CreateEntityType(Guid? entityTypeId, EntityTypeRequest request) {
+      return client.CreateEntityTypeAsync(entityTypeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> CreateEntityTypePermission(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request) {
+      return client.CreateEntityTypePermissionAsync(entityTypeId, permissionId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -190,6 +210,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeactivateReactor() {
+      return client.DeactivateReactorAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeactivateUser(Guid? userId) {
       return client.DeactivateUserAsync(userId).GetAwaiter().GetResult();
     }
@@ -233,6 +258,21 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteEmailTemplate(Guid? emailTemplateId) {
       return client.DeleteEmailTemplateAsync(emailTemplateId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteEntity(Guid? entityId) {
+      return client.DeleteEntityAsync(entityId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteEntityType(Guid? entityTypeId) {
+      return client.DeleteEntityTypeAsync(entityTypeId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteEntityTypePermission(Guid? entityTypeId, Guid? permissionId) {
+      return client.DeleteEntityTypePermissionAsync(entityTypeId, permissionId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -472,6 +512,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> PatchEntityType(Guid? entityTypeId, IDictionary<string, object> request) {
+      return client.PatchEntityTypeAsync(entityTypeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<GroupResponse> PatchGroup(Guid? groupId, IDictionary<string, object> request) {
       return client.PatchGroupAsync(groupId, request).GetAwaiter().GetResult();
     }
@@ -552,8 +597,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RefreshEntitySearchIndex() {
+      return client.RefreshEntitySearchIndexAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> RefreshUserSearchIndex() {
       return client.RefreshUserSearchIndexAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RegenerateReactorKeys() {
+      return client.RegenerateReactorKeysAsync().GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -654,6 +709,21 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<EmailTemplateResponse> RetrieveEmailTemplates() {
       return client.RetrieveEmailTemplatesAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityResponse> RetrieveEntity(Guid? entityId) {
+      return client.RetrieveEntityAsync(entityId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> RetrieveEntityType(Guid? entityTypeId) {
+      return client.RetrieveEntityTypeAsync(entityTypeId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> RetrieveEntityTypes() {
+      return client.RetrieveEntityTypesAsync().GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -814,6 +884,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<PendingResponse> RetrievePendingChildren(string parentEmail) {
       return client.RetrievePendingChildrenAsync(parentEmail).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ReactorStatus> RetrieveReactorStatus() {
+      return client.RetrieveReactorStatusAsync().GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1012,6 +1087,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntitySearchResponse> SearchEntities(EntitySearchRequest request) {
+      return client.SearchEntitiesAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntitySearchResponse> SearchEntitiesByIds(List<string> ids) {
+      return client.SearchEntitiesByIdsAsync(ids).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeSearchResponse> SearchEntityTypes(EntityTypeSearchRequest request) {
+      return client.SearchEntityTypesAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<EventLogSearchResponse> SearchEventLogs(EventLogSearchRequest request) {
       return client.SearchEventLogsAsync(request).GetAwaiter().GetResult();
     }
@@ -1106,6 +1196,21 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<EmailTemplateResponse> UpdateEmailTemplate(Guid? emailTemplateId, EmailTemplateRequest request) {
       return client.UpdateEmailTemplateAsync(emailTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityResponse> UpdateEntity(Guid? entityId, EntityRequest request) {
+      return client.UpdateEntityAsync(entityId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> UpdateEntityType(Guid? entityTypeId, EntityTypeRequest request) {
+      return client.UpdateEntityTypeAsync(entityTypeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> UpdateEntityTypePermission(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request) {
+      return client.UpdateEntityTypePermissionAsync(entityTypeId, permissionId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
