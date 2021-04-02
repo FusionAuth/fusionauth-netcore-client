@@ -33,7 +33,7 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? insertInstant;
 
-    public JWTConfiguration jwtConfiguration;
+    public EntityJWTConfiguration jwtConfiguration;
 
     public DateTimeOffset? lastUpdateInstant;
 

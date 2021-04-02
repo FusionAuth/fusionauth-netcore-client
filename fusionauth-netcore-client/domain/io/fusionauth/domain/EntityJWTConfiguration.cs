@@ -21,28 +21,15 @@ using System;
 namespace io.fusionauth.domain {
 
   /**
-   * JWT Configuration. A JWT Configuration for an Application may not be active if it is using the global configuration, the configuration
-   * may be <code>enabled = false</code>.
-   *
-   * @author Daniel DeGroff
+   * JWT Configuration for entities.
    */
-  public class JWTConfiguration: Enableable {
+  public class EntityJWTConfiguration: Enableable {
 
     public Guid? accessTokenKeyId;
 
-    public Guid? idTokenKeyId;
-
-    public RefreshTokenExpirationPolicy refreshTokenExpirationPolicy;
-
-    public RefreshTokenRevocationPolicy refreshTokenRevocationPolicy;
-
-    public int? refreshTokenTimeToLiveInMinutes;
-
-    public RefreshTokenUsagePolicy refreshTokenUsagePolicy;
-
     public int? timeToLiveInSeconds;
 
-    public JWTConfiguration with(Action<JWTConfiguration> action) {
+    public EntityJWTConfiguration with(Action<EntityJWTConfiguration> action) {
       action(this);
       return this;
     }
