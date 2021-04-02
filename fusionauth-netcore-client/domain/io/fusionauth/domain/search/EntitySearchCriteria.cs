@@ -27,8 +27,6 @@ namespace io.fusionauth.domain.search {
    */
   public class EntitySearchCriteria: BaseElasticSearchCriteria {
 
-    public Guid? tenantId;
-
     public EntitySearchCriteria with(Action<EntitySearchCriteria> action) {
       action(this);
       return this;
