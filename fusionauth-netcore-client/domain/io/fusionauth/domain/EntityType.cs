@@ -18,23 +18,32 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain {
 
-  public enum OAuthErrorType {
-        invalid_request, 
-        invalid_client, 
-        invalid_grant, 
-        invalid_token, 
-        unauthorized_client, 
-        invalid_scope, 
-        server_error, 
-        unsupported_grant_type, 
-        unsupported_response_type, 
-        change_password_required, 
-        not_licensed, 
-        two_factor_required, 
-        authorization_pending, 
-        expired_token, 
-        unsupported_token_type
+  /**
+   * Models an entity type that has a specific set of permissions. These are global objects and can be used across tenants.
+   *
+   * @author Brian Pontarelli
+   */
+  public class EntityType {
+
+    public IDictionary<string, object> data;
+
+    public Guid? id;
+
+    public DateTimeOffset? insertInstant;
+
+    public EntityJWTConfiguration jwtConfiguration;
+
+    public DateTimeOffset? lastUpdateInstant;
+
+    public string name;
+
+    public List<EntityTypePermission> permissions;
+
+    public EntityType with(Action<EntityType> action) {
+      action(this);
+      return this;
+    }
   }
 }

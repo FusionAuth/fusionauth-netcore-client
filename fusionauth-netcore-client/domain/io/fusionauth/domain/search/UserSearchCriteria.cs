@@ -25,17 +25,7 @@ namespace io.fusionauth.domain.search {
    *
    * @author Brian Pontarelli
    */
-  public class UserSearchCriteria: BaseSearchCriteria {
-
-    public bool? accurateTotal;
-
-    public List<Guid> ids;
-
-    public string query;
-
-    public string queryString;
-
-    public List<SortField> sortFields;
+  public class UserSearchCriteria: BaseElasticSearchCriteria {
 
     public UserSearchCriteria with(Action<UserSearchCriteria> action) {
       action(this);

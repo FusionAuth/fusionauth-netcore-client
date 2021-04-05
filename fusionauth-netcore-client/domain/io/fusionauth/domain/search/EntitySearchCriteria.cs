@@ -18,23 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain.search {
 
-  public enum OAuthErrorType {
-        invalid_request, 
-        invalid_client, 
-        invalid_grant, 
-        invalid_token, 
-        unauthorized_client, 
-        invalid_scope, 
-        server_error, 
-        unsupported_grant_type, 
-        unsupported_response_type, 
-        change_password_required, 
-        not_licensed, 
-        two_factor_required, 
-        authorization_pending, 
-        expired_token, 
-        unsupported_token_type
+  /**
+   * This class is the entity query. It provides a build pattern as well as public fields for use on forms and in actions.
+   *
+   * @author Brian Pontarelli
+   */
+  public class EntitySearchCriteria: BaseElasticSearchCriteria {
+
+    public EntitySearchCriteria with(Action<EntitySearchCriteria> action) {
+      action(this);
+      return this;
+    }
   }
 }

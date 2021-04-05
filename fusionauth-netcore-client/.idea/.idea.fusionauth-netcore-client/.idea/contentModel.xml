@@ -49,6 +49,10 @@
               <e p="EmailPlus.cs" t="Include" />
               <e p="EmailSecurityType.cs" t="Include" />
               <e p="Enableable.cs" t="Include" />
+              <e p="Entity.cs" t="Include" />
+              <e p="EntityGrant.cs" t="Include" />
+              <e p="EntityType.cs" t="Include" />
+              <e p="EntityTypePermission.cs" t="Include" />
               <e p="EventConfiguration.cs" t="Include" />
               <e p="EventConfigurationData.cs" t="Include" />
               <e p="EventLog.cs" t="Include" />
@@ -100,7 +104,10 @@
               <e p="RememberPreviousPasswords.cs" t="Include" />
               <e p="Requirable.cs" t="Include" />
               <e p="RequiresCORSConfiguration.cs" t="Include" />
+              <e p="SAMLLogoutBehavior.cs" t="Include" />
               <e p="SAMLv2Configuration.cs" t="Include" />
+              <e p="SAMLv2Logout.cs" t="Include" />
+              <e p="SAMLv2SingleLogout.cs" t="Include" />
               <e p="SecureGeneratorConfiguration.cs" t="Include" />
               <e p="SecureGeneratorType.cs" t="Include" />
               <e p="SecureIdentity.cs" t="Include" />
@@ -143,6 +150,16 @@
                 <e p="ConsentResponse.cs" t="Include" />
                 <e p="EmailTemplateRequest.cs" t="Include" />
                 <e p="EmailTemplateResponse.cs" t="Include" />
+                <e p="EntityGrantRequest.cs" t="Include" />
+                <e p="EntityGrantResponse.cs" t="Include" />
+                <e p="EntityRequest.cs" t="Include" />
+                <e p="EntityResponse.cs" t="Include" />
+                <e p="EntitySearchRequest.cs" t="Include" />
+                <e p="EntitySearchResponse.cs" t="Include" />
+                <e p="EntityTypeRequest.cs" t="Include" />
+                <e p="EntityTypeResponse.cs" t="Include" />
+                <e p="EntityTypeSearchRequest.cs" t="Include" />
+                <e p="EntityTypeSearchResponse.cs" t="Include" />
                 <e p="EventLogResponse.cs" t="Include" />
                 <e p="EventLogSearchRequest.cs" t="Include" />
                 <e p="EventLogSearchResponse.cs" t="Include" />
@@ -178,6 +195,7 @@
                 <e p="PreviewRequest.cs" t="Include" />
                 <e p="PreviewResponse.cs" t="Include" />
                 <e p="PublicKeyResponse.cs" t="Include" />
+                <e p="ReactorRequest.cs" t="Include" />
                 <e p="SystemConfigurationRequest.cs" t="Include" />
                 <e p="SystemConfigurationResponse.cs" t="Include" />
                 <e p="SystemLogsExportRequest.cs" t="Include" />
@@ -363,14 +381,24 @@
                 <e p="OpenIdConnectIdentityProvider.cs" t="Include" />
                 <e p="PasswordlessIdentityProvider.cs" t="Include" />
                 <e p="SAMLv2ApplicationConfiguration.cs" t="Include" />
+                <e p="SAMLv2IdPInitiatedApplicationConfiguration.cs" t="Include" />
+                <e p="SAMLv2IdPInitiatedIdentityProvider.cs" t="Include" />
                 <e p="SAMLv2IdentityProvider.cs" t="Include" />
                 <e p="SupportsPostBindings.cs" t="Include" />
                 <e p="TwitterApplicationConfiguration.cs" t="Include" />
                 <e p="TwitterIdentityProvider.cs" t="Include" />
               </e>
+              <e p="reactor" t="Include">
+                <e p="BreachedPasswordTenantMetric.cs" t="Include" />
+                <e p="ReactorFeatureStatus.cs" t="Include" />
+                <e p="ReactorStatus.cs" t="Include" />
+              </e>
               <e p="search" t="Include">
                 <e p="AuditLogSearchCriteria.cs" t="Include" />
+                <e p="BaseElasticSearchCriteria.cs" t="Include" />
                 <e p="BaseSearchCriteria.cs" t="Include" />
+                <e p="EntitySearchCriteria.cs" t="Include" />
+                <e p="EntityTypeSearchCriteria.cs" t="Include" />
                 <e p="EventLogSearchCriteria.cs" t="Include" />
                 <e p="LoginRecordSearchCriteria.cs" t="Include" />
                 <e p="SearchResults.cs" t="Include" />

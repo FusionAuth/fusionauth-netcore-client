@@ -18,23 +18,20 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain {
 
-  public enum OAuthErrorType {
-        invalid_request, 
-        invalid_client, 
-        invalid_grant, 
-        invalid_token, 
-        unauthorized_client, 
-        invalid_scope, 
-        server_error, 
-        unsupported_grant_type, 
-        unsupported_response_type, 
-        change_password_required, 
-        not_licensed, 
-        two_factor_required, 
-        authorization_pending, 
-        expired_token, 
-        unsupported_token_type
+  /**
+   * JWT Configuration for entities.
+   */
+  public class EntityJWTConfiguration: Enableable {
+
+    public Guid? accessTokenKeyId;
+
+    public int? timeToLiveInSeconds;
+
+    public EntityJWTConfiguration with(Action<EntityJWTConfiguration> action) {
+      action(this);
+      return this;
+    }
   }
 }
