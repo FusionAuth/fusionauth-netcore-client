@@ -18,23 +18,32 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain {
 
-  public enum OAuthErrorType {
-        invalid_request, 
-        invalid_client, 
-        invalid_grant, 
-        invalid_token, 
-        unauthorized_client, 
-        invalid_scope, 
-        server_error, 
-        unsupported_grant_type, 
-        unsupported_response_type, 
-        change_password_required, 
-        not_licensed, 
-        two_factor_required, 
-        authorization_pending, 
-        expired_token, 
-        unsupported_token_type
+  /**
+   * Models a specific entity type permission. This permission can be granted to users or other entities.
+   *
+   * @author Brian Pontarelli
+   */
+  public class EntityTypePermission {
+
+    public IDictionary<string, object> data;
+
+    public string description;
+
+    public Guid? id;
+
+    public DateTimeOffset? insertInstant;
+
+    public bool? isDefault;
+
+    public DateTimeOffset? lastUpdateInstant;
+
+    public string name;
+
+    public EntityTypePermission with(Action<EntityTypePermission> action) {
+      action(this);
+      return this;
+    }
   }
 }

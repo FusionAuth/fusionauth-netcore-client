@@ -28,6 +28,7 @@ using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
+using io.fusionauth.domain.reactor;
 
 namespace io.fusionauth {
   public interface IFusionAuthAsyncClient {
@@ -46,6 +47,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<ActionResponse>> ActionUserAsync(ActionRequest request);
+
+    /// <summary>
+    /// Activates the FusionAuth Reactor using a license id and optionally a license text (for air-gapped deployments)
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="licenseId"> The license id</param>
+    /// <param name="request"> An optional request that contains the license text to activate Reactor (useful for air-gap deployments of FusionAuth).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> ActivateReactorAsync(string licenseId, ReactorRequest request);
 
     /// <summary>
     /// Adds a user to an existing family. The family id must be specified.
@@ -204,6 +219,50 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<EmailTemplateResponse>> CreateEmailTemplateAsync(Guid? emailTemplateId, EmailTemplateRequest request);
+
+    /// <summary>
+    /// Creates an Entity. You can optionally specify an Id for the Entity. If not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> (Optional) The Id for the Entity. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the Entity.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityResponse>> CreateEntityAsync(Guid? entityId, EntityRequest request);
+
+    /// <summary>
+    /// Creates a Entity Type. You can optionally specify an Id for the Entity Type, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> (Optional) The Id for the Entity Type. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the Entity Type.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> CreateEntityTypeAsync(Guid? entityTypeId, EntityTypeRequest request);
+
+    /// <summary>
+    /// Creates a new permission for an entity type. You must specify the id of the entity type you are creating the permission for.
+    /// You can optionally specify an Id for the permission inside the EntityTypePermission object itself, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the entity type to create the permission on.</param>
+    /// <param name="permissionId"> (Optional) The Id of the permission. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the permission.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> CreateEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
 
     /// <summary>
     /// Creates a family with the user id in the request as the owner and sole member of the family. You can optionally specify an id for the
@@ -417,6 +476,18 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeactivateApplicationAsync(Guid? applicationId);
 
     /// <summary>
+    /// Deactivates the FusionAuth Reactor.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeactivateReactorAsync();
+
+    /// <summary>
     /// Deactivates the user with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -538,6 +609,47 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteEmailTemplateAsync(Guid? emailTemplateId);
+
+    /// <summary>
+    /// Deletes the Entity for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteEntityAsync(Guid? entityId);
+
+    /// <summary>
+    /// Deletes the Entity Type for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the Entity Type to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteEntityTypeAsync(Guid? entityTypeId);
+
+    /// <summary>
+    /// Hard deletes a permission. This is a dangerous operation and should not be used in most circumstances. This
+    /// permanently removes the given permission from all grants that had it.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the entityType the the permission belongs to.</param>
+    /// <param name="permissionId"> The Id of the permission to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId);
 
     /// <summary>
     /// Deletes the form for the given Id.
@@ -1241,6 +1353,20 @@ namespace io.fusionauth {
     Task<ClientResponse<EmailTemplateResponse>> PatchEmailTemplateAsync(Guid? emailTemplateId, IDictionary<string, object> request);
 
     /// <summary>
+    /// Updates, via PATCH, the Entity Type with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the Entity Type to update.</param>
+    /// <param name="request"> The request that contains just the new Entity Type information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> PatchEntityTypeAsync(Guid? entityTypeId, IDictionary<string, object> request);
+
+    /// <summary>
     /// Updates, via PATCH, the group with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1459,6 +1585,21 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginResponse>> ReconcileJWTAsync(IdentityProviderLoginRequest request);
 
     /// <summary>
+    /// Request a refresh of the Entity search index. This API is not generally necessary and the search index will become consistent in a
+    /// reasonable amount of time. There may be scenarios where you may wish to manually request an index refresh. One example may be 
+    /// if you are using the Search API or Delete Tenant API immediately following a Entity Create etc, you may wish to request a refresh to
+    ///  ensure the index immediately current before making a query request to the search index.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RefreshEntitySearchIndexAsync();
+
+    /// <summary>
     /// Request a refresh of the User search index. This API is not generally necessary and the search index will become consistent in a
     /// reasonable amount of time. There may be scenarios where you may wish to manually request an index refresh. One example may be 
     /// if you are using the Search API or Delete Tenant API immediately following a User Create etc, you may wish to request a refresh to
@@ -1472,6 +1613,18 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> RefreshUserSearchIndexAsync();
+
+    /// <summary>
+    /// Regenerates any keys that are used by the FusionAuth Reactor.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RegenerateReactorKeysAsync();
 
     /// <summary>
     /// Registers a user for an application. If you provide the User and the UserRegistration object on this request, it
@@ -1744,6 +1897,44 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<EmailTemplateResponse>> RetrieveEmailTemplatesAsync();
+
+    /// <summary>
+    /// Retrieves the Entity for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityResponse>> RetrieveEntityAsync(Guid? entityId);
+
+    /// <summary>
+    /// Retrieves the Entity Type for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the Entity Type.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> RetrieveEntityTypeAsync(Guid? entityTypeId);
+
+    /// <summary>
+    /// Retrieves all of the Entity Types.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> RetrieveEntityTypesAsync();
 
     /// <summary>
     /// Retrieves a single event log for the given Id.
@@ -2161,6 +2352,18 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<PendingResponse>> RetrievePendingChildrenAsync(string parentEmail);
+
+    /// <summary>
+    /// Retrieves the FusionAuth Reactor status.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ReactorStatus>> RetrieveReactorStatusAsync();
 
     /// <summary>
     /// Retrieves the last number of login records.
@@ -2709,6 +2912,45 @@ namespace io.fusionauth {
     Task<ClientResponse<AuditLogSearchResponse>> SearchAuditLogsAsync(AuditLogSearchRequest request);
 
     /// <summary>
+    /// Searches entities with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntitySearchResponse>> SearchEntitiesAsync(EntitySearchRequest request);
+
+    /// <summary>
+    /// Retrieves the entities for the given ids. If any id is invalid, it is ignored.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="ids"> The entity ids to search for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntitySearchResponse>> SearchEntitiesByIdsAsync(List<string> ids);
+
+    /// <summary>
+    /// Searches the entity types with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesAsync(EntityTypeSearchRequest request);
+
+    /// <summary>
     /// Searches the event logs with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -2968,6 +3210,49 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<EmailTemplateResponse>> UpdateEmailTemplateAsync(Guid? emailTemplateId, EmailTemplateRequest request);
+
+    /// <summary>
+    /// Updates the Entity with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity to update.</param>
+    /// <param name="request"> The request that contains all of the new Entity information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityResponse>> UpdateEntityAsync(Guid? entityId, EntityRequest request);
+
+    /// <summary>
+    /// Updates the Entity Type with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the Entity Type to update.</param>
+    /// <param name="request"> The request that contains all of the new Entity Type information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> UpdateEntityTypeAsync(Guid? entityTypeId, EntityTypeRequest request);
+
+    /// <summary>
+    /// Updates the permission with the given id for the entity type.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the entityType that the permission belongs to.</param>
+    /// <param name="permissionId"> The Id of the permission to update.</param>
+    /// <param name="request"> The request that contains all of the new permission information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> UpdateEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
 
     /// <summary>
     /// Updates the form with the given Id.
@@ -3266,6 +3551,19 @@ namespace io.fusionauth {
    ClientResponse<ActionResponse> ActionUser(ActionRequest request);
 
    /// <summary>
+   /// Activates the FusionAuth Reactor using a license id and optionally a license text (for air-gapped deployments)
+   /// </summary>
+   /// <param name="licenseId"> The license id</param>
+   /// <param name="request"> An optional request that contains the license text to activate Reactor (useful for air-gap deployments of FusionAuth).</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> ActivateReactor(string licenseId, ReactorRequest request);
+
+   /// <summary>
    /// Adds a user to an existing family. The family id must be specified.
    /// </summary>
    /// <param name="familyId"> The id of the family.</param>
@@ -3411,6 +3709,47 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EmailTemplateResponse> CreateEmailTemplate(Guid? emailTemplateId, EmailTemplateRequest request);
+
+   /// <summary>
+   /// Creates an Entity. You can optionally specify an Id for the Entity. If not provided one will be generated.
+   /// </summary>
+   /// <param name="entityId"> (Optional) The Id for the Entity. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the Entity.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityResponse> CreateEntity(Guid? entityId, EntityRequest request);
+
+   /// <summary>
+   /// Creates a Entity Type. You can optionally specify an Id for the Entity Type, if not provided one will be generated.
+   /// </summary>
+   /// <param name="entityTypeId"> (Optional) The Id for the Entity Type. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the Entity Type.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> CreateEntityType(Guid? entityTypeId, EntityTypeRequest request);
+
+   /// <summary>
+   /// Creates a new permission for an entity type. You must specify the id of the entity type you are creating the permission for.
+   /// You can optionally specify an Id for the permission inside the EntityTypePermission object itself, if not provided one will be generated.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the entity type to create the permission on.</param>
+   /// <param name="permissionId"> (Optional) The Id of the permission. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the permission.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> CreateEntityTypePermission(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
 
    /// <summary>
    /// Creates a family with the user id in the request as the owner and sole member of the family. You can optionally specify an id for the
@@ -3609,6 +3948,17 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeactivateApplication(Guid? applicationId);
 
    /// <summary>
+   /// Deactivates the FusionAuth Reactor.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeactivateReactor();
+
+   /// <summary>
    /// Deactivates the user with the given Id.
    /// </summary>
    /// <param name="userId"> The Id of the user to deactivate.</param>
@@ -3721,6 +4071,44 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteEmailTemplate(Guid? emailTemplateId);
+
+   /// <summary>
+   /// Deletes the Entity for the given Id.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteEntity(Guid? entityId);
+
+   /// <summary>
+   /// Deletes the Entity Type for the given Id.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the Entity Type to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteEntityType(Guid? entityTypeId);
+
+   /// <summary>
+   /// Hard deletes a permission. This is a dangerous operation and should not be used in most circumstances. This
+   /// permanently removes the given permission from all grants that had it.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the entityType the the permission belongs to.</param>
+   /// <param name="permissionId"> The Id of the permission to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteEntityTypePermission(Guid? entityTypeId, Guid? permissionId);
 
    /// <summary>
    /// Deletes the form for the given Id.
@@ -4377,6 +4765,19 @@ namespace io.fusionauth {
    ClientResponse<EmailTemplateResponse> PatchEmailTemplate(Guid? emailTemplateId, IDictionary<string, object> request);
 
    /// <summary>
+   /// Updates, via PATCH, the Entity Type with the given Id.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the Entity Type to update.</param>
+   /// <param name="request"> The request that contains just the new Entity Type information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> PatchEntityType(Guid? entityTypeId, IDictionary<string, object> request);
+
+   /// <summary>
    /// Updates, via PATCH, the group with the given Id.
    /// </summary>
    /// <param name="groupId"> The Id of the group to update.</param>
@@ -4579,6 +4980,20 @@ namespace io.fusionauth {
    ClientResponse<LoginResponse> ReconcileJWT(IdentityProviderLoginRequest request);
 
    /// <summary>
+   /// Request a refresh of the Entity search index. This API is not generally necessary and the search index will become consistent in a
+   /// reasonable amount of time. There may be scenarios where you may wish to manually request an index refresh. One example may be 
+   /// if you are using the Search API or Delete Tenant API immediately following a Entity Create etc, you may wish to request a refresh to
+   ///  ensure the index immediately current before making a query request to the search index.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RefreshEntitySearchIndex();
+
+   /// <summary>
    /// Request a refresh of the User search index. This API is not generally necessary and the search index will become consistent in a
    /// reasonable amount of time. There may be scenarios where you may wish to manually request an index refresh. One example may be 
    /// if you are using the Search API or Delete Tenant API immediately following a User Create etc, you may wish to request a refresh to
@@ -4591,6 +5006,17 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> RefreshUserSearchIndex();
+
+   /// <summary>
+   /// Regenerates any keys that are used by the FusionAuth Reactor.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RegenerateReactorKeys();
 
    /// <summary>
    /// Registers a user for an application. If you provide the User and the UserRegistration object on this request, it
@@ -4843,6 +5269,41 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EmailTemplateResponse> RetrieveEmailTemplates();
+
+   /// <summary>
+   /// Retrieves the Entity for the given Id.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityResponse> RetrieveEntity(Guid? entityId);
+
+   /// <summary>
+   /// Retrieves the Entity Type for the given Id.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the Entity Type.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> RetrieveEntityType(Guid? entityTypeId);
+
+   /// <summary>
+   /// Retrieves all of the Entity Types.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> RetrieveEntityTypes();
 
    /// <summary>
    /// Retrieves a single event log for the given Id.
@@ -5228,6 +5689,17 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<PendingResponse> RetrievePendingChildren(string parentEmail);
+
+   /// <summary>
+   /// Retrieves the FusionAuth Reactor status.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ReactorStatus> RetrieveReactorStatus();
 
    /// <summary>
    /// Retrieves the last number of login records.
@@ -5737,6 +6209,42 @@ namespace io.fusionauth {
    ClientResponse<AuditLogSearchResponse> SearchAuditLogs(AuditLogSearchRequest request);
 
    /// <summary>
+   /// Searches entities with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntitySearchResponse> SearchEntities(EntitySearchRequest request);
+
+   /// <summary>
+   /// Retrieves the entities for the given ids. If any id is invalid, it is ignored.
+   /// </summary>
+   /// <param name="ids"> The entity ids to search for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntitySearchResponse> SearchEntitiesByIds(List<string> ids);
+
+   /// <summary>
+   /// Searches the entity types with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeSearchResponse> SearchEntityTypes(EntityTypeSearchRequest request);
+
+   /// <summary>
    /// Searches the event logs with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -5977,6 +6485,46 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EmailTemplateResponse> UpdateEmailTemplate(Guid? emailTemplateId, EmailTemplateRequest request);
+
+   /// <summary>
+   /// Updates the Entity with the given Id.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity to update.</param>
+   /// <param name="request"> The request that contains all of the new Entity information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityResponse> UpdateEntity(Guid? entityId, EntityRequest request);
+
+   /// <summary>
+   /// Updates the Entity Type with the given Id.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the Entity Type to update.</param>
+   /// <param name="request"> The request that contains all of the new Entity Type information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> UpdateEntityType(Guid? entityTypeId, EntityTypeRequest request);
+
+   /// <summary>
+   /// Updates the permission with the given id for the entity type.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the entityType that the permission belongs to.</param>
+   /// <param name="permissionId"> The Id of the permission to update.</param>
+   /// <param name="request"> The request that contains all of the new permission information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> UpdateEntityTypePermission(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
 
    /// <summary>
    /// Updates the form with the given Id.

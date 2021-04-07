@@ -18,23 +18,32 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain.reactor {
 
-  public enum OAuthErrorType {
-        invalid_request, 
-        invalid_client, 
-        invalid_grant, 
-        invalid_token, 
-        unauthorized_client, 
-        invalid_scope, 
-        server_error, 
-        unsupported_grant_type, 
-        unsupported_response_type, 
-        change_password_required, 
-        not_licensed, 
-        two_factor_required, 
-        authorization_pending, 
-        expired_token, 
-        unsupported_token_type
+  /**
+   * @author Daniel DeGroff
+   */
+  public class ReactorStatus {
+
+    public ReactorFeatureStatus advancedIdentityProviders;
+
+    public ReactorFeatureStatus advancedRegistrationForms;
+
+    public ReactorFeatureStatus breachedPasswordDetection;
+
+    public IDictionary<Guid, BreachedPasswordTenantMetric> breachedPasswordMetrics;
+
+    public ReactorFeatureStatus connectors;
+
+    public ReactorFeatureStatus entityManagement;
+
+    public bool? licensed;
+
+    public ReactorFeatureStatus multiFactorAuthentication;
+
+    public ReactorStatus with(Action<ReactorStatus> action) {
+      action(this);
+      return this;
+    }
   }
 }
