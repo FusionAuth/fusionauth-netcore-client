@@ -47,6 +47,8 @@ namespace io.fusionauth.domain.oauth2 {
 
     public bool? requireClientAuthentication;
 
+    public bool? requireRegistration;
+
     public OAuth2Configuration with(Action<OAuth2Configuration> action) {
       action(this);
       return this;
