@@ -18,32 +18,22 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.search {
 
   /**
-   * A grant for an entity to a user or another entity.
+   * Search criteria for entity grants.
    *
    * @author Brian Pontarelli
    */
-  public class EntityGrant {
+  public class EntityGrantSearchCriteria: BaseSearchCriteria {
 
-    public IDictionary<string, object> data;
+    public Guid? entityId;
 
-    public Entity entity;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public List<string> permissions;
-
-    public Guid? recipientEntityId;
+    public string name;
 
     public Guid? userId;
 
-    public EntityGrant with(Action<EntityGrant> action) {
+    public EntityGrantSearchCriteria with(Action<EntityGrantSearchCriteria> action) {
       action(this);
       return this;
     }

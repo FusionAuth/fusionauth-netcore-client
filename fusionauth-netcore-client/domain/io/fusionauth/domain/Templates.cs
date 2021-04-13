@@ -30,6 +30,8 @@ namespace io.fusionauth.domain {
 
     public string helpers;
 
+    public string oath2AuthorizedNotRegistered;
+
     public string oauth2Authorize;
 
     public string oauth2ChildRegistrationNotAllowed;
