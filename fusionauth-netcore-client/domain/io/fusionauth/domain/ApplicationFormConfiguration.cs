@@ -27,7 +27,7 @@ namespace io.fusionauth.domain {
 
     public Guid? adminRegistrationFormId;
 
-    public Guid? selfServiceUserFormId;
+    public Guid? selfServiceFormId;
 
     public ApplicationFormConfiguration with(Action<ApplicationFormConfiguration> action) {
       action(this);
