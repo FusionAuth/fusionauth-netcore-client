@@ -15,26 +15,32 @@
  */
 
 
-using io.fusionauth.domain.api;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.messenger {
 
   /**
-   * @author Daniel DeGroff
+   * @author Brett Guy
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class GenericMessengerConfiguration: BaseMessengerConfiguration {
 
-    public string code;
+    public int? connectTimeout;
 
-    public bool? trustComputer;
+    public HTTPHeaders headers;
 
-    public string twoFactorId;
+    public string httpAuthenticationPassword;
 
-    public Guid? userId;
+    public string httpAuthenticationUsername;
 
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public int? readTimeout;
+
+    public string sslCertificate;
+
+    public string url;
+
+    public GenericMessengerConfiguration with(Action<GenericMessengerConfiguration> action) {
       action(this);
       return this;
     }

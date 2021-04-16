@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.@event {
 
     public string authenticationType;
 
+    public string ipAddress;
+
     public User user;
 
     public UserLoginFailedEvent with(Action<UserLoginFailedEvent> action) {

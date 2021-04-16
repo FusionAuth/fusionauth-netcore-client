@@ -62,6 +62,8 @@ namespace io.fusionauth.domain {
 
     public MinimumPasswordAge minimumPasswordAge;
 
+    public TenantMultiFactorConfiguration multiFactorConfiguration;
+
     public string name;
 
     public PasswordEncryptionConfiguration passwordEncryptionConfiguration;

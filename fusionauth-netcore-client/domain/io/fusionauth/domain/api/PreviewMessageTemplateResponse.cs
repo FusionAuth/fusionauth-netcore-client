@@ -15,26 +15,23 @@
  */
 
 
-using io.fusionauth.domain.api;
+using com.inversoft.error;
+using io.fusionauth.domain.message.sms;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api {
 
   /**
-   * @author Daniel DeGroff
+   * @author Michael Sleevi
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class PreviewMessageTemplateResponse {
 
-    public string code;
+    public Errors errors;
 
-    public bool? trustComputer;
+    public SMSMessage message;
 
-    public string twoFactorId;
-
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public PreviewMessageTemplateResponse with(Action<PreviewMessageTemplateResponse> action) {
       action(this);
       return this;
     }

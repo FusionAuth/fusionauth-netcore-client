@@ -15,26 +15,23 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain {
 
   /**
-   * @author Daniel DeGroff
+   * @author Mikey Sleevi
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class TenantMultiFactorConfiguration {
 
-    public string code;
+    public MultiFactorAuthenticatorMethod authenticator;
 
-    public bool? trustComputer;
+    public MultiFactorEmailMethod email;
 
-    public string twoFactorId;
+    public MultiFactorSMSMethod sms;
 
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public TenantMultiFactorConfiguration with(Action<TenantMultiFactorConfiguration> action) {
       action(this);
       return this;
     }

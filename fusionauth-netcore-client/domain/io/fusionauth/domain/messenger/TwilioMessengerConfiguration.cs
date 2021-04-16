@@ -15,26 +15,27 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.messenger {
 
   /**
-   * @author Daniel DeGroff
+   * @author Brett Guy
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class TwilioMessengerConfiguration: BaseMessengerConfiguration {
 
-    public string code;
+    public string accountSID;
 
-    public bool? trustComputer;
+    public string authToken;
 
-    public string twoFactorId;
+    public string fromPhoneNumber;
 
-    public Guid? userId;
+    public string messagingServiceSid;
 
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public string url;
+
+    public TwilioMessengerConfiguration with(Action<TwilioMessengerConfiguration> action) {
       action(this);
       return this;
     }

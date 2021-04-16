@@ -15,26 +15,20 @@
  */
 
 
-using io.fusionauth.domain.api;
+using io.fusionauth.domain.messenger;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api {
 
   /**
-   * @author Daniel DeGroff
+   * @author Brett Guy
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class MessengerRequest {
 
-    public string code;
+    public BaseMessengerConfiguration messenger;
 
-    public bool? trustComputer;
-
-    public string twoFactorId;
-
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public MessengerRequest with(Action<MessengerRequest> action) {
       action(this);
       return this;
     }

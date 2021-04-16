@@ -22,6 +22,7 @@ namespace io.fusionauth.domain {
 
   /**
    * @author Daniel DeGroff
+   * @deprecated Use <code>User.twoFactor.methods</code>
    */
   public enum TwoFactorDelivery {
         None, 

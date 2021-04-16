@@ -15,26 +15,22 @@
  */
 
 
-using io.fusionauth.domain.api;
+using io.fusionauth.domain.message;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api {
 
   /**
-   * @author Daniel DeGroff
+   * @author Michael Sleevi
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class PreviewMessageTemplateRequest {
 
-    public string code;
+    public string locale;
 
-    public bool? trustComputer;
+    public MessageTemplate messageTemplate;
 
-    public string twoFactorId;
-
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public PreviewMessageTemplateRequest with(Action<PreviewMessageTemplateRequest> action) {
       action(this);
       return this;
     }

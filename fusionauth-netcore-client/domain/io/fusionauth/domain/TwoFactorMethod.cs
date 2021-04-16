@@ -21,23 +21,25 @@ using System;
 namespace io.fusionauth.domain {
 
   /**
-   * Twilio Service Configuration.
-   *
    * @author Daniel DeGroff
    */
-  public class TwilioConfiguration: Enableable {
+  public class TwoFactorMethod {
 
-    public string accountSID;
+    public AuthenticatorConfiguration authenticator;
 
-    public string authToken;
+    public string email;
 
-    public string fromPhoneNumber;
+    public string id;
 
-    public string messagingServiceSid;
+    public bool? lastUsed;
 
-    public string url;
+    public string method;
 
-    public TwilioConfiguration with(Action<TwilioConfiguration> action) {
+    public string mobilePhone;
+
+    public string secret;
+
+    public TwoFactorMethod with(Action<TwoFactorMethod> action) {
       action(this);
       return this;
     }

@@ -15,26 +15,23 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain {
 
   /**
    * @author Daniel DeGroff
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class AuthenticatorConfiguration {
 
-    public string code;
+    public TOTPAlgorithm algorithm;
 
-    public bool? trustComputer;
+    public int? codeLength;
 
-    public string twoFactorId;
+    public int? timeStep;
 
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public AuthenticatorConfiguration with(Action<AuthenticatorConfiguration> action) {
       action(this);
       return this;
     }

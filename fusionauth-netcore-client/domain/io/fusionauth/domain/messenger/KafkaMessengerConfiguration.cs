@@ -15,26 +15,21 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.messenger {
 
   /**
-   * @author Daniel DeGroff
+   * @author Brett Guy
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class KafkaMessengerConfiguration: BaseMessengerConfiguration {
 
-    public string code;
+    public string defaultTopic;
 
-    public bool? trustComputer;
+    public IDictionary<string, string> producer;
 
-    public string twoFactorId;
-
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public KafkaMessengerConfiguration with(Action<KafkaMessengerConfiguration> action) {
       action(this);
       return this;
     }

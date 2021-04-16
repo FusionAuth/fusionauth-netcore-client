@@ -15,26 +15,31 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.messenger {
 
-  /**
-   * @author Daniel DeGroff
-   */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  // Do not require a setter for 'type', it is defined by the concrete class and is not mutable
+  public class BaseMessengerConfiguration {
 
-    public string code;
+    public IDictionary<string, object> data;
 
-    public bool? trustComputer;
+    public bool? debug;
 
-    public string twoFactorId;
+    public Guid? id;
 
-    public Guid? userId;
+    public DateTimeOffset? insertInstant;
 
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public DateTimeOffset? lastUpdateInstant;
+
+    public string name;
+
+    public string transport;
+
+    public MessengerType type;
+
+    public BaseMessengerConfiguration with(Action<BaseMessengerConfiguration> action) {
       action(this);
       return this;
     }

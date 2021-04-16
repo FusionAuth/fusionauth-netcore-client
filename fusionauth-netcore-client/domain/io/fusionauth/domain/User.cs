@@ -68,6 +68,8 @@ namespace io.fusionauth.domain {
 
     public string timezone;
 
+    public UserTwoFactorConfiguration twoFactor;
+
     public User with(Action<User> action) {
       action(this);
       return this;

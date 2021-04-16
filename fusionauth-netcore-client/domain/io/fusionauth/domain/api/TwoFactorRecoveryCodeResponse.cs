@@ -15,26 +15,19 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api {
 
   /**
    * @author Daniel DeGroff
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class TwoFactorRecoveryCodeResponse {
 
-    public string code;
+    public List<string> recoveryCodes;
 
-    public bool? trustComputer;
-
-    public string twoFactorId;
-
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public TwoFactorRecoveryCodeResponse with(Action<TwoFactorRecoveryCodeResponse> action) {
       action(this);
       return this;
     }

@@ -15,28 +15,15 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.message {
 
   /**
-   * @author Daniel DeGroff
+   * @author Mikey Sleevi
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
-
-    public string code;
-
-    public bool? trustComputer;
-
-    public string twoFactorId;
-
-    public Guid? userId;
-
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
-      action(this);
-      return this;
-    }
+  public enum MessageType {
+        SMS
   }
 }

@@ -22,6 +22,16 @@ namespace io.fusionauth.domain {
 
   public class Templates {
 
+    public string accountEdit;
+
+    public string accountIndex;
+
+    public string accountTwoFactorDisable;
+
+    public string accountTwoFactorEnable;
+
+    public string accountTwoFactorIndex;
+
     public string emailComplete;
 
     public string emailSend;
@@ -29,6 +39,8 @@ namespace io.fusionauth.domain {
     public string emailVerify;
 
     public string helpers;
+
+    public string index;
 
     public string oauth2Authorize;
 
@@ -51,6 +63,8 @@ namespace io.fusionauth.domain {
     public string oauth2Register;
 
     public string oauth2TwoFactor;
+
+    public string oauth2TwoFactorMethods;
 
     public string oauth2Wait;
 

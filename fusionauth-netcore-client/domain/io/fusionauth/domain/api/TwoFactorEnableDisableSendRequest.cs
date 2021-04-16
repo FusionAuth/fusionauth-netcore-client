@@ -15,26 +15,25 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api {
 
   /**
    * @author Daniel DeGroff
    */
-  public class TwoFactorLoginRequest: BaseLoginRequest {
+  public class TwoFactorEnableDisableSendRequest {
 
-    public string code;
+    public string email;
 
-    public bool? trustComputer;
+    public string method;
 
-    public string twoFactorId;
+    public string methodId;
 
-    public Guid? userId;
+    public string mobilePhone;
 
-    public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
+    public TwoFactorEnableDisableSendRequest with(Action<TwoFactorEnableDisableSendRequest> action) {
       action(this);
       return this;
     }
