@@ -652,6 +652,21 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteEntityAsync(Guid? entityId);
 
     /// <summary>
+    /// Deletes an Entity Grant for the given User or Entity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity that the Entity Grant is being deleted for.</param>
+    /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+    /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId);
+
+    /// <summary>
     /// Deletes the Entity Type for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -2008,6 +2023,21 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityResponse>> RetrieveEntityAsync(Guid? entityId);
 
     /// <summary>
+    /// Retrieves an Entity Grant for the given Entity and User/Entity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity.</param>
+    /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+    /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityGrantResponse>> RetrieveEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId);
+
+    /// <summary>
     /// Retrieves the Entity Type for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -3110,6 +3140,19 @@ namespace io.fusionauth {
     Task<ClientResponse<EntitySearchResponse>> SearchEntitiesByIdsAsync(List<string> ids);
 
     /// <summary>
+    /// Searches Entity Grants with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityGrantSearchResponse>> SearchEntityGrantsAsync(EntityGrantSearchRequest request);
+
+    /// <summary>
     /// Searches the entity types with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -3722,6 +3765,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<WebhookResponse>> UpdateWebhookAsync(Guid? webhookId, WebhookRequest request);
+
+    /// <summary>
+    /// Creates or updates an Entity Grant. This is when a User/Entity is granted permissions to an Entity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity that the User/Entity is being granted access to.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the Entity Grant.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> UpsertEntityGrantAsync(Guid? entityId, EntityGrantRequest request);
 
     /// <summary>
     /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
@@ -4356,6 +4413,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteEntity(Guid? entityId);
+
+   /// <summary>
+   /// Deletes an Entity Grant for the given User or Entity.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity that the Entity Grant is being deleted for.</param>
+   /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+   /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId);
 
    /// <summary>
    /// Deletes the Entity Type for the given Id.
@@ -5619,6 +5690,20 @@ namespace io.fusionauth {
    ClientResponse<EntityResponse> RetrieveEntity(Guid? entityId);
 
    /// <summary>
+   /// Retrieves an Entity Grant for the given Entity and User/Entity.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity.</param>
+   /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+   /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityGrantResponse> RetrieveEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId);
+
+   /// <summary>
    /// Retrieves the Entity Type for the given Id.
    /// </summary>
    /// <param name="entityTypeId"> The Id of the Entity Type.</param>
@@ -6639,6 +6724,18 @@ namespace io.fusionauth {
    ClientResponse<EntitySearchResponse> SearchEntitiesByIds(List<string> ids);
 
    /// <summary>
+   /// Searches Entity Grants with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityGrantSearchResponse> SearchEntityGrants(EntityGrantSearchRequest request);
+
+   /// <summary>
    /// Searches the entity types with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -7207,6 +7304,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<WebhookResponse> UpdateWebhook(Guid? webhookId, WebhookRequest request);
+
+   /// <summary>
+   /// Creates or updates an Entity Grant. This is when a User/Entity is granted permissions to an Entity.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity that the User/Entity is being granted access to.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the Entity Grant.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> UpsertEntityGrant(Guid? entityId, EntityGrantRequest request);
 
    /// <summary>
    /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.

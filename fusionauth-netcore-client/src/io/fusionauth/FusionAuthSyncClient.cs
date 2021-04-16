@@ -277,6 +277,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return client.DeleteEntityGrantAsync(entityId, recipientEntityId, userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteEntityType(Guid? entityTypeId) {
       return client.DeleteEntityTypeAsync(entityTypeId).GetAwaiter().GetResult();
     }
@@ -753,6 +758,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntityGrantResponse> RetrieveEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return client.RetrieveEntityGrantAsync(entityId, recipientEntityId, userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<EntityTypeResponse> RetrieveEntityType(Guid? entityTypeId) {
       return client.RetrieveEntityTypeAsync(entityTypeId).GetAwaiter().GetResult();
     }
@@ -1163,6 +1173,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntityGrantSearchResponse> SearchEntityGrants(EntityGrantSearchRequest request) {
+      return client.SearchEntityGrantsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<EntityTypeSearchResponse> SearchEntityTypes(EntityTypeSearchRequest request) {
       return client.SearchEntityTypesAsync(request).GetAwaiter().GetResult();
     }
@@ -1384,6 +1399,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<WebhookResponse> UpdateWebhook(Guid? webhookId, WebhookRequest request) {
       return client.UpdateWebhookAsync(webhookId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> UpsertEntityGrant(Guid? entityId, EntityGrantRequest request) {
+      return client.UpsertEntityGrantAsync(entityId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

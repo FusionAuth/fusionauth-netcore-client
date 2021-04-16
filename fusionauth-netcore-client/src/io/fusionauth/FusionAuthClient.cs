@@ -516,6 +516,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withUriSegment("grant")
+          .withParameter("recipientEntityId", recipientEntityId)
+          .withParameter("userId", userId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DeleteEntityTypeAsync(Guid? entityTypeId) {
       return buildClient()
           .withUri("/api/entity/type")
@@ -1451,6 +1463,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntityGrantResponse>> RetrieveEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withUriSegment("grant")
+          .withParameter("recipientEntityId", recipientEntityId)
+          .withParameter("userId", userId)
+          .withMethod("Get")
+          .goAsync<EntityGrantResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<EntityTypeResponse>> RetrieveEntityTypeAsync(Guid? entityTypeId) {
       return buildClient()
           .withUri("/api/entity/type")
@@ -2188,6 +2212,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntityGrantSearchResponse>> SearchEntityGrantsAsync(EntityGrantSearchRequest request) {
+      return buildClient()
+          .withUri("/api/entity/grant/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EntityGrantSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesAsync(EntityTypeSearchRequest request) {
       return buildClient()
           .withUri("/api/entity/type/search")
@@ -2615,6 +2648,17 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<WebhookResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> UpsertEntityGrantAsync(Guid? entityId, EntityGrantRequest request) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withUriSegment("grant")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>
