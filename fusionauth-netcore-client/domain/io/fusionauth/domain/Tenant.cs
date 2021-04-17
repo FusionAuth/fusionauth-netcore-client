@@ -56,6 +56,8 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? lastUpdateInstant;
 
+    public TenantLoginConfiguration loginConfiguration;
+
     public string logoutURL;
 
     public MaximumPasswordAge maximumPasswordAge;
