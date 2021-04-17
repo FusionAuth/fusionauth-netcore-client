@@ -23,23 +23,11 @@ namespace io.fusionauth.domain.reactor {
   /**
    * @author Daniel DeGroff
    */
-  public class ReactorStatus {
+  public class ReactorMetrics {
 
-    public ReactorFeatureStatus advancedIdentityProviders;
+    public IDictionary<Guid, BreachedPasswordTenantMetric> breachedPasswordMetrics;
 
-    public ReactorFeatureStatus advancedMultiFactorAuthentication;
-
-    public ReactorFeatureStatus advancedRegistrationForms;
-
-    public ReactorFeatureStatus breachedPasswordDetection;
-
-    public ReactorFeatureStatus connectors;
-
-    public ReactorFeatureStatus entityManagement;
-
-    public bool? licensed;
-
-    public ReactorStatus with(Action<ReactorStatus> action) {
+    public ReactorMetrics with(Action<ReactorMetrics> action) {
       action(this);
       return this;
     }

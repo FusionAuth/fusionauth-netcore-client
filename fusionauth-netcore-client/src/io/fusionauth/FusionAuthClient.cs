@@ -1818,11 +1818,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<ReactorStatus>> RetrieveReactorStatusAsync() {
+    public Task<ClientResponse<ReactorResponse>> RetrieveReactorStatusAsync() {
       return buildClient()
           .withUri("/api/reactor")
           .withMethod("Get")
-          .goAsync<ReactorStatus>();
+          .goAsync<ReactorResponse>();
     }
 
     /// <inheritdoc/>

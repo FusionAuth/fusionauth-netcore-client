@@ -2552,7 +2552,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<ReactorStatus>> RetrieveReactorStatusAsync();
+    Task<ClientResponse<ReactorResponse>> RetrieveReactorStatusAsync();
 
     /// <summary>
     /// Retrieves the last number of login records.
@@ -6178,7 +6178,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<ReactorStatus> RetrieveReactorStatus();
+   ClientResponse<ReactorResponse> RetrieveReactorStatus();
 
    /// <summary>
    /// Retrieves the last number of login records.

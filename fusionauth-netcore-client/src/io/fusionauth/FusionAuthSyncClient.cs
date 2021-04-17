@@ -958,7 +958,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<ReactorStatus> RetrieveReactorStatus() {
+    public ClientResponse<ReactorResponse> RetrieveReactorStatus() {
       return client.RetrieveReactorStatusAsync().GetAwaiter().GetResult();
     }
 

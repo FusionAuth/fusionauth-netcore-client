@@ -15,31 +15,22 @@
  */
 
 
+using io.fusionauth.domain.reactor;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.reactor {
+namespace io.fusionauth.domain.api {
 
   /**
    * @author Daniel DeGroff
    */
-  public class ReactorStatus {
+  public class ReactorResponse {
 
-    public ReactorFeatureStatus advancedIdentityProviders;
+    public ReactorMetrics metrics;
 
-    public ReactorFeatureStatus advancedMultiFactorAuthentication;
+    public ReactorStatus status;
 
-    public ReactorFeatureStatus advancedRegistrationForms;
-
-    public ReactorFeatureStatus breachedPasswordDetection;
-
-    public ReactorFeatureStatus connectors;
-
-    public ReactorFeatureStatus entityManagement;
-
-    public bool? licensed;
-
-    public ReactorStatus with(Action<ReactorStatus> action) {
+    public ReactorResponse with(Action<ReactorResponse> action) {
       action(this);
       return this;
     }
