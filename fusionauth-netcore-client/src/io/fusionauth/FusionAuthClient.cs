@@ -149,6 +149,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> CreateAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<APIKeyResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ApplicationResponse>> CreateApplicationAsync(Guid? applicationId, ApplicationRequest request) {
       return buildClient()
           .withUri("/api/application")
@@ -456,6 +466,15 @@ namespace io.fusionauth {
           .withParameter("hardDelete", false)
           .withMethod("Delete")
           .goAsync<UserDeleteResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteAPIKeyAsync(Guid? keyId) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>
@@ -1007,6 +1026,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<APIKeyResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ApplicationResponse>> PatchApplicationAsync(Guid? applicationId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/application")
@@ -1316,6 +1345,15 @@ namespace io.fusionauth {
           .withParameter("applicationId", applicationId)
           .withMethod("Put")
           .goAsync<VerifyRegistrationResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> RetrieveAPIKeyAsync(Guid? keyId) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withMethod("Get")
+          .goAsync<APIKeyResponse>();
     }
 
     /// <inheritdoc/>
@@ -2386,6 +2424,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<LoginResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? apiKeyId, APIKeyRequest request) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(apiKeyId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<APIKeyResponse>();
     }
 
     /// <inheritdoc/>

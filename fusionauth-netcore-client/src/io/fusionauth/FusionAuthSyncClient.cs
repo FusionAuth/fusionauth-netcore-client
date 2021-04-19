@@ -91,6 +91,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> CreateAPIKey(Guid? keyId, APIKeyRequest request) {
+      return client.CreateAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ApplicationResponse> CreateApplication(Guid? applicationId, ApplicationRequest request) {
       return client.CreateApplicationAsync(applicationId, request).GetAwaiter().GetResult();
     }
@@ -244,6 +249,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<UserDeleteResponse> DeactivateUsersByIds(List<string> userIds) {
       return client.DeactivateUsersByIdsAsync(userIds).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteAPIKey(Guid? keyId) {
+      return client.DeleteAPIKeyAsync(keyId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -518,6 +528,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, APIKeyRequest request) {
+      return client.PatchAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, IDictionary<string, object> request) {
       return client.PatchApplicationAsync(applicationId, request).GetAwaiter().GetResult();
     }
@@ -675,6 +690,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId) {
       return client.ResendRegistrationVerificationAsync(email, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> RetrieveAPIKey(Guid? keyId) {
+      return client.RetrieveAPIKeyAsync(keyId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1269,6 +1289,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request) {
       return client.TwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? apiKeyId, APIKeyRequest request) {
+      return client.UpdateAPIKeyAsync(apiKeyId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

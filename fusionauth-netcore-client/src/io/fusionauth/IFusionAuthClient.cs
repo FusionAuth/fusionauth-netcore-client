@@ -134,6 +134,24 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
 
     /// <summary>
+    /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
+    /// an API key can only be created with equal or lesser authority. An API key cannot create another API key unless it is granted 
+    /// to that API key.
+    /// 
+    /// If an API key is locked to a tenant, it can only create API Keys for that same tenant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> (Optional) The unique Id of the API key. If not provided a secure random Id will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> CreateAPIKeyAsync(Guid? keyId, APIKeyRequest request);
+
+    /// <summary>
     /// Creates an application. You can optionally specify an Id for the application, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -567,6 +585,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<UserDeleteResponse>> DeactivateUsersByIdsAsync(List<string> userIds);
+
+    /// <summary>
+    /// Deletes the API key for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> The Id of the authentication API key to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteAPIKeyAsync(Guid? keyId);
 
     /// <summary>
     /// Hard deletes an application. This is a dangerous operation and should not be used in most circumstances. This will
@@ -1365,6 +1396,20 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginResponse>> PasswordlessLoginAsync(PasswordlessLoginRequest request);
 
     /// <summary>
+    /// Updates an authentication API key by given id
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> The Id of the authentication key. If not provided a secure random api key will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, APIKeyRequest request);
+
+    /// <summary>
     /// Updates, via PATCH, the application with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1810,6 +1855,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<VerifyRegistrationResponse>> ResendRegistrationVerificationAsync(string email, Guid? applicationId);
+
+    /// <summary>
+    /// Retrieves an authentication API key for the given id
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> The Id of the API key to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> RetrieveAPIKeyAsync(Guid? keyId);
 
     /// <summary>
     /// Retrieves a single action log (the log of a user action that was taken on a user previously) for the given Id.
@@ -3403,6 +3461,20 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginResponse>> TwoFactorLoginAsync(TwoFactorLoginRequest request);
 
     /// <summary>
+    /// Updates an API key by given id
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="apiKeyId"> The Id of the API key to update.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the API Key.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? apiKeyId, APIKeyRequest request);
+
+    /// <summary>
     /// Updates the application with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -3934,6 +4006,23 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
 
    /// <summary>
+   /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
+   /// an API key can only be created with equal or lesser authority. An API key cannot create another API key unless it is granted 
+   /// to that API key.
+   /// 
+   /// If an API key is locked to a tenant, it can only create API Keys for that same tenant.
+   /// </summary>
+   /// <param name="keyId"> (Optional) The unique Id of the API key. If not provided a secure random Id will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> CreateAPIKey(Guid? keyId, APIKeyRequest request);
+
+   /// <summary>
    /// Creates an application. You can optionally specify an Id for the application, if not provided one will be generated.
    /// </summary>
    /// <param name="applicationId"> (Optional) The Id to use for the application. If not provided a secure random UUID will be generated.</param>
@@ -4336,6 +4425,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<UserDeleteResponse> DeactivateUsersByIds(List<string> userIds);
+
+   /// <summary>
+   /// Deletes the API key for the given Id.
+   /// </summary>
+   /// <param name="keyId"> The Id of the authentication API key to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteAPIKey(Guid? keyId);
 
    /// <summary>
    /// Hard deletes an application. This is a dangerous operation and should not be used in most circumstances. This will
@@ -5080,6 +5181,19 @@ namespace io.fusionauth {
    ClientResponse<LoginResponse> PasswordlessLogin(PasswordlessLoginRequest request);
 
    /// <summary>
+   /// Updates an authentication API key by given id
+   /// </summary>
+   /// <param name="keyId"> The Id of the authentication key. If not provided a secure random api key will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, APIKeyRequest request);
+
+   /// <summary>
    /// Updates, via PATCH, the application with the given Id.
    /// </summary>
    /// <param name="applicationId"> The Id of the application to update.</param>
@@ -5493,6 +5607,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId);
+
+   /// <summary>
+   /// Retrieves an authentication API key for the given id
+   /// </summary>
+   /// <param name="keyId"> The Id of the API key to retrieve.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> RetrieveAPIKey(Guid? keyId);
 
    /// <summary>
    /// Retrieves a single action log (the log of a user action that was taken on a user previously) for the given Id.
@@ -6966,6 +7092,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request);
+
+   /// <summary>
+   /// Updates an API key by given id
+   /// </summary>
+   /// <param name="apiKeyId"> The Id of the API key to update.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the API Key.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? apiKeyId, APIKeyRequest request);
 
    /// <summary>
    /// Updates the application with the given Id.
