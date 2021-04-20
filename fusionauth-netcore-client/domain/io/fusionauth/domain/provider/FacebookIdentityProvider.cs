@@ -36,7 +36,7 @@ namespace io.fusionauth.domain.provider {
 
     public string fields;
 
-    public LoginMethod loginMethod;
+    public IdentityProviderLoginMethod loginMethod;
 
     public string permissions;
 

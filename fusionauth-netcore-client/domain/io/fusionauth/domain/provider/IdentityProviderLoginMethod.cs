@@ -23,7 +23,7 @@ namespace io.fusionauth.domain.provider {
   /**
    * @author Brett Pontarelli
    */
-  public enum LoginMethod {
+  public enum IdentityProviderLoginMethod {
         UsePopup, 
         UseRedirect
   }

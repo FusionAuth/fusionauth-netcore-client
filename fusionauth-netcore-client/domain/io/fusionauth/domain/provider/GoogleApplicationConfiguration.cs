@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.provider {
 
     public string client_secret;
 
-    public LoginMethod loginMethod;
+    public IdentityProviderLoginMethod loginMethod;
 
     public string scope;
 
