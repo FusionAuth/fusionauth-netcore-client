@@ -49,12 +49,6 @@ namespace io.fusionauth.domain {
 
     public string salt;
 
-    public TwoFactorDelivery twoFactorDelivery;
-
-    public bool? twoFactorEnabled;
-
-    public string twoFactorSecret;
-
     public string username;
 
     public ContentStatus usernameStatus;

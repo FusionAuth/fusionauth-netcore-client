@@ -20,6 +20,9 @@ using System;
 
 namespace io.fusionauth.domain.reactor {
 
+  /**
+   * @author Brian Pontarelli
+   */
   public enum ReactorFeatureStatus {
         ACTIVE, 
         DISCONNECTED, 

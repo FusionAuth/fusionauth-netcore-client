@@ -38,6 +38,8 @@ namespace io.fusionauth.domain.@event {
 
     public string identityProviderName;
 
+    public string ipAddress;
+
     public User user;
 
     public UserLoginSuccessEvent with(Action<UserLoginSuccessEvent> action) {

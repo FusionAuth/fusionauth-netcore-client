@@ -29,6 +29,8 @@ namespace io.fusionauth.domain {
 
     public IDictionary<string, object> data;
 
+    public Entity entity;
+
     public Guid? id;
 
     public DateTimeOffset? insertInstant;

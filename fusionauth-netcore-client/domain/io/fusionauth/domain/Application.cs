@@ -51,6 +51,8 @@ namespace io.fusionauth.domain {
 
     public LoginConfiguration loginConfiguration;
 
+    public ApplicationMultiFactorConfiguration multiFactorConfiguration;
+
     public string name;
 
     public OAuth2Configuration oauthConfiguration;

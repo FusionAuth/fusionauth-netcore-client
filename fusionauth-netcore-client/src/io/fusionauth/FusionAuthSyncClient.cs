@@ -91,6 +91,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> CreateAPIKey(Guid? keyId, APIKeyRequest request) {
+      return client.CreateAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ApplicationResponse> CreateApplication(Guid? applicationId, ApplicationRequest request) {
       return client.CreateApplicationAsync(applicationId, request).GetAwaiter().GetResult();
     }
@@ -171,6 +176,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> CreateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return client.CreateMessageTemplateAsync(messageTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessengerResponse> CreateMessenger(Guid? messengerId, MessengerRequest request) {
+      return client.CreateMessengerAsync(messengerId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<TenantResponse> CreateTenant(Guid? tenantId, TenantRequest request) {
       return client.CreateTenantAsync(tenantId, request).GetAwaiter().GetResult();
     }
@@ -237,6 +252,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteAPIKey(Guid? keyId) {
+      return client.DeleteAPIKeyAsync(keyId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteApplication(Guid? applicationId) {
       return client.DeleteApplicationAsync(applicationId).GetAwaiter().GetResult();
     }
@@ -264,6 +284,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteEntity(Guid? entityId) {
       return client.DeleteEntityAsync(entityId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return client.DeleteEntityGrantAsync(entityId, recipientEntityId, userId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -309,6 +334,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteLambda(Guid? lambdaId) {
       return client.DeleteLambdaAsync(lambdaId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteMessageTemplate(Guid? messageTemplateId) {
+      return client.DeleteMessageTemplateAsync(messageTemplateId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteMessenger(Guid? messengerId) {
+      return client.DeleteMessengerAsync(messengerId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -363,12 +398,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> DisableTwoFactor(Guid? userId, string code) {
-      return client.DisableTwoFactorAsync(userId, code).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> DisableTwoFactor(Guid? userId, string methodId, string code) {
+      return client.DisableTwoFactorAsync(userId, methodId, code).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> EnableTwoFactor(Guid? userId, TwoFactorRequest request) {
+    public ClientResponse<TwoFactorResponse> EnableTwoFactor(Guid? userId, TwoFactorRequest request) {
       return client.EnableTwoFactorAsync(userId, request).GetAwaiter().GetResult();
     }
 
@@ -415,6 +450,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<VerifyRegistrationResponse> GenerateRegistrationVerificationId(string email, Guid? applicationId) {
       return client.GenerateRegistrationVerificationIdAsync(email, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TwoFactorRecoveryCodeResponse> GenerateTwoFactorRecoveryCodes(Guid? userId) {
+      return client.GenerateTwoFactorRecoveryCodesAsync(userId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -488,6 +528,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, APIKeyRequest request) {
+      return client.PatchAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, IDictionary<string, object> request) {
       return client.PatchApplicationAsync(applicationId, request).GetAwaiter().GetResult();
     }
@@ -535,6 +580,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, IDictionary<string, object> request) {
       return client.PatchLambdaAsync(lambdaId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> PatchMessageTemplate(Guid? messageTemplateId, IDictionary<string, object> request) {
+      return client.PatchMessageTemplateAsync(messageTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessengerResponse> PatchMessenger(Guid? messengerId, IDictionary<string, object> request) {
+      return client.PatchMessengerAsync(messengerId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -638,6 +693,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> RetrieveAPIKey(Guid? keyId) {
+      return client.RetrieveAPIKeyAsync(keyId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ActionResponse> RetrieveAction(Guid? actionId) {
       return client.RetrieveActionAsync(actionId).GetAwaiter().GetResult();
     }
@@ -715,6 +775,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<EntityResponse> RetrieveEntity(Guid? entityId) {
       return client.RetrieveEntityAsync(entityId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityGrantResponse> RetrieveEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return client.RetrieveEntityGrantAsync(entityId, recipientEntityId, userId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -858,6 +923,31 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> RetrieveMessageTemplate(Guid? messageTemplateId) {
+      return client.RetrieveMessageTemplateAsync(messageTemplateId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<PreviewMessageTemplateResponse> RetrieveMessageTemplatePreview(PreviewMessageTemplateRequest request) {
+      return client.RetrieveMessageTemplatePreviewAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> RetrieveMessageTemplates() {
+      return client.RetrieveMessageTemplatesAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessengerResponse> RetrieveMessenger(Guid? messengerId) {
+      return client.RetrieveMessengerAsync(messengerId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessengerResponse> RetrieveMessengers() {
+      return client.RetrieveMessengersAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<MonthlyActiveUserReportResponse> RetrieveMonthlyActiveReport(Guid? applicationId, long? start, long? end) {
       return client.RetrieveMonthlyActiveReportAsync(applicationId, start, end).GetAwaiter().GetResult();
     }
@@ -888,7 +978,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<ReactorStatus> RetrieveReactorStatus() {
+    public ClientResponse<ReactorResponse> RetrieveReactorStatus() {
       return client.RetrieveReactorStatusAsync().GetAwaiter().GetResult();
     }
 
@@ -945,6 +1035,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TotalsReportResponse> RetrieveTotalReport() {
       return client.RetrieveTotalReportAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TwoFactorRecoveryCodeResponse> RetrieveTwoFactorRecoveryCodes(Guid? userId) {
+      return client.RetrieveTwoFactorRecoveryCodesAsync(userId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1098,6 +1193,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntityGrantSearchResponse> SearchEntityGrants(EntityGrantSearchRequest request) {
+      return client.SearchEntityGrantsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<EntityTypeSearchResponse> SearchEntityTypes(EntityTypeSearchRequest request) {
       return client.SearchEntityTypesAsync(request).GetAwaiter().GetResult();
     }
@@ -1150,13 +1250,25 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to SendTwoFactorCodeForEnableDisable, use that method instead.")]
     public ClientResponse<RESTVoid> SendTwoFactorCode(TwoFactorSendRequest request) {
       return client.SendTwoFactorCodeAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> SendTwoFactorCodeForEnableDisable(TwoFactorSendRequest request) {
+      return client.SendTwoFactorCodeForEnableDisableAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    [Obsolete("This method has been renamed to SendTwoFactorCodeForLoginUsingMethod, use that method instead.")]
     public ClientResponse<RESTVoid> SendTwoFactorCodeForLogin(string twoFactorId) {
       return client.SendTwoFactorCodeForLoginAsync(twoFactorId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> SendTwoFactorCodeForLoginUsingMethod(string twoFactorId, TwoFactorSendRequest request) {
+      return client.SendTwoFactorCodeForLoginUsingMethodAsync(twoFactorId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1170,8 +1282,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request) {
+      return client.StartTwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request) {
       return client.TwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? apiKeyId, APIKeyRequest request) {
+      return client.UpdateAPIKeyAsync(apiKeyId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1250,6 +1372,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<MessageTemplateResponse> UpdateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return client.UpdateMessageTemplateAsync(messageTemplateId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MessengerResponse> UpdateMessenger(Guid? messengerId, MessengerRequest request) {
+      return client.UpdateMessengerAsync(messengerId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RegistrationResponse> UpdateRegistration(Guid? userId, RegistrationRequest request) {
       return client.UpdateRegistrationAsync(userId, request).GetAwaiter().GetResult();
     }
@@ -1292,6 +1424,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<WebhookResponse> UpdateWebhook(Guid? webhookId, WebhookRequest request) {
       return client.UpdateWebhookAsync(webhookId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> UpsertEntityGrant(Guid? entityId, EntityGrantRequest request) {
+      return client.UpsertEntityGrantAsync(entityId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

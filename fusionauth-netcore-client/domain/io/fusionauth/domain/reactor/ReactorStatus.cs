@@ -27,19 +27,17 @@ namespace io.fusionauth.domain.reactor {
 
     public ReactorFeatureStatus advancedIdentityProviders;
 
+    public ReactorFeatureStatus advancedMultiFactorAuthentication;
+
     public ReactorFeatureStatus advancedRegistrationForms;
 
     public ReactorFeatureStatus breachedPasswordDetection;
-
-    public IDictionary<Guid, BreachedPasswordTenantMetric> breachedPasswordMetrics;
 
     public ReactorFeatureStatus connectors;
 
     public ReactorFeatureStatus entityManagement;
 
     public bool? licensed;
-
-    public ReactorFeatureStatus multiFactorAuthentication;
 
     public ReactorStatus with(Action<ReactorStatus> action) {
       action(this);

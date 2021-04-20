@@ -25,9 +25,13 @@ namespace io.fusionauth.domain.api.twoFactor {
    */
   public class TwoFactorSendRequest {
 
-    public string mobilePhone;
+    public string email;
 
-    public string secret;
+    public string method;
+
+    public string methodId;
+
+    public string mobilePhone;
 
     public Guid? userId;
 

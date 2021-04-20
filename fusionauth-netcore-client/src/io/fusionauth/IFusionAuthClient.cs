@@ -134,6 +134,24 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
 
     /// <summary>
+    /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
+    /// an API key can only be created with equal or lesser authority. An API key cannot create another API key unless it is granted 
+    /// to that API key.
+    /// 
+    /// If an API key is locked to a tenant, it can only create API Keys for that same tenant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> (Optional) The unique Id of the API key. If not provided a secure random Id will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> CreateAPIKeyAsync(Guid? keyId, APIKeyRequest request);
+
+    /// <summary>
     /// Creates an application. You can optionally specify an Id for the application, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -363,6 +381,34 @@ namespace io.fusionauth {
     Task<ClientResponse<LambdaResponse>> CreateLambdaAsync(Guid? lambdaId, LambdaRequest request);
 
     /// <summary>
+    /// Creates an message template. You can optionally specify an Id for the template, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the message template.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> CreateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request);
+
+    /// <summary>
+    /// Creates a messenger.  You can optionally specify an Id for the messenger, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messengerId"> (Optional) The Id for the messenger. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the messenger.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessengerResponse>> CreateMessengerAsync(Guid? messengerId, MessengerRequest request);
+
+    /// <summary>
     /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -541,6 +587,19 @@ namespace io.fusionauth {
     Task<ClientResponse<UserDeleteResponse>> DeactivateUsersByIdsAsync(List<string> userIds);
 
     /// <summary>
+    /// Deletes the API key for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> The Id of the authentication API key to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteAPIKeyAsync(Guid? keyId);
+
+    /// <summary>
     /// Hard deletes an application. This is a dangerous operation and should not be used in most circumstances. This will
     /// delete the application, any registrations for that application, metrics and reports for the application, all the
     /// roles for the application, and any other data associated with the application. This operation could take a very
@@ -622,6 +681,21 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteEntityAsync(Guid? entityId);
+
+    /// <summary>
+    /// Deletes an Entity Grant for the given User or Entity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity that the Entity Grant is being deleted for.</param>
+    /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+    /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId);
 
     /// <summary>
     /// Deletes the Entity Type for the given Id.
@@ -741,6 +815,32 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteLambdaAsync(Guid? lambdaId);
+
+    /// <summary>
+    /// Deletes the message template for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> The Id of the message template to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteMessageTemplateAsync(Guid? messageTemplateId);
+
+    /// <summary>
+    /// Deletes the messenger for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messengerId"> The Id of the messenger to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteMessengerAsync(Guid? messengerId);
 
     /// <summary>
     /// Deletes the user registration for the given user and application.
@@ -890,6 +990,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+    /// <param name="methodId"> The two-factor method identifier you wish to disable</param>
     /// <param name="code"> The Two Factor code used verify the the caller knows the Two Factor secret.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -897,7 +998,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string code);
+    Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string methodId, string code);
 
     /// <summary>
     /// Enable Two Factor authentication for a user.
@@ -911,7 +1012,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> EnableTwoFactorAsync(Guid? userId, TwoFactorRequest request);
+    Task<ClientResponse<TwoFactorResponse>> EnableTwoFactorAsync(Guid? userId, TwoFactorRequest request);
 
     /// <summary>
     /// Exchanges an OAuth authorization code for an access token.
@@ -1053,6 +1154,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<VerifyRegistrationResponse>> GenerateRegistrationVerificationIdAsync(string email, Guid? applicationId);
+
+    /// <summary>
+    /// Generate two-factor recovery codes for a user. Generating two-factor recovery codes will invalidate any existing recovery codes. 
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The Id of the user to generate new Two Factor recovery codes.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TwoFactorRecoveryCodeResponse>> GenerateTwoFactorRecoveryCodesAsync(Guid? userId);
 
     /// <summary>
     /// Generate a Two Factor secret that can be used to enable Two Factor authentication for a User. The response will contain
@@ -1282,6 +1396,20 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginResponse>> PasswordlessLoginAsync(PasswordlessLoginRequest request);
 
     /// <summary>
+    /// Updates an authentication API key by given id
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> The Id of the authentication key. If not provided a secure random api key will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, APIKeyRequest request);
+
+    /// <summary>
     /// Updates, via PATCH, the application with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1420,6 +1548,34 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LambdaResponse>> PatchLambdaAsync(Guid? lambdaId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Updates, via PATCH, the message template with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+    /// <param name="request"> The request that contains just the new message template information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> PatchMessageTemplateAsync(Guid? messageTemplateId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Updates, via PATCH, the messenger with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messengerId"> The Id of the messenger to update.</param>
+    /// <param name="request"> The request that contains just the new messenger information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessengerResponse>> PatchMessengerAsync(Guid? messengerId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
@@ -1701,6 +1857,19 @@ namespace io.fusionauth {
     Task<ClientResponse<VerifyRegistrationResponse>> ResendRegistrationVerificationAsync(string email, Guid? applicationId);
 
     /// <summary>
+    /// Retrieves an authentication API key for the given id
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="keyId"> The Id of the API key to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> RetrieveAPIKeyAsync(Guid? keyId);
+
+    /// <summary>
     /// Retrieves a single action log (the log of a user action that was taken on a user previously) for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1910,6 +2079,21 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<EntityResponse>> RetrieveEntityAsync(Guid? entityId);
+
+    /// <summary>
+    /// Retrieves an Entity Grant for the given Entity and User/Entity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity.</param>
+    /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+    /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityGrantResponse>> RetrieveEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId);
 
     /// <summary>
     /// Retrieves the Entity Type for the given Id.
@@ -2270,6 +2454,69 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginReportResponse>> RetrieveLoginReportAsync(Guid? applicationId, long? start, long? end);
 
     /// <summary>
+    /// Retrieves the message template for the given Id. If you don't specify the id, this will return all of the message templates.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> (Optional) The Id of the message template.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplateAsync(Guid? messageTemplateId);
+
+    /// <summary>
+    /// Creates a preview of the message template provided in the request, normalized to a given locale.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request that contains the email template and optionally a locale to render it in.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<PreviewMessageTemplateResponse>> RetrieveMessageTemplatePreviewAsync(PreviewMessageTemplateRequest request);
+
+    /// <summary>
+    /// Retrieves all of the message templates.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplatesAsync();
+
+    /// <summary>
+    /// Retrieves the messenger with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messengerId"> The Id of the messenger.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessengerResponse>> RetrieveMessengerAsync(Guid? messengerId);
+
+    /// <summary>
+    /// Retrieves all of the messengers.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessengerResponse>> RetrieveMessengersAsync();
+
+    /// <summary>
     /// Retrieves the monthly active user report between the two instants. If you specify an application id, it will only
     /// return the monthly active counts for that application.
     /// This is an asynchronous method.
@@ -2363,7 +2610,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<ReactorStatus>> RetrieveReactorStatusAsync();
+    Task<ClientResponse<ReactorResponse>> RetrieveReactorStatusAsync();
 
     /// <summary>
     /// Retrieves the last number of login records.
@@ -2509,6 +2756,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<TotalsReportResponse>> RetrieveTotalReportAsync();
+
+    /// <summary>
+    /// Retrieve two-factor recovery codes for a user.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The Id of the user to retrieve Two Factor recovery codes.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TwoFactorRecoveryCodeResponse>> RetrieveTwoFactorRecoveryCodesAsync(Guid? userId);
 
     /// <summary>
     /// Retrieves the user for the given Id.
@@ -2938,6 +3198,19 @@ namespace io.fusionauth {
     Task<ClientResponse<EntitySearchResponse>> SearchEntitiesByIdsAsync(List<string> ids);
 
     /// <summary>
+    /// Searches Entity Grants with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityGrantSearchResponse>> SearchEntityGrantsAsync(EntityGrantSearchRequest request);
+
+    /// <summary>
     /// Searches the entity types with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -3084,7 +3357,21 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
+    [Obsolete("This method has been renamed to SendTwoFactorCodeForEnableDisableAsync, use that method instead.")]
     Task<ClientResponse<RESTVoid>> SendTwoFactorCodeAsync(TwoFactorSendRequest request);
+
+    /// <summary>
+    /// Send a Two Factor authentication code to assist in setting up Two Factor authentication or disabling.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request object that contains all of the information used to send the code.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForEnableDisableAsync(TwoFactorSendRequest request);
 
     /// <summary>
     /// Send a Two Factor authentication code to allow the completion of Two Factor authentication.
@@ -3097,7 +3384,22 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
+    [Obsolete("This method has been renamed to SendTwoFactorCodeForLoginUsingMethodAsync, use that method instead.")]
     Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForLoginAsync(string twoFactorId);
+
+    /// <summary>
+    /// Send a Two Factor authentication code to allow the completion of Two Factor authentication.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="twoFactorId"> The Id returned by the Login API necessary to complete Two Factor authentication.</param>
+    /// <param name="request"> The Two Factor send request that contains all of the information used to send the Two Factor code to the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForLoginUsingMethodAsync(string twoFactorId, TwoFactorSendRequest request);
 
     /// <summary>
     /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
@@ -3128,6 +3430,24 @@ namespace io.fusionauth {
     Task<ClientResponse<PasswordlessStartResponse>> StartPasswordlessLoginAsync(PasswordlessStartRequest request);
 
     /// <summary>
+    /// Start a Two-Factor login request by generating a two-factor identifier. This code can then be sent to the Two Factor Send 
+    /// API (/api/two-factor/send)in order to send a one-time use code to a user. You can also use one-time use code returned 
+    /// to send the code out-of-band. The Two-Factor login is completed by making a request to the Two-Factor Login 
+    /// API (/api/two-factor/login). with the two-factor identifier and the one-time use code.
+    /// 
+    /// This API is intended to allow you to begin a Two-Factor login outside of a normal login that originated from the Login API (/api/login).
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The Two-Factor start request that contains all of the information used to begin the Two-Factor login request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TwoFactorStartResponse>> StartTwoFactorLoginAsync(TwoFactorStartRequest request);
+
+    /// <summary>
     /// Complete login using a 2FA challenge
     /// This is an asynchronous method.
     /// </summary>
@@ -3139,6 +3459,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LoginResponse>> TwoFactorLoginAsync(TwoFactorLoginRequest request);
+
+    /// <summary>
+    /// Updates an API key by given id
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="apiKeyId"> The Id of the API key to update.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the API Key.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? apiKeyId, APIKeyRequest request);
 
     /// <summary>
     /// Updates the application with the given Id.
@@ -3352,6 +3686,34 @@ namespace io.fusionauth {
     Task<ClientResponse<LambdaResponse>> UpdateLambdaAsync(Guid? lambdaId, LambdaRequest request);
 
     /// <summary>
+    /// Updates the message template with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+    /// <param name="request"> The request that contains all of the new message template information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessageTemplateResponse>> UpdateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request);
+
+    /// <summary>
+    /// Updates the messenger with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="messengerId"> The Id of the messenger to update.</param>
+    /// <param name="request"> The request object that contains all of the new messenger information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MessengerResponse>> UpdateMessengerAsync(Guid? messengerId, MessengerRequest request);
+
+    /// <summary>
     /// Updates the registration for the user with the given id and the application defined in the request.
     /// This is an asynchronous method.
     /// </summary>
@@ -3475,6 +3837,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<WebhookResponse>> UpdateWebhookAsync(Guid? webhookId, WebhookRequest request);
+
+    /// <summary>
+    /// Creates or updates an Entity Grant. This is when a User/Entity is granted permissions to an Entity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity that the User/Entity is being granted access to.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the Entity Grant.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> UpsertEntityGrantAsync(Guid? entityId, EntityGrantRequest request);
 
     /// <summary>
     /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
@@ -3628,6 +4004,23 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
+
+   /// <summary>
+   /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
+   /// an API key can only be created with equal or lesser authority. An API key cannot create another API key unless it is granted 
+   /// to that API key.
+   /// 
+   /// If an API key is locked to a tenant, it can only create API Keys for that same tenant.
+   /// </summary>
+   /// <param name="keyId"> (Optional) The unique Id of the API key. If not provided a secure random Id will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> CreateAPIKey(Guid? keyId, APIKeyRequest request);
 
    /// <summary>
    /// Creates an application. You can optionally specify an Id for the application, if not provided one will be generated.
@@ -3843,6 +4236,32 @@ namespace io.fusionauth {
    ClientResponse<LambdaResponse> CreateLambda(Guid? lambdaId, LambdaRequest request);
 
    /// <summary>
+   /// Creates an message template. You can optionally specify an Id for the template, if not provided one will be generated.
+   /// </summary>
+   /// <param name="messageTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the message template.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> CreateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request);
+
+   /// <summary>
+   /// Creates a messenger.  You can optionally specify an Id for the messenger, if not provided one will be generated.
+   /// </summary>
+   /// <param name="messengerId"> (Optional) The Id for the messenger. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the messenger.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessengerResponse> CreateMessenger(Guid? messengerId, MessengerRequest request);
+
+   /// <summary>
    /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
    /// </summary>
    /// <param name="tenantId"> (Optional) The Id for the tenant. If not provided a secure random UUID will be generated.</param>
@@ -4008,6 +4427,18 @@ namespace io.fusionauth {
    ClientResponse<UserDeleteResponse> DeactivateUsersByIds(List<string> userIds);
 
    /// <summary>
+   /// Deletes the API key for the given Id.
+   /// </summary>
+   /// <param name="keyId"> The Id of the authentication API key to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteAPIKey(Guid? keyId);
+
+   /// <summary>
    /// Hard deletes an application. This is a dangerous operation and should not be used in most circumstances. This will
    /// delete the application, any registrations for that application, metrics and reports for the application, all the
    /// roles for the application, and any other data associated with the application. This operation could take a very
@@ -4083,6 +4514,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteEntity(Guid? entityId);
+
+   /// <summary>
+   /// Deletes an Entity Grant for the given User or Entity.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity that the Entity Grant is being deleted for.</param>
+   /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+   /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId);
 
    /// <summary>
    /// Deletes the Entity Type for the given Id.
@@ -4193,6 +4638,30 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteLambda(Guid? lambdaId);
+
+   /// <summary>
+   /// Deletes the message template for the given Id.
+   /// </summary>
+   /// <param name="messageTemplateId"> The Id of the message template to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteMessageTemplate(Guid? messageTemplateId);
+
+   /// <summary>
+   /// Deletes the messenger for the given Id.
+   /// </summary>
+   /// <param name="messengerId"> The Id of the messenger to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteMessenger(Guid? messengerId);
 
    /// <summary>
    /// Deletes the user registration for the given user and application.
@@ -4331,6 +4800,7 @@ namespace io.fusionauth {
    /// Disable Two Factor authentication for a user.
    /// </summary>
    /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+   /// <param name="methodId"> The two-factor method identifier you wish to disable</param>
    /// <param name="code"> The Two Factor code used verify the the caller knows the Two Factor secret.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -4338,7 +4808,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> DisableTwoFactor(Guid? userId, string code);
+   ClientResponse<RESTVoid> DisableTwoFactor(Guid? userId, string methodId, string code);
 
    /// <summary>
    /// Enable Two Factor authentication for a user.
@@ -4351,7 +4821,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> EnableTwoFactor(Guid? userId, TwoFactorRequest request);
+   ClientResponse<TwoFactorResponse> EnableTwoFactor(Guid? userId, TwoFactorRequest request);
 
    /// <summary>
    /// Exchanges an OAuth authorization code for an access token.
@@ -4484,6 +4954,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<VerifyRegistrationResponse> GenerateRegistrationVerificationId(string email, Guid? applicationId);
+
+   /// <summary>
+   /// Generate two-factor recovery codes for a user. Generating two-factor recovery codes will invalidate any existing recovery codes. 
+   /// </summary>
+   /// <param name="userId"> The Id of the user to generate new Two Factor recovery codes.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TwoFactorRecoveryCodeResponse> GenerateTwoFactorRecoveryCodes(Guid? userId);
 
    /// <summary>
    /// Generate a Two Factor secret that can be used to enable Two Factor authentication for a User. The response will contain
@@ -4699,6 +5181,19 @@ namespace io.fusionauth {
    ClientResponse<LoginResponse> PasswordlessLogin(PasswordlessLoginRequest request);
 
    /// <summary>
+   /// Updates an authentication API key by given id
+   /// </summary>
+   /// <param name="keyId"> The Id of the authentication key. If not provided a secure random api key will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information needed to create the APIKey.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, APIKeyRequest request);
+
+   /// <summary>
    /// Updates, via PATCH, the application with the given Id.
    /// </summary>
    /// <param name="applicationId"> The Id of the application to update.</param>
@@ -4827,6 +5322,32 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LambdaResponse> PatchLambda(Guid? lambdaId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Updates, via PATCH, the message template with the given Id.
+   /// </summary>
+   /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+   /// <param name="request"> The request that contains just the new message template information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> PatchMessageTemplate(Guid? messageTemplateId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Updates, via PATCH, the messenger with the given Id.
+   /// </summary>
+   /// <param name="messengerId"> The Id of the messenger to update.</param>
+   /// <param name="request"> The request that contains just the new messenger information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessengerResponse> PatchMessenger(Guid? messengerId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
@@ -5088,6 +5609,18 @@ namespace io.fusionauth {
    ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId);
 
    /// <summary>
+   /// Retrieves an authentication API key for the given id
+   /// </summary>
+   /// <param name="keyId"> The Id of the API key to retrieve.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> RetrieveAPIKey(Guid? keyId);
+
+   /// <summary>
    /// Retrieves a single action log (the log of a user action that was taken on a user previously) for the given Id.
    /// </summary>
    /// <param name="actionId"> The Id of the action to retrieve.</param>
@@ -5281,6 +5814,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EntityResponse> RetrieveEntity(Guid? entityId);
+
+   /// <summary>
+   /// Retrieves an Entity Grant for the given Entity and User/Entity.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity.</param>
+   /// <param name="recipientEntityId"> (Optional) The Id of the Entity that the Entity Grant is for.</param>
+   /// <param name="userId"> (Optional) The Id of the User that the Entity Grant is for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityGrantResponse> RetrieveEntityGrant(Guid? entityId, Guid? recipientEntityId, Guid? userId);
 
    /// <summary>
    /// Retrieves the Entity Type for the given Id.
@@ -5613,6 +6160,64 @@ namespace io.fusionauth {
    ClientResponse<LoginReportResponse> RetrieveLoginReport(Guid? applicationId, long? start, long? end);
 
    /// <summary>
+   /// Retrieves the message template for the given Id. If you don't specify the id, this will return all of the message templates.
+   /// </summary>
+   /// <param name="messageTemplateId"> (Optional) The Id of the message template.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> RetrieveMessageTemplate(Guid? messageTemplateId);
+
+   /// <summary>
+   /// Creates a preview of the message template provided in the request, normalized to a given locale.
+   /// </summary>
+   /// <param name="request"> The request that contains the email template and optionally a locale to render it in.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<PreviewMessageTemplateResponse> RetrieveMessageTemplatePreview(PreviewMessageTemplateRequest request);
+
+   /// <summary>
+   /// Retrieves all of the message templates.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> RetrieveMessageTemplates();
+
+   /// <summary>
+   /// Retrieves the messenger with the given Id.
+   /// </summary>
+   /// <param name="messengerId"> The Id of the messenger.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessengerResponse> RetrieveMessenger(Guid? messengerId);
+
+   /// <summary>
+   /// Retrieves all of the messengers.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessengerResponse> RetrieveMessengers();
+
+   /// <summary>
    /// Retrieves the monthly active user report between the two instants. If you specify an application id, it will only
    /// return the monthly active counts for that application.
    /// </summary>
@@ -5699,7 +6304,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<ReactorStatus> RetrieveReactorStatus();
+   ClientResponse<ReactorResponse> RetrieveReactorStatus();
 
    /// <summary>
    /// Retrieves the last number of login records.
@@ -5834,6 +6439,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TotalsReportResponse> RetrieveTotalReport();
+
+   /// <summary>
+   /// Retrieve two-factor recovery codes for a user.
+   /// </summary>
+   /// <param name="userId"> The Id of the user to retrieve Two Factor recovery codes.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TwoFactorRecoveryCodeResponse> RetrieveTwoFactorRecoveryCodes(Guid? userId);
 
    /// <summary>
    /// Retrieves the user for the given Id.
@@ -6233,6 +6850,18 @@ namespace io.fusionauth {
    ClientResponse<EntitySearchResponse> SearchEntitiesByIds(List<string> ids);
 
    /// <summary>
+   /// Searches Entity Grants with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityGrantSearchResponse> SearchEntityGrants(EntityGrantSearchRequest request);
+
+   /// <summary>
    /// Searches the entity types with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -6368,7 +6997,20 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
+   [Obsolete("This method has been renamed to SendTwoFactorCodeForEnableDisableAsync, use that method instead.")]
    ClientResponse<RESTVoid> SendTwoFactorCode(TwoFactorSendRequest request);
+
+   /// <summary>
+   /// Send a Two Factor authentication code to assist in setting up Two Factor authentication or disabling.
+   /// </summary>
+   /// <param name="request"> The request object that contains all of the information used to send the code.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> SendTwoFactorCodeForEnableDisable(TwoFactorSendRequest request);
 
    /// <summary>
    /// Send a Two Factor authentication code to allow the completion of Two Factor authentication.
@@ -6380,7 +7022,21 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
+   [Obsolete("This method has been renamed to SendTwoFactorCodeForLoginUsingMethodAsync, use that method instead.")]
    ClientResponse<RESTVoid> SendTwoFactorCodeForLogin(string twoFactorId);
+
+   /// <summary>
+   /// Send a Two Factor authentication code to allow the completion of Two Factor authentication.
+   /// </summary>
+   /// <param name="twoFactorId"> The Id returned by the Login API necessary to complete Two Factor authentication.</param>
+   /// <param name="request"> The Two Factor send request that contains all of the information used to send the Two Factor code to the user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> SendTwoFactorCodeForLoginUsingMethod(string twoFactorId, TwoFactorSendRequest request);
 
    /// <summary>
    /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
@@ -6409,6 +7065,23 @@ namespace io.fusionauth {
    ClientResponse<PasswordlessStartResponse> StartPasswordlessLogin(PasswordlessStartRequest request);
 
    /// <summary>
+   /// Start a Two-Factor login request by generating a two-factor identifier. This code can then be sent to the Two Factor Send 
+   /// API (/api/two-factor/send)in order to send a one-time use code to a user. You can also use one-time use code returned 
+   /// to send the code out-of-band. The Two-Factor login is completed by making a request to the Two-Factor Login 
+   /// API (/api/two-factor/login). with the two-factor identifier and the one-time use code.
+   /// 
+   /// This API is intended to allow you to begin a Two-Factor login outside of a normal login that originated from the Login API (/api/login).
+   /// </summary>
+   /// <param name="request"> The Two-Factor start request that contains all of the information used to begin the Two-Factor login request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request);
+
+   /// <summary>
    /// Complete login using a 2FA challenge
    /// </summary>
    /// <param name="request"> The login request that contains the user credentials used to log them in.</param>
@@ -6419,6 +7092,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request);
+
+   /// <summary>
+   /// Updates an API key by given id
+   /// </summary>
+   /// <param name="apiKeyId"> The Id of the API key to update.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the API Key.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? apiKeyId, APIKeyRequest request);
 
    /// <summary>
    /// Updates the application with the given Id.
@@ -6617,6 +7303,32 @@ namespace io.fusionauth {
    ClientResponse<LambdaResponse> UpdateLambda(Guid? lambdaId, LambdaRequest request);
 
    /// <summary>
+   /// Updates the message template with the given Id.
+   /// </summary>
+   /// <param name="messageTemplateId"> The Id of the message template to update.</param>
+   /// <param name="request"> The request that contains all of the new message template information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessageTemplateResponse> UpdateMessageTemplate(Guid? messageTemplateId, MessageTemplateRequest request);
+
+   /// <summary>
+   /// Updates the messenger with the given Id.
+   /// </summary>
+   /// <param name="messengerId"> The Id of the messenger to update.</param>
+   /// <param name="request"> The request object that contains all of the new messenger information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MessengerResponse> UpdateMessenger(Guid? messengerId, MessengerRequest request);
+
+   /// <summary>
    /// Updates the registration for the user with the given id and the application defined in the request.
    /// </summary>
    /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
@@ -6731,6 +7443,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<WebhookResponse> UpdateWebhook(Guid? webhookId, WebhookRequest request);
+
+   /// <summary>
+   /// Creates or updates an Entity Grant. This is when a User/Entity is granted permissions to an Entity.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity that the User/Entity is being granted access to.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the Entity Grant.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> UpsertEntityGrant(Guid? entityId, EntityGrantRequest request);
 
    /// <summary>
    /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.

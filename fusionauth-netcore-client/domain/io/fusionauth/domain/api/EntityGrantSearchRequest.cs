@@ -15,29 +15,22 @@
  */
 
 
+using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
-   * Twilio Service Configuration.
+   * Search request for entity grants.
    *
-   * @author Daniel DeGroff
+   * @author Brian Pontarelli
    */
-  public class TwilioConfiguration: Enableable {
+  public class EntityGrantSearchRequest {
 
-    public string accountSID;
+    public EntityGrantSearchCriteria search;
 
-    public string authToken;
-
-    public string fromPhoneNumber;
-
-    public string messagingServiceSid;
-
-    public string url;
-
-    public TwilioConfiguration with(Action<TwilioConfiguration> action) {
+    public EntityGrantSearchRequest with(Action<EntityGrantSearchRequest> action) {
       action(this);
       return this;
     }

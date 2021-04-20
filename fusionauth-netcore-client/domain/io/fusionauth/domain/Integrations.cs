@@ -31,8 +31,6 @@ namespace io.fusionauth.domain {
 
     public KafkaConfiguration kafka;
 
-    public TwilioConfiguration twilio;
-
     public Integrations with(Action<Integrations> action) {
       action(this);
       return this;
