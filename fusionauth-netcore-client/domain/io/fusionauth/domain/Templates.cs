@@ -44,6 +44,8 @@ namespace io.fusionauth.domain {
 
     public string oauth2Authorize;
 
+    public string oauth2AuthorizedNotRegistered;
+
     public string oauth2ChildRegistrationNotAllowed;
 
     public string oauth2ChildRegistrationNotAllowedComplete;
