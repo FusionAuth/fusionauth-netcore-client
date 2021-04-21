@@ -59,6 +59,10 @@ namespace io.fusionauth.domain {
 
     public int? twoFactorIdTimeToLiveInSeconds;
 
+    public SecureGeneratorConfiguration twoFactorOneTimeCodeIdGenerator;
+
+    public int? twoFactorOneTimeCodeIdTimeToLiveInSeconds;
+
     public int? twoFactorTrustIdTimeToLiveInSeconds;
 
     public ExternalIdentifierConfiguration with(Action<ExternalIdentifierConfiguration> action) {

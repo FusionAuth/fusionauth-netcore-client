@@ -149,6 +149,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> CreateAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<APIKeyResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ApplicationResponse>> CreateApplicationAsync(Guid? applicationId, ApplicationRequest request) {
       return buildClient()
           .withUri("/api/application")
@@ -311,6 +321,26 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> CreateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<MessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessengerResponse>> CreateMessengerAsync(Guid? messengerId, MessengerRequest request) {
+      return buildClient()
+          .withUri("/api/messenger")
+          .withUriSegment(messengerId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<MessengerResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<TenantResponse>> CreateTenantAsync(Guid? tenantId, TenantRequest request) {
       return buildClient()
           .withUri("/api/tenant")
@@ -439,6 +469,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteAPIKeyAsync(Guid? keyId) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DeleteApplicationAsync(Guid? applicationId) {
       return buildClient()
           .withUri("/api/application")
@@ -491,6 +530,18 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/entity")
           .withUriSegment(entityId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withUriSegment("grant")
+          .withParameter("recipientEntityId", recipientEntityId)
+          .withParameter("userId", userId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -574,6 +625,24 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/lambda")
           .withUriSegment(lambdaId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteMessageTemplateAsync(Guid? messageTemplateId) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteMessengerAsync(Guid? messengerId) {
+      return buildClient()
+          .withUri("/api/messenger")
+          .withUriSegment(messengerId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -674,23 +743,24 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string code) {
+    public Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string methodId, string code) {
       return buildClient()
           .withUri("/api/user/two-factor")
           .withParameter("userId", userId)
+          .withParameter("methodId", methodId)
           .withParameter("code", code)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> EnableTwoFactorAsync(Guid? userId, TwoFactorRequest request) {
+    public Task<ClientResponse<TwoFactorResponse>> EnableTwoFactorAsync(Guid? userId, TwoFactorRequest request) {
       return buildClient()
           .withUri("/api/user/two-factor")
           .withUriSegment(userId)
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<RESTVoid>();
+          .goAsync<TwoFactorResponse>();
     }
 
     /// <inheritdoc/>
@@ -808,6 +878,15 @@ namespace io.fusionauth {
           .withParameter("applicationId", applicationId)
           .withMethod("Put")
           .goAsync<VerifyRegistrationResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<TwoFactorRecoveryCodeResponse>> GenerateTwoFactorRecoveryCodesAsync(Guid? userId) {
+      return buildClient()
+          .withUri("/api/user/two-factor/recovery-code")
+          .withUriSegment(userId)
+          .withMethod("Post")
+          .goAsync<TwoFactorRecoveryCodeResponse>();
     }
 
     /// <inheritdoc/>
@@ -947,6 +1026,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<APIKeyResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ApplicationResponse>> PatchApplicationAsync(Guid? applicationId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/application")
@@ -1045,6 +1134,26 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Patch")
           .goAsync<LambdaResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> PatchMessageTemplateAsync(Guid? messageTemplateId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<MessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessengerResponse>> PatchMessengerAsync(Guid? messengerId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/messenger")
+          .withUriSegment(messengerId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<MessengerResponse>();
     }
 
     /// <inheritdoc/>
@@ -1239,6 +1348,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> RetrieveAPIKeyAsync(Guid? keyId) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(keyId)
+          .withMethod("Get")
+          .goAsync<APIKeyResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ActionResponse>> RetrieveActionAsync(Guid? actionId) {
       return buildClient()
           .withUri("/api/user/action")
@@ -1380,6 +1498,18 @@ namespace io.fusionauth {
           .withUriSegment(entityId)
           .withMethod("Get")
           .goAsync<EntityResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityGrantResponse>> RetrieveEntityGrantAsync(Guid? entityId, Guid? recipientEntityId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withUriSegment("grant")
+          .withParameter("recipientEntityId", recipientEntityId)
+          .withParameter("userId", userId)
+          .withMethod("Get")
+          .goAsync<EntityGrantResponse>();
     }
 
     /// <inheritdoc/>
@@ -1628,6 +1758,49 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplateAsync(Guid? messageTemplateId) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withMethod("Get")
+          .goAsync<MessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<PreviewMessageTemplateResponse>> RetrieveMessageTemplatePreviewAsync(PreviewMessageTemplateRequest request) {
+      return buildClient()
+          .withUri("/api/message/template/preview")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<PreviewMessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> RetrieveMessageTemplatesAsync() {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withMethod("Get")
+          .goAsync<MessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessengerResponse>> RetrieveMessengerAsync(Guid? messengerId) {
+      return buildClient()
+          .withUri("/api/messenger")
+          .withUriSegment(messengerId)
+          .withMethod("Get")
+          .goAsync<MessengerResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessengerResponse>> RetrieveMessengersAsync() {
+      return buildClient()
+          .withUri("/api/messenger")
+          .withMethod("Get")
+          .goAsync<MessengerResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<MonthlyActiveUserReportResponse>> RetrieveMonthlyActiveReportAsync(Guid? applicationId, long? start, long? end) {
       return buildClient()
           .withUri("/api/report/monthly-active-user")
@@ -1683,11 +1856,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<ReactorStatus>> RetrieveReactorStatusAsync() {
+    public Task<ClientResponse<ReactorResponse>> RetrieveReactorStatusAsync() {
       return buildClient()
           .withUri("/api/reactor")
           .withMethod("Get")
-          .goAsync<ReactorStatus>();
+          .goAsync<ReactorResponse>();
     }
 
     /// <inheritdoc/>
@@ -1787,6 +1960,15 @@ namespace io.fusionauth {
           .withUri("/api/report/totals")
           .withMethod("Get")
           .goAsync<TotalsReportResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<TwoFactorRecoveryCodeResponse>> RetrieveTwoFactorRecoveryCodesAsync(Guid? userId) {
+      return buildClient()
+          .withUri("/api/user/two-factor/recovery-code")
+          .withUriSegment(userId)
+          .withMethod("Get")
+          .goAsync<TwoFactorRecoveryCodeResponse>();
     }
 
     /// <inheritdoc/>
@@ -2068,6 +2250,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntityGrantSearchResponse>> SearchEntityGrantsAsync(EntityGrantSearchRequest request) {
+      return buildClient()
+          .withUri("/api/entity/grant/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EntityGrantSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesAsync(EntityTypeSearchRequest request) {
       return buildClient()
           .withUri("/api/entity/type/search")
@@ -2161,6 +2352,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to SendTwoFactorCodeForEnableDisableAsync, use that method instead.")]
     public Task<ClientResponse<RESTVoid>> SendTwoFactorCodeAsync(TwoFactorSendRequest request) {
       return buildClient()
           .withUri("/api/two-factor/send")
@@ -2170,10 +2362,30 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForEnableDisableAsync(TwoFactorSendRequest request) {
+      return buildClient()
+          .withUri("/api/two-factor/send")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    [Obsolete("This method has been renamed to SendTwoFactorCodeForLoginUsingMethodAsync, use that method instead.")]
     public Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForLoginAsync(string twoFactorId) {
       return buildAnonymousClient()
           .withUri("/api/two-factor/send")
           .withUriSegment(twoFactorId)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForLoginUsingMethodAsync(string twoFactorId, TwoFactorSendRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/two-factor/send")
+          .withUriSegment(twoFactorId)
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RESTVoid>();
     }
@@ -2197,12 +2409,31 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<TwoFactorStartResponse>> StartTwoFactorLoginAsync(TwoFactorStartRequest request) {
+      return buildClient()
+          .withUri("/api/two-factor/start")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<TwoFactorStartResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<LoginResponse>> TwoFactorLoginAsync(TwoFactorLoginRequest request) {
       return buildAnonymousClient()
           .withUri("/api/two-factor/login")
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<LoginResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? apiKeyId, APIKeyRequest request) {
+      return buildClient()
+          .withUri("/api/api-key")
+          .withUriSegment(apiKeyId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<APIKeyResponse>();
     }
 
     /// <inheritdoc/>
@@ -2359,6 +2590,26 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<MessageTemplateResponse>> UpdateMessageTemplateAsync(Guid? messageTemplateId, MessageTemplateRequest request) {
+      return buildClient()
+          .withUri("/api/message/template")
+          .withUriSegment(messageTemplateId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<MessageTemplateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MessengerResponse>> UpdateMessengerAsync(Guid? messengerId, MessengerRequest request) {
+      return buildClient()
+          .withUri("/api/messenger")
+          .withUriSegment(messengerId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<MessengerResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RegistrationResponse>> UpdateRegistrationAsync(Guid? userId, RegistrationRequest request) {
       return buildClient()
           .withUri("/api/user/registration")
@@ -2445,6 +2696,17 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<WebhookResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> UpsertEntityGrantAsync(Guid? entityId, EntityGrantRequest request) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withUriSegment("grant")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>

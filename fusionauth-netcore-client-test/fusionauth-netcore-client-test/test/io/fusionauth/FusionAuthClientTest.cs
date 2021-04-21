@@ -481,7 +481,7 @@ namespace io.fusionauth {
       test.assertSuccess(response);
 
       Assert.IsNotNull(response.successResponse.integrations.cleanspeak);
-      Assert.IsNotNull(response.successResponse.integrations.twilio);
+      Assert.IsNotNull(response.successResponse.integrations.kafka); 
     }
 
     [Test]

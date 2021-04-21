@@ -15,29 +15,22 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
-   * Twilio Service Configuration.
+   * Authentication key response object.
    *
-   * @author Daniel DeGroff
+   * @author Sanjay
    */
-  public class TwilioConfiguration: Enableable {
+  public class APIKeyResponse {
 
-    public string accountSID;
+    public APIKey apiKey;
 
-    public string authToken;
-
-    public string fromPhoneNumber;
-
-    public string messagingServiceSid;
-
-    public string url;
-
-    public TwilioConfiguration with(Action<TwilioConfiguration> action) {
+    public APIKeyResponse with(Action<APIKeyResponse> action) {
       action(this);
       return this;
     }

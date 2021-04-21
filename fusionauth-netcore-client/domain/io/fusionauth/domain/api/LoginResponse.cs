@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.api {
 
     public ChangePasswordReason changePasswordReason;
 
+    public List<TwoFactorMethod> methods;
+
     public string refreshToken;
 
     public IDictionary<string, object> state;

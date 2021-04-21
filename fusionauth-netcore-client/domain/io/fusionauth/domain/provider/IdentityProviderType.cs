@@ -20,6 +20,9 @@ using System;
 
 namespace io.fusionauth.domain.provider {
 
+  /**
+   * @author Daniel DeGroff
+   */
   public enum IdentityProviderType {
         ExternalJWT, 
         OpenIDConnect, 

@@ -26,6 +26,7 @@ namespace io.fusionauth.domain.form {
   public enum FormType {
         registration, 
         adminRegistration, 
-        adminUser
+        adminUser, 
+        selfServiceUser
   }
 }

@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.api.twoFactor {
 
     public string twoFactorId;
 
+    public Guid? userId;
+
     public TwoFactorLoginRequest with(Action<TwoFactorLoginRequest> action) {
       action(this);
       return this;
