@@ -25,6 +25,8 @@ namespace io.fusionauth.domain.api.user {
    */
   public class VerifyRegistrationResponse {
 
+    public string oneTimeCode;
+
     public string verificationId;
 
     public VerifyRegistrationResponse with(Action<VerifyRegistrationResponse> action) {

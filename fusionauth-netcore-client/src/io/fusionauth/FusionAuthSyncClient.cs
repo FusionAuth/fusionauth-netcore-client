@@ -503,7 +503,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> LoginPing(Guid? userId, Guid? applicationId, string callerIPAddress) {
+    public ClientResponse<LoginResponse> LoginPing(Guid? userId, Guid? applicationId, string callerIPAddress) {
       return client.LoginPingAsync(userId, applicationId, callerIPAddress).GetAwaiter().GetResult();
     }
 
@@ -1133,6 +1133,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<VersionResponse> RetrieveVersion() {
+      return client.RetrieveVersionAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<WebhookResponse> RetrieveWebhook(Guid? webhookId) {
       return client.RetrieveWebhookAsync(webhookId).GetAwaiter().GetResult();
     }
@@ -1442,13 +1447,25 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to VerifyEmailAddress and changed to take a JSON request body, use that method instead.")]
     public ClientResponse<RESTVoid> VerifyEmail(string verificationId) {
       return client.VerifyEmailAsync(verificationId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> VerifyEmailAddress(VerifyEmailRequest request) {
+      return client.VerifyEmailAddressAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    [Obsolete("This method has been renamed to VerifyUserRegistration and changed to take a JSON request body, use that method instead.")]
     public ClientResponse<RESTVoid> VerifyRegistration(string verificationId) {
       return client.VerifyRegistrationAsync(verificationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> VerifyUserRegistration(VerifyRegistrationRequest request) {
+      return client.VerifyUserRegistrationAsync(request).GetAwaiter().GetResult();
     }
   }
 }

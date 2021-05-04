@@ -977,14 +977,14 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> LoginPingAsync(Guid? userId, Guid? applicationId, string callerIPAddress) {
+    public Task<ClientResponse<LoginResponse>> LoginPingAsync(Guid? userId, Guid? applicationId, string callerIPAddress) {
       return buildClient()
           .withUri("/api/login")
           .withUriSegment(userId)
           .withUriSegment(applicationId)
           .withParameter("ipAddress", callerIPAddress)
           .withMethod("Put")
-          .goAsync<RESTVoid>();
+          .goAsync<LoginResponse>();
     }
 
     /// <inheritdoc/>
@@ -2140,6 +2140,14 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<VersionResponse>> RetrieveVersionAsync() {
+      return buildClient()
+          .withUri("/api/system/version")
+          .withMethod("Get")
+          .goAsync<VersionResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<WebhookResponse>> RetrieveWebhookAsync(Guid? webhookId) {
       return buildClient()
           .withUri("/api/webhook")
@@ -2729,6 +2737,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to VerifyEmailAddressAsync and changed to take a JSON request body, use that method instead.")]
     public Task<ClientResponse<RESTVoid>> VerifyEmailAsync(string verificationId) {
       return buildAnonymousClient()
           .withUri("/api/user/verify-email")
@@ -2738,10 +2747,29 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> VerifyEmailAddressAsync(VerifyEmailRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/user/verify-email")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    [Obsolete("This method has been renamed to VerifyUserRegistrationAsync and changed to take a JSON request body, use that method instead.")]
     public Task<ClientResponse<RESTVoid>> VerifyRegistrationAsync(string verificationId) {
       return buildAnonymousClient()
           .withUri("/api/user/verify-registration")
           .withUriSegment(verificationId)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> VerifyUserRegistrationAsync(VerifyRegistrationRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/user/verify-registration")
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RESTVoid>();
     }

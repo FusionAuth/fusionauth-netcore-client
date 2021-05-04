@@ -15,30 +15,16 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
   /**
-   * User API response object.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserResponse {
-
-    public string emailVerificationId;
-
-    public IDictionary<Guid, string> registrationVerificationIds;
-
-    public string token;
-
-    public User user;
-
-    public UserResponse with(Action<UserResponse> action) {
-      action(this);
-      return this;
-    }
+  public enum VerificationStrategy {
+        ClickableLink, 
+        FormField
   }
 }
