@@ -61,8 +61,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> ActivateReactor(string licenseId, ReactorRequest request) {
-      return client.ActivateReactorAsync(licenseId, request).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> ActivateReactor(ReactorRequest request) {
+      return client.ActivateReactorAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

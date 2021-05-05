@@ -52,7 +52,6 @@ namespace io.fusionauth {
     /// Activates the FusionAuth Reactor using a license id and optionally a license text (for air-gapped deployments)
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="licenseId"> The license id</param>
     /// <param name="request"> An optional request that contains the license text to activate Reactor (useful for air-gap deployments of FusionAuth).</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -60,7 +59,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> ActivateReactorAsync(string licenseId, ReactorRequest request);
+    Task<ClientResponse<RESTVoid>> ActivateReactorAsync(ReactorRequest request);
 
     /// <summary>
     /// Adds a user to an existing family. The family id must be specified.
@@ -3979,7 +3978,6 @@ namespace io.fusionauth {
    /// <summary>
    /// Activates the FusionAuth Reactor using a license id and optionally a license text (for air-gapped deployments)
    /// </summary>
-   /// <param name="licenseId"> The license id</param>
    /// <param name="request"> An optional request that contains the license text to activate Reactor (useful for air-gap deployments of FusionAuth).</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -3987,7 +3985,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> ActivateReactor(string licenseId, ReactorRequest request);
+   ClientResponse<RESTVoid> ActivateReactor(ReactorRequest request);
 
    /// <summary>
    /// Adds a user to an existing family. The family id must be specified.

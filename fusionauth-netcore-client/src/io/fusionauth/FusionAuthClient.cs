@@ -91,10 +91,9 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> ActivateReactorAsync(string licenseId, ReactorRequest request) {
+    public Task<ClientResponse<RESTVoid>> ActivateReactorAsync(ReactorRequest request) {
       return buildClient()
           .withUri("/api/reactor")
-          .withUriSegment(licenseId)
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RESTVoid>();
