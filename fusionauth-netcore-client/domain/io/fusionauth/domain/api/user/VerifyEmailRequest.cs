@@ -18,14 +18,20 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api.user {
 
   /**
    * @author Daniel DeGroff
-   * @deprecated Use <code>User.twoFactor.methods</code>
    */
-  public enum TwoFactorDelivery {
-        None, 
-        TextMessage
+  public class VerifyEmailRequest {
+
+    public string oneTimeCode;
+
+    public string verificationId;
+
+    public VerifyEmailRequest with(Action<VerifyEmailRequest> action) {
+      action(this);
+      return this;
+    }
   }
 }

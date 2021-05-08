@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.api {
 
     public string license;
 
+    public string licenseId;
+
     public ReactorRequest with(Action<ReactorRequest> action) {
       action(this);
       return this;

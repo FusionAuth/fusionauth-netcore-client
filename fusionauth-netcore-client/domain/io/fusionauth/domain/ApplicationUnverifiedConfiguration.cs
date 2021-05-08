@@ -21,43 +21,17 @@ using System;
 namespace io.fusionauth.domain {
 
   /**
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class EmailConfiguration {
+  public class ApplicationUnverifiedConfiguration {
 
-    public string defaultFromEmail;
-
-    public string defaultFromName;
-
-    public Guid? forgotPasswordEmailTemplateId;
-
-    public string host;
-
-    public string password;
-
-    public Guid? passwordlessEmailTemplateId;
-
-    public int? port;
-
-    public string properties;
-
-    public EmailSecurityType security;
-
-    public Guid? setPasswordEmailTemplateId;
-
-    public EmailUnverifiedOptions unverified;
-
-    public string username;
-
-    public Guid? verificationEmailTemplateId;
+    public UnverifiedBehavior registration;
 
     public VerificationStrategy verificationStrategy;
 
-    public bool? verifyEmail;
+    public RegistrationUnverifiedOptions whenGated;
 
-    public bool? verifyEmailWhenChanged;
-
-    public EmailConfiguration with(Action<EmailConfiguration> action) {
+    public ApplicationUnverifiedConfiguration with(Action<ApplicationUnverifiedConfiguration> action) {
       action(this);
       return this;
     }

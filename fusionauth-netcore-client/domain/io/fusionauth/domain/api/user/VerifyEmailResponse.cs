@@ -25,6 +25,8 @@ namespace io.fusionauth.domain.api.user {
    */
   public class VerifyEmailResponse {
 
+    public string oneTimeCode;
+
     public string verificationId;
 
     public VerifyEmailResponse with(Action<VerifyEmailResponse> action) {
