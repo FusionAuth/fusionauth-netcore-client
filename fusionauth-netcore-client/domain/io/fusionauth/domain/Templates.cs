@@ -36,6 +36,10 @@ namespace io.fusionauth.domain {
 
     public string emailSend;
 
+    public string emailSent;
+
+    public string emailVerificationRequired;
+
     public string emailVerify;
 
     public string helpers;
@@ -79,6 +83,10 @@ namespace io.fusionauth.domain {
     public string registrationComplete;
 
     public string registrationSend;
+
+    public string registrationSent;
+
+    public string registrationVerificationRequired;
 
     public string registrationVerify;
 

@@ -78,6 +78,8 @@ namespace io.fusionauth.domain {
 
     public TenantUserDeletePolicy userDeletePolicy;
 
+    public TenantUsernameConfiguration usernameConfiguration;
+
     public Tenant with(Action<Tenant> action) {
       action(this);
       return this;

@@ -18,46 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
    * @author Daniel DeGroff
    */
-  public class SecureIdentity {
+  public class VersionResponse {
 
-    public DateTimeOffset? breachedPasswordLastCheckedInstant;
+    public string version;
 
-    public BreachedPasswordStatus breachedPasswordStatus;
-
-    public Guid? connectorId;
-
-    public string encryptionScheme;
-
-    public int? factor;
-
-    public Guid? id;
-
-    public DateTimeOffset? lastLoginInstant;
-
-    public string password;
-
-    public ChangePasswordReason passwordChangeReason;
-
-    public bool? passwordChangeRequired;
-
-    public DateTimeOffset? passwordLastUpdateInstant;
-
-    public string salt;
-
-    public string uniqueUsername;
-
-    public string username;
-
-    public ContentStatus usernameStatus;
-
-    public bool? verified;
-
-    public SecureIdentity with(Action<SecureIdentity> action) {
+    public VersionResponse with(Action<VersionResponse> action) {
       action(this);
       return this;
     }

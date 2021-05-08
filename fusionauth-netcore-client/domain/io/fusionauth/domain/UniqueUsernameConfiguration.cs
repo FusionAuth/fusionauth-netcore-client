@@ -15,28 +15,18 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
-  /**
-   * User API response object.
-   *
-   * @author Brian Pontarelli
-   */
-  public class UserResponse {
+  public class UniqueUsernameConfiguration: Enableable {
 
-    public string emailVerificationId;
+    public int? numberOfDigits;
 
-    public IDictionary<Guid, string> registrationVerificationIds;
+    public char separator;
 
-    public string token;
-
-    public User user;
-
-    public UserResponse with(Action<UserResponse> action) {
+    public UniqueUsernameConfiguration with(Action<UniqueUsernameConfiguration> action) {
       action(this);
       return this;
     }

@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.api.user {
 
     public UserRegistration registration;
 
+    public string registrationVerificationId;
+
     public string token;
 
     public User user;
