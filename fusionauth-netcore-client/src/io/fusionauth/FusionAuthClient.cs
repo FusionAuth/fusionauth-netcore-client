@@ -121,7 +121,7 @@ namespace io.fusionauth {
 
     /// <inheritdoc/>
     public Task<ClientResponse<ChangePasswordResponse>> ChangePasswordAsync(string changePasswordId, ChangePasswordRequest request) {
-      return buildClient()
+      return buildAnonymousClient()
           .withUri("/api/user/change-password")
           .withUriSegment(changePasswordId)
           .withJSONBody(request)
