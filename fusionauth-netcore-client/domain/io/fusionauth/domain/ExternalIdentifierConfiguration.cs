@@ -49,6 +49,8 @@ namespace io.fusionauth.domain {
 
     public int? passwordlessLoginTimeToLiveInSeconds;
 
+    public int? pendingAccountLinkTimeToLiveInSeconds;
+
     public SecureGeneratorConfiguration registrationVerificationIdGenerator;
 
     public int? registrationVerificationIdTimeToLiveInSeconds;

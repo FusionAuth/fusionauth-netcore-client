@@ -36,6 +36,8 @@ namespace io.fusionauth.domain.provider {
 
     public string fields;
 
+    public IdentityProviderLoginMethod loginMethod;
+
     public string permissions;
 
     public FacebookIdentityProvider with(Action<FacebookIdentityProvider> action) {

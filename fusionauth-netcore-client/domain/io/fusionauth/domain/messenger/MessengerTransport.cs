@@ -18,27 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.messenger {
 
   /**
    * @author Daniel DeGroff
    */
-  public enum IdentityProviderType {
-        Apple, 
-        EpicGames, 
-        ExternalJWT, 
-        Facebook, 
-        Google, 
-        HYPR, 
-        LinkedIn, 
-        Nintendo, 
-        OpenIDConnect, 
-        SAMLv2, 
-        SAMLv2IdPInitiated, 
-        SonyPSN, 
-        Steam, 
-        Twitch, 
-        Twitter, 
-        Xbox
+  public class MessengerTransport {
+
+    public MessengerTransport with(Action<MessengerTransport> action) {
+      action(this);
+      return this;
+    }
   }
 }

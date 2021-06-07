@@ -50,6 +50,8 @@ namespace io.fusionauth.domain.oauth2 {
         missing_client_id, 
         missing_client_secret, 
         missing_code, 
+        missing_code_challenge, 
+        missing_code_verifier, 
         missing_device_code, 
         missing_grant_type, 
         missing_redirect_uri, 

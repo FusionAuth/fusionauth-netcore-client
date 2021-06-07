@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.email;
 using System.Collections.Generic;
 using System;
 
@@ -25,11 +26,17 @@ namespace io.fusionauth.domain.api.email {
    */
   public class SendRequest {
 
+    public Guid? applicationId;
+
     public List<string> bccAddresses;
 
     public List<string> ccAddresses;
 
+    public List<string> preferredLanguages;
+
     public IDictionary<string, object> requestData;
+
+    public List<EmailAddress> toAddresses;
 
     public List<Guid> userIds;
 

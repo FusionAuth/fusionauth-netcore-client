@@ -18,27 +18,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.oauth2 {
 
   /**
-   * @author Daniel DeGroff
+   * @author Brett Guy
    */
-  public enum IdentityProviderType {
-        Apple, 
-        EpicGames, 
-        ExternalJWT, 
-        Facebook, 
-        Google, 
-        HYPR, 
-        LinkedIn, 
-        Nintendo, 
-        OpenIDConnect, 
-        SAMLv2, 
-        SAMLv2IdPInitiated, 
-        SonyPSN, 
-        Steam, 
-        Twitch, 
-        Twitter, 
-        Xbox
+  public enum ClientAuthenticationPolicy {
+        Required, 
+        NotRequired, 
+        NotRequiredWhenUsingPKCE
   }
 }

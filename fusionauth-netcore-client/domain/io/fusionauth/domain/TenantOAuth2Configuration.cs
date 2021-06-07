@@ -18,27 +18,15 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain {
 
-  /**
-   * @author Daniel DeGroff
-   */
-  public enum IdentityProviderType {
-        Apple, 
-        EpicGames, 
-        ExternalJWT, 
-        Facebook, 
-        Google, 
-        HYPR, 
-        LinkedIn, 
-        Nintendo, 
-        OpenIDConnect, 
-        SAMLv2, 
-        SAMLv2IdPInitiated, 
-        SonyPSN, 
-        Steam, 
-        Twitch, 
-        Twitter, 
-        Xbox
+  public class TenantOAuth2Configuration {
+
+    public Guid? clientCredentialsAccessTokenPopulateLambdaId;
+
+    public TenantOAuth2Configuration with(Action<TenantOAuth2Configuration> action) {
+      action(this);
+      return this;
+    }
   }
 }

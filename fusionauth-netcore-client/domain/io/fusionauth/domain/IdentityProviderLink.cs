@@ -15,34 +15,37 @@
  */
 
 
-using io.fusionauth.domain;
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain {
 
-  // Do not require a setter for 'type', it is defined by the concrete class and is not mutable
-  public class BaseIdentityProvider<D>: Enableable, IdentityProvider {
-
-    public IDictionary<Guid, D> applicationConfiguration;
+  /**
+   * @author Daniel DeGroff
+   */
+  public class IdentityProviderLink {
 
     public IDictionary<string, object> data;
 
-    public bool? debug;
+    public string displayName;
 
-    public Guid? id;
+    public Guid? identityProviderId;
+
+    public string identityProviderUserId;
 
     public DateTimeOffset? insertInstant;
 
-    public LambdaConfiguration lambdaConfiguration;
+    public DateTimeOffset? lastLoginInstant;
 
-    public DateTimeOffset? lastUpdateInstant;
+    public Guid? tenantId;
 
-    public IdentityProviderLinkingStrategy linkingStrategy;
+    public string token;
 
-    public string name;
+    public Guid? userId;
 
-    public IdentityProviderType type;
+    public IdentityProviderLink with(Action<IdentityProviderLink> action) {
+      action(this);
+      return this;
+    }
   }
 }

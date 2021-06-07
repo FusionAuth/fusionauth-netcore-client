@@ -37,6 +37,13 @@ namespace io.fusionauth.domain {
         HYPRReconcile, 
         TwitterReconcile, 
         LDAPConnectorReconcile, 
-        LinkedInReconcile
+        LinkedInReconcile, 
+        EpicGamesReconcile, 
+        NintendoReconcile, 
+        SonyPSNReconcile, 
+        SteamReconcile, 
+        TwitchReconcile, 
+        XboxReconcile, 
+        ClientCredentialsJWTPopulate
   }
 }

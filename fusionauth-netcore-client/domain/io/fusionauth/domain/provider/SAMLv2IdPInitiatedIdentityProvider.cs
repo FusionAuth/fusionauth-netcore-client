@@ -34,7 +34,11 @@ namespace io.fusionauth.domain.provider {
 
     public Guid? keyId;
 
+    public string uniqueIdClaim;
+
     public bool? useNameIdForEmail;
+
+    public string usernameClaim;
 
     public SAMLv2IdPInitiatedIdentityProvider with(Action<SAMLv2IdPInitiatedIdentityProvider> action) {
       action(this);

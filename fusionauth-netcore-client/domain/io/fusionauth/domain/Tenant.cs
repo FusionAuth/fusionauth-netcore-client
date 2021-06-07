@@ -68,6 +68,8 @@ namespace io.fusionauth.domain {
 
     public string name;
 
+    public TenantOAuth2Configuration oauthConfiguration;
+
     public PasswordEncryptionConfiguration passwordEncryptionConfiguration;
 
     public PasswordValidationRules passwordValidationRules;

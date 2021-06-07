@@ -494,6 +494,19 @@ namespace io.fusionauth {
     Task<ClientResponse<UserConsentResponse>> CreateUserConsentAsync(Guid? userConsentId, UserConsentRequest request);
 
     /// <summary>
+    /// Link an external user from a 3rd party identity provider to a FusionAuth user.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request object that contains all of the information used to link the FusionAuth user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IdentityProviderLinkResponse>> CreateUserLinkAsync(IdentityProviderLinkRequest request);
+
+    /// <summary>
     /// Creates a webhook. You can optionally specify an Id for the webhook, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -935,6 +948,21 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteUserActionReasonAsync(Guid? userActionReasonId);
+
+    /// <summary>
+    /// Remove an existing link that has been made from a 3rd party identity provider to a FusionAuth user.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="identityProviderId"> The unique Id of the identity provider.</param>
+    /// <param name="identityProviderUserId"> The unique Id of the user in the 3rd party identity provider to unlink.</param>
+    /// <param name="userId"> The unique Id of the FusionAuth user to unlink.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IdentityProviderLinkResponse>> DeleteUserLinkAsync(Guid? identityProviderId, string identityProviderUserId, Guid? userId);
 
     /// <summary>
     /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
@@ -1798,6 +1826,23 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RegistrationResponse>> RegisterAsync(Guid? userId, RegistrationRequest request);
+
+    /// <summary>
+    /// Requests Elasticsearch to delete and rebuild the index for FusionAuth users or entities. Be very careful when running this request as it will 
+    /// increase the CPU and I/O load on your database until the operation completes. Generally speaking you do not ever need to run this operation unless 
+    /// instructed by FusionAuth support, or if you are migrating a database another system and you are not brining along the Elasticsearch index. 
+    /// 
+    /// You have been warned.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request that contains the index name.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> ReindexAsync(ReindexRequest request);
 
     /// <summary>
     /// Removes a user from the family with the given id.
@@ -2682,6 +2727,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RegistrationReportResponse>> RetrieveRegistrationReportAsync(Guid? applicationId, long? start, long? end);
 
     /// <summary>
+    /// Retrieve the status of a re-index process. A status code of 200 indicates the re-index is in progress, a status code of  
+    /// 404 indicates no re-index is in progress.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RetrieveReindexStatusAsync();
+
+    /// <summary>
     /// Retrieves the system configuration.
     /// This is an asynchronous method.
     /// </summary>
@@ -2952,6 +3010,35 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<UserResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT);
+
+    /// <summary>
+    /// Retrieve a single Identity Provider user (link).
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="identityProviderId"> The unique Id of the identity provider.</param>
+    /// <param name="identityProviderUserId"> The unique Id of the user in the 3rd party identity provider.</param>
+    /// <param name="userId"> The unique Id of the FusionAuth user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IdentityProviderLinkResponse>> RetrieveUserLinkAsync(Guid? identityProviderId, string identityProviderUserId, Guid? userId);
+
+    /// <summary>
+    /// Retrieve all Identity Provider users (links) for the user. Specify the optional identityProviderId to retrieve links for a particular IdP.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="identityProviderId"> (Optional) The unique Id of the identity provider. Specify this value to reduce the links returned to those for a particular IdP.</param>
+    /// <param name="userId"> The unique Id of the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IdentityProviderLinkResponse>> RetrieveUserLinksByUserIdAsync(Guid? identityProviderId, Guid? userId);
 
     /// <summary>
     /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
@@ -4390,6 +4477,18 @@ namespace io.fusionauth {
    ClientResponse<UserConsentResponse> CreateUserConsent(Guid? userConsentId, UserConsentRequest request);
 
    /// <summary>
+   /// Link an external user from a 3rd party identity provider to a FusionAuth user.
+   /// </summary>
+   /// <param name="request"> The request object that contains all of the information used to link the FusionAuth user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IdentityProviderLinkResponse> CreateUserLink(IdentityProviderLinkRequest request);
+
+   /// <summary>
    /// Creates a webhook. You can optionally specify an Id for the webhook, if not provided one will be generated.
    /// </summary>
    /// <param name="webhookId"> (Optional) The Id for the webhook. If not provided a secure random UUID will be generated.</param>
@@ -4798,6 +4897,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteUserActionReason(Guid? userActionReasonId);
+
+   /// <summary>
+   /// Remove an existing link that has been made from a 3rd party identity provider to a FusionAuth user.
+   /// </summary>
+   /// <param name="identityProviderId"> The unique Id of the identity provider.</param>
+   /// <param name="identityProviderUserId"> The unique Id of the user in the 3rd party identity provider to unlink.</param>
+   /// <param name="userId"> The unique Id of the FusionAuth user to unlink.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IdentityProviderLinkResponse> DeleteUserLink(Guid? identityProviderId, string identityProviderUserId, Guid? userId);
 
    /// <summary>
    /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
@@ -5603,6 +5716,22 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RegistrationResponse> Register(Guid? userId, RegistrationRequest request);
+
+   /// <summary>
+   /// Requests Elasticsearch to delete and rebuild the index for FusionAuth users or entities. Be very careful when running this request as it will 
+   /// increase the CPU and I/O load on your database until the operation completes. Generally speaking you do not ever need to run this operation unless 
+   /// instructed by FusionAuth support, or if you are migrating a database another system and you are not brining along the Elasticsearch index. 
+   /// 
+   /// You have been warned.
+   /// </summary>
+   /// <param name="request"> The request that contains the index name.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> Reindex(ReindexRequest request);
 
    /// <summary>
    /// Removes a user from the family with the given id.
@@ -6420,6 +6549,18 @@ namespace io.fusionauth {
    ClientResponse<RegistrationReportResponse> RetrieveRegistrationReport(Guid? applicationId, long? start, long? end);
 
    /// <summary>
+   /// Retrieve the status of a re-index process. A status code of 200 indicates the re-index is in progress, a status code of  
+   /// 404 indicates no re-index is in progress.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RetrieveReindexStatus();
+
+   /// <summary>
    /// Retrieves the system configuration.
    /// </summary>
    /// <returns>
@@ -6669,6 +6810,33 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<UserResponse> RetrieveUserInfoFromAccessToken(string encodedJWT);
+
+   /// <summary>
+   /// Retrieve a single Identity Provider user (link).
+   /// </summary>
+   /// <param name="identityProviderId"> The unique Id of the identity provider.</param>
+   /// <param name="identityProviderUserId"> The unique Id of the user in the 3rd party identity provider.</param>
+   /// <param name="userId"> The unique Id of the FusionAuth user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IdentityProviderLinkResponse> RetrieveUserLink(Guid? identityProviderId, string identityProviderUserId, Guid? userId);
+
+   /// <summary>
+   /// Retrieve all Identity Provider users (links) for the user. Specify the optional identityProviderId to retrieve links for a particular IdP.
+   /// </summary>
+   /// <param name="identityProviderId"> (Optional) The unique Id of the identity provider. Specify this value to reduce the links returned to those for a particular IdP.</param>
+   /// <param name="userId"> The unique Id of the user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IdentityProviderLinkResponse> RetrieveUserLinksByUserId(Guid? identityProviderId, Guid? userId);
 
    /// <summary>
    /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the

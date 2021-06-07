@@ -15,34 +15,23 @@
  */
 
 
-using io.fusionauth.domain;
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
 
-  // Do not require a setter for 'type', it is defined by the concrete class and is not mutable
-  public class BaseIdentityProvider<D>: Enableable, IdentityProvider {
-
-    public IDictionary<Guid, D> applicationConfiguration;
-
-    public IDictionary<string, object> data;
-
-    public bool? debug;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public LambdaConfiguration lambdaConfiguration;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public IdentityProviderLinkingStrategy linkingStrategy;
-
-    public string name;
-
-    public IdentityProviderType type;
+  /**
+   * The IdP behavior when no user link has been made yet.
+   *
+   * @author Daniel DeGroff
+   */
+  public enum IdentityProviderLinkingStrategy {
+        CreatePendingLink, 
+        LinkAnonymously, 
+        LinkByEmail, 
+        LinkByEmailForExistingUser, 
+        LinkByUsername, 
+        LinkByUsernameForExistingUser, 
+        Unsupported
   }
 }

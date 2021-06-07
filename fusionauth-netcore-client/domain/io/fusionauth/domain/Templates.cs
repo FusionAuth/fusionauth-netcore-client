@@ -48,6 +48,8 @@ namespace io.fusionauth.domain {
 
     public string oauth2Authorize;
 
+    public string oauth2AuthorizedNotRegistered;
+
     public string oauth2ChildRegistrationNotAllowed;
 
     public string oauth2ChildRegistrationNotAllowedComplete;
@@ -65,6 +67,8 @@ namespace io.fusionauth.domain {
     public string oauth2Passwordless;
 
     public string oauth2Register;
+
+    public string oauth2StartIdPLink;
 
     public string oauth2TwoFactor;
 

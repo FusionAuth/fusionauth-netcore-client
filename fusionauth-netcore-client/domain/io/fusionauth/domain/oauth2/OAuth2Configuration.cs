@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.oauth2 {
 
     public List<string> authorizedRedirectURLs;
 
+    public ClientAuthenticationPolicy clientAuthenticationPolicy;
+
     public string clientId;
 
     public string clientSecret;
@@ -45,7 +47,11 @@ namespace io.fusionauth.domain.oauth2 {
 
     public string logoutURL;
 
+    public ProofKeyForCodeExchangePolicy proofKeyForCodeExchangePolicy;
+
     public bool? requireClientAuthentication;
+
+    public bool? requireRegistration;
 
     public OAuth2Configuration with(Action<OAuth2Configuration> action) {
       action(this);

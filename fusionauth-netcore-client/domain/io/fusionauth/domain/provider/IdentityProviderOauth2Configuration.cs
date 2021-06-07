@@ -41,7 +41,11 @@ namespace io.fusionauth.domain.provider {
 
     public string token_endpoint;
 
+    public string uniqueIdClaim;
+
     public string userinfo_endpoint;
+
+    public string usernameClaim;
 
     public IdentityProviderOauth2Configuration with(Action<IdentityProviderOauth2Configuration> action) {
       action(this);

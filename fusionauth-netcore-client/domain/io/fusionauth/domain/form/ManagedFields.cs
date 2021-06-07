@@ -18,27 +18,21 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.form {
 
   /**
-   * @author Daniel DeGroff
+   * This class contains the managed fields that are also put into the database during FusionAuth setup.
+   * <p>
+   * NOTE TO FUSIONAUTH DEVS: These fields are are also declared in SQL in order to boot strap the system. These need to stay in sync.
+   * - Any changes to these fields needs to also be reflected in mysql.sql and postgresql.sql
+   *
+   * @author Brian Pontarelli
    */
-  public enum IdentityProviderType {
-        Apple, 
-        EpicGames, 
-        ExternalJWT, 
-        Facebook, 
-        Google, 
-        HYPR, 
-        LinkedIn, 
-        Nintendo, 
-        OpenIDConnect, 
-        SAMLv2, 
-        SAMLv2IdPInitiated, 
-        SonyPSN, 
-        Steam, 
-        Twitch, 
-        Twitter, 
-        Xbox
+  public class ManagedFields {
+
+    public ManagedFields with(Action<ManagedFields> action) {
+      action(this);
+      return this;
+    }
   }
 }

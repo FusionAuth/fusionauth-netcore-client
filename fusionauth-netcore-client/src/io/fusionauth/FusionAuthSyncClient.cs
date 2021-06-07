@@ -216,6 +216,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IdentityProviderLinkResponse> CreateUserLink(IdentityProviderLinkRequest request) {
+      return client.CreateUserLinkAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<WebhookResponse> CreateWebhook(Guid? webhookId, WebhookRequest request) {
       return client.CreateWebhookAsync(webhookId, request).GetAwaiter().GetResult();
     }
@@ -379,6 +384,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteUserActionReason(Guid? userActionReasonId) {
       return client.DeleteUserActionReasonAsync(userActionReasonId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IdentityProviderLinkResponse> DeleteUserLink(Guid? identityProviderId, string identityProviderUserId, Guid? userId) {
+      return client.DeleteUserLinkAsync(identityProviderId, identityProviderUserId, userId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -670,6 +680,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RegistrationResponse> Register(Guid? userId, RegistrationRequest request) {
       return client.RegisterAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> Reindex(ReindexRequest request) {
+      return client.ReindexAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1008,6 +1023,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RetrieveReindexStatus() {
+      return client.RetrieveReindexStatusAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<SystemConfigurationResponse> RetrieveSystemConfiguration() {
       return client.RetrieveSystemConfigurationAsync().GetAwaiter().GetResult();
     }
@@ -1110,6 +1130,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<UserResponse> RetrieveUserInfoFromAccessToken(string encodedJWT) {
       return client.RetrieveUserInfoFromAccessTokenAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IdentityProviderLinkResponse> RetrieveUserLink(Guid? identityProviderId, string identityProviderUserId, Guid? userId) {
+      return client.RetrieveUserLinkAsync(identityProviderId, identityProviderUserId, userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IdentityProviderLinkResponse> RetrieveUserLinksByUserId(Guid? identityProviderId, Guid? userId) {
+      return client.RetrieveUserLinksByUserIdAsync(identityProviderId, userId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

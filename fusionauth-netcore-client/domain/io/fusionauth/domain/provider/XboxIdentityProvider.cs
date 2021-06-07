@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
@@ -23,43 +22,21 @@ using System;
 namespace io.fusionauth.domain.provider {
 
   /**
-   * SAML v2 identity provider configuration.
+   * Xbox gaming login provider.
    *
-   * @author Brian Pontarelli
+   * @author Brett Pontarelli
    */
-  public class SAMLv2IdentityProvider: BaseIdentityProvider<SAMLv2ApplicationConfiguration> {
-
-    public string buttonImageURL;
+  public class XboxIdentityProvider: BaseIdentityProvider<XboxApplicationConfiguration> {
 
     public string buttonText;
 
-    public List<string> domains;
+    public string client_id;
 
-    public string emailClaim;
+    public string client_secret;
 
-    public string idpEndpoint;
+    public string scope;
 
-    public string issuer;
-
-    public Guid? keyId;
-
-    public string nameIdFormat;
-
-    public bool? postRequest;
-
-    public Guid? requestSigningKeyId;
-
-    public bool? signRequest;
-
-    public string uniqueIdClaim;
-
-    public bool? useNameIdForEmail;
-
-    public string usernameClaim;
-
-    public CanonicalizationMethod xmlSignatureC14nMethod;
-
-    public SAMLv2IdentityProvider with(Action<SAMLv2IdentityProvider> action) {
+    public XboxIdentityProvider with(Action<XboxIdentityProvider> action) {
       action(this);
       return this;
     }

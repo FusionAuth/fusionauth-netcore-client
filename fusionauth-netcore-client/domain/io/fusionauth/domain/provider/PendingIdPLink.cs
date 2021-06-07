@@ -16,50 +16,33 @@
 
 
 using io.fusionauth.domain;
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
 
   /**
-   * SAML v2 identity provider configuration.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class SAMLv2IdentityProvider: BaseIdentityProvider<SAMLv2ApplicationConfiguration> {
+  public class PendingIdPLink {
 
-    public string buttonImageURL;
+    public string displayName;
 
-    public string buttonText;
+    public string email;
 
-    public List<string> domains;
+    public Guid? identityProviderId;
 
-    public string emailClaim;
+    public string identityProviderName;
 
-    public string idpEndpoint;
+    public string identityProviderType;
 
-    public string issuer;
+    public string identityProviderUserId;
 
-    public Guid? keyId;
+    public User user;
 
-    public string nameIdFormat;
+    public string username;
 
-    public bool? postRequest;
-
-    public Guid? requestSigningKeyId;
-
-    public bool? signRequest;
-
-    public string uniqueIdClaim;
-
-    public bool? useNameIdForEmail;
-
-    public string usernameClaim;
-
-    public CanonicalizationMethod xmlSignatureC14nMethod;
-
-    public SAMLv2IdentityProvider with(Action<SAMLv2IdentityProvider> action) {
+    public PendingIdPLink with(Action<PendingIdPLink> action) {
       action(this);
       return this;
     }

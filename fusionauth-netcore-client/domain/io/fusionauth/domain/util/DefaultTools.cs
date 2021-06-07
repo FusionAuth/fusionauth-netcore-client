@@ -18,27 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.util {
 
   /**
-   * @author Daniel DeGroff
+   * Helper for dealing with default values.
+   *
+   * @author Brian Pontarelli
    */
-  public enum IdentityProviderType {
-        Apple, 
-        EpicGames, 
-        ExternalJWT, 
-        Facebook, 
-        Google, 
-        HYPR, 
-        LinkedIn, 
-        Nintendo, 
-        OpenIDConnect, 
-        SAMLv2, 
-        SAMLv2IdPInitiated, 
-        SonyPSN, 
-        Steam, 
-        Twitch, 
-        Twitter, 
-        Xbox
+  public class DefaultTools {
+
+    public DefaultTools with(Action<DefaultTools> action) {
+      action(this);
+      return this;
+    }
   }
 }

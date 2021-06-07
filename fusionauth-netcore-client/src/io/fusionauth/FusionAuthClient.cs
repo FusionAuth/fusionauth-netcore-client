@@ -400,6 +400,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderLinkResponse>> CreateUserLinkAsync(IdentityProviderLinkRequest request) {
+      return buildClient()
+          .withUri("/api/identity-provider/link")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<IdentityProviderLinkResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<WebhookResponse>> CreateWebhookAsync(Guid? webhookId, WebhookRequest request) {
       return buildClient()
           .withUri("/api/webhook")
@@ -711,6 +720,17 @@ namespace io.fusionauth {
           .withUriSegment(userActionReasonId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderLinkResponse>> DeleteUserLinkAsync(Guid? identityProviderId, string identityProviderUserId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/identity-provider/link")
+          .withParameter("identityProviderId", identityProviderId)
+          .withParameter("identityProviderUserId", identityProviderUserId)
+          .withParameter("userId", userId)
+          .withMethod("Delete")
+          .goAsync<IdentityProviderLinkResponse>();
     }
 
     /// <inheritdoc/>
@@ -1305,6 +1325,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RegistrationResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> ReindexAsync(ReindexRequest request) {
+      return buildClient()
+          .withUri("/api/system/reindex")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>
@@ -1912,6 +1941,14 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RetrieveReindexStatusAsync() {
+      return buildClient()
+          .withUri("/api/system/reindex")
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<SystemConfigurationResponse>> RetrieveSystemConfigurationAsync() {
       return buildClient()
           .withUri("/api/system-configuration")
@@ -2092,6 +2129,27 @@ namespace io.fusionauth {
           .withAuthorization("Bearer " + encodedJWT)
           .withMethod("Get")
           .goAsync<UserResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderLinkResponse>> RetrieveUserLinkAsync(Guid? identityProviderId, string identityProviderUserId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/identity-provider/link")
+          .withParameter("identityProviderId", identityProviderId)
+          .withParameter("identityProviderUserId", identityProviderUserId)
+          .withParameter("userId", userId)
+          .withMethod("Get")
+          .goAsync<IdentityProviderLinkResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderLinkResponse>> RetrieveUserLinksByUserIdAsync(Guid? identityProviderId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/identity-provider/link")
+          .withParameter("identityProviderId", identityProviderId)
+          .withParameter("userId", userId)
+          .withMethod("Get")
+          .goAsync<IdentityProviderLinkResponse>();
     }
 
     /// <inheritdoc/>

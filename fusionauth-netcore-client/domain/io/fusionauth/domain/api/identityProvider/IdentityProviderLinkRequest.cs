@@ -18,27 +18,24 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.api.identityProvider {
 
   /**
    * @author Daniel DeGroff
    */
-  public enum IdentityProviderType {
-        Apple, 
-        EpicGames, 
-        ExternalJWT, 
-        Facebook, 
-        Google, 
-        HYPR, 
-        LinkedIn, 
-        Nintendo, 
-        OpenIDConnect, 
-        SAMLv2, 
-        SAMLv2IdPInitiated, 
-        SonyPSN, 
-        Steam, 
-        Twitch, 
-        Twitter, 
-        Xbox
+  public class IdentityProviderLinkRequest {
+
+    public Guid? identityProviderId;
+
+    public string identityProviderUserId;
+
+    public string pendingIdPLinkId;
+
+    public Guid? userId;
+
+    public IdentityProviderLinkRequest with(Action<IdentityProviderLinkRequest> action) {
+      action(this);
+      return this;
+    }
   }
 }
