@@ -39,6 +39,8 @@ namespace io.fusionauth.domain.reactor {
 
     public ReactorFeatureStatus entityManagement;
 
+    public ReactorFeatureStatus ipLocation;
+
     public bool? licensed;
 
     public ReactorStatus with(Action<ReactorStatus> action) {
