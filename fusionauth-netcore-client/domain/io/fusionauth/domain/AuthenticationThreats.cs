@@ -18,16 +18,15 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.reactor {
+namespace io.fusionauth.domain {
 
   /**
-   * @author Brian Pontarelli
+   * @author Brett Pontarelli
    */
-  public enum ReactorFeatureStatus {
-        ACTIVE, 
-        DISCONNECTED, 
-        PENDING, 
-        DISABLED, 
-        UNKNOWN
+  public enum AuthenticationThreats {
+        ImpossibleTravel, 
+        UnusualTravel, 
+        BadCaptcha, 
+        NewDeviceLogin
   }
 }

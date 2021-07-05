@@ -21,6 +21,8 @@ using System;
 namespace io.fusionauth.domain {
 
   /**
+   * TODO : ip-allow-block : Fix names so they are all the same. I prefer `IP`.
+   *
    * @author Brett Guy
    */
   public class IpAddressRange {
