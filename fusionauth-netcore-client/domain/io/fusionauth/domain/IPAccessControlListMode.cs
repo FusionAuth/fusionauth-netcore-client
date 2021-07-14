@@ -18,24 +18,13 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.ip {
+namespace io.fusionauth.domain {
 
   /**
    * @author Brett Guy
    */
-  public class IPAddressRangeNode {
-
-    public long? endIpAddress;
-
-    public IPAddressRangeNode left;
-
-    public IPAddressRangeNode right;
-
-    public long? startIpAddress;
-
-    public IPAddressRangeNode with(Action<IPAddressRangeNode> action) {
-      action(this);
-      return this;
-    }
+  public enum IPAccessControlListMode {
+        Allow, 
+        Block
   }
 }

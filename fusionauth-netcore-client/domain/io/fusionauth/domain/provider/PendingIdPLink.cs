@@ -34,7 +34,7 @@ namespace io.fusionauth.domain.provider {
 
     public string identityProviderName;
 
-    public string identityProviderType;
+    public IdentityProviderType identityProviderType;
 
     public string identityProviderUserId;
 

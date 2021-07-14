@@ -15,31 +15,20 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
-   * TODO : ip-allow-block : Fix names so they are all the same. I prefer `IP`.
-   *
    * @author Brett Guy
    */
-  public class IpAddressRange {
+  public class IPAccessControlListRequest {
 
-    public string endIpAddress;
+    public IPAccessControlList ipAccessControlList;
 
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public AddressRangeMode mode;
-
-    public string startIpAddress;
-
-    public IpAddressRange with(Action<IpAddressRange> action) {
+    public IPAccessControlListRequest with(Action<IPAccessControlListRequest> action) {
       action(this);
       return this;
     }

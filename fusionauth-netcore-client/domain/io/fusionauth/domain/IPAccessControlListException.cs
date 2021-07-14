@@ -15,20 +15,19 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
-  /**
-   * @author Brett Guy
-   */
-  public class IPAddressRangeRequest {
+  // I think we could omit "Exception" from the name. Really this is just an IP range I think.
+  public class IPAccessControlListException {
 
-    public IpAddressRange ipAddressRange;
+    public string endIPAddress;
 
-    public IPAddressRangeRequest with(Action<IPAddressRangeRequest> action) {
+    public string startIPAddress;
+
+    public IPAccessControlListException with(Action<IPAccessControlListException> action) {
       action(this);
       return this;
     }

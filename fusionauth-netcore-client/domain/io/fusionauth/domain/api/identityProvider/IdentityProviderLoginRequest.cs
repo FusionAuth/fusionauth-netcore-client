@@ -34,7 +34,7 @@ namespace io.fusionauth.domain.api.identityProvider {
 
     public Guid? identityProviderId;
 
-    public bool? loginOnlyWhenLinked;
+    public bool? noLink;
 
     public IdentityProviderLoginRequest with(Action<IdentityProviderLoginRequest> action) {
       action(this);

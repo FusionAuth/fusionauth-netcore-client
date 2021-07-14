@@ -91,6 +91,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> CreateACL(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return client.CreateACLAsync(accessControlListId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<APIKeyResponse> CreateAPIKey(Guid? keyId, APIKeyRequest request) {
       return client.CreateAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
     }
@@ -254,6 +259,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<UserDeleteResponse> DeactivateUsersByIds(List<string> userIds) {
       return client.DeactivateUsersByIdsAsync(userIds).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteACL(Guid? ipAccessControlListId) {
+      return client.DeleteACLAsync(ipAccessControlListId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -705,6 +715,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId) {
       return client.ResendRegistrationVerificationAsync(email, applicationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> RetrieveACL(Guid? formId) {
+      return client.RetrieveACLAsync(formId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> RetrieveACLs() {
+      return client.RetrieveACLsAsync().GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1324,6 +1344,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request) {
       return client.TwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> UpdateACL(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return client.UpdateACLAsync(accessControlListId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

@@ -44,6 +44,8 @@ namespace io.fusionauth.domain.api {
 
     public IDictionary<string, object> state;
 
+    public List<AuthenticationThreats> threatsDetected;
+
     public string token;
 
     public string twoFactorId;

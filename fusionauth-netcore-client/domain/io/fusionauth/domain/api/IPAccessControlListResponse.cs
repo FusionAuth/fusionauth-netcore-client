@@ -15,17 +15,22 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.ip {
+namespace io.fusionauth.domain.api {
 
   /**
    * @author Brett Guy
    */
-  public class IPAddressRangeRule {
+  public class IPAccessControlListResponse {
 
-    public IPAddressRangeRule with(Action<IPAddressRangeRule> action) {
+    public IPAccessControlList ipAccessControlList;
+
+    public List<IPAccessControlList> ipAccessControlLists;
+
+    public IPAccessControlListResponse with(Action<IPAccessControlListResponse> action) {
       action(this);
       return this;
     }

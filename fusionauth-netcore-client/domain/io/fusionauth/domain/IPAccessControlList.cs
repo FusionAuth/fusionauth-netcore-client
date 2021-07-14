@@ -23,8 +23,25 @@ namespace io.fusionauth.domain {
   /**
    * @author Brett Guy
    */
-  public enum AddressRangeMode {
-        ALLOW, 
-        BLOCK
+  public class IPAccessControlList {
+
+    public IDictionary<string, object> data;
+
+    public IPAccessControlListMode defaultAction;
+
+    public List<IPAccessControlListException> exceptions;
+
+    public Guid? id;
+
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
+    public string name;
+
+    public IPAccessControlList with(Action<IPAccessControlList> action) {
+      action(this);
+      return this;
+    }
   }
 }

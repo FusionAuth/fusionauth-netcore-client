@@ -148,6 +148,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> CreateACLAsync(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(accessControlListId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<IPAccessControlListResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<APIKeyResponse>> CreateAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
       return buildClient()
           .withUri("/api/api-key")
@@ -474,6 +484,15 @@ namespace io.fusionauth {
           .withParameter("hardDelete", false)
           .withMethod("Delete")
           .goAsync<UserDeleteResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteACLAsync(Guid? ipAccessControlListId) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(ipAccessControlListId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>
@@ -1373,6 +1392,23 @@ namespace io.fusionauth {
           .withParameter("applicationId", applicationId)
           .withMethod("Put")
           .goAsync<VerifyRegistrationResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> RetrieveACLAsync(Guid? formId) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(formId)
+          .withMethod("Get")
+          .goAsync<IPAccessControlListResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> RetrieveACLsAsync() {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withMethod("Get")
+          .goAsync<IPAccessControlListResponse>();
     }
 
     /// <inheritdoc/>
@@ -2489,6 +2525,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<LoginResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> UpdateACLAsync(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(accessControlListId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<IPAccessControlListResponse>();
     }
 
     /// <inheritdoc/>

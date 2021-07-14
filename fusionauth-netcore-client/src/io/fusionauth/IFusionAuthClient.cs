@@ -133,6 +133,20 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
 
     /// <summary>
+    /// Creates an ACL. You can optionally specify an Id for the ACL. If not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="accessControlListId"> (Optional) The Id for the ACL. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the IP ACL.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> CreateACLAsync(Guid? accessControlListId, IPAccessControlListRequest request);
+
+    /// <summary>
     /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
     /// an API key can only be created with equal or lesser authority. An API key cannot create another API key unless it is granted 
     /// to that API key.
@@ -597,6 +611,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<UserDeleteResponse>> DeactivateUsersByIdsAsync(List<string> userIds);
+
+    /// <summary>
+    /// Deletes the ACL for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="ipAccessControlListId"> The Id of the ACL to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteACLAsync(Guid? ipAccessControlListId);
 
     /// <summary>
     /// Deletes the API key for the given Id.
@@ -1899,6 +1926,31 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<VerifyRegistrationResponse>> ResendRegistrationVerificationAsync(string email, Guid? applicationId);
+
+    /// <summary>
+    /// Retrieves the ACL with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="formId"> The Id of the ACL.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> RetrieveACLAsync(Guid? formId);
+
+    /// <summary>
+    /// Retrieves all ACLs.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> RetrieveACLsAsync();
 
     /// <summary>
     /// Retrieves an authentication API key for the given id
@@ -3559,6 +3611,20 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginResponse>> TwoFactorLoginAsync(TwoFactorLoginRequest request);
 
     /// <summary>
+    /// Updates the ACL with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="accessControlListId"> The Id of the ACL to update.</param>
+    /// <param name="request"> The request that contains all of the new ACL information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> UpdateACLAsync(Guid? accessControlListId, IPAccessControlListRequest request);
+
+    /// <summary>
     /// Updates an API key by given id
     /// This is an asynchronous method.
     /// </summary>
@@ -4141,6 +4207,19 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
 
    /// <summary>
+   /// Creates an ACL. You can optionally specify an Id for the ACL. If not provided one will be generated.
+   /// </summary>
+   /// <param name="accessControlListId"> (Optional) The Id for the ACL. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the IP ACL.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> CreateACL(Guid? accessControlListId, IPAccessControlListRequest request);
+
+   /// <summary>
    /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
    /// an API key can only be created with equal or lesser authority. An API key cannot create another API key unless it is granted 
    /// to that API key.
@@ -4572,6 +4651,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<UserDeleteResponse> DeactivateUsersByIds(List<string> userIds);
+
+   /// <summary>
+   /// Deletes the ACL for the given Id.
+   /// </summary>
+   /// <param name="ipAccessControlListId"> The Id of the ACL to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteACL(Guid? ipAccessControlListId);
 
    /// <summary>
    /// Deletes the API key for the given Id.
@@ -5784,6 +5875,29 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId);
+
+   /// <summary>
+   /// Retrieves the ACL with the given Id.
+   /// </summary>
+   /// <param name="formId"> The Id of the ACL.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> RetrieveACL(Guid? formId);
+
+   /// <summary>
+   /// Retrieves all ACLs.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> RetrieveACLs();
 
    /// <summary>
    /// Retrieves an authentication API key for the given id
@@ -7319,6 +7433,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request);
+
+   /// <summary>
+   /// Updates the ACL with the given Id.
+   /// </summary>
+   /// <param name="accessControlListId"> The Id of the ACL to update.</param>
+   /// <param name="request"> The request that contains all of the new ACL information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> UpdateACL(Guid? accessControlListId, IPAccessControlListRequest request);
 
    /// <summary>
    /// Updates an API key by given id

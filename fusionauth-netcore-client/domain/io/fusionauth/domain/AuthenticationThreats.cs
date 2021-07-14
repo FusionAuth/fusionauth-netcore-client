@@ -15,24 +15,18 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
   /**
-   * @author Brett Guy
+   * @author Brett Pontarelli
    */
-  public class IPAddressRangeResponse {
-
-    public IpAddressRange ipAddressRange;
-
-    public List<IpAddressRange> ipAddressRanges;
-
-    public IPAddressRangeResponse with(Action<IPAddressRangeResponse> action) {
-      action(this);
-      return this;
-    }
+  public enum AuthenticationThreats {
+        ImpossibleTravel, 
+        UnusualTravel, 
+        BadCaptcha, 
+        NewDeviceLogin
   }
 }

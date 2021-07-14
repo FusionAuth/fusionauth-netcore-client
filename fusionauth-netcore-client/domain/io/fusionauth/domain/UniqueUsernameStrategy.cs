@@ -18,18 +18,10 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.ip {
+namespace io.fusionauth.domain {
 
-  /**
-   * An implementation of an Interval Tree used to store IP address ranges.
-   *
-   * https://en.wikipedia.org/wiki/Interval_tree
-   */
-  public class IPAddressRangeTree {
-
-    public IPAddressRangeTree with(Action<IPAddressRangeTree> action) {
-      action(this);
-      return this;
-    }
+  public enum UniqueUsernameStrategy {
+        Always, 
+        OnCollision
   }
 }
