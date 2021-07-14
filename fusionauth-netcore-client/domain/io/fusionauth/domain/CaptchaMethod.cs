@@ -21,6 +21,7 @@ using System;
 namespace io.fusionauth.domain {
 
   public enum CaptchaMethod {
+        GoogleRecaptchaV2, 
         GoogleRecaptchaV3, 
         HCaptcha, 
         HCaptchaEnterprise
