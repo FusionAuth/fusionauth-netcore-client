@@ -18,16 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.search {
 
-  // I think we could omit "Exception" from the name. Really this is just an IP range I think.
-  public class IPAccessControlListException {
+  /**
+   * @author Brett Guy
+   */
+  public class IPAccessControlListSearchCriteria: BaseSearchCriteria {
 
-    public string endIPAddress;
+    public string name;
 
-    public string startIPAddress;
-
-    public IPAccessControlListException with(Action<IPAccessControlListException> action) {
+    public IPAccessControlListSearchCriteria with(Action<IPAccessControlListSearchCriteria> action) {
       action(this);
       return this;
     }

@@ -1233,6 +1233,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListSearchResponse> SearchACLs(IPAccessControlListSearchRequest request) {
+      return client.SearchACLsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<AuditLogSearchResponse> SearchAuditLogs(AuditLogSearchRequest request) {
       return client.SearchAuditLogsAsync(request).GetAwaiter().GetResult();
     }

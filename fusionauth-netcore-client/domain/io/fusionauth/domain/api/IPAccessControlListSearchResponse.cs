@@ -15,31 +15,22 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
    * @author Brett Guy
    */
-  public class IPAccessControlList {
+  public class IPAccessControlListSearchResponse {
 
-    public IDictionary<string, object> data;
+    public List<IPAccessControlList> acls;
 
-    public IPAccessControlListMode defaultAction;
+    public long? total;
 
-    public List<IPRange> exceptions;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public string name;
-
-    public IPAccessControlList with(Action<IPAccessControlList> action) {
+    public IPAccessControlListSearchResponse with(Action<IPAccessControlListSearchResponse> action) {
       action(this);
       return this;
     }

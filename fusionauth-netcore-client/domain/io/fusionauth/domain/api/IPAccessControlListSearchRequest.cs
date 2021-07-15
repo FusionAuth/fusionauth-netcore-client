@@ -15,31 +15,22 @@
  */
 
 
+using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
+   * Search request for IP ACLs .
+   *
    * @author Brett Guy
    */
-  public class IPAccessControlList {
+  public class IPAccessControlListSearchRequest {
 
-    public IDictionary<string, object> data;
+    public IPAccessControlListSearchCriteria search;
 
-    public IPAccessControlListMode defaultAction;
-
-    public List<IPRange> exceptions;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public string name;
-
-    public IPAccessControlList with(Action<IPAccessControlList> action) {
+    public IPAccessControlListSearchRequest with(Action<IPAccessControlListSearchRequest> action) {
       action(this);
       return this;
     }

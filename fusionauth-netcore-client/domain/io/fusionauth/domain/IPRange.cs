@@ -23,23 +23,13 @@ namespace io.fusionauth.domain {
   /**
    * @author Brett Guy
    */
-  public class IPAccessControlList {
+  public class IPRange {
 
-    public IDictionary<string, object> data;
+    public string endIPAddress;
 
-    public IPAccessControlListMode defaultAction;
+    public string startIPAddress;
 
-    public List<IPRange> exceptions;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public string name;
-
-    public IPAccessControlList with(Action<IPAccessControlList> action) {
+    public IPRange with(Action<IPRange> action) {
       action(this);
       return this;
     }

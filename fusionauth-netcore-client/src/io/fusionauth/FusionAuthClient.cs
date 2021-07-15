@@ -2324,6 +2324,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListSearchResponse>> SearchACLsAsync(IPAccessControlListSearchRequest request) {
+      return buildClient()
+          .withUri("/api/ip-acl/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<IPAccessControlListSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<AuditLogSearchResponse>> SearchAuditLogsAsync(AuditLogSearchRequest request) {
       return buildClient()
           .withUri("/api/system/audit-log/search")

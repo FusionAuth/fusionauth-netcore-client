@@ -3309,6 +3309,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> RevokeUserConsentAsync(Guid? userConsentId);
 
     /// <summary>
+    /// Searches the ACLs with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListSearchResponse>> SearchACLsAsync(IPAccessControlListSearchRequest request);
+
+    /// <summary>
     /// Searches the audit logs with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -7153,6 +7166,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> RevokeUserConsent(Guid? userConsentId);
+
+   /// <summary>
+   /// Searches the ACLs with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListSearchResponse> SearchACLs(IPAccessControlListSearchRequest request);
 
    /// <summary>
    /// Searches the audit logs with the specified criteria and pagination.
