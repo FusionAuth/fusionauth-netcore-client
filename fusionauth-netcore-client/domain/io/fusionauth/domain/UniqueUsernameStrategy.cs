@@ -15,30 +15,13 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider {
+namespace io.fusionauth.domain {
 
-  /**
-   * Login API request object used for login to third-party systems (i.e. Login with Facebook).
-   *
-   * @author Brian Pontarelli
-   */
-  public class IdentityProviderLoginRequest: BaseLoginRequest {
-
-    public IDictionary<string, string> data;
-
-    public string encodedJWT;
-
-    public Guid? identityProviderId;
-
-    public bool? noLink;
-
-    public IdentityProviderLoginRequest with(Action<IdentityProviderLoginRequest> action) {
-      action(this);
-      return this;
-    }
+  public enum UniqueUsernameStrategy {
+        Always, 
+        OnCollision
   }
 }

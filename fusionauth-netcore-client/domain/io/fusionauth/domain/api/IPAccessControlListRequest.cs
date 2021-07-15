@@ -15,19 +15,20 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.ip {
+namespace io.fusionauth.domain.api {
 
   /**
-   * An implementation of an Interval Tree used to store IP address ranges.
-   *
-   * https://en.wikipedia.org/wiki/Interval_tree
+   * @author Brett Guy
    */
-  public class IPAddressRangeTree {
+  public class IPAccessControlListRequest {
 
-    public IPAddressRangeTree with(Action<IPAddressRangeTree> action) {
+    public IPAccessControlList ipAccessControlList;
+
+    public IPAccessControlListRequest with(Action<IPAccessControlListRequest> action) {
       action(this);
       return this;
     }

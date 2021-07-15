@@ -15,28 +15,22 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider {
+namespace io.fusionauth.domain {
 
-  /**
-   * Login API request object used for login to third-party systems (i.e. Login with Facebook).
-   *
-   * @author Brian Pontarelli
-   */
-  public class IdentityProviderLoginRequest: BaseLoginRequest {
+  public class CaptchaConfiguration: Enableable {
 
-    public IDictionary<string, string> data;
+    public CaptchaMethod captchaMethod;
 
-    public string encodedJWT;
+    public string secretKey;
 
-    public Guid? identityProviderId;
+    public string siteKey;
 
-    public bool? noLink;
+    public double? threshold;
 
-    public IdentityProviderLoginRequest with(Action<IdentityProviderLoginRequest> action) {
+    public CaptchaConfiguration with(Action<CaptchaConfiguration> action) {
       action(this);
       return this;
     }

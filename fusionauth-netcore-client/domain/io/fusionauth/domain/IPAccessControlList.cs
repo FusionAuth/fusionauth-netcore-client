@@ -15,28 +15,31 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider {
+namespace io.fusionauth.domain {
 
   /**
-   * Login API request object used for login to third-party systems (i.e. Login with Facebook).
-   *
-   * @author Brian Pontarelli
+   * @author Brett Guy
    */
-  public class IdentityProviderLoginRequest: BaseLoginRequest {
+  public class IPAccessControlList {
 
-    public IDictionary<string, string> data;
+    public IDictionary<string, object> data;
 
-    public string encodedJWT;
+    public IPAccessControlListMode defaultAction;
 
-    public Guid? identityProviderId;
+    public List<IPRange> exceptions;
 
-    public bool? noLink;
+    public Guid? id;
 
-    public IdentityProviderLoginRequest with(Action<IdentityProviderLoginRequest> action) {
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
+    public string name;
+
+    public IPAccessControlList with(Action<IPAccessControlList> action) {
       action(this);
       return this;
     }

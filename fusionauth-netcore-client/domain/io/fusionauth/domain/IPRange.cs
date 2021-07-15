@@ -15,22 +15,21 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
   /**
    * @author Brett Guy
    */
-  public class IPAddressRangeResponse {
+  public class IPRange {
 
-    public IpAddressRange ipAddressRange;
+    public string endIPAddress;
 
-    public List<IpAddressRange> ipAddressRanges;
+    public string startIPAddress;
 
-    public IPAddressRangeResponse with(Action<IPAddressRangeResponse> action) {
+    public IPRange with(Action<IPRange> action) {
       action(this);
       return this;
     }

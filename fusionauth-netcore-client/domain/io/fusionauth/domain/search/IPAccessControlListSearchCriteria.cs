@@ -18,14 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.ip {
+namespace io.fusionauth.domain.search {
 
   /**
    * @author Brett Guy
    */
-  public class IPAddressRangeRule {
+  public class IPAccessControlListSearchCriteria: BaseSearchCriteria {
 
-    public IPAddressRangeRule with(Action<IPAddressRangeRule> action) {
+    public string name;
+
+    public IPAccessControlListSearchCriteria with(Action<IPAccessControlListSearchCriteria> action) {
       action(this);
       return this;
     }

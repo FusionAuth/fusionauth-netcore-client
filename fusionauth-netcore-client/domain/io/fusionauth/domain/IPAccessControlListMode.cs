@@ -23,8 +23,8 @@ namespace io.fusionauth.domain {
   /**
    * @author Brett Guy
    */
-  public enum AddressRangeMode {
-        ALLOW, 
-        BLOCK
+  public enum IPAccessControlListMode {
+        Allow, 
+        Block
   }
 }

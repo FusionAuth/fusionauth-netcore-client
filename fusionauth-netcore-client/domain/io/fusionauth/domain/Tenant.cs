@@ -78,6 +78,8 @@ namespace io.fusionauth.domain {
 
     public Guid? themeId;
 
+    public ThreatDetectionConfiguration threatDetectionConfiguration;
+
     public TenantUserDeletePolicy userDeletePolicy;
 
     public TenantUsernameConfiguration usernameConfiguration;

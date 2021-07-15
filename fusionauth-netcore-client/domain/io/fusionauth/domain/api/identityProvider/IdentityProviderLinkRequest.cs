@@ -25,6 +25,8 @@ namespace io.fusionauth.domain.api.identityProvider {
    */
   public class IdentityProviderLinkRequest {
 
+    public string displayName;
+
     public Guid? identityProviderId;
 
     public string identityProviderUserId;

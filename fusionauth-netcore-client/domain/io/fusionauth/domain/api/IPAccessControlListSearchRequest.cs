@@ -15,25 +15,22 @@
  */
 
 
+using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.ip {
+namespace io.fusionauth.domain.api {
 
   /**
+   * Search request for IP ACLs .
+   *
    * @author Brett Guy
    */
-  public class IPAddressRangeNode {
+  public class IPAccessControlListSearchRequest {
 
-    public long? endIpAddress;
+    public IPAccessControlListSearchCriteria search;
 
-    public IPAddressRangeNode left;
-
-    public IPAddressRangeNode right;
-
-    public long? startIpAddress;
-
-    public IPAddressRangeNode with(Action<IPAddressRangeNode> action) {
+    public IPAccessControlListSearchRequest with(Action<IPAccessControlListSearchRequest> action) {
       action(this);
       return this;
     }

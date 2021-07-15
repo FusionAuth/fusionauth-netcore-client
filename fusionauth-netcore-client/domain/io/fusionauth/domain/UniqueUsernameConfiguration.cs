@@ -26,6 +26,8 @@ namespace io.fusionauth.domain {
 
     public char separator;
 
+    public UniqueUsernameStrategy strategy;
+
     public UniqueUsernameConfiguration with(Action<UniqueUsernameConfiguration> action) {
       action(this);
       return this;
