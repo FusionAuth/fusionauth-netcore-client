@@ -39,6 +39,8 @@ namespace io.fusionauth.domain.jwt {
 
     public DateTimeOffset? startInstant;
 
+    public Guid? tenantId;
+
     public string token;
 
     public Guid? userId;
