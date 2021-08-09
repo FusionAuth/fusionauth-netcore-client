@@ -352,6 +352,20 @@ namespace io.fusionauth {
     Task<ClientResponse<MemberResponse>> CreateGroupMembersAsync(MemberRequest request);
 
     /// <summary>
+    /// Creates an IP Access Control List. You can optionally specify an Id on this create request, if one is not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="accessControlListId"> (Optional) The Id for the IP Access Control List. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all of the information used to create the IP Access Control List.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> CreateIPAccessControlListAsync(Guid? accessControlListId, IPAccessControlListRequest request);
+
+    /// <summary>
     /// Creates an identity provider. You can optionally specify an Id for the identity provider, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -790,6 +804,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteGroupMembersAsync(MemberDeleteRequest request);
 
     /// <summary>
+    /// Deletes the IP Access Control List for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="ipAccessControlListId"> The Id of the IP Access Control List to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteIPAccessControlListAsync(Guid? ipAccessControlListId);
+
+    /// <summary>
     /// Deletes the identity provider for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -869,7 +896,23 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteRegistrationAsync(Guid? userId, Guid? applicationId);
 
     /// <summary>
-    /// Deletes the tenant for the given Id.
+    /// Deletes the user registration for the given user and application along with the given JSON body that contains the event information.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The Id of the user whose registration is being deleted.</param>
+    /// <param name="applicationId"> The Id of the application to remove the registration for.</param>
+    /// <param name="request"> The request body that contains the event information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteRegistrationWithRequestAsync(Guid? userId, Guid? applicationId, RegistrationDeleteRequest request);
+
+    /// <summary>
+    /// Deletes the tenant based on the given Id on the URL. This permanently deletes all information, metrics, reports and data associated
+    /// with the tenant and everything under the tenant (applications, users, etc).
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="tenantId"> The Id of the tenant to delete.</param>
@@ -894,6 +937,21 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteTenantAsyncAsync(Guid? tenantId);
+
+    /// <summary>
+    /// Deletes the tenant based on the given request (sent to the API as JSON). This permanently deletes all information, metrics, reports and data associated
+    /// with the tenant and everything under the tenant (applications, users, etc).
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="tenantId"> The Id of the tenant to delete.</param>
+    /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteTenantWithRequestAsync(Guid? tenantId, TenantDeleteRequest request);
 
     /// <summary>
     /// Deletes the theme for the given Id.
@@ -965,6 +1023,21 @@ namespace io.fusionauth {
     Task<ClientResponse<IdentityProviderLinkResponse>> DeleteUserLinkAsync(Guid? identityProviderId, string identityProviderUserId, Guid? userId);
 
     /// <summary>
+    /// Deletes the user based on the given request (sent to the API as JSON). This permanently deletes all information, metrics, reports and data associated
+    /// with the user.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The Id of the user to delete (required).</param>
+    /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteUserWithRequestAsync(Guid? userId, UserDeleteSingleRequest request);
+
+    /// <summary>
     /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
     /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
     /// 
@@ -1026,6 +1099,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string methodId, string code);
+
+    /// <summary>
+    /// Disable Two Factor authentication for a user using a JSON body rather than URL parameters.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+    /// <param name="request"> The request information that contains the code and methodId along with any event information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DisableTwoFactorWithRequestAsync(Guid? userId, TwoFactorDisableRequest request);
 
     /// <summary>
     /// Enable Two Factor authentication for a user.
@@ -1379,6 +1466,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> LogoutAsync(bool? global, string refreshToken);
+
+    /// <summary>
+    /// The Logout API is intended to be used to remove the refresh token and access token cookies if they exist on the
+    /// client and revoke the refresh token stored. This API takes the refresh token in the JSON body.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request object that contains all of the information used to logout the user.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> LogoutWithRequestAsync(LogoutRequest request);
 
     /// <summary>
     /// Retrieves the identity provider for the given domain. A 200 response code indicates the domain is managed
@@ -2277,6 +2378,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<GroupResponse>> RetrieveGroupsAsync();
+
+    /// <summary>
+    /// Retrieves the IP Access Control List with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="ipAccessControlListId"> The Id of the IP Access Control List.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> RetrieveIPAccessControlListAsync(Guid? ipAccessControlListId);
 
     /// <summary>
     /// Retrieves the identity provider for the given id or all of the identity providers if the id is null.
@@ -3244,6 +3358,20 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> RevokeRefreshTokensByUserIdForApplicationAsync(Guid? userId, Guid? applicationId);
 
     /// <summary>
+    /// Revokes refresh tokens using the information in the JSON body. The handling for this method is the same as the revokeRefreshToken method
+    /// and is based on the information you provide in the RefreshDeleteRequest object. See that method for additional information.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request information used to revoke the refresh tokens.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RevokeRefreshTokensWithRequestAsync(RefreshTokenRevokeRequest request);
+
+    /// <summary>
     /// Revokes a single User consent by Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -3333,6 +3461,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<EventLogSearchResponse>> SearchEventLogsAsync(EventLogSearchRequest request);
+
+    /// <summary>
+    /// Searches the IP Access Control Lists with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListSearchResponse>> SearchIPAccessControlListsAsync(IPAccessControlListSearchRequest request);
 
     /// <summary>
     /// Searches the login records with the specified criteria and pagination.
@@ -3729,6 +3870,20 @@ namespace io.fusionauth {
     Task<ClientResponse<GroupResponse>> UpdateGroupAsync(Guid? groupId, GroupRequest request);
 
     /// <summary>
+    /// Updates the IP Access Control List with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="accessControlListId"> The Id of the IP Access Control List to update.</param>
+    /// <param name="request"> The request that contains all of the new IP Access Control List information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> UpdateIPAccessControlListAsync(Guid? accessControlListId, IPAccessControlListRequest request);
+
+    /// <summary>
     /// Updates the identity provider with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -3980,6 +4135,27 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<ValidateResponse>> ValidateJWTAsync(string encodedJWT);
+
+    /// <summary>
+    /// It's a JWT vending machine!
+    /// 
+    /// Issue a new access token (JWT) with the provided claims in the request. This JWT is not scoped to a tenant or user, it is a free form 
+    /// token that will contain what claims you provide.
+    /// <p>
+    /// The iat, exp and jti claims will be added by FusionAuth, all other claims must be provided by the caller.
+    /// 
+    /// If a TTL is not provided in the request, the TTL will be retrieved from the default Tenant or the Tenant specified on the request either 
+    /// by way of the X-FusionAuth-TenantId request header, or a tenant scoped API key.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request that contains all of the claims for this JWT.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<JWTVendResponse>> VendJWTAsync(JWTVendRequest request);
 
     /// <summary>
     /// Confirms a email verification. The Id given is usually from an email sent to the user.
@@ -4343,6 +4519,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<MemberResponse> CreateGroupMembers(MemberRequest request);
+
+   /// <summary>
+   /// Creates an IP Access Control List. You can optionally specify an Id on this create request, if one is not provided one will be generated.
+   /// </summary>
+   /// <param name="accessControlListId"> (Optional) The Id for the IP Access Control List. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all of the information used to create the IP Access Control List.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> CreateIPAccessControlList(Guid? accessControlListId, IPAccessControlListRequest request);
 
    /// <summary>
    /// Creates an identity provider. You can optionally specify an Id for the identity provider, if not provided one will be generated.
@@ -4751,6 +4940,18 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeleteGroupMembers(MemberDeleteRequest request);
 
    /// <summary>
+   /// Deletes the IP Access Control List for the given Id.
+   /// </summary>
+   /// <param name="ipAccessControlListId"> The Id of the IP Access Control List to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteIPAccessControlList(Guid? ipAccessControlListId);
+
+   /// <summary>
    /// Deletes the identity provider for the given Id.
    /// </summary>
    /// <param name="identityProviderId"> The Id of the identity provider to delete.</param>
@@ -4824,7 +5025,22 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeleteRegistration(Guid? userId, Guid? applicationId);
 
    /// <summary>
-   /// Deletes the tenant for the given Id.
+   /// Deletes the user registration for the given user and application along with the given JSON body that contains the event information.
+   /// </summary>
+   /// <param name="userId"> The Id of the user whose registration is being deleted.</param>
+   /// <param name="applicationId"> The Id of the application to remove the registration for.</param>
+   /// <param name="request"> The request body that contains the event information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteRegistrationWithRequest(Guid? userId, Guid? applicationId, RegistrationDeleteRequest request);
+
+   /// <summary>
+   /// Deletes the tenant based on the given Id on the URL. This permanently deletes all information, metrics, reports and data associated
+   /// with the tenant and everything under the tenant (applications, users, etc).
    /// </summary>
    /// <param name="tenantId"> The Id of the tenant to delete.</param>
    /// <returns>
@@ -4847,6 +5063,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteTenantAsync(Guid? tenantId);
+
+   /// <summary>
+   /// Deletes the tenant based on the given request (sent to the API as JSON). This permanently deletes all information, metrics, reports and data associated
+   /// with the tenant and everything under the tenant (applications, users, etc).
+   /// </summary>
+   /// <param name="tenantId"> The Id of the tenant to delete.</param>
+   /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteTenantWithRequest(Guid? tenantId, TenantDeleteRequest request);
 
    /// <summary>
    /// Deletes the theme for the given Id.
@@ -4913,6 +5143,20 @@ namespace io.fusionauth {
    ClientResponse<IdentityProviderLinkResponse> DeleteUserLink(Guid? identityProviderId, string identityProviderUserId, Guid? userId);
 
    /// <summary>
+   /// Deletes the user based on the given request (sent to the API as JSON). This permanently deletes all information, metrics, reports and data associated
+   /// with the user.
+   /// </summary>
+   /// <param name="userId"> The Id of the user to delete (required).</param>
+   /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteUserWithRequest(Guid? userId, UserDeleteSingleRequest request);
+
+   /// <summary>
    /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
    /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
    /// 
@@ -4970,6 +5214,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DisableTwoFactor(Guid? userId, string methodId, string code);
+
+   /// <summary>
+   /// Disable Two Factor authentication for a user using a JSON body rather than URL parameters.
+   /// </summary>
+   /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+   /// <param name="request"> The request information that contains the code and methodId along with any event information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DisableTwoFactorWithRequest(Guid? userId, TwoFactorDisableRequest request);
 
    /// <summary>
    /// Enable Two Factor authentication for a user.
@@ -5301,6 +5558,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> Logout(bool? global, string refreshToken);
+
+   /// <summary>
+   /// The Logout API is intended to be used to remove the refresh token and access token cookies if they exist on the
+   /// client and revoke the refresh token stored. This API takes the refresh token in the JSON body.
+   /// </summary>
+   /// <param name="request"> The request object that contains all of the information used to logout the user.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> LogoutWithRequest(LogoutRequest request);
 
    /// <summary>
    /// Retrieves the identity provider for the given domain. A 200 response code indicates the domain is managed
@@ -6133,6 +6403,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<GroupResponse> RetrieveGroups();
+
+   /// <summary>
+   /// Retrieves the IP Access Control List with the given Id.
+   /// </summary>
+   /// <param name="ipAccessControlListId"> The Id of the IP Access Control List.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> RetrieveIPAccessControlList(Guid? ipAccessControlListId);
 
    /// <summary>
    /// Retrieves the identity provider for the given id or all of the identity providers if the id is null.
@@ -7029,6 +7311,19 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> RevokeRefreshTokensByUserIdForApplication(Guid? userId, Guid? applicationId);
 
    /// <summary>
+   /// Revokes refresh tokens using the information in the JSON body. The handling for this method is the same as the revokeRefreshToken method
+   /// and is based on the information you provide in the RefreshDeleteRequest object. See that method for additional information.
+   /// </summary>
+   /// <param name="request"> The request information used to revoke the refresh tokens.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RevokeRefreshTokensWithRequest(RefreshTokenRevokeRequest request);
+
+   /// <summary>
    /// Revokes a single User consent by Id.
    /// </summary>
    /// <param name="userConsentId"> The User Consent Id</param>
@@ -7111,6 +7406,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EventLogSearchResponse> SearchEventLogs(EventLogSearchRequest request);
+
+   /// <summary>
+   /// Searches the IP Access Control Lists with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListSearchResponse> SearchIPAccessControlLists(IPAccessControlListSearchRequest request);
 
    /// <summary>
    /// Searches the login records with the specified criteria and pagination.
@@ -7479,6 +7786,19 @@ namespace io.fusionauth {
    ClientResponse<GroupResponse> UpdateGroup(Guid? groupId, GroupRequest request);
 
    /// <summary>
+   /// Updates the IP Access Control List with the given Id.
+   /// </summary>
+   /// <param name="accessControlListId"> The Id of the IP Access Control List to update.</param>
+   /// <param name="request"> The request that contains all of the new IP Access Control List information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> UpdateIPAccessControlList(Guid? accessControlListId, IPAccessControlListRequest request);
+
+   /// <summary>
    /// Updates the identity provider with the given Id.
    /// </summary>
    /// <param name="identityProviderId"> The Id of the identity provider to update.</param>
@@ -7712,6 +8032,26 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<ValidateResponse> ValidateJWT(string encodedJWT);
+
+   /// <summary>
+   /// It's a JWT vending machine!
+   /// 
+   /// Issue a new access token (JWT) with the provided claims in the request. This JWT is not scoped to a tenant or user, it is a free form 
+   /// token that will contain what claims you provide.
+   /// <p>
+   /// The iat, exp and jti claims will be added by FusionAuth, all other claims must be provided by the caller.
+   /// 
+   /// If a TTL is not provided in the request, the TTL will be retrieved from the default Tenant or the Tenant specified on the request either 
+   /// by way of the X-FusionAuth-TenantId request header, or a tenant scoped API key.
+   /// </summary>
+   /// <param name="request"> The request that contains all of the claims for this JWT.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<JWTVendResponse> VendJWT(JWTVendRequest request);
 
    /// <summary>
    /// Confirms a email verification. The Id given is usually from an email sent to the user.

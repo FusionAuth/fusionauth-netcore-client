@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
@@ -25,7 +26,9 @@ namespace io.fusionauth.domain.api.user {
    *
    * @author Brian Pontarelli
    */
-  public class ChangePasswordRequest {
+  public class ChangePasswordRequest: BaseEventRequest {
+
+    public Guid? applicationId;
 
     public string currentPassword;
 

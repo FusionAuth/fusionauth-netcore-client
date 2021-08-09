@@ -166,6 +166,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> CreateIPAccessControlList(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return client.CreateIPAccessControlListAsync(accessControlListId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderResponse> CreateIdentityProvider(Guid? identityProviderId, IdentityProviderRequest request) {
       return client.CreateIdentityProviderAsync(identityProviderId, request).GetAwaiter().GetResult();
     }
@@ -327,6 +332,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteIPAccessControlList(Guid? ipAccessControlListId) {
+      return client.DeleteIPAccessControlListAsync(ipAccessControlListId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteIdentityProvider(Guid? identityProviderId) {
       return client.DeleteIdentityProviderAsync(identityProviderId).GetAwaiter().GetResult();
     }
@@ -357,6 +367,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteRegistrationWithRequest(Guid? userId, Guid? applicationId, RegistrationDeleteRequest request) {
+      return client.DeleteRegistrationWithRequestAsync(userId, applicationId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteTenant(Guid? tenantId) {
       return client.DeleteTenantAsync(tenantId).GetAwaiter().GetResult();
     }
@@ -364,6 +379,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteTenantAsync(Guid? tenantId) {
       return client.DeleteTenantAsyncAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteTenantWithRequest(Guid? tenantId, TenantDeleteRequest request) {
+      return client.DeleteTenantWithRequestAsync(tenantId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -392,6 +412,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteUserWithRequest(Guid? userId, UserDeleteSingleRequest request) {
+      return client.DeleteUserWithRequestAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     [Obsolete("This method has been renamed to DeleteUsersByQuery, use that method instead.")]
     public ClientResponse<UserDeleteResponse> DeleteUsers(UserDeleteRequest request) {
       return client.DeleteUsersAsync(request).GetAwaiter().GetResult();
@@ -410,6 +435,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DisableTwoFactor(Guid? userId, string methodId, string code) {
       return client.DisableTwoFactorAsync(userId, methodId, code).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DisableTwoFactorWithRequest(Guid? userId, TwoFactorDisableRequest request) {
+      return client.DisableTwoFactorWithRequestAsync(userId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -520,6 +550,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> Logout(bool? global, string refreshToken) {
       return client.LogoutAsync(global, refreshToken).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> LogoutWithRequest(LogoutRequest request) {
+      return client.LogoutWithRequestAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -850,6 +885,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<GroupResponse> RetrieveGroups() {
       return client.RetrieveGroupsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> RetrieveIPAccessControlList(Guid? ipAccessControlListId) {
+      return client.RetrieveIPAccessControlListAsync(ipAccessControlListId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1208,6 +1248,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RevokeRefreshTokensWithRequest(RefreshTokenRevokeRequest request) {
+      return client.RevokeRefreshTokensWithRequestAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> RevokeUserConsent(Guid? userConsentId) {
       return client.RevokeUserConsentAsync(userConsentId).GetAwaiter().GetResult();
     }
@@ -1240,6 +1285,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<EventLogSearchResponse> SearchEventLogs(EventLogSearchRequest request) {
       return client.SearchEventLogsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListSearchResponse> SearchIPAccessControlLists(IPAccessControlListSearchRequest request) {
+      return client.SearchIPAccessControlListsAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1387,6 +1437,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> UpdateIPAccessControlList(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return client.UpdateIPAccessControlListAsync(accessControlListId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderResponse> UpdateIdentityProvider(Guid? identityProviderId, IdentityProviderRequest request) {
       return client.UpdateIdentityProviderAsync(identityProviderId, request).GetAwaiter().GetResult();
     }
@@ -1474,6 +1529,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<ValidateResponse> ValidateJWT(string encodedJWT) {
       return client.ValidateJWTAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<JWTVendResponse> VendJWT(JWTVendRequest request) {
+      return client.VendJWTAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

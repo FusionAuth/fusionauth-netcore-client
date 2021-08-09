@@ -96,6 +96,8 @@ namespace io.fusionauth.domain {
 
     public string samlv2Logout;
 
+    public string unauthorized;
+
     public Templates with(Action<Templates> action) {
       action(this);
       return this;

@@ -24,13 +24,15 @@ namespace io.fusionauth.domain.api {
   /**
    * @author Daniel DeGroff
    */
-  public class BaseLoginRequest {
+  public class BaseLoginRequest: BaseEventRequest {
 
     public Guid? applicationId;
 
     public string ipAddress;
 
     public MetaData metaData;
+
+    public bool? newDevice;
 
     public bool? noJWT;
 

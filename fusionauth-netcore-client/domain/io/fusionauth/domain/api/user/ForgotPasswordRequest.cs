@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
@@ -25,7 +26,7 @@ namespace io.fusionauth.domain.api.user {
    *
    * @author Brian Pontarelli
    */
-  public class ForgotPasswordRequest {
+  public class ForgotPasswordRequest: BaseEventRequest {
 
     public Guid? applicationId;
 

@@ -25,7 +25,7 @@ namespace io.fusionauth.domain.api {
    *
    * @author Daniel DeGroff
    */
-  public class UserDeleteRequest {
+  public class UserDeleteRequest: BaseEventRequest {
 
     public bool? dryRun;
 

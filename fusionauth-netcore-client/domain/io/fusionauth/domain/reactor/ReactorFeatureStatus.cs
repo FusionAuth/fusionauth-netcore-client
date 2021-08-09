@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.reactor {
         ACTIVE, 
         DISCONNECTED, 
         PENDING, 
+        DISABLED, 
         UNKNOWN
   }
 }

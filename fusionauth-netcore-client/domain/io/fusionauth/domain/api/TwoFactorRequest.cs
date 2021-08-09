@@ -23,7 +23,7 @@ namespace io.fusionauth.domain.api {
   /**
    * @author Brian Pontarelli
    */
-  public class TwoFactorRequest {
+  public class TwoFactorRequest: BaseEventRequest {
 
     public string authenticatorId;
 

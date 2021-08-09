@@ -22,9 +22,19 @@ namespace io.fusionauth.domain {
 
   public class ApplicationEmailConfiguration {
 
+    public Guid? emailUpdateEmailTemplateId;
+
     public Guid? emailVerificationEmailTemplateId;
 
+    public Guid? emailVerifiedEmailTemplateId;
+
     public Guid? forgotPasswordEmailTemplateId;
+
+    public Guid? loginNewDeviceEmailTemplateId;
+
+    public Guid? loginSuspiciousEmailTemplateId;
+
+    public Guid? passwordResetSuccessEmailTemplateId;
 
     public Guid? passwordlessEmailTemplateId;
 

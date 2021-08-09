@@ -16,6 +16,7 @@
 
 
 using io.fusionauth.domain;
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
@@ -26,7 +27,9 @@ namespace io.fusionauth.domain.api.user {
    *
    * @author Brian Pontarelli
    */
-  public class RegistrationRequest {
+  public class RegistrationRequest: BaseEventRequest {
+
+    public bool? disableDomainBlock;
 
     public bool? generateAuthenticationToken;
 

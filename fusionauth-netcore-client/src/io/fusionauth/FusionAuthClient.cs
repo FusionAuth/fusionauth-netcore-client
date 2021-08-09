@@ -300,6 +300,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> CreateIPAccessControlListAsync(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(accessControlListId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<IPAccessControlListResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IdentityProviderResponse>> CreateIdentityProviderAsync(Guid? identityProviderId, IdentityProviderRequest request) {
       return buildClient()
           .withUri("/api/identity-provider")
@@ -611,6 +621,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteIPAccessControlListAsync(Guid? ipAccessControlListId) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(ipAccessControlListId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DeleteIdentityProviderAsync(Guid? identityProviderId) {
       return buildClient()
           .withUri("/api/identity-provider")
@@ -666,6 +685,17 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteRegistrationWithRequestAsync(Guid? userId, Guid? applicationId, RegistrationDeleteRequest request) {
+      return buildClient()
+          .withUri("/api/user/registration")
+          .withUriSegment(userId)
+          .withUriSegment(applicationId)
+          .withJSONBody(request)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DeleteTenantAsync(Guid? tenantId) {
       return buildClient()
           .withUri("/api/tenant")
@@ -680,6 +710,16 @@ namespace io.fusionauth {
           .withUri("/api/tenant")
           .withUriSegment(tenantId)
           .withParameter("async", true)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteTenantWithRequestAsync(Guid? tenantId, TenantDeleteRequest request) {
+      return buildClient()
+          .withUri("/api/tenant")
+          .withUriSegment(tenantId)
+          .withJSONBody(request)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -734,6 +774,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteUserWithRequestAsync(Guid? userId, UserDeleteSingleRequest request) {
+      return buildClient()
+          .withUri("/api/user")
+          .withUriSegment(userId)
+          .withJSONBody(request)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     [Obsolete("This method has been renamed to DeleteUsersByQueryAsync, use that method instead.")]
     public Task<ClientResponse<UserDeleteResponse>> DeleteUsersAsync(UserDeleteRequest request) {
       return buildClient()
@@ -765,9 +815,19 @@ namespace io.fusionauth {
     public Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string methodId, string code) {
       return buildClient()
           .withUri("/api/user/two-factor")
-          .withParameter("userId", userId)
+          .withUriSegment(userId)
           .withParameter("methodId", methodId)
           .withParameter("code", code)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DisableTwoFactorWithRequestAsync(Guid? userId, TwoFactorDisableRequest request) {
+      return buildClient()
+          .withUri("/api/user/two-factor")
+          .withUriSegment(userId)
+          .withJSONBody(request)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -1012,6 +1072,15 @@ namespace io.fusionauth {
           .withUri("/api/logout")
           .withParameter("global", global)
           .withParameter("refreshToken", refreshToken)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> LogoutWithRequestAsync(LogoutRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/logout")
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RESTVoid>();
     }
@@ -1633,6 +1702,15 @@ namespace io.fusionauth {
           .withUri("/api/group")
           .withMethod("Get")
           .goAsync<GroupResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> RetrieveIPAccessControlListAsync(Guid? ipAccessControlListId) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(ipAccessControlListId)
+          .withMethod("Get")
+          .goAsync<IPAccessControlListResponse>();
     }
 
     /// <inheritdoc/>
@@ -2279,6 +2357,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RevokeRefreshTokensWithRequestAsync(RefreshTokenRevokeRequest request) {
+      return buildClient()
+          .withUri("/api/jwt/refresh")
+          .withJSONBody(request)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> RevokeUserConsentAsync(Guid? userConsentId) {
       return buildClient()
           .withUri("/api/user/consent")
@@ -2339,6 +2426,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<EventLogSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListSearchResponse>> SearchIPAccessControlListsAsync(IPAccessControlListSearchRequest request) {
+      return buildClient()
+          .withUri("/api/ip-acl/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<IPAccessControlListSearchResponse>();
     }
 
     /// <inheritdoc/>
@@ -2616,6 +2712,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> UpdateIPAccessControlListAsync(Guid? accessControlListId, IPAccessControlListRequest request) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(accessControlListId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<IPAccessControlListResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IdentityProviderResponse>> UpdateIdentityProviderAsync(Guid? identityProviderId, IdentityProviderRequest request) {
       return buildClient()
           .withUri("/api/identity-provider")
@@ -2791,6 +2897,15 @@ namespace io.fusionauth {
           .withAuthorization("Bearer " + encodedJWT)
           .withMethod("Get")
           .goAsync<ValidateResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<JWTVendResponse>> VendJWTAsync(JWTVendRequest request) {
+      return buildClient()
+          .withUri("/api/jwt/vend")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<JWTVendResponse>();
     }
 
     /// <inheritdoc/>

@@ -26,7 +26,7 @@ namespace io.fusionauth.domain.api {
    *
    * @author Brian Pontarelli
    */
-  public class ApplicationRequest {
+  public class ApplicationRequest: BaseEventRequest {
 
     public Application application;
 

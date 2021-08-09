@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
@@ -23,7 +24,7 @@ namespace io.fusionauth.domain.api.user {
   /**
    * @author Daniel DeGroff
    */
-  public class VerifyRegistrationRequest {
+  public class VerifyRegistrationRequest: BaseEventRequest {
 
     public string oneTimeCode;
 

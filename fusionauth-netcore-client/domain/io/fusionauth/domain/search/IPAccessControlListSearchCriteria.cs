@@ -18,16 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.util {
+namespace io.fusionauth.domain.search {
 
   /**
-   * Helper methods for normalizing values.
-   *
-   * @author Brian Pontarelli
+   * @author Brett Guy
    */
-  public class Normalizer {
+  public class IPAccessControlListSearchCriteria: BaseSearchCriteria {
 
-    public Normalizer with(Action<Normalizer> action) {
+    public string name;
+
+    public IPAccessControlListSearchCriteria with(Action<IPAccessControlListSearchCriteria> action) {
       action(this);
       return this;
     }

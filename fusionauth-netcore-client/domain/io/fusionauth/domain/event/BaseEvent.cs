@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -31,7 +32,11 @@ namespace io.fusionauth.domain.@event {
 
     public Guid? id;
 
+    public EventInfo info;
+
     public Guid? tenantId;
+
+    public EventType type;
 
     public BaseEvent with(Action<BaseEvent> action) {
       action(this);

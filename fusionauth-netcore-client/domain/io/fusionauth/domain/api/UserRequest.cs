@@ -26,7 +26,11 @@ namespace io.fusionauth.domain.api {
    *
    * @author Brian Pontarelli
    */
-  public class UserRequest {
+  public class UserRequest: BaseEventRequest {
+
+    public Guid? applicationId;
+
+    public bool? disableDomainBlock;
 
     public bool? sendSetPasswordEmail;
 

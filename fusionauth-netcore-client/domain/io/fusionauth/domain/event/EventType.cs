@@ -27,42 +27,82 @@ namespace io.fusionauth.domain.@event {
    * @author Brian Pontarelli
    */
   public enum EventType {
-        [EnumMember(Value = "user.delete")]
-        UserDelete, 
-        [EnumMember(Value = "user.create")]
-        UserCreate, 
-        [EnumMember(Value = "user.update")]
-        UserUpdate, 
-        [EnumMember(Value = "user.deactivate")]
-        UserDeactivate, 
-        [EnumMember(Value = "user.bulk.create")]
-        UserBulkCreate, 
-        [EnumMember(Value = "user.reactivate")]
-        UserReactivate, 
-        [EnumMember(Value = "user.action")]
-        UserAction, 
+        [EnumMember(Value = "jwt.public-key.update")]
+        JWTPublicKeyUpdate, 
         [EnumMember(Value = "jwt.refresh-token.revoke")]
         JWTRefreshTokenRevoke, 
         [EnumMember(Value = "jwt.refresh")]
         JWTRefresh, 
-        [EnumMember(Value = "jwt.public-key.update")]
-        JWTPublicKeyUpdate, 
-        [EnumMember(Value = "user.login.success")]
-        UserLoginSuccess, 
-        [EnumMember(Value = "user.login.failed")]
-        UserLoginFailed, 
-        [EnumMember(Value = "user.registration.create")]
-        UserRegistrationCreate, 
-        [EnumMember(Value = "user.registration.update")]
-        UserRegistrationUpdate, 
-        [EnumMember(Value = "user.registration.delete")]
-        UserRegistrationDelete, 
-        [EnumMember(Value = "user.registration.verified")]
-        UserRegistrationVerified, 
+        [EnumMember(Value = "audit-log.create")]
+        AuditLogCreate, 
+        [EnumMember(Value = "event-log.create")]
+        @EventLogCreate, 
+        [EnumMember(Value = "kickstart.success")]
+        KickstartSuccess, 
+        [EnumMember(Value = "user.action")]
+        UserAction, 
+        [EnumMember(Value = "user.bulk.create")]
+        UserBulkCreate, 
+        [EnumMember(Value = "user.create")]
+        UserCreate, 
+        [EnumMember(Value = "user.create.complete")]
+        UserCreateComplete, 
+        [EnumMember(Value = "user.deactivate")]
+        UserDeactivate, 
+        [EnumMember(Value = "user.delete")]
+        UserDelete, 
+        [EnumMember(Value = "user.delete.complete")]
+        UserDeleteComplete, 
+        [EnumMember(Value = "user.loginId.duplicate.create")]
+        UserLoginIdDuplicateOnCreate, 
+        [EnumMember(Value = "user.loginId.duplicate.update")]
+        UserLoginIdDuplicateOnUpdate, 
+        [EnumMember(Value = "user.email.update")]
+        UserEmailUpdate, 
         [EnumMember(Value = "user.email.verified")]
         UserEmailVerified, 
+        [EnumMember(Value = "user.login.failed")]
+        UserLoginFailed, 
+        [EnumMember(Value = "user.login.new-device")]
+        UserLoginNewDevice, 
+        [EnumMember(Value = "user.login.success")]
+        UserLoginSuccess, 
+        [EnumMember(Value = "user.login.suspicious")]
+        UserLoginSuspicious, 
         [EnumMember(Value = "user.password.breach")]
         UserPasswordBreach, 
+        [EnumMember(Value = "user.password.reset.send")]
+        UserPasswordResetSend, 
+        [EnumMember(Value = "user.password.reset.start")]
+        UserPasswordResetStart, 
+        [EnumMember(Value = "user.password.reset.success")]
+        UserPasswordResetSuccess, 
+        [EnumMember(Value = "user.password.update")]
+        UserPasswordUpdate, 
+        [EnumMember(Value = "user.reactivate")]
+        UserReactivate, 
+        [EnumMember(Value = "user.registration.create")]
+        UserRegistrationCreate, 
+        [EnumMember(Value = "user.registration.create.complete")]
+        UserRegistrationCreateComplete, 
+        [EnumMember(Value = "user.registration.delete")]
+        UserRegistrationDelete, 
+        [EnumMember(Value = "user.registration.delete.complete")]
+        UserRegistrationDeleteComplete, 
+        [EnumMember(Value = "user.registration.update")]
+        UserRegistrationUpdate, 
+        [EnumMember(Value = "user.registration.update.complete")]
+        UserRegistrationUpdateComplete, 
+        [EnumMember(Value = "user.registration.verified")]
+        UserRegistrationVerified, 
+        [EnumMember(Value = "user.two-factor.method.add")]
+        UserTwoFactorMethodAdd, 
+        [EnumMember(Value = "user.two-factor.method.remove")]
+        UserTwoFactorMethodRemove, 
+        [EnumMember(Value = "user.update")]
+        UserUpdate, 
+        [EnumMember(Value = "user.update.complete")]
+        UserUpdateComplete, 
         [EnumMember(Value = "test")]
         Test
   }

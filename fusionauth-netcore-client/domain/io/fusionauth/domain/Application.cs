@@ -27,6 +27,8 @@ namespace io.fusionauth.domain {
    */
   public class Application {
 
+    public ApplicationAccessControlConfiguration accessControlConfiguration;
+
     public bool? active;
 
     public AuthenticationTokenConfiguration authenticationTokenConfiguration;

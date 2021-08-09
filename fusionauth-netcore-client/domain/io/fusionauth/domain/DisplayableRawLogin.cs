@@ -29,6 +29,8 @@ namespace io.fusionauth.domain {
 
     public string applicationName;
 
+    public Location location;
+
     public string loginId;
 
     public DisplayableRawLogin with(Action<DisplayableRawLogin> action) {

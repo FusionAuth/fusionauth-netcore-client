@@ -26,6 +26,10 @@ namespace io.fusionauth.domain {
    */
   public class Tenant {
 
+    public TenantAccessControlConfiguration accessControlConfiguration;
+
+    public TenantCaptchaConfiguration captchaConfiguration;
+
     public bool? configured;
 
     public List<ConnectorPolicy> connectorPolicies;
@@ -73,6 +77,10 @@ namespace io.fusionauth.domain {
     public PasswordEncryptionConfiguration passwordEncryptionConfiguration;
 
     public PasswordValidationRules passwordValidationRules;
+
+    public TenantRateLimitConfiguration rateLimitConfiguration;
+
+    public TenantRegistrationConfiguration registrationConfiguration;
 
     public ObjectState state;
 

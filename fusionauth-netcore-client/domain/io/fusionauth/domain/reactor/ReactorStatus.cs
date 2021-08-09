@@ -41,6 +41,8 @@ namespace io.fusionauth.domain.reactor {
 
     public bool? licensed;
 
+    public ReactorFeatureStatus threatDetection;
+
     public ReactorStatus with(Action<ReactorStatus> action) {
       action(this);
       return this;

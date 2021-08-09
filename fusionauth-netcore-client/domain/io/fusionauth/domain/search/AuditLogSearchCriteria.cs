@@ -29,6 +29,12 @@ namespace io.fusionauth.domain.search {
 
     public string message;
 
+    public string newValue;
+
+    public string oldValue;
+
+    public string reason;
+
     public DateTimeOffset? start;
 
     public string user;

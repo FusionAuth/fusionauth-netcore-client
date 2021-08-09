@@ -18,16 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.util {
+namespace io.fusionauth.domain.api {
 
   /**
-   * Helper for dealing with default values.
+   * Request for the Tenant API to delete a tenant rather than using the URL parameters.
    *
    * @author Brian Pontarelli
    */
-  public class DefaultTools {
+  public class TenantDeleteRequest: BaseEventRequest {
 
-    public DefaultTools with(Action<DefaultTools> action) {
+    public bool? async;
+
+    public TenantDeleteRequest with(Action<TenantDeleteRequest> action) {
       action(this);
       return this;
     }

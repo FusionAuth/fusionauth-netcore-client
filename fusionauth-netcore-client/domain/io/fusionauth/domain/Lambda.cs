@@ -20,11 +20,7 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  /**
-   * A JavaScript lambda function that is executed during certain events inside FusionAuth.
-   *
-   * @author Brian Pontarelli
-   */
+  // TODO : Future : This shouldn't be enableable
   public class Lambda: Enableable {
 
     public string body;

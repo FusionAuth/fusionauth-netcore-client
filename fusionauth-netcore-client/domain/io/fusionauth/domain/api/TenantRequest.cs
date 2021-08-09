@@ -24,7 +24,7 @@ namespace io.fusionauth.domain.api {
   /**
    * @author Daniel DeGroff
    */
-  public class TenantRequest {
+  public class TenantRequest: BaseEventRequest {
 
     public Guid? sourceTenantId;
 

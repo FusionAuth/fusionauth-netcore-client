@@ -24,7 +24,7 @@ namespace io.fusionauth.domain.api {
   /**
    * @author Brian Pontarelli
    */
-  public class AuditLogRequest {
+  public class AuditLogRequest: BaseEventRequest {
 
     public AuditLog auditLog;
 

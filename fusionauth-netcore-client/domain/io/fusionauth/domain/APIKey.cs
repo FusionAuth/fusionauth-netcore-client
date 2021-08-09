@@ -31,6 +31,8 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? insertInstant;
 
+    public Guid? ipAccessControlListId;
+
     public string key;
 
     public bool? keyManager;
