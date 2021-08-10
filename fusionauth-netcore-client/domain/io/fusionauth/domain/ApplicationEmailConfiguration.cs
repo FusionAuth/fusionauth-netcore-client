@@ -30,15 +30,25 @@ namespace io.fusionauth.domain {
 
     public Guid? forgotPasswordEmailTemplateId;
 
+    public Guid? loginIdInUseOnCreateEmailTemplateId;
+
+    public Guid? loginIdInUseOnUpdateEmailTemplateId;
+
     public Guid? loginNewDeviceEmailTemplateId;
 
     public Guid? loginSuspiciousEmailTemplateId;
 
     public Guid? passwordResetSuccessEmailTemplateId;
 
+    public Guid? passwordUpdateEmailTemplateId;
+
     public Guid? passwordlessEmailTemplateId;
 
     public Guid? setPasswordEmailTemplateId;
+
+    public Guid? twoFactorMethodAddEmailTemplateId;
+
+    public Guid? twoFactorMethodRemoveEmailTemplateId;
 
     public ApplicationEmailConfiguration with(Action<ApplicationEmailConfiguration> action) {
       action(this);

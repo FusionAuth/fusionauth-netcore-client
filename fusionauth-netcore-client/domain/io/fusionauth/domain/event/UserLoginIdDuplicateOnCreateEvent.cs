@@ -28,8 +28,6 @@ namespace io.fusionauth.domain.@event {
    */
   public class UserLoginIdDuplicateOnCreateEvent: BaseEvent {
 
-    public Guid? applicationId;
-
     public string duplicateEmail;
 
     public string duplicateUsername;

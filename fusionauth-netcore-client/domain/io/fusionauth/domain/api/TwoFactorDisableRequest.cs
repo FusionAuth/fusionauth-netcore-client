@@ -25,6 +25,8 @@ namespace io.fusionauth.domain.api {
    */
   public class TwoFactorDisableRequest: BaseEventRequest {
 
+    public Guid? applicationId;
+
     public string code;
 
     public string methodId;
