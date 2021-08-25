@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.converters;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
@@ -35,14 +36,17 @@ namespace io.fusionauth.jwt.domain {
 
     public object aud;
 
+    [JsonConverter(typeof(DateTimeOffsetSecondsConverter))]
     public DateTimeOffset? exp;
 
+    [JsonConverter(typeof(DateTimeOffsetSecondsConverter))]
     public DateTimeOffset? iat;
 
     public string iss;
 
     public string jti;
 
+    [JsonConverter(typeof(DateTimeOffsetSecondsConverter))]
     public DateTimeOffset? nbf;
 
     public dynamic this[string claim] {
