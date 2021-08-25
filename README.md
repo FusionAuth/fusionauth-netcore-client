@@ -18,6 +18,16 @@ Refer to the FusionAuth API documentation for request and response formats.
 * .NET Core 2.1, 3.1
 * .NET 5
 
+## Tests
+
+There are some tests. Most require a running FusionAuth instance.
+
+To run them: 
+
+* `cd fusionauth-netcore-client-test/fusionauth-netcore-client-test`
+* `dotnet build && dotnet test` # or, to run only a few
+* `dotnet build && dotnet test --filter CorrectlyD`
+
 ## Questions and support
 
 If you have a question or support issue regarding this client library, we'd love to hear from you.
