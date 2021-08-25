@@ -24,11 +24,11 @@ namespace io.fusionauth.domain.api {
   /**
    * @author Daniel DeGroff
    */
-  public class ReactorResponse {
+  public class ReactorMetricsResponse {
 
-    public ReactorStatus status;
+    public ReactorMetrics metrics;
 
-    public ReactorResponse with(Action<ReactorResponse> action) {
+    public ReactorMetricsResponse with(Action<ReactorMetricsResponse> action) {
       action(this);
       return this;
     }

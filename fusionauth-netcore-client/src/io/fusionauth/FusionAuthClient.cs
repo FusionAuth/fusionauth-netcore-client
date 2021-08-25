@@ -1962,6 +1962,14 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<ReactorMetricsResponse>> RetrieveReactorMetricsAsync() {
+      return buildClient()
+          .withUri("/api/reactor/metrics")
+          .withMethod("Get")
+          .goAsync<ReactorMetricsResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ReactorResponse>> RetrieveReactorStatusAsync() {
       return buildClient()
           .withUri("/api/reactor")

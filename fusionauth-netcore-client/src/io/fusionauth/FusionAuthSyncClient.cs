@@ -1033,6 +1033,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<ReactorMetricsResponse> RetrieveReactorMetrics() {
+      return client.RetrieveReactorMetricsAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ReactorResponse> RetrieveReactorStatus() {
       return client.RetrieveReactorStatusAsync().GetAwaiter().GetResult();
     }

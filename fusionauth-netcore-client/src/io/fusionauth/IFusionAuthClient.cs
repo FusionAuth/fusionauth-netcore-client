@@ -2759,6 +2759,18 @@ namespace io.fusionauth {
     Task<ClientResponse<PendingResponse>> RetrievePendingChildrenAsync(string parentEmail);
 
     /// <summary>
+    /// Retrieves the FusionAuth Reactor metrics.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ReactorMetricsResponse>> RetrieveReactorMetricsAsync();
+
+    /// <summary>
     /// Retrieves the FusionAuth Reactor status.
     /// This is an asynchronous method.
     /// </summary>
@@ -6753,6 +6765,17 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<PendingResponse> RetrievePendingChildren(string parentEmail);
+
+   /// <summary>
+   /// Retrieves the FusionAuth Reactor metrics.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ReactorMetricsResponse> RetrieveReactorMetrics();
 
    /// <summary>
    /// Retrieves the FusionAuth Reactor status.
