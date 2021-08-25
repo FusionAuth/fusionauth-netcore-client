@@ -626,7 +626,7 @@ namespace io.fusionauth {
     }
 
     [Test]
-    public void DanTestInstant() {
+    public void InstantCorrectlyDeserialized() {
       var json = ReadManifestData<FusionAuthClientUnitTest>("ConsentTest.json");
 
       var consent = JsonConvert.DeserializeObject<Consent>(json);
@@ -639,19 +639,39 @@ namespace io.fusionauth {
     }
 
     [Test]
-    public void DanTestExp() {
+    public void ExpCorrectlyDeserialized() {
       var json = ReadManifestData<FusionAuthClientUnitTest>("JWTDateTimeTest.json");
 
-      var jwt = JsonConvert.DeserializeObject<JWT>(json);
-      Assert.AreEqual(jwt["exp"], "abc");
+      var expectedDateString = "2020-07-21 19:52:22";
+      DateTime dateTime = DateTime.Parse(expectedDateString,
+                          System.Globalization.CultureInfo.InvariantCulture);
+      DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTime, TimeSpan.Zero);
+      JWT jwt = JsonConvert.DeserializeObject<JWT>(json);
+      Assert.AreEqual(dateTimeOffset, jwt.exp);
     }
 
     [Test]
-    public void DanTestIat() {
+    public void IatCorrectlyDeserialized() {
       var json = ReadManifestData<FusionAuthClientUnitTest>("JWTDateTimeTest.json");
 
-      var jwt = JsonConvert.DeserializeObject<JWT>(json);
-      Assert.AreEqual(jwt["iat"], "abc");
+      var expectedDateString = "2020-07-21 19:52:21";
+      DateTime dateTime = DateTime.Parse(expectedDateString,
+                          System.Globalization.CultureInfo.InvariantCulture);
+      DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTime, TimeSpan.Zero);
+      JWT jwt = JsonConvert.DeserializeObject<JWT>(json);
+      Assert.AreEqual(dateTimeOffset, jwt.iat);
+    }
+
+    [Test]
+    public void NbfCorrectlyDeserialized() {
+      var json = ReadManifestData<FusionAuthClientUnitTest>("JWTDateTimeTest.json");
+
+      var expectedDateString = "2020-07-21 19:52:21";
+      DateTime dateTime = DateTime.Parse(expectedDateString,
+                          System.Globalization.CultureInfo.InvariantCulture);
+      DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTime, TimeSpan.Zero);
+      JWT jwt = JsonConvert.DeserializeObject<JWT>(json);
+      Assert.AreEqual(dateTimeOffset, jwt.nbf);
     }
 
     public static string ReadManifestData<TSource>(string embeddedFileName) where TSource : class {
