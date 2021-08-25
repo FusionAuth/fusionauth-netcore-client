@@ -20,6 +20,8 @@
     <ItemGroup>
       <None Remove="test\io\fusionauth\JWTOtherFieldsTest.json" />
       <EmbeddedResource Include="test\io\fusionauth\JWTOtherFieldsTest.json" />
+      <EmbeddedResource Include="test\io\fusionauth\JWTDateTimeTest.json" />
+      <EmbeddedResource Include="test\io\fusionauth\ConsentTest.json" />
     </ItemGroup>
 
 </Project>

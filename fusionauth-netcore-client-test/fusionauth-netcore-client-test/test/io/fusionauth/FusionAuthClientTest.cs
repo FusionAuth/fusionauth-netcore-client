@@ -625,6 +625,35 @@ namespace io.fusionauth {
       });
     }
 
+    [Test]
+    public void DanTestInstant() {
+      var json = ReadManifestData<FusionAuthClientUnitTest>("ConsentTest.json");
+
+      var consent = JsonConvert.DeserializeObject<Consent>(json);
+
+      var expectedDateString = "2020-07-21 19:52:22.909";
+      DateTime dateTime = DateTime.Parse(expectedDateString,
+                          System.Globalization.CultureInfo.InvariantCulture);
+      DateTimeOffset dateTimeOffset = new DateTimeOffset(dateTime, TimeSpan.Zero);
+      Assert.AreEqual(dateTimeOffset, consent.insertInstant);
+    }
+
+    [Test]
+    public void DanTestExp() {
+      var json = ReadManifestData<FusionAuthClientUnitTest>("JWTDateTimeTest.json");
+
+      var jwt = JsonConvert.DeserializeObject<JWT>(json);
+      Assert.AreEqual(jwt["exp"], "abc");
+    }
+
+    [Test]
+    public void DanTestIat() {
+      var json = ReadManifestData<FusionAuthClientUnitTest>("JWTDateTimeTest.json");
+
+      var jwt = JsonConvert.DeserializeObject<JWT>(json);
+      Assert.AreEqual(jwt["iat"], "abc");
+    }
+
     public static string ReadManifestData<TSource>(string embeddedFileName) where TSource : class {
       var assembly = typeof(TSource).GetTypeInfo().Assembly;
       var resourceName = assembly.GetManifestResourceNames()
