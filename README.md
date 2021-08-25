@@ -14,8 +14,9 @@ Refer to the FusionAuth API documentation for request and response formats.
 * https://fusionauth.io/docs/v1/tech/client-libraries/netcore
 
 ## Supported Frameworks
-* .Net Standard 2.0, 2.1
-* .Net Core 2.1, 3.1
+* .NET Standard 2.0, 2.1
+* .NET Core 2.1, 3.1
+* .NET 5
 
 ## Questions and support
 
