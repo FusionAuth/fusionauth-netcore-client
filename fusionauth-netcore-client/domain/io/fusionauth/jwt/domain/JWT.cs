@@ -15,8 +15,8 @@
  */
 
 
-using io.fusionauth.converters;
 using Newtonsoft.Json;
+using io.fusionauth.converters;
 using System.Collections.Generic;
 using System;
 
