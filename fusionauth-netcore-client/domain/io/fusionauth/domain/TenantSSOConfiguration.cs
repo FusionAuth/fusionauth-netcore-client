@@ -23,11 +23,11 @@ namespace io.fusionauth.domain {
   /**
    * @author Brett Pontarelli
    */
-  public class SystemSSOConfiguration {
+  public class TenantSSOConfiguration {
 
     public int? deviceTrustTimeToLiveInSeconds;
 
-    public SystemSSOConfiguration with(Action<SystemSSOConfiguration> action) {
+    public TenantSSOConfiguration with(Action<TenantSSOConfiguration> action) {
       action(this);
       return this;
     }
