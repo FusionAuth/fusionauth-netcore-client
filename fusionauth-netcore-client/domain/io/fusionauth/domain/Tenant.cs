@@ -82,6 +82,8 @@ namespace io.fusionauth.domain {
 
     public TenantRegistrationConfiguration registrationConfiguration;
 
+    public TenantSSOConfiguration ssoConfiguration;
+
     public ObjectState state;
 
     public Guid? themeId;
