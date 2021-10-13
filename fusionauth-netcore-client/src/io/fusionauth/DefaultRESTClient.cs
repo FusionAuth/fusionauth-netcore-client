@@ -164,6 +164,9 @@ namespace io.fusionauth {
 
     private Task<HttpResponseMessage> baseRequest() {
       foreach (var (key, value) in headers.Select(x => (x.Key, x.Value))) {
+        // .Add performs additional validation on the 'value' that may fail if an API key contains a '=' character.
+        // - Bypass this additional validation for the Authorization header. If we find other edge cases, perhaps 
+        //   we should just always use TryAddWithoutValidation unless there is a security risk. 
         if (key == "Authorization") {
           httpClient.DefaultRequestHeaders.TryAddWithoutValidation(key, value);
         } else {
