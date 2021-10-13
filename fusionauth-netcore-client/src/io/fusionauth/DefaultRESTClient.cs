@@ -164,7 +164,11 @@ namespace io.fusionauth {
 
     private Task<HttpResponseMessage> baseRequest() {
       foreach (var (key, value) in headers.Select(x => (x.Key, x.Value))) {
-        httpClient.DefaultRequestHeaders.Add(key, value);
+        if (key == "Authorization") {
+          httpClient.DefaultRequestHeaders.TryAddWithoutValidation(key, value);
+        } else {
+          httpClient.DefaultRequestHeaders.Add(key, value);
+        }
       }
 
       var requestUri = getFullUri();
