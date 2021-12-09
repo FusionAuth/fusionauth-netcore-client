@@ -43,6 +43,8 @@ namespace io.fusionauth.domain.provider {
 
     public string name;
 
+    public IDictionary<Guid, IdentityProviderTenantConfiguration> tenantConfiguration;
+
     public IdentityProviderType type;
   }
 }

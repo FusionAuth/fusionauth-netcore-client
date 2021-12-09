@@ -66,7 +66,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="familyId"> The id of the family.</param>
-    /// <param name="request"> The request object that contains all of the information used to determine which user to add to the family.</param>
+    /// <param name="request"> The request object that contains all the information used to determine which user to add to the family.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -123,7 +123,7 @@ namespace io.fusionauth {
     /// Adds a comment to the user's account.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="request"> The request object that contains all of the information used to create the user comment.</param>
+    /// <param name="request"> The request object that contains all the information used to create the user comment.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -155,7 +155,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="applicationId"> (Optional) The Id to use for the application. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the application.</param>
+    /// <param name="request"> The request object that contains all the information used to create the application.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -171,7 +171,7 @@ namespace io.fusionauth {
     /// </summary>
     /// <param name="applicationId"> The Id of the application to create the role on.</param>
     /// <param name="roleId"> (Optional) The Id of the role. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the application role.</param>
+    /// <param name="request"> The request object that contains all the information used to create the application role.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -186,7 +186,7 @@ namespace io.fusionauth {
     /// written to the audit log. However, if you are accessing the API, you must write the audit logs yourself.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="request"> The request object that contains all of the information used to create the audit log entry.</param>
+    /// <param name="request"> The request object that contains all the information used to create the audit log entry.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -200,7 +200,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="connectorId"> (Optional) The Id for the connector. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the connector.</param>
+    /// <param name="request"> The request object that contains all the information used to create the connector.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -214,7 +214,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="consentId"> (Optional) The Id for the consent. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the consent.</param>
+    /// <param name="request"> The request object that contains all the information used to create the consent.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -228,7 +228,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="emailTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the email template.</param>
+    /// <param name="request"> The request object that contains all the information used to create the email template.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -242,7 +242,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="entityId"> (Optional) The Id for the Entity. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the Entity.</param>
+    /// <param name="request"> The request object that contains all the information used to create the Entity.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -256,7 +256,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="entityTypeId"> (Optional) The Id for the Entity Type. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the Entity Type.</param>
+    /// <param name="request"> The request object that contains all the information used to create the Entity Type.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -272,7 +272,7 @@ namespace io.fusionauth {
     /// </summary>
     /// <param name="entityTypeId"> The Id of the entity type to create the permission on.</param>
     /// <param name="permissionId"> (Optional) The Id of the permission. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the permission.</param>
+    /// <param name="request"> The request object that contains all the information used to create the permission.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -287,7 +287,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="familyId"> (Optional) The id for the family. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the family.</param>
+    /// <param name="request"> The request object that contains all the information used to create the family.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -301,7 +301,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="formId"> (Optional) The Id for the form. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the form.</param>
+    /// <param name="request"> The request object that contains all the information used to create the form.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -315,7 +315,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="fieldId"> (Optional) The Id for the form field. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the form field.</param>
+    /// <param name="request"> The request object that contains all the information used to create the form field.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -329,7 +329,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="groupId"> (Optional) The Id for the group. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the group.</param>
+    /// <param name="request"> The request object that contains all the information used to create the group.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -342,7 +342,7 @@ namespace io.fusionauth {
     /// Creates a member in a group.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="request"> The request object that contains all of the information used to create the group member(s).</param>
+    /// <param name="request"> The request object that contains all the information used to create the group member(s).</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -356,7 +356,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="accessControlListId"> (Optional) The Id for the IP Access Control List. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the IP Access Control List.</param>
+    /// <param name="request"> The request object that contains all the information used to create the IP Access Control List.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -370,7 +370,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="identityProviderId"> (Optional) The Id of the identity provider. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the identity provider.</param>
+    /// <param name="request"> The request object that contains all the information used to create the identity provider.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -384,7 +384,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="lambdaId"> (Optional) The Id for the lambda. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the lambda.</param>
+    /// <param name="request"> The request object that contains all the information used to create the lambda.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -398,7 +398,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="messageTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the message template.</param>
+    /// <param name="request"> The request object that contains all the information used to create the message template.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -412,7 +412,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="messengerId"> (Optional) The Id for the messenger. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the messenger.</param>
+    /// <param name="request"> The request object that contains all the information used to create the messenger.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -426,7 +426,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="tenantId"> (Optional) The Id for the tenant. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the tenant.</param>
+    /// <param name="request"> The request object that contains all the information used to create the tenant.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -440,7 +440,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="themeId"> (Optional) The Id for the theme. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the theme.</param>
+    /// <param name="request"> The request object that contains all the information used to create the theme.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -454,7 +454,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> (Optional) The Id for the user. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the user.</param>
+    /// <param name="request"> The request object that contains all the information used to create the user.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -469,7 +469,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userActionId"> (Optional) The Id for the user action. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the user action.</param>
+    /// <param name="request"> The request object that contains all the information used to create the user action.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -484,7 +484,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userActionReasonId"> (Optional) The Id for the user action reason. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the user action reason.</param>
+    /// <param name="request"> The request object that contains all the information used to create the user action reason.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -511,7 +511,7 @@ namespace io.fusionauth {
     /// Link an external user from a 3rd party identity provider to a FusionAuth user.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="request"> The request object that contains all of the information used to link the FusionAuth user.</param>
+    /// <param name="request"> The request object that contains all the information used to link the FusionAuth user.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -525,7 +525,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="webhookId"> (Optional) The Id for the webhook. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the webhook.</param>
+    /// <param name="request"> The request object that contains all the information used to create the webhook.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -944,7 +944,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="tenantId"> The Id of the tenant to delete.</param>
-    /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+    /// <param name="request"> The request object that contains all the information used to delete the user.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1028,7 +1028,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the user to delete (required).</param>
-    /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+    /// <param name="request"> The request object that contains all the information used to delete the user.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1245,7 +1245,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="keyId"> (Optional) The Id for the key. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the key.</param>
+    /// <param name="request"> The request object that contains all the information used to create the key.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1331,7 +1331,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="keyId"> (Optional) The Id for the key. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the key.</param>
+    /// <param name="request"> The request object that contains all the information used to create the key.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1472,7 +1472,7 @@ namespace io.fusionauth {
     /// client and revoke the refresh token stored. This API takes the refresh token in the JSON body.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="request"> The request object that contains all of the information used to logout the user.</param>
+    /// <param name="request"> The request object that contains all the information used to logout the user.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -3601,7 +3601,7 @@ namespace io.fusionauth {
     /// Send a Two Factor authentication code to assist in setting up Two Factor authentication or disabling.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="request"> The request object that contains all of the information used to send the code.</param>
+    /// <param name="request"> The request object that contains all the information used to send the code.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -3615,7 +3615,7 @@ namespace io.fusionauth {
     /// Send a Two Factor authentication code to assist in setting up Two Factor authentication or disabling.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="request"> The request object that contains all of the information used to send the code.</param>
+    /// <param name="request"> The request object that contains all the information used to send the code.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -3716,7 +3716,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="apiKeyId"> The Id of the API key to update.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the API Key.</param>
+    /// <param name="request"> The request object that contains all the information used to create the API Key.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4108,7 +4108,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="entityId"> The Id of the Entity that the User/Entity is being granted access to.</param>
-    /// <param name="request"> The request object that contains all of the information used to create the Entity Grant.</param>
+    /// <param name="request"> The request object that contains all the information used to create the Entity Grant.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4266,7 +4266,7 @@ namespace io.fusionauth {
    /// Adds a user to an existing family. The family id must be specified.
    /// </summary>
    /// <param name="familyId"> The id of the family.</param>
-   /// <param name="request"> The request object that contains all of the information used to determine which user to add to the family.</param>
+   /// <param name="request"> The request object that contains all the information used to determine which user to add to the family.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4319,7 +4319,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Adds a comment to the user's account.
    /// </summary>
-   /// <param name="request"> The request object that contains all of the information used to create the user comment.</param>
+   /// <param name="request"> The request object that contains all the information used to create the user comment.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4349,7 +4349,7 @@ namespace io.fusionauth {
    /// Creates an application. You can optionally specify an Id for the application, if not provided one will be generated.
    /// </summary>
    /// <param name="applicationId"> (Optional) The Id to use for the application. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the application.</param>
+   /// <param name="request"> The request object that contains all the information used to create the application.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4364,7 +4364,7 @@ namespace io.fusionauth {
    /// </summary>
    /// <param name="applicationId"> The Id of the application to create the role on.</param>
    /// <param name="roleId"> (Optional) The Id of the role. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the application role.</param>
+   /// <param name="request"> The request object that contains all the information used to create the application role.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4378,7 +4378,7 @@ namespace io.fusionauth {
    /// make changes to the FusionAuth database. When using the FusionAuth App web interface, any changes are automatically
    /// written to the audit log. However, if you are accessing the API, you must write the audit logs yourself.
    /// </summary>
-   /// <param name="request"> The request object that contains all of the information used to create the audit log entry.</param>
+   /// <param name="request"> The request object that contains all the information used to create the audit log entry.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4391,7 +4391,7 @@ namespace io.fusionauth {
    /// Creates a connector.  You can optionally specify an Id for the connector, if not provided one will be generated.
    /// </summary>
    /// <param name="connectorId"> (Optional) The Id for the connector. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the connector.</param>
+   /// <param name="request"> The request object that contains all the information used to create the connector.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4404,7 +4404,7 @@ namespace io.fusionauth {
    /// Creates a user consent type. You can optionally specify an Id for the consent type, if not provided one will be generated.
    /// </summary>
    /// <param name="consentId"> (Optional) The Id for the consent. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the consent.</param>
+   /// <param name="request"> The request object that contains all the information used to create the consent.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4417,7 +4417,7 @@ namespace io.fusionauth {
    /// Creates an email template. You can optionally specify an Id for the template, if not provided one will be generated.
    /// </summary>
    /// <param name="emailTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the email template.</param>
+   /// <param name="request"> The request object that contains all the information used to create the email template.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4430,7 +4430,7 @@ namespace io.fusionauth {
    /// Creates an Entity. You can optionally specify an Id for the Entity. If not provided one will be generated.
    /// </summary>
    /// <param name="entityId"> (Optional) The Id for the Entity. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the Entity.</param>
+   /// <param name="request"> The request object that contains all the information used to create the Entity.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4443,7 +4443,7 @@ namespace io.fusionauth {
    /// Creates a Entity Type. You can optionally specify an Id for the Entity Type, if not provided one will be generated.
    /// </summary>
    /// <param name="entityTypeId"> (Optional) The Id for the Entity Type. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the Entity Type.</param>
+   /// <param name="request"> The request object that contains all the information used to create the Entity Type.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4458,7 +4458,7 @@ namespace io.fusionauth {
    /// </summary>
    /// <param name="entityTypeId"> The Id of the entity type to create the permission on.</param>
    /// <param name="permissionId"> (Optional) The Id of the permission. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the permission.</param>
+   /// <param name="request"> The request object that contains all the information used to create the permission.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4472,7 +4472,7 @@ namespace io.fusionauth {
    /// family, if not provided one will be generated.
    /// </summary>
    /// <param name="familyId"> (Optional) The id for the family. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the family.</param>
+   /// <param name="request"> The request object that contains all the information used to create the family.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4485,7 +4485,7 @@ namespace io.fusionauth {
    /// Creates a form.  You can optionally specify an Id for the form, if not provided one will be generated.
    /// </summary>
    /// <param name="formId"> (Optional) The Id for the form. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the form.</param>
+   /// <param name="request"> The request object that contains all the information used to create the form.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4498,7 +4498,7 @@ namespace io.fusionauth {
    /// Creates a form field.  You can optionally specify an Id for the form, if not provided one will be generated.
    /// </summary>
    /// <param name="fieldId"> (Optional) The Id for the form field. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the form field.</param>
+   /// <param name="request"> The request object that contains all the information used to create the form field.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4511,7 +4511,7 @@ namespace io.fusionauth {
    /// Creates a group. You can optionally specify an Id for the group, if not provided one will be generated.
    /// </summary>
    /// <param name="groupId"> (Optional) The Id for the group. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the group.</param>
+   /// <param name="request"> The request object that contains all the information used to create the group.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4523,7 +4523,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Creates a member in a group.
    /// </summary>
-   /// <param name="request"> The request object that contains all of the information used to create the group member(s).</param>
+   /// <param name="request"> The request object that contains all the information used to create the group member(s).</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4536,7 +4536,7 @@ namespace io.fusionauth {
    /// Creates an IP Access Control List. You can optionally specify an Id on this create request, if one is not provided one will be generated.
    /// </summary>
    /// <param name="accessControlListId"> (Optional) The Id for the IP Access Control List. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the IP Access Control List.</param>
+   /// <param name="request"> The request object that contains all the information used to create the IP Access Control List.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4549,7 +4549,7 @@ namespace io.fusionauth {
    /// Creates an identity provider. You can optionally specify an Id for the identity provider, if not provided one will be generated.
    /// </summary>
    /// <param name="identityProviderId"> (Optional) The Id of the identity provider. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the identity provider.</param>
+   /// <param name="request"> The request object that contains all the information used to create the identity provider.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4562,7 +4562,7 @@ namespace io.fusionauth {
    /// Creates a Lambda. You can optionally specify an Id for the lambda, if not provided one will be generated.
    /// </summary>
    /// <param name="lambdaId"> (Optional) The Id for the lambda. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the lambda.</param>
+   /// <param name="request"> The request object that contains all the information used to create the lambda.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4575,7 +4575,7 @@ namespace io.fusionauth {
    /// Creates an message template. You can optionally specify an Id for the template, if not provided one will be generated.
    /// </summary>
    /// <param name="messageTemplateId"> (Optional) The Id for the template. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the message template.</param>
+   /// <param name="request"> The request object that contains all the information used to create the message template.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4588,7 +4588,7 @@ namespace io.fusionauth {
    /// Creates a messenger.  You can optionally specify an Id for the messenger, if not provided one will be generated.
    /// </summary>
    /// <param name="messengerId"> (Optional) The Id for the messenger. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the messenger.</param>
+   /// <param name="request"> The request object that contains all the information used to create the messenger.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4601,7 +4601,7 @@ namespace io.fusionauth {
    /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
    /// </summary>
    /// <param name="tenantId"> (Optional) The Id for the tenant. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the tenant.</param>
+   /// <param name="request"> The request object that contains all the information used to create the tenant.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4614,7 +4614,7 @@ namespace io.fusionauth {
    /// Creates a Theme. You can optionally specify an Id for the theme, if not provided one will be generated.
    /// </summary>
    /// <param name="themeId"> (Optional) The Id for the theme. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the theme.</param>
+   /// <param name="request"> The request object that contains all the information used to create the theme.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4627,7 +4627,7 @@ namespace io.fusionauth {
    /// Creates a user. You can optionally specify an Id for the user, if not provided one will be generated.
    /// </summary>
    /// <param name="userId"> (Optional) The Id for the user. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the user.</param>
+   /// <param name="request"> The request object that contains all the information used to create the user.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4641,7 +4641,7 @@ namespace io.fusionauth {
    /// that the user action can be applied to any user.
    /// </summary>
    /// <param name="userActionId"> (Optional) The Id for the user action. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the user action.</param>
+   /// <param name="request"> The request object that contains all the information used to create the user action.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4655,7 +4655,7 @@ namespace io.fusionauth {
    /// successfully. Anytime after that the user action reason can be used.
    /// </summary>
    /// <param name="userActionReasonId"> (Optional) The Id for the user action reason. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the user action reason.</param>
+   /// <param name="request"> The request object that contains all the information used to create the user action reason.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4680,7 +4680,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Link an external user from a 3rd party identity provider to a FusionAuth user.
    /// </summary>
-   /// <param name="request"> The request object that contains all of the information used to link the FusionAuth user.</param>
+   /// <param name="request"> The request object that contains all the information used to link the FusionAuth user.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4693,7 +4693,7 @@ namespace io.fusionauth {
    /// Creates a webhook. You can optionally specify an Id for the webhook, if not provided one will be generated.
    /// </summary>
    /// <param name="webhookId"> (Optional) The Id for the webhook. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the webhook.</param>
+   /// <param name="request"> The request object that contains all the information used to create the webhook.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5081,7 +5081,7 @@ namespace io.fusionauth {
    /// with the tenant and everything under the tenant (applications, users, etc).
    /// </summary>
    /// <param name="tenantId"> The Id of the tenant to delete.</param>
-   /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+   /// <param name="request"> The request object that contains all the information used to delete the user.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5159,7 +5159,7 @@ namespace io.fusionauth {
    /// with the user.
    /// </summary>
    /// <param name="userId"> The Id of the user to delete (required).</param>
-   /// <param name="request"> The request object that contains all of the information used to delete the user.</param>
+   /// <param name="request"> The request object that contains all the information used to delete the user.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5362,7 +5362,7 @@ namespace io.fusionauth {
    /// Generate a new RSA or EC key pair or an HMAC secret.
    /// </summary>
    /// <param name="keyId"> (Optional) The Id for the key. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the key.</param>
+   /// <param name="request"> The request object that contains all the information used to create the key.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5442,7 +5442,7 @@ namespace io.fusionauth {
    /// Import an existing RSA or EC key pair or an HMAC secret.
    /// </summary>
    /// <param name="keyId"> (Optional) The Id for the key. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the key.</param>
+   /// <param name="request"> The request object that contains all the information used to create the key.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5575,7 +5575,7 @@ namespace io.fusionauth {
    /// The Logout API is intended to be used to remove the refresh token and access token cookies if they exist on the
    /// client and revoke the refresh token stored. This API takes the refresh token in the JSON body.
    /// </summary>
-   /// <param name="request"> The request object that contains all of the information used to logout the user.</param>
+   /// <param name="request"> The request object that contains all the information used to logout the user.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -7547,7 +7547,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Send a Two Factor authentication code to assist in setting up Two Factor authentication or disabling.
    /// </summary>
-   /// <param name="request"> The request object that contains all of the information used to send the code.</param>
+   /// <param name="request"> The request object that contains all the information used to send the code.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -7560,7 +7560,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Send a Two Factor authentication code to assist in setting up Two Factor authentication or disabling.
    /// </summary>
-   /// <param name="request"> The request object that contains all of the information used to send the code.</param>
+   /// <param name="request"> The request object that contains all the information used to send the code.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -7654,7 +7654,7 @@ namespace io.fusionauth {
    /// Updates an API key by given id
    /// </summary>
    /// <param name="apiKeyId"> The Id of the API key to update.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the API Key.</param>
+   /// <param name="request"> The request object that contains all the information used to create the API Key.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -8018,7 +8018,7 @@ namespace io.fusionauth {
    /// Creates or updates an Entity Grant. This is when a User/Entity is granted permissions to an Entity.
    /// </summary>
    /// <param name="entityId"> The Id of the Entity that the User/Entity is being granted access to.</param>
-   /// <param name="request"> The request object that contains all of the information used to create the Entity Grant.</param>
+   /// <param name="request"> The request object that contains all the information used to create the Entity Grant.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be

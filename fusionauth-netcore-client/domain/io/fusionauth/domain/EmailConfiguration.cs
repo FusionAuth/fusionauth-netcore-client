@@ -25,6 +25,8 @@ namespace io.fusionauth.domain {
    */
   public class EmailConfiguration {
 
+    public List<EmailHeader> additionalHeaders;
+
     public string defaultFromEmail;
 
     public string defaultFromName;
@@ -36,6 +38,8 @@ namespace io.fusionauth.domain {
     public Guid? forgotPasswordEmailTemplateId;
 
     public string host;
+
+    public bool? @implicitEmailVerificationAllowed;
 
     public Guid? loginIdInUseOnCreateEmailTemplateId;
 

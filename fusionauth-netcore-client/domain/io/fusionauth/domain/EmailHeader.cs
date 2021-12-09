@@ -15,38 +15,21 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain {
 
   /**
    * @author Daniel DeGroff
    */
-  public class PendingIdPLink {
+  public class EmailHeader {
 
-    public string displayName;
+    public string name;
 
-    public string email;
+    public string value;
 
-    public Guid? identityProviderId;
-
-    public List<IdentityProviderLink> identityProviderLinks;
-
-    public string identityProviderName;
-
-    public IdentityProviderTenantConfiguration identityProviderTenantConfiguration;
-
-    public IdentityProviderType identityProviderType;
-
-    public string identityProviderUserId;
-
-    public User user;
-
-    public string username;
-
-    public PendingIdPLink with(Action<PendingIdPLink> action) {
+    public EmailHeader with(Action<EmailHeader> action) {
       action(this);
       return this;
     }

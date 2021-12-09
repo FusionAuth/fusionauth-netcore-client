@@ -24,29 +24,11 @@ namespace io.fusionauth.domain.provider {
   /**
    * @author Daniel DeGroff
    */
-  public class PendingIdPLink {
+  public class IdentityProviderLimitUserLinkingPolicy: Enableable {
 
-    public string displayName;
+    public int? maximumLinks;
 
-    public string email;
-
-    public Guid? identityProviderId;
-
-    public List<IdentityProviderLink> identityProviderLinks;
-
-    public string identityProviderName;
-
-    public IdentityProviderTenantConfiguration identityProviderTenantConfiguration;
-
-    public IdentityProviderType identityProviderType;
-
-    public string identityProviderUserId;
-
-    public User user;
-
-    public string username;
-
-    public PendingIdPLink with(Action<PendingIdPLink> action) {
+    public IdentityProviderLimitUserLinkingPolicy with(Action<IdentityProviderLimitUserLinkingPolicy> action) {
       action(this);
       return this;
     }
