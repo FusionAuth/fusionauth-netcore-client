@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.api.user {
 
     public Guid? applicationId;
 
+    public string changePasswordId;
+
     public string currentPassword;
 
     public string loginId;

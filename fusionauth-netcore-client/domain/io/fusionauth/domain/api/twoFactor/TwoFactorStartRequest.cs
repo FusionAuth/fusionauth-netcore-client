@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.api.twoFactor {
 
     public IDictionary<string, object> state;
 
+    public Guid? userId;
+
     public TwoFactorStartRequest with(Action<TwoFactorStartRequest> action) {
       action(this);
       return this;
