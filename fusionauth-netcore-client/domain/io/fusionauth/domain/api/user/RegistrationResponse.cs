@@ -36,6 +36,8 @@ namespace io.fusionauth.domain.api.user {
 
     public string token;
 
+    public DateTimeOffset? tokenExpirationInstant;
+
     public User user;
 
     public RegistrationResponse with(Action<RegistrationResponse> action) {
