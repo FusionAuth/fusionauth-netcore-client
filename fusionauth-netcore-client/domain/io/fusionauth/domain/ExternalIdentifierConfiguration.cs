@@ -63,6 +63,8 @@ namespace io.fusionauth.domain {
 
     public int? setupPasswordIdTimeToLiveInSeconds;
 
+    public int? trustTokenTimeToLiveInSeconds;
+
     public int? twoFactorIdTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration twoFactorOneTimeCodeIdGenerator;

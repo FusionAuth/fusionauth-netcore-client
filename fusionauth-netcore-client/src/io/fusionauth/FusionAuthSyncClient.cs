@@ -86,6 +86,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingId(string changePasswordId) {
+      return client.CheckChangePasswordUsingIdAsync(changePasswordId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingJWT(string encodedJWT) {
+      return client.CheckChangePasswordUsingJWTAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginId(string loginId) {
+      return client.CheckChangePasswordUsingLoginIdAsync(loginId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request) {
       return client.CommentOnUserAsync(request).GetAwaiter().GetResult();
     }

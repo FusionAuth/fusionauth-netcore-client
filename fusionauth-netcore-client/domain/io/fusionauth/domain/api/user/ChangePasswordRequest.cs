@@ -40,6 +40,10 @@ namespace io.fusionauth.domain.api.user {
 
     public string refreshToken;
 
+    public string trustChallenge;
+
+    public string trustToken;
+
     public ChangePasswordRequest with(Action<ChangePasswordRequest> action) {
       action(this);
       return this;

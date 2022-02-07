@@ -139,6 +139,33 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingIdAsync(string changePasswordId) {
+      return buildAnonymousClient()
+          .withUri("/api/user/change-password")
+          .withUriSegment(changePasswordId)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingJWTAsync(string encodedJWT) {
+      return buildAnonymousClient()
+          .withUri("/api/user/change-password")
+          .withAuthorization("Bearer " + encodedJWT)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAsync(string loginId) {
+      return buildClient()
+          .withUri("/api/user/change-password")
+          .withParameter("username", loginId)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request) {
       return buildClient()
           .withUri("/api/user/comment")

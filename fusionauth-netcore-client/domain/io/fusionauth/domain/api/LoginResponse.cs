@@ -50,6 +50,8 @@ namespace io.fusionauth.domain.api {
 
     public DateTimeOffset? tokenExpirationInstant;
 
+    public string trustToken;
+
     public string twoFactorId;
 
     public string twoFactorTrustId;
