@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -39,7 +40,7 @@ namespace io.fusionauth {
     public List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>();
 
     public Dictionary<string, string> headers = new Dictionary<string, string>();
-
+    
     private static readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
     {
         NullValueHandling = NullValueHandling.Ignore,
@@ -51,9 +52,11 @@ namespace io.fusionauth {
         },
         ContractResolver = new DefaultContractResolver()
     };
+    
+    private static readonly ConcurrentDictionary<string, HttpClient> HttpClients = new ConcurrentDictionary<string, HttpClient>();
 
     public DefaultRESTClient(string host) {
-      httpClient = new HttpClient {BaseAddress = new Uri(host)};
+        httpClient = GetOrCreateHttpClient(host);
     }
 
     /**
@@ -162,69 +165,81 @@ namespace io.fusionauth {
       return uri + paramString;
     }
 
-    private Task<HttpResponseMessage> baseRequest() {
+    private HttpRequestMessage BuildRequest() {
+      var requestUri = getFullUri();
+
+      var request = new HttpRequestMessage();
+      
+      request.RequestUri = new Uri(requestUri, UriKind.RelativeOrAbsolute);
+      
       foreach (var (key, value) in headers.Select(x => (x.Key, x.Value))) {
-        // .Add performs additional validation on the 'value' that may fail if an API key contains a '=' character.
-        // - Bypass this additional validation for the Authorization header. If we find other edge cases, perhaps 
-        //   we should just always use TryAddWithoutValidation unless there is a security risk. 
-        if (key == "Authorization") {
-          httpClient.DefaultRequestHeaders.TryAddWithoutValidation(key, value);
-        } else {
-          httpClient.DefaultRequestHeaders.Add(key, value);
-        }
+          // .Add performs additional validation on the 'value' that may fail if an API key contains a '=' character.
+          // - Bypass this additional validation for the Authorization header. If we find other edge cases, perhaps 
+          //   we should just always use TryAddWithoutValidation unless there is a security risk. 
+          if (key == "Authorization") {
+              request.Headers.TryAddWithoutValidation(key, value);
+          } else {
+              request.Headers.Add(key, value);
+          }
+      }
+      
+      if (content != null)
+      {
+          request.Content = content;
       }
 
-      var requestUri = getFullUri();
       switch (method.ToUpper()) {
         case "GET":
-          return httpClient.GetAsync(requestUri);
-        case "DELETE":
-          if (content != null) {
-            var request = new HttpRequestMessage(HttpMethod.Delete, requestUri);
-            request.Content = content;
-            return httpClient.SendAsync(request);
-          } else {
-            return httpClient.DeleteAsync(requestUri);
-          }
+          request.Method = HttpMethod.Get;
+          break;
+        case "DELETE": 
+          request.Method = HttpMethod.Delete;
+          break;
         case "PUT":
-          return httpClient.PutAsync(requestUri, content);
+          request.Method = HttpMethod.Put;
+          break;
         case "POST":
-          return httpClient.PostAsync(requestUri, content);
+          request.Method = HttpMethod.Post;
+          break;
         case "PATCH":
-          var patchRequest = new HttpRequestMessage();
-          patchRequest.Method = new HttpMethod("PATCH");
-          patchRequest.Content = content;
-          patchRequest.RequestUri = new Uri(requestUri, UriKind.RelativeOrAbsolute);
-          return httpClient.SendAsync(patchRequest);
+          request.Method = new HttpMethod("PATCH");
+          break;
         default:
           throw new MissingMethodException("This REST client does not support that method. (yet?)");
       }
+
+      return request;
     }
 
-    public override Task<ClientResponse<T>> goAsync<T>() {
-      return baseRequest()
-        .ContinueWith(task => {
-      var clientResponse = new ClientResponse<T>();
-      try
-      {
-            var result = task.Result;
-        clientResponse.statusCode = (int)result.StatusCode;
-            if (clientResponse.statusCode >= 300) {
-              clientResponse.errorResponse =
-                JsonConvert.DeserializeObject<Errors>(result.Content.ReadAsStringAsync().Result, SerializerSettings);
+    public override async Task<ClientResponse<T>> goAsync<T>() {
+        var clientResponse = new ClientResponse<T>();
+        
+        try
+        {
+            var request = BuildRequest();
+            var result = await httpClient.SendAsync(request).ConfigureAwait(false);
+            
+            clientResponse.statusCode = (int)result.StatusCode;
+            
+            var responseContent = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+            
+            if (clientResponse.statusCode >= 300)
+            {
+                clientResponse.errorResponse = JsonConvert.DeserializeObject<Errors>(responseContent, SerializerSettings);
+            }
+            else
+            {
+                clientResponse.successResponse = JsonConvert.DeserializeObject<T>(responseContent, SerializerSettings);
+            }
         }
-            else {
-              clientResponse.successResponse =
-                JsonConvert.DeserializeObject<T>(result.Content.ReadAsStringAsync().Result, SerializerSettings);
+        catch (Exception e)
+        {
+            clientResponse.exception = e;
         }
-      }
-      catch (Exception e)
-      {
-        clientResponse.exception = e;
-      }
 
-      return clientResponse;
-        });
+        return clientResponse;
     }
+
+    private static HttpClient GetOrCreateHttpClient(string host) => HttpClients.GetOrAdd(host, (_) => new HttpClient { BaseAddress = new Uri(host) });
   }
 }
