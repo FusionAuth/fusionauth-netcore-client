@@ -28,18 +28,14 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace io.fusionauth {
-  class DefaultRESTClient : IRESTClient {
-    public HttpClient httpClient;
-
-    public HttpContent content;
-
-    public string method = "GET";
-
-    public String uri = "";
-
-    public List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>();
-
-    public Dictionary<string, string> headers = new Dictionary<string, string>();
+  internal class DefaultRESTClient : IRESTClient {
+    private readonly HttpClient _httpClient;
+    private readonly List<KeyValuePair<string, string>> _parameters = new List<KeyValuePair<string, string>>();
+    private readonly Dictionary<string, string> _headers = new Dictionary<string, string>();
+    
+    private HttpContent _content;
+    private string _method = "GET";
+    private string _uri = "";
     
     private static readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
     {
@@ -56,7 +52,7 @@ namespace io.fusionauth {
     private static readonly ConcurrentDictionary<string, HttpClient> HttpClients = new ConcurrentDictionary<string, HttpClient>();
 
     public DefaultRESTClient(string host) {
-        httpClient = GetOrCreateHttpClient(host);
+        _httpClient = GetOrCreateHttpClient(host);
     }
 
     /**
@@ -78,11 +74,11 @@ namespace io.fusionauth {
         return this;
       }
 
-      if (uri[uri.Length - 1] != '/') {
-        uri += '/';
+      if (_uri[_uri.Length - 1] != '/') {
+        _uri += '/';
       }
 
-      uri = uri + segment;
+      _uri += segment;
       return this;
     }
 
@@ -93,7 +89,7 @@ namespace io.fusionauth {
      * @param value The value of the header.
      */
     public override IRESTClient withHeader(string key, string value) {
-      headers[key] = value;
+      _headers[key] = value;
       return this;
     }
 
@@ -104,7 +100,7 @@ namespace io.fusionauth {
      */
     public override IRESTClient withFormData(FormUrlEncodedContent body)
     {
-      content = body;
+      _content = body;
       return this;
     }
 
@@ -114,7 +110,7 @@ namespace io.fusionauth {
      * @param body The object to be written to the request body as JSON.
      */
     public override IRESTClient withJSONBody(object body) {
-      content = new StringContent(JsonConvert.SerializeObject(body, SerializerSettings), Encoding.UTF8,
+      _content = new StringContent(JsonConvert.SerializeObject(body, SerializerSettings), Encoding.UTF8,
         "application/json");
       return this;
     }
@@ -124,7 +120,7 @@ namespace io.fusionauth {
      */
     public override IRESTClient withMethod(string method) {
       if (method != null) {
-        this.method = method;
+        this._method = method;
       }
 
       return this;
@@ -135,7 +131,7 @@ namespace io.fusionauth {
      */
     public override IRESTClient withUri(string uri) {
       if (uri != null) {
-        this.uri = uri;
+        this._uri = uri;
       }
 
       return this;
@@ -148,13 +144,13 @@ namespace io.fusionauth {
      * @param value The value of the parameter, may be a string, object or number.
      */
     public override IRESTClient withParameter(string name, string value) {
-      parameters.Add(new KeyValuePair<string, string>(name, value));
+      _parameters.Add(new KeyValuePair<string, string>(name, value));
       return this;
     }
 
-    private string getFullUri() {
+    private string GetFullUri() {
       var paramString = "?";
-      foreach (var (key, value) in parameters.Select(x => (x.Key, x.Value))) {
+      foreach (var (key, value) in _parameters.Select(x => (x.Key, x.Value))) {
         if (!paramString.EndsWith("?")) {
           paramString += "&";
         }
@@ -162,17 +158,17 @@ namespace io.fusionauth {
         paramString += key + "=" + value;
       }
 
-      return uri + paramString;
+      return _uri + paramString;
     }
 
     private HttpRequestMessage BuildRequest() {
-      var requestUri = getFullUri();
+      var requestUri = GetFullUri();
 
       var request = new HttpRequestMessage();
       
       request.RequestUri = new Uri(requestUri, UriKind.RelativeOrAbsolute);
       
-      foreach (var (key, value) in headers.Select(x => (x.Key, x.Value))) {
+      foreach (var (key, value) in _headers.Select(x => (x.Key, x.Value))) {
           // .Add performs additional validation on the 'value' that may fail if an API key contains a '=' character.
           // - Bypass this additional validation for the Authorization header. If we find other edge cases, perhaps 
           //   we should just always use TryAddWithoutValidation unless there is a security risk. 
@@ -183,12 +179,12 @@ namespace io.fusionauth {
           }
       }
       
-      if (content != null)
+      if (_content != null)
       {
-          request.Content = content;
+          request.Content = _content;
       }
 
-      switch (method.ToUpper()) {
+      switch (_method.ToUpper()) {
         case "GET":
           request.Method = HttpMethod.Get;
           break;
@@ -217,7 +213,7 @@ namespace io.fusionauth {
         try
         {
             var request = BuildRequest();
-            var result = await httpClient.SendAsync(request).ConfigureAwait(false);
+            var result = await _httpClient.SendAsync(request).ConfigureAwait(false);
             
             clientResponse.statusCode = (int)result.StatusCode;
             
