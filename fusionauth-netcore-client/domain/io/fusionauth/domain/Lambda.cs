@@ -20,12 +20,18 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  // TODO : Future : This shouldn't be enableable
-  public class Lambda: Enableable {
+  /**
+   * A JavaScript lambda function that is executed during certain events inside FusionAuth.
+   *
+   * @author Brian Pontarelli
+   */
+  public class Lambda {
 
     public string body;
 
     public bool? debug;
+
+    public LambdaEngineType engineType;
 
     public Guid? id;
 
