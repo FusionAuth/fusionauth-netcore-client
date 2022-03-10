@@ -56,6 +56,10 @@ namespace io.fusionauth.converters {
         return json.ToObject<SAMLv2IdentityProvider>(serializer);
       }
 
+      if (json["type"].Value<string>() == "SAMLv2IdPInitiated") {
+        return json.ToObject<SAMLv2IdPInitiatedIdentityProvider>(serializer);
+      }
+
       if (json["type"].Value<string>() == "SonyPSN") {
         return json.ToObject<SonyPSNIdentityProvider>(serializer);
       }
