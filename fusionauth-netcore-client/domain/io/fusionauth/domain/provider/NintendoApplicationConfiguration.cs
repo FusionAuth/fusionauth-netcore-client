@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.provider {
 
     public string client_secret;
 
+    public IdentityProviderOauth2Configuration oauth2;
+
     public string scope;
 
     public NintendoApplicationConfiguration with(Action<NintendoApplicationConfiguration> action) {
