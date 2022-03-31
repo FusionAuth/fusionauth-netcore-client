@@ -47,6 +47,10 @@ namespace io.fusionauth.domain.@event {
         UserCreate, 
         [EnumMember(Value = "user.create.complete")]
         UserCreateComplete, 
+        [EnumMember(Value = "user.idp.link")]
+        UserIdentityProviderLink, 
+        [EnumMember(Value = "user.idp.unlink")]
+        UserIdentityProviderUnlink, 
         [EnumMember(Value = "user.deactivate")]
         UserDeactivate, 
         [EnumMember(Value = "user.delete")]
