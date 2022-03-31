@@ -43,6 +43,8 @@ namespace io.fusionauth.domain.reactor {
 
     public bool? licensed;
 
+    public ReactorFeatureStatus scimServer;
+
     public ReactorFeatureStatus threatDetection;
 
     public ReactorStatus with(Action<ReactorStatus> action) {

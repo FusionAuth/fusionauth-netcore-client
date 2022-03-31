@@ -15,24 +15,23 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
   /**
-   * Search response for entity types.
-   *
-   * @author Brian Pontarelli
+   * @author Rob Davis
    */
-  public class EntityTypeSearchResponse {
+  public class TenantSCIMServerConfiguration: Enableable {
 
-    public List<EntityType> entityTypes;
+    public Guid? clientEntityTypeId;
 
-    public long? total;
+    public IDictionary<string, object> schemas;
 
-    public EntityTypeSearchResponse with(Action<EntityTypeSearchResponse> action) {
+    public Guid? serverEntityTypeId;
+
+    public TenantSCIMServerConfiguration with(Action<TenantSCIMServerConfiguration> action) {
       action(this);
       return this;
     }

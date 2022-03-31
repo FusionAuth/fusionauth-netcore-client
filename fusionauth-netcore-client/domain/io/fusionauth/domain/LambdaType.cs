@@ -44,6 +44,10 @@ namespace io.fusionauth.domain {
         SteamReconcile, 
         TwitchReconcile, 
         XboxReconcile, 
-        ClientCredentialsJWTPopulate
+        ClientCredentialsJWTPopulate, 
+        SCIMServerGroupRequestConverter, 
+        SCIMServerGroupResponseConverter, 
+        SCIMServerUserRequestConverter, 
+        SCIMServerUserResponseConverter
   }
 }

@@ -2464,6 +2464,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<GroupMemberSearchResponse>> SearchGroupMembersAsync(GroupMemberSearchRequest request) {
+      return buildClient()
+          .withUri("/api/group/member/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<GroupMemberSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IPAccessControlListSearchResponse>> SearchIPAccessControlListsAsync(IPAccessControlListSearchRequest request) {
       return buildClient()
           .withUri("/api/ip-acl/search")
@@ -2744,6 +2753,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<GroupResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<MemberResponse>> UpdateGroupMembersAsync(MemberRequest request) {
+      return buildClient()
+          .withUri("/api/group/member")
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<MemberResponse>();
     }
 
     /// <inheritdoc/>

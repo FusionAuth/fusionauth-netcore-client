@@ -15,24 +15,29 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
   /**
-   * Search response for entity types.
-   *
-   * @author Brian Pontarelli
+   * @author Rob Davis
    */
-  public class EntityTypeSearchResponse {
+  public class TenantLambdaConfiguration {
 
-    public List<EntityType> entityTypes;
+    public Guid? scimEnterpriseUserRequestConverterId;
 
-    public long? total;
+    public Guid? scimEnterpriseUserResponseConverterId;
 
-    public EntityTypeSearchResponse with(Action<EntityTypeSearchResponse> action) {
+    public Guid? scimGroupRequestConverterId;
+
+    public Guid? scimGroupResponseConverterId;
+
+    public Guid? scimUserRequestConverterId;
+
+    public Guid? scimUserResponseConverterId;
+
+    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
       action(this);
       return this;
     }

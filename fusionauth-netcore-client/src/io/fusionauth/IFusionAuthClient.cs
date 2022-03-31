@@ -2082,7 +2082,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ActionResponse>> RetrieveActionAsync(Guid? actionId);
 
     /// <summary>
-    /// Retrieves all of the actions for the user with the given Id. This will return all time based actions that are active,
+    /// Retrieves all the actions for the user with the given Id. This will return all time based actions that are active,
     /// and inactive as well as non-time based actions.
     /// This is an asynchronous method.
     /// </summary>
@@ -2096,7 +2096,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ActionResponse>> RetrieveActionsAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves all of the actions for the user with the given Id that are currently preventing the User from logging in.
+    /// Retrieves all the actions for the user with the given Id that are currently preventing the User from logging in.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the user to fetch the actions for.</param>
@@ -2109,7 +2109,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ActionResponse>> RetrieveActionsPreventingLoginAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves all of the actions for the user with the given Id that are currently active.
+    /// Retrieves all the actions for the user with the given Id that are currently active.
     /// An active action means one that is time based and has not been canceled, and has not ended.
     /// This is an asynchronous method.
     /// </summary>
@@ -2136,7 +2136,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ApplicationResponse>> RetrieveApplicationAsync(Guid? applicationId);
 
     /// <summary>
-    /// Retrieves all of the applications.
+    /// Retrieves all the applications.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2174,7 +2174,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ConnectorResponse>> RetrieveConnectorAsync(Guid? connectorId);
 
     /// <summary>
-    /// Retrieves all of the connectors.
+    /// Retrieves all the connectors.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2199,7 +2199,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ConsentResponse>> RetrieveConsentAsync(Guid? consentId);
 
     /// <summary>
-    /// Retrieves all of the consent.
+    /// Retrieves all the consent.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2255,7 +2255,7 @@ namespace io.fusionauth {
     Task<ClientResponse<PreviewResponse>> RetrieveEmailTemplatePreviewAsync(PreviewRequest request);
 
     /// <summary>
-    /// Retrieves all of the email templates.
+    /// Retrieves all the email templates.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2308,7 +2308,7 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityTypeResponse>> RetrieveEntityTypeAsync(Guid? entityTypeId);
 
     /// <summary>
-    /// Retrieves all of the Entity Types.
+    /// Retrieves all the Entity Types.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2333,7 +2333,7 @@ namespace io.fusionauth {
     Task<ClientResponse<EventLogResponse>> RetrieveEventLogAsync(int? eventLogId);
 
     /// <summary>
-    /// Retrieves all of the families that a user belongs to.
+    /// Retrieves all the families that a user belongs to.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The User's id</param>
@@ -2346,7 +2346,7 @@ namespace io.fusionauth {
     Task<ClientResponse<FamilyResponse>> RetrieveFamiliesAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves all of the members of a family by the unique Family Id.
+    /// Retrieves all the members of a family by the unique Family Id.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="familyId"> The unique Id of the Family.</param>
@@ -2385,7 +2385,7 @@ namespace io.fusionauth {
     Task<ClientResponse<FormFieldResponse>> RetrieveFormFieldAsync(Guid? fieldId);
 
     /// <summary>
-    /// Retrieves all of the forms fields
+    /// Retrieves all the forms fields
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2397,7 +2397,7 @@ namespace io.fusionauth {
     Task<ClientResponse<FormFieldResponse>> RetrieveFormFieldsAsync();
 
     /// <summary>
-    /// Retrieves all of the forms.
+    /// Retrieves all the forms.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2422,7 +2422,7 @@ namespace io.fusionauth {
     Task<ClientResponse<GroupResponse>> RetrieveGroupAsync(Guid? groupId);
 
     /// <summary>
-    /// Retrieves all of the groups.
+    /// Retrieves all the groups.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2475,7 +2475,7 @@ namespace io.fusionauth {
     Task<ClientResponse<IdentityProviderResponse>> RetrieveIdentityProviderByTypeAsync(IdentityProviderType type);
 
     /// <summary>
-    /// Retrieves all of the identity providers.
+    /// Retrieves all the identity providers.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2487,7 +2487,7 @@ namespace io.fusionauth {
     Task<ClientResponse<IdentityProviderResponse>> RetrieveIdentityProvidersAsync();
 
     /// <summary>
-    /// Retrieves all of the actions for the user with the given Id that are currently inactive.
+    /// Retrieves all the actions for the user with the given Id that are currently inactive.
     /// An inactive action means one that is time based and has been canceled or has expired, or is not time based.
     /// This is an asynchronous method.
     /// </summary>
@@ -2501,7 +2501,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ActionResponse>> RetrieveInactiveActionsAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves all of the applications that are currently inactive.
+    /// Retrieves all the applications that are currently inactive.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2513,7 +2513,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ApplicationResponse>> RetrieveInactiveApplicationsAsync();
 
     /// <summary>
-    /// Retrieves all of the user actions that are currently inactive.
+    /// Retrieves all the user actions that are currently inactive.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2600,7 +2600,7 @@ namespace io.fusionauth {
     Task<ClientResponse<KeyResponse>> RetrieveKeyAsync(Guid? keyId);
 
     /// <summary>
-    /// Retrieves all of the keys.
+    /// Retrieves all the keys.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2625,7 +2625,7 @@ namespace io.fusionauth {
     Task<ClientResponse<LambdaResponse>> RetrieveLambdaAsync(Guid? lambdaId);
 
     /// <summary>
-    /// Retrieves all of the lambdas.
+    /// Retrieves all the lambdas.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2637,7 +2637,7 @@ namespace io.fusionauth {
     Task<ClientResponse<LambdaResponse>> RetrieveLambdasAsync();
 
     /// <summary>
-    /// Retrieves all of the lambdas for the provided type.
+    /// Retrieves all the lambdas for the provided type.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="type"> The type of the lambda to return.</param>
@@ -2692,7 +2692,7 @@ namespace io.fusionauth {
     Task<ClientResponse<PreviewMessageTemplateResponse>> RetrieveMessageTemplatePreviewAsync(PreviewMessageTemplateRequest request);
 
     /// <summary>
-    /// Retrieves all of the message templates.
+    /// Retrieves all the message templates.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2717,7 +2717,7 @@ namespace io.fusionauth {
     Task<ClientResponse<MessengerResponse>> RetrieveMessengerAsync(Guid? messengerId);
 
     /// <summary>
-    /// Retrieves all of the messengers.
+    /// Retrieves all the messengers.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2800,7 +2800,7 @@ namespace io.fusionauth {
     Task<ClientResponse<PasswordValidationRulesResponse>> RetrievePasswordValidationRulesWithTenantIdAsync(Guid? tenantId);
 
     /// <summary>
-    /// Retrieves all of the children for the given parent email address.
+    /// Retrieves all the children for the given parent email address.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="parentEmail"> The email of the parent.</param>
@@ -2945,7 +2945,7 @@ namespace io.fusionauth {
     Task<ClientResponse<TenantResponse>> RetrieveTenantAsync(Guid? tenantId);
 
     /// <summary>
-    /// Retrieves all of the tenants.
+    /// Retrieves all the tenants.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -2970,7 +2970,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ThemeResponse>> RetrieveThemeAsync(Guid? themeId);
 
     /// <summary>
-    /// Retrieves all of the themes.
+    /// Retrieves all the themes.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -3061,7 +3061,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserActionReasonResponse>> RetrieveUserActionReasonsAsync();
 
     /// <summary>
-    /// Retrieves all of the user actions.
+    /// Retrieves all the user actions.
     /// This is an asynchronous method.
     /// </summary>
     /// <returns>
@@ -3140,7 +3140,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserResponse>> RetrieveUserByVerificationIdAsync(string verificationId);
 
     /// <summary>
-    /// Retrieves all of the comments for the user with the given Id.
+    /// Retrieves all the comments for the user with the given Id.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the user.</param>
@@ -3166,7 +3166,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserConsentResponse>> RetrieveUserConsentAsync(Guid? userConsentId);
 
     /// <summary>
-    /// Retrieves all of the consents for a User.
+    /// Retrieves all the consents for a User.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The User's Id</param>
@@ -3527,6 +3527,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<EventLogSearchResponse>> SearchEventLogsAsync(EventLogSearchRequest request);
+
+    /// <summary>
+    /// Searches group members with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<GroupMemberSearchResponse>> SearchGroupMembersAsync(GroupMemberSearchRequest request);
 
     /// <summary>
     /// Searches the IP Access Control Lists with the specified criteria and pagination.
@@ -3934,6 +3947,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<GroupResponse>> UpdateGroupAsync(Guid? groupId, GroupRequest request);
+
+    /// <summary>
+    /// Creates a member in a group.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request object that contains all the information used to create the group member(s).</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<MemberResponse>> UpdateGroupMembersAsync(MemberRequest request);
 
     /// <summary>
     /// Updates the IP Access Control List with the given Id.
@@ -6197,7 +6223,7 @@ namespace io.fusionauth {
    ClientResponse<ActionResponse> RetrieveAction(Guid? actionId);
 
    /// <summary>
-   /// Retrieves all of the actions for the user with the given Id. This will return all time based actions that are active,
+   /// Retrieves all the actions for the user with the given Id. This will return all time based actions that are active,
    /// and inactive as well as non-time based actions.
    /// </summary>
    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
@@ -6210,7 +6236,7 @@ namespace io.fusionauth {
    ClientResponse<ActionResponse> RetrieveActions(Guid? userId);
 
    /// <summary>
-   /// Retrieves all of the actions for the user with the given Id that are currently preventing the User from logging in.
+   /// Retrieves all the actions for the user with the given Id that are currently preventing the User from logging in.
    /// </summary>
    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
    /// <returns>
@@ -6222,7 +6248,7 @@ namespace io.fusionauth {
    ClientResponse<ActionResponse> RetrieveActionsPreventingLogin(Guid? userId);
 
    /// <summary>
-   /// Retrieves all of the actions for the user with the given Id that are currently active.
+   /// Retrieves all the actions for the user with the given Id that are currently active.
    /// An active action means one that is time based and has not been canceled, and has not ended.
    /// </summary>
    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
@@ -6247,7 +6273,7 @@ namespace io.fusionauth {
    ClientResponse<ApplicationResponse> RetrieveApplication(Guid? applicationId);
 
    /// <summary>
-   /// Retrieves all of the applications.
+   /// Retrieves all the applications.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6282,7 +6308,7 @@ namespace io.fusionauth {
    ClientResponse<ConnectorResponse> RetrieveConnector(Guid? connectorId);
 
    /// <summary>
-   /// Retrieves all of the connectors.
+   /// Retrieves all the connectors.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6305,7 +6331,7 @@ namespace io.fusionauth {
    ClientResponse<ConsentResponse> RetrieveConsent(Guid? consentId);
 
    /// <summary>
-   /// Retrieves all of the consent.
+   /// Retrieves all the consent.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6357,7 +6383,7 @@ namespace io.fusionauth {
    ClientResponse<PreviewResponse> RetrieveEmailTemplatePreview(PreviewRequest request);
 
    /// <summary>
-   /// Retrieves all of the email templates.
+   /// Retrieves all the email templates.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6406,7 +6432,7 @@ namespace io.fusionauth {
    ClientResponse<EntityTypeResponse> RetrieveEntityType(Guid? entityTypeId);
 
    /// <summary>
-   /// Retrieves all of the Entity Types.
+   /// Retrieves all the Entity Types.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6429,7 +6455,7 @@ namespace io.fusionauth {
    ClientResponse<EventLogResponse> RetrieveEventLog(int? eventLogId);
 
    /// <summary>
-   /// Retrieves all of the families that a user belongs to.
+   /// Retrieves all the families that a user belongs to.
    /// </summary>
    /// <param name="userId"> The User's id</param>
    /// <returns>
@@ -6441,7 +6467,7 @@ namespace io.fusionauth {
    ClientResponse<FamilyResponse> RetrieveFamilies(Guid? userId);
 
    /// <summary>
-   /// Retrieves all of the members of a family by the unique Family Id.
+   /// Retrieves all the members of a family by the unique Family Id.
    /// </summary>
    /// <param name="familyId"> The unique Id of the Family.</param>
    /// <returns>
@@ -6477,7 +6503,7 @@ namespace io.fusionauth {
    ClientResponse<FormFieldResponse> RetrieveFormField(Guid? fieldId);
 
    /// <summary>
-   /// Retrieves all of the forms fields
+   /// Retrieves all the forms fields
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6488,7 +6514,7 @@ namespace io.fusionauth {
    ClientResponse<FormFieldResponse> RetrieveFormFields();
 
    /// <summary>
-   /// Retrieves all of the forms.
+   /// Retrieves all the forms.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6511,7 +6537,7 @@ namespace io.fusionauth {
    ClientResponse<GroupResponse> RetrieveGroup(Guid? groupId);
 
    /// <summary>
-   /// Retrieves all of the groups.
+   /// Retrieves all the groups.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6560,7 +6586,7 @@ namespace io.fusionauth {
    ClientResponse<IdentityProviderResponse> RetrieveIdentityProviderByType(IdentityProviderType type);
 
    /// <summary>
-   /// Retrieves all of the identity providers.
+   /// Retrieves all the identity providers.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6571,7 +6597,7 @@ namespace io.fusionauth {
    ClientResponse<IdentityProviderResponse> RetrieveIdentityProviders();
 
    /// <summary>
-   /// Retrieves all of the actions for the user with the given Id that are currently inactive.
+   /// Retrieves all the actions for the user with the given Id that are currently inactive.
    /// An inactive action means one that is time based and has been canceled or has expired, or is not time based.
    /// </summary>
    /// <param name="userId"> The Id of the user to fetch the actions for.</param>
@@ -6584,7 +6610,7 @@ namespace io.fusionauth {
    ClientResponse<ActionResponse> RetrieveInactiveActions(Guid? userId);
 
    /// <summary>
-   /// Retrieves all of the applications that are currently inactive.
+   /// Retrieves all the applications that are currently inactive.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6595,7 +6621,7 @@ namespace io.fusionauth {
    ClientResponse<ApplicationResponse> RetrieveInactiveApplications();
 
    /// <summary>
-   /// Retrieves all of the user actions that are currently inactive.
+   /// Retrieves all the user actions that are currently inactive.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6675,7 +6701,7 @@ namespace io.fusionauth {
    ClientResponse<KeyResponse> RetrieveKey(Guid? keyId);
 
    /// <summary>
-   /// Retrieves all of the keys.
+   /// Retrieves all the keys.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6698,7 +6724,7 @@ namespace io.fusionauth {
    ClientResponse<LambdaResponse> RetrieveLambda(Guid? lambdaId);
 
    /// <summary>
-   /// Retrieves all of the lambdas.
+   /// Retrieves all the lambdas.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6709,7 +6735,7 @@ namespace io.fusionauth {
    ClientResponse<LambdaResponse> RetrieveLambdas();
 
    /// <summary>
-   /// Retrieves all of the lambdas for the provided type.
+   /// Retrieves all the lambdas for the provided type.
    /// </summary>
    /// <param name="type"> The type of the lambda to return.</param>
    /// <returns>
@@ -6760,7 +6786,7 @@ namespace io.fusionauth {
    ClientResponse<PreviewMessageTemplateResponse> RetrieveMessageTemplatePreview(PreviewMessageTemplateRequest request);
 
    /// <summary>
-   /// Retrieves all of the message templates.
+   /// Retrieves all the message templates.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6783,7 +6809,7 @@ namespace io.fusionauth {
    ClientResponse<MessengerResponse> RetrieveMessenger(Guid? messengerId);
 
    /// <summary>
-   /// Retrieves all of the messengers.
+   /// Retrieves all the messengers.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6860,7 +6886,7 @@ namespace io.fusionauth {
    ClientResponse<PasswordValidationRulesResponse> RetrievePasswordValidationRulesWithTenantId(Guid? tenantId);
 
    /// <summary>
-   /// Retrieves all of the children for the given parent email address.
+   /// Retrieves all the children for the given parent email address.
    /// </summary>
    /// <param name="parentEmail"> The email of the parent.</param>
    /// <returns>
@@ -6994,7 +7020,7 @@ namespace io.fusionauth {
    ClientResponse<TenantResponse> RetrieveTenant(Guid? tenantId);
 
    /// <summary>
-   /// Retrieves all of the tenants.
+   /// Retrieves all the tenants.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -7017,7 +7043,7 @@ namespace io.fusionauth {
    ClientResponse<ThemeResponse> RetrieveTheme(Guid? themeId);
 
    /// <summary>
-   /// Retrieves all of the themes.
+   /// Retrieves all the themes.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -7101,7 +7127,7 @@ namespace io.fusionauth {
    ClientResponse<UserActionReasonResponse> RetrieveUserActionReasons();
 
    /// <summary>
-   /// Retrieves all of the user actions.
+   /// Retrieves all the user actions.
    /// </summary>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -7174,7 +7200,7 @@ namespace io.fusionauth {
    ClientResponse<UserResponse> RetrieveUserByVerificationId(string verificationId);
 
    /// <summary>
-   /// Retrieves all of the comments for the user with the given Id.
+   /// Retrieves all the comments for the user with the given Id.
    /// </summary>
    /// <param name="userId"> The Id of the user.</param>
    /// <returns>
@@ -7198,7 +7224,7 @@ namespace io.fusionauth {
    ClientResponse<UserConsentResponse> RetrieveUserConsent(Guid? userConsentId);
 
    /// <summary>
-   /// Retrieves all of the consents for a User.
+   /// Retrieves all the consents for a User.
    /// </summary>
    /// <param name="userId"> The User's Id</param>
    /// <returns>
@@ -7534,6 +7560,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EventLogSearchResponse> SearchEventLogs(EventLogSearchRequest request);
+
+   /// <summary>
+   /// Searches group members with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<GroupMemberSearchResponse> SearchGroupMembers(GroupMemberSearchRequest request);
 
    /// <summary>
    /// Searches the IP Access Control Lists with the specified criteria and pagination.
@@ -7912,6 +7950,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<GroupResponse> UpdateGroup(Guid? groupId, GroupRequest request);
+
+   /// <summary>
+   /// Creates a member in a group.
+   /// </summary>
+   /// <param name="request"> The request object that contains all the information used to create the group member(s).</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<MemberResponse> UpdateGroupMembers(MemberRequest request);
 
    /// <summary>
    /// Updates the IP Access Control List with the given Id.

@@ -22,17 +22,17 @@ using System;
 namespace io.fusionauth.domain.api {
 
   /**
-   * Search response for entity types.
+   * Search response for Group Members
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class EntityTypeSearchResponse {
+  public class GroupMemberSearchResponse {
 
-    public List<EntityType> entityTypes;
+    public List<GroupMember> members;
 
     public long? total;
 
-    public EntityTypeSearchResponse with(Action<EntityTypeSearchResponse> action) {
+    public GroupMemberSearchResponse with(Action<GroupMemberSearchResponse> action) {
       action(this);
       return this;
     }

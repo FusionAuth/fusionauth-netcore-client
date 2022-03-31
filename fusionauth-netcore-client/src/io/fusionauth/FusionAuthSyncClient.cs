@@ -1308,6 +1308,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<GroupMemberSearchResponse> SearchGroupMembers(GroupMemberSearchRequest request) {
+      return client.SearchGroupMembersAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IPAccessControlListSearchResponse> SearchIPAccessControlLists(IPAccessControlListSearchRequest request) {
       return client.SearchIPAccessControlListsAsync(request).GetAwaiter().GetResult();
     }
@@ -1454,6 +1459,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<GroupResponse> UpdateGroup(Guid? groupId, GroupRequest request) {
       return client.UpdateGroupAsync(groupId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<MemberResponse> UpdateGroupMembers(MemberRequest request) {
+      return client.UpdateGroupMembersAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

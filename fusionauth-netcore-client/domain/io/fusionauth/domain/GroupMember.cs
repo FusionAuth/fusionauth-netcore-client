@@ -35,6 +35,8 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? insertInstant;
 
+    public User user;
+
     public Guid? userId;
 
     public GroupMember with(Action<GroupMember> action) {

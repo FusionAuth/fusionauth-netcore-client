@@ -15,24 +15,23 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.search {
 
   /**
-   * Search response for entity types.
+   * Search criteria for Group Members
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class EntityTypeSearchResponse {
+  public class GroupMemberSearchCriteria: BaseSearchCriteria {
 
-    public List<EntityType> entityTypes;
+    public Guid? groupId;
 
-    public long? total;
+    public Guid? userId;
 
-    public EntityTypeSearchResponse with(Action<EntityTypeSearchResponse> action) {
+    public GroupMemberSearchCriteria with(Action<GroupMemberSearchCriteria> action) {
       action(this);
       return this;
     }

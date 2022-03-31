@@ -58,6 +58,8 @@ namespace io.fusionauth.domain {
 
     public JWTConfiguration jwtConfiguration;
 
+    public TenantLambdaConfiguration lambdaConfiguration;
+
     public DateTimeOffset? lastUpdateInstant;
 
     public TenantLoginConfiguration loginConfiguration;
@@ -81,6 +83,8 @@ namespace io.fusionauth.domain {
     public TenantRateLimitConfiguration rateLimitConfiguration;
 
     public TenantRegistrationConfiguration registrationConfiguration;
+
+    public TenantSCIMServerConfiguration scimServerConfiguration;
 
     public TenantSSOConfiguration ssoConfiguration;
 
