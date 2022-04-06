@@ -47,16 +47,16 @@ namespace io.fusionauth.domain.@event {
         UserCreate, 
         [EnumMember(Value = "user.create.complete")]
         UserCreateComplete, 
-        [EnumMember(Value = "user.idp.link")]
-        UserIdentityProviderLink, 
-        [EnumMember(Value = "user.idp.unlink")]
-        UserIdentityProviderUnlink, 
         [EnumMember(Value = "user.deactivate")]
         UserDeactivate, 
         [EnumMember(Value = "user.delete")]
         UserDelete, 
         [EnumMember(Value = "user.delete.complete")]
         UserDeleteComplete, 
+        [EnumMember(Value = "user.identity-provider.link")]
+        UserIdentityProviderLink, 
+        [EnumMember(Value = "user.identity-provider.unlink")]
+        UserIdentityProviderUnlink, 
         [EnumMember(Value = "user.loginId.duplicate.create")]
         UserLoginIdDuplicateOnCreate, 
         [EnumMember(Value = "user.loginId.duplicate.update")]

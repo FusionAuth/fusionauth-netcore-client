@@ -28,7 +28,7 @@ namespace io.fusionauth.domain.@event {
    */
   public class UserIdentityProviderUnlinkEvent: BaseEvent {
 
-    public string identityProviderName;
+    public IdentityProviderLink identityProviderLink;
 
     public User user;
 

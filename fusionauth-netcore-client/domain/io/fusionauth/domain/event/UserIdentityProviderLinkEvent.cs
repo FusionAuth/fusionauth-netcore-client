@@ -22,13 +22,13 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User IdP Link Event.
+   * Models the User Identity Provider Link Event.
    *
    * @author Rob Davis
    */
   public class UserIdentityProviderLinkEvent: BaseEvent {
 
-    public string identityProviderName;
+    public IdentityProviderLink identityProviderLink;
 
     public User user;
 
