@@ -41,6 +41,8 @@ namespace io.fusionauth.domain.reactor {
 
     public ReactorFeatureStatus entityManagement;
 
+    public string expiration;
+
     public bool? licensed;
 
     public ReactorFeatureStatus scimServer;

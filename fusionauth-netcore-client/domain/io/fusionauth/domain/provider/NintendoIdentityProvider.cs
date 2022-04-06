@@ -34,7 +34,13 @@ namespace io.fusionauth.domain.provider {
 
     public string client_secret;
 
+    public string emailClaim;
+
     public string scope;
+
+    public string uniqueIdClaim;
+
+    public string usernameClaim;
 
     public NintendoIdentityProvider with(Action<NintendoIdentityProvider> action) {
       action(this);

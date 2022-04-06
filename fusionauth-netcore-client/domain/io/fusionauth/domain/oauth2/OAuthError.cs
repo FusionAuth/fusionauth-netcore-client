@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -36,6 +37,8 @@ namespace io.fusionauth.domain.oauth2 {
     public string error_uri;
 
     public string two_factor_id;
+
+    public List<TwoFactorMethod> two_factor_methods;
 
     public OAuthError with(Action<OAuthError> action) {
       action(this);
