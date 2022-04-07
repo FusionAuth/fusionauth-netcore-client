@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User IdP Unlink Event.
+   * Models the User Identity Provider Unlink Event.
    *
    * @author Rob Davis
    */
