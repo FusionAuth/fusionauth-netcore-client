@@ -53,14 +53,18 @@ namespace io.fusionauth.domain.@event {
         UserDelete, 
         [EnumMember(Value = "user.delete.complete")]
         UserDeleteComplete, 
-        [EnumMember(Value = "user.loginId.duplicate.create")]
-        UserLoginIdDuplicateOnCreate, 
-        [EnumMember(Value = "user.loginId.duplicate.update")]
-        UserLoginIdDuplicateOnUpdate, 
         [EnumMember(Value = "user.email.update")]
         UserEmailUpdate, 
         [EnumMember(Value = "user.email.verified")]
         UserEmailVerified, 
+        [EnumMember(Value = "user.identity-provider.link")]
+        UserIdentityProviderLink, 
+        [EnumMember(Value = "user.identity-provider.unlink")]
+        UserIdentityProviderUnlink, 
+        [EnumMember(Value = "user.loginId.duplicate.create")]
+        UserLoginIdDuplicateOnCreate, 
+        [EnumMember(Value = "user.loginId.duplicate.update")]
+        UserLoginIdDuplicateOnUpdate, 
         [EnumMember(Value = "user.login.failed")]
         UserLoginFailed, 
         [EnumMember(Value = "user.login.new-device")]

@@ -15,28 +15,24 @@
  */
 
 
-using io.fusionauth.domain.api;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider {
+namespace io.fusionauth.domain.@event {
 
   /**
-   * @author Daniel DeGroff
+   * Models the User Identity Provider Link Event.
+   *
+   * @author Rob Davis
    */
-  public class IdentityProviderLinkRequest: BaseEventRequest {
+  public class UserIdentityProviderLinkEvent: BaseEvent {
 
-    public string displayName;
+    public IdentityProviderLink identityProviderLink;
 
-    public Guid? identityProviderId;
+    public User user;
 
-    public string identityProviderUserId;
-
-    public string pendingIdPLinkId;
-
-    public Guid? userId;
-
-    public IdentityProviderLinkRequest with(Action<IdentityProviderLinkRequest> action) {
+    public UserIdentityProviderLinkEvent with(Action<UserIdentityProviderLinkEvent> action) {
       action(this);
       return this;
     }
