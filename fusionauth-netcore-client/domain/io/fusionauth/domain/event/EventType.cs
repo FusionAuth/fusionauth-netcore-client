@@ -37,6 +37,10 @@ namespace io.fusionauth.domain.@event {
         AuditLogCreate, 
         [EnumMember(Value = "event-log.create")]
         @EventLogCreate, 
+        [EnumMember(Value = "group.membership.add")]
+        GroupMembershipAdd, 
+        [EnumMember(Value = "group.membership.remove")]
+        GroupMembershipRemove, 
         [EnumMember(Value = "kickstart.success")]
         KickstartSuccess, 
         [EnumMember(Value = "user.action")]

@@ -26,7 +26,7 @@ namespace io.fusionauth.domain.api {
    *
    * @author Daniel DeGroff
    */
-  public class MemberRequest {
+  public class MemberRequest: BaseEventRequest {
 
     public IDictionary<Guid, List<GroupMember>> members;
 
