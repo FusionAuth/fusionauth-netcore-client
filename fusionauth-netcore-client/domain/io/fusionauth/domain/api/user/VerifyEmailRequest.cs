@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.api.user {
 
     public string oneTimeCode;
 
+    public Guid? userId;
+
     public string verificationId;
 
     public VerifyEmailRequest with(Action<VerifyEmailRequest> action) {

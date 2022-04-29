@@ -4282,6 +4282,21 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> VerifyEmailAddressAsync(VerifyEmailRequest request);
 
     /// <summary>
+    /// Administratively verify a user's email address. Use this method to bypass email verification for the user.
+    /// 
+    /// The request body will contain the userId to be verified. An API key is required when sending the userId in the request body.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request that contains the userId to verify.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> VerifyEmailAddressByUserIdAsync(VerifyEmailRequest request);
+
+    /// <summary>
     /// Confirms an application registration. The Id given is usually from an email sent to the user.
     /// This is an asynchronous method.
     /// </summary>
@@ -8260,6 +8275,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> VerifyEmailAddress(VerifyEmailRequest request);
+
+   /// <summary>
+   /// Administratively verify a user's email address. Use this method to bypass email verification for the user.
+   /// 
+   /// The request body will contain the userId to be verified. An API key is required when sending the userId in the request body.
+   /// </summary>
+   /// <param name="request"> The request that contains the userId to verify.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> VerifyEmailAddressByUserId(VerifyEmailRequest request);
 
    /// <summary>
    /// Confirms an application registration. The Id given is usually from an email sent to the user.
