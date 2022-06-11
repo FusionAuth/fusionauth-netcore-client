@@ -27,8 +27,6 @@ namespace io.fusionauth.domain {
 
     public List<EmailHeader> additionalHeaders;
 
-    public bool? debug;
-
     public string defaultFromEmail;
 
     public string defaultFromName;
