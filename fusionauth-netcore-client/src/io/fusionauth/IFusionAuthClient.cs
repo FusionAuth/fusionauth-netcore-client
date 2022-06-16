@@ -2851,17 +2851,17 @@ namespace io.fusionauth {
     Task<ClientResponse<RecentLoginResponse>> RetrieveRecentLoginsAsync(int? offset, int? limit);
 
     /// <summary>
-    /// Retrieves a single refresh token by unique Id. This is not the same thing as the string value of the refresh token, if you have that, you already have what you need..
+    /// Retrieves a single refresh token by unique Id. This is not the same thing as the string value of the refresh token. If you have that, you already have what you need.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="userId"> The Id of the user.</param>
+    /// <param name="tokenId"> The Id of the token.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? userId);
+    Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? tokenId);
 
     /// <summary>
     /// Retrieves the refresh tokens that belong to the user with the given Id.
@@ -6948,16 +6948,16 @@ namespace io.fusionauth {
    ClientResponse<RecentLoginResponse> RetrieveRecentLogins(int? offset, int? limit);
 
    /// <summary>
-   /// Retrieves a single refresh token by unique Id. This is not the same thing as the string value of the refresh token, if you have that, you already have what you need..
+   /// Retrieves a single refresh token by unique Id. This is not the same thing as the string value of the refresh token. If you have that, you already have what you need.
    /// </summary>
-   /// <param name="userId"> The Id of the user.</param>
+   /// <param name="tokenId"> The Id of the token.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RefreshTokenResponse> RetrieveRefreshTokenById(Guid? userId);
+   ClientResponse<RefreshTokenResponse> RetrieveRefreshTokenById(Guid? tokenId);
 
    /// <summary>
    /// Retrieves the refresh tokens that belong to the user with the given Id.

@@ -1063,8 +1063,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RefreshTokenResponse> RetrieveRefreshTokenById(Guid? userId) {
-      return client.RetrieveRefreshTokenByIdAsync(userId).GetAwaiter().GetResult();
+    public ClientResponse<RefreshTokenResponse> RetrieveRefreshTokenById(Guid? tokenId) {
+      return client.RetrieveRefreshTokenByIdAsync(tokenId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

@@ -2015,10 +2015,10 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? userId) {
+    public Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? tokenId) {
       return buildClient()
           .withUri("/api/jwt/refresh")
-          .withUriSegment(userId)
+          .withUriSegment(tokenId)
           .withMethod("Get")
           .goAsync<RefreshTokenResponse>();
     }
