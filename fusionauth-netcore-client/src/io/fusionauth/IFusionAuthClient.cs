@@ -187,6 +187,32 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
 
     /// <summary>
+    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<LoginResponse>> CompleteWebAuthnLoginAsync(WebAuthnLoginRequest request);
+
+    /// <summary>
+    /// Complete a WebAuthn registration ceremony by validating the client request and saving the new credential
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for completing the registration ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request);
+
+    /// <summary>
     /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
     /// an API key can only be created with equal or lesser authority. An API key cannot create another API key unless it is granted 
     /// to that API key.
@@ -3766,6 +3792,32 @@ namespace io.fusionauth {
     Task<ClientResponse<TwoFactorStartResponse>> StartTwoFactorLoginAsync(TwoFactorStartRequest request);
 
     /// <summary>
+    /// Start a WebAuthn authentication ceremony by generating a new challenge for the user
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for starting the authentication ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<PublicKeyCredentialRequestOptions>> StartWebAuthnLoginAsync(WebAuthnStartRequest request);
+
+    /// <summary>
+    /// Start a WebAuthn registration ceremony by generating a new challenge for the user
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for starting the registration ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<PublicKeyCredentialCreationOptions>> StartWebAuthnRegistrationAsync(WebAuthnStartRequest request);
+
+    /// <summary>
     /// Complete login using a 2FA challenge
     /// This is an asynchronous method.
     /// </summary>
@@ -4473,6 +4525,30 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
+
+   /// <summary>
+   /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<LoginResponse> CompleteWebAuthnLogin(WebAuthnLoginRequest request);
+
+   /// <summary>
+   /// Complete a WebAuthn registration ceremony by validating the client request and saving the new credential
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for completing the registration ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request);
 
    /// <summary>
    /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
@@ -7795,6 +7871,30 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request);
+
+   /// <summary>
+   /// Start a WebAuthn authentication ceremony by generating a new challenge for the user
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for starting the authentication ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<PublicKeyCredentialRequestOptions> StartWebAuthnLogin(WebAuthnStartRequest request);
+
+   /// <summary>
+   /// Start a WebAuthn registration ceremony by generating a new challenge for the user
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for starting the registration ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<PublicKeyCredentialCreationOptions> StartWebAuthnRegistration(WebAuthnStartRequest request);
 
    /// <summary>
    /// Complete login using a 2FA challenge

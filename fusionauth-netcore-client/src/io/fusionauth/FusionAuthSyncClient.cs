@@ -106,6 +106,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<LoginResponse> CompleteWebAuthnLogin(WebAuthnLoginRequest request) {
+      return client.CompleteWebAuthnLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request) {
+      return client.CompleteWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<APIKeyResponse> CreateAPIKey(Guid? keyId, APIKeyRequest request) {
       return client.CreateAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
     }
@@ -1394,6 +1404,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request) {
       return client.StartTwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<PublicKeyCredentialRequestOptions> StartWebAuthnLogin(WebAuthnStartRequest request) {
+      return client.StartWebAuthnLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<PublicKeyCredentialCreationOptions> StartWebAuthnRegistration(WebAuthnStartRequest request) {
+      return client.StartWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

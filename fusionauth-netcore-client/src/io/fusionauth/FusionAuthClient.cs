@@ -175,6 +175,24 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<LoginResponse>> CompleteWebAuthnLoginAsync(WebAuthnLoginRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/webauthn/login")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<LoginResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request) {
+      return buildClient()
+          .withUri("/api/webauthn/complete")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<APIKeyResponse>> CreateAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
       return buildClient()
           .withUri("/api/api-key")
@@ -2620,6 +2638,24 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<TwoFactorStartResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<PublicKeyCredentialRequestOptions>> StartWebAuthnLoginAsync(WebAuthnStartRequest request) {
+      return buildClient()
+          .withUri("/api/webauthn/start")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<PublicKeyCredentialRequestOptions>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<PublicKeyCredentialCreationOptions>> StartWebAuthnRegistrationAsync(WebAuthnStartRequest request) {
+      return buildClient()
+          .withUri("/api/webauthn/register")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<PublicKeyCredentialCreationOptions>();
     }
 
     /// <inheritdoc/>
