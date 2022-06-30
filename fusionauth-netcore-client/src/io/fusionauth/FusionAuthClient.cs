@@ -848,6 +848,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteWebAuthnCredentialAsync(Guid? id) {
+      return buildClient()
+          .withUri("/api/webauthn")
+          .withUriSegment(id)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DeleteWebhookAsync(Guid? webhookId) {
       return buildClient()
           .withUri("/api/webhook")

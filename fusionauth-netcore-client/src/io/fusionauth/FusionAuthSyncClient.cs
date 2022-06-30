@@ -453,6 +453,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteWebAuthnCredential(Guid? id) {
+      return client.DeleteWebAuthnCredentialAsync(id).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteWebhook(Guid? webhookId) {
       return client.DeleteWebhookAsync(webhookId).GetAwaiter().GetResult();
     }

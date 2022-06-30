@@ -1153,6 +1153,19 @@ namespace io.fusionauth {
     Task<ClientResponse<UserDeleteResponse>> DeleteUsersByQueryAsync(UserDeleteRequest request);
 
     /// <summary>
+    /// Deletes the WebAuthn credential for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="id"> The Id of the WebAuthn credential to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteWebAuthnCredentialAsync(Guid? id);
+
+    /// <summary>
     /// Deletes the webhook for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -5435,6 +5448,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<UserDeleteResponse> DeleteUsersByQuery(UserDeleteRequest request);
+
+   /// <summary>
+   /// Deletes the WebAuthn credential for the given Id.
+   /// </summary>
+   /// <param name="id"> The Id of the WebAuthn credential to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteWebAuthnCredential(Guid? id);
 
    /// <summary>
    /// Deletes the webhook for the given Id.
