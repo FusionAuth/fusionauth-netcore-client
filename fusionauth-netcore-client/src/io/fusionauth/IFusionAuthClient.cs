@@ -3321,6 +3321,19 @@ namespace io.fusionauth {
     Task<ClientResponse<VersionResponse>> RetrieveVersionAsync();
 
     /// <summary>
+    /// Retrieves the WebAuthn credential for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="id"> The Id of the WebAuthn credential.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnCredentialResponse>> RetrieveWebAuthnCredentialAsync(Guid? id);
+
+    /// <summary>
     /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
     /// This is an asynchronous method.
     /// </summary>
@@ -7433,6 +7446,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<VersionResponse> RetrieveVersion();
+
+   /// <summary>
+   /// Retrieves the WebAuthn credential for the given Id.
+   /// </summary>
+   /// <param name="id"> The Id of the WebAuthn credential.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredential(Guid? id);
 
    /// <summary>
    /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.

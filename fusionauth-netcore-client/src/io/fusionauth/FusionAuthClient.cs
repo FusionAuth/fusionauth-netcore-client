@@ -2336,6 +2336,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<WebAuthnCredentialResponse>> RetrieveWebAuthnCredentialAsync(Guid? id) {
+      return buildClient()
+          .withUri("/api/webauthn")
+          .withUriSegment(id)
+          .withMethod("Get")
+          .goAsync<WebAuthnCredentialResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<WebhookResponse>> RetrieveWebhookAsync(Guid? webhookId) {
       return buildClient()
           .withUri("/api/webhook")
