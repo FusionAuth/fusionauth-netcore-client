@@ -1417,12 +1417,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<PublicKeyCredentialRequestOptions> StartWebAuthnLogin(WebAuthnStartRequest request) {
+    public ClientResponse<WebAuthnStartResponse> StartWebAuthnLogin(WebAuthnStartRequest request) {
       return client.StartWebAuthnLoginAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<PublicKeyCredentialCreationOptions> StartWebAuthnRegistration(WebAuthnStartRequest request) {
+    public ClientResponse<WebAuthnRegisterResponse> StartWebAuthnRegistration(WebAuthnRegisterRequest request) {
       return client.StartWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
     }
 

@@ -3828,7 +3828,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<PublicKeyCredentialRequestOptions>> StartWebAuthnLoginAsync(WebAuthnStartRequest request);
+    Task<ClientResponse<WebAuthnStartResponse>> StartWebAuthnLoginAsync(WebAuthnStartRequest request);
 
     /// <summary>
     /// Start a WebAuthn registration ceremony by generating a new challenge for the user
@@ -3841,7 +3841,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<PublicKeyCredentialCreationOptions>> StartWebAuthnRegistrationAsync(WebAuthnStartRequest request);
+    Task<ClientResponse<WebAuthnRegisterResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterRequest request);
 
     /// <summary>
     /// Complete login using a 2FA challenge
@@ -7932,7 +7932,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<PublicKeyCredentialRequestOptions> StartWebAuthnLogin(WebAuthnStartRequest request);
+   ClientResponse<WebAuthnStartResponse> StartWebAuthnLogin(WebAuthnStartRequest request);
 
    /// <summary>
    /// Start a WebAuthn registration ceremony by generating a new challenge for the user
@@ -7944,7 +7944,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<PublicKeyCredentialCreationOptions> StartWebAuthnRegistration(WebAuthnStartRequest request);
+   ClientResponse<WebAuthnRegisterResponse> StartWebAuthnRegistration(WebAuthnRegisterRequest request);
 
    /// <summary>
    /// Complete login using a 2FA challenge

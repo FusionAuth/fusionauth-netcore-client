@@ -2659,21 +2659,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<PublicKeyCredentialRequestOptions>> StartWebAuthnLoginAsync(WebAuthnStartRequest request) {
+    public Task<ClientResponse<WebAuthnStartResponse>> StartWebAuthnLoginAsync(WebAuthnStartRequest request) {
       return buildClient()
           .withUri("/api/webauthn/start")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<PublicKeyCredentialRequestOptions>();
+          .goAsync<WebAuthnStartResponse>();
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<PublicKeyCredentialCreationOptions>> StartWebAuthnRegistrationAsync(WebAuthnStartRequest request) {
+    public Task<ClientResponse<WebAuthnRegisterResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterRequest request) {
       return buildClient()
           .withUri("/api/webauthn/register")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<PublicKeyCredentialCreationOptions>();
+          .goAsync<WebAuthnRegisterResponse>();
     }
 
     /// <inheritdoc/>
