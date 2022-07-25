@@ -1248,6 +1248,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredentialsForUser(Guid? userId) {
+      return client.RetrieveWebAuthnCredentialsForUserAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<WebhookResponse> RetrieveWebhook(Guid? webhookId) {
       return client.RetrieveWebhookAsync(webhookId).GetAwaiter().GetResult();
     }

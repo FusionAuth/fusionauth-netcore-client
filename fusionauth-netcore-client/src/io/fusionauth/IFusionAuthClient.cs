@@ -3347,6 +3347,19 @@ namespace io.fusionauth {
     Task<ClientResponse<WebAuthnCredentialResponse>> RetrieveWebAuthnCredentialAsync(Guid? id);
 
     /// <summary>
+    /// Retrieves all WebAuthn credentials for the given user.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The user's ID.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnCredentialResponse>> RetrieveWebAuthnCredentialsForUserAsync(Guid? userId);
+
+    /// <summary>
     /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
     /// This is an asynchronous method.
     /// </summary>
@@ -7483,6 +7496,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredential(Guid? id);
+
+   /// <summary>
+   /// Retrieves all WebAuthn credentials for the given user.
+   /// </summary>
+   /// <param name="userId"> The user's ID.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredentialsForUser(Guid? userId);
 
    /// <summary>
    /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
