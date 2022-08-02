@@ -563,6 +563,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<LoginResponse> LoginPingWithRequest(LoginPingRequest request) {
+      return client.LoginPingWithRequestAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> Logout(bool? global, string refreshToken) {
       return client.LogoutAsync(global, refreshToken).GetAwaiter().GetResult();
     }
@@ -1120,6 +1125,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TwoFactorRecoveryCodeResponse> RetrieveTwoFactorRecoveryCodes(Guid? userId) {
       return client.RetrieveTwoFactorRecoveryCodesAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatus(Guid? userId, Guid? applicationId, string twoFactorTrustId) {
+      return client.RetrieveTwoFactorStatusAsync(userId, applicationId, twoFactorTrustId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
