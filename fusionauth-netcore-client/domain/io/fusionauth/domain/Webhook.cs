@@ -28,6 +28,8 @@ namespace io.fusionauth.domain {
    */
   public class Webhook {
 
+    public List<Guid> applicationIds;
+
     public int? connectTimeout;
 
     public IDictionary<string, object> data;
@@ -53,8 +55,6 @@ namespace io.fusionauth.domain {
     public int? readTimeout;
 
     public string sslCertificate;
-
-    public List<Guid> tenantIds;
 
     public string url;
 
