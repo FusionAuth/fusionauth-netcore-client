@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2022, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.jwt;
 using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
@@ -32,6 +33,8 @@ namespace io.fusionauth.domain.@event {
     public Guid? applicationId;
 
     public IDictionary<Guid, int> applicationTimeToLiveInSeconds;
+
+    public RefreshToken refreshToken;
 
     public User user;
 

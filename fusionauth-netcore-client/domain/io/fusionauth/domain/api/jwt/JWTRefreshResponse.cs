@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2022, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,16 @@ namespace io.fusionauth.domain.api.jwt {
   /**
    * API response for refreshing a JWT with a Refresh Token.
    * <p>
-   * Using a different response object from RefreshTokenResponse because the retrieve response will return an object for refreshToken, and this is a string.
+   * Using a different response object from RefreshTokenResponse because the retrieve response will return an object for refreshToken, and this is a
+   * string.
    *
    * @author Daniel DeGroff
    */
   public class JWTRefreshResponse {
 
     public string refreshToken;
+
+    public Guid? refreshTokenId;
 
     public string token;
 

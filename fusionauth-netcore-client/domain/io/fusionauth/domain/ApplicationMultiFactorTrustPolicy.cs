@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2022, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,18 +18,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain {
 
   /**
-   * Events that are bound to applications.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class ApplicationEvent {
-
-    public ApplicationEvent with(Action<ApplicationEvent> action) {
-      action(this);
-      return this;
-    }
+  public enum ApplicationMultiFactorTrustPolicy {
+        Any, 
+        This, 
+        None
   }
 }
