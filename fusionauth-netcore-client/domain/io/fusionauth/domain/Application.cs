@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain.provider;
 using io.fusionauth.domain.oauth2;
 using System.Collections.Generic;
 using System;
@@ -38,6 +37,8 @@ namespace io.fusionauth.domain {
     public IDictionary<string, object> data;
 
     public ApplicationEmailConfiguration emailConfiguration;
+
+    public ApplicationExternalIdentifierConfiguration externalIdentifierConfiguration;
 
     public ApplicationFormConfiguration formConfiguration;
 

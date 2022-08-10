@@ -15,32 +15,21 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.api {
 
   /**
-   * Base-class for all FusionAuth events.
+   * Login Ping API request object.
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class BaseEvent {
+  public class LoginPingRequest: BaseLoginRequest {
 
-    public List<Guid> applicationIds;
+    public Guid? userId;
 
-    public DateTimeOffset? createInstant;
-
-    public Guid? id;
-
-    public EventInfo info;
-
-    public Guid? tenantId;
-
-    public EventType type;
-
-    public BaseEvent with(Action<BaseEvent> action) {
+    public LoginPingRequest with(Action<LoginPingRequest> action) {
       action(this);
       return this;
     }

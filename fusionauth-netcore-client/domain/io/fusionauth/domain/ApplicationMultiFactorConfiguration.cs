@@ -27,7 +27,11 @@ namespace io.fusionauth.domain {
 
     public MultiFactorEmailTemplate email;
 
+    public MultiFactorLoginPolicy loginPolicy;
+
     public MultiFactorSMSTemplate sms;
+
+    public ApplicationMultiFactorTrustPolicy trustPolicy;
 
     public ApplicationMultiFactorConfiguration with(Action<ApplicationMultiFactorConfiguration> action) {
       action(this);

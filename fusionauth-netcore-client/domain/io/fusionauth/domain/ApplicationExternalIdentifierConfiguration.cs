@@ -15,32 +15,19 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain {
 
   /**
-   * Base-class for all FusionAuth events.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class BaseEvent {
+  public class ApplicationExternalIdentifierConfiguration {
 
-    public List<Guid> applicationIds;
+    public int? twoFactorTrustIdTimeToLiveInSeconds;
 
-    public DateTimeOffset? createInstant;
-
-    public Guid? id;
-
-    public EventInfo info;
-
-    public Guid? tenantId;
-
-    public EventType type;
-
-    public BaseEvent with(Action<BaseEvent> action) {
+    public ApplicationExternalIdentifierConfiguration with(Action<ApplicationExternalIdentifierConfiguration> action) {
       action(this);
       return this;
     }

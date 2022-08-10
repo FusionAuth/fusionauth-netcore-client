@@ -40,6 +40,8 @@ namespace io.fusionauth.domain.api {
 
     public string refreshToken;
 
+    public Guid? refreshTokenId;
+
     public string registrationVerificationId;
 
     public IDictionary<string, object> state;

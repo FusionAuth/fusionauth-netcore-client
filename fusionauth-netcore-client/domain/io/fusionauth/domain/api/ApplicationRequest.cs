@@ -32,8 +32,6 @@ namespace io.fusionauth.domain.api {
 
     public ApplicationRole role;
 
-    public List<Guid> webhookIds;
-
     public ApplicationRequest with(Action<ApplicationRequest> action) {
       action(this);
       return this;

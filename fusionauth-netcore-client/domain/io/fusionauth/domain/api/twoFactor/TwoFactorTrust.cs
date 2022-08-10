@@ -15,32 +15,20 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.api.twoFactor {
 
-  /**
-   * Base-class for all FusionAuth events.
-   *
-   * @author Brian Pontarelli
-   */
-  public class BaseEvent {
+  public class TwoFactorTrust {
 
-    public List<Guid> applicationIds;
+    public Guid? applicationId;
 
-    public DateTimeOffset? createInstant;
+    public DateTimeOffset? expiration;
 
-    public Guid? id;
+    public DateTimeOffset? startInstant;
 
-    public EventInfo info;
-
-    public Guid? tenantId;
-
-    public EventType type;
-
-    public BaseEvent with(Action<BaseEvent> action) {
+    public TwoFactorTrust with(Action<TwoFactorTrust> action) {
       action(this);
       return this;
     }

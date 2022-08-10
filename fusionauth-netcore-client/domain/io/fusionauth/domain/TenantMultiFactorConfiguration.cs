@@ -29,6 +29,8 @@ namespace io.fusionauth.domain {
 
     public MultiFactorEmailMethod email;
 
+    public MultiFactorLoginPolicy loginPolicy;
+
     public MultiFactorSMSMethod sms;
 
     public TenantMultiFactorConfiguration with(Action<TenantMultiFactorConfiguration> action) {

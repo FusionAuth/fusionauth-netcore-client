@@ -18,18 +18,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain {
 
   /**
-   * Events that are bound to applications.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class ApplicationEvent {
-
-    public ApplicationEvent with(Action<ApplicationEvent> action) {
-      action(this);
-      return this;
-    }
+  public enum ApplicationMultiFactorTrustPolicy {
+        Any, 
+        This, 
+        None
   }
 }

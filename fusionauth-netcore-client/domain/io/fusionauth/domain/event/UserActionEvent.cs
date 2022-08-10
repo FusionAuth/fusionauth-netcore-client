@@ -36,8 +36,6 @@ namespace io.fusionauth.domain.@event {
 
     public Guid? actionerUserId;
 
-    public List<Guid> applicationIds;
-
     public string comment;
 
     public Email email;

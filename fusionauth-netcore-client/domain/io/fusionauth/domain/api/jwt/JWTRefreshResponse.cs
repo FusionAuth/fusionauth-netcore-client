@@ -23,13 +23,16 @@ namespace io.fusionauth.domain.api.jwt {
   /**
    * API response for refreshing a JWT with a Refresh Token.
    * <p>
-   * Using a different response object from RefreshTokenResponse because the retrieve response will return an object for refreshToken, and this is a string.
+   * Using a different response object from RefreshTokenResponse because the retrieve response will return an object for refreshToken, and this is a
+   * string.
    *
    * @author Daniel DeGroff
    */
   public class JWTRefreshResponse {
 
     public string refreshToken;
+
+    public Guid? refreshTokenId;
 
     public string token;
 

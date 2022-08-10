@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.api {
 
     public Tenant tenant;
 
+    public List<Guid> webhookIds;
+
     public TenantRequest with(Action<TenantRequest> action) {
       action(this);
       return this;

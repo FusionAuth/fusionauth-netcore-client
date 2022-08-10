@@ -15,34 +15,16 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain {
 
   /**
-   * Base-class for all FusionAuth events.
-   *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class BaseEvent {
-
-    public List<Guid> applicationIds;
-
-    public DateTimeOffset? createInstant;
-
-    public Guid? id;
-
-    public EventInfo info;
-
-    public Guid? tenantId;
-
-    public EventType type;
-
-    public BaseEvent with(Action<BaseEvent> action) {
-      action(this);
-      return this;
-    }
+  public enum MultiFactorLoginPolicy {
+        Disabled, 
+        Enabled
   }
 }

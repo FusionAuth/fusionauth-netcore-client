@@ -27,6 +27,7 @@ namespace io.fusionauth.domain.provider {
    */
   public enum IdentityProviderLinkingStrategy {
         CreatePendingLink, 
+        Disabled, 
         LinkAnonymously, 
         LinkByEmail, 
         LinkByEmailForExistingUser, 

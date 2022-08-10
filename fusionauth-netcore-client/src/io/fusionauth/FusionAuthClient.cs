@@ -1121,6 +1121,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<LoginResponse>> LoginPingWithRequestAsync(LoginPingRequest request) {
+      return buildClient()
+          .withUri("/api/login")
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<LoginResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> LogoutAsync(bool? global, string refreshToken) {
       return buildAnonymousClient()
           .withUri("/api/logout")
@@ -2042,10 +2051,10 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? userId) {
+    public Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokenByIdAsync(Guid? tokenId) {
       return buildClient()
           .withUri("/api/jwt/refresh")
-          .withUriSegment(userId)
+          .withUriSegment(tokenId)
           .withMethod("Get")
           .goAsync<RefreshTokenResponse>();
     }
@@ -2145,6 +2154,17 @@ namespace io.fusionauth {
           .withUriSegment(userId)
           .withMethod("Get")
           .goAsync<TwoFactorRecoveryCodeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusAsync(Guid? userId, Guid? applicationId, string twoFactorTrustId) {
+      return buildClient()
+          .withUri("/api/two-factor/status")
+          .withParameter("userId", userId)
+          .withParameter("applicationId", applicationId)
+          .withUriSegment(twoFactorTrustId)
+          .withMethod("Get")
+          .goAsync<TwoFactorStatusResponse>();
     }
 
     /// <inheritdoc/>

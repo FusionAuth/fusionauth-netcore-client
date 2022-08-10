@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.reactor {
 
     public ReactorFeatureStatus advancedRegistration;
 
+    public ReactorFeatureStatus applicationMultiFactorAuthentication;
+
     public ReactorFeatureStatus applicationThemes;
 
     public ReactorFeatureStatus breachedPasswordDetection;
@@ -42,6 +44,8 @@ namespace io.fusionauth.domain.reactor {
     public ReactorFeatureStatus entityManagement;
 
     public string expiration;
+
+    public IDictionary<string, string> licenseAttributes;
 
     public bool? licensed;
 
