@@ -96,6 +96,8 @@ namespace io.fusionauth.domain {
 
     public TenantUsernameConfiguration usernameConfiguration;
 
+    public TenantWebAuthnConfiguration webAuthnConfiguration;
+
     public Tenant with(Action<Tenant> action) {
       action(this);
       return this;

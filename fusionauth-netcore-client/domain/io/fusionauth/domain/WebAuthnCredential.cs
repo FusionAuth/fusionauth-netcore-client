@@ -30,17 +30,23 @@ namespace io.fusionauth.domain {
 
     public CoseAlgorithmIdentifier alg;
 
-    public string credentialId;
+    public AttestationType attestationType;
 
-    public IDictionary<string, object> data;
+    public bool? authenticatorSupportsUserVerification;
+
+    public string credentialId;
 
     public Guid? id;
 
     public DateTimeOffset? insertInstant;
 
+    public bool? isDiscoverableCredential;
+
     public DateTimeOffset? lastUseInstant;
 
     public string publicKey;
+
+    public string rpId;
 
     public int? signCount;
 

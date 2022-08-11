@@ -28,7 +28,7 @@ namespace io.fusionauth.domain.api.webauthn {
    */
   public class PublicKeyRegistrationRequest {
 
-    public IDictionary<string, string> clientExtensionResults;
+    public WebAuthnExtensionsClientOutputs clientExtensionResults;
 
     public string id;
 

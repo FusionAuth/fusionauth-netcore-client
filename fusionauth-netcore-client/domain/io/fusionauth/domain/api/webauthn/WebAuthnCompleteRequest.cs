@@ -29,11 +29,11 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public PublicKeyRegistrationRequest credential;
 
-    public string loginId;
-
     public string origin;
 
     public string rpId;
+
+    public Guid? userId;
 
     public WebAuthnCompleteRequest with(Action<WebAuthnCompleteRequest> action) {
       action(this);

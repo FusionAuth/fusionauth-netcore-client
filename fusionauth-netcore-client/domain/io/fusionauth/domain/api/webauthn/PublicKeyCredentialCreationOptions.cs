@@ -36,6 +36,8 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public List<PublicKeyCredentialDescriptor> excludeCredentials;
 
+    public WebAuthnRegistrationExtensionOptions extensions;
+
     public List<PublicKeyCredentialParameters> pubKeyCredParams;
 
     public PublicKeyCredentialRpEntity rp;
