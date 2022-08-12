@@ -23,8 +23,6 @@ namespace io.fusionauth.domain {
 
   public class WebAuthnWorkflowConfiguration: Enableable {
 
-    public AuthenticatorAttachment authenticatorAttachment;
-
     public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
 
     public UserVerificationRequirement userVerificationRequirement;
