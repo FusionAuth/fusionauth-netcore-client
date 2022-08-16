@@ -29,6 +29,10 @@ namespace io.fusionauth.domain {
 
     public WebAuthnWorkflowConfiguration reauthenticationWorkflowConfiguration;
 
+    public string rpId;
+
+    public string rpName;
+
     public TenantWebAuthnConfiguration with(Action<TenantWebAuthnConfiguration> action) {
       action(this);
       return this;
