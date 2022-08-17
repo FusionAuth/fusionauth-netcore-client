@@ -39,6 +39,26 @@ namespace io.fusionauth.domain.@event {
         @EventLogCreate, 
         [EnumMember(Value = "kickstart.success")]
         KickstartSuccess, 
+        [EnumMember(Value = "group.create")]
+        GroupCreate, 
+        [EnumMember(Value = "group.create.complete")]
+        GroupCreateComplete, 
+        [EnumMember(Value = "group.delete")]
+        GroupDelete, 
+        [EnumMember(Value = "group.delete.complete")]
+        GroupDeleteComplete, 
+        [EnumMember(Value = "group.member.add")]
+        GroupMemberAdd, 
+        [EnumMember(Value = "group.member.add.complete")]
+        GroupMemberAddComplete, 
+        [EnumMember(Value = "group.member.remove")]
+        GroupMemberRemove, 
+        [EnumMember(Value = "group.member.remove.complete")]
+        GroupMemberRemoveComplete, 
+        [EnumMember(Value = "group.update")]
+        GroupUpdate, 
+        [EnumMember(Value = "group.update.complete")]
+        GroupUpdateComplete, 
         [EnumMember(Value = "user.action")]
         UserAction, 
         [EnumMember(Value = "user.bulk.create")]

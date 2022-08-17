@@ -28,8 +28,6 @@ namespace io.fusionauth.domain.@event {
    */
   public class BaseEvent {
 
-    public List<Guid> applicationIds;
-
     public DateTimeOffset? createInstant;
 
     public Guid? id;
