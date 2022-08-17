@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace></RootNamespace>
-        <PackageVersion>1.37.3</PackageVersion>
+        <PackageVersion>1.38.0</PackageVersion>
         <Title>FusionAuth .net Standard Client</Title>
         <AssemblyName>FusionAuth.Client</AssemblyName>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
