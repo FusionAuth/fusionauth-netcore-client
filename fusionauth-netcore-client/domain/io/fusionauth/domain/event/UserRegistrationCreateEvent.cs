@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Create Registration Event (and can be converted to JSON).
+   * Models the User Create Registration Event.
    *
    * @author Daniel DeGroff
    */

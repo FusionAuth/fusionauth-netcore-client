@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the Group Create Event (and can be converted to JSON).
+   * Models the Group Update Event.
    *
    * @author Daniel DeGroff
    */

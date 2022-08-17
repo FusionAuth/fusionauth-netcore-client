@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Email Verify Event (and can be converted to JSON).
+   * Models the User Email Verify Event.
    *
    * @author Trevor Smith
    */

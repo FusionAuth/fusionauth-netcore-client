@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Bulk Create Event (and can be converted to JSON).
+   * Models the User Bulk Create Event.
    *
    * @author Brian Pontarelli
    */

@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Reactivate Event (and can be converted to JSON).
+   * Models the User Reactivate Event.
    *
    * @author Brian Pontarelli
    */

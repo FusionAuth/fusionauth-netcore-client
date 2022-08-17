@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Deleted Registration Event (and can be converted to JSON).
+   * Models the User Deleted Registration Event.
    * <p>
    * This is different than user.registration.delete in that it is sent after the TX has been committed. This event cannot be transactional.
    *

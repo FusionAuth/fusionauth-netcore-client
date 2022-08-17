@@ -55,6 +55,10 @@ namespace io.fusionauth.domain.@event {
         GroupMemberRemove, 
         [EnumMember(Value = "group.member.remove.complete")]
         GroupMemberRemoveComplete, 
+        [EnumMember(Value = "group.member.update")]
+        GroupMemberUpdate, 
+        [EnumMember(Value = "group.member.update.complete")]
+        GroupMemberUpdateComplete, 
         [EnumMember(Value = "group.update")]
         GroupUpdate, 
         [EnumMember(Value = "group.update.complete")]
