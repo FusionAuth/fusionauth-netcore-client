@@ -15,42 +15,25 @@
  */
 
 
-using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.connector {
+namespace io.fusionauth.domain.search {
 
   /**
-   * Models an LDAP connector.
+   * Search criteria for Groups
    *
-   * @author Trevor Smith
+   * @author Daniel DeGroff
    */
-  public class LDAPConnectorConfiguration: BaseConnectorConfiguration {
+  public class GroupSearchCriteria: BaseSearchCriteria {
 
-    public string authenticationURL;
+    public Guid? id;
 
-    public string baseStructure;
+    public string name;
 
-    public int? connectTimeout;
+    public Guid? tenantId;
 
-    public string identifyingAttribute;
-
-    public LambdaConfiguration lambdaConfiguration;
-
-    public string loginIdAttribute;
-
-    public int? readTimeout;
-
-    public List<string> requestedAttributes;
-
-    public LDAPSecurityMethod securityMethod;
-
-    public string systemAccountDN;
-
-    public string systemAccountPassword;
-
-    public LDAPConnectorConfiguration with(Action<LDAPConnectorConfiguration> action) {
+    public GroupSearchCriteria with(Action<GroupSearchCriteria> action) {
       action(this);
       return this;
     }

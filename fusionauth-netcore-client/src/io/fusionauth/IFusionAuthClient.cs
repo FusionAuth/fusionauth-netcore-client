@@ -3576,6 +3576,19 @@ namespace io.fusionauth {
     Task<ClientResponse<GroupMemberSearchResponse>> SearchGroupMembersAsync(GroupMemberSearchRequest request);
 
     /// <summary>
+    /// Searches groups with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<GroupSearchResponse>> SearchGroupsAsync(GroupSearchRequest request);
+
+    /// <summary>
     /// Searches the IP Access Control Lists with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -7653,6 +7666,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<GroupMemberSearchResponse> SearchGroupMembers(GroupMemberSearchRequest request);
+
+   /// <summary>
+   /// Searches groups with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<GroupSearchResponse> SearchGroups(GroupSearchRequest request);
 
    /// <summary>
    /// Searches the IP Access Control Lists with the specified criteria and pagination.
