@@ -20,6 +20,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using com.inversoft.error;
 using io.fusionauth.converters;
 using Newtonsoft.Json;
@@ -150,16 +151,19 @@ namespace io.fusionauth {
     }
 
     private string getFullUri() {
-      var paramString = "?";
-      foreach (var (key, value) in parameters.Select(x => (x.Key, x.Value))) {
-        if (!paramString.EndsWith("?")) {
-          paramString += "&";
+        if (!parameters.Any())
+        {
+            return uri;
+        }
+        
+        var queryString = HttpUtility.ParseQueryString(string.Empty);
+
+        foreach (var parameter in parameters)
+        {
+            queryString[parameter.Key] = parameter.Value;
         }
 
-        paramString += key + "=" + value;
-      }
-
-      return uri + paramString;
+        return $"{uri}?{queryString}";
     }
 
     private Task<HttpResponseMessage> baseRequest() {
