@@ -27,8 +27,6 @@ namespace io.fusionauth.domain.search {
    */
   public class GroupSearchCriteria: BaseSearchCriteria {
 
-    public Guid? id;
-
     public string name;
 
     public Guid? tenantId;
