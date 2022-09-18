@@ -17,10 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using com.inversoft.error;
 using io.fusionauth.converters;
 using Newtonsoft.Json;
@@ -155,14 +155,11 @@ namespace io.fusionauth {
         {
             return uri;
         }
+
+        var encodedParameters = parameters.Select(p => $"{WebUtility.UrlEncode(p.Key)}={WebUtility.UrlEncode(p.Value)}");
+
+        var queryString = string.Join("&", encodedParameters);
         
-        var queryString = HttpUtility.ParseQueryString(string.Empty);
-
-        foreach (var parameter in parameters)
-        {
-            queryString[parameter.Key] = parameter.Value;
-        }
-
         return $"{uri}?{queryString}";
     }
 
