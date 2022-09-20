@@ -44,6 +44,8 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? lastUseInstant;
 
+    public string name;
+
     public string publicKey;
 
     public string rpId;
@@ -53,6 +55,8 @@ namespace io.fusionauth.domain {
     public Guid? tenantId;
 
     public List<AuthenticatorTransport> transports;
+
+    public string userAgent;
 
     public Guid? userId;
 

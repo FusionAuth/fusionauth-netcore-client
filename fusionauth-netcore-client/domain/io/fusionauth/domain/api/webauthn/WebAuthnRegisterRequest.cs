@@ -28,7 +28,9 @@ namespace io.fusionauth.domain.api.webauthn {
    */
   public class WebAuthnRegisterRequest {
 
-    public IDictionary<string, object> state;
+    public string credentialName;
+
+    public string userAgent;
 
     public Guid? userId;
 

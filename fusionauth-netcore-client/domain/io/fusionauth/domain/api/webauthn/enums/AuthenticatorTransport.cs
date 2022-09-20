@@ -30,6 +30,7 @@ namespace io.fusionauth.domain.api.webauthn.enums {
         usb, 
         nfc, 
         ble, 
-        internal
+        internal, 
+        cable
   }
 }
