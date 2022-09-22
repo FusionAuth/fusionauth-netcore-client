@@ -18,19 +18,17 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Describes how the authenticator communicates with a client. This can be used by the client as a hint to locate the
-   * appropriate authenticator.
+   * Used to communicate whether and how authenticator attestation should be delivered to the Relying Party
    *
    * @author Spencer Witt
    */
-  public enum AuthenticatorTransport {
-        usb, 
-        nfc, 
-        ble, 
-        internal, 
-        cable
+  public enum AttestationConveyancePreference {
+        none, 
+        indirect, 
+        direct, 
+        enterprise
   }
 }

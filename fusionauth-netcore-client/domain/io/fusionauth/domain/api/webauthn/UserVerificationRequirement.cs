@@ -18,15 +18,17 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Describes the <a href="https://www.w3.org/TR/webauthn-2/#authenticator-attachment-modality">authenticator attachment modality</a>.
+   * Used to express whether the Relying Party requires <a href="https://www.w3.org/TR/webauthn-2/#user-verification">user verification</a> for the
+   * current operation.
    *
    * @author Spencer Witt
    */
-  public enum AuthenticatorAttachment {
-        PLATFORM, 
-        CROSS_PLATFORM
+  public enum UserVerificationRequirement {
+        required, 
+        preferred, 
+        discouraged
   }
 }

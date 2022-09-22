@@ -18,7 +18,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
    * Identifies the WebAuthn workflow. This will affect the parameters used for credential creation

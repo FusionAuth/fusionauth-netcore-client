@@ -19,7 +19,7 @@ using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
    * A number identifying a cryptographic algorithm. Values should be registered with the <a

@@ -18,18 +18,19 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Used to indicate what type of attestation was included in the authenticator response for a given WebAuthn credential at the time it was created
+   * Describes how the authenticator communicates with a client. This can be used by the client as a hint to locate the
+   * appropriate authenticator.
    *
    * @author Spencer Witt
    */
-  public enum AttestationType {
-        basic, 
-        self, 
-        attestationCa, 
-        anonymizationCa, 
-        none
+  public enum AuthenticatorTransport {
+        usb, 
+        nfc, 
+        ble, 
+        internal, 
+        cable
   }
 }

@@ -18,17 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Describes the Relying Party's requirements for <a href="https://www.w3.org/TR/webauthn-2/#client-side-discoverable-credential">client-side
-   * discoverable credentials</a> (formerly known as "resident keys")
+   * Describes the authenticator attachment modality preference for a WebAuthn workflow. See {@link AuthenticatorAttachment}
    *
    * @author Spencer Witt
    */
-  public enum ResidentKeyRequirement {
-        Discouraged, 
-        Preferred, 
-        Required
+  public enum AuthenticatorAttachmentPreference {
+        PLATFORM, 
+        CROSS_PLATFORM, 
+        EITHER
   }
 }

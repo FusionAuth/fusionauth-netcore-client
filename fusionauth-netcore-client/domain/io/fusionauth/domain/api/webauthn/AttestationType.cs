@@ -18,22 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * COSE Elliptic Curve identifier to determine which elliptic curve to use with a given key
+   * Used to indicate what type of attestation was included in the authenticator response for a given WebAuthn credential at the time it was created
    *
    * @author Spencer Witt
    */
-  public enum CoseEllipticCurve {
-        Reserved, 
-        P256, 
-        P384, 
-        P521, 
-        X25519, 
-        X448, 
-        Ed25519, 
-        Ed448, 
-        Secp256k1
+  public enum AttestationType {
+        basic, 
+        self, 
+        attestationCa, 
+        anonymizationCa, 
+        none
   }
 }

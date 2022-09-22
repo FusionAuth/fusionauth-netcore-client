@@ -18,16 +18,22 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Describes the authenticator attachment modality preference for a WebAuthn workflow. See {@link AuthenticatorAttachment}
+   * COSE Elliptic Curve identifier to determine which elliptic curve to use with a given key
    *
    * @author Spencer Witt
    */
-  public enum AuthenticatorAttachmentPreference {
-        PLATFORM, 
-        CROSS_PLATFORM, 
-        EITHER
+  public enum CoseEllipticCurve {
+        Reserved, 
+        P256, 
+        P384, 
+        P521, 
+        X25519, 
+        X448, 
+        Ed25519, 
+        Ed448, 
+        Secp256k1
   }
 }

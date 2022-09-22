@@ -18,14 +18,15 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Defines valid credential types. This is an extension point in the WebAuthn spec. The only defined value at this time is "public-key"
+   * Describes the <a href="https://www.w3.org/TR/webauthn-2/#authenticator-attachment-modality">authenticator attachment modality</a>.
    *
    * @author Spencer Witt
    */
-  public enum PublicKeyCredentialType {
-        PUBLIC_KEY
+  public enum AuthenticatorAttachment {
+        PLATFORM, 
+        CROSS_PLATFORM
   }
 }

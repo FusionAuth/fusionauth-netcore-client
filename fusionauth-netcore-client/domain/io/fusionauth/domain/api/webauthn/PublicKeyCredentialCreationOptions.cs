@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain.api.webauthn.enums;
 using System.Collections.Generic;
 using System;
 

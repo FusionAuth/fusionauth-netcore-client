@@ -15,22 +15,20 @@
  */
 
 
-using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
-  public enum CoseKeyType {
-        [EnumMember(Value = "0")]
-        Reserved, 
-        [EnumMember(Value = "1")]
-        OKP, 
-        [EnumMember(Value = "2")]
-        EC2, 
-        [EnumMember(Value = "3")]
-        RSA, 
-        [EnumMember(Value = "4")]
-        Symmetric
+  /**
+   * Describes the Relying Party's requirements for <a href="https://www.w3.org/TR/webauthn-2/#client-side-discoverable-credential">client-side
+   * discoverable credentials</a> (formerly known as "resident keys")
+   *
+   * @author Spencer Witt
+   */
+  public enum ResidentKeyRequirement {
+        Discouraged, 
+        Preferred, 
+        Required
   }
 }

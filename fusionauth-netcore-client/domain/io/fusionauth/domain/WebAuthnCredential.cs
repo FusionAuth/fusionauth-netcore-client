@@ -15,7 +15,7 @@
  */
 
 
-using io.fusionauth.domain.api.webauthn.enums;
+using io.fusionauth.domain.api.webauthn;
 using System.Collections.Generic;
 using System;
 
@@ -36,6 +36,8 @@ namespace io.fusionauth.domain {
 
     public string credentialId;
 
+    public string displayName;
+
     public Guid? id;
 
     public DateTimeOffset? insertInstant;
@@ -43,8 +45,6 @@ namespace io.fusionauth.domain {
     public bool? isDiscoverableCredential;
 
     public DateTimeOffset? lastUseInstant;
-
-    public string name;
 
     public string publicKey;
 

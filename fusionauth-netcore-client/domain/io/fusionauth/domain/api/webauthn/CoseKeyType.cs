@@ -15,20 +15,27 @@
  */
 
 
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Used to express whether the Relying Party requires <a href="https://www.w3.org/TR/webauthn-2/#user-verification">user verification</a> for the
-   * current operation.
+   * COSE key type
    *
    * @author Spencer Witt
    */
-  public enum UserVerificationRequirement {
-        required, 
-        preferred, 
-        discouraged
+  public enum CoseKeyType {
+        [EnumMember(Value = "0")]
+        Reserved, 
+        [EnumMember(Value = "1")]
+        OKP, 
+        [EnumMember(Value = "2")]
+        EC2, 
+        [EnumMember(Value = "3")]
+        RSA, 
+        [EnumMember(Value = "4")]
+        Symmetric
   }
 }

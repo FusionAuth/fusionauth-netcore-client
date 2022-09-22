@@ -18,17 +18,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.webauthn.enums {
+namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * Used to communicate whether and how authenticator attestation should be delivered to the Relying Party
+   * Defines valid credential types. This is an extension point in the WebAuthn spec. The only defined value at this time is "public-key"
    *
    * @author Spencer Witt
    */
-  public enum AttestationConveyancePreference {
-        none, 
-        indirect, 
-        direct, 
-        enterprise
+  public enum PublicKeyCredentialType {
+        PUBLIC_KEY
   }
 }
