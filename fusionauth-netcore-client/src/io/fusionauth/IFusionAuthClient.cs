@@ -1474,6 +1474,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> ImportUsersAsync(ImportRequest request);
 
     /// <summary>
+    /// Import a WebAuthn credential
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for importing the credential</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> ImportWebAuthnCredentialAsync(WebAuthnImportRequest request);
+
+    /// <summary>
     /// Inspect an access token issued by FusionAuth.
     /// This is an asynchronous method.
     /// </summary>
@@ -5795,6 +5808,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> ImportUsers(ImportRequest request);
+
+   /// <summary>
+   /// Import a WebAuthn credential
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for importing the credential</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnImportRequest request);
 
    /// <summary>
    /// Inspect an access token issued by FusionAuth.

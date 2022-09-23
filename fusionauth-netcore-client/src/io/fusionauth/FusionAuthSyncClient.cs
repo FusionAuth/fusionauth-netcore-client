@@ -558,6 +558,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnImportRequest request) {
+      return client.ImportWebAuthnCredentialAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token) {
       return client.IntrospectAccessTokenAsync(client_id, token).GetAwaiter().GetResult();
     }

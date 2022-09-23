@@ -1077,6 +1077,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> ImportWebAuthnCredentialAsync(WebAuthnImportRequest request) {
+      return buildClient()
+          .withUri("/api/webauthn/import")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token) {
       var body = new Dictionary<string, string> {
           { "client_id", client_id },
