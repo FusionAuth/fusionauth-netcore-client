@@ -184,12 +184,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request) {
+    public Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request) {
       return buildClient()
           .withUri("/api/webauthn/complete")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<RESTVoid>();
+          .goAsync<WebAuthnCompleteResponse>();
     }
 
     /// <inheritdoc/>

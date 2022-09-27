@@ -111,7 +111,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request) {
+    public ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request) {
       return client.CompleteWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
     }
 

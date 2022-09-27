@@ -210,7 +210,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request);
+    Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request);
 
     /// <summary>
     /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
@@ -4634,7 +4634,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request);
+   ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request);
 
    /// <summary>
    /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
