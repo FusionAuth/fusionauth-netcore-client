@@ -27,9 +27,9 @@ namespace io.fusionauth.domain.api.webauthn {
    * @author Spencer Witt
    */
   public enum WebAuthnWorkflow {
-        REAUTH, 
-        BOOTSTRAP, 
-        TWO_FACTOR, 
-        GENERAL
+        reAuthentication, 
+        bootstrap, 
+        twoFactor, 
+        general
   }
 }

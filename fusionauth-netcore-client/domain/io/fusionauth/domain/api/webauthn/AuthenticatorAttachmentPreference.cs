@@ -26,8 +26,8 @@ namespace io.fusionauth.domain.api.webauthn {
    * @author Spencer Witt
    */
   public enum AuthenticatorAttachmentPreference {
-        PLATFORM, 
-        CROSS_PLATFORM, 
-        EITHER
+        platform, 
+        crossPlatform, 
+        either
   }
 }

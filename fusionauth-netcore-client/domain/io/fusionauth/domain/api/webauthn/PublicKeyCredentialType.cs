@@ -26,6 +26,6 @@ namespace io.fusionauth.domain.api.webauthn {
    * @author Spencer Witt
    */
   public enum PublicKeyCredentialType {
-        PUBLIC_KEY
+        publicKey
   }
 }

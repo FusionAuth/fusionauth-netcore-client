@@ -27,8 +27,8 @@ namespace io.fusionauth.domain.api.webauthn {
    * @author Spencer Witt
    */
   public enum ResidentKeyRequirement {
-        Discouraged, 
-        Preferred, 
-        Required
+        discouraged, 
+        preferred, 
+        required
   }
 }
