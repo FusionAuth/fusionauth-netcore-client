@@ -17,6 +17,7 @@ Refer to the FusionAuth API documentation for request and response formats.
 * .NET Standard 2.0, 2.1
 * .NET Core 2.1, 3.1
 * .NET 5
+* .NET 6
 
 ## Tests
 
