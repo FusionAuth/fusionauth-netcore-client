@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public string origin;
 
-    public string rpId;
+    public string relyingPartyId;
 
     public WebAuthnLoginRequest with(Action<WebAuthnLoginRequest> action) {
       action(this);

@@ -25,11 +25,11 @@ namespace io.fusionauth.domain.api.webauthn {
    *
    * @author Spencer Witt
    */
-  public class PublicKeyCredentialRpEntity: PublicKeyCredentialEntity {
+  public class PublicKeyCredentialRelyingPartyEntity: PublicKeyCredentialEntity {
 
     public string id;
 
-    public PublicKeyCredentialRpEntity with(Action<PublicKeyCredentialRpEntity> action) {
+    public PublicKeyCredentialRelyingPartyEntity with(Action<PublicKeyCredentialRelyingPartyEntity> action) {
       action(this);
       return this;
     }

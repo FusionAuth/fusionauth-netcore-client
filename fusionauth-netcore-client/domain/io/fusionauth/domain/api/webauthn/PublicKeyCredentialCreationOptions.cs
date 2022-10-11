@@ -39,7 +39,7 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public List<PublicKeyCredentialParameters> pubKeyCredParams;
 
-    public PublicKeyCredentialRpEntity rp;
+    public PublicKeyCredentialRelyingPartyEntity rp;
 
     public long? timeout;
 

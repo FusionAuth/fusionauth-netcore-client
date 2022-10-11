@@ -28,7 +28,7 @@ namespace io.fusionauth.domain {
    */
   public class WebAuthnCredential {
 
-    public CoseAlgorithmIdentifier alg;
+    public CoseAlgorithmIdentifier algorithm;
 
     public AttestationType attestationType;
 
@@ -48,7 +48,7 @@ namespace io.fusionauth.domain {
 
     public string publicKey;
 
-    public string rpId;
+    public string relyingPartyId;
 
     public int? signCount;
 

@@ -20,18 +20,14 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  /**
-   * Tenant-level configuration for WebAuthn
-   *
-   * @author Spencer Witt
-   */
+  // TODO : WebAuthn : Daniel Review : Do we need this Enableable
   public class TenantWebAuthnConfiguration: Enableable {
 
-    public WebAuthnWorkflowConfiguration reauthenticationWorkflowConfiguration;
+    public TenantWebAuthnWorkflowConfiguration reauthenticationWorkflowConfiguration;
 
-    public string rpId;
+    public string relyingPartyId;
 
-    public string rpName;
+    public string relyingPartyName;
 
     public TenantWebAuthnConfiguration with(Action<TenantWebAuthnConfiguration> action) {
       action(this);

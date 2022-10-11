@@ -21,13 +21,16 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  public class WebAuthnWorkflowConfiguration: Enableable {
+  /**
+   * @author Spencer Witt
+   */
+  public class TenantWebAuthnWorkflowConfiguration: Enableable {
 
     public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
 
     public UserVerificationRequirement userVerificationRequirement;
 
-    public WebAuthnWorkflowConfiguration with(Action<WebAuthnWorkflowConfiguration> action) {
+    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
       action(this);
       return this;
     }
