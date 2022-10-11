@@ -187,7 +187,20 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
 
     /// <summary>
-    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge
+    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request);
+
+    /// <summary>
+    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge and then login the user in
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
@@ -4613,7 +4626,19 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
 
    /// <summary>
-   /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge
+   /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request);
+
+   /// <summary>
+   /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge and then login the user in
    /// </summary>
    /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
    /// <returns>

@@ -106,6 +106,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request) {
+      return client.CompleteWebAuthnAssertionAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<LoginResponse> CompleteWebAuthnLogin(WebAuthnLoginRequest request) {
       return client.CompleteWebAuthnLoginAsync(request).GetAwaiter().GetResult();
     }

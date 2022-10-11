@@ -175,6 +175,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/webauthn/assertion")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<WebAuthnCompleteResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<LoginResponse>> CompleteWebAuthnLoginAsync(WebAuthnLoginRequest request) {
       return buildAnonymousClient()
           .withUri("/api/webauthn/login")

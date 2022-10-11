@@ -29,9 +29,13 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public Guid? applicationId;
 
+    public Guid? credentialId;
+
     public string loginId;
 
     public IDictionary<string, object> state;
+
+    public Guid? userId;
 
     public WebAuthnWorkflow workflow;
 

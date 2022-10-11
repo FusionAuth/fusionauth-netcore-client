@@ -21,7 +21,7 @@ using System;
 namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * API response for completing WebAuthn credential registration
+   * API response for completing WebAuthn credential registration or assertion
    *
    * @author Spencer Witt
    */
