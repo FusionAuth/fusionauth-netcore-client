@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Registration Verified Event (and can be converted to JSON).
+   * Models the User Registration Verified Event.
    *
    * @author Trevor Smith
    */

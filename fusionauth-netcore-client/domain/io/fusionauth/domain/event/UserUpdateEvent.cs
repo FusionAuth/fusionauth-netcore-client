@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Update Event (and can be converted to JSON).
+   * Models the User Update Event.
    *
    * @author Brian Pontarelli
    */

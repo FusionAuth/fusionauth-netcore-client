@@ -15,22 +15,22 @@
  */
 
 
-using io.fusionauth.domain;
+using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.api {
 
   /**
-   * Models the User Create Event.
+   * Search request for Groups.
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserCreateEvent: BaseEvent {
+  public class GroupSearchRequest {
 
-    public User user;
+    public GroupSearchCriteria search;
 
-    public UserCreateEvent with(Action<UserCreateEvent> action) {
+    public GroupSearchRequest with(Action<GroupSearchRequest> action) {
       action(this);
       return this;
     }

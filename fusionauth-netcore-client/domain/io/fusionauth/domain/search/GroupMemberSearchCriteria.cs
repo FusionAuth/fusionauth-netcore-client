@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.search {
 
     public Guid? groupId;
 
+    public Guid? tenantId;
+
     public Guid? userId;
 
     public GroupMemberSearchCriteria with(Action<GroupMemberSearchCriteria> action) {

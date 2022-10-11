@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -150,16 +151,16 @@ namespace io.fusionauth {
     }
 
     private string getFullUri() {
-      var paramString = "?";
-      foreach (var (key, value) in parameters.Select(x => (x.Key, x.Value))) {
-        if (!paramString.EndsWith("?")) {
-          paramString += "&";
+        if (!parameters.Any())
+        {
+            return uri;
         }
 
-        paramString += key + "=" + value;
-      }
+        var encodedParameters = parameters.Select(p => $"{WebUtility.UrlEncode(p.Key)}={WebUtility.UrlEncode(p.Value)}");
 
-      return uri + paramString;
+        var queryString = string.Join("&", encodedParameters);
+        
+        return $"{uri}?{queryString}";
     }
 
     private Task<HttpResponseMessage> baseRequest() {

@@ -22,9 +22,10 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Created Registration Event (and can be converted to JSON).
+   * Models the User Created Registration Event.
    * <p>
-   * This is different than the user.registration.create event in that it will be sent after the user has been created. This event cannot be made transactional.
+   * This is different than the user.registration.create event in that it will be sent after the user has been created. This event cannot be made
+   * transactional.
    *
    * @author Daniel DeGroff
    */

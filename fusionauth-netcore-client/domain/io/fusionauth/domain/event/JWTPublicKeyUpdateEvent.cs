@@ -21,12 +21,14 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the JWT public key Refresh Token Revoke Event (and can be converted to JSON). This event might be for a single
+   * Models the JWT public key Refresh Token Revoke Event. This event might be for a single
    * token, a user or an entire application.
    *
    * @author Brian Pontarelli
    */
   public class JWTPublicKeyUpdateEvent: BaseEvent {
+
+    public List<Guid> applicationIds;
 
     public JWTPublicKeyUpdateEvent with(Action<JWTPublicKeyUpdateEvent> action) {
       action(this);

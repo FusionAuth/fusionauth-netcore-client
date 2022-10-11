@@ -22,15 +22,15 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Models the User Create Event.
+   * Models the Group Create Complete Event.
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserCreateEvent: BaseEvent {
+  public class GroupDeleteCompleteEvent: BaseEvent {
 
-    public User user;
+    public Group group;
 
-    public UserCreateEvent with(Action<UserCreateEvent> action) {
+    public GroupDeleteCompleteEvent with(Action<GroupDeleteCompleteEvent> action) {
       action(this);
       return this;
     }

@@ -19,18 +19,20 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.api {
 
   /**
-   * Models the User Create Event.
+   * Search response for Groups
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class UserCreateEvent: BaseEvent {
+  public class GroupSearchResponse {
 
-    public User user;
+    public List<Group> groups;
 
-    public UserCreateEvent with(Action<UserCreateEvent> action) {
+    public long? total;
+
+    public GroupSearchResponse with(Action<GroupSearchResponse> action) {
       action(this);
       return this;
     }
