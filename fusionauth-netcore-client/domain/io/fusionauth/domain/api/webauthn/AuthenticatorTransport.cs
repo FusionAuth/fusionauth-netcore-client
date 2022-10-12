@@ -15,6 +15,7 @@
  */
 
 
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -27,10 +28,15 @@ namespace io.fusionauth.domain.api.webauthn {
    * @author Spencer Witt
    */
   public enum AuthenticatorTransport {
+        [EnumMember(Value = "usb")]
         usb, 
+        [EnumMember(Value = "nfc")]
         nfc, 
+        [EnumMember(Value = "ble")]
         ble, 
-        internal, 
+        [EnumMember(Value = "internal")]
+        platform, 
+        [EnumMember(Value = "cable")]
         cable
   }
 }
