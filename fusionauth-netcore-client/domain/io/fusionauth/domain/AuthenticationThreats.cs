@@ -15,24 +15,15 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain {
 
   /**
-   * Models the User Login event that is suspicious.
-   *
-   * @author Daniel DeGroff
+   * @author Brett Pontarelli
    */
-  public class UserLoginSuspiciousEvent: UserLoginSuccessEvent {
-
-    public List<AuthenticationThreats> threatsDetected;
-
-    public UserLoginSuspiciousEvent with(Action<UserLoginSuspiciousEvent> action) {
-      action(this);
-      return this;
-    }
+  public enum AuthenticationThreats {
+        ImpossibleTravel
   }
 }

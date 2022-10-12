@@ -15,22 +15,28 @@
  */
 
 
-using io.fusionauth.domain;
+using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.provider {
 
   /**
-   * Models the User Login event that is suspicious.
+   * SonyPSN gaming login provider.
    *
-   * @author Daniel DeGroff
+   * @author Brett Pontarelli
    */
-  public class UserLoginSuspiciousEvent: UserLoginSuccessEvent {
+  public class SonyPSNIdentityProvider: BaseIdentityProvider<SonyPSNApplicationConfiguration> {
 
-    public List<AuthenticationThreats> threatsDetected;
+    public string buttonText;
 
-    public UserLoginSuspiciousEvent with(Action<UserLoginSuspiciousEvent> action) {
+    public string client_id;
+
+    public string client_secret;
+
+    public string scope;
+
+    public SonyPSNIdentityProvider with(Action<SonyPSNIdentityProvider> action) {
       action(this);
       return this;
     }
