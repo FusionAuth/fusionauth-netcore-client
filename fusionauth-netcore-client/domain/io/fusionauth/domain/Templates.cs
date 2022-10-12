@@ -32,6 +32,12 @@ namespace io.fusionauth.domain {
 
     public string accountTwoFactorIndex;
 
+    public string accountWebAuthnAdd;
+
+    public string accountWebAuthnDelete;
+
+    public string accountWebAuthnIndex;
+
     public string emailComplete;
 
     public string emailSend;
@@ -76,7 +82,7 @@ namespace io.fusionauth.domain {
 
     public string oauth2Wait;
 
-    public string oauth2WebAuthN;
+    public string oauth2WebAuthn;
 
     public string passwordChange;
 

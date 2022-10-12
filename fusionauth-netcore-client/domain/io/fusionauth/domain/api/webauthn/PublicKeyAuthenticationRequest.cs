@@ -31,9 +31,9 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public string id;
 
-    public string relyingPartyId;
-
     public AuthenticatorAuthenticationResponse response;
+
+    public string rpId;
 
     public string type;
 

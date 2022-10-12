@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public string origin;
 
-    public string relyingPartyId;
+    public string rpId;
 
     public Guid? userId;
 
