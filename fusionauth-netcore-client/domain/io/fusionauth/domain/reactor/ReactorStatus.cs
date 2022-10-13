@@ -53,6 +53,12 @@ namespace io.fusionauth.domain.reactor {
 
     public ReactorFeatureStatus threatDetection;
 
+    public ReactorFeatureStatus webAuthn;
+
+    public ReactorFeatureStatus webAuthnPlatformAuthenticators;
+
+    public ReactorFeatureStatus webAuthnRoamingAuthenticators;
+
     public ReactorStatus with(Action<ReactorStatus> action) {
       action(this);
       return this;
