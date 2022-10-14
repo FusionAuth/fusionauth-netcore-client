@@ -27,7 +27,9 @@ namespace io.fusionauth.domain.api.webauthn {
    */
   public class WebAuthnRegisterRequest {
 
-    public string credentialName;
+    public string displayName;
+
+    public string name;
 
     public string userAgent;
 

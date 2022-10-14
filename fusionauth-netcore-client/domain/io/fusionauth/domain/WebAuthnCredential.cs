@@ -46,6 +46,8 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? lastUseInstant;
 
+    public string name;
+
     public string publicKey;
 
     public string relyingPartyId;
