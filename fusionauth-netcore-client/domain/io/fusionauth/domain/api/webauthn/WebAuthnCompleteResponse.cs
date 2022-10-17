@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,7 +28,7 @@ namespace io.fusionauth.domain.api.webauthn {
    */
   public class WebAuthnCompleteResponse {
 
-    public Guid? credentialId;
+    public WebAuthnCredential credential;
 
     public WebAuthnCompleteResponse with(Action<WebAuthnCompleteResponse> action) {
       action(this);
