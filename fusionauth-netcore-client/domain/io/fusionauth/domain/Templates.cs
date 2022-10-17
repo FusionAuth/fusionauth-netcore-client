@@ -84,6 +84,10 @@ namespace io.fusionauth.domain {
 
     public string oauth2WebAuthn;
 
+    public string oauth2WebAuthnReauth;
+
+    public string oauth2WebAuthnReauthEnable;
+
     public string passwordChange;
 
     public string passwordComplete;

@@ -23,7 +23,9 @@ namespace io.fusionauth.domain {
   // TODO : WebAuthn : Daniel Review : Do we need this Enableable
   public class TenantWebAuthnConfiguration: Enableable {
 
-    public TenantWebAuthnWorkflowConfiguration reauthenticationWorkflowConfiguration;
+    public TenantWebAuthnWorkflowConfiguration bootstrapWorkflow;
+
+    public TenantWebAuthnWorkflowConfiguration reauthenticationWorkflow;
 
     public string relyingPartyId;
 
