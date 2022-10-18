@@ -36,13 +36,13 @@ namespace io.fusionauth.domain {
 
     public string credentialId;
 
+    public bool? discoverable;
+
     public string displayName;
 
     public Guid? id;
 
     public DateTimeOffset? insertInstant;
-
-    public bool? isDiscoverableCredential;
 
     public DateTimeOffset? lastUseInstant;
 
