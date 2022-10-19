@@ -22,13 +22,15 @@ using System;
 namespace io.fusionauth.domain.api.webauthn {
 
   /**
-   * API request to import an existing WebAuthn credential
+   * API request to import an existing WebAuthn credential(s)
    *
    * @author Spencer Witt
    */
   public class WebAuthnImportRequest {
 
-    public WebAuthnCredential credential;
+    public List<WebAuthnCredential> credentials;
+
+    public bool? validateDbConstraints;
 
     public WebAuthnImportRequest with(Action<WebAuthnImportRequest> action) {
       action(this);

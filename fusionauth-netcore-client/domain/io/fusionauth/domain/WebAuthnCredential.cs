@@ -36,6 +36,8 @@ namespace io.fusionauth.domain {
 
     public string credentialId;
 
+    public IDictionary<string, object> data;
+
     public bool? discoverable;
 
     public string displayName;

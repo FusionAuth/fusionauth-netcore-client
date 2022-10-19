@@ -28,9 +28,9 @@ namespace io.fusionauth.domain.api {
    */
   public class WebAuthnCredentialResponse {
 
-    public WebAuthnCredential webauthnCredential;
+    public WebAuthnCredential credential;
 
-    public List<WebAuthnCredential> webauthnCredentials;
+    public List<WebAuthnCredential> credentials;
 
     public WebAuthnCredentialResponse with(Action<WebAuthnCredentialResponse> action) {
       action(this);
