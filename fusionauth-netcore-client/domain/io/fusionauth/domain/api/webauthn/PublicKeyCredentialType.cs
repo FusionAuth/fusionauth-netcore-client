@@ -15,6 +15,7 @@
  */
 
 
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
@@ -26,6 +27,7 @@ namespace io.fusionauth.domain.api.webauthn {
    * @author Spencer Witt
    */
   public enum PublicKeyCredentialType {
+        [EnumMember(Value = "public-key")]
         publicKey
   }
 }

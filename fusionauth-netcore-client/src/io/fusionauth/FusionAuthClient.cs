@@ -167,6 +167,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope) {
+      var body = new Dictionary<string, string> {
+          { "client_id", client_id },
+          { "client_secret", client_secret },
+          { "grant_type", "client_credentials" },
+          { "scope", scope },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<AccessToken>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request) {
       return buildClient()
           .withUri("/api/user/comment")

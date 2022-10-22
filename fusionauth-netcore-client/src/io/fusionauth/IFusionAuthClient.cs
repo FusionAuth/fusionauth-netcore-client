@@ -174,6 +174,21 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAsync(string loginId);
 
     /// <summary>
+    /// Make a Client Credentials grant request to obtain an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you you are attempting to authenticate.</param>
+    /// <param name="client_secret"> The client secret used to authenticate this request.</param>
+    /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:<target-entity-id>:<roles>. Roles are an optional comma separated list.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope);
+
+    /// <summary>
     /// Adds a comment to the user's account.
     /// This is an asynchronous method.
     /// </summary>
@@ -4625,6 +4640,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> CheckChangePasswordUsingLoginId(string loginId);
+
+   /// <summary>
+   /// Make a Client Credentials grant request to obtain an access token.
+   /// </summary>
+   /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you you are attempting to authenticate.</param>
+   /// <param name="client_secret"> The client secret used to authenticate this request.</param>
+   /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:<target-entity-id>:<roles>. Roles are an optional comma separated list.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope);
 
    /// <summary>
    /// Adds a comment to the user's account.
