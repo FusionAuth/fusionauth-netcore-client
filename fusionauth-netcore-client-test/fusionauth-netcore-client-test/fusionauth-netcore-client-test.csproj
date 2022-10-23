@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace></RootNamespace>
-        <PackageVersion>1.41.0-20221020</PackageVersion>
+        <PackageVersion>1.41.0-EAP.20221022</PackageVersion>
         <AssemblyName>FusionAuth.Client.Test</AssemblyName>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
