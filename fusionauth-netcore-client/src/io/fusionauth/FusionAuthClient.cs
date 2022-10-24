@@ -193,7 +193,7 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request) {
       return buildAnonymousClient()
-          .withUri("/api/webauthn/assertion")
+          .withUri("/api/webauthn/assert")
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<WebAuthnCompleteResponse>();
@@ -211,7 +211,7 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request) {
       return buildClient()
-          .withUri("/api/webauthn/complete")
+          .withUri("/api/webauthn/register/complete")
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<WebAuthnCompleteResponse>();
@@ -2742,7 +2742,7 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public Task<ClientResponse<WebAuthnRegisterResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterRequest request) {
       return buildClient()
-          .withUri("/api/webauthn/register")
+          .withUri("/api/webauthn/register/start")
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<WebAuthnRegisterResponse>();
