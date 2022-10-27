@@ -27,13 +27,13 @@ namespace io.fusionauth.domain {
    */
   public class Family {
 
+    public List<FamilyMember> members;
+
     public Guid? id;
 
     public DateTimeOffset? insertInstant;
 
     public DateTimeOffset? lastUpdateInstant;
-
-    public List<FamilyMember> members;
 
     public Family with(Action<Family> action) {
       action(this);

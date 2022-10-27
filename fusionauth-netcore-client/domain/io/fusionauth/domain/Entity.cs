@@ -27,11 +27,11 @@ namespace io.fusionauth.domain {
    */
   public class Entity {
 
+    public IDictionary<string, object> data;
+
     public string clientId;
 
     public string clientSecret;
-
-    public IDictionary<string, object> data;
 
     public Guid? id;
 

@@ -27,11 +27,11 @@ namespace io.fusionauth.domain {
    */
   public class UserConsent {
 
+    public IDictionary<string, object> data;
+
     public Consent consent;
 
     public Guid? consentId;
-
-    public IDictionary<string, object> data;
 
     public Guid? giverUserId;
 

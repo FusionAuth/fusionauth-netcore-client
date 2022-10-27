@@ -30,11 +30,11 @@ namespace io.fusionauth.domain.api.identityProvider {
 
     public IDictionary<string, string> data;
 
-    public string encodedJWT;
-
     public Guid? identityProviderId;
 
     public bool? noLink;
+
+    public string encodedJWT;
 
     public IdentityProviderLoginRequest with(Action<IdentityProviderLoginRequest> action) {
       action(this);

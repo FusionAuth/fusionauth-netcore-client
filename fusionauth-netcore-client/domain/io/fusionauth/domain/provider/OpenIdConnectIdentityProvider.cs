@@ -26,11 +26,11 @@ namespace io.fusionauth.domain.provider {
    */
   public class OpenIdConnectIdentityProvider: BaseIdentityProvider<OpenIdConnectApplicationConfiguration> {
 
+    public List<string> domains;
+
     public string buttonImageURL;
 
     public string buttonText;
-
-    public List<string> domains;
 
     public IdentityProviderOauth2Configuration oauth2;
 

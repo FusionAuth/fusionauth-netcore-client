@@ -31,8 +31,6 @@ namespace io.fusionauth.domain {
 
     public string country;
 
-    public string displayString;
-
     public double? latitude;
 
     public double? longitude;
@@ -40,6 +38,8 @@ namespace io.fusionauth.domain {
     public string region;
 
     public string zipcode;
+
+    public string displayString;
 
     public Location with(Action<Location> action) {
       action(this);

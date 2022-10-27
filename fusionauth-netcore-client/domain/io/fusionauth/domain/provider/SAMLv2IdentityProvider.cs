@@ -29,11 +29,11 @@ namespace io.fusionauth.domain.provider {
    */
   public class SAMLv2IdentityProvider: BaseIdentityProvider<SAMLv2ApplicationConfiguration> {
 
+    public List<string> domains;
+
     public string buttonImageURL;
 
     public string buttonText;
-
-    public List<string> domains;
 
     public string emailClaim;
 

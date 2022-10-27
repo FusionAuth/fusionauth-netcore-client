@@ -28,17 +28,17 @@ namespace io.fusionauth.domain.oauth2 {
 
     public string change_password_id;
 
-    public OAuthErrorType error;
-
     public string error_description;
 
-    public OAuthErrorReason error_reason;
+    public OAuthErrorType error;
 
     public string error_uri;
 
-    public string two_factor_id;
-
     public List<TwoFactorMethod> two_factor_methods;
+
+    public OAuthErrorReason error_reason;
+
+    public string two_factor_id;
 
     public OAuthError with(Action<OAuthError> action) {
       action(this);

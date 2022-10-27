@@ -27,11 +27,11 @@ namespace io.fusionauth.domain {
    */
   public class Consent {
 
+    public IDictionary<string, object> data;
+
     public Guid? consentEmailTemplateId;
 
     public LocalizedIntegers countryMinimumAgeForSelfConsent;
-
-    public IDictionary<string, object> data;
 
     public int? defaultMinimumAgeForSelfConsent;
 

@@ -40,8 +40,6 @@ namespace io.fusionauth.domain {
 
     public string emailComplete;
 
-    public string emailSend;
-
     public string emailSent;
 
     public string emailVerificationRequired;
@@ -98,8 +96,6 @@ namespace io.fusionauth.domain {
 
     public string registrationComplete;
 
-    public string registrationSend;
-
     public string registrationSent;
 
     public string registrationVerificationRequired;
@@ -109,6 +105,10 @@ namespace io.fusionauth.domain {
     public string samlv2Logout;
 
     public string unauthorized;
+
+    public string emailSend;
+
+    public string registrationSend;
 
     public Templates with(Action<Templates> action) {
       action(this);

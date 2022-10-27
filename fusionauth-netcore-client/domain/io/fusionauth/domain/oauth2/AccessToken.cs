@@ -25,8 +25,6 @@ namespace io.fusionauth.domain.oauth2 {
    */
   public class AccessToken {
 
-    public string access_token;
-
     public int? expires_in;
 
     public string id_token;
@@ -36,6 +34,8 @@ namespace io.fusionauth.domain.oauth2 {
     public Guid? refresh_token_id;
 
     public string scope;
+
+    public string access_token;
 
     public TokenType token_type;
 

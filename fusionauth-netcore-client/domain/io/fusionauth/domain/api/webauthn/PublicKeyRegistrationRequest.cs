@@ -31,9 +31,9 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public string id;
 
-    public AuthenticatorRegistrationResponse response;
-
     public string rpId;
+
+    public AuthenticatorRegistrationResponse response;
 
     public List<AuthenticatorTransport> transports;
 

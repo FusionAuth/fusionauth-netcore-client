@@ -30,9 +30,9 @@ namespace io.fusionauth.domain.provider {
 
     public IDictionary<string, string> claimMap;
 
-    public Guid? defaultKeyId;
-
     public List<string> domains;
+
+    public Guid? defaultKeyId;
 
     public string headerKeyParameter;
 
