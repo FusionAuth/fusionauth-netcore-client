@@ -177,9 +177,9 @@ namespace io.fusionauth {
     /// Make a Client Credentials grant request to obtain an access token.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you you are attempting to authenticate.</param>
+    /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you are attempting to authenticate.</param>
     /// <param name="client_secret"> The client secret used to authenticate this request.</param>
-    /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:<target-entity-id>:<roles>. Roles are an optional comma separated list.</param>
+    /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:&lt;target-entity-id&gt;:&lt;roles&gt;. Roles are an optional comma separated list.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4644,9 +4644,9 @@ namespace io.fusionauth {
    /// <summary>
    /// Make a Client Credentials grant request to obtain an access token.
    /// </summary>
-   /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you you are attempting to authenticate.</param>
+   /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you are attempting to authenticate.</param>
    /// <param name="client_secret"> The client secret used to authenticate this request.</param>
-   /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:<target-entity-id>:<roles>. Roles are an optional comma separated list.</param>
+   /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:&lt;target-entity-id&gt;:&lt;roles&gt;. Roles are an optional comma separated list.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
