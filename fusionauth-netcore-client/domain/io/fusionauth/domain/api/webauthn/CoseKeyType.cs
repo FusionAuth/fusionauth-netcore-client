@@ -21,11 +21,7 @@ using System;
 
 namespace io.fusionauth.domain.api.webauthn {
 
-  /**
-   * COSE key type
-   *
-   * @author Spencer Witt
-   */
+  // TODO : WebAuthn/Domain - this type is only used internally, but it is referenced in CoseAlgorithmIdentifier which is required in public domain
   public enum CoseKeyType {
         [EnumMember(Value = "0")]
         Reserved, 
