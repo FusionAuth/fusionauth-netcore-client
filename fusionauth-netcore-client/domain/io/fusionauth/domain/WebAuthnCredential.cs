@@ -58,7 +58,7 @@ namespace io.fusionauth.domain {
 
     public Guid? tenantId;
 
-    public List<AuthenticatorTransport> transports;
+    public List<string> transports;
 
     public string userAgent;
 

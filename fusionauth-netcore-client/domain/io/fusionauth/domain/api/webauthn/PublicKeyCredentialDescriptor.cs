@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public string id;
 
-    public List<AuthenticatorTransport> transports;
+    public List<string> transports;
 
     public PublicKeyCredentialType type;
 

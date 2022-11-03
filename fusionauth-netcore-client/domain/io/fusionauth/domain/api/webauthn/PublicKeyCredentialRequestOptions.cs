@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.api.webauthn {
 
     public string challenge;
 
-    public string relyingPartyId;
+    public string rpId;
 
     public long? timeout;
 
