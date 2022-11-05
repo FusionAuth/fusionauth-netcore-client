@@ -20,7 +20,11 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  // TODO : WebAuthn : Daniel Review : Do we need this Enableable
+  /**
+   * Tenant-level configuration for WebAuthn
+   *
+   * @author Spencer Witt
+   */
   public class TenantWebAuthnConfiguration: Enableable {
 
     public TenantWebAuthnWorkflowConfiguration bootstrapWorkflow;
