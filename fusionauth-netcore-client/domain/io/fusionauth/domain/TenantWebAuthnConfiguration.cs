@@ -25,6 +25,8 @@ namespace io.fusionauth.domain {
 
     public TenantWebAuthnWorkflowConfiguration bootstrapWorkflow;
 
+    public bool? debug;
+
     public TenantWebAuthnWorkflowConfiguration reauthenticationWorkflow;
 
     public string relyingPartyId;
