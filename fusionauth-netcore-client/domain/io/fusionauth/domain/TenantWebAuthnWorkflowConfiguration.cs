@@ -21,7 +21,9 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  // TODO : WebAuthn : Daniel Review : If this also ends up living in the Application, we should rename to WebAuthnWorkflowConfiguration
+  /**
+   * @author Spencer Witt
+   */
   public class TenantWebAuthnWorkflowConfiguration: Enableable {
 
     public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
