@@ -85,6 +85,8 @@ namespace io.fusionauth.domain {
 
     public bool? verifyRegistration;
 
+    public ApplicationWebAuthnConfiguration webAuthnConfiguration;
+
     public Application with(Action<Application> action) {
       action(this);
       return this;

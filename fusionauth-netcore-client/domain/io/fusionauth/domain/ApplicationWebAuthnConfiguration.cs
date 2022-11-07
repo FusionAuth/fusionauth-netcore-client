@@ -20,35 +20,14 @@ using System;
 
 namespace io.fusionauth.domain {
 
-  public class SAMLv2Configuration: Enableable {
+  /**
+   * Application-level configuration for WebAuthn
+   *
+   * @author Daniel DeGroff
+   */
+  public class ApplicationWebAuthnConfiguration: Enableable {
 
-    public string audience;
-
-    public List<string> authorizedRedirectURLs;
-
-    public bool? debug;
-
-    public Guid? defaultVerificationKeyId;
-
-    public SAMLv2IdPInitiatedLoginConfiguration initiatedLogin;
-
-    public string issuer;
-
-    public Guid? keyId;
-
-    public SAMLv2Logout logout;
-
-    public string logoutURL;
-
-    public bool? requireSignedRequests;
-
-    public CanonicalizationMethod xmlSignatureC14nMethod;
-
-    public XMLSignatureLocation xmlSignatureLocation;
-
-    public string callbackURL;
-
-    public SAMLv2Configuration with(Action<SAMLv2Configuration> action) {
+    public ApplicationWebAuthnConfiguration with(Action<ApplicationWebAuthnConfiguration> action) {
       action(this);
       return this;
     }
