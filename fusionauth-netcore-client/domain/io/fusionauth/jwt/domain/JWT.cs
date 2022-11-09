@@ -44,8 +44,6 @@ namespace io.fusionauth.jwt.domain {
 
     public string iss;
 
-    public string jti;
-
     [JsonConverter(typeof(DateTimeOffsetSecondsConverter))]
     public DateTimeOffset? nbf;
 
@@ -58,6 +56,8 @@ namespace io.fusionauth.jwt.domain {
     private readonly Dictionary<string, dynamic> otherClaims = new Dictionary<string, dynamic>();
 
     public string sub;
+
+    public string jti;
 
     public JWT with(Action<JWT> action) {
       action(this);

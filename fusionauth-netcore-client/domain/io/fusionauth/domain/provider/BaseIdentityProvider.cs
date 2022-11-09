@@ -25,9 +25,9 @@ namespace io.fusionauth.domain.provider {
   // Do not require a setter for 'type', it is defined by the concrete class and is not mutable
   public class BaseIdentityProvider<D>: Enableable, IdentityProvider {
 
-    public IDictionary<Guid, D> applicationConfiguration;
-
     public IDictionary<string, object> data;
+
+    public IDictionary<Guid, D> applicationConfiguration;
 
     public bool? debug;
 

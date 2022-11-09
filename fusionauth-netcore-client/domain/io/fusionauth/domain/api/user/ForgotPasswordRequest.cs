@@ -32,13 +32,13 @@ namespace io.fusionauth.domain.api.user {
 
     public string changePasswordId;
 
-    public string email;
-
     public string loginId;
 
     public bool? sendForgotPasswordEmail;
 
     public IDictionary<string, object> state;
+
+    public string email;
 
     public string username;
 

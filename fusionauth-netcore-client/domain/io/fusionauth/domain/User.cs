@@ -28,6 +28,8 @@ namespace io.fusionauth.domain {
    */
   public class User: SecureIdentity {
 
+    public List<string> preferredLanguages;
+
     public bool? active;
 
     public string birthDate;
@@ -52,23 +54,21 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? lastUpdateInstant;
 
-    public List<GroupMember> memberships;
-
     public string middleName;
 
     public string mobilePhone;
 
     public string parentEmail;
 
-    public List<string> preferredLanguages;
-
-    public List<UserRegistration> registrations;
-
     public Guid? tenantId;
 
     public string timezone;
 
     public UserTwoFactorConfiguration twoFactor;
+
+    public List<GroupMember> memberships;
+
+    public List<UserRegistration> registrations;
 
     public User with(Action<User> action) {
       action(this);

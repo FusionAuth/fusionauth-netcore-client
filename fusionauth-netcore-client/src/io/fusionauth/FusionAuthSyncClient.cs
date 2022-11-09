@@ -24,6 +24,7 @@ using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
 using io.fusionauth.domain.api.twoFactor;
+using io.fusionauth.domain.api.webauthn;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
@@ -101,8 +102,28 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope) {
+      return client.ClientCredentialsGrantAsync(client_id, client_secret, scope).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request) {
       return client.CommentOnUserAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request) {
+      return client.CompleteWebAuthnAssertionAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<LoginResponse> CompleteWebAuthnLogin(WebAuthnLoginRequest request) {
+      return client.CompleteWebAuthnLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request) {
+      return client.CompleteWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -443,6 +464,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteWebAuthnCredential(Guid? id) {
+      return client.DeleteWebAuthnCredentialAsync(id).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteWebhook(Guid? webhookId) {
       return client.DeleteWebhookAsync(webhookId).GetAwaiter().GetResult();
     }
@@ -540,6 +566,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> ImportUsers(ImportRequest request) {
       return client.ImportUsersAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnImportRequest request) {
+      return client.ImportWebAuthnCredentialAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1238,6 +1269,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredential(Guid? id) {
+      return client.RetrieveWebAuthnCredentialAsync(id).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredentialsForUser(Guid? userId) {
+      return client.RetrieveWebAuthnCredentialsForUserAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<WebhookResponse> RetrieveWebhook(Guid? webhookId) {
       return client.RetrieveWebhookAsync(webhookId).GetAwaiter().GetResult();
     }
@@ -1409,6 +1450,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request) {
       return client.StartTwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebAuthnStartResponse> StartWebAuthnLogin(WebAuthnStartRequest request) {
+      return client.StartWebAuthnLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebAuthnRegisterResponse> StartWebAuthnRegistration(WebAuthnRegisterRequest request) {
+      return client.StartWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

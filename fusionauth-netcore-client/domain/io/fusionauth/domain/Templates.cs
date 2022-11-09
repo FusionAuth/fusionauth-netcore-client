@@ -32,9 +32,13 @@ namespace io.fusionauth.domain {
 
     public string accountTwoFactorIndex;
 
-    public string emailComplete;
+    public string accountWebAuthnAdd;
 
-    public string emailSend;
+    public string accountWebAuthnDelete;
+
+    public string accountWebAuthnIndex;
+
+    public string emailComplete;
 
     public string emailSent;
 
@@ -76,6 +80,12 @@ namespace io.fusionauth.domain {
 
     public string oauth2Wait;
 
+    public string oauth2WebAuthn;
+
+    public string oauth2WebAuthnReauth;
+
+    public string oauth2WebAuthnReauthEnable;
+
     public string passwordChange;
 
     public string passwordComplete;
@@ -86,8 +96,6 @@ namespace io.fusionauth.domain {
 
     public string registrationComplete;
 
-    public string registrationSend;
-
     public string registrationSent;
 
     public string registrationVerificationRequired;
@@ -97,6 +105,10 @@ namespace io.fusionauth.domain {
     public string samlv2Logout;
 
     public string unauthorized;
+
+    public string emailSend;
+
+    public string registrationSend;
 
     public Templates with(Action<Templates> action) {
       action(this);

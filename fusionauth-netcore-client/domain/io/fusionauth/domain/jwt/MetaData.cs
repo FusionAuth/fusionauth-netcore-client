@@ -22,6 +22,8 @@ namespace io.fusionauth.domain.jwt {
 
   public class MetaData {
 
+    public IDictionary<string, object> data;
+
     public DeviceInfo device;
 
     public List<string> scopes;

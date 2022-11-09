@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.@event {
    */
   public class UserActionEvent: BaseEvent {
 
+    public List<Guid> applicationIds;
+
     public string action;
 
     public Guid? actionId;
@@ -35,8 +37,6 @@ namespace io.fusionauth.domain.@event {
     public Guid? actioneeUserId;
 
     public Guid? actionerUserId;
-
-    public List<Guid> applicationIds;
 
     public string comment;
 

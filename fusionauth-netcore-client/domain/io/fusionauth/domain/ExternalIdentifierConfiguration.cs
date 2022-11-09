@@ -73,6 +73,10 @@ namespace io.fusionauth.domain {
 
     public int? twoFactorTrustIdTimeToLiveInSeconds;
 
+    public int? webAuthnAuthenticationChallengeTimeToLiveInSeconds;
+
+    public int? webAuthnRegistrationChallengeTimeToLiveInSeconds;
+
     public ExternalIdentifierConfiguration with(Action<ExternalIdentifierConfiguration> action) {
       action(this);
       return this;

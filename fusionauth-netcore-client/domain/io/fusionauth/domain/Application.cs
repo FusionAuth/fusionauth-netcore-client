@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.provider;
 using io.fusionauth.domain.oauth2;
 using System.Collections.Generic;
 using System;
@@ -83,6 +84,8 @@ namespace io.fusionauth.domain {
     public VerificationStrategy verificationStrategy;
 
     public bool? verifyRegistration;
+
+    public ApplicationWebAuthnConfiguration webAuthnConfiguration;
 
     public Application with(Action<Application> action) {
       action(this);

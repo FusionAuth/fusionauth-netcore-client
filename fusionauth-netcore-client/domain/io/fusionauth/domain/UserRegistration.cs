@@ -27,13 +27,17 @@ namespace io.fusionauth.domain {
    */
   public class UserRegistration {
 
+    public IDictionary<string, object> data;
+
+    public List<string> preferredLanguages;
+
+    public IDictionary<string, string> tokens;
+
     public Guid? applicationId;
 
     public string authenticationToken;
 
     public Guid? cleanSpeakId;
-
-    public IDictionary<string, object> data;
 
     public Guid? id;
 
@@ -43,13 +47,9 @@ namespace io.fusionauth.domain {
 
     public DateTimeOffset? lastUpdateInstant;
 
-    public List<string> preferredLanguages;
-
     public List<string> roles;
 
     public string timezone;
-
-    public IDictionary<string, string> tokens;
 
     public string username;
 

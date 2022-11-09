@@ -174,6 +174,21 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAsync(string loginId);
 
     /// <summary>
+    /// Make a Client Credentials grant request to obtain an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you are attempting to authenticate.</param>
+    /// <param name="client_secret"> The client secret used to authenticate this request.</param>
+    /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:&lt;target-entity-id&gt;:&lt;roles&gt;. Roles are an optional comma separated list.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope);
+
+    /// <summary>
     /// Adds a comment to the user's account.
     /// This is an asynchronous method.
     /// </summary>
@@ -185,6 +200,45 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
+
+    /// <summary>
+    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request);
+
+    /// <summary>
+    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge and then login the user in
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<LoginResponse>> CompleteWebAuthnLoginAsync(WebAuthnLoginRequest request);
+
+    /// <summary>
+    /// Complete a WebAuthn registration ceremony by validating the client request and saving the new credential
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for completing the registration ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request);
 
     /// <summary>
     /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
@@ -1127,6 +1181,19 @@ namespace io.fusionauth {
     Task<ClientResponse<UserDeleteResponse>> DeleteUsersByQueryAsync(UserDeleteRequest request);
 
     /// <summary>
+    /// Deletes the WebAuthn credential for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="id"> The Id of the WebAuthn credential to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteWebAuthnCredentialAsync(Guid? id);
+
+    /// <summary>
     /// Deletes the webhook for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1433,6 +1500,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> ImportUsersAsync(ImportRequest request);
+
+    /// <summary>
+    /// Import a WebAuthn credential
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for importing the credential</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> ImportWebAuthnCredentialAsync(WebAuthnImportRequest request);
 
     /// <summary>
     /// Inspect an access token issued by FusionAuth.
@@ -3329,6 +3409,32 @@ namespace io.fusionauth {
     Task<ClientResponse<VersionResponse>> RetrieveVersionAsync();
 
     /// <summary>
+    /// Retrieves the WebAuthn credential for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="id"> The Id of the WebAuthn credential.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnCredentialResponse>> RetrieveWebAuthnCredentialAsync(Guid? id);
+
+    /// <summary>
+    /// Retrieves all WebAuthn credentials for the given user.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The user's ID.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnCredentialResponse>> RetrieveWebAuthnCredentialsForUserAsync(Guid? userId);
+
+    /// <summary>
     /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
     /// This is an asynchronous method.
     /// </summary>
@@ -3811,6 +3917,32 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<TwoFactorStartResponse>> StartTwoFactorLoginAsync(TwoFactorStartRequest request);
+
+    /// <summary>
+    /// Start a WebAuthn authentication ceremony by generating a new challenge for the user
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for starting the authentication ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnStartResponse>> StartWebAuthnLoginAsync(WebAuthnStartRequest request);
+
+    /// <summary>
+    /// Start a WebAuthn registration ceremony by generating a new challenge for the user
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> An object containing data necessary for starting the registration ceremony</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebAuthnRegisterResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterRequest request);
 
     /// <summary>
     /// Complete login using a 2FA challenge
@@ -4510,6 +4642,20 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> CheckChangePasswordUsingLoginId(string loginId);
 
    /// <summary>
+   /// Make a Client Credentials grant request to obtain an access token.
+   /// </summary>
+   /// <param name="client_id"> The client identifier. The client Id is the Id of the FusionAuth Entity in which you are attempting to authenticate.</param>
+   /// <param name="client_secret"> The client secret used to authenticate this request.</param>
+   /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:&lt;target-entity-id&gt;:&lt;roles&gt;. Roles are an optional comma separated list.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope);
+
+   /// <summary>
    /// Adds a comment to the user's account.
    /// </summary>
    /// <param name="request"> The request object that contains all the information used to create the user comment.</param>
@@ -4520,6 +4666,42 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
+
+   /// <summary>
+   /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request);
+
+   /// <summary>
+   /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge and then login the user in
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for completing the authentication ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<LoginResponse> CompleteWebAuthnLogin(WebAuthnLoginRequest request);
+
+   /// <summary>
+   /// Complete a WebAuthn registration ceremony by validating the client request and saving the new credential
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for completing the registration ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request);
 
    /// <summary>
    /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
@@ -5395,6 +5577,18 @@ namespace io.fusionauth {
    ClientResponse<UserDeleteResponse> DeleteUsersByQuery(UserDeleteRequest request);
 
    /// <summary>
+   /// Deletes the WebAuthn credential for the given Id.
+   /// </summary>
+   /// <param name="id"> The Id of the WebAuthn credential to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteWebAuthnCredential(Guid? id);
+
+   /// <summary>
    /// Deletes the webhook for the given Id.
    /// </summary>
    /// <param name="webhookId"> The Id of the webhook to delete.</param>
@@ -5681,6 +5875,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> ImportUsers(ImportRequest request);
+
+   /// <summary>
+   /// Import a WebAuthn credential
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for importing the credential</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnImportRequest request);
 
    /// <summary>
    /// Inspect an access token issued by FusionAuth.
@@ -7438,6 +7644,30 @@ namespace io.fusionauth {
    ClientResponse<VersionResponse> RetrieveVersion();
 
    /// <summary>
+   /// Retrieves the WebAuthn credential for the given Id.
+   /// </summary>
+   /// <param name="id"> The Id of the WebAuthn credential.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredential(Guid? id);
+
+   /// <summary>
+   /// Retrieves all WebAuthn credentials for the given user.
+   /// </summary>
+   /// <param name="userId"> The user's ID.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredentialsForUser(Guid? userId);
+
+   /// <summary>
    /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
    /// </summary>
    /// <param name="webhookId"> (Optional) The Id of the webhook.</param>
@@ -7886,6 +8116,30 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request);
+
+   /// <summary>
+   /// Start a WebAuthn authentication ceremony by generating a new challenge for the user
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for starting the authentication ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnStartResponse> StartWebAuthnLogin(WebAuthnStartRequest request);
+
+   /// <summary>
+   /// Start a WebAuthn registration ceremony by generating a new challenge for the user
+   /// </summary>
+   /// <param name="request"> An object containing data necessary for starting the registration ceremony</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebAuthnRegisterResponse> StartWebAuthnRegistration(WebAuthnRegisterRequest request);
 
    /// <summary>
    /// Complete login using a 2FA challenge

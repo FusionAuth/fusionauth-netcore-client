@@ -26,6 +26,8 @@ namespace io.fusionauth.domain {
    */
   public class Tenant {
 
+    public IDictionary<string, object> data;
+
     public TenantAccessControlConfiguration accessControlConfiguration;
 
     public TenantCaptchaConfiguration captchaConfiguration;
@@ -33,8 +35,6 @@ namespace io.fusionauth.domain {
     public bool? configured;
 
     public List<ConnectorPolicy> connectorPolicies;
-
-    public IDictionary<string, object> data;
 
     public EmailConfiguration emailConfiguration;
 
@@ -95,6 +95,8 @@ namespace io.fusionauth.domain {
     public TenantUserDeletePolicy userDeletePolicy;
 
     public TenantUsernameConfiguration usernameConfiguration;
+
+    public TenantWebAuthnConfiguration webAuthnConfiguration;
 
     public Tenant with(Action<Tenant> action) {
       action(this);

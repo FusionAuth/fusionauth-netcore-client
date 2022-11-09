@@ -28,9 +28,9 @@ namespace io.fusionauth.domain.api {
    */
   public class EntityGrantResponse {
 
-    public EntityGrant grant;
-
     public List<EntityGrant> grants;
+
+    public EntityGrant grant;
 
     public EntityGrantResponse with(Action<EntityGrantResponse> action) {
       action(this);

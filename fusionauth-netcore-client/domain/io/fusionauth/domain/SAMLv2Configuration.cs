@@ -26,11 +26,11 @@ namespace io.fusionauth.domain {
 
     public List<string> authorizedRedirectURLs;
 
-    public string callbackURL;
-
     public bool? debug;
 
     public Guid? defaultVerificationKeyId;
+
+    public SAMLv2IdPInitiatedLoginConfiguration initiatedLogin;
 
     public string issuer;
 
@@ -45,6 +45,8 @@ namespace io.fusionauth.domain {
     public CanonicalizationMethod xmlSignatureC14nMethod;
 
     public XMLSignatureLocation xmlSignatureLocation;
+
+    public string callbackURL;
 
     public SAMLv2Configuration with(Action<SAMLv2Configuration> action) {
       action(this);
