@@ -15,22 +15,23 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Supply additional information about the user account when creating a new credential
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class PublicKeyCredentialUserEntity: PublicKeyCredentialEntity {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public string displayName;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public string id;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public PublicKeyCredentialUserEntity with(Action<PublicKeyCredentialUserEntity> action) {
       action(this);
       return this;
     }

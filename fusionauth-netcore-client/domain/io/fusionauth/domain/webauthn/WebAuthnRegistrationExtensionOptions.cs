@@ -15,22 +15,21 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Options to request extensions during credential registration
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnRegistrationExtensionOptions {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public bool? credProps;
 
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public WebAuthnRegistrationExtensionOptions with(Action<WebAuthnRegistrationExtensionOptions> action) {
       action(this);
       return this;
     }

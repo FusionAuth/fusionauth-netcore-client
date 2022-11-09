@@ -15,24 +15,25 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * COSE Elliptic Curve identifier to determine which elliptic curve to use with a given key
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
-
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
-
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum CoseEllipticCurve {
+        Reserved, 
+        P256, 
+        P384, 
+        P521, 
+        X25519, 
+        X448, 
+        Ed25519, 
+        Ed448, 
+        Secp256k1
   }
 }

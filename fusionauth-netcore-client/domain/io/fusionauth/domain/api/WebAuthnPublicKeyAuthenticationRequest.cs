@@ -19,18 +19,26 @@ using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
+   * Request to authenticate with WebAuthn
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnPublicKeyAuthenticationRequest {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public WebAuthnExtensionsClientOutputs clientExtensionResults;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public string id;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public string rpId;
+
+    public WebAuthnAuthenticatorAuthenticationResponse response;
+
+    public string type;
+
+    public WebAuthnPublicKeyAuthenticationRequest with(Action<WebAuthnPublicKeyAuthenticationRequest> action) {
       action(this);
       return this;
     }

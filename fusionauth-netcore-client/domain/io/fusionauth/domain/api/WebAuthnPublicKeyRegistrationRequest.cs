@@ -19,52 +19,28 @@ using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
-   * A User's WebAuthnCredential. Contains all data required to complete WebAuthn authentication ceremonies.
+   * Request to register a new public key with WebAuthn
    *
    * @author Spencer Witt
    */
-  public class WebAuthnCredential {
+  public class WebAuthnPublicKeyRegistrationRequest {
 
-    public CoseAlgorithmIdentifier algorithm;
+    public WebAuthnExtensionsClientOutputs clientExtensionResults;
 
-    public AttestationType attestationType;
+    public string id;
 
-    public bool? authenticatorSupportsUserVerification;
+    public string rpId;
 
-    public string credentialId;
-
-    public IDictionary<string, object> data;
-
-    public bool? discoverable;
-
-    public string displayName;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUseInstant;
-
-    public string name;
-
-    public string publicKey;
-
-    public string relyingPartyId;
-
-    public int? signCount;
-
-    public Guid? tenantId;
+    public WebAuthnAuthenticatorRegistrationResponse response;
 
     public List<string> transports;
 
-    public string userAgent;
+    public string type;
 
-    public Guid? userId;
-
-    public WebAuthnCredential with(Action<WebAuthnCredential> action) {
+    public WebAuthnPublicKeyRegistrationRequest with(Action<WebAuthnPublicKeyRegistrationRequest> action) {
       action(this);
       return this;
     }

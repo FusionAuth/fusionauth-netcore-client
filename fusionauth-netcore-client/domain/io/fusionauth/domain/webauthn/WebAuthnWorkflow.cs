@@ -15,24 +15,20 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Identifies the WebAuthn workflow. This will affect the parameters used for credential creation
+   * and request based on the Tenant configuration.
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
-
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
-
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum WebAuthnWorkflow {
+        bootstrap, 
+        general, 
+        reauthentication
   }
 }

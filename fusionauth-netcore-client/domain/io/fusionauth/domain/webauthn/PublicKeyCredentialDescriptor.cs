@@ -15,22 +15,25 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Contains attributes for the Relying Party to refer to an existing public key credential as an input parameter.
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class PublicKeyCredentialDescriptor {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public string id;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public List<string> transports;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public PublicKeyCredentialType type;
+
+    public PublicKeyCredentialDescriptor with(Action<PublicKeyCredentialDescriptor> action) {
       action(this);
       return this;
     }

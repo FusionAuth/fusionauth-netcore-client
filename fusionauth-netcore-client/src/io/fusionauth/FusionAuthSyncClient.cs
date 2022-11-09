@@ -24,7 +24,6 @@ using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
 using io.fusionauth.domain.api.twoFactor;
-using io.fusionauth.domain.api.webauthn;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
@@ -112,7 +111,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request) {
+    public ClientResponse<WebAuthnAssertResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request) {
       return client.CompleteWebAuthnAssertionAsync(request).GetAwaiter().GetResult();
     }
 
@@ -122,7 +121,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request) {
+    public ClientResponse<WebAuthnRegisterCompleteResponse> CompleteWebAuthnRegistration(WebAuthnRegisterCompleteRequest request) {
       return client.CompleteWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
     }
 
@@ -569,7 +568,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnImportRequest request) {
+    public ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnCredentialImportRequest request) {
       return client.ImportWebAuthnCredentialAsync(request).GetAwaiter().GetResult();
     }
 
@@ -1458,7 +1457,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<WebAuthnRegisterResponse> StartWebAuthnRegistration(WebAuthnRegisterRequest request) {
+    public ClientResponse<WebAuthnRegisterStartResponse> StartWebAuthnRegistration(WebAuthnRegisterStartRequest request) {
       return client.StartWebAuthnRegistrationAsync(request).GetAwaiter().GetResult();
     }
 

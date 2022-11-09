@@ -15,24 +15,20 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Used to express whether the Relying Party requires <a href="https://www.w3.org/TR/webauthn-2/#user-verification">user verification</a> for the
+   * current operation.
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
-
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
-
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum UserVerificationRequirement {
+        required, 
+        preferred, 
+        discouraged
   }
 }

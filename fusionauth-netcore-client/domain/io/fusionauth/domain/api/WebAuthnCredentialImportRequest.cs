@@ -15,22 +15,24 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
+   * API request to import an existing WebAuthn credential(s)
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnCredentialImportRequest {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public List<WebAuthnCredential> credentials;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public bool? validateDbConstraints;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public WebAuthnCredentialImportRequest with(Action<WebAuthnCredentialImportRequest> action) {
       action(this);
       return this;
     }

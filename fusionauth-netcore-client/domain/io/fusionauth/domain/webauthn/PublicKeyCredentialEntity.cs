@@ -15,22 +15,19 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
-   * @author Spencer Witt
+   * Describes a user account or WebAuthn Relying Party associated with a public key credential
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class PublicKeyCredentialEntity {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public string name;
 
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public PublicKeyCredentialEntity with(Action<PublicKeyCredentialEntity> action) {
       action(this);
       return this;
     }

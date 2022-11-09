@@ -15,22 +15,37 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Allows the Relying Party to specify desired attributes of a new credential.
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class PublicKeyCredentialCreationOptions {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public AttestationConveyancePreference attestation;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public AuthenticatorSelectionCriteria authenticatorSelection;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public string challenge;
+
+    public List<PublicKeyCredentialDescriptor> excludeCredentials;
+
+    public WebAuthnRegistrationExtensionOptions extensions;
+
+    public List<PublicKeyCredentialParameters> pubKeyCredParams;
+
+    public PublicKeyCredentialRelyingPartyEntity rp;
+
+    public long? timeout;
+
+    public PublicKeyCredentialUserEntity user;
+
+    public PublicKeyCredentialCreationOptions with(Action<PublicKeyCredentialCreationOptions> action) {
       action(this);
       return this;
     }

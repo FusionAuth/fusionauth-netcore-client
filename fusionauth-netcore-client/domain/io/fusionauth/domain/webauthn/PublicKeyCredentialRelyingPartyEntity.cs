@@ -15,22 +15,21 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Supply additional information about the Relying Party when creating a new credential
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class PublicKeyCredentialRelyingPartyEntity: PublicKeyCredentialEntity {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public string id;
 
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public PublicKeyCredentialRelyingPartyEntity with(Action<PublicKeyCredentialRelyingPartyEntity> action) {
       action(this);
       return this;
     }

@@ -15,22 +15,29 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Provides the <i>authenticator</i> with the data it needs to generate an assertion.
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class PublicKeyCredentialRequestOptions {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public List<PublicKeyCredentialDescriptor> allowCredentials;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public string challenge;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public string rpId;
+
+    public long? timeout;
+
+    public UserVerificationRequirement userVerification;
+
+    public PublicKeyCredentialRequestOptions with(Action<PublicKeyCredentialRequestOptions> action) {
       action(this);
       return this;
     }

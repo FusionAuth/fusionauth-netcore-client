@@ -212,7 +212,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request);
+    Task<ClientResponse<WebAuthnAssertResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request);
 
     /// <summary>
     /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge and then login the user in
@@ -238,7 +238,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request);
+    Task<ClientResponse<WebAuthnRegisterCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnRegisterCompleteRequest request);
 
     /// <summary>
     /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
@@ -1512,7 +1512,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> ImportWebAuthnCredentialAsync(WebAuthnImportRequest request);
+    Task<ClientResponse<RESTVoid>> ImportWebAuthnCredentialAsync(WebAuthnCredentialImportRequest request);
 
     /// <summary>
     /// Inspect an access token issued by FusionAuth.
@@ -3942,7 +3942,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<WebAuthnRegisterResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterRequest request);
+    Task<ClientResponse<WebAuthnRegisterStartResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterStartRequest request);
 
     /// <summary>
     /// Complete login using a 2FA challenge
@@ -4677,7 +4677,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request);
+   ClientResponse<WebAuthnAssertResponse> CompleteWebAuthnAssertion(WebAuthnLoginRequest request);
 
    /// <summary>
    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge and then login the user in
@@ -4701,7 +4701,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<WebAuthnCompleteResponse> CompleteWebAuthnRegistration(WebAuthnCompleteRequest request);
+   ClientResponse<WebAuthnRegisterCompleteResponse> CompleteWebAuthnRegistration(WebAuthnRegisterCompleteRequest request);
 
    /// <summary>
    /// Creates an API key. You can optionally specify a unique Id for the key, if not provided one will be generated.
@@ -5886,7 +5886,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnImportRequest request);
+   ClientResponse<RESTVoid> ImportWebAuthnCredential(WebAuthnCredentialImportRequest request);
 
    /// <summary>
    /// Inspect an access token issued by FusionAuth.
@@ -8139,7 +8139,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<WebAuthnRegisterResponse> StartWebAuthnRegistration(WebAuthnRegisterRequest request);
+   ClientResponse<WebAuthnRegisterStartResponse> StartWebAuthnRegistration(WebAuthnRegisterStartRequest request);
 
    /// <summary>
    /// Complete login using a 2FA challenge

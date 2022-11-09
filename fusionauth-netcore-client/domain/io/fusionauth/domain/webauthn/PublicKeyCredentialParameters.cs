@@ -15,22 +15,23 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Supply information on credential type and algorithm to the <i>authenticator</i>.
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class PublicKeyCredentialParameters {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public CoseAlgorithmIdentifier alg;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public PublicKeyCredentialType type;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public PublicKeyCredentialParameters with(Action<PublicKeyCredentialParameters> action) {
       action(this);
       return this;
     }

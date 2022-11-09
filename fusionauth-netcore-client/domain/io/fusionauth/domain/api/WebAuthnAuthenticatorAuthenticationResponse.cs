@@ -15,22 +15,27 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
+   * The <i>authenticator's</i> response for the authentication ceremony in its encoded format
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnAuthenticatorAuthenticationResponse {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public string authenticatorData;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public string clientDataJSON;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public string signature;
+
+    public string userHandle;
+
+    public WebAuthnAuthenticatorAuthenticationResponse with(Action<WebAuthnAuthenticatorAuthenticationResponse> action) {
       action(this);
       return this;
     }

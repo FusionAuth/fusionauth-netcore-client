@@ -15,22 +15,27 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
+   * Request to complete the WebAuthn registration ceremony
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnLoginRequest: BaseLoginRequest {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public WebAuthnPublicKeyAuthenticationRequest credential;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public string origin;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public string rpId;
+
+    public string twoFactorTrustId;
+
+    public WebAuthnLoginRequest with(Action<WebAuthnLoginRequest> action) {
       action(this);
       return this;
     }

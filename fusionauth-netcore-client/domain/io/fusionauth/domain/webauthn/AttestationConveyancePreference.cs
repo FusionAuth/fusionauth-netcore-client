@@ -15,24 +15,20 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Used to communicate whether and how authenticator attestation should be delivered to the Relying Party
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
-
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
-
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum AttestationConveyancePreference {
+        none, 
+        indirect, 
+        direct, 
+        enterprise
   }
 }

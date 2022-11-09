@@ -26,11 +26,9 @@ using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
 using io.fusionauth.domain.api.twoFactor;
-using io.fusionauth.domain.api.webauthn;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
-using io.fusionauth.domain.reactor;
 
 namespace io.fusionauth {
   public class FusionAuthClient : IFusionAuthAsyncClient {
@@ -191,12 +189,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request) {
+    public Task<ClientResponse<WebAuthnAssertResponse>> CompleteWebAuthnAssertionAsync(WebAuthnLoginRequest request) {
       return buildAnonymousClient()
           .withUri("/api/webauthn/assert")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<WebAuthnCompleteResponse>();
+          .goAsync<WebAuthnAssertResponse>();
     }
 
     /// <inheritdoc/>
@@ -209,12 +207,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<WebAuthnCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnCompleteRequest request) {
+    public Task<ClientResponse<WebAuthnRegisterCompleteResponse>> CompleteWebAuthnRegistrationAsync(WebAuthnRegisterCompleteRequest request) {
       return buildClient()
           .withUri("/api/webauthn/register/complete")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<WebAuthnCompleteResponse>();
+          .goAsync<WebAuthnRegisterCompleteResponse>();
     }
 
     /// <inheritdoc/>
@@ -1102,7 +1100,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> ImportWebAuthnCredentialAsync(WebAuthnImportRequest request) {
+    public Task<ClientResponse<RESTVoid>> ImportWebAuthnCredentialAsync(WebAuthnCredentialImportRequest request) {
       return buildClient()
           .withUri("/api/webauthn/import")
           .withJSONBody(request)
@@ -2740,12 +2738,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<WebAuthnRegisterResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterRequest request) {
+    public Task<ClientResponse<WebAuthnRegisterStartResponse>> StartWebAuthnRegistrationAsync(WebAuthnRegisterStartRequest request) {
       return buildClient()
           .withUri("/api/webauthn/register/start")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<WebAuthnRegisterResponse>();
+          .goAsync<WebAuthnRegisterStartResponse>();
     }
 
     /// <inheritdoc/>

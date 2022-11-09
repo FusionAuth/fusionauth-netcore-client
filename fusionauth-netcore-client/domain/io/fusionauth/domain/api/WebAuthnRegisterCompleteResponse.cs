@@ -15,22 +15,22 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
+   * API response for completing WebAuthn credential registration or assertion
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnRegisterCompleteResponse {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public WebAuthnCredential credential;
 
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public WebAuthnRegisterCompleteResponse with(Action<WebAuthnRegisterCompleteResponse> action) {
       action(this);
       return this;
     }

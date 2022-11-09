@@ -15,22 +15,28 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Used by the Relying Party to specify their requirements for authenticator attributes. Fields use the deprecated "resident key" terminology to refer
+   * to client-side discoverable credentials to maintain backwards compatibility with WebAuthn Level 1.
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class AuthenticatorSelectionCriteria {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public AuthenticatorAttachment authenticatorAttachment;
 
-    public UserVerificationRequirement userVerificationRequirement;
+    public bool? requireResidentKey;
 
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public ResidentKeyRequirement residentKey;
+
+    public UserVerificationRequirement userVerification;
+
+    public AuthenticatorSelectionCriteria with(Action<AuthenticatorSelectionCriteria> action) {
       action(this);
       return this;
     }

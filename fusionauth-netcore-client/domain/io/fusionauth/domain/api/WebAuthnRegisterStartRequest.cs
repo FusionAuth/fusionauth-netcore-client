@@ -19,52 +19,26 @@ using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
-   * A User's WebAuthnCredential. Contains all data required to complete WebAuthn authentication ceremonies.
+   * API request to start a WebAuthn registration ceremony
    *
    * @author Spencer Witt
    */
-  public class WebAuthnCredential {
-
-    public CoseAlgorithmIdentifier algorithm;
-
-    public AttestationType attestationType;
-
-    public bool? authenticatorSupportsUserVerification;
-
-    public string credentialId;
-
-    public IDictionary<string, object> data;
-
-    public bool? discoverable;
+  public class WebAuthnRegisterStartRequest {
 
     public string displayName;
 
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUseInstant;
-
     public string name;
-
-    public string publicKey;
-
-    public string relyingPartyId;
-
-    public int? signCount;
-
-    public Guid? tenantId;
-
-    public List<string> transports;
 
     public string userAgent;
 
     public Guid? userId;
 
-    public WebAuthnCredential with(Action<WebAuthnCredential> action) {
+    public WebAuthnWorkflow workflow;
+
+    public WebAuthnRegisterStartRequest with(Action<WebAuthnRegisterStartRequest> action) {
       action(this);
       return this;
     }

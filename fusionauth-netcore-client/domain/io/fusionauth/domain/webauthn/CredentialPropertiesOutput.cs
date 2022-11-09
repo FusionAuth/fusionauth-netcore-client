@@ -15,22 +15,21 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Contains the output for the {@code credProps} extension
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class CredentialPropertiesOutput {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public bool? rk;
 
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public CredentialPropertiesOutput with(Action<CredentialPropertiesOutput> action) {
       action(this);
       return this;
     }

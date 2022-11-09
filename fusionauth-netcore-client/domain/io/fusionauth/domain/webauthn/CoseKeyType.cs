@@ -15,24 +15,27 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * COSE key type
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
-
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
-
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum CoseKeyType {
+        [EnumMember(Value = "0")]
+        Reserved, 
+        [EnumMember(Value = "1")]
+        OKP, 
+        [EnumMember(Value = "2")]
+        EC2, 
+        [EnumMember(Value = "3")]
+        RSA, 
+        [EnumMember(Value = "4")]
+        Symmetric
   }
 }

@@ -15,24 +15,19 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Defines valid credential types. This is an extension point in the WebAuthn spec. The only defined value at this time is "public-key"
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
-
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
-
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum PublicKeyCredentialType {
+        [EnumMember(Value = "public-key")]
+        publicKey
   }
 }

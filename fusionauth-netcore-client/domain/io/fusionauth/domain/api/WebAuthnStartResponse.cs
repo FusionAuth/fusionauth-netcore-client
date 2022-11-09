@@ -19,18 +19,18 @@ using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.api {
 
   /**
+   * API response for starting a WebAuthn authentication ceremony
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnStartResponse {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public PublicKeyCredentialRequestOptions options;
 
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public WebAuthnStartResponse with(Action<WebAuthnStartResponse> action) {
       action(this);
       return this;
     }

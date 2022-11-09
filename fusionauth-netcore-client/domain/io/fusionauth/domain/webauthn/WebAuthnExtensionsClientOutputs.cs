@@ -15,22 +15,21 @@
  */
 
 
-using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain.webauthn {
 
   /**
+   * Contains extension output for requested extensions during a WebAuthn ceremony
+   *
    * @author Spencer Witt
    */
-  public class TenantWebAuthnWorkflowConfiguration: Enableable {
+  public class WebAuthnExtensionsClientOutputs {
 
-    public AuthenticatorAttachmentPreference authenticatorAttachmentPreference;
+    public CredentialPropertiesOutput credProps;
 
-    public UserVerificationRequirement userVerificationRequirement;
-
-    public TenantWebAuthnWorkflowConfiguration with(Action<TenantWebAuthnWorkflowConfiguration> action) {
+    public WebAuthnExtensionsClientOutputs with(Action<WebAuthnExtensionsClientOutputs> action) {
       action(this);
       return this;
     }
