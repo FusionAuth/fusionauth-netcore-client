@@ -27,9 +27,13 @@ namespace io.fusionauth.domain {
    */
   public class FailedAuthenticationConfiguration {
 
+    public FailedAuthenticationActionCancelPolicy actionCancelPolicy;
+
     public long? actionDuration;
 
     public ExpiryUnit actionDurationUnit;
+
+    public bool? emailUser;
 
     public int? resetCountInSeconds;
 

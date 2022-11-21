@@ -25,6 +25,7 @@ namespace io.fusionauth.domain {
    */
   public enum MultiFactorLoginPolicy {
         Disabled, 
-        Enabled
+        Enabled, 
+        Required
   }
 }
