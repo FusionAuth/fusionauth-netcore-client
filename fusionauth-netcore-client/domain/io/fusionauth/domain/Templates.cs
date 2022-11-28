@@ -78,9 +78,9 @@ namespace io.fusionauth.domain {
 
     public string oauth2TwoFactorEnable;
 
-    public string oauth2TwoFactorMethods;
+    public string oauth2TwoFactorEnableComplete;
 
-    public string oauth2TwoFactorRecoveryCodes;
+    public string oauth2TwoFactorMethods;
 
     public string oauth2Wait;
 

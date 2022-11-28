@@ -25,6 +25,8 @@ namespace io.fusionauth.domain.api {
    */
   public class TwoFactorResponse {
 
+    public string code;
+
     public List<string> recoveryCodes;
 
     public TwoFactorResponse with(Action<TwoFactorResponse> action) {
