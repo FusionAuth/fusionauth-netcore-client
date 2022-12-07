@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.api {
 
     public ChangePasswordReason changePasswordReason;
 
+    public List<string> configurableMethods;
+
     public string emailVerificationId;
 
     public List<TwoFactorMethod> methods;

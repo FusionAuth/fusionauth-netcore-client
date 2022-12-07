@@ -27,6 +27,8 @@ namespace io.fusionauth.domain {
 
     public bool? onLoginPrevented;
 
+    public bool? onMultiFactorEnable;
+
     public bool? onPasswordChanged;
 
     public RefreshTokenRevocationPolicy with(Action<RefreshTokenRevocationPolicy> action) {
