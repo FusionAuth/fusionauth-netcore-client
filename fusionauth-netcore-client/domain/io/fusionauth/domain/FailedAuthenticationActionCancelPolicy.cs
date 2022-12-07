@@ -21,27 +21,15 @@ using System;
 namespace io.fusionauth.domain {
 
   /**
-   * Configuration for the behavior of failed login attempts. This helps us protect against brute force password attacks.
+   * A policy to configure if and when the user-action is canceled prior to the expiration of the action.
    *
    * @author Daniel DeGroff
    */
-  public class FailedAuthenticationConfiguration {
+  public class FailedAuthenticationActionCancelPolicy {
 
-    public FailedAuthenticationActionCancelPolicy actionCancelPolicy;
+    public bool? onPasswordReset;
 
-    public long? actionDuration;
-
-    public ExpiryUnit actionDurationUnit;
-
-    public bool? emailUser;
-
-    public int? resetCountInSeconds;
-
-    public int? tooManyAttempts;
-
-    public Guid? userActionId;
-
-    public FailedAuthenticationConfiguration with(Action<FailedAuthenticationConfiguration> action) {
+    public FailedAuthenticationActionCancelPolicy with(Action<FailedAuthenticationActionCancelPolicy> action) {
       action(this);
       return this;
     }

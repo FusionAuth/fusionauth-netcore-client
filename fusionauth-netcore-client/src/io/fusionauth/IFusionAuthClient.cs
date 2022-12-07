@@ -1207,12 +1207,12 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteWebhookAsync(Guid? webhookId);
 
     /// <summary>
-    /// Disable Two Factor authentication for a user.
+    /// Disable two-factor authentication for a user.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+    /// <param name="userId"> The Id of the User for which you're disabling two-factor authentication.</param>
     /// <param name="methodId"> The two-factor method identifier you wish to disable</param>
-    /// <param name="code"> The Two Factor code used verify the the caller knows the Two Factor secret.</param>
+    /// <param name="code"> The two-factor code used verify the the caller knows the two-factor secret.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1222,10 +1222,10 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string methodId, string code);
 
     /// <summary>
-    /// Disable Two Factor authentication for a user using a JSON body rather than URL parameters.
+    /// Disable two-factor authentication for a user using a JSON body rather than URL parameters.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+    /// <param name="userId"> The Id of the User for which you're disabling two-factor authentication.</param>
     /// <param name="request"> The request information that contains the code and methodId along with any event information.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -1236,11 +1236,11 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DisableTwoFactorWithRequestAsync(Guid? userId, TwoFactorDisableRequest request);
 
     /// <summary>
-    /// Enable Two Factor authentication for a user.
+    /// Enable two-factor authentication for a user.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="userId"> The Id of the user to enable Two Factor authentication.</param>
-    /// <param name="request"> The two factor enable request information.</param>
+    /// <param name="userId"> The Id of the user to enable two-factor authentication.</param>
+    /// <param name="request"> The two-factor enable request information.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -1255,7 +1255,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
-    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate.</param>
+    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate.</param>
     /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
     /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
     /// <returns>
@@ -1272,7 +1272,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
-    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
     /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
     /// <param name="code_verifier"> The random string generated previously. Will be compared with the code_challenge sent previously, which allows the OAuth provider to authenticate your app.</param>
@@ -1290,7 +1290,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="refresh_token"> The refresh token that you would like to use to exchange for an access token.</param>
-    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
     /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
     /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
@@ -1322,7 +1322,7 @@ namespace io.fusionauth {
     /// </summary>
     /// <param name="username"> The login identifier of the user. The login identifier can be either the email or the username.</param>
     /// <param name="password"> The user’s password.</param>
-    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+    /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
     /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
     /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
@@ -5601,11 +5601,11 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeleteWebhook(Guid? webhookId);
 
    /// <summary>
-   /// Disable Two Factor authentication for a user.
+   /// Disable two-factor authentication for a user.
    /// </summary>
-   /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+   /// <param name="userId"> The Id of the User for which you're disabling two-factor authentication.</param>
    /// <param name="methodId"> The two-factor method identifier you wish to disable</param>
-   /// <param name="code"> The Two Factor code used verify the the caller knows the Two Factor secret.</param>
+   /// <param name="code"> The two-factor code used verify the the caller knows the two-factor secret.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5615,9 +5615,9 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DisableTwoFactor(Guid? userId, string methodId, string code);
 
    /// <summary>
-   /// Disable Two Factor authentication for a user using a JSON body rather than URL parameters.
+   /// Disable two-factor authentication for a user using a JSON body rather than URL parameters.
    /// </summary>
-   /// <param name="userId"> The Id of the User for which you're disabling Two Factor authentication.</param>
+   /// <param name="userId"> The Id of the User for which you're disabling two-factor authentication.</param>
    /// <param name="request"> The request information that contains the code and methodId along with any event information.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -5628,10 +5628,10 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DisableTwoFactorWithRequest(Guid? userId, TwoFactorDisableRequest request);
 
    /// <summary>
-   /// Enable Two Factor authentication for a user.
+   /// Enable two-factor authentication for a user.
    /// </summary>
-   /// <param name="userId"> The Id of the user to enable Two Factor authentication.</param>
-   /// <param name="request"> The two factor enable request information.</param>
+   /// <param name="userId"> The Id of the user to enable two-factor authentication.</param>
+   /// <param name="request"> The two-factor enable request information.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5645,7 +5645,7 @@ namespace io.fusionauth {
    /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
    /// </summary>
    /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
-   /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate.</param>
+   /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate.</param>
    /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
    /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
    /// <returns>
@@ -5661,7 +5661,7 @@ namespace io.fusionauth {
    /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint and a code_verifier for an access token.
    /// </summary>
    /// <param name="code"> The authorization code returned on the /oauth2/authorize response.</param>
-   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
    /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
    /// <param name="code_verifier"> The random string generated previously. Will be compared with the code_challenge sent previously, which allows the OAuth provider to authenticate your app.</param>
@@ -5678,7 +5678,7 @@ namespace io.fusionauth {
    /// If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
    /// </summary>
    /// <param name="refresh_token"> The refresh token that you would like to use to exchange for an access token.</param>
-   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
    /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
    /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
@@ -5708,7 +5708,7 @@ namespace io.fusionauth {
    /// </summary>
    /// <param name="username"> The login identifier of the user. The login identifier can be either the email or the username.</param>
    /// <param name="password"> The user’s password.</param>
-   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
+   /// <param name="client_id"> (Optional) The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate. This parameter is optional when the Authorization header is provided.</param>
    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
    /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
    /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>

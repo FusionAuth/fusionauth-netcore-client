@@ -41,6 +41,8 @@ namespace io.fusionauth.domain.api {
 
     public string secretBase32Encoded;
 
+    public string twoFactorId;
+
     public TwoFactorRequest with(Action<TwoFactorRequest> action) {
       action(this);
       return this;
