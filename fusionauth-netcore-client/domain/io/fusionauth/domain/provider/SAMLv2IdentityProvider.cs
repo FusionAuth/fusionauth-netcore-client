@@ -43,6 +43,8 @@ namespace io.fusionauth.domain.provider {
 
     public Guid? keyId;
 
+    public LoginHintConfiguration loginHintConfiguration;
+
     public string nameIdFormat;
 
     public bool? postRequest;
