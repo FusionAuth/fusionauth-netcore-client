@@ -29,6 +29,20 @@ To run them:
 * `cd fusionauth-netcore-client-test/fusionauth-netcore-client-test`
 * `dotnet build && dotnet test` # or, to run only a few
 * `dotnet build && dotnet test --filter CorrectlyD`
+## Testing locally
+
+If you want to test a build of this library locally, you can use [this answer from SO](https://stackoverflow.com/a/72988882/203619) after compiling it.
+
+[Pull this repo](https://github.com/FusionAuth/fusionauth-example-netcore) and update `usermanager.csproj`.  Replace `<PackageReference Include="FusionAuth.Client" Version="1.42.0" />` with a path to your complied `.csproj` file.
+
+Here's what my `usermanager.csproj` `<ItemGroup>` looked like during testing:
+
+```xml
+<ItemGroup>
+  <ProjectReference Include="/path/to/fusionauth-netcore-client/fusionauth-netcore-client/fusionauth-netcore-client.csproj" />
+  <PackageReference Include="JSON.Net" Version="1.0.18" />
+</ItemGroup>
+```
 
 ## Questions and support
 
