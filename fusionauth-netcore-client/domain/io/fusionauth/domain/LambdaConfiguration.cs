@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2023, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ namespace io.fusionauth.domain {
     public Guid? idTokenPopulateId;
 
     public Guid? samlv2PopulateId;
+
+    public Guid? selfServiceRegistrationValidationId;
 
     public LambdaConfiguration with(Action<LambdaConfiguration> action) {
       action(this);

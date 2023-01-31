@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2023, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.oauth2 {
     public List<string> authorizedOriginURLs;
 
     public List<string> authorizedRedirectURLs;
+
+    public Oauth2AuthorizedURLValidationPolicy authorizedURLValidationPolicy;
 
     public ClientAuthenticationPolicy clientAuthenticationPolicy;
 

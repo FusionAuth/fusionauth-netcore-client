@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2023, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,12 +40,12 @@ namespace io.fusionauth {
 
     public readonly IRESTClientBuilder clientBuilder;
 
-    public FusionAuthClient(string apiKey, string host, string tenantId = null) {
+    public FusionAuthClient(string apiKey, string host, string tenantId = null, IRESTClientBuilder clientBuilder = null) {
       this.apiKey = apiKey;
       this.host = host;
       this.tenantId = tenantId;
 
-      clientBuilder = new DefaultRESTClientBuilder();
+      this.clientBuilder = clientBuilder ?? new DefaultRESTClientBuilder();
     }
 
     /**
@@ -54,7 +54,7 @@ namespace io.fusionauth {
      */
     // ReSharper disable once ParameterHidesMember
     public FusionAuthClient withTenantId(string tenantId) {
-      return tenantId == null ? this : new FusionAuthClient(apiKey, host, tenantId);
+      return tenantId == null ? this : new FusionAuthClient(apiKey, host, tenantId, clientBuilder);
     }
 
     /**
@@ -63,7 +63,16 @@ namespace io.fusionauth {
      */
     // ReSharper disable once ParameterHidesMember
     public FusionAuthClient withTenantId(Guid? tenantId) {
-      return tenantId == null ? this : new FusionAuthClient(apiKey, host, tenantId.ToString());
+      return tenantId == null ? this : new FusionAuthClient(apiKey, host, tenantId.ToString(), clientBuilder);
+    }
+
+    /**
+     * Return a new instance of FusionAuthClient using the provided client builder.
+     * @param clientBuilder the REST client builder to use for this client.
+     */
+    // ReSharper disable once ParameterHidesMember
+    public FusionAuthClient withClientBuilder(IRESTClientBuilder clientBuilder) {
+      return clientBuilder == null ? this : new FusionAuthClient(apiKey, host, tenantId, clientBuilder);
     }
 
     public IRESTClient buildClient() {

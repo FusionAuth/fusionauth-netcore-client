@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2022, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2023, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
@@ -26,19 +25,9 @@ namespace io.fusionauth.domain.provider {
    *
    * @author Daniel DeGroff
    */
-  public class SAMLv2IdPInitiatedIdentityProvider: BaseIdentityProvider<SAMLv2IdPInitiatedApplicationConfiguration> {
-
-    public string emailClaim;
+  public class SAMLv2IdPInitiatedIdentityProvider: BaseSAMLv2IdentityProvider<SAMLv2IdPInitiatedApplicationConfiguration> {
 
     public string issuer;
-
-    public Guid? keyId;
-
-    public string uniqueIdClaim;
-
-    public bool? useNameIdForEmail;
-
-    public string usernameClaim;
 
     public SAMLv2IdPInitiatedIdentityProvider with(Action<SAMLv2IdPInitiatedIdentityProvider> action) {
       action(this);
