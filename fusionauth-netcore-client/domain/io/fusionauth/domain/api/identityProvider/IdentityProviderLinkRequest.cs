@@ -16,6 +16,7 @@
 
 
 using io.fusionauth.domain.api;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -26,15 +27,9 @@ namespace io.fusionauth.domain.api.identityProvider {
    */
   public class IdentityProviderLinkRequest: BaseEventRequest {
 
-    public string displayName;
-
-    public Guid? identityProviderId;
-
-    public string identityProviderUserId;
+    public IdentityProviderLink identityProviderLink;
 
     public string pendingIdPLinkId;
-
-    public Guid? userId;
 
     public IdentityProviderLinkRequest with(Action<IdentityProviderLinkRequest> action) {
       action(this);
