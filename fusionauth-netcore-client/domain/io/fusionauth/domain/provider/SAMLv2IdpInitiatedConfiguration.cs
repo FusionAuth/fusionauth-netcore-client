@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.provider {
 
   /**
-   * Config for regular SAML IDP configurations that support IDP-initiated requests
+   * Config for regular SAML IDP configurations that support IdP initiated requests
    *
    * @author Lyle Schemmerling
    */
