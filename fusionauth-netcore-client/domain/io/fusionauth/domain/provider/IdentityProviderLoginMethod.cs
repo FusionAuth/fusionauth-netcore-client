@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.provider {
    */
   public enum IdentityProviderLoginMethod {
         UsePopup, 
-        UseRedirect
+        UseRedirect, 
+        UseVendorJavaScript
   }
 }

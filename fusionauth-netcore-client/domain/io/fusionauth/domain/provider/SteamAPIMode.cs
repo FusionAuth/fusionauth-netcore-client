@@ -15,30 +15,18 @@
  */
 
 
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
 
   /**
-   * @author Brett Pontarelli
+   * Steam API modes.
+   *
+   * @author Daniel DeGroff
    */
-  public class SteamApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
-
-    public SteamAPIMode apiMode;
-
-    public string buttonText;
-
-    public string client_id;
-
-    public string scope;
-
-    public string webAPIKey;
-
-    public SteamApplicationConfiguration with(Action<SteamApplicationConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum SteamAPIMode {
+        Public, 
+        Partner
   }
 }

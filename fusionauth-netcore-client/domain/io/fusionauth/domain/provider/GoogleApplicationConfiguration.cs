@@ -34,6 +34,8 @@ namespace io.fusionauth.domain.provider {
 
     public IdentityProviderLoginMethod loginMethod;
 
+    public GoogleIdentityProviderProperties properties;
+
     public string scope;
 
     public GoogleApplicationConfiguration with(Action<GoogleApplicationConfiguration> action) {

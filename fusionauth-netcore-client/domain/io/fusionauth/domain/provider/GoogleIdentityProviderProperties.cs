@@ -15,28 +15,23 @@
  */
 
 
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.provider {
 
   /**
-   * @author Brett Pontarelli
+   * Google social login provider parameters.
+   *
+   * @author Daniel DeGroff
    */
-  public class SteamApplicationConfiguration: BaseIdentityProviderApplicationConfiguration {
+  public class GoogleIdentityProviderProperties {
 
-    public SteamAPIMode apiMode;
+    public string api;
 
-    public string buttonText;
+    public string button;
 
-    public string client_id;
-
-    public string scope;
-
-    public string webAPIKey;
-
-    public SteamApplicationConfiguration with(Action<SteamApplicationConfiguration> action) {
+    public GoogleIdentityProviderProperties with(Action<GoogleIdentityProviderProperties> action) {
       action(this);
       return this;
     }

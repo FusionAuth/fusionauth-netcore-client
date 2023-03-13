@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.provider {
    */
   public class SteamIdentityProvider: BaseIdentityProvider<SteamApplicationConfiguration> {
 
+    public SteamAPIMode apiMode;
+
     public string buttonText;
 
     public string client_id;
