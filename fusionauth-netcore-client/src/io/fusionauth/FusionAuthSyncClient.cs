@@ -1328,8 +1328,23 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<ApplicationSearchResponse> SearchApplications(ApplicationSearchRequest request) {
+      return client.SearchApplicationsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<AuditLogSearchResponse> SearchAuditLogs(AuditLogSearchRequest request) {
       return client.SearchAuditLogsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ConsentSearchResponse> SearchConsents(ConsentSearchRequest request) {
+      return client.SearchConsentsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EmailTemplateSearchResponse> SearchEmailTemplates(EmailTemplateSearchRequest request) {
+      return client.SearchEmailTemplatesAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1373,8 +1388,38 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IdentityProviderSearchResponse> SearchIdentityProviders(IdentityProviderSearchRequest request) {
+      return client.SearchIdentityProvidersAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<KeySearchResponse> SearchKeys(KeySearchRequest request) {
+      return client.SearchKeysAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<LambdaSearchResponse> SearchLambdas(LambdaSearchRequest request) {
+      return client.SearchLambdasAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<LoginRecordSearchResponse> SearchLoginRecords(LoginRecordSearchRequest request) {
       return client.SearchLoginRecordsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TenantSearchResponse> SearchTenants(TenantSearchRequest request) {
+      return client.SearchTenantsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ThemeSearchResponse> SearchThemes(ThemeSearchRequest request) {
+      return client.SearchThemesAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<UserCommentSearchResponse> SearchUserComments(UserCommentSearchRequest request) {
+      return client.SearchUserCommentsAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1397,6 +1442,11 @@ namespace io.fusionauth {
     [Obsolete("This method has been renamed to SearchUsersByQuery, use that method instead.")]
     public ClientResponse<SearchResponse> SearchUsersByQueryString(SearchRequest request) {
       return client.SearchUsersByQueryStringAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebhookSearchResponse> SearchWebhooks(WebhookSearchRequest request) {
+      return client.SearchWebhooksAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

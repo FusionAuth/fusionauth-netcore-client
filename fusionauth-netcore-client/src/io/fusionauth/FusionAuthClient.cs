@@ -2516,12 +2516,39 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<ApplicationSearchResponse>> SearchApplicationsAsync(ApplicationSearchRequest request) {
+      return buildClient()
+          .withUri("/api/application/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<ApplicationSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<AuditLogSearchResponse>> SearchAuditLogsAsync(AuditLogSearchRequest request) {
       return buildClient()
           .withUri("/api/system/audit-log/search")
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<AuditLogSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ConsentSearchResponse>> SearchConsentsAsync(ConsentSearchRequest request) {
+      return buildClient()
+          .withUri("/api/consent/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<ConsentSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EmailTemplateSearchResponse>> SearchEmailTemplatesAsync(EmailTemplateSearchRequest request) {
+      return buildClient()
+          .withUri("/api/email/template/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<EmailTemplateSearchResponse>();
     }
 
     /// <inheritdoc/>
@@ -2597,12 +2624,66 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderSearchResponse>> SearchIdentityProvidersAsync(IdentityProviderSearchRequest request) {
+      return buildClient()
+          .withUri("/api/identity-provider/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<IdentityProviderSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<KeySearchResponse>> SearchKeysAsync(KeySearchRequest request) {
+      return buildClient()
+          .withUri("/api/key/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<KeySearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<LambdaSearchResponse>> SearchLambdasAsync(LambdaSearchRequest request) {
+      return buildClient()
+          .withUri("/api/lambda/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<LambdaSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<LoginRecordSearchResponse>> SearchLoginRecordsAsync(LoginRecordSearchRequest request) {
       return buildClient()
           .withUri("/api/system/login-record/search")
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<LoginRecordSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<TenantSearchResponse>> SearchTenantsAsync(TenantSearchRequest request) {
+      return buildClient()
+          .withUri("/api/tenant/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<TenantSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ThemeSearchResponse>> SearchThemesAsync(ThemeSearchRequest request) {
+      return buildClient()
+          .withUri("/api/theme/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<ThemeSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<UserCommentSearchResponse>> SearchUserCommentsAsync(UserCommentSearchRequest request) {
+      return buildClient()
+          .withUri("/api/user/comment/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<UserCommentSearchResponse>();
     }
 
     /// <inheritdoc/>
@@ -2641,6 +2722,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<SearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<WebhookSearchResponse>> SearchWebhooksAsync(WebhookSearchRequest request) {
+      return buildClient()
+          .withUri("/api/webhook/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<WebhookSearchResponse>();
     }
 
     /// <inheritdoc/>

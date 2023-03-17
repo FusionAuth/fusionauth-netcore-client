@@ -3591,6 +3591,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> RevokeUserConsentAsync(Guid? userConsentId);
 
     /// <summary>
+    /// Searches applications with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ApplicationSearchResponse>> SearchApplicationsAsync(ApplicationSearchRequest request);
+
+    /// <summary>
     /// Searches the audit logs with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -3602,6 +3615,32 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<AuditLogSearchResponse>> SearchAuditLogsAsync(AuditLogSearchRequest request);
+
+    /// <summary>
+    /// Searches consents with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ConsentSearchResponse>> SearchConsentsAsync(ConsentSearchRequest request);
+
+    /// <summary>
+    /// Searches email templates with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EmailTemplateSearchResponse>> SearchEmailTemplatesAsync(EmailTemplateSearchRequest request);
 
     /// <summary>
     /// Searches entities with the specified criteria and pagination.
@@ -3708,6 +3747,45 @@ namespace io.fusionauth {
     Task<ClientResponse<IPAccessControlListSearchResponse>> SearchIPAccessControlListsAsync(IPAccessControlListSearchRequest request);
 
     /// <summary>
+    /// Searches identity providers with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IdentityProviderSearchResponse>> SearchIdentityProvidersAsync(IdentityProviderSearchRequest request);
+
+    /// <summary>
+    /// Searches keys with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<KeySearchResponse>> SearchKeysAsync(KeySearchRequest request);
+
+    /// <summary>
+    /// Searches lambdas with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<LambdaSearchResponse>> SearchLambdasAsync(LambdaSearchRequest request);
+
+    /// <summary>
     /// Searches the login records with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -3719,6 +3797,45 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LoginRecordSearchResponse>> SearchLoginRecordsAsync(LoginRecordSearchRequest request);
+
+    /// <summary>
+    /// Searches tenants with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TenantSearchResponse>> SearchTenantsAsync(TenantSearchRequest request);
+
+    /// <summary>
+    /// Searches themes with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ThemeSearchResponse>> SearchThemesAsync(ThemeSearchRequest request);
+
+    /// <summary>
+    /// Searches user comments with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<UserCommentSearchResponse>> SearchUserCommentsAsync(UserCommentSearchRequest request);
 
     /// <summary>
     /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
@@ -3775,6 +3892,19 @@ namespace io.fusionauth {
     /// </returns>
     [Obsolete("This method has been renamed to SearchUsersByQueryAsync, use that method instead.")]
     Task<ClientResponse<SearchResponse>> SearchUsersByQueryStringAsync(SearchRequest request);
+
+    /// <summary>
+    /// Searches webhooks with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebhookSearchResponse>> SearchWebhooksAsync(WebhookSearchRequest request);
 
     /// <summary>
     /// Send an email using an email template id. You can optionally provide <code>requestData</code> to access key value
@@ -7814,6 +7944,18 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> RevokeUserConsent(Guid? userConsentId);
 
    /// <summary>
+   /// Searches applications with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ApplicationSearchResponse> SearchApplications(ApplicationSearchRequest request);
+
+   /// <summary>
    /// Searches the audit logs with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -7824,6 +7966,30 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<AuditLogSearchResponse> SearchAuditLogs(AuditLogSearchRequest request);
+
+   /// <summary>
+   /// Searches consents with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ConsentSearchResponse> SearchConsents(ConsentSearchRequest request);
+
+   /// <summary>
+   /// Searches email templates with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EmailTemplateSearchResponse> SearchEmailTemplates(EmailTemplateSearchRequest request);
 
    /// <summary>
    /// Searches entities with the specified criteria and pagination.
@@ -7922,6 +8088,42 @@ namespace io.fusionauth {
    ClientResponse<IPAccessControlListSearchResponse> SearchIPAccessControlLists(IPAccessControlListSearchRequest request);
 
    /// <summary>
+   /// Searches identity providers with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IdentityProviderSearchResponse> SearchIdentityProviders(IdentityProviderSearchRequest request);
+
+   /// <summary>
+   /// Searches keys with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<KeySearchResponse> SearchKeys(KeySearchRequest request);
+
+   /// <summary>
+   /// Searches lambdas with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<LambdaSearchResponse> SearchLambdas(LambdaSearchRequest request);
+
+   /// <summary>
    /// Searches the login records with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -7932,6 +8134,42 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LoginRecordSearchResponse> SearchLoginRecords(LoginRecordSearchRequest request);
+
+   /// <summary>
+   /// Searches tenants with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TenantSearchResponse> SearchTenants(TenantSearchRequest request);
+
+   /// <summary>
+   /// Searches themes with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ThemeSearchResponse> SearchThemes(ThemeSearchRequest request);
+
+   /// <summary>
+   /// Searches user comments with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<UserCommentSearchResponse> SearchUserComments(UserCommentSearchRequest request);
 
    /// <summary>
    /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
@@ -7984,6 +8222,18 @@ namespace io.fusionauth {
    /// </returns>
    [Obsolete("This method has been renamed to SearchUsersByQueryAsync, use that method instead.")]
    ClientResponse<SearchResponse> SearchUsersByQueryString(SearchRequest request);
+
+   /// <summary>
+   /// Searches webhooks with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebhookSearchResponse> SearchWebhooks(WebhookSearchRequest request);
 
    /// <summary>
    /// Send an email using an email template id. You can optionally provide <code>requestData</code> to access key value
