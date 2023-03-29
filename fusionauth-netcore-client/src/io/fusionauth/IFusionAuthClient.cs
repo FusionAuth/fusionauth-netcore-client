@@ -3303,7 +3303,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT);
+    Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT);
 
     /// <summary>
     /// Retrieve a single Identity Provider user (link).
@@ -7675,7 +7675,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserResponse> RetrieveUserInfoFromAccessToken(string encodedJWT);
+   ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT);
 
    /// <summary>
    /// Retrieve a single Identity Provider user (link).

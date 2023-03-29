@@ -1228,7 +1228,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserResponse> RetrieveUserInfoFromAccessToken(string encodedJWT) {
+    public ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT) {
       return client.RetrieveUserInfoFromAccessTokenAsync(encodedJWT).GetAwaiter().GetResult();
     }
 

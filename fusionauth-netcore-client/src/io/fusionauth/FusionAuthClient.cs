@@ -2324,12 +2324,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT) {
+    public Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT) {
       return buildAnonymousClient()
           .withUri("/oauth2/userinfo")
           .withAuthorization("Bearer " + encodedJWT)
           .withMethod("Get")
-          .goAsync<UserResponse>();
+          .goAsync<UserinfoResponse>();
     }
 
     /// <inheritdoc/>
