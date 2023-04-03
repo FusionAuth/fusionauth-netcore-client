@@ -15,32 +15,19 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain {
 
   /**
-   * User API request object.
-   *
-   * @author Brian Pontarelli
+   * @author andrewpai
    */
-  public class UserRequest: BaseEventRequest {
+  public class SelfServiceFormConfiguration {
 
-    public Guid? applicationId;
+    public bool? requireCurrentPasswordOnPasswordChange;
 
-    public string currentPassword;
-
-    public bool? disableDomainBlock;
-
-    public bool? sendSetPasswordEmail;
-
-    public bool? skipVerification;
-
-    public User user;
-
-    public UserRequest with(Action<UserRequest> action) {
+    public SelfServiceFormConfiguration with(Action<SelfServiceFormConfiguration> action) {
       action(this);
       return this;
     }
