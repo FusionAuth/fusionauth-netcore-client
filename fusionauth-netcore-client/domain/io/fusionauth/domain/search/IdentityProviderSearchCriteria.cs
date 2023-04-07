@@ -31,6 +31,8 @@ namespace io.fusionauth.domain.search {
 
     public string name;
 
+    public string type;
+
     public IdentityProviderSearchCriteria with(Action<IdentityProviderSearchCriteria> action) {
       action(this);
       return this;

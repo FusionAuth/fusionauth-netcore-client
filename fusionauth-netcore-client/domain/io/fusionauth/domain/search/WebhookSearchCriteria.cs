@@ -31,6 +31,8 @@ namespace io.fusionauth.domain.search {
 
     public Guid? tenantId;
 
+    public string url;
+
     public WebhookSearchCriteria with(Action<WebhookSearchCriteria> action) {
       action(this);
       return this;
