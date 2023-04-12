@@ -28,7 +28,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace io.fusionauth {
-  class DefaultRESTClient : IRESTClient {
+  public class DefaultRESTClient : IRESTClient {
     public HttpClient httpClient;
 
     public HttpContent content;
@@ -55,6 +55,10 @@ namespace io.fusionauth {
 
     public DefaultRESTClient(string host) {
       httpClient = new HttpClient {BaseAddress = new Uri(host)};
+    }
+
+    public DefaultRESTClient(HttpClient httpClient) {
+      httpClient = httpClient;
     }
 
     /**
