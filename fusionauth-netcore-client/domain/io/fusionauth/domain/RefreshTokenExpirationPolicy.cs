@@ -25,6 +25,7 @@ namespace io.fusionauth.domain {
    */
   public enum RefreshTokenExpirationPolicy {
         Fixed, 
-        SlidingWindow
+        SlidingWindow, 
+        SlidingWindowWithMaximumLifetime
   }
 }

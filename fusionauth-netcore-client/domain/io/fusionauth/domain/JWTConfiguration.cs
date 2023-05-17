@@ -36,6 +36,8 @@ namespace io.fusionauth.domain {
 
     public RefreshTokenRevocationPolicy refreshTokenRevocationPolicy;
 
+    public RefreshTokenSlidingWindowConfiguration refreshTokenSlidingWindowConfiguration;
+
     public int? refreshTokenTimeToLiveInMinutes;
 
     public RefreshTokenUsagePolicy refreshTokenUsagePolicy;
