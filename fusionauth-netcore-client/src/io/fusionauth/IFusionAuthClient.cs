@@ -1561,7 +1561,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string token);
+    Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenAsync(string token);
 
     /// <summary>
     /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
@@ -6145,7 +6145,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<IntrospectResponse> IntrospectAccessToken(string token);
+   ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessToken(string token);
 
    /// <summary>
    /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid

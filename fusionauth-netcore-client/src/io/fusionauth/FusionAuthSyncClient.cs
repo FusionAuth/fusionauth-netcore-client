@@ -583,8 +583,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<IntrospectResponse> IntrospectAccessToken(string token) {
-      return client.IntrospectAccessTokenAsync(token).GetAwaiter().GetResult();
+    public ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessToken(string token) {
+      return client.IntrospectClientCredentialsAccessTokenAsync(token).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

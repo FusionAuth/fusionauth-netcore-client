@@ -1146,7 +1146,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string token) {
+    public Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenAsync(string token) {
       var body = new Dictionary<string, string> {
           { "token", token },
       };
