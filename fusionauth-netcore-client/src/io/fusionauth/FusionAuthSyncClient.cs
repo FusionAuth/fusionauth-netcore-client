@@ -71,6 +71,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<DeviceApprovalResponse> ApproveDevice(string client_id, string client_secret, string token, string user_code) {
+      return client.ApproveDeviceAsync(client_id, client_secret, token, user_code).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ActionResponse> CancelAction(Guid? actionId, ActionRequest request) {
       return client.CancelActionAsync(actionId, request).GetAwaiter().GetResult();
     }
@@ -575,6 +580,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token) {
       return client.IntrospectAccessTokenAsync(client_id, token).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IntrospectResponse> IntrospectAccessToken(string token) {
+      return client.IntrospectAccessTokenAsync(token).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1083,6 +1093,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IdentityProviderPendingLinkResponse> RetrievePendingLink(string pendingLinkId, Guid? userId) {
+      return client.RetrievePendingLinkAsync(pendingLinkId, userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ReactorMetricsResponse> RetrieveReactorMetrics() {
       return client.RetrieveReactorMetricsAsync().GetAwaiter().GetResult();
     }
@@ -1210,6 +1225,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<UserResponse> RetrieveUserByVerificationId(string verificationId) {
       return client.RetrieveUserByVerificationIdAsync(verificationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RetrieveUserCode(string client_id, string client_secret, string user_code) {
+      return client.RetrieveUserCodeAsync(client_id, client_secret, user_code).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RetrieveUserCode(string user_code) {
+      return client.RetrieveUserCodeAsync(user_code).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

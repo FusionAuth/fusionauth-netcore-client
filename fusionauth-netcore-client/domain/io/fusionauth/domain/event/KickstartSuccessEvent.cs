@@ -21,7 +21,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Event event to indicate kickstart has been successfully completed.
+   * Event to indicate kickstart has been successfully completed.
    *
    * @author Daniel DeGroff
    */

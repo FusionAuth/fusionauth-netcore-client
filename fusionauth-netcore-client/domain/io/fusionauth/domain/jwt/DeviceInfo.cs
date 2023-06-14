@@ -33,7 +33,7 @@ namespace io.fusionauth.domain.jwt {
 
     public string name;
 
-    public DeviceType type;
+    public string type;
 
     public DeviceInfo with(Action<DeviceInfo> action) {
       action(this);

@@ -18,26 +18,20 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api.identityProvider {
 
   /**
    * @author Daniel DeGroff
    */
-  public class TwoFactorSendRequest {
+  public class IdentityProviderPendingLinkResponse {
 
-    public Guid? applicationId;
+    public IdentityProviderTenantConfiguration identityProviderTenantConfiguration;
 
-    public string email;
+    public int? linkCount;
 
-    public string method;
+    public PendingIdPLink pendingIdPLink;
 
-    public string methodId;
-
-    public string mobilePhone;
-
-    public Guid? userId;
-
-    public TwoFactorSendRequest with(Action<TwoFactorSendRequest> action) {
+    public IdentityProviderPendingLinkResponse with(Action<IdentityProviderPendingLinkResponse> action) {
       action(this);
       return this;
     }

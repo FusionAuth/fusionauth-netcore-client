@@ -15,29 +15,30 @@
  */
 
 
+using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.oauth2 {
 
   /**
    * @author Daniel DeGroff
    */
-  public class TwoFactorSendRequest {
+  public class DeviceUserCodeResponse {
 
-    public Guid? applicationId;
+    public string client_id;
 
-    public string email;
+    public DeviceInfo deviceInfo;
 
-    public string method;
+    public int? expires_in;
 
-    public string methodId;
+    public PendingIdPLink pendingIdPLink;
 
-    public string mobilePhone;
+    public Guid? tenantId;
 
-    public Guid? userId;
+    public string user_code;
 
-    public TwoFactorSendRequest with(Action<TwoFactorSendRequest> action) {
+    public DeviceUserCodeResponse with(Action<DeviceUserCodeResponse> action) {
       action(this);
       return this;
     }

@@ -118,6 +118,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceAsync(string client_id, string client_secret, string token, string user_code) {
+      var body = new Dictionary<string, string> {
+          { "client_id", client_id },
+          { "client_secret", client_secret },
+          { "token", token },
+          { "user_code", user_code },
+      };
+      return buildClient()
+          .withUri("/oauth2/device/approve")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<DeviceApprovalResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ActionResponse>> CancelActionAsync(Guid? actionId, ActionRequest request) {
       return buildClient()
           .withUri("/api/user/action")
@@ -1131,6 +1146,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string token) {
+      var body = new Dictionary<string, string> {
+          { "token", token },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/introspect")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<IntrospectResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IssueResponse>> IssueJWTAsync(Guid? applicationId, string encodedJWT, string refreshToken) {
       return buildAnonymousClient()
           .withUri("/api/jwt/issue")
@@ -2066,6 +2093,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderPendingLinkResponse>> RetrievePendingLinkAsync(string pendingLinkId, Guid? userId) {
+      return buildClient()
+          .withUri("/api/identity-provider/link/pending")
+          .withUriSegment(pendingLinkId)
+          .withParameter("userId", userId)
+          .withMethod("Get")
+          .goAsync<IdentityProviderPendingLinkResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ReactorMetricsResponse>> RetrieveReactorMetricsAsync() {
       return buildClient()
           .withUri("/api/reactor/metrics")
@@ -2294,6 +2331,32 @@ namespace io.fusionauth {
           .withParameter("verificationId", verificationId)
           .withMethod("Get")
           .goAsync<UserResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string client_id, string client_secret, string user_code) {
+      var body = new Dictionary<string, string> {
+          { "client_id", client_id },
+          { "client_secret", client_secret },
+          { "user_code", user_code },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/device/user-code")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string user_code) {
+      var body = new Dictionary<string, string> {
+          { "user_code", user_code },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/device/user-code")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>

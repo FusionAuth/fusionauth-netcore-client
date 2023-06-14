@@ -31,6 +31,8 @@ namespace io.fusionauth.domain {
 
     public Guid? identityProviderId;
 
+    public IdentityProviderType identityProviderType;
+
     public string identityProviderUserId;
 
     public DateTimeOffset? insertInstant;
