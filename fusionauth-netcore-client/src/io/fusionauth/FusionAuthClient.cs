@@ -2348,7 +2348,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string user_code) {
+    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code) {
       var body = new Dictionary<string, string> {
           { "user_code", user_code },
       };

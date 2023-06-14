@@ -1233,8 +1233,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> RetrieveUserCode(string user_code) {
-      return client.RetrieveUserCodeAsync(user_code).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code) {
+      return client.RetrieveUserCodeUsingAPIKeyAsync(user_code).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

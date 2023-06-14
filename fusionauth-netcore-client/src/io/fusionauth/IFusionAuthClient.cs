@@ -3334,7 +3334,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string user_code);
+    Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code);
 
     /// <summary>
     /// Retrieves all the comments for the user with the given Id.
@@ -7788,7 +7788,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> RetrieveUserCode(string user_code);
+   ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code);
 
    /// <summary>
    /// Retrieves all the comments for the user with the given Id.
