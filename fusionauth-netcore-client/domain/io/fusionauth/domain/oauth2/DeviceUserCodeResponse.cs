@@ -16,6 +16,7 @@
 
 
 using io.fusionauth.domain.jwt;
+using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
