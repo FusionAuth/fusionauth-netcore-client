@@ -40,3 +40,4 @@ out/
 .vs/
 **/.DS_Store
 */.idea/**/projectSettingsUpdater.xml
+.savant/cache
