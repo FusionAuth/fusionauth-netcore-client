@@ -40,6 +40,8 @@ namespace io.fusionauth.domain {
 
     public Requirable mobilePhone;
 
+    public Requirable preferredLanguages;
+
     public RegistrationType type;
 
     public RegistrationConfiguration with(Action<RegistrationConfiguration> action) {

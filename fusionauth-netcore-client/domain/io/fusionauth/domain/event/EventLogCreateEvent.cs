@@ -22,7 +22,7 @@ using System;
 namespace io.fusionauth.domain.@event {
 
   /**
-   * Event event to an event log was created.
+   * An Event "event" to indicate an event log was created.
    *
    * @author Daniel DeGroff
    */

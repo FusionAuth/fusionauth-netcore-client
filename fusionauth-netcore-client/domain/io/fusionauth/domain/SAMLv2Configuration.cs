@@ -22,6 +22,8 @@ namespace io.fusionauth.domain {
 
   public class SAMLv2Configuration: Enableable {
 
+    public SAMLv2AssertionEncryptionConfiguration assertionEncryptionConfiguration;
+
     public string audience;
 
     public List<string> authorizedRedirectURLs;
