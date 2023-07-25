@@ -38,6 +38,8 @@ namespace io.fusionauth.domain {
 
     public Guid? keyId;
 
+    public LoginHintConfiguration loginHintConfiguration;
+
     public SAMLv2Logout logout;
 
     public string logoutURL;
