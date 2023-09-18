@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.provider {
 
     public string emailClaim;
 
+    public string emailVerifiedClaim;
+
     public string issuer;
 
     public string scope;
