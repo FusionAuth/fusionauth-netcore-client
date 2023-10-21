@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.webauthn {
+namespace io.fusionauth.domain.webauthn
+{
 
   /**
    * Describes the authenticator attachment modality preference for a WebAuthn workflow. See {@link AuthenticatorAttachment}

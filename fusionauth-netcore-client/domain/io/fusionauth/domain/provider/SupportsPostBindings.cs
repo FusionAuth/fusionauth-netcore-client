@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.provider
+{
 
   /**
    * Helper interface that indicates an identity provider can be federated to using the HTTP POST method.

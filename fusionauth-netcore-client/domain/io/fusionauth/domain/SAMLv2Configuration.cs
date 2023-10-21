@@ -19,7 +19,8 @@ using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   public class SAMLv2Configuration: Enableable {
 

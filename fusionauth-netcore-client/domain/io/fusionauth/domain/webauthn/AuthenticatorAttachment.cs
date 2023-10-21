@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.webauthn {
+namespace io.fusionauth.domain.webauthn
+{
 
   /**
    * Describes the <a href="https://www.w3.org/TR/webauthn-2/#authenticator-attachment-modality">authenticator attachment modality</a>.

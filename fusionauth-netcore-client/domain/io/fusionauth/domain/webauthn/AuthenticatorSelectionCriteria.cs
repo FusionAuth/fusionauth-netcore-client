@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.webauthn {
+namespace io.fusionauth.domain.webauthn
+{
 
   /**
    * Used by the Relying Party to specify their requirements for authenticator attributes. Fields use the deprecated "resident key" terminology to refer

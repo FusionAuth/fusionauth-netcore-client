@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.@event
+{
 
   /**
    * Models an event where a user's email is updated outside of a forgot / change password workflow.

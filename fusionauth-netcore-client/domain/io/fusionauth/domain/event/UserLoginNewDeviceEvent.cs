@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.@event
+{
 
   /**
    * Models the User Login event for a new device (un-recognized)

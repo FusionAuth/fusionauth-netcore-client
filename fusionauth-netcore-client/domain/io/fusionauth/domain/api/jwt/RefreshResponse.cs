@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.jwt {
+namespace io.fusionauth.domain.api.jwt
+{
 
   /**
    * @author Daniel DeGroff

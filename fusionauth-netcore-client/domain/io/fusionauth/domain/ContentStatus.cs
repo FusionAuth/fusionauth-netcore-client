@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * Status for content like usernames, profile attributes, etc.

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.report {
+namespace io.fusionauth.domain.api.report
+{
 
   /**
    * The response from the total report. This report stores the total numbers for each application.

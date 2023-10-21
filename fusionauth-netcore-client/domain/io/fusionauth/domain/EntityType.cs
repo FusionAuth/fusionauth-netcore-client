@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * Models an entity type that has a specific set of permissions. These are global objects and can be used across tenants.

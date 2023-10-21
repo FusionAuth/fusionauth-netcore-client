@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.provider
+{
 
   /**
    * Config for regular SAML IDP configurations that support IdP initiated requests

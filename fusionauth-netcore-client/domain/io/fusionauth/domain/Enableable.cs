@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * Something that can be enabled and thus also disabled.

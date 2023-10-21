@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * User registration information for a single application.
@@ -56,6 +57,8 @@ namespace io.fusionauth.domain {
     public ContentStatus usernameStatus;
 
     public bool? verified;
+
+    public DateTimeOffset? verifiedInstant;
 
     public UserRegistration with(Action<UserRegistration> action) {
       action(this);

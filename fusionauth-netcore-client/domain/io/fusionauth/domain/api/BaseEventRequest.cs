@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * Base class for requests that can contain event information. This event information is used when sending Webhooks or emails

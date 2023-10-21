@@ -19,7 +19,8 @@ using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.webauthn {
+namespace io.fusionauth.domain.webauthn
+{
 
   /**
    * A number identifying a cryptographic algorithm. Values should be registered with the <a

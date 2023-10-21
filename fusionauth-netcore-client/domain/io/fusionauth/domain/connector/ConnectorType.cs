@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.connector {
+namespace io.fusionauth.domain.connector
+{
 
   /**
    * The types of connectors. This enum is stored as an ordinal on the <code>identities</code> table, order must be maintained.

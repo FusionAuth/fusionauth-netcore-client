@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.message {
+namespace io.fusionauth.domain.message
+{
 
   /**
    * @author Mikey Sleevi

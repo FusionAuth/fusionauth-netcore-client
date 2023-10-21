@@ -16,17 +16,19 @@
 
 
 using io.fusionauth.domain.search;
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user {
+namespace io.fusionauth.domain.api.user
+{
 
   /**
    * Search API request.
    *
    * @author Brian Pontarelli
    */
-  public class SearchRequest {
+  public class SearchRequest: ExpandableRequest {
 
     public UserSearchCriteria search;
 

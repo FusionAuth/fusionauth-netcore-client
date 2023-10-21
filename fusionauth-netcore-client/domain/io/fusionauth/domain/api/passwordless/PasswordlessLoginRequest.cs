@@ -19,7 +19,8 @@ using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.passwordless {
+namespace io.fusionauth.domain.api.passwordless
+{
 
   /**
    * @author Daniel DeGroff

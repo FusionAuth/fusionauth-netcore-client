@@ -19,7 +19,8 @@ using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * API request to start a WebAuthn registration ceremony

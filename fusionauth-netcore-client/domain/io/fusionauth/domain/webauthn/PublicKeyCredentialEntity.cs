@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.webauthn {
+namespace io.fusionauth.domain.webauthn
+{
 
   /**
    * Describes a user account or WebAuthn Relying Party associated with a public key credential

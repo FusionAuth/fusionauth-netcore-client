@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.provider
+{
 
   /**
    * SAML v2 identity provider configuration.

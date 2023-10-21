@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace com.inversoft.error {
+namespace com.inversoft.error
+{
 
   /**
    * Standard error domain object that can also be used as the response from an API call.

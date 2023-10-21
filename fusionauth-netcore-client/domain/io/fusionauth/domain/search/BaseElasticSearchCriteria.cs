@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search {
+namespace io.fusionauth.domain.search
+{
 
   /**
    * @author Brian Pontarelli
@@ -28,6 +29,8 @@ namespace io.fusionauth.domain.search {
     public bool? accurateTotal;
 
     public List<Guid> ids;
+
+    public string nextResults;
 
     public string query;
 

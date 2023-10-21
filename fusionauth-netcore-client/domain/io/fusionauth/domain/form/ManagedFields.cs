@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.form {
+namespace io.fusionauth.domain.form
+{
 
   /**
    * This class contains the managed fields that are also put into the database during FusionAuth setup.

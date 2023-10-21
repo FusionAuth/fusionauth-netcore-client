@@ -20,7 +20,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider {
+namespace io.fusionauth.domain.api.identityProvider
+{
 
   /**
    * @author Daniel DeGroff

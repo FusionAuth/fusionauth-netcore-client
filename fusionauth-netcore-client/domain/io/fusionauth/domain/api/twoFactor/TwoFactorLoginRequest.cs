@@ -19,7 +19,8 @@ using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api.twoFactor
+{
 
   /**
    * @author Daniel DeGroff

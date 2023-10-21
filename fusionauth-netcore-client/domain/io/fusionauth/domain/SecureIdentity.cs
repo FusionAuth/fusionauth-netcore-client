@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * @author Daniel DeGroff
@@ -56,6 +57,8 @@ namespace io.fusionauth.domain {
     public ContentStatus usernameStatus;
 
     public bool? verified;
+
+    public DateTimeOffset? verifiedInstant;
 
     public SecureIdentity with(Action<SecureIdentity> action) {
       action(this);

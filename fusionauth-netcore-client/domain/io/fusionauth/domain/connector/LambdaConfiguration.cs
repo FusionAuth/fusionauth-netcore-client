@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.connector {
+namespace io.fusionauth.domain.connector
+{
 
   public class LambdaConfiguration {
 

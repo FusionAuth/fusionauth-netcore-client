@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * API request to import an existing WebAuthn credential(s)

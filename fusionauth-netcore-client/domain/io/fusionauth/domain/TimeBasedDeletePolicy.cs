@@ -18,14 +18,17 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
-   * A policy for deleting Users.
+   * A policy for deleting Users based upon some external criteria.
    *
    * @author Trevor Smith
    */
   public class TimeBasedDeletePolicy: Enableable {
+
+    public DateTimeOffset? enabledInstant;
 
     public int? numberOfDaysToRetain;
 

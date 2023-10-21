@@ -21,7 +21,8 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.jwks.domain {
+namespace io.fusionauth.jwks.domain
+{
 
   /**
    * A JSON Web Key as defined by <a href="https://tools.ietf.org/html/rfc7517#section-4">RFC 7517 JSON Web Key (JWK)

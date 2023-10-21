@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search {
+namespace io.fusionauth.domain.search
+{
 
   /**
    * Search criteria for the event log.

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.@event
+{
 
   /**
    * A marker interface indicating this event is not scoped to a tenant and will be sent to all webhooks.

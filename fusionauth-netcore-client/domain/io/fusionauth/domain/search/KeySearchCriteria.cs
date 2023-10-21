@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search {
+namespace io.fusionauth.domain.search
+{
 
   /**
    * Search criteria for Keys

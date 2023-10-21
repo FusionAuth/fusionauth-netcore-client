@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.twoFactor {
+namespace io.fusionauth.domain.api.twoFactor
+{
 
   public class TwoFactorTrust {
 

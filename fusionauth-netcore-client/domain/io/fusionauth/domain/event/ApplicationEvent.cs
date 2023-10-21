@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.@event
+{
 
   /**
    * Events that are bound to applications.

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.report {
+namespace io.fusionauth.domain.api.report
+{
 
   /**
    * @author Brian Pontarelli

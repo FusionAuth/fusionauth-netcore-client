@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.connector {
+namespace io.fusionauth.domain.connector
+{
 
   /**
    * Models a generic connector.

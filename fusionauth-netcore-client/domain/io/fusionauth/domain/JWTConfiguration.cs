@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * JWT Configuration. A JWT Configuration for an Application may not be active if it is using the global configuration, the configuration

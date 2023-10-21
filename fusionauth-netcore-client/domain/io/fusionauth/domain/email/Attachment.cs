@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.email {
+namespace io.fusionauth.domain.email
+{
 
   /**
    * This class is a simple attachment with a byte array, name and MIME type.

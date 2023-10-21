@@ -19,7 +19,8 @@ using io.fusionauth.domain.email;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event {
+namespace io.fusionauth.domain.@event
+{
 
   /**
    * Models the user action Event.

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace com.inversoft.error {
+namespace com.inversoft.error
+{
 
   /**
    * Defines an error.

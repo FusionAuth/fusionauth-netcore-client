@@ -19,7 +19,8 @@ using io.fusionauth.domain.@event;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * @author Brian Pontarelli

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * Models an entity that a user can be granted permissions to. Or an entity that can be granted permissions to another entity.

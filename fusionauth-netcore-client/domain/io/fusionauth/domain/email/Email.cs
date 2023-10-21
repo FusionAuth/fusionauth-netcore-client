@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.email {
+namespace io.fusionauth.domain.email
+{
 
   /**
    * This class is an abstraction of a simple email message.

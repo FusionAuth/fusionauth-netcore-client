@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.util {
+namespace io.fusionauth.domain.util
+{
 
   /**
    * @author Daniel DeGroff

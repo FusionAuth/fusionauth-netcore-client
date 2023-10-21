@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.provider
+{
 
   /**
    * Steam API modes.

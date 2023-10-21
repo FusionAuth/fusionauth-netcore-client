@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * User API delete request object for a single user.

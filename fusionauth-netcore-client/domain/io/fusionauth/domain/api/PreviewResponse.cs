@@ -20,7 +20,8 @@ using io.fusionauth.domain.email;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * @author Seth Musselman

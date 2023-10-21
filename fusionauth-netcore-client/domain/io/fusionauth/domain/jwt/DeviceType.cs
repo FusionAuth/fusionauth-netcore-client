@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.jwt {
+namespace io.fusionauth.domain.jwt
+{
 
   public enum DeviceType {
         BROWSER, 

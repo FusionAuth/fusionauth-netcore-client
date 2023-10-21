@@ -19,7 +19,8 @@ using io.fusionauth.domain.oauth2;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * @author Seth Musselman

@@ -19,7 +19,8 @@ using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.jwt {
+namespace io.fusionauth.domain.api.jwt
+{
 
   /**
    * Request for the Refresh Token API to revoke a refresh token rather than using the URL parameters.

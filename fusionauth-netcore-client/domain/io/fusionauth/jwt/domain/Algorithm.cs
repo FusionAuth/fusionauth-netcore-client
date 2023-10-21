@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.jwt.domain {
+namespace io.fusionauth.jwt.domain
+{
 
   /**
    * Available JSON Web Algorithms (JWA) as described in RFC 7518 available for this JWT implementation.

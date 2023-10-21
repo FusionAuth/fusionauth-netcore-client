@@ -16,19 +16,23 @@
 
 
 using io.fusionauth.domain;
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user {
+namespace io.fusionauth.domain.api.user
+{
 
   /**
    * Search API response.
    *
    * @author Brian Pontarelli
    */
-  public class SearchResponse {
+  public class SearchResponse: ExpandableResponse {
 
     public long? total;
+
+    public string nextResults;
 
     public List<User> users;
 

@@ -19,7 +19,8 @@ using io.fusionauth.domain.webauthn;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * A User's WebAuthnCredential. Contains all data required to complete WebAuthn authentication ceremonies.

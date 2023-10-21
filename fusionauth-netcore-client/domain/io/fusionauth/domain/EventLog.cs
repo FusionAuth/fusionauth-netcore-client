@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * Event log used internally by FusionAuth to help developers debug hooks, Webhooks, email templates, etc.

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search {
+namespace io.fusionauth.domain.search
+{
 
   /**
    * Search results.
@@ -26,6 +27,8 @@ namespace io.fusionauth.domain.search {
    * @author Brian Pontarelli
    */
   public class SearchResults<T> {
+
+    public string nextResults;
 
     public List<T> results;
 

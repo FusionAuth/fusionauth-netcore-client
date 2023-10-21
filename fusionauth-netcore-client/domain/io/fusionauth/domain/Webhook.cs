@@ -19,7 +19,8 @@ using io.fusionauth.domain.@event;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * A server where events are sent. This includes user action events and any other events sent by FusionAuth.
@@ -52,7 +53,11 @@ namespace io.fusionauth.domain {
 
     public int? readTimeout;
 
+    public WebhookSignatureConfiguration signatureConfiguration;
+
     public string sslCertificate;
+
+    public Guid? sslCertificateKeyId;
 
     public List<Guid> tenantIds;
 

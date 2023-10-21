@@ -19,7 +19,8 @@ using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.jwt {
+namespace io.fusionauth.domain.api.jwt
+{
 
   /**
    * API response for retrieving Refresh Tokens

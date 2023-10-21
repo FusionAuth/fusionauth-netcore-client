@@ -19,7 +19,8 @@ using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider {
+namespace io.fusionauth.domain.provider
+{
 
   /**
    * Facebook social login provider.

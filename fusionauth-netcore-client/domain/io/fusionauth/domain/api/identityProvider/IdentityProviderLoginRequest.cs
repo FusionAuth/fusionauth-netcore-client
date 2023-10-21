@@ -19,7 +19,8 @@ using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider {
+namespace io.fusionauth.domain.api.identityProvider
+{
 
   /**
    * Login API request object used for login to third-party systems (i.e. Login with Facebook).

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search {
+namespace io.fusionauth.domain.search
+{
 
   /**
    * This class is the entity query. It provides a build pattern as well as public fields for use on forms and in actions.

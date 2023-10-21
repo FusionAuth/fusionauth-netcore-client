@@ -20,7 +20,8 @@ using io.fusionauth.converters;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.jwt.domain {
+namespace io.fusionauth.jwt.domain
+{
 
   /**
    * JSON Web Token (JWT) as defined by RFC 7519.

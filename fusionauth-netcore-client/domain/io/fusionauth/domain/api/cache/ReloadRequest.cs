@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.cache {
+namespace io.fusionauth.domain.api.cache
+{
 
   /**
    * @author Daniel DeGroff

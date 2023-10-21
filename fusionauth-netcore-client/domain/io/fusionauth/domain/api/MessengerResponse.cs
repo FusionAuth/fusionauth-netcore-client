@@ -19,7 +19,8 @@ using io.fusionauth.domain.messenger;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * @author Brett Guy

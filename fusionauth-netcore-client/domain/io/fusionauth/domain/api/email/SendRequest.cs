@@ -19,7 +19,8 @@ using io.fusionauth.domain.email;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.email {
+namespace io.fusionauth.domain.api.email
+{
 
   /**
    * @author Daniel DeGroff

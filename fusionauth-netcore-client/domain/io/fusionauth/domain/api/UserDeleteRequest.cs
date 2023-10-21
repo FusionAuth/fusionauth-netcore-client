@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * User API delete request object.
@@ -30,6 +31,8 @@ namespace io.fusionauth.domain.api {
     public bool? dryRun;
 
     public bool? hardDelete;
+
+    public int? limit;
 
     public string query;
 

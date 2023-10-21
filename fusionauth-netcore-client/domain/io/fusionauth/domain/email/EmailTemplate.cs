@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.email {
+namespace io.fusionauth.domain.email
+{
 
   /**
    * Stores an email template used to send emails to users.

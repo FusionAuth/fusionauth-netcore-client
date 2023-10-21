@@ -19,7 +19,8 @@ using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.form {
+namespace io.fusionauth.domain.form
+{
 
   /**
    * @author Daniel DeGroff

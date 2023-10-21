@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.report {
+namespace io.fusionauth.domain.api.report
+{
 
   /**
    * Response for the daily active user report.

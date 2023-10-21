@@ -19,7 +19,8 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * Search request for entities
@@ -29,6 +30,8 @@ namespace io.fusionauth.domain.api {
   public class EntitySearchResponse {
 
     public List<Entity> entities;
+
+    public string nextResults;
 
     public long? total;
 

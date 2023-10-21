@@ -20,7 +20,8 @@ using io.fusionauth.domain.message.sms;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * @author Michael Sleevi

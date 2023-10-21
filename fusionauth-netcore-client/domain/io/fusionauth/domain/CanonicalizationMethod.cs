@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain {
+namespace io.fusionauth.domain
+{
 
   /**
    * XML canonicalization method enumeration. This is used for the IdP and SP side of FusionAuth SAML.

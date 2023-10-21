@@ -19,7 +19,8 @@ using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain.oauth2
+{
 
   /**
    * Authorization Grant types as defined by the <a href="https://tools.ietf.org/html/rfc6749">The OAuth 2.0 Authorization

@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.jwks {
+namespace io.fusionauth.domain.jwks
+{
 
   /**
    * Interface for any object that can provide JSON Web key Information.

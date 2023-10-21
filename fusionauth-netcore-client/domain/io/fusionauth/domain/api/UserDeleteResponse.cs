@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api {
+namespace io.fusionauth.domain.api
+{
 
   /**
    * User API bulk response object.
@@ -33,7 +34,7 @@ namespace io.fusionauth.domain.api {
 
     public int? total;
 
-    public List<string> userIds;
+    public List<Guid> userIds;
 
     public UserDeleteResponse with(Action<UserDeleteResponse> action) {
       action(this);

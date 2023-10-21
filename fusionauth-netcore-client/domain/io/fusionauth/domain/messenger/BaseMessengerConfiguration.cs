@@ -18,7 +18,8 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.messenger {
+namespace io.fusionauth.domain.messenger
+{
 
   // Do not require a setter for 'type', it is defined by the concrete class and is not mutable
   public class BaseMessengerConfiguration {

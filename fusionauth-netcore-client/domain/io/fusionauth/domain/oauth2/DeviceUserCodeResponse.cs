@@ -20,7 +20,8 @@ using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.oauth2 {
+namespace io.fusionauth.domain.oauth2
+{
 
   /**
    * @author Daniel DeGroff
