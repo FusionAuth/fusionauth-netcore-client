@@ -34,14 +34,7 @@ namespace io.fusionauth {
     public readonly FusionAuthClient client;
 
     public FusionAuthSyncClient(string apiKey, string host, string tenantId = null, IRESTClientBuilder clientBuilder = null) {
-      if (clientBuilder == null)
-      {
-        client = new FusionAuthClient(apiKey, host, tenantId);
-      }
-      else
-      {
-        client = new FusionAuthClient(apiKey, host, tenantId, clientBuilder);
-      }
+      client = new FusionAuthClient(apiKey, host, tenantId, clientBuilder);
     }
 
     /**
