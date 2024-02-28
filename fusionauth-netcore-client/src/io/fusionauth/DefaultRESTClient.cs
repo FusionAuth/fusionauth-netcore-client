@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using com.inversoft.error;
@@ -28,7 +29,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace io.fusionauth {
-  class DefaultRESTClient : IRESTClient {
+  public class DefaultRESTClient : IRESTClient {
     public HttpClient httpClient;
 
     public HttpContent content;
@@ -55,6 +56,10 @@ namespace io.fusionauth {
 
     public DefaultRESTClient(string host) {
       httpClient = new HttpClient {BaseAddress = new Uri(host)};
+    }
+
+    public DefaultRESTClient(HttpClient incomingHttpClient) {
+      httpClient = incomingHttpClient;
     }
 
     /**
@@ -169,7 +174,18 @@ namespace io.fusionauth {
         // - Bypass this additional validation for the Authorization header. If we find other edge cases, perhaps 
         //   we should just always use TryAddWithoutValidation unless there is a security risk. 
         if (key == "Authorization") {
-          httpClient.DefaultRequestHeaders.TryAddWithoutValidation(key, value);
+          if (httpClient.DefaultRequestHeaders.Authorization == null)
+          {
+            httpClient.DefaultRequestHeaders.TryAddWithoutValidation(key, value);
+          }
+          else
+          {
+            if (httpClient.DefaultRequestHeaders.Authorization.ToString() != value)
+            {
+              httpClient.DefaultRequestHeaders.Clear();
+              httpClient.DefaultRequestHeaders.TryAddWithoutValidation(key, value);
+            }
+          }
         } else {
           httpClient.DefaultRequestHeaders.Add(key, value);
         }
