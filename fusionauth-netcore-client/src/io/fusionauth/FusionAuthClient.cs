@@ -3300,4 +3300,24 @@ namespace io.fusionauth {
       return new DefaultRESTClient(host);
     }
   }
+
+  public class HttpClientBuilder : IRESTClientBuilder
+  {
+    public HttpClient HTTP_CLIENT;
+
+    public HttpClientBuilder(HttpClient httpClient)
+    {
+      HTTP_CLIENT = httpClient;
+    }
+
+    public IRESTClient build(string host)
+    {
+      if (HTTP_CLIENT.BaseAddress == null)
+      {
+        HTTP_CLIENT.BaseAddress = new Uri(host);
+      }
+      return new DefaultRESTClient(HTTP_CLIENT);
+    }
+
+  }
 }
