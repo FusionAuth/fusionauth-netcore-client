@@ -39,6 +39,8 @@ namespace io.fusionauth.domain
 
     public string accountWebAuthnIndex;
 
+    public string confirmationRequired;
+
     public string emailComplete;
 
     public string emailSent;

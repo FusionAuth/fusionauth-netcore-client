@@ -31,6 +31,8 @@ namespace io.fusionauth.domain.api
 
     public string emailVerificationId;
 
+    public string emailVerificationOneTimeCode;
+
     public IDictionary<Guid, string> registrationVerificationIds;
 
     public string token;

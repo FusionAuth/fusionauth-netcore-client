@@ -18,16 +18,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider
+namespace io.fusionauth.domain
 {
 
-  public class LambdaConfiguration {
-
-    public Guid? reconcileId;
-
-    public LambdaConfiguration with(Action<LambdaConfiguration> action) {
-      action(this);
-      return this;
-    }
+  /**
+   * @author Daniel DeGroff
+   */
+  public enum SystemTrustedProxyConfigurationPolicy {
+        All, 
+        OnlyConfigured
   }
 }

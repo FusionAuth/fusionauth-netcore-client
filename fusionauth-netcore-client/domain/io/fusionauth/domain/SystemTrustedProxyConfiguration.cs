@@ -18,14 +18,19 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider
+namespace io.fusionauth.domain
 {
 
-  public class LambdaConfiguration {
+  /**
+   * @author Daniel DeGroff
+   */
+  public class SystemTrustedProxyConfiguration {
 
-    public Guid? reconcileId;
+    public SystemTrustedProxyConfigurationPolicy trustPolicy;
 
-    public LambdaConfiguration with(Action<LambdaConfiguration> action) {
+    public List<string> trusted;
+
+    public SystemTrustedProxyConfiguration with(Action<SystemTrustedProxyConfiguration> action) {
       action(this);
       return this;
     }
