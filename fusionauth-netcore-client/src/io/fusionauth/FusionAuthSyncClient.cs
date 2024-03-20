@@ -111,7 +111,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request) {
+    public ClientResponse<UserCommentResponse> CommentOnUser(UserCommentRequest request) {
       return client.CommentOnUserAsync(request).GetAwaiter().GetResult();
     }
 

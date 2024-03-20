@@ -217,7 +217,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
+    Task<ClientResponse<UserCommentResponse>> CommentOnUserAsync(UserCommentRequest request);
 
     /// <summary>
     /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -4895,7 +4895,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
+   ClientResponse<UserCommentResponse> CommentOnUser(UserCommentRequest request);
 
    /// <summary>
    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in

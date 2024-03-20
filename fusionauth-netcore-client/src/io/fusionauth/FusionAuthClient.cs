@@ -204,12 +204,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request) {
+    public Task<ClientResponse<UserCommentResponse>> CommentOnUserAsync(UserCommentRequest request) {
       return buildClient()
           .withUri("/api/user/comment")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<RESTVoid>();
+          .goAsync<UserCommentResponse>();
     }
 
     /// <inheritdoc/>
