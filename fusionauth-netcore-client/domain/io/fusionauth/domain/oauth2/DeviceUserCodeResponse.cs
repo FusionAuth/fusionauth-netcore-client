@@ -36,6 +36,8 @@ namespace io.fusionauth.domain.oauth2
 
     public PendingIdPLink pendingIdPLink;
 
+    public string scope;
+
     public Guid? tenantId;
 
     public string user_code;

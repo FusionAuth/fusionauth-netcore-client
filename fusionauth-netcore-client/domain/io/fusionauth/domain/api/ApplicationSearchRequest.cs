@@ -27,7 +27,7 @@ namespace io.fusionauth.domain.api
    *
    * @author Spencer Witt
    */
-  public class ApplicationSearchRequest {
+  public class ApplicationSearchRequest: ExpandableRequest {
 
     public ApplicationSearchCriteria search;
 

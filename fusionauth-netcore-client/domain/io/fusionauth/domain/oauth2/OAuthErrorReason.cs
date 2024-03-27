@@ -78,6 +78,9 @@ namespace io.fusionauth.domain.oauth2
         change_password_breached, 
         change_password_expired, 
         change_password_validation, 
-        unknown
+        unknown, 
+        missing_required_scope, 
+        unknown_scope, 
+        consent_canceled
   }
 }

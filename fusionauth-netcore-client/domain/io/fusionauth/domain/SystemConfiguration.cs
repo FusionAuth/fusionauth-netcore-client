@@ -42,6 +42,8 @@ namespace io.fusionauth.domain
 
     public string reportTimezone;
 
+    public SystemTrustedProxyConfiguration trustedProxyConfiguration;
+
     public UIConfiguration uiConfiguration;
 
     public SystemConfiguration with(Action<SystemConfiguration> action) {

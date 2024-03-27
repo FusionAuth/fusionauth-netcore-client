@@ -38,6 +38,8 @@ namespace io.fusionauth.domain.oauth2
 
     public string clientSecret;
 
+    public OAuthScopeConsentMode consentMode;
+
     public bool? debug;
 
     public string deviceVerificationURL;
@@ -52,9 +54,17 @@ namespace io.fusionauth.domain.oauth2
 
     public ProofKeyForCodeExchangePolicy proofKeyForCodeExchangePolicy;
 
+    public ProvidedScopePolicy providedScopePolicy;
+
+    public OAuthApplicationRelationship relationship;
+
     public bool? requireClientAuthentication;
 
     public bool? requireRegistration;
+
+    public OAuthScopeHandlingPolicy scopeHandlingPolicy;
+
+    public UnknownScopePolicy unknownScopePolicy;
 
     public OAuth2Configuration with(Action<OAuth2Configuration> action) {
       action(this);

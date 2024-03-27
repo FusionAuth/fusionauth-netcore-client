@@ -31,6 +31,8 @@ namespace io.fusionauth.domain
 
     public Guid? selfServiceRegistrationValidationId;
 
+    public Guid? userinfoPopulateId;
+
     public LambdaConfiguration with(Action<LambdaConfiguration> action) {
       action(this);
       return this;

@@ -39,7 +39,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="request"> The action request that includes all the information about the action being taken including
-    /// the id of the action, any options and the duration (if applicable).</param>
+    /// the Id of the action, any options and the duration (if applicable).</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -49,7 +49,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ActionResponse>> ActionUserAsync(ActionRequest request);
 
     /// <summary>
-    /// Activates the FusionAuth Reactor using a license id and optionally a license text (for air-gapped deployments)
+    /// Activates the FusionAuth Reactor using a license Id and optionally a license text (for air-gapped deployments)
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="request"> An optional request that contains the license text to activate Reactor (useful for air-gap deployments of FusionAuth).</param>
@@ -62,10 +62,10 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> ActivateReactorAsync(ReactorRequest request);
 
     /// <summary>
-    /// Adds a user to an existing family. The family id must be specified.
+    /// Adds a user to an existing family. The family Id must be specified.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="familyId"> The id of the family.</param>
+    /// <param name="familyId"> The Id of the family.</param>
     /// <param name="request"> The request object that contains all the information used to determine which user to add to the family.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -95,7 +95,7 @@ namespace io.fusionauth {
     /// Cancels the user action.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="actionId"> The action id of the action to cancel.</param>
+    /// <param name="actionId"> The action Id of the action to cancel.</param>
     /// <param name="request"> The action request that contains the information about the cancellation.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -124,7 +124,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ChangePasswordResponse>> ChangePasswordAsync(string changePasswordId, ChangePasswordRequest request);
 
     /// <summary>
-    /// Changes a user's password using their identity (login id and password). Using a loginId instead of the changePasswordId
+    /// Changes a user's password using their identity (loginId and password). Using a loginId instead of the changePasswordId
     /// bypasses the email verification and allows a password to be changed directly without first calling the #forgotPassword
     /// method.
     /// This is an asynchronous method.
@@ -217,7 +217,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> CommentOnUserAsync(UserCommentRequest request);
+    Task<ClientResponse<UserCommentResponse>> CommentOnUserAsync(UserCommentRequest request);
 
     /// <summary>
     /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -291,7 +291,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ApplicationResponse>> CreateApplicationAsync(Guid? applicationId, ApplicationRequest request);
 
     /// <summary>
-    /// Creates a new role for an application. You must specify the id of the application you are creating the role for.
+    /// Creates a new role for an application. You must specify the Id of the application you are creating the role for.
     /// You can optionally specify an Id for the role inside the ApplicationRole object itself, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -392,7 +392,7 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityTypeResponse>> CreateEntityTypeAsync(Guid? entityTypeId, EntityTypeRequest request);
 
     /// <summary>
-    /// Creates a new permission for an entity type. You must specify the id of the entity type you are creating the permission for.
+    /// Creates a new permission for an entity type. You must specify the Id of the entity type you are creating the permission for.
     /// You can optionally specify an Id for the permission inside the EntityTypePermission object itself, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -408,11 +408,11 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityTypeResponse>> CreateEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
 
     /// <summary>
-    /// Creates a family with the user id in the request as the owner and sole member of the family. You can optionally specify an id for the
+    /// Creates a family with the user Id in the request as the owner and sole member of the family. You can optionally specify an Id for the
     /// family, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="familyId"> (Optional) The id for the family. If not provided a secure random UUID will be generated.</param>
+    /// <param name="familyId"> (Optional) The Id for the family. If not provided a secure random UUID will be generated.</param>
     /// <param name="request"> The request object that contains all the information used to create the family.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -546,6 +546,22 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<MessengerResponse>> CreateMessengerAsync(Guid? messengerId, MessengerRequest request);
+
+    /// <summary>
+    /// Creates a new custom OAuth scope for an application. You must specify the Id of the application you are creating the scope for.
+    /// You can optionally specify an Id for the OAuth scope on the URL, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application to create the OAuth scope on.</param>
+    /// <param name="scopeId"> (Optional) The Id of the OAuth scope. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all the information used to create the OAuth OAuth scope.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ApplicationOAuthScopeResponse>> CreateOAuthScopeAsync(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request);
 
     /// <summary>
     /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
@@ -772,7 +788,7 @@ namespace io.fusionauth {
     /// permanently removes the given role from all users that had it.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> The Id of the application to deactivate.</param>
+    /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
     /// <param name="roleId"> The Id of the role to delete.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -1006,6 +1022,21 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteMessengerAsync(Guid? messengerId);
+
+    /// <summary>
+    /// Hard deletes a custom OAuth scope. This action will cause tokens that contain the deleted scope to be rejected.
+    /// OAuth workflows that are still requesting the deleted OAuth scope may fail depending on the application's unknown scope policy.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteOAuthScopeAsync(Guid? applicationId, Guid? scopeId);
 
     /// <summary>
     /// Deletes the user registration for the given user and application.
@@ -1737,7 +1768,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ApplicationResponse>> PatchApplicationAsync(Guid? applicationId, IDictionary<string, object> request);
 
     /// <summary>
-    /// Updates, via PATCH, the application role with the given id for the application.
+    /// Updates, via PATCH, the application role with the given Id for the application.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
@@ -1891,7 +1922,22 @@ namespace io.fusionauth {
     Task<ClientResponse<MessengerResponse>> PatchMessengerAsync(Guid? messengerId, IDictionary<string, object> request);
 
     /// <summary>
-    /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
+    /// Updates, via PATCH, the custom OAuth scope with the given Id for the application.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+    /// <param name="request"> The request that contains just the new OAuth scope information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ApplicationOAuthScopeResponse>> PatchOAuthScopeAsync(Guid? applicationId, Guid? scopeId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Updates, via PATCH, the registration for the user with the given Id and the application defined in the request.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
@@ -2099,7 +2145,7 @@ namespace io.fusionauth {
     /// Registers a user for an application. If you provide the User and the UserRegistration object on this request, it
     /// will create the user as well as register them for the application. This is called a Full Registration. However, if
     /// you only provide the UserRegistration object, then the user must already exist and they will be registered for the
-    /// application. The user id can also be provided and it will either be used to look up an existing user or it will be
+    /// application. The user Id can also be provided and it will either be used to look up an existing user or it will be
     /// used for the newly created User.
     /// This is an asynchronous method.
     /// </summary>
@@ -2134,8 +2180,8 @@ namespace io.fusionauth {
     /// Removes a user from the family with the given id.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="familyId"> The id of the family to remove the user from.</param>
-    /// <param name="userId"> The id of the user to remove from the family.</param>
+    /// <param name="familyId"> The Id of the family to remove the user from.</param>
+    /// <param name="userId"> The Id of the user to remove from the family.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -2254,7 +2300,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ActionResponse>> RetrieveActiveActionsAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves the application for the given id or all the applications if the id is null.
+    /// Retrieves the application for the given Id or all the applications if the Id is null.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="applicationId"> (Optional) The application id.</param>
@@ -2578,7 +2624,7 @@ namespace io.fusionauth {
     Task<ClientResponse<IPAccessControlListResponse>> RetrieveIPAccessControlListAsync(Guid? ipAccessControlListId);
 
     /// <summary>
-    /// Retrieves the identity provider for the given id or all the identity providers if the id is null.
+    /// Retrieves the identity provider for the given Id or all the identity providers if the Id is null.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="identityProviderId"> The identity provider Id.</param>
@@ -2876,6 +2922,20 @@ namespace io.fusionauth {
     Task<ClientResponse<MonthlyActiveUserReportResponse>> RetrieveMonthlyActiveReportAsync(Guid? applicationId, long? start, long? end);
 
     /// <summary>
+    /// Retrieves a custom OAuth scope.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ApplicationOAuthScopeResponse>> RetrieveOAuthScopeAsync(Guid? applicationId, Guid? scopeId);
+
+    /// <summary>
     /// Retrieves the Oauth2 configuration for the application for the given Application Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -3022,7 +3082,7 @@ namespace io.fusionauth {
     Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokensAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves the user registration for the user with the given id and the given application id.
+    /// Retrieves the user registration for the user with the given Id and the given application id.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the user.</param>
@@ -3570,8 +3630,8 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="token"> (Optional) The refresh token to delete.</param>
-    /// <param name="userId"> (Optional) The user id whose tokens to delete.</param>
-    /// <param name="applicationId"> (Optional) The application id of the tokens to delete.</param>
+    /// <param name="userId"> (Optional) The user Id whose tokens to delete.</param>
+    /// <param name="applicationId"> (Optional) The application Id of the tokens to delete.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -3739,7 +3799,7 @@ namespace io.fusionauth {
     Task<ClientResponse<EntitySearchResponse>> SearchEntitiesAsync(EntitySearchRequest request);
 
     /// <summary>
-    /// Retrieves the entities for the given ids. If any id is invalid, it is ignored.
+    /// Retrieves the entities for the given ids. If any Id is invalid, it is ignored.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="ids"> The entity ids to search for.</param>
@@ -3921,7 +3981,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserCommentSearchResponse>> SearchUserCommentsAsync(UserCommentSearchRequest request);
 
     /// <summary>
-    /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
+    /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="ids"> The user ids to search for.</param>
@@ -3935,7 +3995,7 @@ namespace io.fusionauth {
     Task<ClientResponse<SearchResponse>> SearchUsersAsync(List<string> ids);
 
     /// <summary>
-    /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
+    /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="ids"> The user ids to search for.</param>
@@ -3994,7 +4054,7 @@ namespace io.fusionauth {
     /// pairs in the email template.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="emailTemplateId"> The id for the template.</param>
+    /// <param name="emailTemplateId"> The Id for the template.</param>
     /// <param name="request"> The send email request that contains all the information used to send the email.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -4199,7 +4259,7 @@ namespace io.fusionauth {
     Task<ClientResponse<ApplicationResponse>> UpdateApplicationAsync(Guid? applicationId, ApplicationRequest request);
 
     /// <summary>
-    /// Updates the application role with the given id for the application.
+    /// Updates the application role with the given Id for the application.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
@@ -4284,7 +4344,7 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityTypeResponse>> UpdateEntityTypeAsync(Guid? entityTypeId, EntityTypeRequest request);
 
     /// <summary>
-    /// Updates the permission with the given id for the entity type.
+    /// Updates the permission with the given Id for the entity type.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="entityTypeId"> The Id of the entityType that the permission belongs to.</param>
@@ -4451,7 +4511,22 @@ namespace io.fusionauth {
     Task<ClientResponse<MessengerResponse>> UpdateMessengerAsync(Guid? messengerId, MessengerRequest request);
 
     /// <summary>
-    /// Updates the registration for the user with the given id and the application defined in the request.
+    /// Updates the OAuth scope with the given Id for the application.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+    /// <param name="request"> The request that contains all the new OAuth scope information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ApplicationOAuthScopeResponse>> UpdateOAuthScopeAsync(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request);
+
+    /// <summary>
+    /// Updates the registration for the user with the given Id and the application defined in the request.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
@@ -4645,7 +4720,7 @@ namespace io.fusionauth {
     /// Confirms a email verification. The Id given is usually from an email sent to the user.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="verificationId"> The email verification id sent to the user.</param>
+    /// <param name="verificationId"> The email verification Id sent to the user.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4728,7 +4803,7 @@ namespace io.fusionauth {
    /// "actioner". Both user ids are required in the request object.
    /// </summary>
    /// <param name="request"> The action request that includes all the information about the action being taken including
-    /// the id of the action, any options and the duration (if applicable).</param>
+    /// the Id of the action, any options and the duration (if applicable).</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4738,7 +4813,7 @@ namespace io.fusionauth {
    ClientResponse<ActionResponse> ActionUser(ActionRequest request);
 
    /// <summary>
-   /// Activates the FusionAuth Reactor using a license id and optionally a license text (for air-gapped deployments)
+   /// Activates the FusionAuth Reactor using a license Id and optionally a license text (for air-gapped deployments)
    /// </summary>
    /// <param name="request"> An optional request that contains the license text to activate Reactor (useful for air-gap deployments of FusionAuth).</param>
    /// <returns>
@@ -4750,9 +4825,9 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> ActivateReactor(ReactorRequest request);
 
    /// <summary>
-   /// Adds a user to an existing family. The family id must be specified.
+   /// Adds a user to an existing family. The family Id must be specified.
    /// </summary>
-   /// <param name="familyId"> The id of the family.</param>
+   /// <param name="familyId"> The Id of the family.</param>
    /// <param name="request"> The request object that contains all the information used to determine which user to add to the family.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -4780,7 +4855,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Cancels the user action.
    /// </summary>
-   /// <param name="actionId"> The action id of the action to cancel.</param>
+   /// <param name="actionId"> The action Id of the action to cancel.</param>
    /// <param name="request"> The action request that contains the information about the cancellation.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -4808,7 +4883,7 @@ namespace io.fusionauth {
    ClientResponse<ChangePasswordResponse> ChangePassword(string changePasswordId, ChangePasswordRequest request);
 
    /// <summary>
-   /// Changes a user's password using their identity (login id and password). Using a loginId instead of the changePasswordId
+   /// Changes a user's password using their identity (loginId and password). Using a loginId instead of the changePasswordId
    /// bypasses the email verification and allows a password to be changed directly without first calling the #forgotPassword
    /// method.
    /// </summary>
@@ -4895,7 +4970,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> CommentOnUser(UserCommentRequest request);
+   ClientResponse<UserCommentResponse> CommentOnUser(UserCommentRequest request);
 
    /// <summary>
    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -4964,7 +5039,7 @@ namespace io.fusionauth {
    ClientResponse<ApplicationResponse> CreateApplication(Guid? applicationId, ApplicationRequest request);
 
    /// <summary>
-   /// Creates a new role for an application. You must specify the id of the application you are creating the role for.
+   /// Creates a new role for an application. You must specify the Id of the application you are creating the role for.
    /// You can optionally specify an Id for the role inside the ApplicationRole object itself, if not provided one will be generated.
    /// </summary>
    /// <param name="applicationId"> The Id of the application to create the role on.</param>
@@ -5058,7 +5133,7 @@ namespace io.fusionauth {
    ClientResponse<EntityTypeResponse> CreateEntityType(Guid? entityTypeId, EntityTypeRequest request);
 
    /// <summary>
-   /// Creates a new permission for an entity type. You must specify the id of the entity type you are creating the permission for.
+   /// Creates a new permission for an entity type. You must specify the Id of the entity type you are creating the permission for.
    /// You can optionally specify an Id for the permission inside the EntityTypePermission object itself, if not provided one will be generated.
    /// </summary>
    /// <param name="entityTypeId"> The Id of the entity type to create the permission on.</param>
@@ -5073,10 +5148,10 @@ namespace io.fusionauth {
    ClientResponse<EntityTypeResponse> CreateEntityTypePermission(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
 
    /// <summary>
-   /// Creates a family with the user id in the request as the owner and sole member of the family. You can optionally specify an id for the
+   /// Creates a family with the user Id in the request as the owner and sole member of the family. You can optionally specify an Id for the
    /// family, if not provided one will be generated.
    /// </summary>
-   /// <param name="familyId"> (Optional) The id for the family. If not provided a secure random UUID will be generated.</param>
+   /// <param name="familyId"> (Optional) The Id for the family. If not provided a secure random UUID will be generated.</param>
    /// <param name="request"> The request object that contains all the information used to create the family.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -5201,6 +5276,21 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<MessengerResponse> CreateMessenger(Guid? messengerId, MessengerRequest request);
+
+   /// <summary>
+   /// Creates a new custom OAuth scope for an application. You must specify the Id of the application you are creating the scope for.
+   /// You can optionally specify an Id for the OAuth scope on the URL, if not provided one will be generated.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application to create the OAuth scope on.</param>
+   /// <param name="scopeId"> (Optional) The Id of the OAuth scope. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all the information used to create the OAuth OAuth scope.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ApplicationOAuthScopeResponse> CreateOAuthScope(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request);
 
    /// <summary>
    /// Creates a tenant. You can optionally specify an Id for the tenant, if not provided one will be generated.
@@ -5410,7 +5500,7 @@ namespace io.fusionauth {
    /// Hard deletes an application role. This is a dangerous operation and should not be used in most circumstances. This
    /// permanently removes the given role from all users that had it.
    /// </summary>
-   /// <param name="applicationId"> The Id of the application to deactivate.</param>
+   /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
    /// <param name="roleId"> The Id of the role to delete.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -5627,6 +5717,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteMessenger(Guid? messengerId);
+
+   /// <summary>
+   /// Hard deletes a custom OAuth scope. This action will cause tokens that contain the deleted scope to be rejected.
+   /// OAuth workflows that are still requesting the deleted OAuth scope may fail depending on the application's unknown scope policy.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteOAuthScope(Guid? applicationId, Guid? scopeId);
 
    /// <summary>
    /// Deletes the user registration for the given user and application.
@@ -6310,7 +6414,7 @@ namespace io.fusionauth {
    ClientResponse<ApplicationResponse> PatchApplication(Guid? applicationId, IDictionary<string, object> request);
 
    /// <summary>
-   /// Updates, via PATCH, the application role with the given id for the application.
+   /// Updates, via PATCH, the application role with the given Id for the application.
    /// </summary>
    /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
    /// <param name="roleId"> The Id of the role to update.</param>
@@ -6453,7 +6557,21 @@ namespace io.fusionauth {
    ClientResponse<MessengerResponse> PatchMessenger(Guid? messengerId, IDictionary<string, object> request);
 
    /// <summary>
-   /// Updates, via PATCH, the registration for the user with the given id and the application defined in the request.
+   /// Updates, via PATCH, the custom OAuth scope with the given Id for the application.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+   /// <param name="request"> The request that contains just the new OAuth scope information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ApplicationOAuthScopeResponse> PatchOAuthScope(Guid? applicationId, Guid? scopeId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Updates, via PATCH, the registration for the user with the given Id and the application defined in the request.
    /// </summary>
    /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
    /// <param name="request"> The request that contains just the new registration information.</param>
@@ -6646,7 +6764,7 @@ namespace io.fusionauth {
    /// Registers a user for an application. If you provide the User and the UserRegistration object on this request, it
    /// will create the user as well as register them for the application. This is called a Full Registration. However, if
    /// you only provide the UserRegistration object, then the user must already exist and they will be registered for the
-   /// application. The user id can also be provided and it will either be used to look up an existing user or it will be
+   /// application. The user Id can also be provided and it will either be used to look up an existing user or it will be
    /// used for the newly created User.
    /// </summary>
    /// <param name="userId"> (Optional) The Id of the user being registered for the application and optionally created.</param>
@@ -6678,8 +6796,8 @@ namespace io.fusionauth {
    /// <summary>
    /// Removes a user from the family with the given id.
    /// </summary>
-   /// <param name="familyId"> The id of the family to remove the user from.</param>
-   /// <param name="userId"> The id of the user to remove from the family.</param>
+   /// <param name="familyId"> The Id of the family to remove the user from.</param>
+   /// <param name="userId"> The Id of the user to remove from the family.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -6790,7 +6908,7 @@ namespace io.fusionauth {
    ClientResponse<ActionResponse> RetrieveActiveActions(Guid? userId);
 
    /// <summary>
-   /// Retrieves the application for the given id or all the applications if the id is null.
+   /// Retrieves the application for the given Id or all the applications if the Id is null.
    /// </summary>
    /// <param name="applicationId"> (Optional) The application id.</param>
    /// <returns>
@@ -7089,7 +7207,7 @@ namespace io.fusionauth {
    ClientResponse<IPAccessControlListResponse> RetrieveIPAccessControlList(Guid? ipAccessControlListId);
 
    /// <summary>
-   /// Retrieves the identity provider for the given id or all the identity providers if the id is null.
+   /// Retrieves the identity provider for the given Id or all the identity providers if the Id is null.
    /// </summary>
    /// <param name="identityProviderId"> The identity provider Id.</param>
    /// <returns>
@@ -7364,6 +7482,19 @@ namespace io.fusionauth {
    ClientResponse<MonthlyActiveUserReportResponse> RetrieveMonthlyActiveReport(Guid? applicationId, long? start, long? end);
 
    /// <summary>
+   /// Retrieves a custom OAuth scope.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to retrieve.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ApplicationOAuthScopeResponse> RetrieveOAuthScope(Guid? applicationId, Guid? scopeId);
+
+   /// <summary>
    /// Retrieves the Oauth2 configuration for the application for the given Application Id.
    /// </summary>
    /// <param name="applicationId"> The Id of the Application to retrieve OAuth configuration.</param>
@@ -7499,7 +7630,7 @@ namespace io.fusionauth {
    ClientResponse<RefreshTokenResponse> RetrieveRefreshTokens(Guid? userId);
 
    /// <summary>
-   /// Retrieves the user registration for the user with the given id and the given application id.
+   /// Retrieves the user registration for the user with the given Id and the given application id.
    /// </summary>
    /// <param name="userId"> The Id of the user.</param>
    /// <param name="applicationId"> The Id of the application.</param>
@@ -8008,8 +8139,8 @@ namespace io.fusionauth {
    ///  - revokeRefreshTokensByUserIdForApplication
    /// </summary>
    /// <param name="token"> (Optional) The refresh token to delete.</param>
-   /// <param name="userId"> (Optional) The user id whose tokens to delete.</param>
-   /// <param name="applicationId"> (Optional) The application id of the tokens to delete.</param>
+   /// <param name="userId"> (Optional) The user Id whose tokens to delete.</param>
+   /// <param name="applicationId"> (Optional) The application Id of the tokens to delete.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -8165,7 +8296,7 @@ namespace io.fusionauth {
    ClientResponse<EntitySearchResponse> SearchEntities(EntitySearchRequest request);
 
    /// <summary>
-   /// Retrieves the entities for the given ids. If any id is invalid, it is ignored.
+   /// Retrieves the entities for the given ids. If any Id is invalid, it is ignored.
    /// </summary>
    /// <param name="ids"> The entity ids to search for.</param>
    /// <returns>
@@ -8333,7 +8464,7 @@ namespace io.fusionauth {
    ClientResponse<UserCommentSearchResponse> SearchUserComments(UserCommentSearchRequest request);
 
    /// <summary>
-   /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
+   /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
    /// </summary>
    /// <param name="ids"> The user ids to search for.</param>
    /// <returns>
@@ -8346,7 +8477,7 @@ namespace io.fusionauth {
    ClientResponse<SearchResponse> SearchUsers(List<string> ids);
 
    /// <summary>
-   /// Retrieves the users for the given ids. If any id is invalid, it is ignored.
+   /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
    /// </summary>
    /// <param name="ids"> The user ids to search for.</param>
    /// <returns>
@@ -8400,7 +8531,7 @@ namespace io.fusionauth {
    /// Send an email using an email template id. You can optionally provide <code>requestData</code> to access key value
    /// pairs in the email template.
    /// </summary>
-   /// <param name="emailTemplateId"> The id for the template.</param>
+   /// <param name="emailTemplateId"> The Id for the template.</param>
    /// <param name="request"> The send email request that contains all the information used to send the email.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -8591,7 +8722,7 @@ namespace io.fusionauth {
    ClientResponse<ApplicationResponse> UpdateApplication(Guid? applicationId, ApplicationRequest request);
 
    /// <summary>
-   /// Updates the application role with the given id for the application.
+   /// Updates the application role with the given Id for the application.
    /// </summary>
    /// <param name="applicationId"> The Id of the application that the role belongs to.</param>
    /// <param name="roleId"> The Id of the role to update.</param>
@@ -8670,7 +8801,7 @@ namespace io.fusionauth {
    ClientResponse<EntityTypeResponse> UpdateEntityType(Guid? entityTypeId, EntityTypeRequest request);
 
    /// <summary>
-   /// Updates the permission with the given id for the entity type.
+   /// Updates the permission with the given Id for the entity type.
    /// </summary>
    /// <param name="entityTypeId"> The Id of the entityType that the permission belongs to.</param>
    /// <param name="permissionId"> The Id of the permission to update.</param>
@@ -8825,7 +8956,21 @@ namespace io.fusionauth {
    ClientResponse<MessengerResponse> UpdateMessenger(Guid? messengerId, MessengerRequest request);
 
    /// <summary>
-   /// Updates the registration for the user with the given id and the application defined in the request.
+   /// Updates the OAuth scope with the given Id for the application.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+   /// <param name="request"> The request that contains all the new OAuth scope information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ApplicationOAuthScopeResponse> UpdateOAuthScope(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request);
+
+   /// <summary>
+   /// Updates the registration for the user with the given Id and the application defined in the request.
    /// </summary>
    /// <param name="userId"> The Id of the user whose registration is going to be updated.</param>
    /// <param name="request"> The request that contains all the new registration information.</param>
@@ -9005,7 +9150,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Confirms a email verification. The Id given is usually from an email sent to the user.
    /// </summary>
-   /// <param name="verificationId"> The email verification id sent to the user.</param>
+   /// <param name="verificationId"> The email verification Id sent to the user.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be

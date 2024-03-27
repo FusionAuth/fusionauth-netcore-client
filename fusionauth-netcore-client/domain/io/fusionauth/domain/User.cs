@@ -22,7 +22,7 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * The global view of a User. This object contains all global information about the user including birth date, registration information
+   * The global view of a User. This object contains all global information about the user including birthdate, registration information
    * preferred languages, global attributes, etc.
    *
    * @author Seth Musselman

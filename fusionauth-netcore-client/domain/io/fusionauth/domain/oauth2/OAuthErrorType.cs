@@ -31,6 +31,7 @@ namespace io.fusionauth.domain.oauth2
         server_error, 
         unsupported_grant_type, 
         unsupported_response_type, 
+        access_denied, 
         change_password_required, 
         not_licensed, 
         two_factor_required, 
