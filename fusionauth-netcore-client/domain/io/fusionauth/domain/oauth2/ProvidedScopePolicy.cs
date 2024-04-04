@@ -23,7 +23,7 @@ namespace io.fusionauth.domain.oauth2
 {
 
   /**
-   * The policy for provided scope handling
+   * The handling policy for scopes provided by FusionAuth
    *
    * @author Spencer Witt
    */
