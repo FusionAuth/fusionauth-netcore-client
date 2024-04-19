@@ -18,23 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.oauth2
 {
 
   /**
-   * @author Daniel DeGroff
+   * Controls the policy for requesting user permission to grant access to requested scopes during an OAuth workflow
+   * for a third-party application.
+   *
+   * @author Spencer Witt
    */
-  public class ApplicationUnverifiedConfiguration {
-
-    public UnverifiedBehavior registration;
-
-    public VerificationStrategy verificationStrategy;
-
-    public RegistrationUnverifiedOptions whenGated;
-
-    public ApplicationUnverifiedConfiguration with(Action<ApplicationUnverifiedConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum OAuthScopeConsentMode {
+        AlwaysPrompt, 
+        RememberDecision, 
+        NeverPrompt
   }
 }

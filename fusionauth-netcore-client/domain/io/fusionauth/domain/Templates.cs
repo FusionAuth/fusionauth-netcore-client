@@ -63,6 +63,8 @@ namespace io.fusionauth.domain
 
     public string oauth2CompleteRegistration;
 
+    public string oauth2Consent;
+
     public string oauth2Device;
 
     public string oauth2DeviceComplete;

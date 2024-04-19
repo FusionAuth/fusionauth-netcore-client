@@ -27,7 +27,7 @@ namespace io.fusionauth.domain.api
    *
    * @author Spencer Witt
    */
-  public class ApplicationSearchResponse {
+  public class ApplicationSearchResponse: ExpandableResponse {
 
     public List<Application> applications;
 

@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.api
 
     public IDictionary<Guid, string> registrationVerificationIds;
 
+    public IDictionary<Guid, string> registrationVerificationOneTimeCodes;
+
     public string token;
 
     public DateTimeOffset? tokenExpirationInstant;

@@ -231,6 +231,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<ApplicationOAuthScopeResponse> CreateOAuthScope(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request) {
+      return client.CreateOAuthScopeAsync(applicationId, scopeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<TenantResponse> CreateTenant(Guid? tenantId, TenantRequest request) {
       return client.CreateTenantAsync(tenantId, request).GetAwaiter().GetResult();
     }
@@ -399,6 +404,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteMessenger(Guid? messengerId) {
       return client.DeleteMessengerAsync(messengerId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteOAuthScope(Guid? applicationId, Guid? scopeId) {
+      return client.DeleteOAuthScopeAsync(applicationId, scopeId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -695,6 +705,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<MessengerResponse> PatchMessenger(Guid? messengerId, IDictionary<string, object> request) {
       return client.PatchMessengerAsync(messengerId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ApplicationOAuthScopeResponse> PatchOAuthScope(Guid? applicationId, Guid? scopeId, IDictionary<string, object> request) {
+      return client.PatchOAuthScopeAsync(applicationId, scopeId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1065,6 +1080,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<MonthlyActiveUserReportResponse> RetrieveMonthlyActiveReport(Guid? applicationId, long? start, long? end) {
       return client.RetrieveMonthlyActiveReportAsync(applicationId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ApplicationOAuthScopeResponse> RetrieveOAuthScope(Guid? applicationId, Guid? scopeId) {
+      return client.RetrieveOAuthScopeAsync(applicationId, scopeId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1639,6 +1659,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<MessengerResponse> UpdateMessenger(Guid? messengerId, MessengerRequest request) {
       return client.UpdateMessengerAsync(messengerId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ApplicationOAuthScopeResponse> UpdateOAuthScope(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request) {
+      return client.UpdateOAuthScopeAsync(applicationId, scopeId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

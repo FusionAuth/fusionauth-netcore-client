@@ -15,25 +15,20 @@
  */
 
 
-using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.oauth2
 {
 
   /**
-   * Search request for Applications
+   * The application's relationship to the authorization server. First-party applications will be granted implicit permission for requested scopes.
+   * Third-party applications will use the {@link OAuthScopeConsentMode} policy.
    *
    * @author Spencer Witt
    */
-  public class ApplicationSearchRequest: ExpandableRequest {
-
-    public ApplicationSearchCriteria search;
-
-    public ApplicationSearchRequest with(Action<ApplicationSearchRequest> action) {
-      action(this);
-      return this;
-    }
+  public enum OAuthApplicationRelationship {
+        FirstParty, 
+        ThirdParty
   }
 }

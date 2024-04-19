@@ -15,7 +15,7 @@
  */
 
 
-using io.fusionauth.domain.search;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -23,15 +23,15 @@ namespace io.fusionauth.domain.api
 {
 
   /**
-   * Search request for Applications
+   * The Application Scope API request object.
    *
    * @author Spencer Witt
    */
-  public class ApplicationSearchRequest: ExpandableRequest {
+  public class ApplicationOAuthScopeRequest {
 
-    public ApplicationSearchCriteria search;
+    public ApplicationOAuthScope scope;
 
-    public ApplicationSearchRequest with(Action<ApplicationSearchRequest> action) {
+    public ApplicationOAuthScopeRequest with(Action<ApplicationOAuthScopeRequest> action) {
       action(this);
       return this;
     }

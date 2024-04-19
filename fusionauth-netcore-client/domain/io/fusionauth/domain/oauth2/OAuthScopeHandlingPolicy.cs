@@ -15,25 +15,20 @@
  */
 
 
-using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.oauth2
 {
 
   /**
-   * Search request for Applications
+   * Controls the policy for whether OAuth workflows will more strictly adhere to the OAuth and OIDC specification
+   * or run in backwards compatibility mode.
    *
-   * @author Spencer Witt
+   * @author David Charles
    */
-  public class ApplicationSearchRequest: ExpandableRequest {
-
-    public ApplicationSearchCriteria search;
-
-    public ApplicationSearchRequest with(Action<ApplicationSearchRequest> action) {
-      action(this);
-      return this;
-    }
+  public enum OAuthScopeHandlingPolicy {
+        Compatibility, 
+        Strict
   }
 }

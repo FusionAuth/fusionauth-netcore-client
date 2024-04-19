@@ -442,6 +442,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<ApplicationOAuthScopeResponse>> CreateOAuthScopeAsync(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<ApplicationOAuthScopeResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<TenantResponse>> CreateTenantAsync(Guid? tenantId, TenantRequest request) {
       return buildClient()
           .withUri("/api/tenant")
@@ -762,6 +774,17 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/messenger")
           .withUriSegment(messengerId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteOAuthScopeAsync(Guid? applicationId, Guid? scopeId) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -1373,6 +1396,18 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Patch")
           .goAsync<MessengerResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ApplicationOAuthScopeResponse>> PatchOAuthScopeAsync(Guid? applicationId, Guid? scopeId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<ApplicationOAuthScopeResponse>();
     }
 
     /// <inheritdoc/>
@@ -2046,6 +2081,17 @@ namespace io.fusionauth {
           .withParameter("end", end)
           .withMethod("Get")
           .goAsync<MonthlyActiveUserReportResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ApplicationOAuthScopeResponse>> RetrieveOAuthScopeAsync(Guid? applicationId, Guid? scopeId) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withMethod("Get")
+          .goAsync<ApplicationOAuthScopeResponse>();
     }
 
     /// <inheritdoc/>
@@ -3117,6 +3163,18 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<MessengerResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ApplicationOAuthScopeResponse>> UpdateOAuthScopeAsync(Guid? applicationId, Guid? scopeId, ApplicationOAuthScopeRequest request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<ApplicationOAuthScopeResponse>();
     }
 
     /// <inheritdoc/>

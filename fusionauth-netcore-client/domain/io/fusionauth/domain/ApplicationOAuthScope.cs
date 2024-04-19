@@ -15,23 +15,40 @@
  */
 
 
-using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain
 {
 
   /**
-   * Search request for Applications
+   * A custom OAuth scope for a specific application.
    *
    * @author Spencer Witt
    */
-  public class ApplicationSearchRequest: ExpandableRequest {
+  public class ApplicationOAuthScope {
 
-    public ApplicationSearchCriteria search;
+    public Guid? applicationId;
 
-    public ApplicationSearchRequest with(Action<ApplicationSearchRequest> action) {
+    public IDictionary<string, object> data;
+
+    public string defaultConsentDetail;
+
+    public string defaultConsentMessage;
+
+    public string description;
+
+    public Guid? id;
+
+    public DateTimeOffset? insertInstant;
+
+    public DateTimeOffset? lastUpdateInstant;
+
+    public string name;
+
+    public bool? required;
+
+    public ApplicationOAuthScope with(Action<ApplicationOAuthScope> action) {
       action(this);
       return this;
     }

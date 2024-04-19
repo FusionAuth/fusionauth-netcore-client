@@ -32,6 +32,12 @@ namespace io.fusionauth.domain.reactor
 
     public ReactorFeatureStatus advancedMultiFactorAuthentication;
 
+    public ReactorFeatureStatus advancedOAuthScopes;
+
+    public ReactorFeatureStatus advancedOAuthScopesCustomScopes;
+
+    public ReactorFeatureStatus advancedOAuthScopesThirdPartyApplications;
+
     public ReactorFeatureStatus advancedRegistration;
 
     public ReactorFeatureStatus applicationMultiFactorAuthentication;

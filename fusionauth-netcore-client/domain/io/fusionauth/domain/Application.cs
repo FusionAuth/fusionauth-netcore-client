@@ -71,6 +71,8 @@ namespace io.fusionauth.domain
 
     public SAMLv2Configuration samlv2Configuration;
 
+    public List<ApplicationOAuthScope> scopes;
+
     public ObjectState state;
 
     public Guid? tenantId;

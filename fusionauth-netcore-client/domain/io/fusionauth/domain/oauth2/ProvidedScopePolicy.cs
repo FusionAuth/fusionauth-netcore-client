@@ -15,23 +15,29 @@
  */
 
 
-using io.fusionauth.domain.search;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.oauth2
 {
 
   /**
-   * Search request for Applications
+   * The handling policy for scopes provided by FusionAuth
    *
    * @author Spencer Witt
    */
-  public class ApplicationSearchRequest: ExpandableRequest {
+  public class ProvidedScopePolicy {
 
-    public ApplicationSearchCriteria search;
+    public Requirable address;
 
-    public ApplicationSearchRequest with(Action<ApplicationSearchRequest> action) {
+    public Requirable email;
+
+    public Requirable phone;
+
+    public Requirable profile;
+
+    public ProvidedScopePolicy with(Action<ProvidedScopePolicy> action) {
       action(this);
       return this;
     }

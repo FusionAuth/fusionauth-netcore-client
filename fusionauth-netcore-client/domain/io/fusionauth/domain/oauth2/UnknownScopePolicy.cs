@@ -15,25 +15,20 @@
  */
 
 
-using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.oauth2
 {
 
   /**
-   * Search request for Applications
+   * Policy for handling unknown OAuth scopes in the request
    *
    * @author Spencer Witt
    */
-  public class ApplicationSearchRequest: ExpandableRequest {
-
-    public ApplicationSearchCriteria search;
-
-    public ApplicationSearchRequest with(Action<ApplicationSearchRequest> action) {
-      action(this);
-      return this;
-    }
+  public enum UnknownScopePolicy {
+        Allow, 
+        Remove, 
+        Reject
   }
 }
