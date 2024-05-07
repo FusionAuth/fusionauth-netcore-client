@@ -44,6 +44,10 @@ namespace io.fusionauth.domain
 
     public Templates templates;
 
+    public ThemeType type;
+
+    public SimpleThemeVariables variables;
+
     public Theme with(Action<Theme> action) {
       action(this);
       return this;
