@@ -18,23 +18,11 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search
+namespace io.fusionauth.domain
 {
 
-  /**
-   * Search criteria for themes
-   *
-   * @author Mark Manes
-   */
-  public class ThemeSearchCriteria: BaseSearchCriteria {
-
-    public string name;
-
-    public ThemeType type;
-
-    public ThemeSearchCriteria with(Action<ThemeSearchCriteria> action) {
-      action(this);
-      return this;
-    }
+  public enum ThemeType {
+        advanced, 
+        simple
   }
 }
