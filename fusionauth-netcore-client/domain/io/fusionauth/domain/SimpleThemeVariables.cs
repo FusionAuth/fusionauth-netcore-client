@@ -32,7 +32,7 @@ namespace io.fusionauth.domain
 
     public string alertFontColor;
 
-    public string backgroundImageUrl;
+    public string backgroundImageURL;
 
     public string backgroundSize;
 
@@ -74,7 +74,7 @@ namespace io.fusionauth.domain
 
     public string logoImageSize;
 
-    public string logoImageUrl;
+    public string logoImageURL;
 
     public string monoFontColor;
 
