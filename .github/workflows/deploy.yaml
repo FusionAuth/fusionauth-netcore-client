@@ -20,7 +20,7 @@ on:
         type: choice
         options:
           - build    # build only
-          - publish  # build & publish to rubygems
+          - publish  # build & publish to nuget
           - release  # build & release to svn
         default: build
 
