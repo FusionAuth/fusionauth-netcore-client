@@ -12,7 +12,7 @@
         <Owners>FusionAuth</Owners>
         <Summary>FusionAuth client for .NET Core</Summary>
         <LangVersion>7.3</LangVersion>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.2;netcoreapp3.1</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
         <Company>FusionAuth</Company>
     </PropertyGroup>
 
