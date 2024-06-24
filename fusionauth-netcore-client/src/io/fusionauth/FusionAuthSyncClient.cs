@@ -1163,6 +1163,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> RetrieveSystemHealth() {
+      return client.RetrieveSystemHealthAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<StatusResponse> RetrieveSystemStatus() {
+      return client.RetrieveSystemStatusAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<StatusResponse> RetrieveSystemStatusUsingAPIKey() {
+      return client.RetrieveSystemStatusUsingAPIKeyAsync().GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<TenantResponse> RetrieveTenant(Guid? tenantId) {
       return client.RetrieveTenantAsync(tenantId).GetAwaiter().GetResult();
     }

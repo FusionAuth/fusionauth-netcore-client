@@ -3137,6 +3137,42 @@ namespace io.fusionauth {
     Task<ClientResponse<SystemConfigurationResponse>> RetrieveSystemConfigurationAsync();
 
     /// <summary>
+    /// Retrieves the FusionAuth system health. This API will return 200 if the system is healthy, and 500 if the system is un-healthy.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RetrieveSystemHealthAsync();
+
+    /// <summary>
+    /// Retrieves the FusionAuth system status. This request is anonymous and does not require an API key. When an API key is not provided the response will contain a single value in the JSON response indicating the current health check.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<StatusResponse>> RetrieveSystemStatusAsync();
+
+    /// <summary>
+    /// Retrieves the FusionAuth system status using an API key. Using an API key will cause the response to include the product version, health checks and various runtime metrics.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<StatusResponse>> RetrieveSystemStatusUsingAPIKeyAsync();
+
+    /// <summary>
     /// Retrieves the tenant for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -7679,6 +7715,39 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<SystemConfigurationResponse> RetrieveSystemConfiguration();
+
+   /// <summary>
+   /// Retrieves the FusionAuth system health. This API will return 200 if the system is healthy, and 500 if the system is un-healthy.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RetrieveSystemHealth();
+
+   /// <summary>
+   /// Retrieves the FusionAuth system status. This request is anonymous and does not require an API key. When an API key is not provided the response will contain a single value in the JSON response indicating the current health check.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<StatusResponse> RetrieveSystemStatus();
+
+   /// <summary>
+   /// Retrieves the FusionAuth system status using an API key. Using an API key will cause the response to include the product version, health checks and various runtime metrics.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<StatusResponse> RetrieveSystemStatusUsingAPIKey();
 
    /// <summary>
    /// Retrieves the tenant for the given Id.

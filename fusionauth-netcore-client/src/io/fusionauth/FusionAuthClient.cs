@@ -2230,6 +2230,30 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RetrieveSystemHealthAsync() {
+      return buildAnonymousClient()
+          .withUri("/api/health")
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<StatusResponse>> RetrieveSystemStatusAsync() {
+      return buildAnonymousClient()
+          .withUri("/api/status")
+          .withMethod("Get")
+          .goAsync<StatusResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<StatusResponse>> RetrieveSystemStatusUsingAPIKeyAsync() {
+      return buildClient()
+          .withUri("/api/status")
+          .withMethod("Get")
+          .goAsync<StatusResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<TenantResponse>> RetrieveTenantAsync(Guid? tenantId) {
       return buildClient()
           .withUri("/api/tenant")
