@@ -76,3 +76,8 @@ This library is built automatically to keep track of the FusionAuth API, and may
 These releases may also update dependencies, language engines, and operating systems, as we\'ll follow the deprecation and sunsetting policies of the underlying technologies that it uses.
 
 This means that after a dependency (e.g. language, framework, or operating system) is deprecated by its maintainer, this library will also be deprecated by us, and will eventually be updated to use a newer version.
+
+## A note about concurrency
+
+Q: Is the FusionAuth Client for .NET Core thread safe for singleton use?  
+A: Yes, if you are using the default builder included.  It still may perform similarly with another builder, but research would be required to confirm.
