@@ -2566,6 +2566,24 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<WebhookAttemptLogResponse>> RetrieveWebhookAttemptLogAsync(Guid? webhookAttemptLogId) {
+      return buildClient()
+          .withUri("/api/system/webhook-attempt-log")
+          .withUriSegment(webhookAttemptLogId)
+          .withMethod("Get")
+          .goAsync<WebhookAttemptLogResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<WebhookEventLogResponse>> RetrieveWebhookEventLogAsync(Guid? webhookEventLogId) {
+      return buildClient()
+          .withUri("/api/system/webhook-event-log")
+          .withUriSegment(webhookEventLogId)
+          .withMethod("Get")
+          .goAsync<WebhookEventLogResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<WebhookResponse>> RetrieveWebhooksAsync() {
       return buildClient()
           .withUri("/api/webhook")
@@ -2855,6 +2873,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<SearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<WebhookEventLogSearchResponse>> SearchWebhookEventLogsAsync(WebhookEventLogSearchRequest request) {
+      return buildClient()
+          .withUri("/api/system/webhook-event-log/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<WebhookEventLogSearchResponse>();
     }
 
     /// <inheritdoc/>

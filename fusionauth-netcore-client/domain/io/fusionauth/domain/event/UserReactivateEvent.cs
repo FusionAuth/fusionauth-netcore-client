@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,9 +26,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Brian Pontarelli
    */
-  public class UserReactivateEvent: BaseEvent {
-
-    public User user;
+  public class UserReactivateEvent: BaseUserEvent {
 
     public UserReactivateEvent with(Action<UserReactivateEvent> action) {
       action(this);

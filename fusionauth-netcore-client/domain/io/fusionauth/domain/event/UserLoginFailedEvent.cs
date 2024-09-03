@@ -27,7 +27,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserLoginFailedEvent: BaseEvent {
+  public class UserLoginFailedEvent: BaseUserEvent {
 
     public Guid? applicationId;
 
@@ -35,7 +35,7 @@ namespace io.fusionauth.domain.@event
 
     public string ipAddress;
 
-    public User user;
+    public UserLoginFailedReason reason;
 
     public UserLoginFailedEvent with(Action<UserLoginFailedEvent> action) {
       action(this);

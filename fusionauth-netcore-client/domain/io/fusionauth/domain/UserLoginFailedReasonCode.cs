@@ -15,23 +15,18 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event
+namespace io.fusionauth.domain
 {
 
   /**
-   * Models the Group Member Remove Complete Event.
-   *
-   * @author Daniel DeGroff
+   * User login failed reason codes.
    */
-  public class GroupMemberRemoveCompleteEvent: BaseGroupEvent {
+  public class UserLoginFailedReasonCode {
 
-    public List<GroupMember> members;
-
-    public GroupMemberRemoveCompleteEvent with(Action<GroupMemberRemoveCompleteEvent> action) {
+    public UserLoginFailedReasonCode with(Action<UserLoginFailedReasonCode> action) {
       action(this);
       return this;
     }

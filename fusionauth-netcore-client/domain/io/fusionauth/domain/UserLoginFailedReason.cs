@@ -15,23 +15,27 @@
  */
 
 
-using io.fusionauth.domain;
+using com.inversoft.error;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event
+namespace io.fusionauth.domain
 {
 
   /**
-   * Models the Group Member Remove Complete Event.
+   * The reason for the login failure.
    *
    * @author Daniel DeGroff
    */
-  public class GroupMemberRemoveCompleteEvent: BaseGroupEvent {
+  public class UserLoginFailedReason {
 
-    public List<GroupMember> members;
+    public string code;
 
-    public GroupMemberRemoveCompleteEvent with(Action<GroupMemberRemoveCompleteEvent> action) {
+    public Guid? lambdaId;
+
+    public Errors lambdaResult;
+
+    public UserLoginFailedReason with(Action<UserLoginFailedReason> action) {
       action(this);
       return this;
     }

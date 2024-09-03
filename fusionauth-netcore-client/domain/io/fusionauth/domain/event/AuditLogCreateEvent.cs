@@ -23,7 +23,7 @@ namespace io.fusionauth.domain.@event
 {
 
   /**
-   * Event event to an audit log was created.
+   * Event to indicate an audit log was created.
    *
    * @author Daniel DeGroff
    */

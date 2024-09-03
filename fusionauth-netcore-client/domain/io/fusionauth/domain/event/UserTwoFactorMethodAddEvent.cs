@@ -27,11 +27,9 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserTwoFactorMethodAddEvent: BaseEvent {
+  public class UserTwoFactorMethodAddEvent: BaseUserEvent {
 
     public TwoFactorMethod method;
-
-    public User user;
 
     public UserTwoFactorMethodAddEvent with(Action<UserTwoFactorMethodAddEvent> action) {
       action(this);

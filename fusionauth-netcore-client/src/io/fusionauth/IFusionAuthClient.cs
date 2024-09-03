@@ -3627,6 +3627,32 @@ namespace io.fusionauth {
     Task<ClientResponse<WebhookResponse>> RetrieveWebhookAsync(Guid? webhookId);
 
     /// <summary>
+    /// Retrieves a single webhook attempt log for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="webhookAttemptLogId"> The Id of the webhook attempt log to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebhookAttemptLogResponse>> RetrieveWebhookAttemptLogAsync(Guid? webhookAttemptLogId);
+
+    /// <summary>
+    /// Retrieves a single webhook event log for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="webhookEventLogId"> The Id of the webhook event log to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebhookEventLogResponse>> RetrieveWebhookEventLogAsync(Guid? webhookEventLogId);
+
+    /// <summary>
     /// Retrieves all the webhooks.
     /// This is an asynchronous method.
     /// </summary>
@@ -4071,6 +4097,19 @@ namespace io.fusionauth {
     /// </returns>
     [Obsolete("This method has been renamed to SearchUsersByQueryAsync, use that method instead.")]
     Task<ClientResponse<SearchResponse>> SearchUsersByQueryStringAsync(SearchRequest request);
+
+    /// <summary>
+    /// Searches the webhook event logs with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebhookEventLogSearchResponse>> SearchWebhookEventLogsAsync(WebhookEventLogSearchRequest request);
 
     /// <summary>
     /// Searches webhooks with the specified criteria and pagination.
@@ -8171,6 +8210,30 @@ namespace io.fusionauth {
    ClientResponse<WebhookResponse> RetrieveWebhook(Guid? webhookId);
 
    /// <summary>
+   /// Retrieves a single webhook attempt log for the given Id.
+   /// </summary>
+   /// <param name="webhookAttemptLogId"> The Id of the webhook attempt log to retrieve.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebhookAttemptLogResponse> RetrieveWebhookAttemptLog(Guid? webhookAttemptLogId);
+
+   /// <summary>
+   /// Retrieves a single webhook event log for the given Id.
+   /// </summary>
+   /// <param name="webhookEventLogId"> The Id of the webhook event log to retrieve.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebhookEventLogResponse> RetrieveWebhookEventLog(Guid? webhookEventLogId);
+
+   /// <summary>
    /// Retrieves all the webhooks.
    /// </summary>
    /// <returns>
@@ -8583,6 +8646,18 @@ namespace io.fusionauth {
    /// </returns>
    [Obsolete("This method has been renamed to SearchUsersByQueryAsync, use that method instead.")]
    ClientResponse<SearchResponse> SearchUsersByQueryString(SearchRequest request);
+
+   /// <summary>
+   /// Searches the webhook event logs with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebhookEventLogSearchResponse> SearchWebhookEventLogs(WebhookEventLogSearchRequest request);
 
    /// <summary>
    /// Searches webhooks with the specified criteria and pagination.

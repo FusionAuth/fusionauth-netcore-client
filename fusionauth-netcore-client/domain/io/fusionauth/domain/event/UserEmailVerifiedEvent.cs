@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,9 +26,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Trevor Smith
    */
-  public class UserEmailVerifiedEvent: BaseEvent {
-
-    public User user;
+  public class UserEmailVerifiedEvent: BaseUserEvent {
 
     public UserEmailVerifiedEvent with(Action<UserEmailVerifiedEvent> action) {
       action(this);

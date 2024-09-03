@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -30,9 +29,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserDeleteCompleteEvent: BaseEvent {
-
-    public User user;
+  public class UserDeleteCompleteEvent: BaseUserEvent {
 
     public UserDeleteCompleteEvent with(Action<UserDeleteCompleteEvent> action) {
       action(this);

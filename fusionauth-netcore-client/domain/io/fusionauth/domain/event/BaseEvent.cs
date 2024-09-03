@@ -23,7 +23,7 @@ namespace io.fusionauth.domain.@event
 {
 
   /**
-   * Base-class for all FusionAuth events.
+   * Base class for all FusionAuth events.
    *
    * @author Brian Pontarelli
    */

@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,7 +26,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserLoginSuccessEvent: BaseEvent {
+  public class UserLoginSuccessEvent: BaseUserEvent {
 
     public Guid? applicationId;
 
@@ -40,8 +39,6 @@ namespace io.fusionauth.domain.@event
     public string identityProviderName;
 
     public string ipAddress;
-
-    public User user;
 
     public UserLoginSuccessEvent with(Action<UserLoginSuccessEvent> action) {
       action(this);

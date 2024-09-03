@@ -27,11 +27,9 @@ namespace io.fusionauth.domain.@event
    *
    * @author Brian Pontarelli
    */
-  public class UserUpdateEvent: BaseEvent {
+  public class UserUpdateEvent: BaseUserEvent {
 
     public User original;
-
-    public User user;
 
     public UserUpdateEvent with(Action<UserUpdateEvent> action) {
       action(this);

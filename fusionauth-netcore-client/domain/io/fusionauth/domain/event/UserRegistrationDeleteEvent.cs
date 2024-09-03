@@ -27,13 +27,11 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserRegistrationDeleteEvent: BaseEvent {
+  public class UserRegistrationDeleteEvent: BaseUserEvent {
 
     public Guid? applicationId;
 
     public UserRegistration registration;
-
-    public User user;
 
     public UserRegistrationDeleteEvent with(Action<UserRegistrationDeleteEvent> action) {
       action(this);

@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,9 +26,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserPasswordUpdateEvent: BaseEvent {
-
-    public User user;
+  public class UserPasswordUpdateEvent: BaseUserEvent {
 
     public UserPasswordUpdateEvent with(Action<UserPasswordUpdateEvent> action) {
       action(this);

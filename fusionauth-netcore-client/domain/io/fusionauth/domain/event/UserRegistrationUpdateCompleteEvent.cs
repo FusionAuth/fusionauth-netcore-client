@@ -29,15 +29,13 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserRegistrationUpdateCompleteEvent: BaseEvent {
+  public class UserRegistrationUpdateCompleteEvent: BaseUserEvent {
 
     public Guid? applicationId;
 
     public UserRegistration original;
 
     public UserRegistration registration;
-
-    public User user;
 
     public UserRegistrationUpdateCompleteEvent with(Action<UserRegistrationUpdateCompleteEvent> action) {
       action(this);

@@ -27,15 +27,13 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserLoginIdDuplicateOnCreateEvent: BaseEvent {
+  public class UserLoginIdDuplicateOnCreateEvent: BaseUserEvent {
 
     public string duplicateEmail;
 
     public string duplicateUsername;
 
     public User existing;
-
-    public User user;
 
     public UserLoginIdDuplicateOnCreateEvent with(Action<UserLoginIdDuplicateOnCreateEvent> action) {
       action(this);

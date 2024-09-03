@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,9 +26,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class GroupDeleteCompleteEvent: BaseEvent {
-
-    public Group group;
+  public class GroupDeleteCompleteEvent: BaseGroupEvent {
 
     public GroupDeleteCompleteEvent with(Action<GroupDeleteCompleteEvent> action) {
       action(this);

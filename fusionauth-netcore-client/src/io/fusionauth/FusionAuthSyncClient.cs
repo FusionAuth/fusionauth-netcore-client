@@ -1343,6 +1343,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<WebhookAttemptLogResponse> RetrieveWebhookAttemptLog(Guid? webhookAttemptLogId) {
+      return client.RetrieveWebhookAttemptLogAsync(webhookAttemptLogId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebhookEventLogResponse> RetrieveWebhookEventLog(Guid? webhookEventLogId) {
+      return client.RetrieveWebhookEventLogAsync(webhookEventLogId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<WebhookResponse> RetrieveWebhooks() {
       return client.RetrieveWebhooksAsync().GetAwaiter().GetResult();
     }
@@ -1502,6 +1512,11 @@ namespace io.fusionauth {
     [Obsolete("This method has been renamed to SearchUsersByQuery, use that method instead.")]
     public ClientResponse<SearchResponse> SearchUsersByQueryString(SearchRequest request) {
       return client.SearchUsersByQueryStringAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebhookEventLogSearchResponse> SearchWebhookEventLogs(WebhookEventLogSearchRequest request) {
+      return client.SearchWebhookEventLogsAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

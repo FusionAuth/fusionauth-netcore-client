@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -28,9 +27,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Brian Pontarelli
    */
-  public class UserDeleteEvent: BaseEvent {
-
-    public User user;
+  public class UserDeleteEvent: BaseUserEvent {
 
     public UserDeleteEvent with(Action<UserDeleteEvent> action) {
       action(this);

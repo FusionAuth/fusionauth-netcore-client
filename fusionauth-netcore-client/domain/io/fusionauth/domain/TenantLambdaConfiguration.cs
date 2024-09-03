@@ -26,6 +26,8 @@ namespace io.fusionauth.domain
    */
   public class TenantLambdaConfiguration {
 
+    public Guid? loginValidationId;
+
     public Guid? scimEnterpriseUserRequestConverterId;
 
     public Guid? scimEnterpriseUserResponseConverterId;

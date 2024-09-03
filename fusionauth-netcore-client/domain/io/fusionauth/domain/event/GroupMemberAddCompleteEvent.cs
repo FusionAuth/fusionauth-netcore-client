@@ -27,9 +27,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class GroupMemberAddCompleteEvent: BaseEvent {
-
-    public Group group;
+  public class GroupMemberAddCompleteEvent: BaseGroupEvent {
 
     public List<GroupMember> members;
 

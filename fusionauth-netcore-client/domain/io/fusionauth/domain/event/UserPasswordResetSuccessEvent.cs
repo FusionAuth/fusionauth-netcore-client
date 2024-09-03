@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -27,9 +26,7 @@ namespace io.fusionauth.domain.@event
    *
    * @author Daniel DeGroff
    */
-  public class UserPasswordResetSuccessEvent: BaseEvent {
-
-    public User user;
+  public class UserPasswordResetSuccessEvent: BaseUserEvent {
 
     public UserPasswordResetSuccessEvent with(Action<UserPasswordResetSuccessEvent> action) {
       action(this);
