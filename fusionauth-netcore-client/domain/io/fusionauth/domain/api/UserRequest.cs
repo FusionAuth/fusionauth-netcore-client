@@ -41,6 +41,8 @@ namespace io.fusionauth.domain.api
 
     public User user;
 
+    public List<string> verificationIds;
+
     public UserRequest with(Action<UserRequest> action) {
       action(this);
       return this;

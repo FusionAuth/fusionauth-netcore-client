@@ -87,6 +87,8 @@ namespace io.fusionauth.domain
 
     public TenantSCIMServerConfiguration scimServerConfiguration;
 
+    public TenantSMSConfiguration smsConfiguration;
+
     public TenantSSOConfiguration ssoConfiguration;
 
     public ObjectState state;

@@ -21,6 +21,7 @@ using System;
 namespace io.fusionauth.domain
 {
 
+  // TODO : ENG-1 : Brady - this overlaps with the IdentityType enumeration
   public enum LoginIdType {
         email, 
         username

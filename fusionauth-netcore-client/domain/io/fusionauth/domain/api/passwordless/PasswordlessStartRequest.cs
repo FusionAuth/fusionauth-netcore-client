@@ -28,7 +28,11 @@ namespace io.fusionauth.domain.api.passwordless
 
     public Guid? applicationId;
 
+    public string loginStrategy;
+
     public string loginId;
+
+    public string loginIdType;
 
     public IDictionary<string, object> state;
 

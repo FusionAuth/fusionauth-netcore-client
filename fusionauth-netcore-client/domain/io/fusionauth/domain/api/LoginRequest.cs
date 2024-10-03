@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.api
 
     public string loginId;
 
+    public List<string> loginIdTypes;
+
     public string oneTimePassword;
 
     public string password;

@@ -82,6 +82,8 @@ namespace io.fusionauth.domain.@event
         UserEmailUpdate, 
         [EnumMember(Value = "user.email.verified")]
         UserEmailVerified, 
+        [EnumMember(Value = "identity.verified")]
+        IdentityVerified, 
         [EnumMember(Value = "user.identity-provider.link")]
         UserIdentityProviderLink, 
         [EnumMember(Value = "user.identity-provider.unlink")]

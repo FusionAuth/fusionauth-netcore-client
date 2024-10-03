@@ -52,6 +52,10 @@ namespace io.fusionauth.domain
 
     public int? passwordlessLoginTimeToLiveInSeconds;
 
+    public SecureGeneratorConfiguration passwordlessShortCodeLoginGenerator;
+
+    public int? passwordlessShortCodeLoginTimeToLiveInSeconds;
+
     public int? pendingAccountLinkTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration registrationVerificationIdGenerator;
@@ -67,6 +71,8 @@ namespace io.fusionauth.domain
     public SecureGeneratorConfiguration setupPasswordIdGenerator;
 
     public int? setupPasswordIdTimeToLiveInSeconds;
+
+    public int? smsVerificationTimeToLiveInSeconds;
 
     public int? trustTokenTimeToLiveInSeconds;
 
