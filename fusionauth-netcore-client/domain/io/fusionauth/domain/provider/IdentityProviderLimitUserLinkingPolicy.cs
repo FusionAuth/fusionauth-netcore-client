@@ -27,7 +27,7 @@ namespace io.fusionauth.domain.provider
    */
   public class IdentityProviderLimitUserLinkingPolicy: Enableable {
 
-    public int? maximumLinks;
+    public string maximumLinks;
 
     public IdentityProviderLimitUserLinkingPolicy with(Action<IdentityProviderLimitUserLinkingPolicy> action) {
       action(this);

@@ -27,7 +27,7 @@ namespace io.fusionauth.domain.messenger
    */
   public class GenericMessengerConfiguration: BaseMessengerConfiguration {
 
-    public int? connectTimeout;
+    public string connectTimeout;
 
     public HTTPHeaders headers;
 
@@ -35,7 +35,7 @@ namespace io.fusionauth.domain.messenger
 
     public string httpAuthenticationUsername;
 
-    public int? readTimeout;
+    public string readTimeout;
 
     public string sslCertificate;
 

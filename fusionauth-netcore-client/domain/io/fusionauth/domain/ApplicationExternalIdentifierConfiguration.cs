@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    */
   public class ApplicationExternalIdentifierConfiguration {
 
-    public int? twoFactorTrustIdTimeToLiveInSeconds;
+    public string twoFactorTrustIdTimeToLiveInSeconds;
 
     public ApplicationExternalIdentifierConfiguration with(Action<ApplicationExternalIdentifierConfiguration> action) {
       action(this);

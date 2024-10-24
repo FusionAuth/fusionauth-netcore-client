@@ -34,7 +34,7 @@ namespace io.fusionauth.domain
 
     public LocalizedIntegers countryMinimumAgeForSelfConsent;
 
-    public int? defaultMinimumAgeForSelfConsent;
+    public string defaultMinimumAgeForSelfConsent;
 
     public EmailPlus emailPlus;
 

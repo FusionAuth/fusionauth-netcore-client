@@ -21,9 +21,11 @@ using System;
 namespace io.fusionauth.domain
 {
 
-  public enum IdentityTypes {
-        email, 
-        phoneNumber, 
-        username
+  /**
+   * @author Daniel DeGroff
+   */
+  public enum TenantIdentityConfigurationMode {
+        Compatible, 
+        Discrete
   }
 }

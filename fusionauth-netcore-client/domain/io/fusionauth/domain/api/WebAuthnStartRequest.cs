@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.api
 
     public string loginId;
 
+    public List<string> loginIdTypes;
+
     public IDictionary<string, object> state;
 
     public Guid? userId;

@@ -26,11 +26,11 @@ namespace io.fusionauth.domain.search
    */
   public class BaseSearchCriteria {
 
-    public int? numberOfResults;
+    public string numberOfResults;
 
     public string orderBy;
 
-    public int? startRow;
+    public string startRow;
 
     public BaseSearchCriteria with(Action<BaseSearchCriteria> action) {
       action(this);

@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    */
   public class RefreshTokenSlidingWindowConfiguration {
 
-    public int? maximumTimeToLiveInMinutes;
+    public string maximumTimeToLiveInMinutes;
 
     public RefreshTokenSlidingWindowConfiguration with(Action<RefreshTokenSlidingWindowConfiguration> action) {
       action(this);

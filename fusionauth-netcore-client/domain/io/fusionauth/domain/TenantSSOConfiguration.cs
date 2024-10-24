@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    */
   public class TenantSSOConfiguration {
 
-    public int? deviceTrustTimeToLiveInSeconds;
+    public string deviceTrustTimeToLiveInSeconds;
 
     public TenantSSOConfiguration with(Action<TenantSSOConfiguration> action) {
       action(this);

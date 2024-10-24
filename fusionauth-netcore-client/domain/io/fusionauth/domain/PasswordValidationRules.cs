@@ -28,9 +28,9 @@ namespace io.fusionauth.domain
 
     public PasswordBreachDetection breachDetection;
 
-    public int? maxLength;
+    public string maxLength;
 
-    public int? minLength;
+    public string minLength;
 
     public RememberPreviousPasswords rememberPreviousPasswords;
 

@@ -26,6 +26,8 @@ namespace io.fusionauth.domain
    */
   public class SecureIdentity {
 
+    public List<UserIdentity> identities;
+
     public DateTimeOffset? breachedPasswordLastCheckedInstant;
 
     public BreachedPasswordStatus breachedPasswordStatus;
@@ -34,7 +36,7 @@ namespace io.fusionauth.domain
 
     public string encryptionScheme;
 
-    public int? factor;
+    public string factor;
 
     public Guid? id;
 

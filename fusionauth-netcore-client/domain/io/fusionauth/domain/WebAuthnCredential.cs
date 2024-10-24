@@ -55,7 +55,7 @@ namespace io.fusionauth.domain
 
     public string relyingPartyId;
 
-    public int? signCount;
+    public string signCount;
 
     public Guid? tenantId;
 

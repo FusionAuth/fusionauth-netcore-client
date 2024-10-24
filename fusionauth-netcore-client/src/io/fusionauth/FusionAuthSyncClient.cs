@@ -1128,7 +1128,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RecentLoginResponse> RetrieveRecentLogins(int? offset, int? limit) {
+    public ClientResponse<RecentLoginResponse> RetrieveRecentLogins(string offset, int? limit) {
       return client.RetrieveRecentLoginsAsync(offset, limit).GetAwaiter().GetResult();
     }
 
@@ -1313,7 +1313,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RecentLoginResponse> RetrieveUserRecentLogins(Guid? userId, int? offset, int? limit) {
+    public ClientResponse<RecentLoginResponse> RetrieveUserRecentLogins(Guid? userId, string offset, int? limit) {
       return client.RetrieveUserRecentLoginsAsync(userId, offset, limit).GetAwaiter().GetResult();
     }
 

@@ -22,11 +22,14 @@ using System;
 namespace io.fusionauth.domain.api.user.verify
 {
 
+  /**
+   * @author Brady Wied
+   */
   public class VerifySendCompleteRequest: BaseEventRequest {
 
-    public string verificationId;
-
     public string oneTimeCode;
+
+    public string verificationId;
 
     public VerifySendCompleteRequest with(Action<VerifySendCompleteRequest> action) {
       action(this);

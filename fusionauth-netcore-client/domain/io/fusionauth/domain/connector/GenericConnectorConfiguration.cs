@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.connector
 
     public string authenticationURL;
 
-    public int? connectTimeout;
+    public string connectTimeout;
 
     public HTTPHeaders headers;
 
@@ -39,7 +39,7 @@ namespace io.fusionauth.domain.connector
 
     public string httpAuthenticationUsername;
 
-    public int? readTimeout;
+    public string readTimeout;
 
     public Guid? sslCertificateKeyId;
 

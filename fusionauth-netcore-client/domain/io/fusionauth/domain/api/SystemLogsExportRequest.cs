@@ -28,7 +28,7 @@ namespace io.fusionauth.domain.api
 
     public bool? includeArchived;
 
-    public int? lastNBytes;
+    public string lastNBytes;
 
     public SystemLogsExportRequest with(Action<SystemLogsExportRequest> action) {
       action(this);

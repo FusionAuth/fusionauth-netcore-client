@@ -15,33 +15,20 @@
  */
 
 
-using io.fusionauth.domain.jwt;
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.@event
+namespace io.fusionauth.domain
 {
 
   /**
-   * Models the Refresh Token Revoke Event. This event might be for a single token, a user
-   * or an entire application.
-   *
-   * @author Brian Pontarelli
+   * @author Brady Wied
    */
-  public class JWTRefreshTokenRevokeEvent: BaseEvent {
+  public class string {
 
-    public Guid? applicationId;
+    public string name;
 
-    public IDictionary<Guid, string> applicationTimeToLiveInSeconds;
-
-    public RefreshToken refreshToken;
-
-    public User user;
-
-    public Guid? userId;
-
-    public JWTRefreshTokenRevokeEvent with(Action<JWTRefreshTokenRevokeEvent> action) {
+    public string with(Action<string> action) {
       action(this);
       return this;
     }

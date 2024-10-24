@@ -21,11 +21,14 @@ using System;
 namespace io.fusionauth.domain.api.user.verify
 {
 
+  /**
+   * @author Brady Wied
+   */
   public class VerifyStartResponse {
 
-    public string verificationId;
-
     public string oneTimeCode;
+
+    public string verificationId;
 
     public VerifyStartResponse with(Action<VerifyStartResponse> action) {
       action(this);

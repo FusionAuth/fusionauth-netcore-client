@@ -49,9 +49,11 @@ namespace io.fusionauth.domain
 
     public TenantFormConfiguration formConfiguration;
 
-    public int? httpSessionMaxInactiveInterval;
+    public string httpSessionMaxInactiveInterval;
 
     public Guid? id;
+
+    public TenantIdentityConfiguration identityConfiguration;
 
     public DateTimeOffset? insertInstant;
 

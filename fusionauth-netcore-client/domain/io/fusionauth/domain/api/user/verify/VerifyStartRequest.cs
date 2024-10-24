@@ -15,19 +15,23 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api.user.verify
 {
 
-  public class VerifyStartRequest {
+  /**
+   * @author Brady Wied
+   */
+  public class VerifyStartRequest: BaseEventRequest {
+
+    public Guid? applicationId;
 
     public string loginId;
 
     public string loginIdType;
-
-    public Guid? applicationId;
 
     public string verificationStrategy;
 

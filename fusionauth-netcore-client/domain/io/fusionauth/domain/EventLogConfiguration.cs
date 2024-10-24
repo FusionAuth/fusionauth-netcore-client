@@ -23,7 +23,7 @@ namespace io.fusionauth.domain
 
   public class EventLogConfiguration {
 
-    public int? numberToRetain;
+    public string numberToRetain;
 
     public EventLogConfiguration with(Action<EventLogConfiguration> action) {
       action(this);

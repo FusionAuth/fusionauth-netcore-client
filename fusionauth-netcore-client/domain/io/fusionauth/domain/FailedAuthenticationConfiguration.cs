@@ -36,9 +36,9 @@ namespace io.fusionauth.domain
 
     public bool? emailUser;
 
-    public int? resetCountInSeconds;
+    public string resetCountInSeconds;
 
-    public int? tooManyAttempts;
+    public string tooManyAttempts;
 
     public Guid? userActionId;
 

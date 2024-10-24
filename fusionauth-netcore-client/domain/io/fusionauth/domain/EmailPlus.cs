@@ -25,9 +25,9 @@ namespace io.fusionauth.domain
 
     public Guid? emailTemplateId;
 
-    public int? maximumTimeToSendEmailInHours;
+    public string maximumTimeToSendEmailInHours;
 
-    public int? minimumTimeToSendEmailInHours;
+    public string minimumTimeToSendEmailInHours;
 
     public EmailPlus with(Action<EmailPlus> action) {
       action(this);

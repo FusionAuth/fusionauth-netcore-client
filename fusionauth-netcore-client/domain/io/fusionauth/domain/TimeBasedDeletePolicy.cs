@@ -30,7 +30,7 @@ namespace io.fusionauth.domain
 
     public DateTimeOffset? enabledInstant;
 
-    public int? numberOfDaysToRetain;
+    public string numberOfDaysToRetain;
 
     public TimeBasedDeletePolicy with(Action<TimeBasedDeletePolicy> action) {
       action(this);

@@ -46,6 +46,8 @@ namespace io.fusionauth.domain
 
     public UIConfiguration uiConfiguration;
 
+    public UsageDataConfiguration usageDataConfiguration;
+
     public WebhookEventLogConfiguration webhookEventLogConfiguration;
 
     public SystemConfiguration with(Action<SystemConfiguration> action) {

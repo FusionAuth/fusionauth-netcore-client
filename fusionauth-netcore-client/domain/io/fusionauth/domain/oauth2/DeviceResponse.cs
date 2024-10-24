@@ -28,9 +28,9 @@ namespace io.fusionauth.domain.oauth2
 
     public string device_code;
 
-    public int? expires_in;
+    public string expires_in;
 
-    public int? interval;
+    public string interval;
 
     public string user_code;
 

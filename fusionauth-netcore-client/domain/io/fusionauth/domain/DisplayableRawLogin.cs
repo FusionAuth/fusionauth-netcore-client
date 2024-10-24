@@ -34,6 +34,8 @@ namespace io.fusionauth.domain
 
     public string loginId;
 
+    public string loginIdType;
+
     public DisplayableRawLogin with(Action<DisplayableRawLogin> action) {
       action(this);
       return this;

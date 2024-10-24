@@ -28,7 +28,7 @@ namespace io.fusionauth.domain
 
     public Guid? accessTokenKeyId;
 
-    public int? timeToLiveInSeconds;
+    public string timeToLiveInSeconds;
 
     public EntityJWTConfiguration with(Action<EntityJWTConfiguration> action) {
       action(this);

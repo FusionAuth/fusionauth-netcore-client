@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.api.user
 
     public string encryptionScheme;
 
-    public int? factor;
+    public string factor;
 
     public List<User> users;
 

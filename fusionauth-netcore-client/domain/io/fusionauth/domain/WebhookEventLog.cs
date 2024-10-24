@@ -28,7 +28,7 @@ namespace io.fusionauth.domain
 
     public IDictionary<string, object> data;
 
-    public EventRequest @event;
+    public IDictionary<string, object> @event;
 
     public WebhookEventResult @eventResult;
 
@@ -46,9 +46,9 @@ namespace io.fusionauth.domain
 
     public long? sequence;
 
-    public int? failedAttempts;
+    public string failedAttempts;
 
-    public int? successfulAttempts;
+    public string successfulAttempts;
 
     public WebhookEventLog with(Action<WebhookEventLog> action) {
       action(this);

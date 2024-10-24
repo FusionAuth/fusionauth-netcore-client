@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    */
   public class SecureGeneratorConfiguration {
 
-    public int? length;
+    public string length;
 
     public SecureGeneratorType type;
 

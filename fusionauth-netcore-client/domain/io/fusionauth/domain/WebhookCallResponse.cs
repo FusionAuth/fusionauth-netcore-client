@@ -30,7 +30,7 @@ namespace io.fusionauth.domain
 
     public string exception;
 
-    public int? statusCode;
+    public string statusCode;
 
     public string url;
 

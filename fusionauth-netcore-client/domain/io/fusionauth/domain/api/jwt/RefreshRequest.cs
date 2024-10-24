@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api.jwt
 
     public string refreshToken;
 
-    public int? timeToLiveInSeconds;
+    public string timeToLiveInSeconds;
 
     public string token;
 

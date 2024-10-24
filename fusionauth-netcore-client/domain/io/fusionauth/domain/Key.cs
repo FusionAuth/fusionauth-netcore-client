@@ -48,7 +48,7 @@ namespace io.fusionauth.domain
 
     public DateTimeOffset? lastUpdateInstant;
 
-    public int? length;
+    public string length;
 
     public string name;
 

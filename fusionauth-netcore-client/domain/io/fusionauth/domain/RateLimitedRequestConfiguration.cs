@@ -26,9 +26,9 @@ namespace io.fusionauth.domain
    */
   public class RateLimitedRequestConfiguration: Enableable {
 
-    public int? limit;
+    public string limit;
 
-    public int? timePeriodInSeconds;
+    public string timePeriodInSeconds;
 
     public RateLimitedRequestConfiguration with(Action<RateLimitedRequestConfiguration> action) {
       action(this);
