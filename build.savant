@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2023, FusionAuth, All Rights Reserved
+ * Copyright (c) 2019-2024, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ project(group: "io.fusionauth", name: "fusionauth-netcore-client", version: "1.5
 }
 
 // Plugins
-release = loadPlugin(id: "org.savantbuild.plugin:release-git:2.0.0-RC.6")
+release = loadPlugin(id: "org.savantbuild.plugin:release-git:2.0.0")
 
 target(name: "clean", description: "Cleans build directory") {
   ProcessBuilder pb = new ProcessBuilder(
