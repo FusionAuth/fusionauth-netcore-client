@@ -26,8 +26,6 @@ namespace io.fusionauth.domain
    */
   public class TenantIdentityConfiguration {
 
-    public List<string> enabledTypes;
-
     public TenantIdentityConfigurationMode mode;
 
     public TenantIdentityConfiguration with(Action<TenantIdentityConfiguration> action) {
