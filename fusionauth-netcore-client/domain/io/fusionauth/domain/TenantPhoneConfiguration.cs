@@ -22,33 +22,23 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * @author Daniel DeGroff
+   * Hold tenant phone configuration for passwordless and verification cases.
+   *
+   * @author Brady Wied
    */
-  public class UserIdentity {
+  public class TenantPhoneConfiguration {
 
-    public DateTimeOffset? insertInstant;
+    public Guid? messengerId;
 
-    public DateTimeOffset? lastLoginInstant;
+    public Guid? passwordlessTemplateId;
 
-    public DateTimeOffset? lastUpdateInstant;
+    public VerificationStrategy verificationStrategy;
 
-    public ContentStatus moderationStatus;
+    public Guid? verificationTemplateId;
 
-    public bool? primary;
+    public bool? verifyPhoneNumber;
 
-    public string type;
-
-    public string uniqueValue;
-
-    public string value;
-
-    public bool? verified;
-
-    public DateTimeOffset? verifiedInstant;
-
-    public IdentityVerifiedReason verifiedReason;
-
-    public UserIdentity with(Action<UserIdentity> action) {
+    public TenantPhoneConfiguration with(Action<TenantPhoneConfiguration> action) {
       action(this);
       return this;
     }

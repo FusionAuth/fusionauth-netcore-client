@@ -83,13 +83,13 @@ namespace io.fusionauth.domain
 
     public PasswordValidationRules passwordValidationRules;
 
+    public TenantPhoneConfiguration phoneConfiguration;
+
     public TenantRateLimitConfiguration rateLimitConfiguration;
 
     public TenantRegistrationConfiguration registrationConfiguration;
 
     public TenantSCIMServerConfiguration scimServerConfiguration;
-
-    public TenantSMSConfiguration smsConfiguration;
 
     public TenantSSOConfiguration ssoConfiguration;
 

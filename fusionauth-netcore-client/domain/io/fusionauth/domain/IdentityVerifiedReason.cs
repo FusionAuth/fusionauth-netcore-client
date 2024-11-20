@@ -22,25 +22,18 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * Hold SMS configuration for passwordless and verification cases.
+   * Models the reason that {@link UserIdentity#verified} was set to true or false.
    *
    * @author Brady Wied
    */
-  public class TenantSMSConfiguration {
-
-    public Guid? messengerId;
-
-    public Guid? passwordlessTemplateId;
-
-    public VerificationStrategy verificationStrategy;
-
-    public Guid? verificationTemplateId;
-
-    public bool? verifyPhoneNumber;
-
-    public TenantSMSConfiguration with(Action<TenantSMSConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum IdentityVerifiedReason {
+        Unknown, 
+        Skipped, 
+        Trusted, 
+        Unverifiable, 
+        @Implicit, 
+        Pending, 
+        Completed, 
+        Disabled
   }
 }
