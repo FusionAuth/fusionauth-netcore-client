@@ -32,13 +32,13 @@ namespace io.fusionauth.domain
 
     public bool? deleteOrphanedAccounts;
 
-    public string deleteOrphanedAccountsDays;
+    public int? deleteOrphanedAccountsDays;
 
     public Guid? familyRequestEmailTemplateId;
 
-    public string maximumChildAge;
+    public int? maximumChildAge;
 
-    public string minimumOwnerAge;
+    public int? minimumOwnerAge;
 
     public bool? parentEmailRequired;
 

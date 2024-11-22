@@ -36,7 +36,7 @@ namespace io.fusionauth.domain
 
     public string encryptionScheme;
 
-    public string factor;
+    public int? factor;
 
     public Guid? id;
 

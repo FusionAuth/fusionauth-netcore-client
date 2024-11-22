@@ -60,7 +60,7 @@ namespace io.fusionauth.domain
 
     public Guid? passwordlessEmailTemplateId;
 
-    public string port;
+    public int? port;
 
     public string properties;
 

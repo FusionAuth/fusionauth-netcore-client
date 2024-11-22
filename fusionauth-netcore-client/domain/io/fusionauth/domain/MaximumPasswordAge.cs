@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    */
   public class MaximumPasswordAge: Enableable {
 
-    public string days;
+    public int? days;
 
     public MaximumPasswordAge with(Action<MaximumPasswordAge> action) {
       action(this);

@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    */
   public class MinimumPasswordAge: Enableable {
 
-    public string seconds;
+    public int? seconds;
 
     public MinimumPasswordAge with(Action<MinimumPasswordAge> action) {
       action(this);

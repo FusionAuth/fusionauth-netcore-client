@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    */
   public class RememberPreviousPasswords: Enableable {
 
-    public string count;
+    public int? count;
 
     public RememberPreviousPasswords with(Action<RememberPreviousPasswords> action) {
       action(this);

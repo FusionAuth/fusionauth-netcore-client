@@ -30,7 +30,7 @@ namespace io.fusionauth.domain.api.jwt
 
     public Guid? keyId;
 
-    public string timeToLiveInSeconds;
+    public int? timeToLiveInSeconds;
 
     public JWTVendRequest with(Action<JWTVendRequest> action) {
       action(this);

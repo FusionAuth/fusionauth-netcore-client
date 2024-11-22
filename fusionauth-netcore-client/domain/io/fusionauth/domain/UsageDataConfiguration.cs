@@ -28,7 +28,7 @@ namespace io.fusionauth.domain
    */
   public class UsageDataConfiguration: Enableable {
 
-    public string numberOfDaysToRetain;
+    public int? numberOfDaysToRetain;
 
     public UsageDataConfiguration with(Action<UsageDataConfiguration> action) {
       action(this);

@@ -2165,7 +2165,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RecentLoginResponse>> RetrieveRecentLoginsAsync(string offset, int? limit) {
+    public Task<ClientResponse<RecentLoginResponse>> RetrieveRecentLoginsAsync(int? offset, int? limit) {
       return buildClient()
           .withUri("/api/user/recent-login")
           .withParameter("offset", offset)
@@ -2511,7 +2511,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RecentLoginResponse>> RetrieveUserRecentLoginsAsync(Guid? userId, string offset, int? limit) {
+    public Task<ClientResponse<RecentLoginResponse>> RetrieveUserRecentLoginsAsync(Guid? userId, int? offset, int? limit) {
       return buildClient()
           .withUri("/api/user/recent-login")
           .withParameter("userId", userId)

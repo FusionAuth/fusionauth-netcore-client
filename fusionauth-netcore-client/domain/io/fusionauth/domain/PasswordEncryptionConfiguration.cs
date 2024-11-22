@@ -30,7 +30,7 @@ namespace io.fusionauth.domain
 
     public string encryptionScheme;
 
-    public string encryptionSchemeFactor;
+    public int? encryptionSchemeFactor;
 
     public bool? modifyEncryptionSchemeOnLogin;
 

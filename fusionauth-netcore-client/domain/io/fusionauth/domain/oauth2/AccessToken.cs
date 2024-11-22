@@ -26,7 +26,7 @@ namespace io.fusionauth.domain.oauth2
    */
   public class AccessToken {
 
-    public string expires_in;
+    public int? expires_in;
 
     public string id_token;
 

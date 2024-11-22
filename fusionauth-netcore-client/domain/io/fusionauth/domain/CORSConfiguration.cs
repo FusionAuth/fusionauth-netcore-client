@@ -39,7 +39,7 @@ namespace io.fusionauth.domain
 
     public List<string> exposedHeaders;
 
-    public string preflightMaxAgeInSeconds;
+    public int? preflightMaxAgeInSeconds;
 
     public CORSConfiguration with(Action<CORSConfiguration> action) {
       action(this);

@@ -27,7 +27,7 @@ namespace io.fusionauth.domain.api
    */
   public class OAuthConfigurationResponse {
 
-    public string httpSessionMaxInactiveInterval;
+    public int? httpSessionMaxInactiveInterval;
 
     public string logoutURL;
 

@@ -29,7 +29,7 @@ namespace io.fusionauth.domain
    */
   public class Webhook {
 
-    public string connectTimeout;
+    public int? connectTimeout;
 
     public IDictionary<string, object> data;
 
@@ -51,7 +51,7 @@ namespace io.fusionauth.domain
 
     public DateTimeOffset? lastUpdateInstant;
 
-    public string readTimeout;
+    public int? readTimeout;
 
     public WebhookSignatureConfiguration signatureConfiguration;
 

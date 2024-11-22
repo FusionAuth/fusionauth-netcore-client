@@ -26,9 +26,9 @@ namespace io.fusionauth.domain.api.report
    */
   public class Count {
 
-    public string count;
+    public int? count;
 
-    public string interval;
+    public int? interval;
 
     public Count with(Action<Count> action) {
       action(this);

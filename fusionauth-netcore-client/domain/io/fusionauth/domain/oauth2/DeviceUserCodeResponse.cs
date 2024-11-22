@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.oauth2
 
     public DeviceInfo deviceInfo;
 
-    public string expires_in;
+    public int? expires_in;
 
     public PendingIdPLink pendingIdPLink;
 

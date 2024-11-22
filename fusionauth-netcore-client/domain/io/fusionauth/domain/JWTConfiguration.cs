@@ -39,11 +39,11 @@ namespace io.fusionauth.domain
 
     public RefreshTokenSlidingWindowConfiguration refreshTokenSlidingWindowConfiguration;
 
-    public string refreshTokenTimeToLiveInMinutes;
+    public int? refreshTokenTimeToLiveInMinutes;
 
     public RefreshTokenUsagePolicy refreshTokenUsagePolicy;
 
-    public string timeToLiveInSeconds;
+    public int? timeToLiveInSeconds;
 
     public JWTConfiguration with(Action<JWTConfiguration> action) {
       action(this);

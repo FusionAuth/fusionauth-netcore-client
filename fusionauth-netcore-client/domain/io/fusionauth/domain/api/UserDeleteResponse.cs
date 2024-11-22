@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.api
 
     public bool? hardDelete;
 
-    public string total;
+    public int? total;
 
     public List<Guid> userIds;
 

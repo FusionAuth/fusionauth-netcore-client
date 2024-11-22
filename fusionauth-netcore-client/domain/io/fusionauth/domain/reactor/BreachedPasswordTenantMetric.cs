@@ -26,17 +26,17 @@ namespace io.fusionauth.domain.reactor
    */
   public class BreachedPasswordTenantMetric {
 
-    public string actionRequired;
+    public int? actionRequired;
 
-    public string matchedCommonPasswordCount;
+    public int? matchedCommonPasswordCount;
 
-    public string matchedExactCount;
+    public int? matchedExactCount;
 
-    public string matchedPasswordCount;
+    public int? matchedPasswordCount;
 
-    public string matchedSubAddressCount;
+    public int? matchedSubAddressCount;
 
-    public string passwordsCheckedCount;
+    public int? passwordsCheckedCount;
 
     public BreachedPasswordTenantMetric with(Action<BreachedPasswordTenantMetric> action) {
       action(this);

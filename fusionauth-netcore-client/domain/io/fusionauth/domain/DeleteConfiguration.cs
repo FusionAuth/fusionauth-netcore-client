@@ -23,7 +23,7 @@ namespace io.fusionauth.domain
 
   public class DeleteConfiguration: Enableable {
 
-    public string numberOfDaysToRetain;
+    public int? numberOfDaysToRetain;
 
     public DeleteConfiguration with(Action<DeleteConfiguration> action) {
       action(this);

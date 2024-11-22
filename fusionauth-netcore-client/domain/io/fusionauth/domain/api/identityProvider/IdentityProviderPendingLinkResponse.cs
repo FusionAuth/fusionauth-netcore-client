@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api.identityProvider
 
     public IdentityProviderTenantConfiguration identityProviderTenantConfiguration;
 
-    public string linkCount;
+    public int? linkCount;
 
     public PendingIdPLink pendingIdPLink;
 

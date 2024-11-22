@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.connector
 
     public string baseStructure;
 
-    public string connectTimeout;
+    public int? connectTimeout;
 
     public string identifyingAttribute;
 
@@ -40,7 +40,7 @@ namespace io.fusionauth.domain.connector
 
     public string loginIdAttribute;
 
-    public string readTimeout;
+    public int? readTimeout;
 
     public List<string> requestedAttributes;
 

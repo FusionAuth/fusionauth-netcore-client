@@ -33,7 +33,7 @@ namespace io.fusionauth.domain.@event
 
     public Guid? applicationId;
 
-    public IDictionary<Guid, string> applicationTimeToLiveInSeconds;
+    public IDictionary<Guid, int> applicationTimeToLiveInSeconds;
 
     public RefreshToken refreshToken;
 

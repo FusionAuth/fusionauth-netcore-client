@@ -28,9 +28,9 @@ namespace io.fusionauth.domain
 
     public TOTPAlgorithm algorithm;
 
-    public string codeLength;
+    public int? codeLength;
 
-    public string timeStep;
+    public int? timeStep;
 
     public AuthenticatorConfiguration with(Action<AuthenticatorConfiguration> action) {
       action(this);

@@ -23,7 +23,7 @@ namespace io.fusionauth.domain
 
   public class UniqueUsernameConfiguration: Enableable {
 
-    public string numberOfDigits;
+    public int? numberOfDigits;
 
     public char separator;
 

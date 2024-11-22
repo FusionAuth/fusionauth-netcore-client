@@ -46,9 +46,9 @@ namespace io.fusionauth.domain
 
     public long? sequence;
 
-    public string failedAttempts;
+    public int? failedAttempts;
 
-    public string successfulAttempts;
+    public int? successfulAttempts;
 
     public WebhookEventLog with(Action<WebhookEventLog> action) {
       action(this);

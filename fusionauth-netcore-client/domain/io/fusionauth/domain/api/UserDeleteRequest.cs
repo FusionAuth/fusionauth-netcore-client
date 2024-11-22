@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.api
 
     public bool? hardDelete;
 
-    public string limit;
+    public int? limit;
 
     public string query;
 

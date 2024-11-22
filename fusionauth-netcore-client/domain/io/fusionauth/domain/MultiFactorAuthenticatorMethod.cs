@@ -25,9 +25,9 @@ namespace io.fusionauth.domain
 
     public TOTPAlgorithm algorithm;
 
-    public string codeLength;
+    public int? codeLength;
 
-    public string timeStep;
+    public int? timeStep;
 
     public MultiFactorAuthenticatorMethod with(Action<MultiFactorAuthenticatorMethod> action) {
       action(this);

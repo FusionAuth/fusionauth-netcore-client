@@ -26,67 +26,67 @@ namespace io.fusionauth.domain
    */
   public class ExternalIdentifierConfiguration {
 
-    public string authorizationGrantIdTimeToLiveInSeconds;
+    public int? authorizationGrantIdTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration changePasswordIdGenerator;
 
-    public string changePasswordIdTimeToLiveInSeconds;
+    public int? changePasswordIdTimeToLiveInSeconds;
 
-    public string deviceCodeTimeToLiveInSeconds;
+    public int? deviceCodeTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration deviceUserCodeIdGenerator;
 
     public SecureGeneratorConfiguration emailVerificationIdGenerator;
 
-    public string emailVerificationIdTimeToLiveInSeconds;
+    public int? emailVerificationIdTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration emailVerificationOneTimeCodeGenerator;
 
-    public string externalAuthenticationIdTimeToLiveInSeconds;
+    public int? externalAuthenticationIdTimeToLiveInSeconds;
 
-    public string loginIntentTimeToLiveInSeconds;
+    public int? loginIntentTimeToLiveInSeconds;
 
-    public string oneTimePasswordTimeToLiveInSeconds;
+    public int? oneTimePasswordTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration passwordlessLoginGenerator;
 
-    public string passwordlessLoginTimeToLiveInSeconds;
+    public int? passwordlessLoginTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration passwordlessShortCodeLoginGenerator;
 
-    public string passwordlessShortCodeLoginTimeToLiveInSeconds;
+    public int? passwordlessShortCodeLoginTimeToLiveInSeconds;
 
-    public string pendingAccountLinkTimeToLiveInSeconds;
+    public int? pendingAccountLinkTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration registrationVerificationIdGenerator;
 
-    public string registrationVerificationIdTimeToLiveInSeconds;
+    public int? registrationVerificationIdTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration registrationVerificationOneTimeCodeGenerator;
 
-    public string rememberOAuthScopeConsentChoiceTimeToLiveInSeconds;
+    public int? rememberOAuthScopeConsentChoiceTimeToLiveInSeconds;
 
-    public string samlv2AuthNRequestIdTimeToLiveInSeconds;
+    public int? samlv2AuthNRequestIdTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration setupPasswordIdGenerator;
 
-    public string setupPasswordIdTimeToLiveInSeconds;
+    public int? setupPasswordIdTimeToLiveInSeconds;
 
-    public string smsVerificationTimeToLiveInSeconds;
+    public int? smsVerificationTimeToLiveInSeconds;
 
-    public string trustTokenTimeToLiveInSeconds;
+    public int? trustTokenTimeToLiveInSeconds;
 
-    public string twoFactorIdTimeToLiveInSeconds;
+    public int? twoFactorIdTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration twoFactorOneTimeCodeIdGenerator;
 
-    public string twoFactorOneTimeCodeIdTimeToLiveInSeconds;
+    public int? twoFactorOneTimeCodeIdTimeToLiveInSeconds;
 
-    public string twoFactorTrustIdTimeToLiveInSeconds;
+    public int? twoFactorTrustIdTimeToLiveInSeconds;
 
-    public string webAuthnAuthenticationChallengeTimeToLiveInSeconds;
+    public int? webAuthnAuthenticationChallengeTimeToLiveInSeconds;
 
-    public string webAuthnRegistrationChallengeTimeToLiveInSeconds;
+    public int? webAuthnRegistrationChallengeTimeToLiveInSeconds;
 
     public ExternalIdentifierConfiguration with(Action<ExternalIdentifierConfiguration> action) {
       action(this);

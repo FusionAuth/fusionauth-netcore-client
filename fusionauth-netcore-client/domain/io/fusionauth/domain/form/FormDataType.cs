@@ -36,6 +36,8 @@ namespace io.fusionauth.domain.form
          Email, 
         [EnumMember(Value = "number")]
          Number, 
+        [EnumMember(Value = "phoneNumber")]
+         PhoneNumber, 
         [EnumMember(Value = "string")]
          String
   }
