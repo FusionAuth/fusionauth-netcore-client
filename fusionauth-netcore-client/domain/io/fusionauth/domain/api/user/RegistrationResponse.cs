@@ -31,6 +31,8 @@ namespace io.fusionauth.domain.api.user
 
     public string refreshToken;
 
+    public Guid? refreshTokenId;
+
     public UserRegistration registration;
 
     public string registrationVerificationId;
