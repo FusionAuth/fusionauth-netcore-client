@@ -15,7 +15,7 @@
  */
 
 
-using io.fusionauth.converters.helpers;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -23,23 +23,15 @@ namespace io.fusionauth.domain.provider
 {
 
   /**
-   * @author Lyle Schemmerling
+   * Configuration for encrypted assertions when acting as SAML Service Provider
+   *
+   * @author Jaret Hendrickson
    */
-  public class BaseSAMLv2IdentityProvider<D>: BaseIdentityProvider<D> {
+  public class SAMLv2AssertionDecryptionConfiguration: Enableable {
 
-    public SAMLv2AssertionDecryptionConfiguration assertionDecryptionConfiguration;
+    public Guid? keyTransportDecryptionKeyId;
 
-    public string emailClaim;
-
-    public Guid? keyId;
-
-    public string uniqueIdClaim;
-
-    public bool? useNameIdForEmail;
-
-    public string usernameClaim;
-
-    public BaseSAMLv2IdentityProvider<D> with(Action<BaseSAMLv2IdentityProvider<D>> action) {
+    public SAMLv2AssertionDecryptionConfiguration with(Action<SAMLv2AssertionDecryptionConfiguration> action) {
       action(this);
       return this;
     }

@@ -35,6 +35,8 @@ namespace io.fusionauth.domain
 
     public RefreshTokenExpirationPolicy refreshTokenExpirationPolicy;
 
+    public RefreshTokenOneTimeUseConfiguration refreshTokenOneTimeUseConfiguration;
+
     public RefreshTokenRevocationPolicy refreshTokenRevocationPolicy;
 
     public RefreshTokenSlidingWindowConfiguration refreshTokenSlidingWindowConfiguration;
