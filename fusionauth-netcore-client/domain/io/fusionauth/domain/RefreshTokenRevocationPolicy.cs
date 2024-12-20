@@ -30,6 +30,8 @@ namespace io.fusionauth.domain
 
     public bool? onMultiFactorEnable;
 
+    public bool? onOneTimeTokenReuse;
+
     public bool? onPasswordChanged;
 
     public RefreshTokenRevocationPolicy with(Action<RefreshTokenRevocationPolicy> action) {

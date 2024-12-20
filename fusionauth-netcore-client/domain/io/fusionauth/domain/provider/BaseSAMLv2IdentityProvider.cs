@@ -27,6 +27,8 @@ namespace io.fusionauth.domain.provider
    */
   public class BaseSAMLv2IdentityProvider<D>: BaseIdentityProvider<D> {
 
+    public SAMLv2AssertionDecryptionConfiguration assertionDecryptionConfiguration;
+
     public string emailClaim;
 
     public Guid? keyId;
