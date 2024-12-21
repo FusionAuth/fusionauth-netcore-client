@@ -15,37 +15,23 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user
+namespace io.fusionauth.domain
 {
 
   /**
-   * Registration API request object.
+   * Refresh token one-time use configuration. This configuration is utilized when the usage policy is
+   * configured for one-time use.
    *
-   * @author Brian Pontarelli
+   * @author Daniel DeGroff
    */
-  public class RegistrationResponse {
+  public class RefreshTokenOneTimeUseConfiguration {
 
-    public string refreshToken;
+    public int? gracePeriodInSeconds;
 
-    public Guid? refreshTokenId;
-
-    public UserRegistration registration;
-
-    public string registrationVerificationId;
-
-    public string registrationVerificationOneTimeCode;
-
-    public string token;
-
-    public DateTimeOffset? tokenExpirationInstant;
-
-    public User user;
-
-    public RegistrationResponse with(Action<RegistrationResponse> action) {
+    public RefreshTokenOneTimeUseConfiguration with(Action<RefreshTokenOneTimeUseConfiguration> action) {
       action(this);
       return this;
     }

@@ -19,33 +19,19 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user
+namespace io.fusionauth.domain.provider
 {
 
   /**
-   * Registration API request object.
+   * Configuration for encrypted assertions when acting as SAML Service Provider
    *
-   * @author Brian Pontarelli
+   * @author Jaret Hendrickson
    */
-  public class RegistrationResponse {
+  public class SAMLv2AssertionDecryptionConfiguration: Enableable {
 
-    public string refreshToken;
+    public Guid? keyTransportDecryptionKeyId;
 
-    public Guid? refreshTokenId;
-
-    public UserRegistration registration;
-
-    public string registrationVerificationId;
-
-    public string registrationVerificationOneTimeCode;
-
-    public string token;
-
-    public DateTimeOffset? tokenExpirationInstant;
-
-    public User user;
-
-    public RegistrationResponse with(Action<RegistrationResponse> action) {
+    public SAMLv2AssertionDecryptionConfiguration with(Action<SAMLv2AssertionDecryptionConfiguration> action) {
       action(this);
       return this;
     }

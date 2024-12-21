@@ -15,37 +15,22 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user
+namespace io.fusionauth.domain
 {
 
   /**
-   * Registration API request object.
+   * Config for Usage Data / Stats
    *
-   * @author Brian Pontarelli
+   * @author Lyle Schemmerling
    */
-  public class RegistrationResponse {
+  public class UsageDataConfiguration: Enableable {
 
-    public string refreshToken;
+    public int? numberOfDaysToRetain;
 
-    public Guid? refreshTokenId;
-
-    public UserRegistration registration;
-
-    public string registrationVerificationId;
-
-    public string registrationVerificationOneTimeCode;
-
-    public string token;
-
-    public DateTimeOffset? tokenExpirationInstant;
-
-    public User user;
-
-    public RegistrationResponse with(Action<RegistrationResponse> action) {
+    public UsageDataConfiguration with(Action<UsageDataConfiguration> action) {
       action(this);
       return this;
     }
