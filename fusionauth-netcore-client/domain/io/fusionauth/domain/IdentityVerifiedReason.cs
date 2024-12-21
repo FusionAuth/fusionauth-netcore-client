@@ -27,7 +27,6 @@ namespace io.fusionauth.domain
    * @author Brady Wied
    */
   public enum IdentityVerifiedReason {
-        Unknown, 
         Skipped, 
         Trusted, 
         Unverifiable, 

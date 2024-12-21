@@ -53,8 +53,6 @@ namespace io.fusionauth.domain
 
     public Guid? id;
 
-    public TenantIdentityConfiguration identityConfiguration;
-
     public DateTimeOffset? insertInstant;
 
     public string issuer;

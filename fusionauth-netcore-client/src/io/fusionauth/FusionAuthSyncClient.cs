@@ -25,6 +25,7 @@ using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
+using io.fusionauth.domain.api.user.verify;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
 using io.fusionauth.domain.reactor;
@@ -113,6 +114,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<UserCommentResponse> CommentOnUser(UserCommentRequest request) {
       return client.CommentOnUserAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CompleteVerifyIdentity(VerifySendCompleteRequest request) {
+      return client.CompleteVerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1562,6 +1568,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendCompleteRequest request) {
+      return client.SendVerifyIdentityAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderStartLoginResponse> StartIdentityProviderLogin(IdentityProviderStartLoginRequest request) {
       return client.StartIdentityProviderLoginAsync(request).GetAwaiter().GetResult();
     }
@@ -1574,6 +1585,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request) {
       return client.StartTwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<VerifyStartResponse> StartVerifyIdentity(VerifyStartRequest request) {
+      return client.StartVerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
 
     public AuditLogConfiguration auditLogConfiguration;
 
+    public string cookieEncryptionKey;
+
     public CORSConfiguration corsConfiguration;
 
     public IDictionary<string, object> data;

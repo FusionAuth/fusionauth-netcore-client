@@ -15,22 +15,17 @@
  */
 
 
+using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain
 {
 
-  /**
-   * @author Daniel DeGroff
-   */
-  public class TenantIdentityConfiguration {
-
-    public TenantIdentityConfigurationMode mode;
-
-    public TenantIdentityConfiguration with(Action<TenantIdentityConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum APIVersion {
+        [EnumMember(Value = "v1")]
+        V1, 
+        [EnumMember(Value = "v2")]
+        V2
   }
 }
