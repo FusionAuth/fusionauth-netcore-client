@@ -29,13 +29,13 @@ namespace io.fusionauth.domain.@event
    */
   public class UserLoginIdDuplicateOnCreateEvent: BaseUserEvent {
 
+    public User existing;
+
     public string duplicateEmail;
 
     public List<IdentityInfo> duplicateIdentities;
 
     public string duplicateUsername;
-
-    public User existing;
 
     public UserLoginIdDuplicateOnCreateEvent with(Action<UserLoginIdDuplicateOnCreateEvent> action) {
       action(this);
