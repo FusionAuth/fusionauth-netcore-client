@@ -18,14 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.@event
 {
 
-  /**
-   * @author Daniel DeGroff
-   */
-  public enum TenantIdentityConfigurationMode {
-        Compatible, 
-        Discrete
+  public class IdentityInfo {
+
+    public string type;
+
+    public string value;
+
+    public IdentityInfo with(Action<IdentityInfo> action) {
+      action(this);
+      return this;
+    }
   }
 }

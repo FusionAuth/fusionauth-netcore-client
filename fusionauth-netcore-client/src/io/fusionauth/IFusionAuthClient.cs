@@ -26,6 +26,7 @@ using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
+using io.fusionauth.domain.api.user.verify;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
 using io.fusionauth.domain.reactor;
@@ -218,6 +219,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<UserCommentResponse>> CommentOnUserAsync(UserCommentRequest request);
+
+    /// <summary>
+    /// Completes verification of an identity using verification codes from the Verify Start API.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify complete request that contains all the information used to verify the identity.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> CompleteVerifyIdentityAsync(VerifySendCompleteRequest request);
 
     /// <summary>
     /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -4221,6 +4235,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForLoginUsingMethodAsync(string twoFactorId, TwoFactorSendRequest request);
 
     /// <summary>
+    /// Send a verification code using the appropriate transport for the identity type being verified.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify send request that contains all the information used send the code.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendCompleteRequest request);
+
+    /// <summary>
     /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
     /// This is an asynchronous method.
     /// </summary>
@@ -4265,6 +4292,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<TwoFactorStartResponse>> StartTwoFactorLoginAsync(TwoFactorStartRequest request);
+
+    /// <summary>
+    /// Start a verification of an identity by generating a code. This code can be sent to the User using the Verify Send API
+    /// Verification Code API or using a mechanism outside of FusionAuth. The verification is completed by using the Verify Complete API with this code.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify start request that contains all the information used to begin the request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<VerifyStartResponse>> StartVerifyIdentityAsync(VerifyStartRequest request);
 
     /// <summary>
     /// Start a WebAuthn authentication ceremony by generating a new challenge for the user
@@ -5046,6 +5087,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<UserCommentResponse> CommentOnUser(UserCommentRequest request);
+
+   /// <summary>
+   /// Completes verification of an identity using verification codes from the Verify Start API.
+   /// </summary>
+   /// <param name="request"> The identity verify complete request that contains all the information used to verify the identity.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> CompleteVerifyIdentity(VerifySendCompleteRequest request);
 
    /// <summary>
    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -8761,6 +8814,18 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> SendTwoFactorCodeForLoginUsingMethod(string twoFactorId, TwoFactorSendRequest request);
 
    /// <summary>
+   /// Send a verification code using the appropriate transport for the identity type being verified.
+   /// </summary>
+   /// <param name="request"> The identity verify send request that contains all the information used send the code.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendCompleteRequest request);
+
+   /// <summary>
    /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
    /// </summary>
    /// <param name="request"> The third-party login request that contains information from the third-party login
@@ -8802,6 +8867,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request);
+
+   /// <summary>
+   /// Start a verification of an identity by generating a code. This code can be sent to the User using the Verify Send API
+   /// Verification Code API or using a mechanism outside of FusionAuth. The verification is completed by using the Verify Complete API with this code.
+   /// </summary>
+   /// <param name="request"> The identity verify start request that contains all the information used to begin the request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<VerifyStartResponse> StartVerifyIdentity(VerifyStartRequest request);
 
    /// <summary>
    /// Start a WebAuthn authentication ceremony by generating a new challenge for the user

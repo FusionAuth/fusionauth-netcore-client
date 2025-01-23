@@ -23,17 +23,19 @@ namespace io.fusionauth.domain.@event
 {
 
   /**
-   * Models an event where a user is being created with an "in-use" login Id (email or username).
+   * Models an event where a user is being created with an "in-use" login Id (email, username, or other identities).
    *
    * @author Daniel DeGroff
    */
   public class UserLoginIdDuplicateOnCreateEvent: BaseUserEvent {
 
+    public User existing;
+
     public string duplicateEmail;
 
-    public string duplicateUsername;
+    public List<IdentityInfo> duplicateIdentities;
 
-    public User existing;
+    public string duplicateUsername;
 
     public UserLoginIdDuplicateOnCreateEvent with(Action<UserLoginIdDuplicateOnCreateEvent> action) {
       action(this);

@@ -27,6 +27,7 @@ using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
+using io.fusionauth.domain.api.user.verify;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
 
@@ -210,6 +211,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<UserCommentResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CompleteVerifyIdentityAsync(VerifySendCompleteRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify/complete")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>
@@ -2961,6 +2971,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendCompleteRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify/send")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IdentityProviderStartLoginResponse>> StartIdentityProviderLoginAsync(IdentityProviderStartLoginRequest request) {
       return buildClient()
           .withUri("/api/identity-provider/start")
@@ -2985,6 +3004,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<TwoFactorStartResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<VerifyStartResponse>> StartVerifyIdentityAsync(VerifyStartRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify/start")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<VerifyStartResponse>();
     }
 
     /// <inheritdoc/>
