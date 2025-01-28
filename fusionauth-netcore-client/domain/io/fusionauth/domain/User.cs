@@ -61,6 +61,8 @@ namespace io.fusionauth.domain
 
     public string parentEmail;
 
+    public string phoneNumber;
+
     public Guid? tenantId;
 
     public string timezone;
