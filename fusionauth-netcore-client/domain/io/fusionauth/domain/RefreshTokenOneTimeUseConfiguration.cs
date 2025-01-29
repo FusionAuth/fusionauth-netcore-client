@@ -15,31 +15,23 @@
  */
 
 
-using io.fusionauth.converters.helpers;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.provider
+namespace io.fusionauth.domain
 {
 
   /**
-   * @author Lyle Schemmerling
+   * Refresh token one-time use configuration. This configuration is utilized when the usage policy is
+   * configured for one-time use.
+   *
+   * @author Daniel DeGroff
    */
-  public class BaseSAMLv2IdentityProvider<D>: BaseIdentityProvider<D> {
+  public class RefreshTokenOneTimeUseConfiguration {
 
-    public SAMLv2AssertionDecryptionConfiguration assertionDecryptionConfiguration;
+    public int? gracePeriodInSeconds;
 
-    public string emailClaim;
-
-    public Guid? keyId;
-
-    public string uniqueIdClaim;
-
-    public bool? useNameIdForEmail;
-
-    public string usernameClaim;
-
-    public BaseSAMLv2IdentityProvider<D> with(Action<BaseSAMLv2IdentityProvider<D>> action) {
+    public RefreshTokenOneTimeUseConfiguration with(Action<RefreshTokenOneTimeUseConfiguration> action) {
       action(this);
       return this;
     }

@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
    */
   public class APIKey {
 
+    public DateTimeOffset? expirationInstant;
+
     public Guid? id;
 
     public DateTimeOffset? insertInstant;
