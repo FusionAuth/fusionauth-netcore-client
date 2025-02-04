@@ -26,6 +26,8 @@ namespace io.fusionauth.domain
    */
   public class UserIdentity {
 
+    public string displayValue;
+
     public DateTimeOffset? insertInstant;
 
     public DateTimeOffset? lastLoginInstant;
@@ -37,8 +39,6 @@ namespace io.fusionauth.domain
     public bool? primary;
 
     public string type;
-
-    public string uniqueValue;
 
     public string value;
 
