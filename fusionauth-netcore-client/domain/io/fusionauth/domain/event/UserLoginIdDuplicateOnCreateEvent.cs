@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.@event
 
     public List<IdentityInfo> duplicateIdentities;
 
+    public string duplicatePhoneNumber;
+
     public string duplicateUsername;
 
     public UserLoginIdDuplicateOnCreateEvent with(Action<UserLoginIdDuplicateOnCreateEvent> action) {
