@@ -24,6 +24,7 @@ namespace io.fusionauth.domain
   //      This is separate from IdentityType.
   public enum LoginIdType {
         email, 
+        phoneNumber, 
         username
   }
 }
