@@ -15,37 +15,23 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
 namespace io.fusionauth.domain.api
 {
 
-  /**
-   * User API response object.
-   *
-   * @author Brian Pontarelli
-   */
-  public class UserResponse {
+  public class VerificationId {
 
-    public string emailVerificationId;
+    public string id;
 
-    public string emailVerificationOneTimeCode;
+    public string oneTimeCode;
 
-    public IDictionary<Guid, string> registrationVerificationIds;
+    public string type;
 
-    public IDictionary<Guid, string> registrationVerificationOneTimeCodes;
+    public string value;
 
-    public string token;
-
-    public DateTimeOffset? tokenExpirationInstant;
-
-    public User user;
-
-    public List<VerificationId> verificationIds;
-
-    public UserResponse with(Action<UserResponse> action) {
+    public VerificationId with(Action<VerificationId> action) {
       action(this);
       return this;
     }
