@@ -44,6 +44,12 @@ namespace io.fusionauth.domain
 
     public int? externalAuthenticationIdTimeToLiveInSeconds;
 
+    public SecureGeneratorConfiguration identityVerificationIdGenerator;
+
+    public int? identityVerificationIdTimeToLiveInSeconds;
+
+    public SecureGeneratorConfiguration identityVerificationOneTimeCodeGenerator;
+
     public int? loginIntentTimeToLiveInSeconds;
 
     public int? oneTimePasswordTimeToLiveInSeconds;
@@ -71,8 +77,6 @@ namespace io.fusionauth.domain
     public SecureGeneratorConfiguration setupPasswordIdGenerator;
 
     public int? setupPasswordIdTimeToLiveInSeconds;
-
-    public int? smsVerificationTimeToLiveInSeconds;
 
     public int? trustTokenTimeToLiveInSeconds;
 
