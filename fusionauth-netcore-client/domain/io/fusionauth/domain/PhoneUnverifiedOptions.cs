@@ -22,27 +22,15 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * Hold tenant phone configuration for passwordless and verification cases.
+   * Configuration for unverified phone number identities.
    *
-   * @author Brady Wied
+   * @author Spencer Witt
    */
-  public class TenantPhoneConfiguration {
+  public class PhoneUnverifiedOptions {
 
-    public Guid? messengerId;
+    public UnverifiedBehavior behavior;
 
-    public Guid? passwordlessTemplateId;
-
-    public PhoneUnverifiedOptions unverified;
-
-    public Guid? verificationCompleteTemplateId;
-
-    public VerificationStrategy verificationStrategy;
-
-    public Guid? verificationTemplateId;
-
-    public bool? verifyPhoneNumber;
-
-    public TenantPhoneConfiguration with(Action<TenantPhoneConfiguration> action) {
+    public PhoneUnverifiedOptions with(Action<PhoneUnverifiedOptions> action) {
       action(this);
       return this;
     }
