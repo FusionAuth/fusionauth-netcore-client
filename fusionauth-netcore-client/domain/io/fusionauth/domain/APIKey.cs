@@ -44,7 +44,11 @@ namespace io.fusionauth.domain
 
     public APIKeyMetaData metaData;
 
+    public string name;
+
     public APIKeyPermissions permissions;
+
+    public bool? retrievable;
 
     public Guid? tenantId;
 
