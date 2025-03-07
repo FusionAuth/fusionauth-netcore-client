@@ -30,6 +30,7 @@ namespace io.fusionauth.domain
         SendEmailVerification, 
         SendPasswordless, 
         SendRegistrationVerification, 
-        SendTwoFactor
+        SendTwoFactor, 
+        SendPhoneNumberVerification
   }
 }
