@@ -231,7 +231,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> CompleteVerifyIdentityAsync(VerifySendCompleteRequest request);
+    Task<ClientResponse<RESTVoid>> CompleteVerifyIdentityAsync(VerifyCompleteRequest request);
 
     /// <summary>
     /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -4245,7 +4245,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendCompleteRequest request);
+    Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendRequest request);
 
     /// <summary>
     /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
@@ -5098,7 +5098,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> CompleteVerifyIdentity(VerifySendCompleteRequest request);
+   ClientResponse<RESTVoid> CompleteVerifyIdentity(VerifyCompleteRequest request);
 
    /// <summary>
    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -8823,7 +8823,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendCompleteRequest request);
+   ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendRequest request);
 
    /// <summary>
    /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.

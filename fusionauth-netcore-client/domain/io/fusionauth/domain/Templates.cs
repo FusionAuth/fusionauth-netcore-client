@@ -103,7 +103,7 @@ namespace io.fusionauth.domain
 
     public string passwordSent;
 
-    public string phoneNumberVerificationRequired;
+    public string phoneVerificationRequired;
 
     public string registrationComplete;
 
