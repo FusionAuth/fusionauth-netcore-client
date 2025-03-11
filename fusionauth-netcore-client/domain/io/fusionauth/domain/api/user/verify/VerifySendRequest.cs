@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
@@ -25,7 +24,7 @@ namespace io.fusionauth.domain.api.user.verify
   /**
    * Verify Send API request object.
    */
-  public class VerifySendRequest: BaseEventRequest {
+  public class VerifySendRequest {
 
     public string oneTimeCode;
 
