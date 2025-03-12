@@ -214,7 +214,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> CompleteVerifyIdentityAsync(VerifySendCompleteRequest request) {
+    public Task<ClientResponse<RESTVoid>> CompleteVerifyIdentityAsync(VerifyCompleteRequest request) {
       return buildClient()
           .withUri("/api/identity/verify/complete")
           .withJSONBody(request)
@@ -2971,7 +2971,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendCompleteRequest request) {
+    public Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendRequest request) {
       return buildClient()
           .withUri("/api/identity/verify/send")
           .withJSONBody(request)

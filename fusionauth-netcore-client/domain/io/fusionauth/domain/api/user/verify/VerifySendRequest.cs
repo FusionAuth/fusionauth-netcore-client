@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
@@ -23,15 +22,15 @@ namespace io.fusionauth.domain.api.user.verify
 {
 
   /**
-   * @author Brady Wied
+   * Verify Send API request object.
    */
-  public class VerifySendCompleteRequest: BaseEventRequest {
+  public class VerifySendRequest {
 
     public string oneTimeCode;
 
     public string verificationId;
 
-    public VerifySendCompleteRequest with(Action<VerifySendCompleteRequest> action) {
+    public VerifySendRequest with(Action<VerifySendRequest> action) {
       action(this);
       return this;
     }

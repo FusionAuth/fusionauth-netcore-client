@@ -117,7 +117,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> CompleteVerifyIdentity(VerifySendCompleteRequest request) {
+    public ClientResponse<RESTVoid> CompleteVerifyIdentity(VerifyCompleteRequest request) {
       return client.CompleteVerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 
@@ -1568,7 +1568,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendCompleteRequest request) {
+    public ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendRequest request) {
       return client.SendVerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 

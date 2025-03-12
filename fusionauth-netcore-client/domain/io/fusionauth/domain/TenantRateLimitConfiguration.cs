@@ -34,6 +34,8 @@ namespace io.fusionauth.domain
 
     public RateLimitedRequestConfiguration sendPasswordless;
 
+    public RateLimitedRequestConfiguration sendPhoneVerification;
+
     public RateLimitedRequestConfiguration sendRegistrationVerification;
 
     public RateLimitedRequestConfiguration sendTwoFactor;

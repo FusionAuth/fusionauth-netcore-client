@@ -15,22 +15,25 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api.user.verify
 {
 
   /**
-   * @author Daniel DeGroff
+   * Verify Complete API request object.
    */
-  public enum RateLimitedRequestType {
-        FailedLogin, 
-        ForgotPassword, 
-        SendEmailVerification, 
-        SendPasswordless, 
-        SendRegistrationVerification, 
-        SendTwoFactor, 
-        SendPhoneVerification
+  public class VerifyCompleteRequest: BaseEventRequest {
+
+    public string oneTimeCode;
+
+    public string verificationId;
+
+    public VerifyCompleteRequest with(Action<VerifyCompleteRequest> action) {
+      action(this);
+      return this;
+    }
   }
 }
