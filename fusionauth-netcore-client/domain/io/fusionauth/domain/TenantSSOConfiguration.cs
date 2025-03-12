@@ -26,6 +26,8 @@ namespace io.fusionauth.domain
    */
   public class TenantSSOConfiguration {
 
+    public bool? allowAccessTokenBootstrap;
+
     public int? deviceTrustTimeToLiveInSeconds;
 
     public TenantSSOConfiguration with(Action<TenantSSOConfiguration> action) {
