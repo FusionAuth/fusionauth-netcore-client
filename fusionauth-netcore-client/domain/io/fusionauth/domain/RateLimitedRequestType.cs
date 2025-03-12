@@ -31,6 +31,6 @@ namespace io.fusionauth.domain
         SendPasswordless, 
         SendRegistrationVerification, 
         SendTwoFactor, 
-        SendPhoneNumberVerification
+        SendPhoneVerification
   }
 }
