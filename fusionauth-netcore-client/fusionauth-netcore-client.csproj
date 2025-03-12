@@ -13,6 +13,10 @@
         <Summary>FusionAuth client for .NET Core</Summary>
         <LangVersion>7.3</LangVersion>
         <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
+        <Description>
+            The .NET Core client for FusionAuth.
+            Documentation for FusionAuth can be found https://fusionauth.io/docs/apis/
+        </Description>
         <Company>FusionAuth</Company>
     </PropertyGroup>
 
