@@ -58,11 +58,11 @@ namespace io.fusionauth.domain
 
     public int? pendingAccountLinkTimeToLiveInSeconds;
 
-    public SecureGeneratorConfiguration phoneNumberVerificationIdGenerator;
+    public SecureGeneratorConfiguration phoneVerificationIdGenerator;
 
-    public int? phoneNumberVerificationIdTimeToLiveInSeconds;
+    public int? phoneVerificationIdTimeToLiveInSeconds;
 
-    public SecureGeneratorConfiguration phoneNumberVerificationOneTimeCodeGenerator;
+    public SecureGeneratorConfiguration phoneVerificationOneTimeCodeGenerator;
 
     public SecureGeneratorConfiguration registrationVerificationIdGenerator;
 
