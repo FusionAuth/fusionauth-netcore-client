@@ -37,6 +37,8 @@ namespace io.fusionauth.domain.api
 
     public string emailVerificationId;
 
+    public string identityVerificationId;
+
     public List<TwoFactorMethod> methods;
 
     public string pendingIdPLinkId;
