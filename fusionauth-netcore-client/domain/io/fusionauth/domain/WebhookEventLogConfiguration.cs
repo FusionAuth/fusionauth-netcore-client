@@ -26,7 +26,7 @@ namespace io.fusionauth.domain
    *
    * @author Spencer Witt
    */
-  public class WebhookEventLogConfiguration {
+  public class WebhookEventLogConfiguration: Enableable {
 
     public DeleteConfiguration delete;
 
