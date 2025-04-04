@@ -673,13 +673,38 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntityResponse> PatchEntity(Guid? entityId, IDictionary<string, object> request) {
+      return client.PatchEntityAsync(entityId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<EntityTypeResponse> PatchEntityType(Guid? entityTypeId, IDictionary<string, object> request) {
       return client.PatchEntityTypeAsync(entityTypeId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntityTypeResponse> PatchEntityTypePermission(Guid? entityTypeId, Guid? permissionId, IDictionary<string, object> request) {
+      return client.PatchEntityTypePermissionAsync(entityTypeId, permissionId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<FormResponse> PatchForm(Guid? formId, IDictionary<string, object> request) {
+      return client.PatchFormAsync(formId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<FormFieldResponse> PatchFormField(Guid? fieldId, IDictionary<string, object> request) {
+      return client.PatchFormFieldAsync(fieldId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<GroupResponse> PatchGroup(Guid? groupId, IDictionary<string, object> request) {
       return client.PatchGroupAsync(groupId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListResponse> PatchIPAccessControlList(Guid? accessControlListId, IDictionary<string, object> request) {
+      return client.PatchIPAccessControlListAsync(accessControlListId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -750,6 +775,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<UserConsentResponse> PatchUserConsent(Guid? userConsentId, IDictionary<string, object> request) {
       return client.PatchUserConsentAsync(userConsentId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebhookResponse> PatchWebhook(Guid? webhookId, IDictionary<string, object> request) {
+      return client.PatchWebhookAsync(webhookId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1634,6 +1664,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<EntityTypeResponse> UpdateEntityTypePermission(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request) {
       return client.UpdateEntityTypePermissionAsync(entityTypeId, permissionId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<FamilyResponse> UpdateFamily(Guid? familyId, FamilyRequest request) {
+      return client.UpdateFamilyAsync(familyId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
