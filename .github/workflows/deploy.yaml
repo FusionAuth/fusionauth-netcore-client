@@ -60,7 +60,7 @@ jobs:
         if: inputs.command == 'release' || inputs.command == 'publish'
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::752443094709:role/gha-fusionauth-typescript-client
+          role-to-assume: arn:aws:iam::752443094709:role/gha-fusionauth-netcore-client
           role-session-name: aws-auth-action
           aws-region: us-west-2
 
