@@ -1340,6 +1340,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntityResponse>> PatchEntityAsync(Guid? entityId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/entity")
+          .withUriSegment(entityId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<EntityResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<EntityTypeResponse>> PatchEntityTypeAsync(Guid? entityTypeId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/entity/type")
@@ -1350,6 +1360,38 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeResponse>> PatchEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/entity/type")
+          .withUriSegment(entityTypeId)
+          .withUriSegment("permission")
+          .withUriSegment(permissionId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<EntityTypeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<FormResponse>> PatchFormAsync(Guid? formId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/form")
+          .withUriSegment(formId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<FormResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<FormFieldResponse>> PatchFormFieldAsync(Guid? fieldId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/form/field")
+          .withUriSegment(fieldId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<FormFieldResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<GroupResponse>> PatchGroupAsync(Guid? groupId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/group")
@@ -1357,6 +1399,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Patch")
           .goAsync<GroupResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListResponse>> PatchIPAccessControlListAsync(Guid? accessControlListId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/ip-acl")
+          .withUriSegment(accessControlListId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<IPAccessControlListResponse>();
     }
 
     /// <inheritdoc/>
@@ -1497,6 +1549,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Patch")
           .goAsync<UserConsentResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<WebhookResponse>> PatchWebhookAsync(Guid? webhookId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/webhook")
+          .withUriSegment(webhookId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<WebhookResponse>();
     }
 
     /// <inheritdoc/>
@@ -3134,6 +3196,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<EntityTypeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<FamilyResponse>> UpdateFamilyAsync(Guid? familyId, FamilyRequest request) {
+      return buildClient()
+          .withUri("/api/user/family")
+          .withUriSegment(familyId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<FamilyResponse>();
     }
 
     /// <inheritdoc/>

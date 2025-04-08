@@ -1839,6 +1839,20 @@ namespace io.fusionauth {
     Task<ClientResponse<EmailTemplateResponse>> PatchEmailTemplateAsync(Guid? emailTemplateId, IDictionary<string, object> request);
 
     /// <summary>
+    /// Updates, via PATCH, the Entity with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> The Id of the Entity Type to update.</param>
+    /// <param name="request"> The request that contains just the new Entity information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityResponse>> PatchEntityAsync(Guid? entityId, IDictionary<string, object> request);
+
+    /// <summary>
     /// Updates, via PATCH, the Entity Type with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1853,6 +1867,49 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityTypeResponse>> PatchEntityTypeAsync(Guid? entityTypeId, IDictionary<string, object> request);
 
     /// <summary>
+    /// Patches the permission with the given Id for the entity type.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityTypeId"> The Id of the entityType that the permission belongs to.</param>
+    /// <param name="permissionId"> The Id of the permission to patch.</param>
+    /// <param name="request"> The request that contains the new permission information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeResponse>> PatchEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Patches the form with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="formId"> The Id of the form to patch.</param>
+    /// <param name="request"> The request object that contains the new form information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<FormResponse>> PatchFormAsync(Guid? formId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Patches the form field with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="fieldId"> The Id of the form field to patch.</param>
+    /// <param name="request"> The request object that contains the new form field information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<FormFieldResponse>> PatchFormFieldAsync(Guid? fieldId, IDictionary<string, object> request);
+
+    /// <summary>
     /// Updates, via PATCH, the group with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1865,6 +1922,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<GroupResponse>> PatchGroupAsync(Guid? groupId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Update the IP Access Control List with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="accessControlListId"> The Id of the IP Access Control List to patch.</param>
+    /// <param name="request"> The request that contains the new IP Access Control List information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListResponse>> PatchIPAccessControlListAsync(Guid? accessControlListId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the identity provider with the given Id.
@@ -2060,6 +2131,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<UserConsentResponse>> PatchUserConsentAsync(Guid? userConsentId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Patches the webhook with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="webhookId"> The Id of the webhook to update.</param>
+    /// <param name="request"> The request that contains the new webhook information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebhookResponse>> PatchWebhookAsync(Guid? webhookId, IDictionary<string, object> request);
 
     /// <summary>
     /// Reactivates the application with the given Id.
@@ -4475,6 +4560,20 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityTypeResponse>> UpdateEntityTypePermissionAsync(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
 
     /// <summary>
+    /// Updates a family with a given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="familyId"> The Id of the family to update.</param>
+    /// <param name="request"> The request object that contains all the new family information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<FamilyResponse>> UpdateFamilyAsync(Guid? familyId, FamilyRequest request);
+
+    /// <summary>
     /// Updates the form with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -6595,6 +6694,19 @@ namespace io.fusionauth {
    ClientResponse<EmailTemplateResponse> PatchEmailTemplate(Guid? emailTemplateId, IDictionary<string, object> request);
 
    /// <summary>
+   /// Updates, via PATCH, the Entity with the given Id.
+   /// </summary>
+   /// <param name="entityId"> The Id of the Entity Type to update.</param>
+   /// <param name="request"> The request that contains just the new Entity information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityResponse> PatchEntity(Guid? entityId, IDictionary<string, object> request);
+
+   /// <summary>
    /// Updates, via PATCH, the Entity Type with the given Id.
    /// </summary>
    /// <param name="entityTypeId"> The Id of the Entity Type to update.</param>
@@ -6608,6 +6720,46 @@ namespace io.fusionauth {
    ClientResponse<EntityTypeResponse> PatchEntityType(Guid? entityTypeId, IDictionary<string, object> request);
 
    /// <summary>
+   /// Patches the permission with the given Id for the entity type.
+   /// </summary>
+   /// <param name="entityTypeId"> The Id of the entityType that the permission belongs to.</param>
+   /// <param name="permissionId"> The Id of the permission to patch.</param>
+   /// <param name="request"> The request that contains the new permission information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeResponse> PatchEntityTypePermission(Guid? entityTypeId, Guid? permissionId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Patches the form with the given Id.
+   /// </summary>
+   /// <param name="formId"> The Id of the form to patch.</param>
+   /// <param name="request"> The request object that contains the new form information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<FormResponse> PatchForm(Guid? formId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Patches the form field with the given Id.
+   /// </summary>
+   /// <param name="fieldId"> The Id of the form field to patch.</param>
+   /// <param name="request"> The request object that contains the new form field information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<FormFieldResponse> PatchFormField(Guid? fieldId, IDictionary<string, object> request);
+
+   /// <summary>
    /// Updates, via PATCH, the group with the given Id.
    /// </summary>
    /// <param name="groupId"> The Id of the group to update.</param>
@@ -6619,6 +6771,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<GroupResponse> PatchGroup(Guid? groupId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Update the IP Access Control List with the given Id.
+   /// </summary>
+   /// <param name="accessControlListId"> The Id of the IP Access Control List to patch.</param>
+   /// <param name="request"> The request that contains the new IP Access Control List information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListResponse> PatchIPAccessControlList(Guid? accessControlListId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the identity provider with the given Id.
@@ -6800,6 +6965,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<UserConsentResponse> PatchUserConsent(Guid? userConsentId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Patches the webhook with the given Id.
+   /// </summary>
+   /// <param name="webhookId"> The Id of the webhook to update.</param>
+   /// <param name="request"> The request that contains the new webhook information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebhookResponse> PatchWebhook(Guid? webhookId, IDictionary<string, object> request);
 
    /// <summary>
    /// Reactivates the application with the given Id.
@@ -9035,6 +9213,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EntityTypeResponse> UpdateEntityTypePermission(Guid? entityTypeId, Guid? permissionId, EntityTypeRequest request);
+
+   /// <summary>
+   /// Updates a family with a given Id.
+   /// </summary>
+   /// <param name="familyId"> The Id of the family to update.</param>
+   /// <param name="request"> The request object that contains all the new family information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<FamilyResponse> UpdateFamily(Guid? familyId, FamilyRequest request);
 
    /// <summary>
    /// Updates the form with the given Id.
