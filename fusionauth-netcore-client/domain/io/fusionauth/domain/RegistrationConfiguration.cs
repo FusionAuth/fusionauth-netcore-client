@@ -43,8 +43,6 @@ namespace io.fusionauth.domain
 
     public Requirable preferredLanguages;
 
-    public bool? requirePassword;
-
     public RegistrationType type;
 
     public RegistrationConfiguration with(Action<RegistrationConfiguration> action) {

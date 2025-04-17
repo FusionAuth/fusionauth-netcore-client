@@ -77,6 +77,8 @@ namespace io.fusionauth.domain
 
     public TenantOAuth2Configuration oauthConfiguration;
 
+    public bool? passwordEnabled;
+
     public PasswordEncryptionConfiguration passwordEncryptionConfiguration;
 
     public PasswordValidationRules passwordValidationRules;
