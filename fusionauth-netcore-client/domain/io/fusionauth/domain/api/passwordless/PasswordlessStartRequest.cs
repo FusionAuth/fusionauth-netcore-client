@@ -30,7 +30,7 @@ namespace io.fusionauth.domain.api.passwordless
 
     public string loginId;
 
-    public string loginIdType;
+    public List<string> loginIdTypes;
 
     public string loginStrategy;
 
