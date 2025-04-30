@@ -3471,20 +3471,6 @@ namespace io.fusionauth {
     Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId);
 
     /// <summary>
-    /// Retrieves the user for the loginId for specific loginIdTypes.
-    /// This is an asynchronous method.
-    /// </summary>
-    /// <param name="loginId"> The email or username of the user.</param>
-    /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
-    /// <returns>
-    /// When successful, the response will contain the log of the action. If there was a validation error or any
-    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-    /// IOException.
-    /// </returns>
-    Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId, List<String> loginIdTypes);
-
-    /// <summary>
     /// Retrieves the user for the given username.
     /// This is an asynchronous method.
     /// </summary>
@@ -3659,24 +3645,6 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAsync(Guid? applicationId, string loginId, long? start, long? end);
-
-    /// <summary>
-    /// Retrieves the login report between the two instants for a particular user by login Id. If you specify an application id, it will only return the
-    /// login counts for that application.
-    /// This is an asynchronous method.
-    /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
-    /// <param name="loginId"> The userId id.</param>
-    /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
-    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
-    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
-    /// <returns>
-    /// When successful, the response will contain the log of the action. If there was a validation error or any
-    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-    /// IOException.
-    /// </returns>
-    Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAsync(Guid? applicationId, string loginId, List<String> loginIdTypes, long? start, long? end);
 
     /// <summary>
     /// Retrieves the last number of login records for a user.
@@ -8236,19 +8204,6 @@ namespace io.fusionauth {
    ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId);
 
    /// <summary>
-   /// Retrieves the user for the loginId for specific loginIdTypes.
-   /// </summary>
-   /// <param name="loginId"> The email or username of the user.</param>
-   /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
-   /// <returns>
-   /// When successful, the response will contain the log of the action. If there was a validation error or any
-   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-   /// IOException.
-   /// </returns>
-   ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<String> loginIdTypes);
-
-   /// <summary>
    /// Retrieves the user for the given username.
    /// </summary>
    /// <param name="username"> The username of the user.</param>
@@ -8411,23 +8366,6 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long? start, long? end);
-
-   /// <summary>
-   /// Retrieves the login report between the two instants for a particular user by login Id. If you specify an application id, it will only return the
-   /// login counts for that application.
-   /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
-   /// <param name="loginId"> The userId id.</param>
-   /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
-   /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
-   /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
-   /// <returns>
-   /// When successful, the response will contain the log of the action. If there was a validation error or any
-   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-   /// IOException.
-   /// </returns>
-   ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, List<String> loginIdTypes, long? start, long? end);
 
    /// <summary>
    /// Retrieves the last number of login records for a user.
