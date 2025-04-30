@@ -75,6 +75,8 @@ namespace io.fusionauth.domain
 
     public string oauth2Passwordless;
 
+    public string oauth2PasswordlessFormField;
+
     public string oauth2Register;
 
     public string oauth2StartIdPLink;

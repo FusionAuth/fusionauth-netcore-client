@@ -2458,6 +2458,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId, List<String> loginIdTypes) {
+      return buildClient()
+          .withUri("/api/user")
+          .withParameter("loginId", loginId)
+          .withParameter("loginIdTypes", loginIdTypes)
+          .withMethod("Get")
+          .goAsync<UserResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<UserResponse>> RetrieveUserByUsernameAsync(string username) {
       return buildClient()
           .withUri("/api/user")
@@ -2576,6 +2586,19 @@ namespace io.fusionauth {
           .withUri("/api/report/login")
           .withParameter("applicationId", applicationId)
           .withParameter("loginId", loginId)
+          .withParameter("start", start)
+          .withParameter("end", end)
+          .withMethod("Get")
+          .goAsync<LoginReportResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAsync(Guid? applicationId, string loginId, List<String> loginIdTypes, long? start, long? end) {
+      return buildClient()
+          .withUri("/api/report/login")
+          .withParameter("applicationId", applicationId)
+          .withParameter("loginId", loginId)
+          .withParameter("loginIdTypes", loginIdTypes)
           .withParameter("start", start)
           .withParameter("end", end)
           .withMethod("Get")

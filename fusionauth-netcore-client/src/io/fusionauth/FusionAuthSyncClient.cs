@@ -1289,6 +1289,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<String> loginIdTypes) {
+      return client.RetrieveUserByLoginIdAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<UserResponse> RetrieveUserByUsername(string username) {
       return client.RetrieveUserByUsernameAsync(username).GetAwaiter().GetResult();
     }
@@ -1346,6 +1351,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long? start, long? end) {
       return client.RetrieveUserLoginReportByLoginIdAsync(applicationId, loginId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, List<String> loginIdTypes, long? start, long? end) {
+      return client.RetrieveUserLoginReportByLoginIdAsync(applicationId, loginId, loginIdTypes, start, end).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
