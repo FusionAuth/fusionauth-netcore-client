@@ -55,7 +55,6 @@ namespace io.fusionauth {
     public FusionAuthSyncClient withTenantId(Guid? tenantId) {
       return tenantId == null ? this : new FusionAuthSyncClient(client.apiKey, client.host, tenantId.ToString());
     }
-
     /// <inheritdoc/>
     public ClientResponse<ActionResponse> ActionUser(ActionRequest request) {
       return client.ActionUserAsync(request).GetAwaiter().GetResult();
@@ -1289,7 +1288,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserResponse> RetrieveUserByLoginIdWithLoginIdTypes(string loginId, List<String> loginIdTypes) {
+    public ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<String> loginIdTypes) {
       return client.RetrieveUserByLoginIdWithLoginIdTypesAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
     }
 
@@ -1843,5 +1842,6 @@ namespace io.fusionauth {
     public ClientResponse<RESTVoid> VerifyUserRegistration(VerifyRegistrationRequest request) {
       return client.VerifyUserRegistrationAsync(request).GetAwaiter().GetResult();
     }
+
   }
 }
