@@ -2458,7 +2458,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdWithLoginIdTypesAsync(string loginId, List<String> loginIdTypes) {
+    public Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId, List<String> loginIdTypes) {
       return buildClient()
           .withUri("/api/user")
           .withParameter("loginId", loginId)

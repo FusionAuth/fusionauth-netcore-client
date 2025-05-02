@@ -33,7 +33,6 @@ using io.fusionauth.domain.reactor;
 
 namespace io.fusionauth {
   public interface IFusionAuthAsyncClient {
-
     /// <summary>
     /// Takes an action on a user. The user being actioned is called the "actionee" and the user taking the action is called the
     /// "actioner". Both user ids are required in the request object.
@@ -3482,7 +3481,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdWithLoginIdTypesAsync(string loginId, List<String> loginIdTypes);
+    Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId, List<String> loginIdTypes);
 
     /// <summary>
     /// Retrieves the user for the given username.
@@ -5023,6 +5022,7 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> VerifyUserRegistrationAsync(VerifyRegistrationRequest request);
+
   }
 
  public interface IFusionAuthSyncClient {
@@ -8228,7 +8228,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserResponse> RetrieveUserByLoginIdWithLoginIdTypes(string loginId, List<String> loginIdTypes);
+   ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<String> loginIdTypes);
 
    /// <summary>
    /// Retrieves the user for the given username.
