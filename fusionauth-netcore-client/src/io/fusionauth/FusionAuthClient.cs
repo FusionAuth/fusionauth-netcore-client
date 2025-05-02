@@ -2458,6 +2458,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdWithLoginIdTypesAsync(string loginId, List<String> loginIdTypes) {
+      return buildClient()
+          .withUri("/api/user")
+          .withParameter("loginId", loginId)
+          .withParameter("loginIdTypes", loginIdTypes)
+          .withMethod("Get")
+          .goAsync<UserResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<UserResponse>> RetrieveUserByUsernameAsync(string username) {
       return buildClient()
           .withUri("/api/user")
