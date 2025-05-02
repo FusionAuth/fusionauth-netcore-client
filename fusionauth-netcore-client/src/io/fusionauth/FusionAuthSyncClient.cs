@@ -1288,8 +1288,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<String> loginIdTypes) {
-      return client.RetrieveUserByLoginIdWithLoginIdTypesAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
+    public ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<string> loginIdTypes) {
+      return client.RetrieveUserByLoginIdAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

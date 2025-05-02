@@ -3481,7 +3481,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId, List<String> loginIdTypes);
+    Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId, List<string> loginIdTypes);
 
     /// <summary>
     /// Retrieves the user for the given username.
@@ -8228,7 +8228,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<String> loginIdTypes);
+   ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<string> loginIdTypes);
 
    /// <summary>
    /// Retrieves the user for the given username.
