@@ -55,6 +55,7 @@ namespace io.fusionauth {
     public FusionAuthSyncClient withTenantId(Guid? tenantId) {
       return tenantId == null ? this : new FusionAuthSyncClient(client.apiKey, client.host, tenantId.ToString());
     }
+
     /// <inheritdoc/>
     public ClientResponse<ActionResponse> ActionUser(ActionRequest request) {
       return client.ActionUserAsync(request).GetAwaiter().GetResult();
@@ -1288,8 +1289,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId, List<string> loginIdTypes) {
-      return client.RetrieveUserByLoginIdAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
+    public ClientResponse<UserResponse> RetrieveUserByLoginIdWithLoginIdTypes(string loginId, List<String> loginIdTypes) {
+      return client.RetrieveUserByLoginIdWithLoginIdTypesAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1353,8 +1354,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long? start, long? end, List<string> loginIdTypes) {
-      return client.RetrieveUserLoginReportByLoginIdAsync(applicationId, loginId, start, end, loginIdTypes).GetAwaiter().GetResult();
+    public ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginIdAndLoginIdTypes(Guid? applicationId, string loginId, long? start, long? end, List<String> loginIdTypes) {
+      return client.RetrieveUserLoginReportByLoginIdAndLoginIdTypesAsync(applicationId, loginId, start, end, loginIdTypes).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1847,6 +1848,5 @@ namespace io.fusionauth {
     public ClientResponse<RESTVoid> VerifyUserRegistration(VerifyRegistrationRequest request) {
       return client.VerifyUserRegistrationAsync(request).GetAwaiter().GetResult();
     }
-
   }
 }

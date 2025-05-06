@@ -2458,7 +2458,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId, List<string> loginIdTypes) {
+    public Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdWithLoginIdTypesAsync(string loginId, List<String> loginIdTypes) {
       return buildClient()
           .withUri("/api/user")
           .withParameter("loginId", loginId)
@@ -2593,7 +2593,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAsync(Guid? applicationId, string loginId, long? start, long? end, List<string> loginIdTypes) {
+    public Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAndLoginIdTypesAsync(Guid? applicationId, string loginId, long? start, long? end, List<String> loginIdTypes) {
       return buildClient()
           .withUri("/api/report/login")
           .withParameter("applicationId", applicationId)
