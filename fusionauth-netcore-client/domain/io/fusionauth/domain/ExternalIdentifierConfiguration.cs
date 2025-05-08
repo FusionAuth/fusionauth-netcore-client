@@ -52,7 +52,7 @@ namespace io.fusionauth.domain
 
     public int? passwordlessLoginTimeToLiveInSeconds;
 
-    public SecureGeneratorConfiguration passwordlessShortCodeLoginGenerator;
+    public SecureGeneratorConfiguration passwordlessOneTimeCodeLoginGenerator;
 
     public int? passwordlessShortCodeLoginTimeToLiveInSeconds;
 
