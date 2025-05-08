@@ -34,6 +34,8 @@ namespace io.fusionauth.domain
 
     public Guid? passwordlessTemplateId;
 
+    public Guid? setPasswordTemplateId;
+
     public PhoneUnverifiedOptions unverified;
 
     public Guid? verificationCompleteTemplateId;
