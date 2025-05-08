@@ -54,8 +54,6 @@ namespace io.fusionauth.domain
 
     public SecureGeneratorConfiguration passwordlessOneTimeCodeLoginGenerator;
 
-    public int? passwordlessShortCodeLoginTimeToLiveInSeconds;
-
     public int? pendingAccountLinkTimeToLiveInSeconds;
 
     public SecureGeneratorConfiguration phoneVerificationIdGenerator;
