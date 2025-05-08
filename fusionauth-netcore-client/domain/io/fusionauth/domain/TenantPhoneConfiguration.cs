@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
    */
   public class TenantPhoneConfiguration {
 
+    public Guid? forgotPasswordTemplateId;
+
     public Guid? messengerId;
 
     public Guid? passwordlessTemplateId;

@@ -35,7 +35,11 @@ namespace io.fusionauth.domain.api.user
 
     public string loginId;
 
+    public List<string> loginIdTypes;
+
     public bool? sendForgotPasswordEmail;
+
+    public bool? sendForgotPasswordMessage;
 
     public IDictionary<string, object> state;
 
