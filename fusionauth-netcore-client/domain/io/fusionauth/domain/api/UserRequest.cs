@@ -37,6 +37,8 @@ namespace io.fusionauth.domain.api
 
     public bool? sendSetPasswordEmail;
 
+    public bool? sendSetPasswordPhone;
+
     public bool? skipVerification;
 
     public User user;

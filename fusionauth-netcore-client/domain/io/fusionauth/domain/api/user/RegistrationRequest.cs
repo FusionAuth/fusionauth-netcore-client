@@ -38,6 +38,8 @@ namespace io.fusionauth.domain.api.user
 
     public bool? sendSetPasswordEmail;
 
+    public bool? sendSetPasswordPhone;
+
     public bool? skipRegistrationVerification;
 
     public bool? skipVerification;
