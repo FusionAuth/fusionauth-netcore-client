@@ -50,11 +50,9 @@ namespace io.fusionauth.domain
 
     public SecureGeneratorConfiguration passwordlessLoginGenerator;
 
+    public SecureGeneratorConfiguration passwordlessLoginOneTimeCodeGenerator;
+
     public int? passwordlessLoginTimeToLiveInSeconds;
-
-    public SecureGeneratorConfiguration passwordlessShortCodeLoginGenerator;
-
-    public int? passwordlessShortCodeLoginTimeToLiveInSeconds;
 
     public int? pendingAccountLinkTimeToLiveInSeconds;
 
