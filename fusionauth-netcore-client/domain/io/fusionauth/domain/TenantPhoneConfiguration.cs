@@ -30,11 +30,31 @@ namespace io.fusionauth.domain
 
     public Guid? forgotPasswordTemplateId;
 
+    public Guid? identityUpdateTemplateId;
+
+    public bool? @implicitPhoneVerificationAllowed;
+
+    public Guid? loginIdInUseOnCreateTemplateId;
+
+    public Guid? loginIdInUseOnUpdateTemplateId;
+
+    public Guid? loginNewDeviceTemplateId;
+
+    public Guid? loginSuspiciousTemplateId;
+
     public Guid? messengerId;
+
+    public Guid? passwordResetSuccessTemplateId;
+
+    public Guid? passwordUpdateTemplateId;
 
     public Guid? passwordlessTemplateId;
 
     public Guid? setPasswordTemplateId;
+
+    public Guid? twoFactorMethodAddTemplateId;
+
+    public Guid? twoFactorMethodRemoveTemplateId;
 
     public PhoneUnverifiedOptions unverified;
 
