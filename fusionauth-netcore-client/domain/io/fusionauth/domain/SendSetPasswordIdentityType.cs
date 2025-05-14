@@ -22,33 +22,12 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * Hold tenant phone configuration for passwordless and verification cases.
-   *
-   * @author Brady Wied
+   * Used to indicate which identity type a password "request" might go to. It could be
+   * used for send set passwords or send password resets.
    */
-  public class TenantPhoneConfiguration {
-
-    public Guid? forgotPasswordTemplateId;
-
-    public Guid? messengerId;
-
-    public Guid? passwordlessTemplateId;
-
-    public Guid? setPasswordTemplateId;
-
-    public PhoneUnverifiedOptions unverified;
-
-    public Guid? verificationCompleteTemplateId;
-
-    public VerificationStrategy verificationStrategy;
-
-    public Guid? verificationTemplateId;
-
-    public bool? verifyPhoneNumber;
-
-    public TenantPhoneConfiguration with(Action<TenantPhoneConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum SendSetPasswordIdentityType {
+        email, 
+        phone, 
+        doNotSend
   }
 }

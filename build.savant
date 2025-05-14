@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019-2024, FusionAuth, All Rights Reserved
+ * Copyright (c) 2019-2025, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,7 @@ target(name: "clean", description: "Cleans build directory") {
 
   def process = pb.start()
   process.consumeProcessOutput(System.out, System.err)
-  process.waitFor()
-  return process.exitValue() == 0
+  assert process.waitFor() == 0
 }
 
 target(name: "compile", description: "Compiles the source code") {
@@ -52,8 +51,7 @@ target(name: "compile", description: "Compiles the source code") {
 
   def process = pb.start()
   process.consumeProcessOutput(System.out, System.err)
-  process.waitFor()
-  return process.exitValue() == 0
+  assert process.waitFor() == 0
 }
 
 target(name: "test", description: "Runs the project's unit tests", dependsOn: ["compile"]) {
@@ -63,7 +61,7 @@ target(name: "test", description: "Runs the project's unit tests", dependsOn: ["
 
   def process = pb.start()
   process.consumeProcessOutput(System.out, System.err)
-  process.waitFor()
+  assert process.waitFor() == 0
 }
 
 target(name: "int", description: "Releases a local integration build of the project", dependsOn: ["compile"]) {
@@ -86,8 +84,7 @@ target(name: "pack", description: "Releases a full version of the project", depe
 
   def process = pb.start()
   process.consumeProcessOutput(System.out, System.err)
-  process.waitFor()
-  return process.exitValue() == 0
+  assert process.waitFor() == 0
 }
 
 target(name: "publish", description: "Releases a full version of the project", dependsOn: ["pack"]) {
@@ -100,6 +97,5 @@ target(name: "publish", description: "Releases a full version of the project", d
 
   def process = pb.start()
   process.consumeProcessOutput(System.out, System.err)
-  process.waitFor()
-  return process.exitValue() == 0
+  assert process.waitFor() == 0
 }
