@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
    */
   public class PhoneUnverifiedOptions {
 
+    public bool? allowPhoneNumberChangeWhenGated;
+
     public UnverifiedBehavior behavior;
 
     public PhoneUnverifiedOptions with(Action<PhoneUnverifiedOptions> action) {
