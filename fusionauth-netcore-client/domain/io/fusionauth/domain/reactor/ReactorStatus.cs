@@ -56,9 +56,13 @@ namespace io.fusionauth.domain.reactor
 
     public bool? licensed;
 
+    public ReactorFeatureStatus organizationAdminApplication;
+
     public ReactorFeatureStatus scimServer;
 
     public ReactorFeatureStatus threatDetection;
+
+    public ReactorFeatureStatus universalApplication;
 
     public ReactorFeatureStatus webAuthn;
 

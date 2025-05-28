@@ -79,6 +79,8 @@ namespace io.fusionauth.domain
 
     public Guid? themeId;
 
+    public UniversalConfiguration universalConfiguration;
+
     public RegistrationUnverifiedOptions unverified;
 
     public Guid? verificationEmailTemplateId;
