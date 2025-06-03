@@ -86,6 +86,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<ChangePasswordResponse> ChangePasswordByJWT(string encodedJWT, ChangePasswordRequest request) {
+      return client.ChangePasswordByJWTAsync(encodedJWT, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> ChangePasswordByIdentity(ChangePasswordRequest request) {
       return client.ChangePasswordByIdentityAsync(request).GetAwaiter().GetResult();
     }
