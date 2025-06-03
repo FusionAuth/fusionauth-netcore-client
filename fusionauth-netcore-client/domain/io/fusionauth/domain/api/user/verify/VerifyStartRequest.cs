@@ -32,6 +32,8 @@ namespace io.fusionauth.domain.api.user.verify
 
     public string loginIdType;
 
+    public IDictionary<string, object> state;
+
     public string verificationStrategy;
 
     public VerifyStartRequest with(Action<VerifyStartRequest> action) {
