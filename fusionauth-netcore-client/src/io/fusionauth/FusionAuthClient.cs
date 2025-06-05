@@ -214,12 +214,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> CompleteVerifyIdentityAsync(VerifyCompleteRequest request) {
+    public Task<ClientResponse<VerifyCompleteResponse>> CompleteVerifyIdentityAsync(VerifyCompleteRequest request) {
       return buildClient()
           .withUri("/api/identity/verify/complete")
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<RESTVoid>();
+          .goAsync<VerifyCompleteResponse>();
     }
 
     /// <inheritdoc/>

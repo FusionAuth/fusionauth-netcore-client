@@ -22,21 +22,13 @@ namespace io.fusionauth.domain.api.user.verify
 {
 
   /**
-   * @author Brady Wied
+   * Verify Complete API response object.
    */
-  public class VerifyStartRequest {
-
-    public Guid? applicationId;
-
-    public string loginId;
-
-    public string loginIdType;
+  public class VerifyCompleteResponse {
 
     public IDictionary<string, object> state;
 
-    public string verificationStrategy;
-
-    public VerifyStartRequest with(Action<VerifyStartRequest> action) {
+    public VerifyCompleteResponse with(Action<VerifyCompleteResponse> action) {
       action(this);
       return this;
     }
