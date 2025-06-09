@@ -1839,6 +1839,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> VerifyIdentity(VerifyRequest request) {
+      return client.VerifyIdentityAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     [Obsolete("This method has been renamed to VerifyUserRegistration and changed to take a JSON request body, use that method instead.")]
     public ClientResponse<RESTVoid> VerifyRegistration(string verificationId) {
       return client.VerifyRegistrationAsync(verificationId).GetAwaiter().GetResult();

@@ -33,6 +33,7 @@ namespace io.fusionauth.domain
         @Implicit, 
         Pending, 
         Completed, 
-        Disabled
+        Disabled, 
+        Administrative
   }
 }

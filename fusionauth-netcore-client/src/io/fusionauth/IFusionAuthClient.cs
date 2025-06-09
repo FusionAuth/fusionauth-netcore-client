@@ -5011,6 +5011,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> VerifyEmailAddressByUserIdAsync(VerifyEmailRequest request);
 
     /// <summary>
+    /// Administratively verify a user identity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify request that contains information to verify the identity.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> VerifyIdentityAsync(VerifyRequest request);
+
+    /// <summary>
     /// Confirms an application registration. The Id given is usually from an email sent to the user.
     /// This is an asynchronous method.
     /// </summary>
@@ -9665,6 +9678,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> VerifyEmailAddressByUserId(VerifyEmailRequest request);
+
+   /// <summary>
+   /// Administratively verify a user identity.
+   /// </summary>
+   /// <param name="request"> The identity verify request that contains information to verify the identity.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> VerifyIdentity(VerifyRequest request);
 
    /// <summary>
    /// Confirms an application registration. The Id given is usually from an email sent to the user.
