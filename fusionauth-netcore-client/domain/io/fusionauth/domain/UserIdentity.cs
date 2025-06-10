@@ -28,8 +28,6 @@ namespace io.fusionauth.domain
 
     public string displayValue;
 
-    public long? id;
-
     public DateTimeOffset? insertInstant;
 
     public DateTimeOffset? lastLoginInstant;
