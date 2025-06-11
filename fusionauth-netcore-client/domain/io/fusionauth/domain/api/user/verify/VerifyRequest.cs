@@ -27,9 +27,9 @@ namespace io.fusionauth.domain.api.user.verify
    */
   public class VerifyRequest: BaseEventRequest {
 
-    public long? identityId;
+    public string loginId;
 
-    public Guid? userId;
+    public string loginIdType;
 
     public VerifyRequest with(Action<VerifyRequest> action) {
       action(this);
