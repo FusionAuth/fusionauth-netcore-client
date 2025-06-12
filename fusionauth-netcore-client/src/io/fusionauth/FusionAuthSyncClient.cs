@@ -117,7 +117,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> CompleteVerifyIdentity(VerifyCompleteRequest request) {
+    public ClientResponse<VerifyCompleteResponse> CompleteVerifyIdentity(VerifyCompleteRequest request) {
       return client.CompleteVerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 
