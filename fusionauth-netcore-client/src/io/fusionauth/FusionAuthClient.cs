@@ -3518,6 +3518,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> VerifyIdentityAsync(VerifyRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     [Obsolete("This method has been renamed to VerifyUserRegistrationAsync and changed to take a JSON request body, use that method instead.")]
     public Task<ClientResponse<RESTVoid>> VerifyRegistrationAsync(string verificationId) {
       return buildAnonymousClient()
