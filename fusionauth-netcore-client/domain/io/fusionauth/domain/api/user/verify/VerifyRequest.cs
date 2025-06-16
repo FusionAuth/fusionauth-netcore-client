@@ -15,25 +15,25 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api.user.verify
 {
 
   /**
-   * Models the reason that {@link UserIdentity#verified} was set to true or false.
-   *
-   * @author Brady Wied
+   * Identity verify request. Used to administratively verify an identity.
    */
-  public enum IdentityVerifiedReason {
-        Skipped, 
-        Trusted, 
-        Unverifiable, 
-        @Implicit, 
-        Pending, 
-        Completed, 
-        Disabled, 
-        Administrative
+  public class VerifyRequest: BaseEventRequest {
+
+    public string loginId;
+
+    public string loginIdType;
+
+    public VerifyRequest with(Action<VerifyRequest> action) {
+      action(this);
+      return this;
+    }
   }
 }
