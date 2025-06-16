@@ -26,7 +26,7 @@ using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
-using io.fusionauth.domain.api.user.verify;
+using io.fusionauth.domain.api.identity.verify;
 using io.fusionauth.domain.oauth2;
 using io.fusionauth.domain.provider;
 using io.fusionauth.domain.reactor;

@@ -15,20 +15,23 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user.verify
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * Verify Complete API response object.
+   * Identity verify request. Used to administratively verify an identity.
    */
-  public class VerifyCompleteResponse {
+  public class VerifyRequest: BaseEventRequest {
 
-    public IDictionary<string, object> state;
+    public string loginId;
 
-    public VerifyCompleteResponse with(Action<VerifyCompleteResponse> action) {
+    public string loginIdType;
+
+    public VerifyRequest with(Action<VerifyRequest> action) {
       action(this);
       return this;
     }
