@@ -18,19 +18,25 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user.verify
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * Verify Send API request object.
+   * @author Brady Wied
    */
-  public class VerifySendRequest {
+  public class VerifyStartRequest {
 
-    public string oneTimeCode;
+    public Guid? applicationId;
 
-    public string verificationId;
+    public string loginId;
 
-    public VerifySendRequest with(Action<VerifySendRequest> action) {
+    public string loginIdType;
+
+    public IDictionary<string, object> state;
+
+    public string verificationStrategy;
+
+    public VerifyStartRequest with(Action<VerifyStartRequest> action) {
       action(this);
       return this;
     }

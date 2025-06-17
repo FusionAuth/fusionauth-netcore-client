@@ -15,22 +15,23 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user.verify
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * @author Brady Wied
+   * Verify Complete API request object.
    */
-  public class VerifyStartResponse {
+  public class VerifyCompleteRequest: BaseEventRequest {
 
     public string oneTimeCode;
 
     public string verificationId;
 
-    public VerifyStartResponse with(Action<VerifyStartResponse> action) {
+    public VerifyCompleteRequest with(Action<VerifyCompleteRequest> action) {
       action(this);
       return this;
     }

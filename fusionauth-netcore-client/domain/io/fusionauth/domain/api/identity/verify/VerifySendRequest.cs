@@ -15,23 +15,22 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.user.verify
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * Identity verify request. Used to administratively verify an identity.
+   * Verify Send API request object.
    */
-  public class VerifyRequest: BaseEventRequest {
+  public class VerifySendRequest {
 
-    public string loginId;
+    public string oneTimeCode;
 
-    public string loginIdType;
+    public string verificationId;
 
-    public VerifyRequest with(Action<VerifyRequest> action) {
+    public VerifySendRequest with(Action<VerifySendRequest> action) {
       action(this);
       return this;
     }
