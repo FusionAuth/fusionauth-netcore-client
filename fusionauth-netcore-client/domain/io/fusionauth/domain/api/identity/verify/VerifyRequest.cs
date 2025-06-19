@@ -15,22 +15,25 @@
  */
 
 
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * @author Daniel DeGroff
+   * Identity verify request. Used to administratively verify an identity.
    */
-  public enum RateLimitedRequestType {
-        FailedLogin, 
-        ForgotPassword, 
-        SendEmailVerification, 
-        SendPasswordless, 
-        SendRegistrationVerification, 
-        SendTwoFactor, 
-        SendPhoneVerification
+  public class VerifyRequest: BaseEventRequest {
+
+    public string loginId;
+
+    public string loginIdType;
+
+    public VerifyRequest with(Action<VerifyRequest> action) {
+      action(this);
+      return this;
+    }
   }
 }
