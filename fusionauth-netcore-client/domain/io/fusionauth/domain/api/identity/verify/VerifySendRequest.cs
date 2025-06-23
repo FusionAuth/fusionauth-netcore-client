@@ -26,8 +26,6 @@ namespace io.fusionauth.domain.api.identity.verify
    */
   public class VerifySendRequest {
 
-    public string oneTimeCode;
-
     public string verificationId;
 
     public VerifySendRequest with(Action<VerifySendRequest> action) {
