@@ -15,19 +15,21 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api
 {
 
-  public class UniversalConfiguration {
+  /**
+   * @author Lyle Schemmerling
+   */
+  public class UniversalApplicationTenantsResponse {
 
-    public bool? global;
+    public List<UniversalApplicationTenant> applicationTenants;
 
-    public bool? universal;
-
-    public UniversalConfiguration with(Action<UniversalConfiguration> action) {
+    public UniversalApplicationTenantsResponse with(Action<UniversalApplicationTenantsResponse> action) {
       action(this);
       return this;
     }

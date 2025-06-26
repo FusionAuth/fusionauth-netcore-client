@@ -484,6 +484,17 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<UniversalApplicationTenantsResponse>> CreateUniversalApplicationTenantsAsync(Guid? applicationId, UniversalApplicationTenantsRequest request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("application-tenant")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<UniversalApplicationTenantsResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<UserResponse>> CreateUserAsync(Guid? userId, UserRequest request) {
       return buildClient()
           .withUri("/api/user")
@@ -854,6 +865,28 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/theme")
           .withUriSegment(themeId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteUniversalApplicationTenantAsync(Guid? applicationId, Guid? tenantId) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("application-tenant")
+          .withUriSegment(tenantId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteUniversalApplicationTenantsAsync(Guid? applicationId, List<string> tenantIds) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("application-tenant")
+          .withParameter("tenantIds", tenantIds)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -2385,6 +2418,16 @@ namespace io.fusionauth {
           .withUriSegment(twoFactorTrustId)
           .withMethod("Get")
           .goAsync<TwoFactorStatusResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<UniversalApplicationTenantsResponse>> RetrieveUniversalApplicationTenantsAsync(Guid? applicationId) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("application-tenant")
+          .withMethod("Get")
+          .goAsync<UniversalApplicationTenantsResponse>();
     }
 
     /// <inheritdoc/>

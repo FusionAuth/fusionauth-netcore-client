@@ -251,6 +251,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<UniversalApplicationTenantsResponse> CreateUniversalApplicationTenants(Guid? applicationId, UniversalApplicationTenantsRequest request) {
+      return client.CreateUniversalApplicationTenantsAsync(applicationId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<UserResponse> CreateUser(Guid? userId, UserRequest request) {
       return client.CreateUserAsync(userId, request).GetAwaiter().GetResult();
     }
@@ -444,6 +449,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteTheme(Guid? themeId) {
       return client.DeleteThemeAsync(themeId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteUniversalApplicationTenant(Guid? applicationId, Guid? tenantId) {
+      return client.DeleteUniversalApplicationTenantAsync(applicationId, tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteUniversalApplicationTenants(Guid? applicationId, List<string> tenantIds) {
+      return client.DeleteUniversalApplicationTenantsAsync(applicationId, tenantIds).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1245,6 +1260,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatus(Guid? userId, Guid? applicationId, string twoFactorTrustId) {
       return client.RetrieveTwoFactorStatusAsync(userId, applicationId, twoFactorTrustId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<UniversalApplicationTenantsResponse> RetrieveUniversalApplicationTenants(Guid? applicationId) {
+      return client.RetrieveUniversalApplicationTenantsAsync(applicationId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

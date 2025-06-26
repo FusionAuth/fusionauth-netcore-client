@@ -26,6 +26,8 @@ namespace io.fusionauth.domain
    */
   public class UniversalApplicationTenant {
 
+    public Guid? applicationId;
+
     public Guid? tenantId;
 
     public UniversalApplicationTenant with(Action<UniversalApplicationTenant> action) {
