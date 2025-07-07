@@ -484,14 +484,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UniversalApplicationTenantsResponse>> CreateUniversalApplicationTenantsAsync(Guid? applicationId, UniversalApplicationTenantsRequest request) {
+    public Task<ClientResponse<UniversalApplicationTenantResponse>> CreateUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request) {
       return buildClient()
           .withUri("/api/application")
           .withUriSegment(applicationId)
-          .withUriSegment("application-tenant")
+          .withUriSegment("universal-application-tenant")
+          .withUriSegment(universalApplicationTenantId)
           .withJSONBody(request)
           .withMethod("Post")
-          .goAsync<UniversalApplicationTenantsResponse>();
+          .goAsync<UniversalApplicationTenantResponse>();
     }
 
     /// <inheritdoc/>
@@ -870,12 +871,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> DeleteUniversalApplicationTenantAsync(Guid? applicationId, Guid? tenantId) {
+    public Task<ClientResponse<RESTVoid>> DeleteUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId) {
       return buildClient()
           .withUri("/api/application")
           .withUriSegment(applicationId)
-          .withUriSegment("application-tenant")
-          .withUriSegment(tenantId)
+          .withUriSegment("universal-application-tenant")
+          .withUriSegment(universalApplicationTenantId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -2421,13 +2422,14 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UniversalApplicationTenantsResponse>> RetrieveUniversalApplicationTenantsAsync(Guid? applicationId) {
+    public Task<ClientResponse<UniversalApplicationTenantResponse>> RetrieveUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId) {
       return buildClient()
           .withUri("/api/application")
           .withUriSegment(applicationId)
           .withUriSegment("application-tenant")
+          .withUriSegment(universalApplicationTenantId)
           .withMethod("Get")
-          .goAsync<UniversalApplicationTenantsResponse>();
+          .goAsync<UniversalApplicationTenantResponse>();
     }
 
     /// <inheritdoc/>
@@ -2944,6 +2946,17 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<UniversalApplicationTenantSearchResponse>> SearchUniversalApplicationTenantsAsync(UniversalApplicationTenantSearchRequest request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment("universal-application-tenant")
+          .withUriSegment("search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<UniversalApplicationTenantSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<UserCommentSearchResponse>> SearchUserCommentsAsync(UserCommentSearchRequest request) {
       return buildClient()
           .withUri("/api/user/comment/search")
@@ -3390,6 +3403,18 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<ThemeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<UniversalApplicationTenantResponse>> UpdateUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request) {
+      return buildClient()
+          .withUri("/api/application")
+          .withUriSegment(applicationId)
+          .withUriSegment("universal-application-tenant")
+          .withUriSegment(universalApplicationTenantId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<UniversalApplicationTenantResponse>();
     }
 
     /// <inheritdoc/>

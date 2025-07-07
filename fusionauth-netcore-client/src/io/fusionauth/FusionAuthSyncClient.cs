@@ -251,8 +251,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UniversalApplicationTenantsResponse> CreateUniversalApplicationTenants(Guid? applicationId, UniversalApplicationTenantsRequest request) {
-      return client.CreateUniversalApplicationTenantsAsync(applicationId, request).GetAwaiter().GetResult();
+    public ClientResponse<UniversalApplicationTenantResponse> CreateUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request) {
+      return client.CreateUniversalApplicationTenantAsync(applicationId, universalApplicationTenantId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -452,8 +452,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> DeleteUniversalApplicationTenant(Guid? applicationId, Guid? tenantId) {
-      return client.DeleteUniversalApplicationTenantAsync(applicationId, tenantId).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> DeleteUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId) {
+      return client.DeleteUniversalApplicationTenantAsync(applicationId, universalApplicationTenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1263,8 +1263,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UniversalApplicationTenantsResponse> RetrieveUniversalApplicationTenants(Guid? applicationId) {
-      return client.RetrieveUniversalApplicationTenantsAsync(applicationId).GetAwaiter().GetResult();
+    public ClientResponse<UniversalApplicationTenantResponse> RetrieveUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId) {
+      return client.RetrieveUniversalApplicationTenantAsync(applicationId, universalApplicationTenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1543,6 +1543,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<UniversalApplicationTenantSearchResponse> SearchUniversalApplicationTenants(UniversalApplicationTenantSearchRequest request) {
+      return client.SearchUniversalApplicationTenantsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<UserCommentSearchResponse> SearchUserComments(UserCommentSearchRequest request) {
       return client.SearchUserCommentsAsync(request).GetAwaiter().GetResult();
     }
@@ -1774,6 +1779,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<ThemeResponse> UpdateTheme(Guid? themeId, ThemeRequest request) {
       return client.UpdateThemeAsync(themeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<UniversalApplicationTenantResponse> UpdateUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request) {
+      return client.UpdateUniversalApplicationTenantAsync(applicationId, universalApplicationTenantId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
