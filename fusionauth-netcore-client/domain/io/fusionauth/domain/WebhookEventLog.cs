@@ -28,7 +28,7 @@ namespace io.fusionauth.domain
 
     public IDictionary<string, object> data;
 
-    public IDictionary<string, object> @event;
+    public EventRequest @event;
 
     public WebhookEventResult @eventResult;
 
