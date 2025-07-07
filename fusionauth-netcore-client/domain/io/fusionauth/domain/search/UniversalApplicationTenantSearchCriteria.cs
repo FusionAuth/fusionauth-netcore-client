@@ -18,29 +18,21 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.search
 {
 
   /**
-   * An object that represents the mapping between a Universal Application and a Tenant.
-   *
    * @author Lyle Schemmerling
    */
-  public class UniversalApplicationTenant {
+  public class UniversalApplicationTenantSearchCriteria: BaseSearchCriteria {
 
     public Guid? applicationId;
 
-    public IDictionary<string, object> data;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
     public Guid? tenantId;
 
-    public UniversalApplicationTenant with(Action<UniversalApplicationTenant> action) {
+    public string tenantName;
+
+    public UniversalApplicationTenantSearchCriteria with(Action<UniversalApplicationTenantSearchCriteria> action) {
       action(this);
       return this;
     }

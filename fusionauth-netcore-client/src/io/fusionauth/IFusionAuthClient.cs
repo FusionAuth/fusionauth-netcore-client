@@ -609,6 +609,21 @@ namespace io.fusionauth {
     Task<ClientResponse<ThemeResponse>> CreateThemeAsync(Guid? themeId, ThemeRequest request);
 
     /// <summary>
+    /// Adds the application tenants for universal applications.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application that the universal application tenant belongs to.</param>
+    /// <param name="universalApplicationTenantId"> (Optional) The Id of the universal application tenant.</param>
+    /// <param name="request"> The request object that contains all the information used to create the UniversalApplicationTenants.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<UniversalApplicationTenantResponse>> CreateUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request);
+
+    /// <summary>
     /// Creates a user. You can optionally specify an Id for the user, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -1139,6 +1154,34 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteThemeAsync(Guid? themeId);
+
+    /// <summary>
+    /// Deletes the universal application tenant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application that the UniversalApplicationTenant belongs to.</param>
+    /// <param name="universalApplicationTenantId"> The Id of the UniversalApplicationTenant to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId);
+
+    /// <summary>
+    /// Removes the specified tenants from the universal application tenants list.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the universal application that the tenants are linked to.</param>
+    /// <param name="tenantIds"> The Ids of the tenants to delete from the universal application tenants list.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteUniversalApplicationTenantsAsync(Guid? applicationId, List<string> tenantIds);
 
     /// <summary>
     /// Deletes the user for the given Id. This permanently deletes all information, metrics, reports and data associated
@@ -3369,6 +3412,20 @@ namespace io.fusionauth {
     Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusAsync(Guid? userId, Guid? applicationId, string twoFactorTrustId);
 
     /// <summary>
+    /// Retrieves the universal application tenant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the universal application that tenant is mapped to</param>
+    /// <param name="universalApplicationTenantId"> The Id of the universal application tenant.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<UniversalApplicationTenantResponse>> RetrieveUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId);
+
+    /// <summary>
     /// Retrieves the user for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -4132,6 +4189,19 @@ namespace io.fusionauth {
     Task<ClientResponse<ThemeSearchResponse>> SearchThemesAsync(ThemeSearchRequest request);
 
     /// <summary>
+    /// Searches universal application tenants for the specified applicationId and with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<UniversalApplicationTenantSearchResponse>> SearchUniversalApplicationTenantsAsync(UniversalApplicationTenantSearchRequest request);
+
+    /// <summary>
     /// Searches user comments with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -4770,6 +4840,21 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<ThemeResponse>> UpdateThemeAsync(Guid? themeId, ThemeRequest request);
+
+    /// <summary>
+    /// Adds the application tenants for universal applications.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> The Id of the application that the UniversalApplicationTenant belongs to.</param>
+    /// <param name="universalApplicationTenantId"> The Id of the universal application tenant.</param>
+    /// <param name="request"> The request object that contains all the information used to create the UniversalApplicationTenant.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<UniversalApplicationTenantResponse>> UpdateUniversalApplicationTenantAsync(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request);
 
     /// <summary>
     /// Updates the user with the given Id.
@@ -5526,6 +5611,20 @@ namespace io.fusionauth {
    ClientResponse<ThemeResponse> CreateTheme(Guid? themeId, ThemeRequest request);
 
    /// <summary>
+   /// Adds the application tenants for universal applications.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application that the universal application tenant belongs to.</param>
+   /// <param name="universalApplicationTenantId"> (Optional) The Id of the universal application tenant.</param>
+   /// <param name="request"> The request object that contains all the information used to create the UniversalApplicationTenants.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<UniversalApplicationTenantResponse> CreateUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request);
+
+   /// <summary>
    /// Creates a user. You can optionally specify an Id for the user, if not provided one will be generated.
    /// </summary>
    /// <param name="userId"> (Optional) The Id for the user. If not provided a secure random UUID will be generated.</param>
@@ -6017,6 +6116,32 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteTheme(Guid? themeId);
+
+   /// <summary>
+   /// Deletes the universal application tenant.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application that the UniversalApplicationTenant belongs to.</param>
+   /// <param name="universalApplicationTenantId"> The Id of the UniversalApplicationTenant to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId);
+
+   /// <summary>
+   /// Removes the specified tenants from the universal application tenants list.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the universal application that the tenants are linked to.</param>
+   /// <param name="tenantIds"> The Ids of the tenants to delete from the universal application tenants list.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteUniversalApplicationTenants(Guid? applicationId, List<string> tenantIds);
 
    /// <summary>
    /// Deletes the user for the given Id. This permanently deletes all information, metrics, reports and data associated
@@ -8087,6 +8212,19 @@ namespace io.fusionauth {
    ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatus(Guid? userId, Guid? applicationId, string twoFactorTrustId);
 
    /// <summary>
+   /// Retrieves the universal application tenant.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the universal application that tenant is mapped to</param>
+   /// <param name="universalApplicationTenantId"> The Id of the universal application tenant.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<UniversalApplicationTenantResponse> RetrieveUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId);
+
+   /// <summary>
    /// Retrieves the user for the given Id.
    /// </summary>
    /// <param name="userId"> The Id of the user.</param>
@@ -8795,6 +8933,18 @@ namespace io.fusionauth {
    ClientResponse<ThemeSearchResponse> SearchThemes(ThemeSearchRequest request);
 
    /// <summary>
+   /// Searches universal application tenants for the specified applicationId and with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<UniversalApplicationTenantSearchResponse> SearchUniversalApplicationTenants(UniversalApplicationTenantSearchRequest request);
+
+   /// <summary>
    /// Searches user comments with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -9387,6 +9537,20 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<ThemeResponse> UpdateTheme(Guid? themeId, ThemeRequest request);
+
+   /// <summary>
+   /// Adds the application tenants for universal applications.
+   /// </summary>
+   /// <param name="applicationId"> The Id of the application that the UniversalApplicationTenant belongs to.</param>
+   /// <param name="universalApplicationTenantId"> The Id of the universal application tenant.</param>
+   /// <param name="request"> The request object that contains all the information used to create the UniversalApplicationTenant.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<UniversalApplicationTenantResponse> UpdateUniversalApplicationTenant(Guid? applicationId, Guid? universalApplicationTenantId, UniversalApplicationTenantRequest request);
 
    /// <summary>
    /// Updates the user with the given Id.

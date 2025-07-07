@@ -15,32 +15,23 @@
  */
 
 
+using io.fusionauth.domain.search;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api
 {
 
   /**
-   * An object that represents the mapping between a Universal Application and a Tenant.
+   * The request object with the search criteria for Universal Application Tenants.
    *
    * @author Lyle Schemmerling
    */
-  public class UniversalApplicationTenant {
+  public class UniversalApplicationTenantSearchRequest {
 
-    public Guid? applicationId;
+    public UniversalApplicationTenantSearchCriteria search;
 
-    public IDictionary<string, object> data;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public Guid? tenantId;
-
-    public UniversalApplicationTenant with(Action<UniversalApplicationTenant> action) {
+    public UniversalApplicationTenantSearchRequest with(Action<UniversalApplicationTenantSearchRequest> action) {
       action(this);
       return this;
     }

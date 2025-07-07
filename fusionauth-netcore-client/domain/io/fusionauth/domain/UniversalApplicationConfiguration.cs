@@ -22,25 +22,15 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * An object that represents the mapping between a Universal Application and a Tenant.
-   *
    * @author Lyle Schemmerling
    */
-  public class UniversalApplicationTenant {
+  public class UniversalApplicationConfiguration {
 
-    public Guid? applicationId;
+    public bool? global;
 
-    public IDictionary<string, object> data;
+    public bool? universal;
 
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public Guid? tenantId;
-
-    public UniversalApplicationTenant with(Action<UniversalApplicationTenant> action) {
+    public UniversalApplicationConfiguration with(Action<UniversalApplicationConfiguration> action) {
       action(this);
       return this;
     }

@@ -15,32 +15,23 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api
 {
 
   /**
-   * An object that represents the mapping between a Universal Application and a Tenant.
+   * The request object for creating or updating a Universal Application Tenant.
    *
    * @author Lyle Schemmerling
    */
-  public class UniversalApplicationTenant {
+  public class UniversalApplicationTenantRequest {
 
-    public Guid? applicationId;
+    public UniversalApplicationTenant universalApplicationTenant;
 
-    public IDictionary<string, object> data;
-
-    public Guid? id;
-
-    public DateTimeOffset? insertInstant;
-
-    public DateTimeOffset? lastUpdateInstant;
-
-    public Guid? tenantId;
-
-    public UniversalApplicationTenant with(Action<UniversalApplicationTenant> action) {
+    public UniversalApplicationTenantRequest with(Action<UniversalApplicationTenantRequest> action) {
       action(this);
       return this;
     }
