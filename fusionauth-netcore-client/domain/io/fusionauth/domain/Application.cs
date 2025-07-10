@@ -79,7 +79,7 @@ namespace io.fusionauth.domain
 
     public Guid? themeId;
 
-    public UniversalConfiguration universalConfiguration;
+    public UniversalApplicationConfiguration universalConfiguration;
 
     public RegistrationUnverifiedOptions unverified;
 
