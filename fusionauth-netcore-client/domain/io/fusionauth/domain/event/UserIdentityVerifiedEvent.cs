@@ -22,17 +22,17 @@ namespace io.fusionauth.domain.@event
 {
 
   /**
-   * Models the identity verified event
+   * Models the user identity verified event
    *
    * @author Brady Wied
    */
-  public class IdentityVerifiedEvent: BaseUserEvent {
+  public class UserIdentityVerifiedEvent: BaseUserEvent {
 
     public string loginId;
 
     public string loginIdType;
 
-    public IdentityVerifiedEvent with(Action<IdentityVerifiedEvent> action) {
+    public UserIdentityVerifiedEvent with(Action<UserIdentityVerifiedEvent> action) {
       action(this);
       return this;
     }
