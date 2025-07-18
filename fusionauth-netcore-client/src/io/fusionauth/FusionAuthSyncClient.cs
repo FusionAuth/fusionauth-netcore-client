@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2023, FusionAuth, All Rights Reserved
+ * Copyright (c) 2020-2025, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -648,7 +648,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, APIKeyRequest request) {
+    public ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, IDictionary<string, object> request) {
       return client.PatchAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
     }
 
@@ -1627,8 +1627,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? apiKeyId, APIKeyRequest request) {
-      return client.UpdateAPIKeyAsync(apiKeyId, request).GetAwaiter().GetResult();
+    public ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? keyId, APIKeyRequest request) {
+      return client.UpdateAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2025, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1278,12 +1278,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
+    public Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/api-key")
           .withUriSegment(keyId)
           .withJSONBody(request)
-          .withMethod("Post")
+          .withMethod("Patch")
           .goAsync<APIKeyResponse>();
     }
 
@@ -3087,10 +3087,10 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? apiKeyId, APIKeyRequest request) {
+    public Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
       return buildClient()
           .withUri("/api/api-key")
-          .withUriSegment(apiKeyId)
+          .withUriSegment(keyId)
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<APIKeyResponse>();
