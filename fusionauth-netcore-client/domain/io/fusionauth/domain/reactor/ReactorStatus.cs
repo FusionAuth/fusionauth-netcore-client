@@ -58,7 +58,11 @@ namespace io.fusionauth.domain.reactor
 
     public ReactorFeatureStatus scimServer;
 
+    public ReactorFeatureStatus tenantManagerApplication;
+
     public ReactorFeatureStatus threatDetection;
+
+    public ReactorFeatureStatus universalApplication;
 
     public ReactorFeatureStatus webAuthn;
 
