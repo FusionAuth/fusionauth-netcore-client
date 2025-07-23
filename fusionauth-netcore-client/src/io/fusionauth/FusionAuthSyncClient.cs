@@ -86,6 +86,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to ChangePasswordUsingJWT, use that method instead.")]
     public ClientResponse<ChangePasswordResponse> ChangePasswordByJWT(string encodedJWT, ChangePasswordRequest request) {
       return client.ChangePasswordByJWTAsync(encodedJWT, request).GetAwaiter().GetResult();
     }
@@ -93,6 +94,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> ChangePasswordByIdentity(ChangePasswordRequest request) {
       return client.ChangePasswordByIdentityAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ChangePasswordResponse> ChangePasswordUsingJWT(string encodedJWT, ChangePasswordRequest request) {
+      return client.ChangePasswordUsingJWTAsync(encodedJWT, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
