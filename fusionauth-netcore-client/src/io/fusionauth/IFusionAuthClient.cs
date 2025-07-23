@@ -138,6 +138,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
+    [Obsolete("This method has been renamed to ChangePasswordUsingJWTAsync, use that method instead.")]
     Task<ClientResponse<ChangePasswordResponse>> ChangePasswordByJWTAsync(string encodedJWT, ChangePasswordRequest request);
 
     /// <summary>
@@ -154,6 +155,23 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> ChangePasswordByIdentityAsync(ChangePasswordRequest request);
+
+    /// <summary>
+    /// Changes a user's password using their access token (JWT) instead of the changePasswordId
+    /// A common use case for this method will be if you want to allow the user to change their own password.
+    /// 
+    /// Remember to send refreshToken in the request body if you want to get a new refresh token when login using the returned oneTimePassword.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <param name="request"> The change password request that contains all the information used to change the password.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ChangePasswordResponse>> ChangePasswordUsingJWTAsync(string encodedJWT, ChangePasswordRequest request);
 
     /// <summary>
     /// Check to see if the user must obtain a Trust Token Id in order to complete a change password request.
@@ -5087,6 +5105,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
+   [Obsolete("This method has been renamed to ChangePasswordUsingJWTAsync, use that method instead.")]
    ClientResponse<ChangePasswordResponse> ChangePasswordByJWT(string encodedJWT, ChangePasswordRequest request);
 
    /// <summary>
@@ -5102,6 +5121,22 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> ChangePasswordByIdentity(ChangePasswordRequest request);
+
+   /// <summary>
+   /// Changes a user's password using their access token (JWT) instead of the changePasswordId
+   /// A common use case for this method will be if you want to allow the user to change their own password.
+   /// 
+   /// Remember to send refreshToken in the request body if you want to get a new refresh token when login using the returned oneTimePassword.
+   /// </summary>
+   /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+   /// <param name="request"> The change password request that contains all the information used to change the password.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ChangePasswordResponse> ChangePasswordUsingJWT(string encodedJWT, ChangePasswordRequest request);
 
    /// <summary>
    /// Check to see if the user must obtain a Trust Token Id in order to complete a change password request.

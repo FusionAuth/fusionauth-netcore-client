@@ -153,6 +153,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to ChangePasswordUsingJWTAsync, use that method instead.")]
     public Task<ClientResponse<ChangePasswordResponse>> ChangePasswordByJWTAsync(string encodedJWT, ChangePasswordRequest request) {
       return buildAnonymousClient()
           .withUri("/api/user/change-password")
@@ -169,6 +170,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ChangePasswordResponse>> ChangePasswordUsingJWTAsync(string encodedJWT, ChangePasswordRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/user/change-password")
+          .withAuthorization("Bearer " + encodedJWT)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<ChangePasswordResponse>();
     }
 
     /// <inheritdoc/>
