@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2023, FusionAuth, All Rights Reserved
+ * Copyright (c) 2020-2025, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -139,6 +139,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
+    [Obsolete("This method has been renamed to ChangePasswordUsingJWTAsync, use that method instead.")]
     Task<ClientResponse<ChangePasswordResponse>> ChangePasswordByJWTAsync(string encodedJWT, ChangePasswordRequest request);
 
     /// <summary>
@@ -155,6 +156,23 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> ChangePasswordByIdentityAsync(ChangePasswordRequest request);
+
+    /// <summary>
+    /// Changes a user's password using their access token (JWT) instead of the changePasswordId
+    /// A common use case for this method will be if you want to allow the user to change their own password.
+    /// 
+    /// Remember to send refreshToken in the request body if you want to get a new refresh token when login using the returned oneTimePassword.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <param name="request"> The change password request that contains all the information used to change the password.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ChangePasswordResponse>> ChangePasswordUsingJWTAsync(string encodedJWT, ChangePasswordRequest request);
 
     /// <summary>
     /// Check to see if the user must obtain a Trust Token Id in order to complete a change password request.
@@ -759,7 +777,7 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeactivateUserActionAsync(Guid? userActionId);
 
     /// <summary>
-    /// Deactivates the users with the given ids.
+    /// Deactivates the users with the given Ids.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userIds"> The ids of the users to deactivate.</param>
@@ -773,7 +791,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserDeleteResponse>> DeactivateUsersAsync(List<string> userIds);
 
     /// <summary>
-    /// Deactivates the users with the given ids.
+    /// Deactivates the users with the given Ids.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userIds"> The ids of the users to deactivate.</param>
@@ -1226,8 +1244,8 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteUserWithRequestAsync(Guid? userId, UserDeleteSingleRequest request);
 
     /// <summary>
-    /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
-    /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+    /// Deletes the users with the given Ids, or users matching the provided JSON query or queryString.
+    /// The order of preference is Ids, query and then queryString, it is recommended to only provide one of the three for the request.
     /// 
     /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
     /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
@@ -1244,8 +1262,8 @@ namespace io.fusionauth {
     Task<ClientResponse<UserDeleteResponse>> DeleteUsersAsync(UserDeleteRequest request);
 
     /// <summary>
-    /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
-    /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+    /// Deletes the users with the given Ids, or users matching the provided JSON query or queryString.
+    /// The order of preference is Ids, query and then queryString, it is recommended to only provide one of the three for the request.
     /// 
     /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
     /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
@@ -1747,7 +1765,7 @@ namespace io.fusionauth {
     /// action.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="actionId"> The Id of the action to modify. This is technically the user action log id.</param>
+    /// <param name="actionId"> The Id of the action to modify. This is technically the user action log Id.</param>
     /// <param name="request"> The request that contains all the information about the modification.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -1771,18 +1789,18 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginResponse>> PasswordlessLoginAsync(PasswordlessLoginRequest request);
 
     /// <summary>
-    /// Updates an authentication API key by given id
+    /// Updates an API key with the given Id.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="keyId"> The Id of the authentication key. If not provided a secure random api key will be generated.</param>
-    /// <param name="request"> The request object that contains all the information needed to create the APIKey.</param>
+    /// <param name="keyId"> The Id of the API key. If not provided a secure random api key will be generated.</param>
+    /// <param name="request"> The request object that contains all the information needed to create the API key.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, APIKeyRequest request);
+    Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, IDictionary<string, object> request);
 
     /// <summary>
     /// Updates, via PATCH, the application with the given Id.
@@ -2293,7 +2311,7 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> ReindexAsync(ReindexRequest request);
 
     /// <summary>
-    /// Removes a user from the family with the given id.
+    /// Removes a user from the family with the given Id.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="familyId"> The Id of the family to remove the user from.</param>
@@ -2349,7 +2367,7 @@ namespace io.fusionauth {
     Task<ClientResponse<VerifyRegistrationResponse>> ResendRegistrationVerificationAsync(string email, Guid? applicationId);
 
     /// <summary>
-    /// Retrieves an authentication API key for the given id
+    /// Retrieves an authentication API key for the given Id.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="keyId"> The Id of the API key to retrieve.</param>
@@ -2419,7 +2437,7 @@ namespace io.fusionauth {
     /// Retrieves the application for the given Id or all the applications if the Id is null.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="applicationId"> (Optional) The application Id.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -2504,11 +2522,11 @@ namespace io.fusionauth {
     Task<ClientResponse<ConsentResponse>> RetrieveConsentsAsync();
 
     /// <summary>
-    /// Retrieves the daily active user report between the two instants. If you specify an application id, it will only
+    /// Retrieves the daily active user report between the two instants. If you specify an application Id, it will only
     /// return the daily active counts for that application.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="applicationId"> (Optional) The application Id.</param>
     /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
     /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
     /// <returns>
@@ -2520,7 +2538,7 @@ namespace io.fusionauth {
     Task<ClientResponse<DailyActiveUserReportResponse>> RetrieveDailyActiveReportAsync(Guid? applicationId, long? start, long? end);
 
     /// <summary>
-    /// Retrieves the email template for the given Id. If you don't specify the id, this will return all the email templates.
+    /// Retrieves the email template for the given Id. If you don't specify the Id, this will return all the email templates.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="emailTemplateId"> (Optional) The Id of the email template.</param>
@@ -2943,11 +2961,11 @@ namespace io.fusionauth {
     Task<ClientResponse<LambdaResponse>> RetrieveLambdasByTypeAsync(LambdaType type);
 
     /// <summary>
-    /// Retrieves the login report between the two instants. If you specify an application id, it will only return the
+    /// Retrieves the login report between the two instants. If you specify an application Id, it will only return the
     /// login counts for that application.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="applicationId"> (Optional) The application Id.</param>
     /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
     /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
     /// <returns>
@@ -2959,7 +2977,7 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginReportResponse>> RetrieveLoginReportAsync(Guid? applicationId, long? start, long? end);
 
     /// <summary>
-    /// Retrieves the message template for the given Id. If you don't specify the id, this will return all the message templates.
+    /// Retrieves the message template for the given Id. If you don't specify the Id, this will return all the message templates.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="messageTemplateId"> (Optional) The Id of the message template.</param>
@@ -3022,11 +3040,11 @@ namespace io.fusionauth {
     Task<ClientResponse<MessengerResponse>> RetrieveMessengersAsync();
 
     /// <summary>
-    /// Retrieves the monthly active user report between the two instants. If you specify an application id, it will only
+    /// Retrieves the monthly active user report between the two instants. If you specify an application Id, it will only
     /// return the monthly active counts for that application.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="applicationId"> (Optional) The application Id.</param>
     /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
     /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
     /// <returns>
@@ -3198,7 +3216,7 @@ namespace io.fusionauth {
     Task<ClientResponse<RefreshTokenResponse>> RetrieveRefreshTokensAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves the user registration for the user with the given Id and the given application id.
+    /// Retrieves the user registration for the user with the given Id and the given application Id.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="userId"> The Id of the user.</param>
@@ -3212,11 +3230,11 @@ namespace io.fusionauth {
     Task<ClientResponse<RegistrationResponse>> RetrieveRegistrationAsync(Guid? userId, Guid? applicationId);
 
     /// <summary>
-    /// Retrieves the registration report between the two instants. If you specify an application id, it will only return
+    /// Retrieves the registration report between the two instants. If you specify an application Id, it will only return
     /// the registration counts for that application.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="applicationId"> (Optional) The application Id.</param>
     /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
     /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
     /// <returns>
@@ -3396,7 +3414,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserResponse>> RetrieveUserAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves the user action for the given Id. If you pass in null for the id, this will return all the user
+    /// Retrieves the user action for the given Id. If you pass in null for the Id, this will return all the user
     /// actions.
     /// This is an asynchronous method.
     /// </summary>
@@ -3410,7 +3428,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserActionResponse>> RetrieveUserActionAsync(Guid? userActionId);
 
     /// <summary>
-    /// Retrieves the user action reason for the given Id. If you pass in null for the id, this will return all the user
+    /// Retrieves the user action reason for the given Id. If you pass in null for the Id, this will return all the user
     /// action reasons.
     /// This is an asynchronous method.
     /// </summary>
@@ -3534,8 +3552,8 @@ namespace io.fusionauth {
     /// This API is useful if you want to build your own login workflow to complete a device grant.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="client_id"> The client id.</param>
-    /// <param name="client_secret"> The client id.</param>
+    /// <param name="client_id"> The client Id.</param>
+    /// <param name="client_secret"> The client Id.</param>
     /// <param name="user_code"> The end-user verification code.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -3644,12 +3662,12 @@ namespace io.fusionauth {
     Task<ClientResponse<IdentityProviderLinkResponse>> RetrieveUserLinksByUserIdAsync(Guid? identityProviderId, Guid? userId);
 
     /// <summary>
-    /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
+    /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application Id, it will only return the
     /// login counts for that application.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
-    /// <param name="userId"> The userId id.</param>
+    /// <param name="applicationId"> (Optional) The application Id.</param>
+    /// <param name="userId"> The userId Id.</param>
     /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
     /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
     /// <returns>
@@ -3661,12 +3679,12 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportAsync(Guid? applicationId, Guid? userId, long? start, long? end);
 
     /// <summary>
-    /// Retrieves the login report between the two instants for a particular user by login Id. If you specify an application id, it will only return the
+    /// Retrieves the login report between the two instants for a particular user by login Id. If you specify an application Id, it will only return the
     /// login counts for that application.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="applicationId"> (Optional) The application id.</param>
-    /// <param name="loginId"> The userId id.</param>
+    /// <param name="applicationId"> (Optional) The application Id.</param>
+    /// <param name="loginId"> The userId Id.</param>
     /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
     /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
     /// <returns>
@@ -3762,7 +3780,7 @@ namespace io.fusionauth {
     Task<ClientResponse<WebAuthnCredentialResponse>> RetrieveWebAuthnCredentialsForUserAsync(Guid? userId);
 
     /// <summary>
-    /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
+    /// Retrieves the webhook for the given Id. If you pass in null for the Id, this will return all the webhooks.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="webhookId"> (Optional) The Id of the webhook.</param>
@@ -4009,7 +4027,7 @@ namespace io.fusionauth {
     Task<ClientResponse<EntitySearchResponse>> SearchEntitiesAsync(EntitySearchRequest request);
 
     /// <summary>
-    /// Retrieves the entities for the given ids. If any Id is invalid, it is ignored.
+    /// Retrieves the entities for the given Ids. If any Id is invalid, it is ignored.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="ids"> The entity ids to search for.</param>
@@ -4191,7 +4209,7 @@ namespace io.fusionauth {
     Task<ClientResponse<UserCommentSearchResponse>> SearchUserCommentsAsync(UserCommentSearchRequest request);
 
     /// <summary>
-    /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
+    /// Retrieves the users for the given Ids. If any Id is invalid, it is ignored.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="ids"> The user ids to search for.</param>
@@ -4205,10 +4223,10 @@ namespace io.fusionauth {
     Task<ClientResponse<SearchResponse>> SearchUsersAsync(List<string> ids);
 
     /// <summary>
-    /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
+    /// Retrieves the users for the given Ids. If any Id is invalid, it is ignored.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="ids"> The user ids to search for.</param>
+    /// <param name="ids"> The user Ids to search for.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -4273,7 +4291,7 @@ namespace io.fusionauth {
     Task<ClientResponse<WebhookSearchResponse>> SearchWebhooksAsync(WebhookSearchRequest request);
 
     /// <summary>
-    /// Send an email using an email template id. You can optionally provide <code>requestData</code> to access key value
+    /// Send an email using an email template Id. You can optionally provide <code>requestData</code> to access key value
     /// pairs in the email template.
     /// This is an asynchronous method.
     /// </summary>
@@ -4481,18 +4499,18 @@ namespace io.fusionauth {
     Task<ClientResponse<LoginResponse>> TwoFactorLoginAsync(TwoFactorLoginRequest request);
 
     /// <summary>
-    /// Updates an API key by given id
+    /// Updates an API key with the given Id.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="apiKeyId"> The Id of the API key to update.</param>
-    /// <param name="request"> The request object that contains all the information used to create the API Key.</param>
+    /// <param name="keyId"> The Id of the API key to update.</param>
+    /// <param name="request"> The request that contains all the new API key information.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? apiKeyId, APIKeyRequest request);
+    Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? keyId, APIKeyRequest request);
 
     /// <summary>
     /// Updates the application with the given Id.
@@ -4934,7 +4952,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="user_code"> The end-user verification code.</param>
-    /// <param name="client_id"> The client id.</param>
+    /// <param name="client_id"> The client Id.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5173,6 +5191,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
+   [Obsolete("This method has been renamed to ChangePasswordUsingJWTAsync, use that method instead.")]
    ClientResponse<ChangePasswordResponse> ChangePasswordByJWT(string encodedJWT, ChangePasswordRequest request);
 
    /// <summary>
@@ -5188,6 +5207,22 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> ChangePasswordByIdentity(ChangePasswordRequest request);
+
+   /// <summary>
+   /// Changes a user's password using their access token (JWT) instead of the changePasswordId
+   /// A common use case for this method will be if you want to allow the user to change their own password.
+   /// 
+   /// Remember to send refreshToken in the request body if you want to get a new refresh token when login using the returned oneTimePassword.
+   /// </summary>
+   /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+   /// <param name="request"> The change password request that contains all the information used to change the password.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ChangePasswordResponse> ChangePasswordUsingJWT(string encodedJWT, ChangePasswordRequest request);
 
    /// <summary>
    /// Check to see if the user must obtain a Trust Token Id in order to complete a change password request.
@@ -5750,7 +5785,7 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeactivateUserAction(Guid? userActionId);
 
    /// <summary>
-   /// Deactivates the users with the given ids.
+   /// Deactivates the users with the given Ids.
    /// </summary>
    /// <param name="userIds"> The ids of the users to deactivate.</param>
    /// <returns>
@@ -5763,7 +5798,7 @@ namespace io.fusionauth {
    ClientResponse<UserDeleteResponse> DeactivateUsers(List<string> userIds);
 
    /// <summary>
-   /// Deactivates the users with the given ids.
+   /// Deactivates the users with the given Ids.
    /// </summary>
    /// <param name="userIds"> The ids of the users to deactivate.</param>
    /// <returns>
@@ -6183,8 +6218,8 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeleteUserWithRequest(Guid? userId, UserDeleteSingleRequest request);
 
    /// <summary>
-   /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
-   /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+   /// Deletes the users with the given Ids, or users matching the provided JSON query or queryString.
+   /// The order of preference is Ids, query and then queryString, it is recommended to only provide one of the three for the request.
    /// 
    /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
    /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
@@ -6200,8 +6235,8 @@ namespace io.fusionauth {
    ClientResponse<UserDeleteResponse> DeleteUsers(UserDeleteRequest request);
 
    /// <summary>
-   /// Deletes the users with the given ids, or users matching the provided JSON query or queryString.
-   /// The order of preference is ids, query and then queryString, it is recommended to only provide one of the three for the request.
+   /// Deletes the users with the given Ids, or users matching the provided JSON query or queryString.
+   /// The order of preference is Ids, query and then queryString, it is recommended to only provide one of the three for the request.
    /// 
    /// This method can be used to deactivate or permanently delete (hard-delete) users based upon the hardDelete boolean in the request body.
    /// Using the dryRun parameter you may also request the result of the action without actually deleting or deactivating any users.
@@ -6670,7 +6705,7 @@ namespace io.fusionauth {
    /// Modifies a temporal user action by changing the expiration of the action and optionally adding a comment to the
    /// action.
    /// </summary>
-   /// <param name="actionId"> The Id of the action to modify. This is technically the user action log id.</param>
+   /// <param name="actionId"> The Id of the action to modify. This is technically the user action log Id.</param>
    /// <param name="request"> The request that contains all the information about the modification.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -6693,17 +6728,17 @@ namespace io.fusionauth {
    ClientResponse<LoginResponse> PasswordlessLogin(PasswordlessLoginRequest request);
 
    /// <summary>
-   /// Updates an authentication API key by given id
+   /// Updates an API key with the given Id.
    /// </summary>
-   /// <param name="keyId"> The Id of the authentication key. If not provided a secure random api key will be generated.</param>
-   /// <param name="request"> The request object that contains all the information needed to create the APIKey.</param>
+   /// <param name="keyId"> The Id of the API key. If not provided a secure random api key will be generated.</param>
+   /// <param name="request"> The request object that contains all the information needed to create the API key.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, APIKeyRequest request);
+   ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, IDictionary<string, object> request);
 
    /// <summary>
    /// Updates, via PATCH, the application with the given Id.
@@ -7178,7 +7213,7 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> Reindex(ReindexRequest request);
 
    /// <summary>
-   /// Removes a user from the family with the given id.
+   /// Removes a user from the family with the given Id.
    /// </summary>
    /// <param name="familyId"> The Id of the family to remove the user from.</param>
    /// <param name="userId"> The Id of the user to remove from the family.</param>
@@ -7230,7 +7265,7 @@ namespace io.fusionauth {
    ClientResponse<VerifyRegistrationResponse> ResendRegistrationVerification(string email, Guid? applicationId);
 
    /// <summary>
-   /// Retrieves an authentication API key for the given id
+   /// Retrieves an authentication API key for the given Id.
    /// </summary>
    /// <param name="keyId"> The Id of the API key to retrieve.</param>
    /// <returns>
@@ -7294,7 +7329,7 @@ namespace io.fusionauth {
    /// <summary>
    /// Retrieves the application for the given Id or all the applications if the Id is null.
    /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
+   /// <param name="applicationId"> (Optional) The application Id.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -7373,10 +7408,10 @@ namespace io.fusionauth {
    ClientResponse<ConsentResponse> RetrieveConsents();
 
    /// <summary>
-   /// Retrieves the daily active user report between the two instants. If you specify an application id, it will only
+   /// Retrieves the daily active user report between the two instants. If you specify an application Id, it will only
    /// return the daily active counts for that application.
    /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
+   /// <param name="applicationId"> (Optional) The application Id.</param>
    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
    /// <returns>
@@ -7388,7 +7423,7 @@ namespace io.fusionauth {
    ClientResponse<DailyActiveUserReportResponse> RetrieveDailyActiveReport(Guid? applicationId, long? start, long? end);
 
    /// <summary>
-   /// Retrieves the email template for the given Id. If you don't specify the id, this will return all the email templates.
+   /// Retrieves the email template for the given Id. If you don't specify the Id, this will return all the email templates.
    /// </summary>
    /// <param name="emailTemplateId"> (Optional) The Id of the email template.</param>
    /// <returns>
@@ -7778,10 +7813,10 @@ namespace io.fusionauth {
    ClientResponse<LambdaResponse> RetrieveLambdasByType(LambdaType type);
 
    /// <summary>
-   /// Retrieves the login report between the two instants. If you specify an application id, it will only return the
+   /// Retrieves the login report between the two instants. If you specify an application Id, it will only return the
    /// login counts for that application.
    /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
+   /// <param name="applicationId"> (Optional) The application Id.</param>
    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
    /// <returns>
@@ -7793,7 +7828,7 @@ namespace io.fusionauth {
    ClientResponse<LoginReportResponse> RetrieveLoginReport(Guid? applicationId, long? start, long? end);
 
    /// <summary>
-   /// Retrieves the message template for the given Id. If you don't specify the id, this will return all the message templates.
+   /// Retrieves the message template for the given Id. If you don't specify the Id, this will return all the message templates.
    /// </summary>
    /// <param name="messageTemplateId"> (Optional) The Id of the message template.</param>
    /// <returns>
@@ -7851,10 +7886,10 @@ namespace io.fusionauth {
    ClientResponse<MessengerResponse> RetrieveMessengers();
 
    /// <summary>
-   /// Retrieves the monthly active user report between the two instants. If you specify an application id, it will only
+   /// Retrieves the monthly active user report between the two instants. If you specify an application Id, it will only
    /// return the monthly active counts for that application.
    /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
+   /// <param name="applicationId"> (Optional) The application Id.</param>
    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
    /// <returns>
@@ -8014,7 +8049,7 @@ namespace io.fusionauth {
    ClientResponse<RefreshTokenResponse> RetrieveRefreshTokens(Guid? userId);
 
    /// <summary>
-   /// Retrieves the user registration for the user with the given Id and the given application id.
+   /// Retrieves the user registration for the user with the given Id and the given application Id.
    /// </summary>
    /// <param name="userId"> The Id of the user.</param>
    /// <param name="applicationId"> The Id of the application.</param>
@@ -8027,10 +8062,10 @@ namespace io.fusionauth {
    ClientResponse<RegistrationResponse> RetrieveRegistration(Guid? userId, Guid? applicationId);
 
    /// <summary>
-   /// Retrieves the registration report between the two instants. If you specify an application id, it will only return
+   /// Retrieves the registration report between the two instants. If you specify an application Id, it will only return
    /// the registration counts for that application.
    /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
+   /// <param name="applicationId"> (Optional) The application Id.</param>
    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
    /// <returns>
@@ -8197,7 +8232,7 @@ namespace io.fusionauth {
    ClientResponse<UserResponse> RetrieveUser(Guid? userId);
 
    /// <summary>
-   /// Retrieves the user action for the given Id. If you pass in null for the id, this will return all the user
+   /// Retrieves the user action for the given Id. If you pass in null for the Id, this will return all the user
    /// actions.
    /// </summary>
    /// <param name="userActionId"> (Optional) The Id of the user action.</param>
@@ -8210,7 +8245,7 @@ namespace io.fusionauth {
    ClientResponse<UserActionResponse> RetrieveUserAction(Guid? userActionId);
 
    /// <summary>
-   /// Retrieves the user action reason for the given Id. If you pass in null for the id, this will return all the user
+   /// Retrieves the user action reason for the given Id. If you pass in null for the Id, this will return all the user
    /// action reasons.
    /// </summary>
    /// <param name="userActionReasonId"> (Optional) The Id of the user action reason.</param>
@@ -8324,8 +8359,8 @@ namespace io.fusionauth {
    /// 
    /// This API is useful if you want to build your own login workflow to complete a device grant.
    /// </summary>
-   /// <param name="client_id"> The client id.</param>
-   /// <param name="client_secret"> The client id.</param>
+   /// <param name="client_id"> The client Id.</param>
+   /// <param name="client_secret"> The client Id.</param>
    /// <param name="user_code"> The end-user verification code.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
@@ -8427,11 +8462,11 @@ namespace io.fusionauth {
    ClientResponse<IdentityProviderLinkResponse> RetrieveUserLinksByUserId(Guid? identityProviderId, Guid? userId);
 
    /// <summary>
-   /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application id, it will only return the
+   /// Retrieves the login report between the two instants for a particular user by Id. If you specify an application Id, it will only return the
    /// login counts for that application.
    /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
-   /// <param name="userId"> The userId id.</param>
+   /// <param name="applicationId"> (Optional) The application Id.</param>
+   /// <param name="userId"> The userId Id.</param>
    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
    /// <returns>
@@ -8443,11 +8478,11 @@ namespace io.fusionauth {
    ClientResponse<LoginReportResponse> RetrieveUserLoginReport(Guid? applicationId, Guid? userId, long? start, long? end);
 
    /// <summary>
-   /// Retrieves the login report between the two instants for a particular user by login Id. If you specify an application id, it will only return the
+   /// Retrieves the login report between the two instants for a particular user by login Id. If you specify an application Id, it will only return the
    /// login counts for that application.
    /// </summary>
-   /// <param name="applicationId"> (Optional) The application id.</param>
-   /// <param name="loginId"> The userId id.</param>
+   /// <param name="applicationId"> (Optional) The application Id.</param>
+   /// <param name="loginId"> The userId Id.</param>
    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
    /// <returns>
@@ -8537,7 +8572,7 @@ namespace io.fusionauth {
    ClientResponse<WebAuthnCredentialResponse> RetrieveWebAuthnCredentialsForUser(Guid? userId);
 
    /// <summary>
-   /// Retrieves the webhook for the given Id. If you pass in null for the id, this will return all the webhooks.
+   /// Retrieves the webhook for the given Id. If you pass in null for the Id, this will return all the webhooks.
    /// </summary>
    /// <param name="webhookId"> (Optional) The Id of the webhook.</param>
    /// <returns>
@@ -8767,7 +8802,7 @@ namespace io.fusionauth {
    ClientResponse<EntitySearchResponse> SearchEntities(EntitySearchRequest request);
 
    /// <summary>
-   /// Retrieves the entities for the given ids. If any Id is invalid, it is ignored.
+   /// Retrieves the entities for the given Ids. If any Id is invalid, it is ignored.
    /// </summary>
    /// <param name="ids"> The entity ids to search for.</param>
    /// <returns>
@@ -8935,7 +8970,7 @@ namespace io.fusionauth {
    ClientResponse<UserCommentSearchResponse> SearchUserComments(UserCommentSearchRequest request);
 
    /// <summary>
-   /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
+   /// Retrieves the users for the given Ids. If any Id is invalid, it is ignored.
    /// </summary>
    /// <param name="ids"> The user ids to search for.</param>
    /// <returns>
@@ -8948,9 +8983,9 @@ namespace io.fusionauth {
    ClientResponse<SearchResponse> SearchUsers(List<string> ids);
 
    /// <summary>
-   /// Retrieves the users for the given ids. If any Id is invalid, it is ignored.
+   /// Retrieves the users for the given Ids. If any Id is invalid, it is ignored.
    /// </summary>
-   /// <param name="ids"> The user ids to search for.</param>
+   /// <param name="ids"> The user Ids to search for.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -9011,7 +9046,7 @@ namespace io.fusionauth {
    ClientResponse<WebhookSearchResponse> SearchWebhooks(WebhookSearchRequest request);
 
    /// <summary>
-   /// Send an email using an email template id. You can optionally provide <code>requestData</code> to access key value
+   /// Send an email using an email template Id. You can optionally provide <code>requestData</code> to access key value
    /// pairs in the email template.
    /// </summary>
    /// <param name="emailTemplateId"> The Id for the template.</param>
@@ -9204,17 +9239,17 @@ namespace io.fusionauth {
    ClientResponse<LoginResponse> TwoFactorLogin(TwoFactorLoginRequest request);
 
    /// <summary>
-   /// Updates an API key by given id
+   /// Updates an API key with the given Id.
    /// </summary>
-   /// <param name="apiKeyId"> The Id of the API key to update.</param>
-   /// <param name="request"> The request object that contains all the information used to create the API Key.</param>
+   /// <param name="keyId"> The Id of the API key to update.</param>
+   /// <param name="request"> The request that contains all the new API key information.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? apiKeyId, APIKeyRequest request);
+   ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? keyId, APIKeyRequest request);
 
    /// <summary>
    /// Updates the application with the given Id.
@@ -9624,7 +9659,7 @@ namespace io.fusionauth {
    /// If you build your own activation form you should validate the user provided code prior to beginning the Authorization grant.
    /// </summary>
    /// <param name="user_code"> The end-user verification code.</param>
-   /// <param name="client_id"> The client id.</param>
+   /// <param name="client_id"> The client Id.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be

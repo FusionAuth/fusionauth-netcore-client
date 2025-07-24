@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2023, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2025, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -154,6 +154,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to ChangePasswordUsingJWTAsync, use that method instead.")]
     public Task<ClientResponse<ChangePasswordResponse>> ChangePasswordByJWTAsync(string encodedJWT, ChangePasswordRequest request) {
       return buildAnonymousClient()
           .withUri("/api/user/change-password")
@@ -170,6 +171,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<ChangePasswordResponse>> ChangePasswordUsingJWTAsync(string encodedJWT, ChangePasswordRequest request) {
+      return buildAnonymousClient()
+          .withUri("/api/user/change-password")
+          .withAuthorization("Bearer " + encodedJWT)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<ChangePasswordResponse>();
     }
 
     /// <inheritdoc/>
@@ -1288,12 +1299,12 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
+    public Task<ClientResponse<APIKeyResponse>> PatchAPIKeyAsync(Guid? keyId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/api-key")
           .withUriSegment(keyId)
           .withJSONBody(request)
-          .withMethod("Post")
+          .withMethod("Patch")
           .goAsync<APIKeyResponse>();
     }
 
@@ -3138,10 +3149,10 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? apiKeyId, APIKeyRequest request) {
+    public Task<ClientResponse<APIKeyResponse>> UpdateAPIKeyAsync(Guid? keyId, APIKeyRequest request) {
       return buildClient()
           .withUri("/api/api-key")
-          .withUriSegment(apiKeyId)
+          .withUriSegment(keyId)
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<APIKeyResponse>();

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2023, FusionAuth, All Rights Reserved
+ * Copyright (c) 2020-2025, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,6 +87,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    [Obsolete("This method has been renamed to ChangePasswordUsingJWT, use that method instead.")]
     public ClientResponse<ChangePasswordResponse> ChangePasswordByJWT(string encodedJWT, ChangePasswordRequest request) {
       return client.ChangePasswordByJWTAsync(encodedJWT, request).GetAwaiter().GetResult();
     }
@@ -94,6 +95,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> ChangePasswordByIdentity(ChangePasswordRequest request) {
       return client.ChangePasswordByIdentityAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<ChangePasswordResponse> ChangePasswordUsingJWT(string encodedJWT, ChangePasswordRequest request) {
+      return client.ChangePasswordUsingJWTAsync(encodedJWT, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -654,7 +660,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, APIKeyRequest request) {
+    public ClientResponse<APIKeyResponse> PatchAPIKey(Guid? keyId, IDictionary<string, object> request) {
       return client.PatchAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
     }
 
@@ -1653,8 +1659,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? apiKeyId, APIKeyRequest request) {
-      return client.UpdateAPIKeyAsync(apiKeyId, request).GetAwaiter().GetResult();
+    public ClientResponse<APIKeyResponse> UpdateAPIKey(Guid? keyId, APIKeyRequest request) {
+      return client.UpdateAPIKeyAsync(keyId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
