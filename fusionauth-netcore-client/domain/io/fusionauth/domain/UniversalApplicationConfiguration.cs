@@ -18,27 +18,17 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search
+namespace io.fusionauth.domain
 {
 
   /**
-   * @author Brian Pontarelli
+   * @author Lyle Schemmerling
    */
-  public class BaseElasticSearchCriteria: BaseSearchCriteria {
+  public class UniversalApplicationConfiguration {
 
-    public bool? accurateTotal;
+    public bool? universal;
 
-    public List<Guid> ids;
-
-    public string nextResults;
-
-    public string query;
-
-    public string queryString;
-
-    public List<SortField> sortFields;
-
-    public BaseElasticSearchCriteria with(Action<BaseElasticSearchCriteria> action) {
+    public UniversalApplicationConfiguration with(Action<UniversalApplicationConfiguration> action) {
       action(this);
       return this;
     }
