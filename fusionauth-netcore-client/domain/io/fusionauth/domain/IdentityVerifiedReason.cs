@@ -34,6 +34,7 @@ namespace io.fusionauth.domain
         Pending, 
         Completed, 
         Disabled, 
-        Administrative
+        Administrative, 
+        Import
   }
 }
