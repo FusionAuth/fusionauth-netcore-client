@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -32,7 +33,7 @@ namespace io.fusionauth.domain.api.passwordless
 
     public List<string> loginIdTypes;
 
-    public string loginStrategy;
+    public PasswordlessStrategy loginStrategy;
 
     public IDictionary<string, object> state;
 

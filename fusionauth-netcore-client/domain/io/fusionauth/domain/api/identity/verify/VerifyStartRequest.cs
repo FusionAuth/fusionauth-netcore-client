@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -34,7 +35,7 @@ namespace io.fusionauth.domain.api.identity.verify
 
     public IDictionary<string, object> state;
 
-    public string verificationStrategy;
+    public VerificationStrategy verificationStrategy;
 
     public VerifyStartRequest with(Action<VerifyStartRequest> action) {
       action(this);
