@@ -81,6 +81,8 @@ namespace io.fusionauth.domain
 
     public PasswordValidationRules passwordValidationRules;
 
+    public TenantPhoneConfiguration phoneConfiguration;
+
     public TenantRateLimitConfiguration rateLimitConfiguration;
 
     public TenantRegistrationConfiguration registrationConfiguration;

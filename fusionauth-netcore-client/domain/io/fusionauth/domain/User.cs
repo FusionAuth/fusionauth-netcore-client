@@ -22,7 +22,7 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * The global view of a User. This object contains all global information about the user including birthdate, registration information
+   * The public, global view of a User. This object contains all global information about the user including birthdate, registration information
    * preferred languages, global attributes, etc.
    *
    * @author Seth Musselman
@@ -60,6 +60,8 @@ namespace io.fusionauth.domain
     public string mobilePhone;
 
     public string parentEmail;
+
+    public string phoneNumber;
 
     public Guid? tenantId;
 

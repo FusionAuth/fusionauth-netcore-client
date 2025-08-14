@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
 using io.fusionauth.domain.api.email;
+using io.fusionauth.domain.api.identity.verify;
 using io.fusionauth.domain.api.identityProvider;
 using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
@@ -231,6 +232,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<UserCommentResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<VerifyCompleteResponse>> CompleteVerifyIdentityAsync(VerifyCompleteRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify/complete")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<VerifyCompleteResponse>();
     }
 
     /// <inheritdoc/>
@@ -2469,6 +2479,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdWithLoginIdTypesAsync(string loginId, List<string> loginIdTypes) {
+      return buildClient()
+          .withUri("/api/user")
+          .withParameter("loginId", loginId)
+          .withParameter("loginIdTypes", loginIdTypes)
+          .withMethod("Get")
+          .goAsync<UserResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<UserResponse>> RetrieveUserByUsernameAsync(string username) {
       return buildClient()
           .withUri("/api/user")
@@ -2589,6 +2609,19 @@ namespace io.fusionauth {
           .withParameter("loginId", loginId)
           .withParameter("start", start)
           .withParameter("end", end)
+          .withMethod("Get")
+          .goAsync<LoginReportResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAndLoginIdTypesAsync(Guid? applicationId, string loginId, long? start, long? end, List<string> loginIdTypes) {
+      return buildClient()
+          .withUri("/api/report/login")
+          .withParameter("applicationId", applicationId)
+          .withParameter("loginId", loginId)
+          .withParameter("start", start)
+          .withParameter("end", end)
+          .withParameter("loginIdTypes", loginIdTypes)
           .withMethod("Get")
           .goAsync<LoginReportResponse>();
     }
@@ -3044,6 +3077,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify/send")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IdentityProviderStartLoginResponse>> StartIdentityProviderLoginAsync(IdentityProviderStartLoginRequest request) {
       return buildClient()
           .withUri("/api/identity-provider/start")
@@ -3068,6 +3110,15 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<TwoFactorStartResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<VerifyStartResponse>> StartVerifyIdentityAsync(VerifyStartRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify/start")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<VerifyStartResponse>();
     }
 
     /// <inheritdoc/>
@@ -3472,6 +3523,15 @@ namespace io.fusionauth {
     public Task<ClientResponse<RESTVoid>> VerifyEmailAddressByUserIdAsync(VerifyEmailRequest request) {
       return buildClient()
           .withUri("/api/user/verify-email")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> VerifyIdentityAsync(VerifyRequest request) {
+      return buildClient()
+          .withUri("/api/identity/verify")
           .withJSONBody(request)
           .withMethod("Post")
           .goAsync<RESTVoid>();
