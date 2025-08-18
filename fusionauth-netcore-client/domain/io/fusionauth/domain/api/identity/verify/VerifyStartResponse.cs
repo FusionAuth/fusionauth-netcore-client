@@ -15,29 +15,22 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.passwordless
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * @author Daniel DeGroff
+   * @author Brady Wied
    */
-  public class PasswordlessStartRequest {
+  public class VerifyStartResponse {
 
-    public Guid? applicationId;
+    public string oneTimeCode;
 
-    public string loginId;
+    public string verificationId;
 
-    public List<string> loginIdTypes;
-
-    public PasswordlessStrategy loginStrategy;
-
-    public IDictionary<string, object> state;
-
-    public PasswordlessStartRequest with(Action<PasswordlessStartRequest> action) {
+    public VerifyStartResponse with(Action<VerifyStartResponse> action) {
       action(this);
       return this;
     }

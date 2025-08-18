@@ -15,29 +15,24 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.passwordless
+namespace io.fusionauth.domain.@event
 {
 
   /**
-   * @author Daniel DeGroff
+   * Models the user identity verified event
+   *
+   * @author Brady Wied
    */
-  public class PasswordlessStartRequest {
-
-    public Guid? applicationId;
+  public class UserIdentityVerifiedEvent: BaseUserEvent {
 
     public string loginId;
 
-    public List<string> loginIdTypes;
+    public string loginIdType;
 
-    public PasswordlessStrategy loginStrategy;
-
-    public IDictionary<string, object> state;
-
-    public PasswordlessStartRequest with(Action<PasswordlessStartRequest> action) {
+    public UserIdentityVerifiedEvent with(Action<UserIdentityVerifiedEvent> action) {
       action(this);
       return this;
     }

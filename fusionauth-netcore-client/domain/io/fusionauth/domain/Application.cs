@@ -63,6 +63,8 @@ namespace io.fusionauth.domain
 
     public PasswordlessConfiguration passwordlessConfiguration;
 
+    public ApplicationPhoneConfiguration phoneConfiguration;
+
     public RegistrationConfiguration registrationConfiguration;
 
     public ApplicationRegistrationDeletePolicy registrationDeletePolicy;

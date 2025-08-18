@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.api.identityProvider
 
     public string loginId;
 
+    public List<string> loginIdTypes;
+
     public IDictionary<string, object> state;
 
     public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {

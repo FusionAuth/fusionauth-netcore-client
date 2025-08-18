@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.api.jwt
 
     public string refreshToken;
 
+    public int? timeToLiveInSeconds;
+
     public string token;
 
     public RefreshRequest with(Action<RefreshRequest> action) {

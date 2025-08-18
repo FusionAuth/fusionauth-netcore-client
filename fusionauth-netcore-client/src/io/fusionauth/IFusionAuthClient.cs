@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
 using io.fusionauth.domain.api.email;
+using io.fusionauth.domain.api.identity.verify;
 using io.fusionauth.domain.api.identityProvider;
 using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
@@ -253,6 +254,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<UserCommentResponse>> CommentOnUserAsync(UserCommentRequest request);
+
+    /// <summary>
+    /// Completes verification of an identity using verification codes from the Verify Start API.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify complete request that contains all the information used to verify the identity.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<VerifyCompleteResponse>> CompleteVerifyIdentityAsync(VerifyCompleteRequest request);
 
     /// <summary>
     /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -3492,6 +3506,20 @@ namespace io.fusionauth {
     Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdAsync(string loginId);
 
     /// <summary>
+    /// Retrieves the user for the loginId, using specific loginIdTypes.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="loginId"> The email or username of the user.</param>
+    /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<UserResponse>> RetrieveUserByLoginIdWithLoginIdTypesAsync(string loginId, List<string> loginIdTypes);
+
+    /// <summary>
     /// Retrieves the user for the given username.
     /// This is an asynchronous method.
     /// </summary>
@@ -3666,6 +3694,24 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAsync(Guid? applicationId, string loginId, long? start, long? end);
+
+    /// <summary>
+    /// Retrieves the login report between the two instants for a particular user by login Id, using specific loginIdTypes. If you specify an application id, it will only return the
+    /// login counts for that application.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> (Optional) The application id.</param>
+    /// <param name="loginId"> The userId id.</param>
+    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+    /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<LoginReportResponse>> RetrieveUserLoginReportByLoginIdAndLoginIdTypesAsync(Guid? applicationId, string loginId, long? start, long? end, List<string> loginIdTypes);
 
     /// <summary>
     /// Retrieves the last number of login records for a user.
@@ -4341,6 +4387,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> SendTwoFactorCodeForLoginUsingMethodAsync(string twoFactorId, TwoFactorSendRequest request);
 
     /// <summary>
+    /// Send a verification code using the appropriate transport for the identity type being verified.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify send request that contains all the information used send the code.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> SendVerifyIdentityAsync(VerifySendRequest request);
+
+    /// <summary>
     /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
     /// This is an asynchronous method.
     /// </summary>
@@ -4385,6 +4444,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<TwoFactorStartResponse>> StartTwoFactorLoginAsync(TwoFactorStartRequest request);
+
+    /// <summary>
+    /// Start a verification of an identity by generating a code. This code can be sent to the User using the Verify Send API
+    /// Verification Code API or using a mechanism outside of FusionAuth. The verification is completed by using the Verify Complete API with this code.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify start request that contains all the information used to begin the request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<VerifyStartResponse>> StartVerifyIdentityAsync(VerifyStartRequest request);
 
     /// <summary>
     /// Start a WebAuthn authentication ceremony by generating a new challenge for the user
@@ -4973,6 +5046,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> VerifyEmailAddressByUserIdAsync(VerifyEmailRequest request);
 
     /// <summary>
+    /// Administratively verify a user identity.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The identity verify request that contains information to verify the identity.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> VerifyIdentityAsync(VerifyRequest request);
+
+    /// <summary>
     /// Confirms an application registration. The Id given is usually from an email sent to the user.
     /// This is an asynchronous method.
     /// </summary>
@@ -5213,6 +5299,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<UserCommentResponse> CommentOnUser(UserCommentRequest request);
+
+   /// <summary>
+   /// Completes verification of an identity using verification codes from the Verify Start API.
+   /// </summary>
+   /// <param name="request"> The identity verify complete request that contains all the information used to verify the identity.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<VerifyCompleteResponse> CompleteVerifyIdentity(VerifyCompleteRequest request);
 
    /// <summary>
    /// Complete a WebAuthn authentication ceremony by validating the signature against the previously generated challenge without logging the user in
@@ -8219,6 +8317,19 @@ namespace io.fusionauth {
    ClientResponse<UserResponse> RetrieveUserByLoginId(string loginId);
 
    /// <summary>
+   /// Retrieves the user for the loginId, using specific loginIdTypes.
+   /// </summary>
+   /// <param name="loginId"> The email or username of the user.</param>
+   /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<UserResponse> RetrieveUserByLoginIdWithLoginIdTypes(string loginId, List<string> loginIdTypes);
+
+   /// <summary>
    /// Retrieves the user for the given username.
    /// </summary>
    /// <param name="username"> The username of the user.</param>
@@ -8381,6 +8492,23 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long? start, long? end);
+
+   /// <summary>
+   /// Retrieves the login report between the two instants for a particular user by login Id, using specific loginIdTypes. If you specify an application id, it will only return the
+   /// login counts for that application.
+   /// </summary>
+   /// <param name="applicationId"> (Optional) The application id.</param>
+   /// <param name="loginId"> The userId id.</param>
+   /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
+   /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
+   /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginIdAndLoginIdTypes(Guid? applicationId, string loginId, long? start, long? end, List<string> loginIdTypes);
 
    /// <summary>
    /// Retrieves the last number of login records for a user.
@@ -9007,6 +9135,18 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> SendTwoFactorCodeForLoginUsingMethod(string twoFactorId, TwoFactorSendRequest request);
 
    /// <summary>
+   /// Send a verification code using the appropriate transport for the identity type being verified.
+   /// </summary>
+   /// <param name="request"> The identity verify send request that contains all the information used send the code.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendRequest request);
+
+   /// <summary>
    /// Begins a login request for a 3rd party login that requires user interaction such as HYPR.
    /// </summary>
    /// <param name="request"> The third-party login request that contains information from the third-party login
@@ -9048,6 +9188,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request);
+
+   /// <summary>
+   /// Start a verification of an identity by generating a code. This code can be sent to the User using the Verify Send API
+   /// Verification Code API or using a mechanism outside of FusionAuth. The verification is completed by using the Verify Complete API with this code.
+   /// </summary>
+   /// <param name="request"> The identity verify start request that contains all the information used to begin the request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<VerifyStartResponse> StartVerifyIdentity(VerifyStartRequest request);
 
    /// <summary>
    /// Start a WebAuthn authentication ceremony by generating a new challenge for the user
@@ -9593,6 +9746,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> VerifyEmailAddressByUserId(VerifyEmailRequest request);
+
+   /// <summary>
+   /// Administratively verify a user identity.
+   /// </summary>
+   /// <param name="request"> The identity verify request that contains information to verify the identity.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> VerifyIdentity(VerifyRequest request);
 
    /// <summary>
    /// Confirms an application registration. The Id given is usually from an email sent to the user.

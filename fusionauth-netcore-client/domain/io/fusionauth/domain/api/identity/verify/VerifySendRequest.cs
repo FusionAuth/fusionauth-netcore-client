@@ -15,29 +15,20 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.passwordless
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * @author Daniel DeGroff
+   * Verify Send API request object.
    */
-  public class PasswordlessStartRequest {
+  public class VerifySendRequest {
 
-    public Guid? applicationId;
+    public string verificationId;
 
-    public string loginId;
-
-    public List<string> loginIdTypes;
-
-    public PasswordlessStrategy loginStrategy;
-
-    public IDictionary<string, object> state;
-
-    public PasswordlessStartRequest with(Action<PasswordlessStartRequest> action) {
+    public VerifySendRequest with(Action<VerifySendRequest> action) {
       action(this);
       return this;
     }

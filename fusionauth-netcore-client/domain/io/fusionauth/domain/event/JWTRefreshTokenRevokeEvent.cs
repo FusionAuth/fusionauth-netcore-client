@@ -15,8 +15,8 @@
  */
 
 
-using io.fusionauth.domain.jwt;
 using io.fusionauth.domain;
+using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
@@ -31,13 +31,13 @@ namespace io.fusionauth.domain.@event
    */
   public class JWTRefreshTokenRevokeEvent: BaseEvent {
 
+    public User user;
+
     public Guid? applicationId;
 
     public IDictionary<Guid, int> applicationTimeToLiveInSeconds;
 
     public RefreshToken refreshToken;
-
-    public User user;
 
     public Guid? userId;
 

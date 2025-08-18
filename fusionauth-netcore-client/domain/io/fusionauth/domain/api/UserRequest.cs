@@ -37,9 +37,13 @@ namespace io.fusionauth.domain.api
 
     public bool? sendSetPasswordEmail;
 
+    public SendSetPasswordIdentityType sendSetPasswordIdentityType;
+
     public bool? skipVerification;
 
     public User user;
+
+    public List<string> verificationIds;
 
     public UserRequest with(Action<UserRequest> action) {
       action(this);

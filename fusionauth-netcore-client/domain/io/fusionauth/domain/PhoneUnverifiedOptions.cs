@@ -15,29 +15,24 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.passwordless
+namespace io.fusionauth.domain
 {
 
   /**
-   * @author Daniel DeGroff
+   * Configuration for unverified phone number identities.
+   *
+   * @author Spencer Witt
    */
-  public class PasswordlessStartRequest {
+  public class PhoneUnverifiedOptions {
 
-    public Guid? applicationId;
+    public bool? allowPhoneNumberChangeWhenGated;
 
-    public string loginId;
+    public UnverifiedBehavior behavior;
 
-    public List<string> loginIdTypes;
-
-    public PasswordlessStrategy loginStrategy;
-
-    public IDictionary<string, object> state;
-
-    public PasswordlessStartRequest with(Action<PasswordlessStartRequest> action) {
+    public PhoneUnverifiedOptions with(Action<PhoneUnverifiedOptions> action) {
       action(this);
       return this;
     }

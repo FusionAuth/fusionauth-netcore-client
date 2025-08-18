@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using io.fusionauth.domain;
 using io.fusionauth.domain.api;
 using io.fusionauth.domain.api.email;
+using io.fusionauth.domain.api.identity.verify;
 using io.fusionauth.domain.api.identityProvider;
 using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
@@ -124,6 +125,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<UserCommentResponse> CommentOnUser(UserCommentRequest request) {
       return client.CommentOnUserAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<VerifyCompleteResponse> CompleteVerifyIdentity(VerifyCompleteRequest request) {
+      return client.CompleteVerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1294,6 +1300,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<UserResponse> RetrieveUserByLoginIdWithLoginIdTypes(string loginId, List<string> loginIdTypes) {
+      return client.RetrieveUserByLoginIdWithLoginIdTypesAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<UserResponse> RetrieveUserByUsername(string username) {
       return client.RetrieveUserByUsernameAsync(username).GetAwaiter().GetResult();
     }
@@ -1351,6 +1362,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginId(Guid? applicationId, string loginId, long? start, long? end) {
       return client.RetrieveUserLoginReportByLoginIdAsync(applicationId, loginId, start, end).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<LoginReportResponse> RetrieveUserLoginReportByLoginIdAndLoginIdTypes(Guid? applicationId, string loginId, long? start, long? end, List<string> loginIdTypes) {
+      return client.RetrieveUserLoginReportByLoginIdAndLoginIdTypesAsync(applicationId, loginId, start, end, loginIdTypes).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1603,6 +1619,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> SendVerifyIdentity(VerifySendRequest request) {
+      return client.SendVerifyIdentityAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderStartLoginResponse> StartIdentityProviderLogin(IdentityProviderStartLoginRequest request) {
       return client.StartIdentityProviderLoginAsync(request).GetAwaiter().GetResult();
     }
@@ -1615,6 +1636,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TwoFactorStartResponse> StartTwoFactorLogin(TwoFactorStartRequest request) {
       return client.StartTwoFactorLoginAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<VerifyStartResponse> StartVerifyIdentity(VerifyStartRequest request) {
+      return client.StartVerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1821,6 +1847,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> VerifyEmailAddressByUserId(VerifyEmailRequest request) {
       return client.VerifyEmailAddressByUserIdAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> VerifyIdentity(VerifyRequest request) {
+      return client.VerifyIdentityAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.api.passwordless
 
     public string code;
 
+    public string oneTimeCode;
+
     public string twoFactorTrustId;
 
     public PasswordlessLoginRequest with(Action<PasswordlessLoginRequest> action) {

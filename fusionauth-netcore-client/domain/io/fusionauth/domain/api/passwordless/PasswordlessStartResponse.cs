@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.api.passwordless
 
     public string code;
 
+    public string oneTimeCode;
+
     public PasswordlessStartResponse with(Action<PasswordlessStartResponse> action) {
       action(this);
       return this;

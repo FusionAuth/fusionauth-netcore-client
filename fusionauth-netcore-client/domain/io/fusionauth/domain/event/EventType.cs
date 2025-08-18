@@ -133,6 +133,10 @@ namespace io.fusionauth.domain.@event
         [EnumMember(Value = "user.update.complete")]
         UserUpdateComplete, 
         [EnumMember(Value = "test")]
-        Test
+        Test, 
+        [EnumMember(Value = "user.identity.verified")]
+        UserIdentityVerified, 
+        [EnumMember(Value = "user.identity.update")]
+        UserIdentityUpdate
   }
 }

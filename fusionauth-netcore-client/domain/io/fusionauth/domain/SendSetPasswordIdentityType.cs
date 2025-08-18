@@ -22,14 +22,12 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * @author Daniel DeGroff
+   * Used to indicate which identity type a password "request" might go to. It could be
+   * used for send set passwords or send password resets.
    */
-  public enum RateLimitedRequestType {
-        FailedLogin, 
-        ForgotPassword, 
-        SendEmailVerification, 
-        SendPasswordless, 
-        SendRegistrationVerification, 
-        SendTwoFactor
+  public enum SendSetPasswordIdentityType {
+        email, 
+        phone, 
+        doNotSend
   }
 }

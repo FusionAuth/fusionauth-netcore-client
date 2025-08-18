@@ -37,6 +37,8 @@ namespace io.fusionauth.domain.api.user
 
     public string loginId;
 
+    public List<string> loginIdTypes;
+
     public string password;
 
     public string refreshToken;
