@@ -90,6 +90,7 @@ namespace io.fusionauth.domain.oauth2
         authentication_required, 
         email_verification_required, 
         multi_factor_challenge_required, 
+        phone_verification_required, 
         registration_missing_requirement, 
         registration_required, 
         registration_verification_required, 
