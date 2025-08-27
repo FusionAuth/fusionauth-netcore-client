@@ -40,6 +40,7 @@ namespace io.fusionauth.domain.oauth2
         invalid_pkce_code_verifier, 
         invalid_pkce_code_challenge, 
         invalid_pkce_code_challenge_method, 
+        invalid_prompt, 
         invalid_redirect_uri, 
         invalid_response_mode, 
         invalid_response_type, 
@@ -85,6 +86,14 @@ namespace io.fusionauth.domain.oauth2
         unknown, 
         missing_required_scope, 
         unknown_scope, 
-        consent_canceled
+        consent_canceled, 
+        authentication_required, 
+        email_verification_required, 
+        multi_factor_challenge_required, 
+        phone_verification_required, 
+        registration_missing_requirement, 
+        registration_required, 
+        registration_verification_required, 
+        consent_required
   }
 }
