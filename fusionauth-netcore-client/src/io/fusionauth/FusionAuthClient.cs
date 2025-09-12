@@ -205,7 +205,17 @@ namespace io.fusionauth {
     public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAsync(string loginId) {
       return buildClient()
           .withUri("/api/user/change-password")
-          .withParameter("username", loginId)
+          .withParameter("loginId", loginId)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(string loginId, List<string> loginIdTypes) {
+      return buildClient()
+          .withUri("/api/user/change-password")
+          .withParameter("loginId", loginId)
+          .withParameter("loginIdTypes", loginIdTypes)
           .withMethod("Get")
           .goAsync<RESTVoid>();
     }
