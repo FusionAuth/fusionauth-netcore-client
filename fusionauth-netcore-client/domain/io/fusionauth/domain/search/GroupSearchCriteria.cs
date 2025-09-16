@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.search
    */
   public class GroupSearchCriteria: BaseSearchCriteria {
 
+    public bool? exact;
+
     public string name;
 
     public Guid? tenantId;
