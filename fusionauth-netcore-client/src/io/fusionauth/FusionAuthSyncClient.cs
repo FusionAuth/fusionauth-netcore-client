@@ -72,8 +72,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<DeviceApprovalResponse> ApproveDevice(string client_id, string client_secret, string token, string user_code) {
-      return client.ApproveDeviceAsync(client_id, client_secret, token, user_code).GetAwaiter().GetResult();
+    public ClientResponse<DeviceApprovalResponse> ApproveDevice(string client_id, string client_secret, string token, string user_code, Guid? tenantId) {
+      return client.ApproveDeviceAsync(client_id, client_secret, token, user_code, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -118,8 +118,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope) {
-      return client.ClientCredentialsGrantAsync(client_id, client_secret, scope).GetAwaiter().GetResult();
+    public ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope, Guid? tenantId) {
+      return client.ClientCredentialsGrantAsync(client_id, client_secret, scope, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -520,18 +520,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<AccessToken> ExchangeOAuthCodeForAccessToken(string code, string client_id, string client_secret, string redirect_uri) {
-      return client.ExchangeOAuthCodeForAccessTokenAsync(code, client_id, client_secret, redirect_uri).GetAwaiter().GetResult();
+    public ClientResponse<AccessToken> ExchangeOAuthCodeForAccessToken(string code, string client_id, string client_secret, string redirect_uri, Guid? tenantId) {
+      return client.ExchangeOAuthCodeForAccessTokenAsync(code, client_id, client_secret, redirect_uri, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCE(string code, string client_id, string client_secret, string redirect_uri, string code_verifier) {
-      return client.ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(code, client_id, client_secret, redirect_uri, code_verifier).GetAwaiter().GetResult();
+    public ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCE(string code, string client_id, string client_secret, string redirect_uri, string code_verifier, Guid? tenantId) {
+      return client.ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(code, client_id, client_secret, redirect_uri, code_verifier, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code) {
-      return client.ExchangeRefreshTokenForAccessTokenAsync(refresh_token, client_id, client_secret, scope, user_code).GetAwaiter().GetResult();
+    public ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code, Guid? tenantId) {
+      return client.ExchangeRefreshTokenForAccessTokenAsync(refresh_token, client_id, client_secret, scope, user_code, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -540,8 +540,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<AccessToken> ExchangeUserCredentialsForAccessToken(string username, string password, string client_id, string client_secret, string scope, string user_code) {
-      return client.ExchangeUserCredentialsForAccessTokenAsync(username, password, client_id, client_secret, scope, user_code).GetAwaiter().GetResult();
+    public ClientResponse<AccessToken> ExchangeUserCredentialsForAccessToken(string username, string password, string client_id, string client_secret, string scope, string user_code, Guid? tenantId) {
+      return client.ExchangeUserCredentialsForAccessTokenAsync(username, password, client_id, client_secret, scope, user_code, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -605,13 +605,13 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token) {
-      return client.IntrospectAccessTokenAsync(client_id, token).GetAwaiter().GetResult();
+    public ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token, Guid? tenantId) {
+      return client.IntrospectAccessTokenAsync(client_id, token, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessToken(string token) {
-      return client.IntrospectClientCredentialsAccessTokenAsync(token).GetAwaiter().GetResult();
+    public ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessToken(string token, Guid? tenantId) {
+      return client.IntrospectClientCredentialsAccessTokenAsync(token, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1315,13 +1315,13 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> RetrieveUserCode(string client_id, string client_secret, string user_code) {
-      return client.RetrieveUserCodeAsync(client_id, client_secret, user_code).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> RetrieveUserCode(string client_id, string client_secret, string user_code, Guid? tenantId) {
+      return client.RetrieveUserCodeAsync(client_id, client_secret, user_code, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code) {
-      return client.RetrieveUserCodeUsingAPIKeyAsync(user_code).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code, Guid? tenantId) {
+      return client.RetrieveUserCodeUsingAPIKeyAsync(user_code, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1340,8 +1340,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT) {
-      return client.RetrieveUserInfoFromAccessTokenAsync(encodedJWT).GetAwaiter().GetResult();
+    public ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT, Guid? tenantId) {
+      return client.RetrieveUserInfoFromAccessTokenAsync(encodedJWT, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1819,8 +1819,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> ValidateDevice(string user_code, string client_id) {
-      return client.ValidateDeviceAsync(user_code, client_id).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> ValidateDevice(string user_code, string client_id, Guid? tenantId) {
+      return client.ValidateDeviceAsync(user_code, client_id, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

@@ -84,13 +84,14 @@ namespace io.fusionauth {
     /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
     /// <param name="token"> The access token used to identify the user.</param>
     /// <param name="user_code"> The end-user verification code.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceAsync(string client_id, string client_secret, string token, string user_code);
+    Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceAsync(string client_id, string client_secret, string token, string user_code, Guid? tenantId);
 
     /// <summary>
     /// Cancels the user action.
@@ -234,13 +235,14 @@ namespace io.fusionauth {
     /// <param name="client_secret"> (Optional) The client secret used to authenticate this request.
     /// This parameter is optional when Basic Authorization is used to authenticate this request.</param>
     /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:&lt;target-entity-id&gt;:&lt;roles&gt;. Roles are an optional comma separated list.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope);
+    Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope, Guid? tenantId);
 
     /// <summary>
     /// Adds a comment to the user's account.
@@ -1357,13 +1359,14 @@ namespace io.fusionauth {
     /// This parameter is optional when Basic Authorization is used to authenticate this request.</param>
     /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
     /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenAsync(string code, string client_id, string client_secret, string redirect_uri);
+    Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenAsync(string code, string client_id, string client_secret, string redirect_uri, Guid? tenantId);
 
     /// <summary>
     /// Exchanges an OAuth authorization code and code_verifier for an access token.
@@ -1376,13 +1379,14 @@ namespace io.fusionauth {
     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
     /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
     /// <param name="code_verifier"> The random string generated previously. Will be compared with the code_challenge sent previously, which allows the OAuth provider to authenticate your app.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(string code, string client_id, string client_secret, string redirect_uri, string code_verifier);
+    Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(string code, string client_id, string client_secret, string redirect_uri, string code_verifier, Guid? tenantId);
 
     /// <summary>
     /// Exchange a Refresh Token for an Access Token.
@@ -1395,13 +1399,14 @@ namespace io.fusionauth {
     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
     /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
     /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request. Required if the request is for a universal application.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenAsync(string refresh_token, string client_id, string client_secret, string scope, string user_code);
+    Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenAsync(string refresh_token, string client_id, string client_secret, string scope, string user_code, Guid? tenantId);
 
     /// <summary>
     /// Exchange a refresh token for a new JWT.
@@ -1428,13 +1433,14 @@ namespace io.fusionauth {
     /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
     /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
     /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<AccessToken>> ExchangeUserCredentialsForAccessTokenAsync(string username, string password, string client_id, string client_secret, string scope, string user_code);
+    Task<ClientResponse<AccessToken>> ExchangeUserCredentialsForAccessTokenAsync(string username, string password, string client_id, string client_secret, string scope, string user_code, Guid? tenantId);
 
     /// <summary>
     /// Begins the forgot password sequence, which kicks off an email to the user so that they can reset their password.
@@ -1622,26 +1628,28 @@ namespace io.fusionauth {
     /// </summary>
     /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application for which this token was generated.</param>
     /// <param name="token"> The access token returned by this OAuth provider as the result of a successful client credentials grant.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token);
+    Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token, Guid? tenantId);
 
     /// <summary>
     /// Inspect an access token issued as the result of the Client Credentials Grant.
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="token"> The access token returned by this OAuth provider as the result of a successful client credentials grant.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenAsync(string token);
+    Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenAsync(string token, Guid? tenantId);
 
     /// <summary>
     /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
@@ -3555,13 +3563,14 @@ namespace io.fusionauth {
     /// <param name="client_id"> The client Id.</param>
     /// <param name="client_secret"> The client Id.</param>
     /// <param name="user_code"> The end-user verification code.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string client_id, string client_secret, string user_code);
+    Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string client_id, string client_secret, string user_code, Guid? tenantId);
 
     /// <summary>
     /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
@@ -3572,13 +3581,14 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="user_code"> The end-user verification code.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code);
+    Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code, Guid? tenantId);
 
     /// <summary>
     /// Retrieves all the comments for the user with the given Id.
@@ -3624,13 +3634,14 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT);
+    Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT, Guid? tenantId);
 
     /// <summary>
     /// Retrieve a single Identity Provider user (link).
@@ -4953,13 +4964,14 @@ namespace io.fusionauth {
     /// </summary>
     /// <param name="user_code"> The end-user verification code.</param>
     /// <param name="client_id"> The client Id.</param>
+    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> ValidateDeviceAsync(string user_code, string client_id);
+    Task<ClientResponse<RESTVoid>> ValidateDeviceAsync(string user_code, string client_id, Guid? tenantId);
 
     /// <summary>
     /// Validates the provided JWT (encoded JWT string) to ensure the token is valid. A valid access token is properly
@@ -5139,13 +5151,14 @@ namespace io.fusionauth {
    /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
    /// <param name="token"> The access token used to identify the user.</param>
    /// <param name="user_code"> The end-user verification code.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<DeviceApprovalResponse> ApproveDevice(string client_id, string client_secret, string token, string user_code);
+   ClientResponse<DeviceApprovalResponse> ApproveDevice(string client_id, string client_secret, string token, string user_code, Guid? tenantId);
 
    /// <summary>
    /// Cancels the user action.
@@ -5280,13 +5293,14 @@ namespace io.fusionauth {
    /// <param name="client_secret"> (Optional) The client secret used to authenticate this request.
     /// This parameter is optional when Basic Authorization is used to authenticate this request.</param>
    /// <param name="scope"> (Optional) This parameter is used to indicate which target entity you are requesting access. To request access to an entity, use the format target-entity:&lt;target-entity-id&gt;:&lt;roles&gt;. Roles are an optional comma separated list.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope);
+   ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope, Guid? tenantId);
 
    /// <summary>
    /// Adds a comment to the user's account.
@@ -6323,13 +6337,14 @@ namespace io.fusionauth {
     /// This parameter is optional when Basic Authorization is used to authenticate this request.</param>
    /// <param name="client_secret"> (Optional) The client secret. This value will be required if client authentication is enabled.</param>
    /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<AccessToken> ExchangeOAuthCodeForAccessToken(string code, string client_id, string client_secret, string redirect_uri);
+   ClientResponse<AccessToken> ExchangeOAuthCodeForAccessToken(string code, string client_id, string client_secret, string redirect_uri, Guid? tenantId);
 
    /// <summary>
    /// Exchanges an OAuth authorization code and code_verifier for an access token.
@@ -6341,13 +6356,14 @@ namespace io.fusionauth {
    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
    /// <param name="redirect_uri"> The URI to redirect to upon a successful request.</param>
    /// <param name="code_verifier"> The random string generated previously. Will be compared with the code_challenge sent previously, which allows the OAuth provider to authenticate your app.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCE(string code, string client_id, string client_secret, string redirect_uri, string code_verifier);
+   ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCE(string code, string client_id, string client_secret, string redirect_uri, string code_verifier, Guid? tenantId);
 
    /// <summary>
    /// Exchange a Refresh Token for an Access Token.
@@ -6359,13 +6375,14 @@ namespace io.fusionauth {
    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
    /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
    /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request. Required if the request is for a universal application.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code);
+   ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code, Guid? tenantId);
 
    /// <summary>
    /// Exchange a refresh token for a new JWT.
@@ -6390,13 +6407,14 @@ namespace io.fusionauth {
    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
    /// <param name="scope"> (Optional) This parameter is optional and if omitted, the same scope requested during the authorization request will be used. If provided the scopes must match those requested during the initial authorization request.</param>
    /// <param name="user_code"> (Optional) The end-user verification code. This code is required if using this endpoint to approve the Device Authorization.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<AccessToken> ExchangeUserCredentialsForAccessToken(string username, string password, string client_id, string client_secret, string scope, string user_code);
+   ClientResponse<AccessToken> ExchangeUserCredentialsForAccessToken(string username, string password, string client_id, string client_secret, string scope, string user_code, Guid? tenantId);
 
    /// <summary>
    /// Begins the forgot password sequence, which kicks off an email to the user so that they can reset their password.
@@ -6571,25 +6589,27 @@ namespace io.fusionauth {
    /// </summary>
    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application for which this token was generated.</param>
    /// <param name="token"> The access token returned by this OAuth provider as the result of a successful client credentials grant.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token);
+   ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token, Guid? tenantId);
 
    /// <summary>
    /// Inspect an access token issued as the result of the Client Credentials Grant.
    /// </summary>
    /// <param name="token"> The access token returned by this OAuth provider as the result of a successful client credentials grant.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessToken(string token);
+   ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessToken(string token, Guid? tenantId);
 
    /// <summary>
    /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
@@ -8362,13 +8382,14 @@ namespace io.fusionauth {
    /// <param name="client_id"> The client Id.</param>
    /// <param name="client_secret"> The client Id.</param>
    /// <param name="user_code"> The end-user verification code.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> RetrieveUserCode(string client_id, string client_secret, string user_code);
+   ClientResponse<RESTVoid> RetrieveUserCode(string client_id, string client_secret, string user_code, Guid? tenantId);
 
    /// <summary>
    /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
@@ -8378,13 +8399,14 @@ namespace io.fusionauth {
    /// This request will require an API key.
    /// </summary>
    /// <param name="user_code"> The end-user verification code.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code);
+   ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code, Guid? tenantId);
 
    /// <summary>
    /// Retrieves all the comments for the user with the given Id.
@@ -8426,13 +8448,14 @@ namespace io.fusionauth {
    /// Call the UserInfo endpoint to retrieve User Claims from the access token issued by FusionAuth.
    /// </summary>
    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT);
+   ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT, Guid? tenantId);
 
    /// <summary>
    /// Retrieve a single Identity Provider user (link).
@@ -9660,13 +9683,14 @@ namespace io.fusionauth {
    /// </summary>
    /// <param name="user_code"> The end-user verification code.</param>
    /// <param name="client_id"> The client Id.</param>
+   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> ValidateDevice(string user_code, string client_id);
+   ClientResponse<RESTVoid> ValidateDevice(string user_code, string client_id, Guid? tenantId);
 
    /// <summary>
    /// Validates the provided JWT (encoded JWT string) to ensure the token is valid. A valid access token is properly
