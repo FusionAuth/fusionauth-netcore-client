@@ -119,17 +119,25 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceAsync(string client_id, string client_secret, string token, string user_code, Guid? tenantId) {
+    public Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceAsync(string client_id, string client_secret, string token, string user_code) {
       var body = new Dictionary<string, string> {
           { "client_id", client_id },
           { "client_secret", client_secret },
           { "token", token },
           { "user_code", user_code },
-          { "tenantId", tenantId },
       };
       return buildClient()
           .withUri("/oauth2/device/approve")
           .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<DeviceApprovalResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceWithRequestAsync(DeviceApprovalRequest request) {
+      return buildClient()
+          .withUri("/oauth2/device/approve")
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<DeviceApprovalResponse>();
     }
@@ -212,17 +220,25 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope, Guid? tenantId) {
+    public Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope) {
       var body = new Dictionary<string, string> {
           { "client_id", client_id },
           { "client_secret", client_secret },
           { "grant_type", "client_credentials" },
           { "scope", scope },
-          { "tenantId", tenantId },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/token")
           .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<AccessToken>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<AccessToken>> ClientCredentialsGrantWithRequestAsync(ClientCredentialsGrantRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<AccessToken>();
     }
@@ -969,6 +985,29 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<DeviceResponse>> DeviceAuthorizeAsync(string client_id, string client_secret, string scope) {
+      var body = new Dictionary<string, string> {
+          { "client_id", client_id },
+          { "client_secret", client_secret },
+          { "scope", scope },
+      };
+      return buildAnonymousClient()
+          .withUri("/oauth2/device_authorize")
+          .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<DeviceResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<DeviceResponse>> DeviceAuthorizeWithRequestAsync(DeviceAuthorizationRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/device_authorize")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<DeviceResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DisableTwoFactorAsync(Guid? userId, string methodId, string code) {
       return buildClient()
           .withUri("/api/user/two-factor")
@@ -1000,14 +1039,13 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenAsync(string code, string client_id, string client_secret, string redirect_uri, Guid? tenantId) {
+    public Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenAsync(string code, string client_id, string client_secret, string redirect_uri) {
       var body = new Dictionary<string, string> {
           { "code", code },
           { "client_id", client_id },
           { "client_secret", client_secret },
           { "grant_type", "authorization_code" },
           { "redirect_uri", redirect_uri },
-          { "tenantId", tenantId },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/token")
@@ -1017,7 +1055,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(string code, string client_id, string client_secret, string redirect_uri, string code_verifier, Guid? tenantId) {
+    public Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(string code, string client_id, string client_secret, string redirect_uri, string code_verifier) {
       var body = new Dictionary<string, string> {
           { "code", code },
           { "client_id", client_id },
@@ -1025,7 +1063,6 @@ namespace io.fusionauth {
           { "grant_type", "authorization_code" },
           { "redirect_uri", redirect_uri },
           { "code_verifier", code_verifier },
-          { "tenantId", tenantId },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/token")
@@ -1035,7 +1072,25 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenAsync(string refresh_token, string client_id, string client_secret, string scope, string user_code, Guid? tenantId) {
+    public Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEWithRequestAsync(OAuthCodePKCEAccessTokenRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<AccessToken>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenWithRequestAsync(OAuthCodeAccessTokenRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<AccessToken>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenAsync(string refresh_token, string client_id, string client_secret, string scope, string user_code) {
       var body = new Dictionary<string, string> {
           { "refresh_token", refresh_token },
           { "client_id", client_id },
@@ -1043,11 +1098,19 @@ namespace io.fusionauth {
           { "grant_type", "refresh_token" },
           { "scope", scope },
           { "user_code", user_code },
-          { "tenantId", tenantId },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/token")
           .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<AccessToken>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenWithRequestAsync(RefreshTokenAccessTokenRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<AccessToken>();
     }
@@ -1062,7 +1125,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<AccessToken>> ExchangeUserCredentialsForAccessTokenAsync(string username, string password, string client_id, string client_secret, string scope, string user_code, Guid? tenantId) {
+    public Task<ClientResponse<AccessToken>> ExchangeUserCredentialsForAccessTokenAsync(string username, string password, string client_id, string client_secret, string scope, string user_code) {
       var body = new Dictionary<string, string> {
           { "username", username },
           { "password", password },
@@ -1071,11 +1134,19 @@ namespace io.fusionauth {
           { "grant_type", "password" },
           { "scope", scope },
           { "user_code", user_code },
-          { "tenantId", tenantId },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/token")
           .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<AccessToken>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<AccessToken>> ExchangeUserCredentialsForAccessTokenWithRequestAsync(UserCredentialsAccessTokenRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/token")
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<AccessToken>();
     }
@@ -1193,11 +1264,10 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token, Guid? tenantId) {
+    public Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token) {
       var body = new Dictionary<string, string> {
           { "client_id", client_id },
           { "token", token },
-          { "tenantId", tenantId },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/introspect")
@@ -1207,14 +1277,31 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenAsync(string token, Guid? tenantId) {
+    public Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenWithRequestAsync(AccessTokenIntrospectRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/introspect")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<IntrospectResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenAsync(string token) {
       var body = new Dictionary<string, string> {
           { "token", token },
-          { "tenantId", tenantId },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/introspect")
           .withFormData(new FormUrlEncodedContent(body))
+          .withMethod("Post")
+          .goAsync<IntrospectResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenWithRequestAsync(ClientCredentialsAccessTokenIntrospectRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/introspect")
+          .withJSONBody(request)
           .withMethod("Post")
           .goAsync<IntrospectResponse>();
     }
@@ -2515,7 +2602,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string client_id, string client_secret, string user_code, Guid? tenantId) {
+    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string client_id, string client_secret, string user_code) {
       var body = new Dictionary<string, string> {
           { "client_id", client_id },
           { "client_secret", client_secret },
@@ -2523,22 +2610,38 @@ namespace io.fusionauth {
       };
       return buildAnonymousClient()
           .withUri("/oauth2/device/user-code")
-          .withParameter("tenantId", tenantId)
           .withFormData(new FormUrlEncodedContent(body))
           .withMethod("Get")
           .goAsync<RESTVoid>();
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code, Guid? tenantId) {
+    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code) {
       var body = new Dictionary<string, string> {
           { "user_code", user_code },
       };
       return buildAnonymousClient()
           .withUri("/oauth2/device/user-code")
-          .withParameter("tenantId", tenantId)
           .withFormData(new FormUrlEncodedContent(body))
           .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyWithRequestAsync(RetrieveUserCodeUsingAPIKeyRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/device/user-code")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeWithRequestAsync(RetrieveUserCodeRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/device/user-code")
+          .withJSONBody(request)
+          .withMethod("Post")
           .goAsync<RESTVoid>();
     }
 
@@ -3484,13 +3587,21 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> ValidateDeviceAsync(string user_code, string client_id, Guid? tenantId) {
+    public Task<ClientResponse<RESTVoid>> ValidateDeviceAsync(string user_code, string client_id) {
       return buildAnonymousClient()
           .withUri("/oauth2/device/validate")
           .withParameter("user_code", user_code)
           .withParameter("client_id", client_id)
-          .withParameter("tenantId", tenantId)
           .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> ValidateDeviceWithRequestAsync(ValidateDeviceRequest request) {
+      return buildAnonymousClient()
+          .withUri("/oauth2/device/validate")
+          .withJSONBody(request)
+          .withMethod("Post")
           .goAsync<RESTVoid>();
     }
 
