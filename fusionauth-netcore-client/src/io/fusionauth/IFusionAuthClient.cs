@@ -3792,14 +3792,13 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="encodedJWT"> The encoded JWT (access token).</param>
-    /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT, Guid? tenantId);
+    Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT);
 
     /// <summary>
     /// Retrieve a single Identity Provider user (link).
@@ -8765,14 +8764,13 @@ namespace io.fusionauth {
    /// Call the UserInfo endpoint to retrieve User Claims from the access token issued by FusionAuth.
    /// </summary>
    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
-   /// <param name="tenantId"> (Optional) The Id of the tenant to use for this request.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT, Guid? tenantId);
+   ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT);
 
    /// <summary>
    /// Retrieve a single Identity Provider user (link).

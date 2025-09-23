@@ -1400,8 +1400,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT, Guid? tenantId) {
-      return client.RetrieveUserInfoFromAccessTokenAsync(encodedJWT, tenantId).GetAwaiter().GetResult();
+    public ClientResponse<UserinfoResponse> RetrieveUserInfoFromAccessToken(string encodedJWT) {
+      return client.RetrieveUserInfoFromAccessTokenAsync(encodedJWT).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

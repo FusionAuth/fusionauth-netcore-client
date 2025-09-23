@@ -2673,11 +2673,10 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT, Guid? tenantId) {
+    public Task<ClientResponse<UserinfoResponse>> RetrieveUserInfoFromAccessTokenAsync(string encodedJWT) {
       return buildAnonymousClient()
           .withUri("/oauth2/userinfo")
           .withAuthorization("Bearer " + encodedJWT)
-          .withParameter("tenantId", tenantId)
           .withMethod("Get")
           .goAsync<UserinfoResponse>();
     }
