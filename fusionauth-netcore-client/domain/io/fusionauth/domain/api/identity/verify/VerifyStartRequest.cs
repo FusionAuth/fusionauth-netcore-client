@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.api.identity.verify
 
     public string loginIdType;
 
+    public bool? skipUserRequirement;
+
     public IDictionary<string, object> state;
 
     public VerificationStrategy verificationStrategy;
