@@ -28,7 +28,7 @@ namespace io.fusionauth.domain.form
 
     public List<Guid> fields;
 
-    public FormStepType formStepType;
+    public FormStepType type;
 
     public FormStep with(Action<FormStep> action) {
       action(this);
