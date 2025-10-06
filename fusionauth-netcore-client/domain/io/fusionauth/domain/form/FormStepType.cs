@@ -27,6 +27,6 @@ namespace io.fusionauth.domain.form
   public enum FormStepType {
         collectData, 
         verifyEmail, 
-        verifyPhone
+        verifyPhoneNumber
   }
 }
