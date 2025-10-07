@@ -22,7 +22,7 @@ namespace io.fusionauth.domain.form
 {
 
   /**
-   * Which type of step is in use?
+   * Denotes the type of form step. This is used to configure different behavior on form steps in the registration flow.
    */
   public enum FormStepType {
         collectData, 
