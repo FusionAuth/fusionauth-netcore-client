@@ -16,6 +16,7 @@
 
 
 using io.fusionauth.domain;
+using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
@@ -44,6 +45,8 @@ namespace io.fusionauth.domain.api.user
     public DateTimeOffset? tokenExpirationInstant;
 
     public User user;
+
+    public List<VerificationId> verificationIds;
 
     public RegistrationResponse with(Action<RegistrationResponse> action) {
       action(this);
