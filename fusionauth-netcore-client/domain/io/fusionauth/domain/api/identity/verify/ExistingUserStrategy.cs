@@ -15,7 +15,6 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
@@ -23,25 +22,10 @@ namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * @author Brady Wied
+   * Represent the various states/expectations of a user in the context of starting verification
    */
-  public class VerifyStartRequest {
-
-    public Guid? applicationId;
-
-    public ExistingUserStrategy existingUserStrategy;
-
-    public string loginId;
-
-    public string loginIdType;
-
-    public IDictionary<string, object> state;
-
-    public VerificationStrategy verificationStrategy;
-
-    public VerifyStartRequest with(Action<VerifyStartRequest> action) {
-      action(this);
-      return this;
-    }
+  public enum ExistingUserStrategy {
+        MustExist, 
+        MustNotExist
   }
 }
