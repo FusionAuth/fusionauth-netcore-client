@@ -25,7 +25,7 @@ namespace io.fusionauth.domain.api.identity.verify
    * Represent the various states/expectations of a user in the context of starting verification
    */
   public enum ExistingUserStrategy {
-        MustExist, 
-        MustNotExist
+        mustExist, 
+        mustNotExist
   }
 }
