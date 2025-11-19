@@ -34,6 +34,8 @@ namespace io.fusionauth.domain.api.identityProvider
 
     public IdentityProviderOauth2Configuration oauth2;
 
+    public Guid? tenantId;
+
     public IdentityProviderType type;
 
     public IdentityProviderDetails with(Action<IdentityProviderDetails> action) {
