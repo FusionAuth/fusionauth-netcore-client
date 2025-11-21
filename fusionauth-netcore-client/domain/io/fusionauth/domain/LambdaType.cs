@@ -52,6 +52,7 @@ namespace io.fusionauth.domain
         SCIMServerUserResponseConverter, 
         SelfServiceRegistrationValidation, 
         UserInfoPopulate, 
-        LoginValidation
+        LoginValidation, 
+        MFARequirement
   }
 }
