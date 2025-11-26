@@ -123,6 +123,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypes(string loginId, List<string> loginIdTypes) {
+      return client.CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope) {
       return client.ClientCredentialsGrantAsync(client_id, client_secret, scope).GetAwaiter().GetResult();
     }

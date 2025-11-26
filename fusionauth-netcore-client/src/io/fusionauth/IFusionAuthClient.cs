@@ -229,7 +229,7 @@ namespace io.fusionauth {
     /// An HTTP status code of 400 with a general error code of [TrustTokenRequired] indicates that a Trust Token is required to make a POST request to this API.
     /// This is an asynchronous method.
     /// </summary>
-    /// <param name="loginId"> The loginId of the User that you intend to change the password for.</param>
+    /// <param name="loginId"> The loginId (email or username) of the User that you intend to change the password for.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -237,6 +237,24 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAsync(string loginId);
+
+    /// <summary>
+    /// Check to see if the user must obtain a Trust Request Id in order to complete a change password request.
+    /// When a user has enabled Two-Factor authentication, before you are allowed to use the Change Password API to change
+    /// your password, you must obtain a Trust Request Id by completing a Two-Factor Step-Up authentication.
+    /// 
+    /// An HTTP status code of 400 with a general error code of [TrustTokenRequired] indicates that a Trust Token is required to make a POST request to this API.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="loginId"> The loginId of the User that you intend to change the password for.</param>
+    /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(string loginId, List<string> loginIdTypes);
 
     /// <summary>
     /// Make a Client Credentials grant request to obtain an access token.
@@ -3646,7 +3664,7 @@ namespace io.fusionauth {
     /// This is an asynchronous method.
     /// </summary>
     /// <param name="loginId"> The email or username of the user.</param>
-    /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+    /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -3872,7 +3890,7 @@ namespace io.fusionauth {
     /// <param name="loginId"> The userId id.</param>
     /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
     /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
-    /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+    /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5457,7 +5475,7 @@ namespace io.fusionauth {
    /// 
    /// An HTTP status code of 400 with a general error code of [TrustTokenRequired] indicates that a Trust Token is required to make a POST request to this API.
    /// </summary>
-   /// <param name="loginId"> The loginId of the User that you intend to change the password for.</param>
+   /// <param name="loginId"> The loginId (email or username) of the User that you intend to change the password for.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -5465,6 +5483,23 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> CheckChangePasswordUsingLoginId(string loginId);
+
+   /// <summary>
+   /// Check to see if the user must obtain a Trust Request Id in order to complete a change password request.
+   /// When a user has enabled Two-Factor authentication, before you are allowed to use the Change Password API to change
+   /// your password, you must obtain a Trust Request Id by completing a Two-Factor Step-Up authentication.
+   /// 
+   /// An HTTP status code of 400 with a general error code of [TrustTokenRequired] indicates that a Trust Token is required to make a POST request to this API.
+   /// </summary>
+   /// <param name="loginId"> The loginId of the User that you intend to change the password for.</param>
+   /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypes(string loginId, List<string> loginIdTypes);
 
    /// <summary>
    /// Make a Client Credentials grant request to obtain an access token.
@@ -8628,7 +8663,7 @@ namespace io.fusionauth {
    /// Retrieves the user for the loginId, using specific loginIdTypes.
    /// </summary>
    /// <param name="loginId"> The email or username of the user.</param>
-   /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+   /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -8839,7 +8874,7 @@ namespace io.fusionauth {
    /// <param name="loginId"> The userId id.</param>
    /// <param name="start"> The start instant as UTC milliseconds since Epoch.</param>
    /// <param name="end"> The end instant as UTC milliseconds since Epoch.</param>
-   /// <param name="loginIdTypes"> the identity types that FusionAuth will compare the loginId to.</param>
+   /// <param name="loginIdTypes"> The identity types that FusionAuth will compare the loginId to.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
