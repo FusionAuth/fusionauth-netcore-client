@@ -18,15 +18,18 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.lambda.parameters
 {
 
-  /**
-   * Communicate various contexts in which multi-factor authentication can be used.
-   */
-  public enum MultiFactorContext {
-        changePassword, 
-        login, 
-        stepUp
+  public class StartInstant {
+
+    public IDictionary<Guid, DateTimeOffset> applications;
+
+    public DateTimeOffset? tenant;
+
+    public StartInstant with(Action<StartInstant> action) {
+      action(this);
+      return this;
+    }
   }
 }
