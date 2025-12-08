@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
 
     public Guid? loginValidationId;
 
+    public Guid? multiFactorRequirementId;
+
     public Guid? scimEnterpriseUserRequestConverterId;
 
     public Guid? scimEnterpriseUserResponseConverterId;
