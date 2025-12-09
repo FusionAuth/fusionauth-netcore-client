@@ -8,6 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageProjectUrl>https://github.com/FusionAuth/fusionauth-netcore-client</PackageProjectUrl>
         <RepositoryUrl>https://github.com/FusionAuth/fusionauth-netcore-client</RepositoryUrl>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <Authors>FusionAuth</Authors>
         <Owners>FusionAuth</Owners>
         <Summary>FusionAuth client for .NET Core</Summary>
