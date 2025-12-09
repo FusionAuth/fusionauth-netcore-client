@@ -1265,6 +1265,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatusBody(TwoFactorStatusRequest request) {
+      return client.RetrieveTwoFactorStatusBodyAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<UserResponse> RetrieveUser(Guid? userId) {
       return client.RetrieveUserAsync(userId).GetAwaiter().GetResult();
     }
