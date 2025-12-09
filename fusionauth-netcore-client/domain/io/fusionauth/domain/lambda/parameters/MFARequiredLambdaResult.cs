@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.lambda.parameters
 
     public bool? required;
 
+    public bool? sendSuspiciousLoginEvent;
+
     public MFARequiredLambdaResult with(Action<MFARequiredLambdaResult> action) {
       action(this);
       return this;
