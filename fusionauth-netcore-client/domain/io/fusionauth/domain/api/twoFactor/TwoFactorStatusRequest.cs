@@ -15,29 +15,30 @@
  */
 
 
+using io.fusionauth.domain.api;
 using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.lambda.parameters
+namespace io.fusionauth.domain.api.twoFactor
 {
 
   /**
-   * Represents the inbound lambda parameter 'context' for MFA Required lambdas.
+   * Check the status of two-factor authentication for a user, with more options than on a GET request.
    */
-  public class MFAContext {
+  public class TwoFactorStatusRequest: BaseEventRequest {
 
-    public List<AuthenticationThreats> authenticationThreats;
+    public Guid? userId;
 
-    public EventInfo @eventInfo;
+    public MultiFactorAction action;
 
-    public IDictionary<string, object> jwt;
+    public Guid? applicationId;
 
-    public MFATrust mfaTrust;
+    public string token;
 
-    public UserRegistration registration;
+    public string twoFactorTrustId;
 
-    public MFAContext with(Action<MFAContext> action) {
+    public TwoFactorStatusRequest with(Action<TwoFactorStatusRequest> action) {
       action(this);
       return this;
     }
