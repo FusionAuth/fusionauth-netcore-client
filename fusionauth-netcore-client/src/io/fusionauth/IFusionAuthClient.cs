@@ -3419,6 +3419,23 @@ namespace io.fusionauth {
     Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusAsync(Guid? userId, Guid? applicationId, string twoFactorTrustId);
 
     /// <summary>
+    /// Retrieve a user's two-factor status.
+    /// 
+    /// This can be used to see if a user will need to complete a two-factor challenge to complete a login,
+    /// and optionally identify the state of the two-factor trust across various applications. This operation
+    /// provides more payload options than retrieveTwoFactorStatus.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request object that contains all the information used to check the status.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusUsingAsync(TwoFactorStatusRequest request);
+
+    /// <summary>
     /// Retrieves the user for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -8253,6 +8270,22 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatus(Guid? userId, Guid? applicationId, string twoFactorTrustId);
+
+   /// <summary>
+   /// Retrieve a user's two-factor status.
+   /// 
+   /// This can be used to see if a user will need to complete a two-factor challenge to complete a login,
+   /// and optionally identify the state of the two-factor trust across various applications. This operation
+   /// provides more payload options than retrieveTwoFactorStatus.
+   /// </summary>
+   /// <param name="request"> The request object that contains all the information used to check the status.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatusUsing(TwoFactorStatusRequest request);
 
    /// <summary>
    /// Retrieves the user for the given Id.

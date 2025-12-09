@@ -2419,6 +2419,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusUsingAsync(TwoFactorStatusRequest request) {
+      return buildClient()
+          .withUri("/api/two-factor/status")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<TwoFactorStatusResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<UserResponse>> RetrieveUserAsync(Guid? userId) {
       return buildClient()
           .withUri("/api/user")
