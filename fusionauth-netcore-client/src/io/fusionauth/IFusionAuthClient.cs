@@ -242,7 +242,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingJWTAsync(string encodedJWT, string ipAddress);
+    Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingJWTAndIPAddressAsync(string encodedJWT, string ipAddress);
 
     /// <summary>
     /// Check to see if the user must obtain a Trust Request Id in order to complete a change password request.
@@ -277,7 +277,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAsync(string loginId, string ipAddress);
+    Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndIPAddressAsync(string loginId, string ipAddress);
 
     /// <summary>
     /// Check to see if the user must obtain a Trust Request Id in order to complete a change password request.
@@ -314,7 +314,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(string loginId, List<string> loginIdTypes, string ipAddress);
+    Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddressAsync(string loginId, List<string> loginIdTypes, string ipAddress);
 
     /// <summary>
     /// Make a Client Credentials grant request to obtain an access token.
@@ -5396,7 +5396,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> CheckChangePasswordUsingJWT(string encodedJWT, string ipAddress);
+   ClientResponse<RESTVoid> CheckChangePasswordUsingJWTAndIPAddress(string encodedJWT, string ipAddress);
 
    /// <summary>
    /// Check to see if the user must obtain a Trust Request Id in order to complete a change password request.
@@ -5429,7 +5429,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> CheckChangePasswordUsingLoginId(string loginId, string ipAddress);
+   ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndIPAddress(string loginId, string ipAddress);
 
    /// <summary>
    /// Check to see if the user must obtain a Trust Request Id in order to complete a change password request.
@@ -5464,7 +5464,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypes(string loginId, List<string> loginIdTypes, string ipAddress);
+   ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddress(string loginId, List<string> loginIdTypes, string ipAddress);
 
    /// <summary>
    /// Make a Client Credentials grant request to obtain an access token.

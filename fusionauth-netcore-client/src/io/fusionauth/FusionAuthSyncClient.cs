@@ -118,8 +118,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> CheckChangePasswordUsingJWT(string encodedJWT, string ipAddress) {
-      return client.CheckChangePasswordUsingJWTAsync(encodedJWT, ipAddress).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingJWTAndIPAddress(string encodedJWT, string ipAddress) {
+      return client.CheckChangePasswordUsingJWTAndIPAddressAsync(encodedJWT, ipAddress).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -128,8 +128,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginId(string loginId, string ipAddress) {
-      return client.CheckChangePasswordUsingLoginIdAsync(loginId, ipAddress).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndIPAddress(string loginId, string ipAddress) {
+      return client.CheckChangePasswordUsingLoginIdAndIPAddressAsync(loginId, ipAddress).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -138,8 +138,8 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypes(string loginId, List<string> loginIdTypes, string ipAddress) {
-      return client.CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(loginId, loginIdTypes, ipAddress).GetAwaiter().GetResult();
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddress(string loginId, List<string> loginIdTypes, string ipAddress) {
+      return client.CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddressAsync(loginId, loginIdTypes, ipAddress).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

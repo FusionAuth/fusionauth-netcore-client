@@ -212,7 +212,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingJWTAsync(string encodedJWT, string ipAddress) {
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingJWTAndIPAddressAsync(string encodedJWT, string ipAddress) {
       return buildAnonymousClient()
           .withUri("/api/user/change-password")
           .withAuthorization("Bearer " + encodedJWT)
@@ -231,7 +231,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAsync(string loginId, string ipAddress) {
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndIPAddressAsync(string loginId, string ipAddress) {
       return buildClient()
           .withUri("/api/user/change-password")
           .withParameter("loginId", loginId)
@@ -251,7 +251,7 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(string loginId, List<string> loginIdTypes, string ipAddress) {
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddressAsync(string loginId, List<string> loginIdTypes, string ipAddress) {
       return buildClient()
           .withUri("/api/user/change-password")
           .withParameter("loginId", loginId)
