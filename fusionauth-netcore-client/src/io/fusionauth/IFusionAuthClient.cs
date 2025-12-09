@@ -3433,7 +3433,7 @@ namespace io.fusionauth {
     /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
     /// IOException.
     /// </returns>
-    Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusBodyAsync(TwoFactorStatusRequest request);
+    Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusUsingAsync(TwoFactorStatusRequest request);
 
     /// <summary>
     /// Retrieves the user for the given Id.
@@ -8285,7 +8285,7 @@ namespace io.fusionauth {
    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
    /// IOException.
    /// </returns>
-   ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatusBody(TwoFactorStatusRequest request);
+   ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatusUsing(TwoFactorStatusRequest request);
 
    /// <summary>
    /// Retrieves the user for the given Id.
