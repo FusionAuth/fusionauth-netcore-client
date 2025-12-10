@@ -3461,6 +3461,19 @@ namespace io.fusionauth {
     Task<ClientResponse<TotalsReportResponse>> RetrieveTotalReportAsync();
 
     /// <summary>
+    /// Retrieves the totals report. This allows excluding applicationTotals from the report. An empty list will include the applicationTotals.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="excludes"> List of fields to exclude in the response. Currently only allows applicationTotals.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TotalsReportResponse>> RetrieveTotalReportWithExcludesAsync(List<string> excludes);
+
+    /// <summary>
     /// Retrieve two-factor recovery codes for a user.
     /// This is an asynchronous method.
     /// </summary>
@@ -8383,6 +8396,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TotalsReportResponse> RetrieveTotalReport();
+
+   /// <summary>
+   /// Retrieves the totals report. This allows excluding applicationTotals from the report. An empty list will include the applicationTotals.
+   /// </summary>
+   /// <param name="excludes"> List of fields to exclude in the response. Currently only allows applicationTotals.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TotalsReportResponse> RetrieveTotalReportWithExcludes(List<string> excludes);
 
    /// <summary>
    /// Retrieve two-factor recovery codes for a user.
