@@ -15,34 +15,30 @@
  */
 
 
+using io.fusionauth.domain.api;
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api.twoFactor
 {
 
   /**
-   * @author Rob Davis
+   * Check the status of two-factor authentication for a user, with more options than on a GET request.
    */
-  public class TenantLambdaConfiguration {
+  public class TwoFactorStatusRequest: BaseEventRequest {
 
-    public Guid? loginValidationId;
+    public Guid? userId;
 
-    public Guid? multiFactorRequirementId;
+    public MultiFactorAction action;
 
-    public Guid? scimEnterpriseUserRequestConverterId;
+    public Guid? applicationId;
 
-    public Guid? scimEnterpriseUserResponseConverterId;
+    public string token;
 
-    public Guid? scimGroupRequestConverterId;
+    public string twoFactorTrustId;
 
-    public Guid? scimGroupResponseConverterId;
-
-    public Guid? scimUserRequestConverterId;
-
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
+    public TwoFactorStatusRequest with(Action<TwoFactorStatusRequest> action) {
       action(this);
       return this;
     }

@@ -22,29 +22,11 @@ namespace io.fusionauth.domain
 {
 
   /**
-   * @author Rob Davis
+   * Communicate various actions/contexts in which multi-factor authentication can be used.
    */
-  public class TenantLambdaConfiguration {
-
-    public Guid? loginValidationId;
-
-    public Guid? multiFactorRequirementId;
-
-    public Guid? scimEnterpriseUserRequestConverterId;
-
-    public Guid? scimEnterpriseUserResponseConverterId;
-
-    public Guid? scimGroupRequestConverterId;
-
-    public Guid? scimGroupResponseConverterId;
-
-    public Guid? scimUserRequestConverterId;
-
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum MultiFactorAction {
+        changePassword, 
+        login, 
+        stepUp
   }
 }
