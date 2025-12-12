@@ -1305,6 +1305,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<TotalsReportResponse> RetrieveTotalReportWithExcludes(List<string> excludes) {
+      return client.RetrieveTotalReportWithExcludesAsync(excludes).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<TwoFactorRecoveryCodeResponse> RetrieveTwoFactorRecoveryCodes(Guid? userId) {
       return client.RetrieveTwoFactorRecoveryCodesAsync(userId).GetAwaiter().GetResult();
     }

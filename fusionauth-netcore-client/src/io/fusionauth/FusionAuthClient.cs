@@ -2494,6 +2494,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<TotalsReportResponse>> RetrieveTotalReportWithExcludesAsync(List<string> excludes) {
+      return buildClient()
+          .withUri("/api/report/totals")
+          .withParameter("excludes", excludes)
+          .withMethod("Get")
+          .goAsync<TotalsReportResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<TwoFactorRecoveryCodeResponse>> RetrieveTwoFactorRecoveryCodesAsync(Guid? userId) {
       return buildClient()
           .withUri("/api/user/two-factor/recovery-code")
