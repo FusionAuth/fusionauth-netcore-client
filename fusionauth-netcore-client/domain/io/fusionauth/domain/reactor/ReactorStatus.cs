@@ -56,6 +56,8 @@ namespace io.fusionauth.domain.reactor
 
     public bool? licensed;
 
+    public ReactorFeatureStatus multiFactorLambdas;
+
     public ReactorFeatureStatus scimServer;
 
     public ReactorFeatureStatus tenantManagerApplication;
