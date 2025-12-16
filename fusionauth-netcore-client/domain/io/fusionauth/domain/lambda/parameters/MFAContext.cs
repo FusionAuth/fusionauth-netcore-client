@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.lambda.parameters
 
     public MFATrust mfaTrust;
 
+    public MFAPolicies policies;
+
     public UserRegistration registration;
 
     public MFAContext with(Action<MFAContext> action) {
