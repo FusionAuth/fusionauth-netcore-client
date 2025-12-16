@@ -29,9 +29,9 @@ namespace io.fusionauth.domain.lambda.parameters.mfa
 
     public List<AuthenticationThreats> authenticationThreats;
 
-    public EventInfo @eventInfo;
+    public string encodedJWT;
 
-    public IDictionary<string, object> jwt;
+    public EventInfo @eventInfo;
 
     public Trust mfaTrust;
 
