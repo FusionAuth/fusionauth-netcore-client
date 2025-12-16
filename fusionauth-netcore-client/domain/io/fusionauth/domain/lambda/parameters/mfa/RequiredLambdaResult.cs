@@ -15,25 +15,22 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.lambda.parameters
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
-   * Represents the inbound lambda parameter 'policies' for MFA Required lambdas.
+   * Represents the inbound lambda parameter 'result' for MFA Required lambdas.
    */
-  public class MFAPolicies {
+  public class RequiredLambdaResult {
 
-    public MultiFactorLoginPolicy applicationLoginPolicy;
+    public bool? required;
 
-    public ApplicationMultiFactorTrustPolicy applicationMultiFactorTrustPolicy;
+    public bool? sendSuspiciousLoginEvent;
 
-    public MultiFactorLoginPolicy tenantLoginPolicy;
-
-    public MFAPolicies with(Action<MFAPolicies> action) {
+    public RequiredLambdaResult with(Action<RequiredLambdaResult> action) {
       action(this);
       return this;
     }

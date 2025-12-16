@@ -18,13 +18,13 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.lambda.parameters
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
    * Represents the inbound lambda parameter 'mfaTrust' inside the 'context' parameter for MFA Required lambdas.
    */
-  public class MFATrust {
+  public class Trust {
 
     public Guid? applicationId;
 
@@ -44,7 +44,7 @@ namespace io.fusionauth.domain.lambda.parameters
 
     public Guid? userId;
 
-    public MFATrust with(Action<MFATrust> action) {
+    public Trust with(Action<Trust> action) {
       action(this);
       return this;
     }

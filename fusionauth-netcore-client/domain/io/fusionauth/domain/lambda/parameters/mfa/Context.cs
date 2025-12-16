@@ -15,19 +15,31 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.lambda.parameters
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
-  public class StartInstant {
+  /**
+   * Represents the inbound lambda parameter 'context' for MFA Required lambdas.
+   */
+  public class Context {
 
-    public IDictionary<Guid, DateTimeOffset> applications;
+    public List<AuthenticationThreats> authenticationThreats;
 
-    public DateTimeOffset? tenant;
+    public EventInfo @eventInfo;
 
-    public StartInstant with(Action<StartInstant> action) {
+    public IDictionary<string, object> jwt;
+
+    public Policies policies;
+
+    public UserRegistration registration;
+
+    public Trust trust;
+
+    public Context with(Action<Context> action) {
       action(this);
       return this;
     }

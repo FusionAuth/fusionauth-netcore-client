@@ -19,27 +19,21 @@ using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.lambda.parameters
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
-   * Represents the inbound lambda parameter 'context' for MFA Required lambdas.
+   * Represents the inbound lambda parameter 'policies' for MFA Required lambdas.
    */
-  public class MFAContext {
+  public class Policies {
 
-    public List<AuthenticationThreats> authenticationThreats;
+    public MultiFactorLoginPolicy applicationLoginPolicy;
 
-    public EventInfo @eventInfo;
+    public ApplicationMultiFactorTrustPolicy applicationMultiFactorTrustPolicy;
 
-    public IDictionary<string, object> jwt;
+    public MultiFactorLoginPolicy tenantLoginPolicy;
 
-    public MFATrust mfaTrust;
-
-    public MFAPolicies policies;
-
-    public UserRegistration registration;
-
-    public MFAContext with(Action<MFAContext> action) {
+    public Policies with(Action<Policies> action) {
       action(this);
       return this;
     }

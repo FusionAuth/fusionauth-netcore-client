@@ -18,19 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.lambda.parameters
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
-  /**
-   * Represents the inbound lambda parameter 'result' for MFA Required lambdas.
-   */
-  public class MFARequiredLambdaResult {
+  public class StartInstant {
 
-    public bool? required;
+    public IDictionary<Guid, DateTimeOffset> applications;
 
-    public bool? sendSuspiciousLoginEvent;
+    public DateTimeOffset? tenant;
 
-    public MFARequiredLambdaResult with(Action<MFARequiredLambdaResult> action) {
+    public StartInstant with(Action<StartInstant> action) {
       action(this);
       return this;
     }
