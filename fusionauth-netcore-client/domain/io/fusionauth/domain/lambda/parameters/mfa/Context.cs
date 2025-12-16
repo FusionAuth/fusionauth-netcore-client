@@ -33,11 +33,11 @@ namespace io.fusionauth.domain.lambda.parameters.mfa
 
     public IDictionary<string, object> jwt;
 
+    public Trust mfaTrust;
+
     public Policies policies;
 
     public UserRegistration registration;
-
-    public Trust trust;
 
     public Context with(Action<Context> action) {
       action(this);
