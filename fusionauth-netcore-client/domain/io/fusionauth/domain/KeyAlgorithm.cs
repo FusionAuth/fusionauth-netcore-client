@@ -30,6 +30,7 @@ namespace io.fusionauth.domain
         HS512, 
         RS256, 
         RS384, 
-        RS512
+        RS512, 
+        Ed25519
   }
 }
