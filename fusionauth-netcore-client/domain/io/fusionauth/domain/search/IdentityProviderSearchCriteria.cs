@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.search
 
     public string name;
 
+    public Guid? tenantId;
+
     public IdentityProviderType type;
 
     public IdentityProviderSearchCriteria with(Action<IdentityProviderSearchCriteria> action) {

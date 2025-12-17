@@ -24,6 +24,7 @@ namespace io.fusionauth.domain
   public enum KeyType {
         EC, 
         RSA, 
-        HMAC
+        HMAC, 
+        OKP
   }
 }
