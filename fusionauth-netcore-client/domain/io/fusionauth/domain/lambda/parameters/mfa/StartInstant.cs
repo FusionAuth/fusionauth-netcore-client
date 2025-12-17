@@ -18,31 +18,16 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
-  /**
-   * @author Rob Davis
-   */
-  public class TenantLambdaConfiguration {
+  public class StartInstant {
 
-    public Guid? loginValidationId;
+    public IDictionary<Guid, DateTimeOffset> applications;
 
-    public Guid? multiFactorRequirementId;
+    public DateTimeOffset? tenant;
 
-    public Guid? scimEnterpriseUserRequestConverterId;
-
-    public Guid? scimEnterpriseUserResponseConverterId;
-
-    public Guid? scimGroupRequestConverterId;
-
-    public Guid? scimGroupResponseConverterId;
-
-    public Guid? scimUserRequestConverterId;
-
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
+    public StartInstant with(Action<StartInstant> action) {
       action(this);
       return this;
     }

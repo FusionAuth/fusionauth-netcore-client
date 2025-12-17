@@ -18,31 +18,33 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
-   * @author Rob Davis
+   * Represents the inbound lambda parameter 'mfaTrust' inside the 'context' parameter for MFA Required lambdas.
    */
-  public class TenantLambdaConfiguration {
+  public class Trust {
 
-    public Guid? loginValidationId;
+    public Guid? applicationId;
 
-    public Guid? multiFactorRequirementId;
+    public IDictionary<string, string> attributes;
 
-    public Guid? scimEnterpriseUserRequestConverterId;
+    public DateTimeOffset? expirationInstant;
 
-    public Guid? scimEnterpriseUserResponseConverterId;
+    public string id;
 
-    public Guid? scimGroupRequestConverterId;
+    public DateTimeOffset? insertInstant;
 
-    public Guid? scimGroupResponseConverterId;
+    public StartInstant startInstants;
 
-    public Guid? scimUserRequestConverterId;
+    public IDictionary<string, object> state;
 
-    public Guid? scimUserResponseConverterId;
+    public Guid? tenantId;
 
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
+    public Guid? userId;
+
+    public Trust with(Action<Trust> action) {
       action(this);
       return this;
     }
