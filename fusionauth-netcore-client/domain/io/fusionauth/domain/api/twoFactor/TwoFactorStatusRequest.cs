@@ -30,11 +30,11 @@ namespace io.fusionauth.domain.api.twoFactor
 
     public Guid? userId;
 
+    public string accessToken;
+
     public MultiFactorAction action;
 
     public Guid? applicationId;
-
-    public string token;
 
     public string twoFactorTrustId;
 
