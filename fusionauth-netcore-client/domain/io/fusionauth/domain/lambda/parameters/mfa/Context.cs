@@ -27,13 +27,13 @@ namespace io.fusionauth.domain.lambda.parameters.mfa
    */
   public class Context {
 
+    public string accessToken;
+
     public MultiFactorAction action;
 
     public Application application;
 
     public List<AuthenticationThreats> authenticationThreats;
-
-    public string encodedJWT;
 
     public EventInfo @eventInfo;
 
