@@ -27,6 +27,8 @@ namespace io.fusionauth.domain
 
     public Guid? idTokenPopulateId;
 
+    public Guid? multiFactorRequirementId;
+
     public Guid? samlv2PopulateId;
 
     public Guid? selfServiceRegistrationValidationId;

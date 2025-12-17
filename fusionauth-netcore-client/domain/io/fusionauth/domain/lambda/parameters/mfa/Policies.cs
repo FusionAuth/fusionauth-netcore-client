@@ -15,34 +15,25 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
-   * @author Rob Davis
+   * Represents the inbound lambda parameter 'policies' for MFA Required lambdas.
    */
-  public class TenantLambdaConfiguration {
+  public class Policies {
 
-    public Guid? loginValidationId;
+    public MultiFactorLoginPolicy applicationLoginPolicy;
 
-    public Guid? multiFactorRequirementId;
+    public ApplicationMultiFactorTrustPolicy applicationMultiFactorTrustPolicy;
 
-    public Guid? scimEnterpriseUserRequestConverterId;
+    public MultiFactorLoginPolicy tenantLoginPolicy;
 
-    public Guid? scimEnterpriseUserResponseConverterId;
-
-    public Guid? scimGroupRequestConverterId;
-
-    public Guid? scimGroupResponseConverterId;
-
-    public Guid? scimUserRequestConverterId;
-
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
+    public Policies with(Action<Policies> action) {
       action(this);
       return this;
     }
