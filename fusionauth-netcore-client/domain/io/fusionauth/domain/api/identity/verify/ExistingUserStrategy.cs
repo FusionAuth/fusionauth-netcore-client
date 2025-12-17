@@ -18,21 +18,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.form
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * @author Daniel DeGroff
+   * Represent the various states/expectations of a user in the context of starting verification
    */
-  public class FormStep {
-
-    public List<Guid> fields;
-
-    public FormStepType type;
-
-    public FormStep with(Action<FormStep> action) {
-      action(this);
-      return this;
-    }
+  public enum ExistingUserStrategy {
+        mustExist, 
+        mustNotExist
   }
 }
