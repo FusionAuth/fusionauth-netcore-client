@@ -27,6 +27,10 @@ namespace io.fusionauth.domain.lambda.parameters.mfa
    */
   public class Context {
 
+    public MultiFactorAction action;
+
+    public Application application;
+
     public List<AuthenticationThreats> authenticationThreats;
 
     public string encodedJWT;
@@ -36,8 +40,6 @@ namespace io.fusionauth.domain.lambda.parameters.mfa
     public Trust mfaTrust;
 
     public Policies policies;
-
-    public UserRegistration registration;
 
     public Context with(Action<Context> action) {
       action(this);
