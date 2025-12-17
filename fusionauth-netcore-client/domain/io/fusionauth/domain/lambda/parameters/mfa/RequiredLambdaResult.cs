@@ -18,31 +18,19 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
-   * @author Rob Davis
+   * Represents the inbound lambda parameter 'result' for MFA Required lambdas.
    */
-  public class TenantLambdaConfiguration {
+  public class RequiredLambdaResult {
 
-    public Guid? loginValidationId;
+    public bool? required;
 
-    public Guid? multiFactorRequirementId;
+    public bool? sendSuspiciousLoginEvent;
 
-    public Guid? scimEnterpriseUserRequestConverterId;
-
-    public Guid? scimEnterpriseUserResponseConverterId;
-
-    public Guid? scimGroupRequestConverterId;
-
-    public Guid? scimGroupResponseConverterId;
-
-    public Guid? scimUserRequestConverterId;
-
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
+    public RequiredLambdaResult with(Action<RequiredLambdaResult> action) {
       action(this);
       return this;
     }
