@@ -3825,20 +3825,12 @@ namespace io.fusionauth {
 
     /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> ValidateDeviceWithRequestAsync(ValidateDeviceRequest request) {
-      var body = new Dictionary<string, string>();
-      if (request.client_id != null) {
-        body.Add("client_id", request.client_id.ToString());
-      }
-      if (request.tenantId != null) {
-        body.Add("tenantId", request.tenantId.ToString());
-      }
-      if (request.user_code != null) {
-        body.Add("user_code", request.user_code.ToString());
-      }
       return buildAnonymousClient()
           .withUri("/oauth2/device/validate")
-          .withFormData(new FormUrlEncodedContent(body))
-          .withMethod("Post")
+          .withParameter("client_id", request.client_id)
+          .withParameter("tenantId", request.tenantId?.ToString())
+          .withParameter("user_code", request.user_code)
+          .withMethod("Get")
           .goAsync<RESTVoid>();
     }
 
