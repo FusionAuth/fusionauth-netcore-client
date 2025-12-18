@@ -22,17 +22,11 @@ namespace io.fusionauth.domain.form
 {
 
   /**
-   * @author Daniel DeGroff
+   * Denotes the type of form step. This is used to configure different behavior on form steps in the registration flow.
    */
-  public class FormStep {
-
-    public List<Guid> fields;
-
-    public FormStepType type;
-
-    public FormStep with(Action<FormStep> action) {
-      action(this);
-      return this;
-    }
+  public enum FormStepType {
+        collectData, 
+        verifyEmail, 
+        verifyPhoneNumber
   }
 }
