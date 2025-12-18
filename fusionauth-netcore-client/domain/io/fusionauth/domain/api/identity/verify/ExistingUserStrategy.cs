@@ -18,33 +18,14 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api.identity.verify
 {
 
   /**
-   * @author Rob Davis
+   * Represent the various states/expectations of a user in the context of starting verification
    */
-  public class TenantLambdaConfiguration {
-
-    public Guid? loginValidationId;
-
-    public Guid? multiFactorRequirementId;
-
-    public Guid? scimEnterpriseUserRequestConverterId;
-
-    public Guid? scimEnterpriseUserResponseConverterId;
-
-    public Guid? scimGroupRequestConverterId;
-
-    public Guid? scimGroupResponseConverterId;
-
-    public Guid? scimUserRequestConverterId;
-
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum ExistingUserStrategy {
+        mustExist, 
+        mustNotExist
   }
 }

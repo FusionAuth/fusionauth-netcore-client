@@ -113,8 +113,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingIdAndIPAddress(string changePasswordId, string ipAddress) {
+      return client.CheckChangePasswordUsingIdAndIPAddressAsync(changePasswordId, ipAddress).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> CheckChangePasswordUsingJWT(string encodedJWT) {
       return client.CheckChangePasswordUsingJWTAsync(encodedJWT).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingJWTAndIPAddress(string encodedJWT, string ipAddress) {
+      return client.CheckChangePasswordUsingJWTAndIPAddressAsync(encodedJWT, ipAddress).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -123,8 +133,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndIPAddress(string loginId, string ipAddress) {
+      return client.CheckChangePasswordUsingLoginIdAndIPAddressAsync(loginId, ipAddress).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypes(string loginId, List<string> loginIdTypes) {
       return client.CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(loginId, loginIdTypes).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddress(string loginId, List<string> loginIdTypes, string ipAddress) {
+      return client.CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddressAsync(loginId, loginIdTypes, ipAddress).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1317,6 +1337,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatus(Guid? userId, Guid? applicationId, string twoFactorTrustId) {
       return client.RetrieveTwoFactorStatusAsync(userId, applicationId, twoFactorTrustId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TwoFactorStatusResponse> RetrieveTwoFactorStatusWithRequest(TwoFactorStatusRequest request) {
+      return client.RetrieveTwoFactorStatusWithRequestAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

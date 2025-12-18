@@ -15,34 +15,33 @@
  */
 
 
+using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
-   * @author Rob Davis
+   * Represents the inbound lambda parameter 'context' for MFA Required lambdas.
    */
-  public class TenantLambdaConfiguration {
+  public class Context {
 
-    public Guid? loginValidationId;
+    public string accessToken;
 
-    public Guid? multiFactorRequirementId;
+    public MultiFactorAction action;
 
-    public Guid? scimEnterpriseUserRequestConverterId;
+    public Application application;
 
-    public Guid? scimEnterpriseUserResponseConverterId;
+    public List<AuthenticationThreats> authenticationThreats;
 
-    public Guid? scimGroupRequestConverterId;
+    public EventInfo @eventInfo;
 
-    public Guid? scimGroupResponseConverterId;
+    public Trust mfaTrust;
 
-    public Guid? scimUserRequestConverterId;
+    public Policies policies;
 
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
+    public Context with(Action<Context> action) {
       action(this);
       return this;
     }

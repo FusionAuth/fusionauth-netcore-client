@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.api.identity.verify
 
     public Guid? applicationId;
 
+    public ExistingUserStrategy existingUserStrategy;
+
     public string loginId;
 
     public string loginIdType;

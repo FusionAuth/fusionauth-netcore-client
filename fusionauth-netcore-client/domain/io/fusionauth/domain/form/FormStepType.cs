@@ -18,33 +18,15 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.form
 {
 
   /**
-   * @author Rob Davis
+   * Denotes the type of form step. This is used to configure different behavior on form steps in the registration flow.
    */
-  public class TenantLambdaConfiguration {
-
-    public Guid? loginValidationId;
-
-    public Guid? multiFactorRequirementId;
-
-    public Guid? scimEnterpriseUserRequestConverterId;
-
-    public Guid? scimEnterpriseUserResponseConverterId;
-
-    public Guid? scimGroupRequestConverterId;
-
-    public Guid? scimGroupResponseConverterId;
-
-    public Guid? scimUserRequestConverterId;
-
-    public Guid? scimUserResponseConverterId;
-
-    public TenantLambdaConfiguration with(Action<TenantLambdaConfiguration> action) {
-      action(this);
-      return this;
-    }
+  public enum FormStepType {
+        collectData, 
+        verifyEmail, 
+        verifyPhoneNumber
   }
 }

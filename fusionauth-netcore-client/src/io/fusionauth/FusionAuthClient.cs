@@ -217,10 +217,30 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingIdAndIPAddressAsync(string changePasswordId, string ipAddress) {
+      return buildAnonymousClient()
+          .withUri("/api/user/change-password")
+          .withUriSegment(changePasswordId)
+          .withParameter("ipAddress", ipAddress)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingJWTAsync(string encodedJWT) {
       return buildAnonymousClient()
           .withUri("/api/user/change-password")
           .withAuthorization("Bearer " + encodedJWT)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingJWTAndIPAddressAsync(string encodedJWT, string ipAddress) {
+      return buildAnonymousClient()
+          .withUri("/api/user/change-password")
+          .withAuthorization("Bearer " + encodedJWT)
+          .withParameter("ipAddress", ipAddress)
           .withMethod("Get")
           .goAsync<RESTVoid>();
     }
@@ -235,11 +255,32 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndIPAddressAsync(string loginId, string ipAddress) {
+      return buildClient()
+          .withUri("/api/user/change-password")
+          .withParameter("loginId", loginId)
+          .withParameter("ipAddress", ipAddress)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAsync(string loginId, List<string> loginIdTypes) {
       return buildClient()
           .withUri("/api/user/change-password")
           .withParameter("loginId", loginId)
           .withParameter("loginIdTypes", loginIdTypes)
+          .withMethod("Get")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> CheckChangePasswordUsingLoginIdAndLoginIdTypesAndIPAddressAsync(string loginId, List<string> loginIdTypes, string ipAddress) {
+      return buildClient()
+          .withUri("/api/user/change-password")
+          .withParameter("loginId", loginId)
+          .withParameter("loginIdTypes", loginIdTypes)
+          .withParameter("ipAddress", ipAddress)
           .withMethod("Get")
           .goAsync<RESTVoid>();
     }
@@ -2660,6 +2701,15 @@ namespace io.fusionauth {
           .withParameter("applicationId", applicationId)
           .withUriSegment(twoFactorTrustId)
           .withMethod("Get")
+          .goAsync<TwoFactorStatusResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<TwoFactorStatusResponse>> RetrieveTwoFactorStatusWithRequestAsync(TwoFactorStatusRequest request) {
+      return buildClient()
+          .withUri("/api/two-factor/status")
+          .withJSONBody(request)
+          .withMethod("Post")
           .goAsync<TwoFactorStatusResponse>();
     }
 
