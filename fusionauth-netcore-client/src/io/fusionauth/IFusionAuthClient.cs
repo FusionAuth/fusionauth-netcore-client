@@ -93,6 +93,19 @@ namespace io.fusionauth {
     Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceAsync(string client_id, string client_secret, string token, string user_code);
 
     /// <summary>
+    /// Approve a device grant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The request object containing the device approval information and optional tenantId.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<DeviceApprovalResponse>> ApproveDeviceWithRequestAsync(DeviceApprovalRequest request);
+
+    /// <summary>
     /// Cancels the user action.
     /// This is an asynchronous method.
     /// </summary>
@@ -332,6 +345,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<AccessToken>> ClientCredentialsGrantAsync(string client_id, string client_secret, string scope);
+
+    /// <summary>
+    /// Make a Client Credentials grant request to obtain an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The client credentials grant request containing client authentication, scope and optional tenantId.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ClientCredentialsGrantWithRequestAsync(ClientCredentialsGrantRequest request);
 
     /// <summary>
     /// Adds a comment to the user's account.
@@ -1396,6 +1422,34 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteWebhookAsync(Guid? webhookId);
 
     /// <summary>
+    /// Start the Device Authorization flow using form-encoded parameters
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate.</param>
+    /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+    /// <param name="scope"> (Optional) A space-delimited string of the requested scopes. Defaults to all scopes configured in the Application's OAuth configuration.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<DeviceResponse>> DeviceAuthorizeAsync(string client_id, string client_secret, string scope);
+
+    /// <summary>
+    /// Start the Device Authorization flow using a request body
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The device authorization request containing client authentication, scope, and optional device metadata.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<DeviceResponse>> DeviceAuthorizeWithRequestAsync(DeviceAuthorizationRequest request);
+
+    /// <summary>
     /// Disable two-factor authentication for a user.
     /// This is an asynchronous method.
     /// </summary>
@@ -1476,6 +1530,34 @@ namespace io.fusionauth {
     Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEAsync(string code, string client_id, string client_secret, string redirect_uri, string code_verifier);
 
     /// <summary>
+    /// Exchanges an OAuth authorization code and code_verifier for an access token.
+    /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint and a code_verifier for an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The PKCE OAuth code access token exchange request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenUsingPKCEWithRequestAsync(OAuthCodePKCEAccessTokenRequest request);
+
+    /// <summary>
+    /// Exchanges an OAuth authorization code for an access token.
+    /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The OAuth code access token exchange request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ExchangeOAuthCodeForAccessTokenWithRequestAsync(OAuthCodeAccessTokenRequest request);
+
+    /// <summary>
     /// Exchange a Refresh Token for an Access Token.
     /// If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
     /// This is an asynchronous method.
@@ -1493,6 +1575,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenAsync(string refresh_token, string client_id, string client_secret, string scope, string user_code);
+
+    /// <summary>
+    /// Exchange a Refresh Token for an Access Token.
+    /// If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The refresh token access token exchange request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ExchangeRefreshTokenForAccessTokenWithRequestAsync(RefreshTokenAccessTokenRequest request);
 
     /// <summary>
     /// Exchange a refresh token for a new JWT.
@@ -1526,6 +1622,20 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<AccessToken>> ExchangeUserCredentialsForAccessTokenAsync(string username, string password, string client_id, string client_secret, string scope, string user_code);
+
+    /// <summary>
+    /// Exchange User Credentials for a Token.
+    /// If you will be using the Resource Owner Password Credential Grant, you will make a request to the Token endpoint to exchange the user’s email and password for an access token.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The user credentials access token exchange request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<AccessToken>> ExchangeUserCredentialsForAccessTokenWithRequestAsync(UserCredentialsAccessTokenRequest request);
 
     /// <summary>
     /// Begins the forgot password sequence, which kicks off an email to the user so that they can reset their password.
@@ -1722,6 +1832,19 @@ namespace io.fusionauth {
     Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenAsync(string client_id, string token);
 
     /// <summary>
+    /// Inspect an access token issued as the result of the User based grant such as the Authorization Code Grant, Implicit Grant, the User Credentials Grant or the Refresh Grant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The access token introspection request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IntrospectResponse>> IntrospectAccessTokenWithRequestAsync(AccessTokenIntrospectRequest request);
+
+    /// <summary>
     /// Inspect an access token issued as the result of the Client Credentials Grant.
     /// This is an asynchronous method.
     /// </summary>
@@ -1733,6 +1856,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenAsync(string token);
+
+    /// <summary>
+    /// Inspect an access token issued as the result of the Client Credentials Grant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The client credentials access token.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IntrospectResponse>> IntrospectClientCredentialsAccessTokenWithRequestAsync(ClientCredentialsAccessTokenIntrospectRequest request);
 
     /// <summary>
     /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
@@ -3702,6 +3838,38 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code);
 
     /// <summary>
+    /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
+    /// 
+    /// This API is useful if you want to build your own login workflow to complete a device grant.
+    /// 
+    /// This request will require an API key.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The user code retrieval request including optional tenantId.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyWithRequestAsync(RetrieveUserCodeUsingAPIKeyRequest request);
+
+    /// <summary>
+    /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
+    /// 
+    /// This API is useful if you want to build your own login workflow to complete a device grant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The user code retrieval request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> RetrieveUserCodeWithRequestAsync(RetrieveUserCodeRequest request);
+
+    /// <summary>
     /// Retrieves all the comments for the user with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -5083,6 +5251,20 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> ValidateDeviceAsync(string user_code, string client_id);
 
     /// <summary>
+    /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
+    /// If you build your own activation form you should validate the user provided code prior to beginning the Authorization grant.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The device validation request.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> ValidateDeviceWithRequestAsync(ValidateDeviceRequest request);
+
+    /// <summary>
     /// Validates the provided JWT (encoded JWT string) to ensure the token is valid. A valid access token is properly
     /// signed and not expired.
     /// <p>
@@ -5267,6 +5449,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<DeviceApprovalResponse> ApproveDevice(string client_id, string client_secret, string token, string user_code);
+
+   /// <summary>
+   /// Approve a device grant.
+   /// </summary>
+   /// <param name="request"> The request object containing the device approval information and optional tenantId.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<DeviceApprovalResponse> ApproveDeviceWithRequest(DeviceApprovalRequest request);
 
    /// <summary>
    /// Cancels the user action.
@@ -5494,6 +5688,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<AccessToken> ClientCredentialsGrant(string client_id, string client_secret, string scope);
+
+   /// <summary>
+   /// Make a Client Credentials grant request to obtain an access token.
+   /// </summary>
+   /// <param name="request"> The client credentials grant request containing client authentication, scope and optional tenantId.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ClientCredentialsGrantWithRequest(ClientCredentialsGrantRequest request);
 
    /// <summary>
    /// Adds a comment to the user's account.
@@ -6482,6 +6688,32 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeleteWebhook(Guid? webhookId);
 
    /// <summary>
+   /// Start the Device Authorization flow using form-encoded parameters
+   /// </summary>
+   /// <param name="client_id"> The unique client identifier. The client Id is the Id of the FusionAuth Application in which you are attempting to authenticate.</param>
+   /// <param name="client_secret"> (Optional) The client secret. This value may optionally be provided in the request body instead of the Authorization header.</param>
+   /// <param name="scope"> (Optional) A space-delimited string of the requested scopes. Defaults to all scopes configured in the Application's OAuth configuration.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<DeviceResponse> DeviceAuthorize(string client_id, string client_secret, string scope);
+
+   /// <summary>
+   /// Start the Device Authorization flow using a request body
+   /// </summary>
+   /// <param name="request"> The device authorization request containing client authentication, scope, and optional device metadata.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<DeviceResponse> DeviceAuthorizeWithRequest(DeviceAuthorizationRequest request);
+
+   /// <summary>
    /// Disable two-factor authentication for a user.
    /// </summary>
    /// <param name="userId"> The Id of the User for which you're disabling two-factor authentication.</param>
@@ -6557,6 +6789,32 @@ namespace io.fusionauth {
    ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCE(string code, string client_id, string client_secret, string redirect_uri, string code_verifier);
 
    /// <summary>
+   /// Exchanges an OAuth authorization code and code_verifier for an access token.
+   /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint and a code_verifier for an access token.
+   /// </summary>
+   /// <param name="request"> The PKCE OAuth code access token exchange request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenUsingPKCEWithRequest(OAuthCodePKCEAccessTokenRequest request);
+
+   /// <summary>
+   /// Exchanges an OAuth authorization code for an access token.
+   /// Makes a request to the Token endpoint to exchange the authorization code returned from the Authorize endpoint for an access token.
+   /// </summary>
+   /// <param name="request"> The OAuth code access token exchange request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ExchangeOAuthCodeForAccessTokenWithRequest(OAuthCodeAccessTokenRequest request);
+
+   /// <summary>
    /// Exchange a Refresh Token for an Access Token.
    /// If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
    /// </summary>
@@ -6573,6 +6831,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<AccessToken> ExchangeRefreshTokenForAccessToken(string refresh_token, string client_id, string client_secret, string scope, string user_code);
+
+   /// <summary>
+   /// Exchange a Refresh Token for an Access Token.
+   /// If you will be using the Refresh Token Grant, you will make a request to the Token endpoint to exchange the user’s refresh token for an access token.
+   /// </summary>
+   /// <param name="request"> The refresh token access token exchange request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ExchangeRefreshTokenForAccessTokenWithRequest(RefreshTokenAccessTokenRequest request);
 
    /// <summary>
    /// Exchange a refresh token for a new JWT.
@@ -6604,6 +6875,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<AccessToken> ExchangeUserCredentialsForAccessToken(string username, string password, string client_id, string client_secret, string scope, string user_code);
+
+   /// <summary>
+   /// Exchange User Credentials for a Token.
+   /// If you will be using the Resource Owner Password Credential Grant, you will make a request to the Token endpoint to exchange the user’s email and password for an access token.
+   /// </summary>
+   /// <param name="request"> The user credentials access token exchange request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<AccessToken> ExchangeUserCredentialsForAccessTokenWithRequest(UserCredentialsAccessTokenRequest request);
 
    /// <summary>
    /// Begins the forgot password sequence, which kicks off an email to the user so that they can reset their password.
@@ -6787,6 +7071,18 @@ namespace io.fusionauth {
    ClientResponse<IntrospectResponse> IntrospectAccessToken(string client_id, string token);
 
    /// <summary>
+   /// Inspect an access token issued as the result of the User based grant such as the Authorization Code Grant, Implicit Grant, the User Credentials Grant or the Refresh Grant.
+   /// </summary>
+   /// <param name="request"> The access token introspection request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IntrospectResponse> IntrospectAccessTokenWithRequest(AccessTokenIntrospectRequest request);
+
+   /// <summary>
    /// Inspect an access token issued as the result of the Client Credentials Grant.
    /// </summary>
    /// <param name="token"> The access token returned by this OAuth provider as the result of a successful client credentials grant.</param>
@@ -6797,6 +7093,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessToken(string token);
+
+   /// <summary>
+   /// Inspect an access token issued as the result of the Client Credentials Grant.
+   /// </summary>
+   /// <param name="request"> The client credentials access token.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IntrospectResponse> IntrospectClientCredentialsAccessTokenWithRequest(ClientCredentialsAccessTokenIntrospectRequest request);
 
    /// <summary>
    /// Issue a new access token (JWT) for the requested Application after ensuring the provided JWT is valid. A valid
@@ -8622,6 +8930,36 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code);
 
    /// <summary>
+   /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
+   /// 
+   /// This API is useful if you want to build your own login workflow to complete a device grant.
+   /// 
+   /// This request will require an API key.
+   /// </summary>
+   /// <param name="request"> The user code retrieval request including optional tenantId.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKeyWithRequest(RetrieveUserCodeUsingAPIKeyRequest request);
+
+   /// <summary>
+   /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
+   /// 
+   /// This API is useful if you want to build your own login workflow to complete a device grant.
+   /// </summary>
+   /// <param name="request"> The user code retrieval request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> RetrieveUserCodeWithRequest(RetrieveUserCodeRequest request);
+
+   /// <summary>
    /// Retrieves all the comments for the user with the given Id.
    /// </summary>
    /// <param name="userId"> The Id of the user.</param>
@@ -9902,6 +10240,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> ValidateDevice(string user_code, string client_id);
+
+   /// <summary>
+   /// Validates the end-user provided user_code from the user-interaction of the Device Authorization Grant.
+   /// If you build your own activation form you should validate the user provided code prior to beginning the Authorization grant.
+   /// </summary>
+   /// <param name="request"> The device validation request.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> ValidateDeviceWithRequest(ValidateDeviceRequest request);
 
    /// <summary>
    /// Validates the provided JWT (encoded JWT string) to ensure the token is valid. A valid access token is properly
