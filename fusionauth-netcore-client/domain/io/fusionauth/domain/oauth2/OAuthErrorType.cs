@@ -40,6 +40,7 @@ namespace io.fusionauth.domain.oauth2
         two_factor_required, 
         authorization_pending, 
         expired_token, 
-        unsupported_token_type
+        unsupported_token_type, 
+        invalid_dpop_proof
   }
 }
