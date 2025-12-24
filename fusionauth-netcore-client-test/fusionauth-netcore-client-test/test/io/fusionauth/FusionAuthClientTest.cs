@@ -295,11 +295,12 @@ namespace io.fusionauth {
 
       var response = test.client.RetrieveRefreshTokens((Guid) test.user.id);
       test.assertSuccess(response);
-      Assert.IsNull(response.successResponse.refreshTokens);
+      Assert.AreEqual(0, response.successResponse.refreshTokens.Count);
     }
 
     [Test]
     public void Update_Application_Test() {
+      //requires licensed version of FusionAuth
       test.createApplication()
         .updateApplication(test.application.with(a => a.name = "CSharp Client Test (Updated)"));
 
@@ -468,7 +469,8 @@ namespace io.fusionauth {
             .with(ipr => ipr.identityProvider = new ExternalJWTIdentityProvider()
               .with(idp => idp.name = "C# IdentityProvider")
               .with(idp => idp.headerKeyParameter = "kid")
-              .with(idp => idp.uniqueIdentityClaim = "username")));
+              .with(idp => idp.uniqueIdentityClaim = "username")
+              .with(idp => idp.type = IdentityProviderType.ExternalJWT)));
 
       test.assertSuccess(createResponse);
       retrieveResponse = test.client.RetrieveIdentityProviders();
