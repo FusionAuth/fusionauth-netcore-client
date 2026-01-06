@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2026, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ namespace io.fusionauth.domain.oauth2
         two_factor_required, 
         authorization_pending, 
         expired_token, 
-        unsupported_token_type
+        unsupported_token_type, 
+        invalid_dpop_proof
   }
 }

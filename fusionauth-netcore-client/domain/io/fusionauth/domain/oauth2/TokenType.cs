@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018-2025, FusionAuth, All Rights Reserved
+ * Copyright (c) 2018-2026, FusionAuth, All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,12 +28,14 @@ namespace io.fusionauth.domain.oauth2
    * <a href="https://tools.ietf.org/html/draft-ietf-oauth-v2-http-mac-05">
    * Draft RFC on OAuth 2.0 Message Authentication Code (MAC) Tokens</a>
    * </li>
+   * <li>DPoP Token type as defined by <a href="https://datatracker.ietf.org/doc/html/rfc9449"></li>
    * </ul>
    *
    * @author Daniel DeGroff
    */
   public enum TokenType {
         Bearer, 
-        MAC
+        MAC, 
+        DPoP
   }
 }
