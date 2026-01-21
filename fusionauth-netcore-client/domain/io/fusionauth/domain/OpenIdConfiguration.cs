@@ -37,6 +37,8 @@ namespace io.fusionauth.domain
 
     public string device_authorization_endpoint;
 
+    public List<string> dpop_signing_alg_values_supported;
+
     public string end_session_endpoint;
 
     public bool? frontchannel_logout_supported;
