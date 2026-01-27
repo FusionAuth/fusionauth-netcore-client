@@ -38,6 +38,8 @@ namespace io.fusionauth.domain.search
 
     public DateTimeOffset? start;
 
+    public Guid? tenantId;
+
     public string user;
 
     public AuditLogSearchCriteria with(Action<AuditLogSearchCriteria> action) {
