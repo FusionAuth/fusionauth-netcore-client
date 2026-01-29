@@ -44,6 +44,8 @@ namespace io.fusionauth.domain.provider
 
     public string name;
 
+    public IdentityProviderSource source;
+
     public IDictionary<Guid, IdentityProviderTenantConfiguration> tenantConfiguration;
 
     public Guid? tenantId;
