@@ -44,6 +44,8 @@ namespace io.fusionauth.domain
 
     public string reason;
 
+    public Guid? tenantId;
+
     public AuditLog with(Action<AuditLog> action) {
       action(this);
       return this;
