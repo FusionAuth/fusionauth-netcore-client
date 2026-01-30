@@ -1470,11 +1470,6 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<UserResponse> RetrieveUserUsingJWT(string encodedJWT) {
-      return client.RetrieveUserUsingJWTAsync(encodedJWT).GetAwaiter().GetResult();
-    }
-
-    /// <inheritdoc/>
     public ClientResponse<VersionResponse> RetrieveVersion() {
       return client.RetrieveVersionAsync().GetAwaiter().GetResult();
     }
