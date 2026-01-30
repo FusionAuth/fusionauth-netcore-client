@@ -4018,19 +4018,6 @@ namespace io.fusionauth {
     Task<ClientResponse<RecentLoginResponse>> RetrieveUserRecentLoginsAsync(Guid? userId, int? offset, int? limit);
 
     /// <summary>
-    /// Retrieves the user for the given Id. This method does not use an API key, instead it uses a JSON Web Token (JWT) for authentication.
-    /// This is an asynchronous method.
-    /// </summary>
-    /// <param name="encodedJWT"> The encoded JWT (access token).</param>
-    /// <returns>
-    /// When successful, the response will contain the log of the action. If there was a validation error or any
-    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-    /// IOException.
-    /// </returns>
-    Task<ClientResponse<UserResponse>> RetrieveUserUsingJWTAsync(string encodedJWT);
-
-    /// <summary>
     /// Retrieves the FusionAuth version string.
     /// This is an asynchronous method.
     /// </summary>
@@ -9096,18 +9083,6 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RecentLoginResponse> RetrieveUserRecentLogins(Guid? userId, int? offset, int? limit);
-
-   /// <summary>
-   /// Retrieves the user for the given Id. This method does not use an API key, instead it uses a JSON Web Token (JWT) for authentication.
-   /// </summary>
-   /// <param name="encodedJWT"> The encoded JWT (access token).</param>
-   /// <returns>
-   /// When successful, the response will contain the log of the action. If there was a validation error or any
-   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-   /// IOException.
-   /// </returns>
-   ClientResponse<UserResponse> RetrieveUserUsingJWT(string encodedJWT);
 
    /// <summary>
    /// Retrieves the FusionAuth version string.

@@ -2979,15 +2979,6 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<UserResponse>> RetrieveUserUsingJWTAsync(string encodedJWT) {
-      return buildAnonymousClient()
-          .withUri("/api/user")
-          .withAuthorization("Bearer " + encodedJWT)
-          .withMethod("Get")
-          .goAsync<UserResponse>();
-    }
-
-    /// <inheritdoc/>
     public Task<ClientResponse<VersionResponse>> RetrieveVersionAsync() {
       return buildClient()
           .withUri("/api/system/version")
