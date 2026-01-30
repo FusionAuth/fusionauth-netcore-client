@@ -15,33 +15,17 @@
  */
 
 
-using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search
+namespace io.fusionauth.domain.provider
 {
 
   /**
-   * Search criteria for Identity Providers.
-   *
-   * @author Spencer Witt
+   * The source of an identity provider configuration.
    */
-  public class IdentityProviderSearchCriteria: BaseSearchCriteria {
-
-    public Guid? applicationId;
-
-    public string name;
-
-    public IdentityProviderSource source;
-
-    public Guid? tenantId;
-
-    public IdentityProviderType type;
-
-    public IdentityProviderSearchCriteria with(Action<IdentityProviderSearchCriteria> action) {
-      action(this);
-      return this;
-    }
+  public enum IdentityProviderSource {
+        System, 
+        TenantManager
   }
 }
