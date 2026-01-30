@@ -15,31 +15,17 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.search
+namespace io.fusionauth.domain
 {
 
   /**
-   * Search criteria for Keys
-   *
-   * @author Spencer Witt
+   * The source of a key.
    */
-  public class KeySearchCriteria: BaseSearchCriteria {
-
-    public KeyAlgorithm? algorithm;
-
-    public string name;
-
-    public KeySource source;
-
-    public KeyType? type;
-
-    public KeySearchCriteria with(Action<KeySearchCriteria> action) {
-      action(this);
-      return this;
-    }
+  public enum KeySource {
+        System, 
+        TenantManager
   }
 }
