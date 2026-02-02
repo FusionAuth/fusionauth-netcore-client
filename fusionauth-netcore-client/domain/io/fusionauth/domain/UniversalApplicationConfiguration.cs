@@ -26,6 +26,8 @@ namespace io.fusionauth.domain
    */
   public class UniversalApplicationConfiguration {
 
+    public bool? allowTenantManagerIdentityProviders;
+
     public bool? universal;
 
     public UniversalApplicationConfiguration with(Action<UniversalApplicationConfiguration> action) {
