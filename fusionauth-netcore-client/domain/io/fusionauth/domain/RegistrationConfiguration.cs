@@ -25,6 +25,8 @@ namespace io.fusionauth.domain
 
     public Requirable birthDate;
 
+    public bool? completeRegistration;
+
     public bool? confirmPassword;
 
     public Requirable firstName;
