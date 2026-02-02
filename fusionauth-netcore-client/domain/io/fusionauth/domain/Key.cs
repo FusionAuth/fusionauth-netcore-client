@@ -58,6 +58,8 @@ namespace io.fusionauth.domain
 
     public string secret;
 
+    public KeySource source;
+
     public KeyType? type;
 
     public Key with(Action<Key> action) {
