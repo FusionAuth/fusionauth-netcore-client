@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
 
     public AuditLogConfiguration auditLogConfiguration;
 
+    public string brandName;
+
     public CORSConfiguration corsConfiguration;
 
     public IDictionary<string, object> data;
@@ -41,6 +43,8 @@ namespace io.fusionauth.domain
     public LoginRecordConfiguration loginRecordConfiguration;
 
     public string reportTimezone;
+
+    public Guid? tenantManagerAttributeFormId;
 
     public SystemTrustedProxyConfiguration trustedProxyConfiguration;
 
