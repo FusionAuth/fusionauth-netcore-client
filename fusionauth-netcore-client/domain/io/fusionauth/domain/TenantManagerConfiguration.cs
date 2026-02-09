@@ -15,6 +15,8 @@
  */
 
 
+using io.fusionauth.domain.tenantManager;
+using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
@@ -26,6 +28,8 @@ namespace io.fusionauth.domain
     public Guid? attributeFormId;
 
     public string brandName;
+
+    public IDictionary<IdentityProviderType, TenantManagerIdentityProviderTypeConfiguration> identityProviderTypeConfigurations;
 
     public TenantManagerConfiguration with(Action<TenantManagerConfiguration> action) {
       action(this);
