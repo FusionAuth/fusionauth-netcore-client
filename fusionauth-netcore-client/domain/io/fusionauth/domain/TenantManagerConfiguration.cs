@@ -29,7 +29,7 @@ namespace io.fusionauth.domain
 
     public string brandName;
 
-    public IDictionary<IdentityProviderType, TenantManagerIdentityProviderTypeConfiguration> identityProviderTypeConfigurations;
+    public IDictionary<string, TenantManagerIdentityProviderTypeConfiguration> identityProviderTypeConfigurations;
 
     public TenantManagerConfiguration with(Action<TenantManagerConfiguration> action) {
       action(this);
