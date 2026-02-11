@@ -23,7 +23,7 @@ namespace io.fusionauth.domain.api.tenantManager
 {
 
   /**
-   * The Tenant Manager IdP type configuration request object
+   * The Tenant Manager IdP type configuration response object
    */
   public class TenantManagerIdentityProviderTypeConfigurationResponse {
 
