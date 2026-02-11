@@ -25,6 +25,7 @@ using io.fusionauth.domain.api.identityProvider;
 using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
+using io.fusionauth.domain.api.tenantManager;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
@@ -744,6 +745,20 @@ namespace io.fusionauth {
     Task<ClientResponse<TenantResponse>> CreateTenantAsync(Guid? tenantId, TenantRequest request);
 
     /// <summary>
+    /// Creates a tenant manager identity provider type configuration for the given identity provider type.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="type"> The type of the identity provider.</param>
+    /// <param name="request"> The request object that contains all the information used to create the tenant manager identity provider type configuration.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse>> CreateTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request);
+
+    /// <summary>
     /// Creates a Theme. You can optionally specify an Id for the theme, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -1260,6 +1275,19 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteTenantAsyncAsync(Guid? tenantId);
+
+    /// <summary>
+    /// Deletes the tenant manager identity provider type configuration for the given identity provider type.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="type"> The type of the identity provider.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type);
 
     /// <summary>
     /// Deletes the tenant based on the given request (sent to the API as JSON). This permanently deletes all information, metrics, reports and data associated
@@ -5138,6 +5166,20 @@ namespace io.fusionauth {
     Task<ClientResponse<TenantResponse>> UpdateTenantAsync(Guid? tenantId, TenantRequest request);
 
     /// <summary>
+    /// Updates the tenant manager identity provider type configuration for the given identity provider type.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="type"> The type of the identity provider.</param>
+    /// <param name="request"> The request object that contains the updated tenant manager identity provider type configuration.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse>> UpdateTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request);
+
+    /// <summary>
     /// Updates the theme with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -6059,6 +6101,19 @@ namespace io.fusionauth {
    ClientResponse<TenantResponse> CreateTenant(Guid? tenantId, TenantRequest request);
 
    /// <summary>
+   /// Creates a tenant manager identity provider type configuration for the given identity provider type.
+   /// </summary>
+   /// <param name="type"> The type of the identity provider.</param>
+   /// <param name="request"> The request object that contains all the information used to create the tenant manager identity provider type configuration.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> CreateTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request);
+
+   /// <summary>
    /// Creates a Theme. You can optionally specify an Id for the theme, if not provided one will be generated.
    /// </summary>
    /// <param name="themeId"> (Optional) The Id for the theme. If not provided a secure random UUID will be generated.</param>
@@ -6537,6 +6592,18 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteTenantAsync(Guid? tenantId);
+
+   /// <summary>
+   /// Deletes the tenant manager identity provider type configuration for the given identity provider type.
+   /// </summary>
+   /// <param name="type"> The type of the identity provider.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type);
 
    /// <summary>
    /// Deletes the tenant based on the given request (sent to the API as JSON). This permanently deletes all information, metrics, reports and data associated
@@ -10135,6 +10202,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<TenantResponse> UpdateTenant(Guid? tenantId, TenantRequest request);
+
+   /// <summary>
+   /// Updates the tenant manager identity provider type configuration for the given identity provider type.
+   /// </summary>
+   /// <param name="type"> The type of the identity provider.</param>
+   /// <param name="request"> The request object that contains the updated tenant manager identity provider type configuration.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> UpdateTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request);
 
    /// <summary>
    /// Updates the theme with the given Id.

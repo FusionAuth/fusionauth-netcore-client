@@ -24,6 +24,7 @@ using io.fusionauth.domain.api.identityProvider;
 using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
+using io.fusionauth.domain.api.tenantManager;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
@@ -293,6 +294,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> CreateTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request) {
+      return client.CreateTenantManagerIdentityProviderTypeConfigurationAsync(type, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ThemeResponse> CreateTheme(Guid? themeId, ThemeRequest request) {
       return client.CreateThemeAsync(themeId, request).GetAwaiter().GetResult();
     }
@@ -481,6 +487,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteTenantAsync(Guid? tenantId) {
       return client.DeleteTenantAsyncAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type) {
+      return client.DeleteTenantManagerIdentityProviderTypeConfigurationAsync(type).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1876,6 +1887,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TenantResponse> UpdateTenant(Guid? tenantId, TenantRequest request) {
       return client.UpdateTenantAsync(tenantId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> UpdateTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request) {
+      return client.UpdateTenantManagerIdentityProviderTypeConfigurationAsync(type, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
