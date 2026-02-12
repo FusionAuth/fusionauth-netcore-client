@@ -1830,6 +1830,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse>> PatchTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/tenant-manager/identity-provider")
+          .withUriSegment(type)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<TenantManagerIdentityProviderTypeConfigurationResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ThemeResponse>> PatchThemeAsync(Guid? themeId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/theme")

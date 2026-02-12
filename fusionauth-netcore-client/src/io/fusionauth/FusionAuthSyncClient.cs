@@ -856,6 +856,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> PatchTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, IDictionary<string, object> request) {
+      return client.PatchTenantManagerIdentityProviderTypeConfigurationAsync(type, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ThemeResponse> PatchTheme(Guid? themeId, IDictionary<string, object> request) {
       return client.PatchThemeAsync(themeId, request).GetAwaiter().GetResult();
     }
