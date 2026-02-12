@@ -16,7 +16,6 @@
 
 
 using io.fusionauth.domain.tenantManager;
-using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
