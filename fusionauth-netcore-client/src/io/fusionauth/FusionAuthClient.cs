@@ -26,6 +26,7 @@ using io.fusionauth.domain.api.identityProvider;
 using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
+using io.fusionauth.domain.api.tenantManager;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
@@ -594,6 +595,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse>> CreateTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request) {
+      return buildClient()
+          .withUri("/api/tenant-manager/identity-provider")
+          .withUriSegment(type)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<TenantManagerIdentityProviderTypeConfigurationResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ThemeResponse>> CreateThemeAsync(Guid? themeId, ThemeRequest request) {
       return buildClient()
           .withUri("/api/theme")
@@ -955,6 +966,15 @@ namespace io.fusionauth {
           .withUri("/api/tenant")
           .withUriSegment(tenantId)
           .withParameter("async", true)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type) {
+      return buildClient()
+          .withUri("/api/tenant-manager/identity-provider")
+          .withUriSegment(type)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -1807,6 +1827,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Patch")
           .goAsync<TenantResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse>> PatchTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/tenant-manager/identity-provider")
+          .withUriSegment(type)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<TenantManagerIdentityProviderTypeConfigurationResponse>();
     }
 
     /// <inheritdoc/>
@@ -3740,6 +3770,16 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<TenantResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse>> UpdateTenantManagerIdentityProviderTypeConfigurationAsync(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request) {
+      return buildClient()
+          .withUri("/api/tenant-manager/identity-provider")
+          .withUriSegment(type)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<TenantManagerIdentityProviderTypeConfigurationResponse>();
     }
 
     /// <inheritdoc/>

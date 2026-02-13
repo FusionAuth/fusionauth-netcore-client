@@ -15,22 +15,30 @@
  */
 
 
-using io.fusionauth.domain.tenantManager;
+using io.fusionauth.domain;
+using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.tenantManager
 {
 
-  public class TenantManagerConfiguration {
+  /**
+   * Configuration object for identity provider types allowed in Tenant Manager
+   */
+  public class TenantManagerIdentityProviderTypeConfiguration: Enableable {
 
-    public Guid? attributeFormId;
+    public IDictionary<string, string> defaultAttributeMappings;
 
-    public string brandName;
+    public DateTimeOffset? insertInstant;
 
-    public IDictionary<string, TenantManagerIdentityProviderTypeConfiguration> identityProviderTypeConfigurations;
+    public DateTimeOffset? lastUpdateInstant;
 
-    public TenantManagerConfiguration with(Action<TenantManagerConfiguration> action) {
+    public IdentityProviderLinkingStrategy linkingStrategy;
+
+    public IdentityProviderType type;
+
+    public TenantManagerIdentityProviderTypeConfiguration with(Action<TenantManagerIdentityProviderTypeConfiguration> action) {
       action(this);
       return this;
     }

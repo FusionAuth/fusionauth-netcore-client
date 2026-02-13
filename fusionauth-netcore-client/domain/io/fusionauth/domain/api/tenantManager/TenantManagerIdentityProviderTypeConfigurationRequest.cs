@@ -19,18 +19,17 @@ using io.fusionauth.domain.tenantManager;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api.tenantManager
 {
 
-  public class TenantManagerConfiguration {
+  /**
+   * The Tenant Manager IdP type configuration request object
+   */
+  public class TenantManagerIdentityProviderTypeConfigurationRequest {
 
-    public Guid? attributeFormId;
+    public TenantManagerIdentityProviderTypeConfiguration typeConfiguration;
 
-    public string brandName;
-
-    public IDictionary<string, TenantManagerIdentityProviderTypeConfiguration> identityProviderTypeConfigurations;
-
-    public TenantManagerConfiguration with(Action<TenantManagerConfiguration> action) {
+    public TenantManagerIdentityProviderTypeConfigurationRequest with(Action<TenantManagerIdentityProviderTypeConfigurationRequest> action) {
       action(this);
       return this;
     }
