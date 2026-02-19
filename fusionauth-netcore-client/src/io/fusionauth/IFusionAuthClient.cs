@@ -1409,6 +1409,19 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> DeleteWebAuthnCredentialAsync(Guid? id);
 
     /// <summary>
+    /// Deletes all of the WebAuthn credentials for the given User Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The unique Id of the User to delete WebAuthn passkeys for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteWebAuthnCredentialsForUserAsync(Guid? userId);
+
+    /// <summary>
     /// Deletes the webhook for the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -1974,7 +1987,7 @@ namespace io.fusionauth {
     Task<ClientResponse<RESTVoid>> LogoutWithRequestAsync(LogoutRequest request);
 
     /// <summary>
-    /// Retrieves the identity provider for the given domain. A 200 response code indicates the domain is managed
+    /// Retrieves any global identity providers for the given domain. A 200 response code indicates the domain is managed
     /// by a registered identity provider. A 404 indicates the domain is not managed.
     /// This is an asynchronous method.
     /// </summary>
@@ -1986,6 +1999,22 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<LookupResponse>> LookupIdentityProviderAsync(string domain);
+
+    /// <summary>
+    /// Retrieves the identity provider for the given domain and tenantId. A 200 response code indicates the domain is managed
+    /// by a registered identity provider. A 404 indicates the domain is not managed.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domain"> The domain or email address to lookup.</param>
+    /// <param name="tenantId"> If provided, the API searches for an identity provider scoped to the corresponding tenant that manages the requested domain.
+    /// If no result is found, the API then searches for global identity providers.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<LookupResponse>> LookupIdentityProviderByTenantIdAsync(string domain, Guid? tenantId);
 
     /// <summary>
     /// Modifies a temporal user action by changing the expiration of the action and optionally adding a comment to the
@@ -6663,6 +6692,18 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> DeleteWebAuthnCredential(Guid? id);
 
    /// <summary>
+   /// Deletes all of the WebAuthn credentials for the given User Id.
+   /// </summary>
+   /// <param name="userId"> The unique Id of the User to delete WebAuthn passkeys for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteWebAuthnCredentialsForUser(Guid? userId);
+
+   /// <summary>
    /// Deletes the webhook for the given Id.
    /// </summary>
    /// <param name="webhookId"> The Id of the webhook to delete.</param>
@@ -7191,7 +7232,7 @@ namespace io.fusionauth {
    ClientResponse<RESTVoid> LogoutWithRequest(LogoutRequest request);
 
    /// <summary>
-   /// Retrieves the identity provider for the given domain. A 200 response code indicates the domain is managed
+   /// Retrieves any global identity providers for the given domain. A 200 response code indicates the domain is managed
    /// by a registered identity provider. A 404 indicates the domain is not managed.
    /// </summary>
    /// <param name="domain"> The domain or email address to lookup.</param>
@@ -7202,6 +7243,21 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<LookupResponse> LookupIdentityProvider(string domain);
+
+   /// <summary>
+   /// Retrieves the identity provider for the given domain and tenantId. A 200 response code indicates the domain is managed
+   /// by a registered identity provider. A 404 indicates the domain is not managed.
+   /// </summary>
+   /// <param name="domain"> The domain or email address to lookup.</param>
+   /// <param name="tenantId"> If provided, the API searches for an identity provider scoped to the corresponding tenant that manages the requested domain.
+    /// If no result is found, the API then searches for global identity providers.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<LookupResponse> LookupIdentityProviderByTenantId(string domain, Guid? tenantId);
 
    /// <summary>
    /// Modifies a temporal user action by changing the expiration of the action and optionally adding a comment to the

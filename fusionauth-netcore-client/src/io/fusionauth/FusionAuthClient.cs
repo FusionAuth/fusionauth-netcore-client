@@ -1057,6 +1057,15 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteWebAuthnCredentialsForUserAsync(Guid? userId) {
+      return buildClient()
+          .withUri("/api/webauthn")
+          .withParameter("userId", userId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> DeleteWebhookAsync(Guid? webhookId) {
       return buildClient()
           .withUri("/api/webhook")
@@ -1562,6 +1571,16 @@ namespace io.fusionauth {
       return buildClient()
           .withUri("/api/identity-provider/lookup")
           .withParameter("domain", domain)
+          .withMethod("Get")
+          .goAsync<LookupResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<LookupResponse>> LookupIdentityProviderByTenantIdAsync(string domain, Guid? tenantId) {
+      return buildClient()
+          .withUri("/api/identity-provider/lookup")
+          .withParameter("domain", domain)
+          .withParameter("tenantId", tenantId)
           .withMethod("Get")
           .goAsync<LookupResponse>();
     }

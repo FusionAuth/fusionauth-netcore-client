@@ -535,6 +535,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteWebAuthnCredentialsForUser(Guid? userId) {
+      return client.DeleteWebAuthnCredentialsForUserAsync(userId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteWebhook(Guid? webhookId) {
       return client.DeleteWebhookAsync(webhookId).GetAwaiter().GetResult();
     }
@@ -722,6 +727,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<LookupResponse> LookupIdentityProvider(string domain) {
       return client.LookupIdentityProviderAsync(domain).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<LookupResponse> LookupIdentityProviderByTenantId(string domain, Guid? tenantId) {
+      return client.LookupIdentityProviderByTenantIdAsync(domain, tenantId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
