@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
 
     public PasswordBreachDetection breachDetection;
 
+    public bool? disallowUserLoginId;
+
     public int? maxLength;
 
     public int? minLength;
