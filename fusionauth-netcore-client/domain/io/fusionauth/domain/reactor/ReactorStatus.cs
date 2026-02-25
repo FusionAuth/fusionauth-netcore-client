@@ -48,6 +48,8 @@ namespace io.fusionauth.domain.reactor
 
     public ReactorFeatureStatus connectors;
 
+    public ReactorFeatureStatus dPoP;
+
     public ReactorFeatureStatus entityManagement;
 
     public string expiration;
