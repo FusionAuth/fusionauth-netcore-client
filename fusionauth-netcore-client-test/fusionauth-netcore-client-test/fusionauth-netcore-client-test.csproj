@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace></RootNamespace>
-        <PackageVersion>1.63.0</PackageVersion>
+        <PackageVersion>1.64.0</PackageVersion>
         <AssemblyName>FusionAuth.Client.Test</AssemblyName>
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
