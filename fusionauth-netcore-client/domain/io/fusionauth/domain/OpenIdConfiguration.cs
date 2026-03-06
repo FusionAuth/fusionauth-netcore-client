@@ -67,6 +67,8 @@ namespace io.fusionauth.domain
 
     public List<string> userinfo_signing_alg_values_supported;
 
+    public List<string> code_challenge_methods_supported;
+
     public OpenIdConfiguration with(Action<OpenIdConfiguration> action) {
       action(this);
       return this;
