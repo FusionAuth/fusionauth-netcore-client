@@ -25,6 +25,7 @@ namespace io.fusionauth.domain
         EC, 
         RSA, 
         HMAC, 
-        OKP
+        OKP, 
+        Secret
   }
 }
