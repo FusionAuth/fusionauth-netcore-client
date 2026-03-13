@@ -54,6 +54,8 @@ namespace io.fusionauth.domain.reactor
 
     public string expiration;
 
+    public ReactorFeatureStatus ipGeoLocation;
+
     public IDictionary<string, string> licenseAttributes;
 
     public bool? licensed;
