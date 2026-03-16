@@ -23,6 +23,10 @@ namespace io.fusionauth.domain
 
   public class PasswordlessConfiguration: Enableable {
 
+    public PasswordlessStrategy emailLoginStrategy;
+
+    public PasswordlessStrategy phoneLoginStrategy;
+
     public PasswordlessConfiguration with(Action<PasswordlessConfiguration> action) {
       action(this);
       return this;
