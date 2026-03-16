@@ -1,6 +1,7 @@
 ## FusionAuth .NET Core Client
 ![semver 2.0.0 compliant](http://img.shields.io/badge/semver-2.0.0-brightgreen.svg?style=flat-square)
 
+
 If you're integrating FusionAuth with a .NET Core application, this library will speed up your development time.
 
 Here's a small Example showing how to use this client: [Example.cs](https://github.com/FusionAuth/fusionauth-netcore-client/blob/master/fusionauth-netcore-client-test/fusionauth-netcore-client-test/test/io/fusionauth/Example.cs)
