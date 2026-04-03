@@ -1473,6 +1473,9 @@ namespace io.fusionauth {
       if (request.token != null) {
         body.Add("token", request.token.ToString());
       }
+      if (request.token_type_hint != null) {
+        body.Add("token_type_hint", request.token_type_hint.ToString());
+      }
       return buildAnonymousClient()
           .withUri("/oauth2/introspect")
           .withFormData(new FormUrlEncodedContent(body))

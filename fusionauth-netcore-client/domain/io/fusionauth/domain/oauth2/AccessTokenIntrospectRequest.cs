@@ -34,6 +34,8 @@ namespace io.fusionauth.domain.oauth2
 
     public string token;
 
+    public string token_type_hint;
+
     public AccessTokenIntrospectRequest with(Action<AccessTokenIntrospectRequest> action) {
       action(this);
       return this;
