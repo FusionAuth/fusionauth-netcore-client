@@ -34,6 +34,8 @@ namespace io.fusionauth.domain
 
     public ApplicationMultiFactorTrustPolicy trustPolicy;
 
+    public MultiFactorVoiceTemplate voice;
+
     public ApplicationMultiFactorConfiguration with(Action<ApplicationMultiFactorConfiguration> action) {
       action(this);
       return this;

@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.message;
 using System.Collections.Generic;
 using System;
 
@@ -29,6 +30,8 @@ namespace io.fusionauth.domain.api.twoFactor
     public Guid? applicationId;
 
     public string email;
+
+    public MessageType messageType;
 
     public string method;
 

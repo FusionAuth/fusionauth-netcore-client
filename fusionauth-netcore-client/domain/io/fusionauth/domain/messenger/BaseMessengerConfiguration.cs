@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.message;
 using System.Collections.Generic;
 using System;
 
@@ -33,6 +34,8 @@ namespace io.fusionauth.domain.messenger
     public DateTimeOffset? insertInstant;
 
     public DateTimeOffset? lastUpdateInstant;
+
+    public List<MessageType> messageTypes;
 
     public string name;
 

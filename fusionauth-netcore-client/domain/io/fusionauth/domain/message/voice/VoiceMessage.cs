@@ -15,28 +15,25 @@
  */
 
 
+using io.fusionauth.domain.message;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.message.voice
 {
 
   /**
-   * @author Mikey Sleevi
+   * @author Daniel King
    */
-  public class TenantMultiFactorConfiguration {
+  public class VoiceMessage {
 
-    public MultiFactorAuthenticatorMethod authenticator;
+    public string locale;
 
-    public MultiFactorEmailMethod email;
+    public string message;
 
-    public MultiFactorLoginPolicy loginPolicy;
+    public string phoneNumber;
 
-    public MultiFactorSMSMethod sms;
-
-    public MultiFactorVoiceMethod voice;
-
-    public TenantMultiFactorConfiguration with(Action<TenantMultiFactorConfiguration> action) {
+    public VoiceMessage with(Action<VoiceMessage> action) {
       action(this);
       return this;
     }

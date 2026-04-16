@@ -25,6 +25,7 @@ namespace io.fusionauth.domain.message
    * @author Mikey Sleevi
    */
   public enum MessageType {
-        SMS
+        SMS, 
+        Voice
   }
 }

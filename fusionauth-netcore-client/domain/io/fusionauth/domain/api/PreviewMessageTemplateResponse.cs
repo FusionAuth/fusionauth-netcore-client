@@ -17,6 +17,7 @@
 
 using com.inversoft.error;
 using io.fusionauth.domain.message.sms;
+using io.fusionauth.domain.message;
 using System.Collections.Generic;
 using System;
 
@@ -31,6 +32,8 @@ namespace io.fusionauth.domain.api
     public Errors errors;
 
     public SMSMessage message;
+
+    public Message previewMessage;
 
     public PreviewMessageTemplateResponse with(Action<PreviewMessageTemplateResponse> action) {
       action(this);

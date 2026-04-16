@@ -23,6 +23,7 @@ namespace io.fusionauth.domain.messenger
 
   /**
    * @author Daniel DeGroff
+   * @deprecated since 1.65.0,  use {@code MessageType} instead
    */
   public class MessengerTransport {
 

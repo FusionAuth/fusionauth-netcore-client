@@ -21,22 +21,11 @@ using System;
 namespace io.fusionauth.domain
 {
 
-  /**
-   * @author Mikey Sleevi
-   */
-  public class TenantMultiFactorConfiguration {
+  public class MultiFactorVoiceTemplate {
 
-    public MultiFactorAuthenticatorMethod authenticator;
+    public Guid? templateId;
 
-    public MultiFactorEmailMethod email;
-
-    public MultiFactorLoginPolicy loginPolicy;
-
-    public MultiFactorSMSMethod sms;
-
-    public MultiFactorVoiceMethod voice;
-
-    public TenantMultiFactorConfiguration with(Action<TenantMultiFactorConfiguration> action) {
+    public MultiFactorVoiceTemplate with(Action<MultiFactorVoiceTemplate> action) {
       action(this);
       return this;
     }
