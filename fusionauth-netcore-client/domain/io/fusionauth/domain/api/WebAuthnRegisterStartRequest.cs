@@ -37,7 +37,7 @@ namespace io.fusionauth.domain.api
 
     public Guid? userId;
 
-    public WebAuthnWorkflow workflow;
+    public WebAuthnWorkflow? workflow;
 
     public WebAuthnRegisterStartRequest with(Action<WebAuthnRegisterStartRequest> action) {
       action(this);

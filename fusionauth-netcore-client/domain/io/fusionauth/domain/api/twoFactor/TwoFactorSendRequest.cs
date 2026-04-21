@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.api.twoFactor
 
     public string email;
 
-    public MessageType messageType;
+    public MessageType? messageType;
 
     public string method;
 

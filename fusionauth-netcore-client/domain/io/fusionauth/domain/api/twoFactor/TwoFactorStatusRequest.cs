@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.api.twoFactor
 
     public string accessToken;
 
-    public MultiFactorAction action;
+    public MultiFactorAction? action;
 
     public Guid? applicationId;
 

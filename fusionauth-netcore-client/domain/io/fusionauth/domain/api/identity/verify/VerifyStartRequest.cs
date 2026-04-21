@@ -29,7 +29,7 @@ namespace io.fusionauth.domain.api.identity.verify
 
     public Guid? applicationId;
 
-    public ExistingUserStrategy existingUserStrategy;
+    public ExistingUserStrategy? existingUserStrategy;
 
     public string loginId;
 
@@ -37,7 +37,7 @@ namespace io.fusionauth.domain.api.identity.verify
 
     public IDictionary<string, object> state;
 
-    public VerificationStrategy verificationStrategy;
+    public VerificationStrategy? verificationStrategy;
 
     public VerifyStartRequest with(Action<VerifyStartRequest> action) {
       action(this);
