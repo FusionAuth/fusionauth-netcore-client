@@ -29,6 +29,8 @@ namespace io.fusionauth.domain.api.identityProvider
    */
   public class IdentityProviderLoginRequest: BaseLoginRequest {
 
+    public string connectionTestId;
+
     public IDictionary<string, string> data;
 
     public Guid? identityProviderId;

@@ -44,6 +44,8 @@ namespace io.fusionauth.domain
 
     public int? externalAuthenticationIdTimeToLiveInSeconds;
 
+    public int? identityProviderConnectionTestTimeToLiveInSeconds;
+
     public int? loginIntentTimeToLiveInSeconds;
 
     public int? oneTimePasswordTimeToLiveInSeconds;

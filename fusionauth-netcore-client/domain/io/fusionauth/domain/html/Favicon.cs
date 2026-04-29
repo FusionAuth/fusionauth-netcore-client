@@ -15,31 +15,26 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider
+namespace io.fusionauth.domain.html
 {
 
   /**
-   * @author Daniel DeGroff
+   * Components of a Favicon in an HTML {@code <head>} element.
    */
-  public class IdentityProviderStartLoginRequest: BaseLoginRequest {
+  public class Favicon {
 
-    public string connectionTestId;
+    public string href;
 
-    public IDictionary<string, string> data;
+    public string rel;
 
-    public Guid? identityProviderId;
+    public string sizes;
 
-    public string loginId;
+    public string type;
 
-    public List<string> loginIdTypes;
-
-    public IDictionary<string, object> state;
-
-    public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {
+    public Favicon with(Action<Favicon> action) {
       action(this);
       return this;
     }

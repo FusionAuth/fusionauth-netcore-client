@@ -15,31 +15,30 @@
  */
 
 
-using io.fusionauth.domain.api;
+using io.fusionauth.domain;
+using io.fusionauth.domain.provider;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider
+namespace io.fusionauth.domain.tenantManager
 {
 
   /**
-   * @author Daniel DeGroff
+   * Configuration object for identity provider types allowed in Tenant Manager
    */
-  public class IdentityProviderStartLoginRequest: BaseLoginRequest {
+  public class TenantManagerIdentityProviderTypeConfiguration: Enableable {
 
-    public string connectionTestId;
+    public IDictionary<string, string> defaultAttributeMappings;
 
-    public IDictionary<string, string> data;
+    public DateTimeOffset? insertInstant;
 
-    public Guid? identityProviderId;
+    public DateTimeOffset? lastUpdateInstant;
 
-    public string loginId;
+    public IdentityProviderLinkingStrategy linkingStrategy;
 
-    public List<string> loginIdTypes;
+    public IdentityProviderType type;
 
-    public IDictionary<string, object> state;
-
-    public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {
+    public TenantManagerIdentityProviderTypeConfiguration with(Action<TenantManagerIdentityProviderTypeConfiguration> action) {
       action(this);
       return this;
     }

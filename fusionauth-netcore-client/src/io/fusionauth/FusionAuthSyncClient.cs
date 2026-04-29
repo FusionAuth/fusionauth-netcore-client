@@ -24,6 +24,7 @@ using io.fusionauth.domain.api.identityProvider;
 using io.fusionauth.domain.api.jwt;
 using io.fusionauth.domain.api.passwordless;
 using io.fusionauth.domain.api.report;
+using io.fusionauth.domain.api.tenantManager;
 using io.fusionauth.domain.api.twoFactor;
 using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.oauth2;
@@ -293,6 +294,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> CreateTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request) {
+      return client.CreateTenantManagerIdentityProviderTypeConfigurationAsync(type, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ThemeResponse> CreateTheme(Guid? themeId, ThemeRequest request) {
       return client.CreateThemeAsync(themeId, request).GetAwaiter().GetResult();
     }
@@ -481,6 +487,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteTenantAsync(Guid? tenantId) {
       return client.DeleteTenantAsyncAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type) {
+      return client.DeleteTenantManagerIdentityProviderTypeConfigurationAsync(type).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -855,6 +866,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<TenantManagerConfigurationResponse> PatchTenantManagerConfiguration(IDictionary<string, object> request) {
+      return client.PatchTenantManagerConfigurationAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> PatchTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, IDictionary<string, object> request) {
+      return client.PatchTenantManagerIdentityProviderTypeConfigurationAsync(type, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ThemeResponse> PatchTheme(Guid? themeId, IDictionary<string, object> request) {
       return client.PatchThemeAsync(themeId, request).GetAwaiter().GetResult();
     }
@@ -1110,6 +1131,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IdentityProviderConnectionTestResponse> RetrieveIdentityProviderConnectionTestResults(string connectionTestId) {
+      return client.RetrieveIdentityProviderConnectionTestResultsAsync(connectionTestId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderResponse> RetrieveIdentityProviders() {
       return client.RetrieveIdentityProvidersAsync().GetAwaiter().GetResult();
     }
@@ -1312,6 +1338,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TenantResponse> RetrieveTenant(Guid? tenantId) {
       return client.RetrieveTenantAsync(tenantId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TenantManagerConfigurationResponse> RetrieveTenantManagerConfiguration() {
+      return client.RetrieveTenantManagerConfigurationAsync().GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1724,6 +1755,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IdentityProviderConnectionTestResponse> StartIdentityProviderConnectionTest(IdentityProviderConnectionTestRequest request) {
+      return client.StartIdentityProviderConnectionTestAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderStartLoginResponse> StartIdentityProviderLogin(IdentityProviderStartLoginRequest request) {
       return client.StartIdentityProviderLoginAsync(request).GetAwaiter().GetResult();
     }
@@ -1881,6 +1917,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<TenantResponse> UpdateTenant(Guid? tenantId, TenantRequest request) {
       return client.UpdateTenantAsync(tenantId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TenantManagerConfigurationResponse> UpdateTenantManagerConfiguration(TenantManagerConfigurationRequest request) {
+      return client.UpdateTenantManagerConfigurationAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<TenantManagerIdentityProviderTypeConfigurationResponse> UpdateTenantManagerIdentityProviderTypeConfiguration(IdentityProviderType type, TenantManagerIdentityProviderTypeConfigurationRequest request) {
+      return client.UpdateTenantManagerIdentityProviderTypeConfigurationAsync(type, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

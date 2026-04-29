@@ -15,31 +15,30 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider
+namespace io.fusionauth.domain.tenantManager
 {
 
   /**
-   * @author Daniel DeGroff
+   * Configuration object for the Tenant Manager.
    */
-  public class IdentityProviderStartLoginRequest: BaseLoginRequest {
+  public class TenantManagerConfiguration {
 
-    public string connectionTestId;
+    public List<TenantManagerApplicationConfiguration> applicationConfigurations;
 
-    public IDictionary<string, string> data;
+    public Guid? attributeFormId;
 
-    public Guid? identityProviderId;
+    public string brandName;
 
-    public string loginId;
+    public IDictionary<string, TenantManagerIdentityProviderTypeConfiguration> identityProviderTypeConfigurations;
 
-    public List<string> loginIdTypes;
+    public DateTimeOffset? insertInstant;
 
-    public IDictionary<string, object> state;
+    public DateTimeOffset? lastUpdateInstant;
 
-    public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {
+    public TenantManagerConfiguration with(Action<TenantManagerConfiguration> action) {
       action(this);
       return this;
     }

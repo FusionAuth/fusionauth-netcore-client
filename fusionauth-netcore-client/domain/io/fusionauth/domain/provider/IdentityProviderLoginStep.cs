@@ -15,31 +15,21 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider
+namespace io.fusionauth.domain.provider
 {
 
-  /**
-   * @author Daniel DeGroff
-   */
-  public class IdentityProviderStartLoginRequest: BaseLoginRequest {
+  public class IdentityProviderLoginStep {
 
-    public string connectionTestId;
+    public string detail;
 
-    public IDictionary<string, string> data;
+    public bool? success;
 
-    public Guid? identityProviderId;
+    public string title;
 
-    public string loginId;
-
-    public List<string> loginIdTypes;
-
-    public IDictionary<string, object> state;
-
-    public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {
+    public IdentityProviderLoginStep with(Action<IdentityProviderLoginStep> action) {
       action(this);
       return this;
     }

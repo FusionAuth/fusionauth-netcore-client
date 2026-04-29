@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.provider
 
     public IDictionary<Guid, D> applicationConfiguration;
 
+    public IDictionary<string, string> attributeMappings;
+
     public bool? debug;
 
     public Guid? id;
@@ -43,6 +45,8 @@ namespace io.fusionauth.domain.provider
     public IdentityProviderLinkingStrategy linkingStrategy;
 
     public string name;
+
+    public string source;
 
     public IDictionary<Guid, IdentityProviderTenantConfiguration> tenantConfiguration;
 

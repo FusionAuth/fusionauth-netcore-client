@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.search
 
     public Guid? tenantId;
 
+    public bool? universal;
+
     public ApplicationSearchCriteria with(Action<ApplicationSearchCriteria> action) {
       action(this);
       return this;

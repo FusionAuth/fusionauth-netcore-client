@@ -15,6 +15,7 @@
  */
 
 
+using io.fusionauth.domain.html;
 using System.Collections.Generic;
 using System;
 
@@ -49,6 +50,8 @@ namespace io.fusionauth.domain
     public string errorFontColor;
 
     public string errorIconColor;
+
+    public List<Favicon> favicons;
 
     public string fontColor;
 

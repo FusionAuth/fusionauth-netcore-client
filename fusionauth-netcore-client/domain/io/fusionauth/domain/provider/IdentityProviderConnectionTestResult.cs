@@ -15,31 +15,32 @@
  */
 
 
-using io.fusionauth.domain.api;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api.identityProvider
+namespace io.fusionauth.domain.provider
 {
 
   /**
-   * @author Daniel DeGroff
+   * The results of an identity provider connection test.
    */
-  public class IdentityProviderStartLoginRequest: BaseLoginRequest {
+  public class IdentityProviderConnectionTestResult {
 
-    public string connectionTestId;
-
-    public IDictionary<string, string> data;
+    public string email;
 
     public Guid? identityProviderId;
 
-    public string loginId;
+    public string identityProviderUserId;
 
-    public List<string> loginIdTypes;
+    public DateTimeOffset? startInstant;
 
-    public IDictionary<string, object> state;
+    public List<IdentityProviderLoginStep> steps;
 
-    public IdentityProviderStartLoginRequest with(Action<IdentityProviderStartLoginRequest> action) {
+    public bool? success;
+
+    public string username;
+
+    public IdentityProviderConnectionTestResult with(Action<IdentityProviderConnectionTestResult> action) {
       action(this);
       return this;
     }
