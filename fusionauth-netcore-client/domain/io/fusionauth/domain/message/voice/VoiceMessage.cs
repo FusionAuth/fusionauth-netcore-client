@@ -27,11 +27,15 @@ namespace io.fusionauth.domain.message.voice
    */
   public class VoiceMessage {
 
+    public string code;
+
     public string locale;
 
     public string message;
 
     public string phoneNumber;
+
+    public Guid? userId;
 
     public VoiceMessage with(Action<VoiceMessage> action) {
       action(this);

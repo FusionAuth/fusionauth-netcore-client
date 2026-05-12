@@ -27,9 +27,13 @@ namespace io.fusionauth.domain.message.sms
    */
   public class SMSMessage {
 
+    public string code;
+
     public string phoneNumber;
 
     public string textMessage;
+
+    public Guid? userId;
 
     public SMSMessage with(Action<SMSMessage> action) {
       action(this);
