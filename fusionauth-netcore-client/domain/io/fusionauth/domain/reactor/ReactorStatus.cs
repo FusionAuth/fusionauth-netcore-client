@@ -52,6 +52,8 @@ namespace io.fusionauth.domain.reactor
 
     public ReactorFeatureStatus entityManagement;
 
+    public ReactorFeatureStatus legacyAdapter;
+
     public string expiration;
 
     public ReactorFeatureStatus ipGeoLocation;

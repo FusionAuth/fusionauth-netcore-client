@@ -53,6 +53,8 @@ namespace io.fusionauth.domain
 
     public string lastName;
 
+    public string legacyIdentifier;
+
     public DateTimeOffset? lastUpdateInstant;
 
     public string middleName;
