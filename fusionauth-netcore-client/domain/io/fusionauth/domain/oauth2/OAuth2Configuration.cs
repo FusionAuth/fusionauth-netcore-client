@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.oauth2
 
     public List<string> authorizedRedirectURLs;
 
+    public List<string> authorizedResourceUris;
+
     public Oauth2AuthorizedURLValidationPolicy authorizedURLValidationPolicy;
 
     public ClientAuthenticationPolicy clientAuthenticationPolicy;
