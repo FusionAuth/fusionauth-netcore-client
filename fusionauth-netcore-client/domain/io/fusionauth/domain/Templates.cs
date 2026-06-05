@@ -29,6 +29,8 @@ namespace io.fusionauth.domain
 
     public string accountTwoFactorDisable;
 
+    public string accountTwoFactorEdit;
+
     public string accountTwoFactorEnable;
 
     public string accountTwoFactorIndex;

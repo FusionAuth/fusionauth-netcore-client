@@ -1935,6 +1935,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<RESTVoid> UpdateTwoFactor(Guid? userId, TwoFactorUpdateRequest request) {
+      return client.UpdateTwoFactorAsync(userId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<UserResponse> UpdateUser(Guid? userId, UserRequest request) {
       return client.UpdateUserAsync(userId, request).GetAwaiter().GetResult();
     }

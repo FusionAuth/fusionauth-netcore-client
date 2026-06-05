@@ -5288,6 +5288,20 @@ namespace io.fusionauth {
     Task<ClientResponse<ThemeResponse>> UpdateThemeAsync(Guid? themeId, ThemeRequest request);
 
     /// <summary>
+    /// Updates the two-factor method for the given user using a JSON body.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="userId"> The Id of the user to update.</param>
+    /// <param name="request"> The request information that contains the name and methodId along with any event information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> UpdateTwoFactorAsync(Guid? userId, TwoFactorUpdateRequest request);
+
+    /// <summary>
     /// Updates the user with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -10409,6 +10423,19 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<ThemeResponse> UpdateTheme(Guid? themeId, ThemeRequest request);
+
+   /// <summary>
+   /// Updates the two-factor method for the given user using a JSON body.
+   /// </summary>
+   /// <param name="userId"> The Id of the user to update.</param>
+   /// <param name="request"> The request information that contains the name and methodId along with any event information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> UpdateTwoFactor(Guid? userId, TwoFactorUpdateRequest request);
 
    /// <summary>
    /// Updates the user with the given Id.

@@ -18,31 +18,19 @@
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain
+namespace io.fusionauth.domain.api
 {
 
   /**
-   * @author Daniel DeGroff
+   * Request to update an existing two-factor method for a user.
    */
-  public class TwoFactorMethod {
+  public class TwoFactorUpdateRequest: BaseEventRequest {
 
-    public AuthenticatorConfiguration authenticator;
-
-    public string email;
-
-    public string id;
-
-    public bool? lastUsed;
-
-    public string method;
-
-    public string mobilePhone;
+    public string methodId;
 
     public string name;
 
-    public string secret;
-
-    public TwoFactorMethod with(Action<TwoFactorMethod> action) {
+    public TwoFactorUpdateRequest with(Action<TwoFactorUpdateRequest> action) {
       action(this);
       return this;
     }

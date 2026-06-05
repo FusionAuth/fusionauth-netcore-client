@@ -38,6 +38,8 @@ namespace io.fusionauth.domain.api
 
     public string mobilePhone;
 
+    public string name;
+
     public string secret;
 
     public string secretBase32Encoded;

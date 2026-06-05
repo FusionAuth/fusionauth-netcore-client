@@ -3850,6 +3850,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> UpdateTwoFactorAsync(Guid? userId, TwoFactorUpdateRequest request) {
+      return buildClient()
+          .withUri("/api/user/two-factor")
+          .withUriSegment(userId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<UserResponse>> UpdateUserAsync(Guid? userId, UserRequest request) {
       return buildClient()
           .withUri("/api/user")
