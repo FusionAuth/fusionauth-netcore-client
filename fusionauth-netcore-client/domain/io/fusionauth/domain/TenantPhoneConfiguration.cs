@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
    */
   public class TenantPhoneConfiguration {
 
+    public Guid? adminTwoFactorMethodRemoveTemplateId;
+
     public Guid? forgotPasswordTemplateId;
 
     public Guid? identityUpdateTemplateId;

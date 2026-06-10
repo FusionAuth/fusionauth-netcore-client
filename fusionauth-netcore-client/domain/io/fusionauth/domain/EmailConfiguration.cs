@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
 
     public List<EmailHeader> additionalHeaders;
 
+    public Guid? adminTwoFactorMethodRemoveEmailTemplateId;
+
     public bool? debug;
 
     public string defaultFromEmail;
