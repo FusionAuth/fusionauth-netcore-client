@@ -33,6 +33,8 @@ namespace io.fusionauth.domain
 
     public AuthenticationTokenConfiguration authenticationTokenConfiguration;
 
+    public string baseURL;
+
     public CleanSpeakConfiguration cleanSpeakConfiguration;
 
     public IDictionary<string, object> data;

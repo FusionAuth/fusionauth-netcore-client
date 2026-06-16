@@ -31,6 +31,8 @@ namespace io.fusionauth.domain
 
     public TenantAccessControlConfiguration accessControlConfiguration;
 
+    public string baseURL;
+
     public TenantCaptchaConfiguration captchaConfiguration;
 
     public bool? configured;
