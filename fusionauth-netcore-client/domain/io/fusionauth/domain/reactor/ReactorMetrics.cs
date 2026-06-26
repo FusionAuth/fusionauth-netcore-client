@@ -28,6 +28,8 @@ namespace io.fusionauth.domain.reactor
 
     public IDictionary<Guid, BreachedPasswordTenantMetric> breachedPasswordMetrics;
 
+    public IDictionary<Guid, MFATenantMetric> mfaMetrics;
+
     public ReactorMetrics with(Action<ReactorMetrics> action) {
       action(this);
       return this;

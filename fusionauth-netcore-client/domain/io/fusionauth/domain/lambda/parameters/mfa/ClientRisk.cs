@@ -15,31 +15,20 @@
  */
 
 
-using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.lambda.parameters.mfa
 {
 
   /**
-   * @author Daniel DeGroff
+   * Represents the inbound lambda parameter 'clientRisk' inside the 'context' parameter for MFA Required lambdas.
    */
-  public class BaseLoginRequest: BaseEventRequest {
+  public class ClientRisk {
 
-    public Guid? applicationId;
+    public string status;
 
-    public double? botDetectionScore;
-
-    public string ipAddress;
-
-    public MetaData metaData;
-
-    public bool? newDevice;
-
-    public bool? noJWT;
-
-    public BaseLoginRequest with(Action<BaseLoginRequest> action) {
+    public ClientRisk with(Action<ClientRisk> action) {
       action(this);
       return this;
     }

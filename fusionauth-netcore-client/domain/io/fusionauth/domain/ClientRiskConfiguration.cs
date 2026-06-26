@@ -15,31 +15,38 @@
  */
 
 
-using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain
 {
 
   /**
-   * @author Daniel DeGroff
+   * Flags to enable or disable specific risk signals that contribute to the composite client risk calculation.
    */
-  public class BaseLoginRequest: BaseEventRequest {
+  public class ClientRiskConfiguration: Enableable {
 
-    public Guid? applicationId;
+    public bool? blocklistedIp;
 
-    public double? botDetectionScore;
+    public bool? botDetected;
 
-    public string ipAddress;
+    public bool? dormantAccount;
 
-    public MetaData metaData;
+    public bool? dormantPassword;
 
-    public bool? newDevice;
+    public bool? impossibleTravel;
 
-    public bool? noJWT;
+    public bool? recentIdentityChange;
 
-    public BaseLoginRequest with(Action<BaseLoginRequest> action) {
+    public bool? recentPasswordChange;
+
+    public bool? suspiciousUserAgent;
+
+    public bool? unrecognizedDevice;
+
+    public bool? untrustedDevice;
+
+    public ClientRiskConfiguration with(Action<ClientRiskConfiguration> action) {
       action(this);
       return this;
     }

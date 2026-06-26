@@ -37,6 +37,8 @@ namespace io.fusionauth.domain.lambda.parameters.mfa
 
     public string authenticationType;
 
+    public ClientRisk clientRisk;
+
     public EventInfo @eventInfo;
 
     public Trust mfaTrust;

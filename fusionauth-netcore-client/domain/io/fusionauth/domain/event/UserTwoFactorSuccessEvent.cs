@@ -15,31 +15,26 @@
  */
 
 
-using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.@event
 {
 
   /**
-   * @author Daniel DeGroff
+   * Models the User Two Factor Success Event. Fired when a user successfully completes a two-factor challenge.
    */
-  public class BaseLoginRequest: BaseEventRequest {
+  public class UserTwoFactorSuccessEvent: BaseUserEvent {
 
     public Guid? applicationId;
 
-    public double? botDetectionScore;
+    public string clientRisk;
 
-    public string ipAddress;
+    public string messageType;
 
-    public MetaData metaData;
+    public string method;
 
-    public bool? newDevice;
-
-    public bool? noJWT;
-
-    public BaseLoginRequest with(Action<BaseLoginRequest> action) {
+    public UserTwoFactorSuccessEvent with(Action<UserTwoFactorSuccessEvent> action) {
       action(this);
       return this;
     }

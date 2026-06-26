@@ -98,6 +98,8 @@ namespace io.fusionauth.domain.@event
         UserLoginSuccess, 
         [EnumMember(Value = "user.login.suspicious")]
         UserLoginSuspicious, 
+        [EnumMember(Value = "user.two-factor.challenge")]
+        UserTwoFactorChallenge, 
         [EnumMember(Value = "user.password.breach")]
         UserPasswordBreach, 
         [EnumMember(Value = "user.password.reset.send")]
@@ -137,6 +139,10 @@ namespace io.fusionauth.domain.@event
         [EnumMember(Value = "user.identity.verified")]
         UserIdentityVerified, 
         [EnumMember(Value = "user.identity.update")]
-        UserIdentityUpdate
+        UserIdentityUpdate, 
+        [EnumMember(Value = "user.two-factor.failed-attempt")]
+        UserTwoFactorFailedAttempt, 
+        [EnumMember(Value = "user.two-factor.success")]
+        UserTwoFactorSuccess
   }
 }

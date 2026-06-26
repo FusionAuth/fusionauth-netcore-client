@@ -35,6 +35,8 @@ namespace io.fusionauth.domain
 
     public TenantCaptchaConfiguration captchaConfiguration;
 
+    public ClientRiskConfiguration clientRiskConfiguration;
+
     public bool? configured;
 
     public List<ConnectorPolicy> connectorPolicies;

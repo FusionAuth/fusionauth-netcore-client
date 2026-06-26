@@ -25,6 +25,15 @@ namespace io.fusionauth.domain
    * @author Brett Pontarelli
    */
   public enum AuthenticationThreats {
-        ImpossibleTravel
+        BotDetected, 
+        BlocklistedIp, 
+        DormantAccount, 
+        DormantPassword, 
+        ImpossibleTravel, 
+        RecentIdentityChange, 
+        RecentPasswordChange, 
+        SuspiciousUserAgent, 
+        UnrecognizedDevice, 
+        UntrustedDevice
   }
 }

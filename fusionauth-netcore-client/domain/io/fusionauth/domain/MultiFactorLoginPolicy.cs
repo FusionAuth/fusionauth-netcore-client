@@ -25,6 +25,8 @@ namespace io.fusionauth.domain
    * @author Daniel DeGroff
    */
   public enum MultiFactorLoginPolicy {
+        ChallengeOnHighRisk, 
+        ChallengeOnMediumRisk, 
         Disabled, 
         Enabled, 
         Required

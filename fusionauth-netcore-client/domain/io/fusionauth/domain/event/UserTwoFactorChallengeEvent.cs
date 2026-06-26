@@ -15,31 +15,22 @@
  */
 
 
-using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.@event
 {
 
   /**
-   * @author Daniel DeGroff
+   * Models the User Two Factor Challenge Event. Fired when a two-factor challenge is started (before the user submits a code).
    */
-  public class BaseLoginRequest: BaseEventRequest {
+  public class UserTwoFactorChallengeEvent: BaseUserEvent {
 
     public Guid? applicationId;
 
-    public double? botDetectionScore;
+    public string clientRisk;
 
-    public string ipAddress;
-
-    public MetaData metaData;
-
-    public bool? newDevice;
-
-    public bool? noJWT;
-
-    public BaseLoginRequest with(Action<BaseLoginRequest> action) {
+    public UserTwoFactorChallengeEvent with(Action<UserTwoFactorChallengeEvent> action) {
       action(this);
       return this;
     }

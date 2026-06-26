@@ -15,31 +15,24 @@
  */
 
 
-using io.fusionauth.domain.jwt;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain.reactor
 {
 
   /**
-   * @author Daniel DeGroff
+   * Reactor metric with counts of MFA challenges, successes, and failures for a tenant.
    */
-  public class BaseLoginRequest: BaseEventRequest {
+  public class MFATenantMetric {
 
-    public Guid? applicationId;
+    public long? challengeCount;
 
-    public double? botDetectionScore;
+    public long? failedAttemptCount;
 
-    public string ipAddress;
+    public long? successCount;
 
-    public MetaData metaData;
-
-    public bool? newDevice;
-
-    public bool? noJWT;
-
-    public BaseLoginRequest with(Action<BaseLoginRequest> action) {
+    public MFATenantMetric with(Action<MFATenantMetric> action) {
       action(this);
       return this;
     }

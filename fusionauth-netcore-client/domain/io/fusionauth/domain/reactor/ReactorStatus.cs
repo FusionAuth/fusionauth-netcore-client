@@ -46,17 +46,25 @@ namespace io.fusionauth.domain.reactor
 
     public ReactorFeatureStatus breachedPasswordDetection;
 
+    public ReactorFeatureStatus clientRiskConfiguration;
+
     public ReactorFeatureStatus connectors;
 
     public ReactorFeatureStatus dPoP;
 
     public ReactorFeatureStatus entityManagement;
 
-    public ReactorFeatureStatus legacyAdapter;
-
     public string expiration;
 
+    public ReactorFeatureStatus imfaWebhooks;
+
+    public ReactorFeatureStatus intelligentMFA;
+
     public ReactorFeatureStatus ipGeoLocation;
+
+    public ReactorFeatureStatus ipReputation;
+
+    public ReactorFeatureStatus legacyAdapter;
 
     public IDictionary<string, string> licenseAttributes;
 
@@ -71,6 +79,8 @@ namespace io.fusionauth.domain.reactor
     public ReactorFeatureStatus threatDetection;
 
     public ReactorFeatureStatus universalApplication;
+
+    public ReactorFeatureStatus userAgentReputation;
 
     public ReactorFeatureStatus webAuthn;
 

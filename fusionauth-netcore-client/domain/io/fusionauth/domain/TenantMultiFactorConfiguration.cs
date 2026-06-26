@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
 
     public MultiFactorAuthenticatorMethod authenticator;
 
+    public bool? debug;
+
     public MultiFactorEmailMethod email;
 
     public MultiFactorLoginPolicy loginPolicy;
