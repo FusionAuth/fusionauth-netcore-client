@@ -13,9 +13,9 @@ on:
       command: # be careful when editing these, fusionauth-app expects certain commands
         type: choice
         options:
-          - build    # build only
-          - publish  # build & publish to nuget
-          - release  # build & release to svn
+          - build # build only
+          - publish # build & publish to nuget
+          - release # build & release to svn
         default: build
 
 permissions:
@@ -30,7 +30,7 @@ jobs:
         shell: /usr/bin/bash -l -e -o pipefail {0}
     steps:
       - name: checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: setup java
         uses: actions/setup-java@v5
@@ -56,30 +56,16 @@ jobs:
 
       ### Everything below this line will only run on a workflow_dispatch
 
-      - name: set aws credentials
+      - name: nuget oidc login
         if: inputs.command == 'release' || inputs.command == 'publish'
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: NuGet/login@v1
+        id: login
         with:
-          role-to-assume: arn:aws:iam::752443094709:role/gha-fusionauth-netcore-client
-          role-session-name: aws-auth-action
-          aws-region: us-west-2
-
-      - name: get secret
-        if: inputs.command == 'release' || inputs.command == 'publish'
-        run: |
-          while IFS=$'\t' read -r key value; do
-            echo "::add-mask::${value}"
-            echo "${key}=${value}" >> $GITHUB_ENV
-          done < <(aws secretsmanager get-secret-value \
-            --region us-west-2 \
-            --secret-id platform/nuget \
-            --query SecretString \
-            --output text | \
-            jq -r 'to_entries[] | [.key, .value] | @tsv')
+          user: fusionauth-platform
 
       - name: update savant properties file
         if: inputs.command == 'release' || inputs.command == 'publish'
-        run: echo "nugetAPIKey=${{ env.API_KEY }}" >> ~/.savant/config.properties
+        run: echo "nugetAPIKey=${{steps.login.outputs.NUGET_API_KEY}}" >> ~/.savant/config.properties
 
       - name: release to svn
         if: inputs.command == 'release'
