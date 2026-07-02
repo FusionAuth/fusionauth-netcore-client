@@ -3916,40 +3916,6 @@ namespace io.fusionauth {
     /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
     /// 
     /// This API is useful if you want to build your own login workflow to complete a device grant.
-    /// This is an asynchronous method.
-    /// </summary>
-    /// <param name="client_id"> The client Id.</param>
-    /// <param name="client_secret"> The client Id.</param>
-    /// <param name="user_code"> The end-user verification code.</param>
-    /// <returns>
-    /// When successful, the response will contain the log of the action. If there was a validation error or any
-    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-    /// IOException.
-    /// </returns>
-    Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string client_id, string client_secret, string user_code);
-
-    /// <summary>
-    /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
-    /// 
-    /// This API is useful if you want to build your own login workflow to complete a device grant.
-    /// 
-    /// This request will require an API key.
-    /// This is an asynchronous method.
-    /// </summary>
-    /// <param name="user_code"> The end-user verification code.</param>
-    /// <returns>
-    /// When successful, the response will contain the log of the action. If there was a validation error or any
-    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-    /// IOException.
-    /// </returns>
-    Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code);
-
-    /// <summary>
-    /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
-    /// 
-    /// This API is useful if you want to build your own login workflow to complete a device grant.
     /// 
     /// This request will require an API key.
     /// This is an asynchronous method.
@@ -4386,6 +4352,22 @@ namespace io.fusionauth {
     Task<ClientResponse<ConsentSearchResponse>> SearchConsentsAsync(ConsentSearchRequest request);
 
     /// <summary>
+    /// Searches consents with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="name"> (Optional) The name of the consent to search for. Supports wildcard search using *.</param>
+    /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+    /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: id, insertInstant, name.</param>
+    /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<ConsentSearchResponse>> SearchConsentsByParametersAsync(string name, int? numberOfResults, string orderBy, int? startRow);
+
+    /// <summary>
     /// Searches email templates with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -4438,6 +4420,24 @@ namespace io.fusionauth {
     Task<ClientResponse<EntityGrantSearchResponse>> SearchEntityGrantsAsync(EntityGrantSearchRequest request);
 
     /// <summary>
+    /// Searches entity grants with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="entityId"> (Optional) The entity Id to search for grants on.</param>
+    /// <param name="name"> (Optional) The name of the entity grant to search for. Supports wildcard search using *.</param>
+    /// <param name="userId"> (Optional) The user Id to search for grants on.</param>
+    /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+    /// <param name="orderBy"> (Optional) The field to order the results by.</param>
+    /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityGrantSearchResponse>> SearchEntityGrantsByParametersAsync(Guid? entityId, string name, Guid? userId, int? numberOfResults, string orderBy, int? startRow);
+
+    /// <summary>
     /// Searches the entity types with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -4449,6 +4449,22 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesAsync(EntityTypeSearchRequest request);
+
+    /// <summary>
+    /// Searches entity types with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="name"> The name of the entity type to search for. Use * to return all entity types.</param>
+    /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+    /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: insertInstant, lastUpdateInstant, name.</param>
+    /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesByParametersAsync(string name, int? numberOfResults, string orderBy, int? startRow);
 
     /// <summary>
     /// Searches the event logs with the specified criteria and pagination.
@@ -4503,6 +4519,22 @@ namespace io.fusionauth {
     Task<ClientResponse<IPAccessControlListSearchResponse>> SearchIPAccessControlListsAsync(IPAccessControlListSearchRequest request);
 
     /// <summary>
+    /// Searches IP access control lists with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="name"> (Optional) The name of the IP access control list to search for. Supports wildcard search using *.</param>
+    /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+    /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: id, insertInstant, lastUpdateInstant, name.</param>
+    /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IPAccessControlListSearchResponse>> SearchIPAccessControlListsByParametersAsync(string name, int? numberOfResults, string orderBy, int? startRow);
+
+    /// <summary>
     /// Searches identity providers with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -4516,6 +4548,25 @@ namespace io.fusionauth {
     Task<ClientResponse<IdentityProviderSearchResponse>> SearchIdentityProvidersAsync(IdentityProviderSearchRequest request);
 
     /// <summary>
+    /// Searches identity providers with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="applicationId"> (Optional) The application Id to search for identity providers.</param>
+    /// <param name="name"> (Optional) The name of the identity provider to search for. Supports wildcard search using *.</param>
+    /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+    /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: enabled, id, insertInstant, name, type.</param>
+    /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+    /// <param name="tenantId"> (Optional) The tenant Id to restrict the results to.</param>
+    /// <param name="type"> (Optional) The type of identity provider to search for.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<IdentityProviderSearchResponse>> SearchIdentityProvidersByParametersAsync(Guid? applicationId, string name, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string type);
+
+    /// <summary>
     /// Searches keys with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -4527,6 +4578,24 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<KeySearchResponse>> SearchKeysAsync(KeySearchRequest request);
+
+    /// <summary>
+    /// Searches keys with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="algorithm"> (Optional) The algorithm of the key to search for.</param>
+    /// <param name="name"> (Optional) The name of the key to search for. Supports wildcard search using *.</param>
+    /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+    /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: algorithm, expiration, id, insertInstant, name, type.</param>
+    /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+    /// <param name="type"> (Optional) The type of key to search for. Supported values: EC, HMAC, OKP, RSA.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<KeySearchResponse>> SearchKeysByParametersAsync(string algorithm, string name, int? numberOfResults, string orderBy, int? startRow, string type);
 
     /// <summary>
     /// Searches lambdas with the specified criteria and pagination.
@@ -4674,6 +4743,24 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<WebhookSearchResponse>> SearchWebhooksAsync(WebhookSearchRequest request);
+
+    /// <summary>
+    /// Searches webhooks with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="description"> (Optional) The description of the webhook to search for. Supports wildcard search using *.</param>
+    /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+    /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: description, id, insertInstant, url.</param>
+    /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+    /// <param name="tenantId"> (Optional) The tenant Id to restrict the results to.</param>
+    /// <param name="url"> (Optional) The URL of the webhook to search for. Supports wildcard search using *.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<WebhookSearchResponse>> SearchWebhooksByParametersAsync(string description, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string url);
 
     /// <summary>
     /// Send an email using an email template Id. You can optionally provide <code>requestData</code> to access key value
@@ -9151,38 +9238,6 @@ namespace io.fusionauth {
    /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
    /// 
    /// This API is useful if you want to build your own login workflow to complete a device grant.
-   /// </summary>
-   /// <param name="client_id"> The client Id.</param>
-   /// <param name="client_secret"> The client Id.</param>
-   /// <param name="user_code"> The end-user verification code.</param>
-   /// <returns>
-   /// When successful, the response will contain the log of the action. If there was a validation error or any
-   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-   /// IOException.
-   /// </returns>
-   ClientResponse<RESTVoid> RetrieveUserCode(string client_id, string client_secret, string user_code);
-
-   /// <summary>
-   /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
-   /// 
-   /// This API is useful if you want to build your own login workflow to complete a device grant.
-   /// 
-   /// This request will require an API key.
-   /// </summary>
-   /// <param name="user_code"> The end-user verification code.</param>
-   /// <returns>
-   /// When successful, the response will contain the log of the action. If there was a validation error or any
-   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
-   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
-   /// IOException.
-   /// </returns>
-   ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code);
-
-   /// <summary>
-   /// Retrieve a user_code that is part of an in-progress Device Authorization Grant.
-   /// 
-   /// This API is useful if you want to build your own login workflow to complete a device grant.
    /// 
    /// This request will require an API key.
    /// </summary>
@@ -9589,6 +9644,21 @@ namespace io.fusionauth {
    ClientResponse<ConsentSearchResponse> SearchConsents(ConsentSearchRequest request);
 
    /// <summary>
+   /// Searches consents with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="name"> (Optional) The name of the consent to search for. Supports wildcard search using *.</param>
+   /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+   /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: id, insertInstant, name.</param>
+   /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<ConsentSearchResponse> SearchConsentsByParameters(string name, int? numberOfResults, string orderBy, int? startRow);
+
+   /// <summary>
    /// Searches email templates with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -9637,6 +9707,23 @@ namespace io.fusionauth {
    ClientResponse<EntityGrantSearchResponse> SearchEntityGrants(EntityGrantSearchRequest request);
 
    /// <summary>
+   /// Searches entity grants with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="entityId"> (Optional) The entity Id to search for grants on.</param>
+   /// <param name="name"> (Optional) The name of the entity grant to search for. Supports wildcard search using *.</param>
+   /// <param name="userId"> (Optional) The user Id to search for grants on.</param>
+   /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+   /// <param name="orderBy"> (Optional) The field to order the results by.</param>
+   /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityGrantSearchResponse> SearchEntityGrantsByParameters(Guid? entityId, string name, Guid? userId, int? numberOfResults, string orderBy, int? startRow);
+
+   /// <summary>
    /// Searches the entity types with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -9647,6 +9734,21 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<EntityTypeSearchResponse> SearchEntityTypes(EntityTypeSearchRequest request);
+
+   /// <summary>
+   /// Searches entity types with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="name"> The name of the entity type to search for. Use * to return all entity types.</param>
+   /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+   /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: insertInstant, lastUpdateInstant, name.</param>
+   /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<EntityTypeSearchResponse> SearchEntityTypesByParameters(string name, int? numberOfResults, string orderBy, int? startRow);
 
    /// <summary>
    /// Searches the event logs with the specified criteria and pagination.
@@ -9697,6 +9799,21 @@ namespace io.fusionauth {
    ClientResponse<IPAccessControlListSearchResponse> SearchIPAccessControlLists(IPAccessControlListSearchRequest request);
 
    /// <summary>
+   /// Searches IP access control lists with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="name"> (Optional) The name of the IP access control list to search for. Supports wildcard search using *.</param>
+   /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+   /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: id, insertInstant, lastUpdateInstant, name.</param>
+   /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IPAccessControlListSearchResponse> SearchIPAccessControlListsByParameters(string name, int? numberOfResults, string orderBy, int? startRow);
+
+   /// <summary>
    /// Searches identity providers with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -9709,6 +9826,24 @@ namespace io.fusionauth {
    ClientResponse<IdentityProviderSearchResponse> SearchIdentityProviders(IdentityProviderSearchRequest request);
 
    /// <summary>
+   /// Searches identity providers with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="applicationId"> (Optional) The application Id to search for identity providers.</param>
+   /// <param name="name"> (Optional) The name of the identity provider to search for. Supports wildcard search using *.</param>
+   /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+   /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: enabled, id, insertInstant, name, type.</param>
+   /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+   /// <param name="tenantId"> (Optional) The tenant Id to restrict the results to.</param>
+   /// <param name="type"> (Optional) The type of identity provider to search for.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<IdentityProviderSearchResponse> SearchIdentityProvidersByParameters(Guid? applicationId, string name, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string type);
+
+   /// <summary>
    /// Searches keys with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -9719,6 +9854,23 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<KeySearchResponse> SearchKeys(KeySearchRequest request);
+
+   /// <summary>
+   /// Searches keys with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="algorithm"> (Optional) The algorithm of the key to search for.</param>
+   /// <param name="name"> (Optional) The name of the key to search for. Supports wildcard search using *.</param>
+   /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+   /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: algorithm, expiration, id, insertInstant, name, type.</param>
+   /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+   /// <param name="type"> (Optional) The type of key to search for. Supported values: EC, HMAC, OKP, RSA.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<KeySearchResponse> SearchKeysByParameters(string algorithm, string name, int? numberOfResults, string orderBy, int? startRow, string type);
 
    /// <summary>
    /// Searches lambdas with the specified criteria and pagination.
@@ -9855,6 +10007,23 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<WebhookSearchResponse> SearchWebhooks(WebhookSearchRequest request);
+
+   /// <summary>
+   /// Searches webhooks with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="description"> (Optional) The description of the webhook to search for. Supports wildcard search using *.</param>
+   /// <param name="numberOfResults"> (Optional) The number of results to return. Defaults to 25.</param>
+   /// <param name="orderBy"> (Optional) The field to order the results by. Supported values: description, id, insertInstant, url.</param>
+   /// <param name="startRow"> (Optional) The offset into the total results. Defaults to 0.</param>
+   /// <param name="tenantId"> (Optional) The tenant Id to restrict the results to.</param>
+   /// <param name="url"> (Optional) The URL of the webhook to search for. Supports wildcard search using *.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<WebhookSearchResponse> SearchWebhooksByParameters(string description, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string url);
 
    /// <summary>
    /// Send an email using an email template Id. You can optionally provide <code>requestData</code> to access key value

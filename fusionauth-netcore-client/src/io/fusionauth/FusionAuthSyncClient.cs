@@ -1441,16 +1441,6 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public ClientResponse<RESTVoid> RetrieveUserCode(string client_id, string client_secret, string user_code) {
-      return client.RetrieveUserCodeAsync(client_id, client_secret, user_code).GetAwaiter().GetResult();
-    }
-
-    /// <inheritdoc/>
-    public ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKey(string user_code) {
-      return client.RetrieveUserCodeUsingAPIKeyAsync(user_code).GetAwaiter().GetResult();
-    }
-
-    /// <inheritdoc/>
     public ClientResponse<RESTVoid> RetrieveUserCodeUsingAPIKeyWithRequest(RetrieveUserCodeUsingAPIKeyRequest request) {
       return client.RetrieveUserCodeUsingAPIKeyWithRequestAsync(request).GetAwaiter().GetResult();
     }
@@ -1601,6 +1591,11 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<ConsentSearchResponse> SearchConsentsByParameters(string name, int? numberOfResults, string orderBy, int? startRow) {
+      return client.SearchConsentsByParametersAsync(name, numberOfResults, orderBy, startRow).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<EmailTemplateSearchResponse> SearchEmailTemplates(EmailTemplateSearchRequest request) {
       return client.SearchEmailTemplatesAsync(request).GetAwaiter().GetResult();
     }
@@ -1621,8 +1616,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<EntityGrantSearchResponse> SearchEntityGrantsByParameters(Guid? entityId, string name, Guid? userId, int? numberOfResults, string orderBy, int? startRow) {
+      return client.SearchEntityGrantsByParametersAsync(entityId, name, userId, numberOfResults, orderBy, startRow).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<EntityTypeSearchResponse> SearchEntityTypes(EntityTypeSearchRequest request) {
       return client.SearchEntityTypesAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<EntityTypeSearchResponse> SearchEntityTypesByParameters(string name, int? numberOfResults, string orderBy, int? startRow) {
+      return client.SearchEntityTypesByParametersAsync(name, numberOfResults, orderBy, startRow).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1646,13 +1651,28 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IPAccessControlListSearchResponse> SearchIPAccessControlListsByParameters(string name, int? numberOfResults, string orderBy, int? startRow) {
+      return client.SearchIPAccessControlListsByParametersAsync(name, numberOfResults, orderBy, startRow).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<IdentityProviderSearchResponse> SearchIdentityProviders(IdentityProviderSearchRequest request) {
       return client.SearchIdentityProvidersAsync(request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
+    public ClientResponse<IdentityProviderSearchResponse> SearchIdentityProvidersByParameters(Guid? applicationId, string name, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string type) {
+      return client.SearchIdentityProvidersByParametersAsync(applicationId, name, numberOfResults, orderBy, startRow, tenantId, type).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<KeySearchResponse> SearchKeys(KeySearchRequest request) {
       return client.SearchKeysAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<KeySearchResponse> SearchKeysByParameters(string algorithm, string name, int? numberOfResults, string orderBy, int? startRow, string type) {
+      return client.SearchKeysByParametersAsync(algorithm, name, numberOfResults, orderBy, startRow, type).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1710,6 +1730,11 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<WebhookSearchResponse> SearchWebhooks(WebhookSearchRequest request) {
       return client.SearchWebhooksAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<WebhookSearchResponse> SearchWebhooksByParameters(string description, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string url) {
+      return client.SearchWebhooksByParametersAsync(description, numberOfResults, orderBy, startRow, tenantId, url).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

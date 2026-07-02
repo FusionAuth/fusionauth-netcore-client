@@ -2890,30 +2890,6 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeAsync(string client_id, string client_secret, string user_code) {
-      var body = new Dictionary<string, string>();
-      body.Add("client_id", client_id);
-      body.Add("client_secret", client_secret);
-      body.Add("user_code", user_code);
-      return buildAnonymousClient()
-          .withUri("/oauth2/device/user-code")
-          .withFormData(new FormUrlEncodedContent(body))
-          .withMethod("Get")
-          .goAsync<RESTVoid>();
-    }
-
-    /// <inheritdoc/>
-    public Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyAsync(string user_code) {
-      var body = new Dictionary<string, string>();
-      body.Add("user_code", user_code);
-      return buildAnonymousClient()
-          .withUri("/oauth2/device/user-code")
-          .withFormData(new FormUrlEncodedContent(body))
-          .withMethod("Get")
-          .goAsync<RESTVoid>();
-    }
-
-    /// <inheritdoc/>
     public Task<ClientResponse<RESTVoid>> RetrieveUserCodeUsingAPIKeyWithRequestAsync(RetrieveUserCodeUsingAPIKeyRequest request) {
       var body = new Dictionary<string, string>();
       if (request.tenantId != null) {
@@ -3220,6 +3196,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<ConsentSearchResponse>> SearchConsentsByParametersAsync(string name, int? numberOfResults, string orderBy, int? startRow) {
+      return buildClient()
+          .withUri("/api/consent/search")
+          .withParameter("name", name)
+          .withParameter("numberOfResults", numberOfResults)
+          .withParameter("orderBy", orderBy)
+          .withParameter("startRow", startRow)
+          .withMethod("Get")
+          .goAsync<ConsentSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<EmailTemplateSearchResponse>> SearchEmailTemplatesAsync(EmailTemplateSearchRequest request) {
       return buildClient()
           .withUri("/api/email/template/search")
@@ -3256,11 +3244,37 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<EntityGrantSearchResponse>> SearchEntityGrantsByParametersAsync(Guid? entityId, string name, Guid? userId, int? numberOfResults, string orderBy, int? startRow) {
+      return buildClient()
+          .withUri("/api/entity/grant/search")
+          .withParameter("entityId", entityId)
+          .withParameter("name", name)
+          .withParameter("userId", userId)
+          .withParameter("numberOfResults", numberOfResults)
+          .withParameter("orderBy", orderBy)
+          .withParameter("startRow", startRow)
+          .withMethod("Get")
+          .goAsync<EntityGrantSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesAsync(EntityTypeSearchRequest request) {
       return buildClient()
           .withUri("/api/entity/type/search")
           .withJSONBody(request)
           .withMethod("Post")
+          .goAsync<EntityTypeSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<EntityTypeSearchResponse>> SearchEntityTypesByParametersAsync(string name, int? numberOfResults, string orderBy, int? startRow) {
+      return buildClient()
+          .withUri("/api/entity/type/search")
+          .withParameter("name", name)
+          .withParameter("numberOfResults", numberOfResults)
+          .withParameter("orderBy", orderBy)
+          .withParameter("startRow", startRow)
+          .withMethod("Get")
           .goAsync<EntityTypeSearchResponse>();
     }
 
@@ -3301,6 +3315,18 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IPAccessControlListSearchResponse>> SearchIPAccessControlListsByParametersAsync(string name, int? numberOfResults, string orderBy, int? startRow) {
+      return buildClient()
+          .withUri("/api/ip-acl/search")
+          .withParameter("name", name)
+          .withParameter("numberOfResults", numberOfResults)
+          .withParameter("orderBy", orderBy)
+          .withParameter("startRow", startRow)
+          .withMethod("Get")
+          .goAsync<IPAccessControlListSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<IdentityProviderSearchResponse>> SearchIdentityProvidersAsync(IdentityProviderSearchRequest request) {
       return buildClient()
           .withUri("/api/identity-provider/search")
@@ -3310,11 +3336,40 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<IdentityProviderSearchResponse>> SearchIdentityProvidersByParametersAsync(Guid? applicationId, string name, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string type) {
+      return buildClient()
+          .withUri("/api/identity-provider/search")
+          .withParameter("applicationId", applicationId)
+          .withParameter("name", name)
+          .withParameter("numberOfResults", numberOfResults)
+          .withParameter("orderBy", orderBy)
+          .withParameter("startRow", startRow)
+          .withParameter("tenantId", tenantId)
+          .withParameter("type", type)
+          .withMethod("Get")
+          .goAsync<IdentityProviderSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<KeySearchResponse>> SearchKeysAsync(KeySearchRequest request) {
       return buildClient()
           .withUri("/api/key/search")
           .withJSONBody(request)
           .withMethod("Post")
+          .goAsync<KeySearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<KeySearchResponse>> SearchKeysByParametersAsync(string algorithm, string name, int? numberOfResults, string orderBy, int? startRow, string type) {
+      return buildClient()
+          .withUri("/api/key/search")
+          .withParameter("algorithm", algorithm)
+          .withParameter("name", name)
+          .withParameter("numberOfResults", numberOfResults)
+          .withParameter("orderBy", orderBy)
+          .withParameter("startRow", startRow)
+          .withParameter("type", type)
+          .withMethod("Get")
           .goAsync<KeySearchResponse>();
     }
 
@@ -3416,6 +3471,20 @@ namespace io.fusionauth {
           .withUri("/api/webhook/search")
           .withJSONBody(request)
           .withMethod("Post")
+          .goAsync<WebhookSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<WebhookSearchResponse>> SearchWebhooksByParametersAsync(string description, int? numberOfResults, string orderBy, int? startRow, Guid? tenantId, string url) {
+      return buildClient()
+          .withUri("/api/webhook/search")
+          .withParameter("description", description)
+          .withParameter("numberOfResults", numberOfResults)
+          .withParameter("orderBy", orderBy)
+          .withParameter("startRow", startRow)
+          .withParameter("tenantId", tenantId)
+          .withParameter("url", url)
+          .withMethod("Get")
           .goAsync<WebhookSearchResponse>();
     }
 
