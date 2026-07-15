@@ -31,9 +31,13 @@ namespace io.fusionauth.domain
 
     public string authorization_endpoint;
 
+    public bool? authorization_response_iss_parameter_supported;
+
     public bool? backchannel_logout_supported;
 
     public List<string> claims_supported;
+
+    public List<string> code_challenge_methods_supported;
 
     public string device_authorization_endpoint;
 
@@ -66,8 +70,6 @@ namespace io.fusionauth.domain
     public string userinfo_endpoint;
 
     public List<string> userinfo_signing_alg_values_supported;
-
-    public List<string> code_challenge_methods_supported;
 
     public OpenIdConfiguration with(Action<OpenIdConfiguration> action) {
       action(this);
