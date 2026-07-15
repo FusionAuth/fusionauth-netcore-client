@@ -143,6 +143,18 @@ namespace io.fusionauth.domain.@event
         [EnumMember(Value = "user.two-factor.failed-attempt")]
         UserTwoFactorFailedAttempt, 
         [EnumMember(Value = "user.two-factor.success")]
-        UserTwoFactorSuccess
+        UserTwoFactorSuccess, 
+        [EnumMember(Value = "entity.create")]
+        EntityCreate, 
+        [EnumMember(Value = "entity.create.complete")]
+        EntityCreateComplete, 
+        [EnumMember(Value = "entity.delete")]
+        EntityDelete, 
+        [EnumMember(Value = "entity.delete.complete")]
+        EntityDeleteComplete, 
+        [EnumMember(Value = "entity.update")]
+        EntityUpdate, 
+        [EnumMember(Value = "entity.update.complete")]
+        EntityUpdateComplete
   }
 }
