@@ -15,41 +15,17 @@
  */
 
 
-using io.fusionauth.domain;
 using System.Collections.Generic;
 using System;
 
-namespace io.fusionauth.domain.api
+namespace io.fusionauth.domain
 {
 
   /**
-   * User API request object.
-   *
-   * @author Brian Pontarelli
+   * Indicates whether a password is plaintext or hashed
    */
-  public class UserRequest: BaseEventRequest {
-
-    public Guid? applicationId;
-
-    public string currentPassword;
-
-    public bool? disableDomainBlock;
-
-    public PasswordType? passwordFieldType;
-
-    public bool? sendSetPasswordEmail;
-
-    public SendSetPasswordIdentityType? sendSetPasswordIdentityType;
-
-    public bool? skipVerification;
-
-    public User user;
-
-    public List<string> verificationIds;
-
-    public UserRequest with(Action<UserRequest> action) {
-      action(this);
-      return this;
-    }
+  public enum PasswordType {
+        PLAINTEXT, 
+        HASHED
   }
 }
