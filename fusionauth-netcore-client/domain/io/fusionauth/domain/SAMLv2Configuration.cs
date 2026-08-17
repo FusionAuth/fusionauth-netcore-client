@@ -48,6 +48,8 @@ namespace io.fusionauth.domain
 
     public bool? requireSignedRequests;
 
+    public List<Guid> verificationKeyIds;
+
     public CanonicalizationMethod xmlSignatureC14nMethod;
 
     public XMLSignatureLocation xmlSignatureLocation;

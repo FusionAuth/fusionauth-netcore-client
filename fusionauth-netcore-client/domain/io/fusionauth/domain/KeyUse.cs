@@ -29,6 +29,7 @@ namespace io.fusionauth.domain
   public enum KeyUse {
         SignOnly, 
         SignAndVerify, 
-        VerifyOnly
+        VerifyOnly, 
+        None
   }
 }

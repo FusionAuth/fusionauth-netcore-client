@@ -35,6 +35,8 @@ namespace io.fusionauth.domain.provider
 
     public Guid? defaultKeyId;
 
+    public List<Guid> verificationKeyIds;
+
     public string headerKeyParameter;
 
     public IdentityProviderOauth2Configuration oauth2;

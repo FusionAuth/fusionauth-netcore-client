@@ -33,6 +33,8 @@ namespace io.fusionauth.domain
 
     public SAMLv2SingleLogout singleLogout;
 
+    public List<Guid> verificationKeyIds;
+
     public CanonicalizationMethod xmlSignatureC14nMethod;
 
     public SAMLv2Logout with(Action<SAMLv2Logout> action) {

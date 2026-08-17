@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
 
     public Guid? accessTokenKeyId;
 
+    public List<Guid> accessTokenVerificationKeyIds;
+
     public int? timeToLiveInSeconds;
 
     public EntityJWTConfiguration with(Action<EntityJWTConfiguration> action) {

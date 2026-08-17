@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.provider
 
     public Guid? keyId;
 
+    public List<Guid> verificationKeyIds;
+
     public string uniqueIdClaim;
 
     public bool? useNameIdForEmail;

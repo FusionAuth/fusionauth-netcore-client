@@ -31,7 +31,11 @@ namespace io.fusionauth.domain
 
     public Guid? accessTokenKeyId;
 
+    public List<Guid> accessTokenVerificationKeyIds;
+
     public Guid? idTokenKeyId;
+
+    public List<Guid> idTokenVerificationKeyIds;
 
     public RefreshTokenExpirationPolicy refreshTokenExpirationPolicy;
 
