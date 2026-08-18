@@ -476,6 +476,15 @@ namespace io.fusionauth {
         });
       }
 
+      var keyResponse =
+        test.client.GenerateKey(null,
+          new KeyRequest()
+            .with(kr => kr.key = new Key()
+              .with(k => k.algorithm = KeyAlgorithm.HS256)
+              .with(k => k.name = "C# IdentityProvider Verification Key")));
+      test.assertSuccess(keyResponse);
+      var keyId = keyResponse.successResponse.key.id ?? throw new InvalidOperationException("Expected a key id to be returned from GenerateKey.");
+
       var createResponse =
         test.client.CreateIdentityProvider(null,
           new IdentityProviderRequest()
@@ -483,7 +492,8 @@ namespace io.fusionauth {
               .with(idp => idp.type = IdentityProviderType.ExternalJWT)
               .with(idp => idp.name = "C# IdentityProvider")
               .with(idp => idp.headerKeyParameter = "kid")
-              .with(idp => idp.uniqueIdentityClaim = "username")));
+              .with(idp => idp.uniqueIdentityClaim = "username")
+              .with(idp => idp.verificationKeyIds = new List<Guid> {keyId})));
 
       test.assertSuccess(createResponse);
       retrieveResponse = test.client.RetrieveIdentityProviders();
