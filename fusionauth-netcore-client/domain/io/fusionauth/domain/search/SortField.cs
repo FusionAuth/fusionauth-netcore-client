@@ -30,7 +30,7 @@ namespace io.fusionauth.domain.search
 
     public string name;
 
-    public Sort order;
+    public Sort? order;
 
     public SortField with(Action<SortField> action) {
       action(this);

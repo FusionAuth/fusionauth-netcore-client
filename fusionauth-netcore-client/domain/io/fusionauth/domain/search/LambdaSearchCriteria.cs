@@ -32,7 +32,7 @@ namespace io.fusionauth.domain.search
 
     public string name;
 
-    public LambdaType type;
+    public LambdaType? type;
 
     public LambdaSearchCriteria with(Action<LambdaSearchCriteria> action) {
       action(this);

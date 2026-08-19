@@ -34,7 +34,7 @@ namespace io.fusionauth.domain.search
 
     public DateTimeOffset? start;
 
-    public EventLogType type;
+    public EventLogType? type;
 
     public EventLogSearchCriteria with(Action<EventLogSearchCriteria> action) {
       action(this);

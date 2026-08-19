@@ -30,7 +30,7 @@ namespace io.fusionauth.domain.search
 
     public string name;
 
-    public ThemeType type;
+    public ThemeType? type;
 
     public ThemeSearchCriteria with(Action<ThemeSearchCriteria> action) {
       action(this);

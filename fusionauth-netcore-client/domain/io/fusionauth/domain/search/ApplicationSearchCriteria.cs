@@ -31,7 +31,7 @@ namespace io.fusionauth.domain.search
 
     public string name;
 
-    public ObjectState state;
+    public ObjectState? state;
 
     public Guid? tenantId;
 

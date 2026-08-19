@@ -34,9 +34,9 @@ namespace io.fusionauth.domain.search
 
     public string @event;
 
-    public WebhookEventResult @eventResult;
+    public WebhookEventResult? @eventResult;
 
-    public EventType @eventType;
+    public EventType? @eventType;
 
     public DateTimeOffset? start;
 
