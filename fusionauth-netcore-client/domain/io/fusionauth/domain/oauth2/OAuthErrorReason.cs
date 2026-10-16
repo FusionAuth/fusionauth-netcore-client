@@ -56,6 +56,7 @@ namespace io.fusionauth.domain.oauth2
         invalid_entity_permission_scope, 
         invalid_user_id, 
         invalid_tenant_id, 
+        resource_parameter_not_supported, 
         grant_type_disabled, 
         missing_client_id, 
         missing_client_secret, 
@@ -97,6 +98,14 @@ namespace io.fusionauth.domain.oauth2
         registration_missing_requirement, 
         registration_required, 
         registration_verification_required, 
-        consent_required
+        consent_required, 
+        audience_required, 
+        invalid_audience, 
+        invalid_intent, 
+        invalid_jwt, 
+        invalid_scope, 
+        invalid_state, 
+        invalid_resource, 
+        lambda_denied
   }
 }

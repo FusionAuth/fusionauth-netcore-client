@@ -155,6 +155,10 @@ namespace io.fusionauth.domain.@event
         [EnumMember(Value = "entity.update")]
         EntityUpdate, 
         [EnumMember(Value = "entity.update.complete")]
-        EntityUpdateComplete
+        EntityUpdateComplete, 
+        [EnumMember(Value = "token.exchange")]
+        TokenExchange, 
+        [EnumMember(Value = "token.exchange.complete")]
+        TokenExchangeComplete
   }
 }

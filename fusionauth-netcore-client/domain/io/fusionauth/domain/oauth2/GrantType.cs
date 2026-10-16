@@ -40,6 +40,8 @@ namespace io.fusionauth.domain.oauth2
         password, 
         [EnumMember(Value = "client_credentials")]
         client_credentials, 
+        [EnumMember(Value = "urn:ietf:params:oauth:grant-type:token-exchange")]
+        token_exchange, 
         [EnumMember(Value = "refresh_token")]
         refresh_token, 
         [EnumMember(Value = "unknown")]

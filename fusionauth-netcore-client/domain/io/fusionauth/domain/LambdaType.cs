@@ -53,6 +53,8 @@ namespace io.fusionauth.domain
         SelfServiceRegistrationValidation, 
         UserInfoPopulate, 
         LoginValidation, 
-        MFARequirement
+        MFARequirement, 
+        TokenExchangePolicy, 
+        TokenExchangePopulate
   }
 }

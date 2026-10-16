@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.oauth2
 
     public string id_token;
 
+    public string issued_token_type;
+
     public string refresh_token;
 
     public Guid? refresh_token_id;

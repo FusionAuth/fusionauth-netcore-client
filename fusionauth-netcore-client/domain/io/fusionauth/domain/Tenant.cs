@@ -99,6 +99,8 @@ namespace io.fusionauth.domain
 
     public Guid? themeId;
 
+    public TenantTokenExchangeConfiguration tokenExchangeConfiguration;
+
     public TenantUserDeletePolicy userDeletePolicy;
 
     public TenantUsernameConfiguration usernameConfiguration;

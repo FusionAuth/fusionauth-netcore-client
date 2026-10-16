@@ -78,6 +78,8 @@ namespace io.fusionauth.domain.reactor
 
     public ReactorFeatureStatus threatDetection;
 
+    public ReactorFeatureStatus tokenExchange;
+
     public ReactorFeatureStatus universalApplication;
 
     public ReactorFeatureStatus userAgentReputation;

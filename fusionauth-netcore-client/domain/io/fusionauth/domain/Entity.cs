@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
    */
   public class Entity {
 
+    public bool? actAsTokenExchangeClient;
+
     public IDictionary<string, object> data;
 
     public string clientId;
