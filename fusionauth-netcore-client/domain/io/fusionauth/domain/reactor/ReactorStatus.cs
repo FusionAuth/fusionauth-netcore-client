@@ -46,6 +46,8 @@ namespace io.fusionauth.domain.reactor
 
     public ReactorFeatureStatus breachedPasswordDetection;
 
+    public ReactorFeatureStatus cimd;
+
     public ReactorFeatureStatus clientRiskConfiguration;
 
     public ReactorFeatureStatus connectors;
