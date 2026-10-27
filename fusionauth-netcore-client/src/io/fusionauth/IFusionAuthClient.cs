@@ -489,6 +489,36 @@ namespace io.fusionauth {
     Task<ClientResponse<AuditLogResponse>> CreateAuditLogAsync(AuditLogRequest request);
 
     /// <summary>
+    /// Creates a CIMD domain. You can optionally provide an Id for the CIMD domain, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> (Optional) The Id to use for the CIMD domain. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all the information used to create the CIMD domain.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainResponse>> CreateCimdDomainAsync(Guid? domainId, CimdDomainRequest request);
+
+    /// <summary>
+    /// Creates a new custom OAuth scope for a CIMD Domain. You must specify the Id of the CIMD domain you are creating the scope for.
+    /// You can optionally specify an Id for the OAuth scope on the URL, if not provided one will be generated.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain to create the OAuth scope on.</param>
+    /// <param name="scopeId"> (Optional) The Id of the OAuth scope. If not provided a secure random UUID will be generated.</param>
+    /// <param name="request"> The request object that contains all the information used to create the OAuth scope.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainOAuthScopeResponse>> CreateCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request);
+
+    /// <summary>
     /// Creates a connector.  You can optionally specify an Id for the connector, if not provided one will be generated.
     /// This is an asynchronous method.
     /// </summary>
@@ -721,7 +751,7 @@ namespace io.fusionauth {
     /// </summary>
     /// <param name="applicationId"> The Id of the application to create the OAuth scope on.</param>
     /// <param name="scopeId"> (Optional) The Id of the OAuth scope. If not provided a secure random UUID will be generated.</param>
-    /// <param name="request"> The request object that contains all the information used to create the OAuth OAuth scope.</param>
+    /// <param name="request"> The request object that contains all the information used to create the OAuth scope.</param>
     /// <returns>
     /// When successful, the response will contain the log of the action. If there was a validation error or any
     /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -978,6 +1008,47 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<RESTVoid>> DeleteApplicationRoleAsync(Guid? applicationId, Guid? roleId);
+
+    /// <summary>
+    /// Deletes the CIMD client registration for the given Id, along with its refresh tokens.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="registrationId"> The Id of the CIMD client registration to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteCimdClientRegistrationAsync(Guid? registrationId);
+
+    /// <summary>
+    /// Deletes the CIMD domain for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteCimdDomainAsync(Guid? domainId);
+
+    /// <summary>
+    /// Hard deletes a custom OAuth scope for a CIMD Domain.
+    /// OAuth workflows that are still requesting the deleted OAuth scope may fail depending on the CIMD domain's unknown scope policy.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to delete.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<RESTVoid>> DeleteCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId);
 
     /// <summary>
     /// Deletes the connector for the given Id.
@@ -2116,6 +2187,35 @@ namespace io.fusionauth {
     Task<ClientResponse<ApplicationResponse>> PatchApplicationRoleAsync(Guid? applicationId, Guid? roleId, IDictionary<string, object> request);
 
     /// <summary>
+    /// Updates, via PATCH, the CIMD domain with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain to update.</param>
+    /// <param name="request"> The request that contains just the new CIMD domain information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainResponse>> PatchCimdDomainAsync(Guid? domainId, IDictionary<string, object> request);
+
+    /// <summary>
+    /// Updates, via PATCH, the custom OAuth scope with the given Id for the CIMD domain.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+    /// <param name="request"> The request that contains just the new OAuth scope information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainOAuthScopeResponse>> PatchCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId, IDictionary<string, object> request);
+
+    /// <summary>
     /// Updates, via PATCH, the connector with the given Id.
     /// This is an asynchronous method.
     /// </summary>
@@ -2781,6 +2881,58 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<AuditLogResponse>> RetrieveAuditLogAsync(int? auditLogId);
+
+    /// <summary>
+    /// Retrieves the CIMD client registration for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="registrationId"> The Id of the CIMD client registration.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdClientRegistrationResponse>> RetrieveCimdClientRegistrationAsync(Guid? registrationId);
+
+    /// <summary>
+    /// Retrieves the CIMD domain for the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainResponse>> RetrieveCimdDomainAsync(Guid? domainId);
+
+    /// <summary>
+    /// Retrieves a custom OAuth scope for a CIMD Domain.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to retrieve.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainOAuthScopeResponse>> RetrieveCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId);
+
+    /// <summary>
+    /// Retrieves all the CIMD domains for the tenant in context.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainResponse>> RetrieveCimdDomainsAsync();
 
     /// <summary>
     /// Retrieves the connector with the given Id.
@@ -4339,6 +4491,32 @@ namespace io.fusionauth {
     Task<ClientResponse<AuditLogSearchResponse>> SearchAuditLogsAsync(AuditLogSearchRequest request);
 
     /// <summary>
+    /// Searches the CIMD client registrations with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdClientRegistrationSearchResponse>> SearchCimdClientRegistrationsAsync(CimdClientRegistrationSearchRequest request);
+
+    /// <summary>
+    /// Searches the CIMD domains with the specified criteria and pagination.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="request"> The search criteria and pagination information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainSearchResponse>> SearchCimdDomainsAsync(CimdDomainSearchRequest request);
+
+    /// <summary>
     /// Searches consents with the specified criteria and pagination.
     /// This is an asynchronous method.
     /// </summary>
@@ -5025,6 +5203,35 @@ namespace io.fusionauth {
     /// IOException.
     /// </returns>
     Task<ClientResponse<ApplicationResponse>> UpdateApplicationRoleAsync(Guid? applicationId, Guid? roleId, ApplicationRequest request);
+
+    /// <summary>
+    /// Updates the CIMD domain with the given Id.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain to update.</param>
+    /// <param name="request"> The request that contains all the new CIMD domain information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainResponse>> UpdateCimdDomainAsync(Guid? domainId, CimdDomainRequest request);
+
+    /// <summary>
+    /// Updates the OAuth scope with the given Id for the CIMD domain.
+    /// This is an asynchronous method.
+    /// </summary>
+    /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+    /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+    /// <param name="request"> The request that contains all the new OAuth scope information.</param>
+    /// <returns>
+    /// When successful, the response will contain the log of the action. If there was a validation error or any
+    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+    /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+    /// IOException.
+    /// </returns>
+    Task<ClientResponse<CimdDomainOAuthScopeResponse>> UpdateCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request);
 
     /// <summary>
     /// Updates the connector with the given Id.
@@ -6058,6 +6265,34 @@ namespace io.fusionauth {
    ClientResponse<AuditLogResponse> CreateAuditLog(AuditLogRequest request);
 
    /// <summary>
+   /// Creates a CIMD domain. You can optionally provide an Id for the CIMD domain, if not provided one will be generated.
+   /// </summary>
+   /// <param name="domainId"> (Optional) The Id to use for the CIMD domain. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all the information used to create the CIMD domain.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainResponse> CreateCimdDomain(Guid? domainId, CimdDomainRequest request);
+
+   /// <summary>
+   /// Creates a new custom OAuth scope for a CIMD Domain. You must specify the Id of the CIMD domain you are creating the scope for.
+   /// You can optionally specify an Id for the OAuth scope on the URL, if not provided one will be generated.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain to create the OAuth scope on.</param>
+   /// <param name="scopeId"> (Optional) The Id of the OAuth scope. If not provided a secure random UUID will be generated.</param>
+   /// <param name="request"> The request object that contains all the information used to create the OAuth scope.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainOAuthScopeResponse> CreateCimdDomainOAuthScope(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request);
+
+   /// <summary>
    /// Creates a connector.  You can optionally specify an Id for the connector, if not provided one will be generated.
    /// </summary>
    /// <param name="connectorId"> (Optional) The Id for the connector. If not provided a secure random UUID will be generated.</param>
@@ -6273,7 +6508,7 @@ namespace io.fusionauth {
    /// </summary>
    /// <param name="applicationId"> The Id of the application to create the OAuth scope on.</param>
    /// <param name="scopeId"> (Optional) The Id of the OAuth scope. If not provided a secure random UUID will be generated.</param>
-   /// <param name="request"> The request object that contains all the information used to create the OAuth OAuth scope.</param>
+   /// <param name="request"> The request object that contains all the information used to create the OAuth scope.</param>
    /// <returns>
    /// When successful, the response will contain the log of the action. If there was a validation error or any
    /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
@@ -6512,6 +6747,44 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<RESTVoid> DeleteApplicationRole(Guid? applicationId, Guid? roleId);
+
+   /// <summary>
+   /// Deletes the CIMD client registration for the given Id, along with its refresh tokens.
+   /// </summary>
+   /// <param name="registrationId"> The Id of the CIMD client registration to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteCimdClientRegistration(Guid? registrationId);
+
+   /// <summary>
+   /// Deletes the CIMD domain for the given Id.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteCimdDomain(Guid? domainId);
+
+   /// <summary>
+   /// Hard deletes a custom OAuth scope for a CIMD Domain.
+   /// OAuth workflows that are still requesting the deleted OAuth scope may fail depending on the CIMD domain's unknown scope policy.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to delete.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<RESTVoid> DeleteCimdDomainOAuthScope(Guid? domainId, Guid? scopeId);
 
    /// <summary>
    /// Deletes the connector for the given Id.
@@ -7572,6 +7845,33 @@ namespace io.fusionauth {
    ClientResponse<ApplicationResponse> PatchApplicationRole(Guid? applicationId, Guid? roleId, IDictionary<string, object> request);
 
    /// <summary>
+   /// Updates, via PATCH, the CIMD domain with the given Id.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain to update.</param>
+   /// <param name="request"> The request that contains just the new CIMD domain information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainResponse> PatchCimdDomain(Guid? domainId, IDictionary<string, object> request);
+
+   /// <summary>
+   /// Updates, via PATCH, the custom OAuth scope with the given Id for the CIMD domain.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+   /// <param name="request"> The request that contains just the new OAuth scope information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainOAuthScopeResponse> PatchCimdDomainOAuthScope(Guid? domainId, Guid? scopeId, IDictionary<string, object> request);
+
+   /// <summary>
    /// Updates, via PATCH, the connector with the given Id.
    /// </summary>
    /// <param name="connectorId"> The Id of the connector to update.</param>
@@ -8189,6 +8489,54 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<AuditLogResponse> RetrieveAuditLog(int? auditLogId);
+
+   /// <summary>
+   /// Retrieves the CIMD client registration for the given Id.
+   /// </summary>
+   /// <param name="registrationId"> The Id of the CIMD client registration.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdClientRegistrationResponse> RetrieveCimdClientRegistration(Guid? registrationId);
+
+   /// <summary>
+   /// Retrieves the CIMD domain for the given Id.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainResponse> RetrieveCimdDomain(Guid? domainId);
+
+   /// <summary>
+   /// Retrieves a custom OAuth scope for a CIMD Domain.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to retrieve.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainOAuthScopeResponse> RetrieveCimdDomainOAuthScope(Guid? domainId, Guid? scopeId);
+
+   /// <summary>
+   /// Retrieves all the CIMD domains for the tenant in context.
+   /// </summary>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainResponse> RetrieveCimdDomains();
 
    /// <summary>
    /// Retrieves the connector with the given Id.
@@ -9632,6 +9980,30 @@ namespace io.fusionauth {
    ClientResponse<AuditLogSearchResponse> SearchAuditLogs(AuditLogSearchRequest request);
 
    /// <summary>
+   /// Searches the CIMD client registrations with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdClientRegistrationSearchResponse> SearchCimdClientRegistrations(CimdClientRegistrationSearchRequest request);
+
+   /// <summary>
+   /// Searches the CIMD domains with the specified criteria and pagination.
+   /// </summary>
+   /// <param name="request"> The search criteria and pagination information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainSearchResponse> SearchCimdDomains(CimdDomainSearchRequest request);
+
+   /// <summary>
    /// Searches consents with the specified criteria and pagination.
    /// </summary>
    /// <param name="request"> The search criteria and pagination information.</param>
@@ -10269,6 +10641,33 @@ namespace io.fusionauth {
    /// IOException.
    /// </returns>
    ClientResponse<ApplicationResponse> UpdateApplicationRole(Guid? applicationId, Guid? roleId, ApplicationRequest request);
+
+   /// <summary>
+   /// Updates the CIMD domain with the given Id.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain to update.</param>
+   /// <param name="request"> The request that contains all the new CIMD domain information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainResponse> UpdateCimdDomain(Guid? domainId, CimdDomainRequest request);
+
+   /// <summary>
+   /// Updates the OAuth scope with the given Id for the CIMD domain.
+   /// </summary>
+   /// <param name="domainId"> The Id of the CIMD domain that the OAuth scope belongs to.</param>
+   /// <param name="scopeId"> The Id of the OAuth scope to update.</param>
+   /// <param name="request"> The request that contains all the new OAuth scope information.</param>
+   /// <returns>
+   /// When successful, the response will contain the log of the action. If there was a validation error or any
+   /// other type of error, this will return the Errors object in the response. Additionally, if FusionAuth could not be
+   /// contacted because it is down or experiencing a failure, the response will contain an Exception, which could be an
+   /// IOException.
+   /// </returns>
+   ClientResponse<CimdDomainOAuthScopeResponse> UpdateCimdDomainOAuthScope(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request);
 
    /// <summary>
    /// Updates the connector with the given Id.

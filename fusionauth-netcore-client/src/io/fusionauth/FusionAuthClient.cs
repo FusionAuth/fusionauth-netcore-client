@@ -412,6 +412,28 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainResponse>> CreateCimdDomainAsync(Guid? domainId, CimdDomainRequest request) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<CimdDomainResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainOAuthScopeResponse>> CreateCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<CimdDomainOAuthScopeResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ConnectorResponse>> CreateConnectorAsync(Guid? connectorId, ConnectorRequest request) {
       return buildClient()
           .withUri("/api/connector")
@@ -757,6 +779,35 @@ namespace io.fusionauth {
           .withUriSegment(applicationId)
           .withUriSegment("role")
           .withUriSegment(roleId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteCimdClientRegistrationAsync(Guid? registrationId) {
+      return buildClient()
+          .withUri("/api/cimd/registration")
+          .withUriSegment(registrationId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteCimdDomainAsync(Guid? domainId) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withMethod("Delete")
+          .goAsync<RESTVoid>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<RESTVoid>> DeleteCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
           .withMethod("Delete")
           .goAsync<RESTVoid>();
     }
@@ -1660,6 +1711,28 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainResponse>> PatchCimdDomainAsync(Guid? domainId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<CimdDomainResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainOAuthScopeResponse>> PatchCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId, IDictionary<string, object> request) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withJSONBody(request)
+          .withMethod("Patch")
+          .goAsync<CimdDomainOAuthScopeResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ConnectorResponse>> PatchConnectorAsync(Guid? connectorId, IDictionary<string, object> request) {
       return buildClient()
           .withUri("/api/connector")
@@ -2122,6 +2195,43 @@ namespace io.fusionauth {
           .withUriSegment(auditLogId)
           .withMethod("Get")
           .goAsync<AuditLogResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdClientRegistrationResponse>> RetrieveCimdClientRegistrationAsync(Guid? registrationId) {
+      return buildClient()
+          .withUri("/api/cimd/registration")
+          .withUriSegment(registrationId)
+          .withMethod("Get")
+          .goAsync<CimdClientRegistrationResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainResponse>> RetrieveCimdDomainAsync(Guid? domainId) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withMethod("Get")
+          .goAsync<CimdDomainResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainOAuthScopeResponse>> RetrieveCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withMethod("Get")
+          .goAsync<CimdDomainOAuthScopeResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainResponse>> RetrieveCimdDomainsAsync() {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withMethod("Get")
+          .goAsync<CimdDomainResponse>();
     }
 
     /// <inheritdoc/>
@@ -3187,6 +3297,24 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public Task<ClientResponse<CimdClientRegistrationSearchResponse>> SearchCimdClientRegistrationsAsync(CimdClientRegistrationSearchRequest request) {
+      return buildClient()
+          .withUri("/api/cimd/registration/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<CimdClientRegistrationSearchResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainSearchResponse>> SearchCimdDomainsAsync(CimdDomainSearchRequest request) {
+      return buildClient()
+          .withUri("/api/cimd/domain/search")
+          .withJSONBody(request)
+          .withMethod("Post")
+          .goAsync<CimdDomainSearchResponse>();
+    }
+
+    /// <inheritdoc/>
     public Task<ClientResponse<ConsentSearchResponse>> SearchConsentsAsync(ConsentSearchRequest request) {
       return buildClient()
           .withUri("/api/consent/search")
@@ -3666,6 +3794,28 @@ namespace io.fusionauth {
           .withJSONBody(request)
           .withMethod("Put")
           .goAsync<ApplicationResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainResponse>> UpdateCimdDomainAsync(Guid? domainId, CimdDomainRequest request) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<CimdDomainResponse>();
+    }
+
+    /// <inheritdoc/>
+    public Task<ClientResponse<CimdDomainOAuthScopeResponse>> UpdateCimdDomainOAuthScopeAsync(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request) {
+      return buildClient()
+          .withUri("/api/cimd/domain")
+          .withUriSegment(domainId)
+          .withUriSegment("scope")
+          .withUriSegment(scopeId)
+          .withJSONBody(request)
+          .withMethod("Put")
+          .goAsync<CimdDomainOAuthScopeResponse>();
     }
 
     /// <inheritdoc/>

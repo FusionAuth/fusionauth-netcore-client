@@ -55,6 +55,7 @@ namespace io.fusionauth.domain
         LoginValidation, 
         MFARequirement, 
         TokenExchangePolicy, 
-        TokenExchangePopulate
+        TokenExchangePopulate, 
+        CimdClientRegistration
   }
 }

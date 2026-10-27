@@ -30,9 +30,13 @@ namespace io.fusionauth.domain.@event
 
     public Guid? applicationId;
 
+    public Guid? cimdDomainId;
+
     public string original;
 
     public string refreshToken;
+
+    public List<string> resources;
 
     public string token;
 

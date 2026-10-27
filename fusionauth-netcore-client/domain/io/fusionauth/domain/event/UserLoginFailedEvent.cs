@@ -33,6 +33,8 @@ namespace io.fusionauth.domain.@event
 
     public string authenticationType;
 
+    public Guid? cimdDomainId;
+
     public string ipAddress;
 
     public UserLoginFailedReason reason;

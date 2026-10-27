@@ -30,6 +30,8 @@ namespace io.fusionauth.domain.jwt
 
     public Guid? applicationId;
 
+    public Guid? cimdClientRegistrationId;
+
     public IDictionary<string, object> data;
 
     public Guid? id;

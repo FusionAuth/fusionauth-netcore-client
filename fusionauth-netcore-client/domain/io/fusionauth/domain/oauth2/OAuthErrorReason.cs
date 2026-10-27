@@ -45,6 +45,7 @@ namespace io.fusionauth.domain.oauth2
         invalid_pkce_code_challenge_method, 
         invalid_prompt, 
         invalid_redirect_uri, 
+        invalid_resource_cardinality, 
         invalid_response_mode, 
         invalid_response_type, 
         invalid_id_token_hint, 

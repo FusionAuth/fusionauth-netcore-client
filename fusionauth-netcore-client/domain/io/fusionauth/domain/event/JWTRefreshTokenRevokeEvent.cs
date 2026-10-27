@@ -37,7 +37,11 @@ namespace io.fusionauth.domain.@event
 
     public IDictionary<Guid, int> applicationTimeToLiveInSeconds;
 
+    public Guid? cimdDomainId;
+
     public RefreshToken refreshToken;
+
+    public List<string> resources;
 
     public Guid? userId;
 

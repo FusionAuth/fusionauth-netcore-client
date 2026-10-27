@@ -37,6 +37,8 @@ namespace io.fusionauth.domain
 
     public List<string> claims_supported;
 
+    public bool? client_id_metadata_document_supported;
+
     public List<string> code_challenge_methods_supported;
 
     public string device_authorization_endpoint;

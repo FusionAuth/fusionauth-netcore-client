@@ -204,6 +204,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<CimdDomainResponse> CreateCimdDomain(Guid? domainId, CimdDomainRequest request) {
+      return client.CreateCimdDomainAsync(domainId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainOAuthScopeResponse> CreateCimdDomainOAuthScope(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request) {
+      return client.CreateCimdDomainOAuthScopeAsync(domainId, scopeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ConnectorResponse> CreateConnector(Guid? connectorId, ConnectorRequest request) {
       return client.CreateConnectorAsync(connectorId, request).GetAwaiter().GetResult();
     }
@@ -377,6 +387,21 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<RESTVoid> DeleteApplicationRole(Guid? applicationId, Guid? roleId) {
       return client.DeleteApplicationRoleAsync(applicationId, roleId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteCimdClientRegistration(Guid? registrationId) {
+      return client.DeleteCimdClientRegistrationAsync(registrationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteCimdDomain(Guid? domainId) {
+      return client.DeleteCimdDomainAsync(domainId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<RESTVoid> DeleteCimdDomainOAuthScope(Guid? domainId, Guid? scopeId) {
+      return client.DeleteCimdDomainOAuthScopeAsync(domainId, scopeId).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -771,6 +796,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<CimdDomainResponse> PatchCimdDomain(Guid? domainId, IDictionary<string, object> request) {
+      return client.PatchCimdDomainAsync(domainId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainOAuthScopeResponse> PatchCimdDomainOAuthScope(Guid? domainId, Guid? scopeId, IDictionary<string, object> request) {
+      return client.PatchCimdDomainOAuthScopeAsync(domainId, scopeId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ConnectorResponse> PatchConnector(Guid? connectorId, IDictionary<string, object> request) {
       return client.PatchConnectorAsync(connectorId, request).GetAwaiter().GetResult();
     }
@@ -1008,6 +1043,26 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<AuditLogResponse> RetrieveAuditLog(int? auditLogId) {
       return client.RetrieveAuditLogAsync(auditLogId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdClientRegistrationResponse> RetrieveCimdClientRegistration(Guid? registrationId) {
+      return client.RetrieveCimdClientRegistrationAsync(registrationId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainResponse> RetrieveCimdDomain(Guid? domainId) {
+      return client.RetrieveCimdDomainAsync(domainId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainOAuthScopeResponse> RetrieveCimdDomainOAuthScope(Guid? domainId, Guid? scopeId) {
+      return client.RetrieveCimdDomainOAuthScopeAsync(domainId, scopeId).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainResponse> RetrieveCimdDomains() {
+      return client.RetrieveCimdDomainsAsync().GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>
@@ -1586,6 +1641,16 @@ namespace io.fusionauth {
     }
 
     /// <inheritdoc/>
+    public ClientResponse<CimdClientRegistrationSearchResponse> SearchCimdClientRegistrations(CimdClientRegistrationSearchRequest request) {
+      return client.SearchCimdClientRegistrationsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainSearchResponse> SearchCimdDomains(CimdDomainSearchRequest request) {
+      return client.SearchCimdDomainsAsync(request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
     public ClientResponse<ConsentSearchResponse> SearchConsents(ConsentSearchRequest request) {
       return client.SearchConsentsAsync(request).GetAwaiter().GetResult();
     }
@@ -1832,6 +1897,16 @@ namespace io.fusionauth {
     /// <inheritdoc/>
     public ClientResponse<ApplicationResponse> UpdateApplicationRole(Guid? applicationId, Guid? roleId, ApplicationRequest request) {
       return client.UpdateApplicationRoleAsync(applicationId, roleId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainResponse> UpdateCimdDomain(Guid? domainId, CimdDomainRequest request) {
+      return client.UpdateCimdDomainAsync(domainId, request).GetAwaiter().GetResult();
+    }
+
+    /// <inheritdoc/>
+    public ClientResponse<CimdDomainOAuthScopeResponse> UpdateCimdDomainOAuthScope(Guid? domainId, Guid? scopeId, CimdDomainOAuthScopeRequest request) {
+      return client.UpdateCimdDomainOAuthScopeAsync(domainId, scopeId, request).GetAwaiter().GetResult();
     }
 
     /// <inheritdoc/>

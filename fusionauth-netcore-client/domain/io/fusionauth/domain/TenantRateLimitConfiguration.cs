@@ -26,6 +26,8 @@ namespace io.fusionauth.domain
    */
   public class TenantRateLimitConfiguration {
 
+    public RateLimitedRequestConfiguration cimdClientRegistration;
+
     public RateLimitedRequestConfiguration failedLogin;
 
     public RateLimitedRequestConfiguration forgotPassword;

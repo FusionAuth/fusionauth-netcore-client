@@ -159,6 +159,10 @@ namespace io.fusionauth.domain.@event
         [EnumMember(Value = "token.exchange")]
         TokenExchange, 
         [EnumMember(Value = "token.exchange.complete")]
-        TokenExchangeComplete
+        TokenExchangeComplete, 
+        [EnumMember(Value = "cimd.registration.success")]
+        CimdRegistrationSuccess, 
+        [EnumMember(Value = "cimd.registration.failed")]
+        CimdRegistrationFailed
   }
 }
