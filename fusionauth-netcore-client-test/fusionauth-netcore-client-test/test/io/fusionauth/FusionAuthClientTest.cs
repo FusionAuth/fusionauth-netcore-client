@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -11,6 +12,7 @@ using io.fusionauth.domain.api.user;
 using io.fusionauth.domain.@email;
 using io.fusionauth.domain.@event;
 using io.fusionauth.domain.provider;
+using io.fusionauth.domain.search;
 using io.fusionauth.jwt.domain;
 using Microsoft.VisualStudio.TestPlatform.Common.Utilities;
 using Newtonsoft.Json;
@@ -26,9 +28,11 @@ namespace io.fusionauth {
 
     public string fusionauthUrl = Environment.GetEnvironmentVariable("FUSIONAUTH_URL") ?? "http://localhost:9011";
 
-    public static readonly Guid ApplicationId = new Guid("4eedf18a-9360-40f6-a36c-88269ed5ec55");
+    public readonly Guid ApplicationId = Guid.NewGuid();
 
-    public const string emailAddress = "csharpclient@fusionauth.io";
+    public string emailAddress => "csharpclient-" + ApplicationId + "@fusionauth.io";
+
+    private readonly Stack<Func<ClientResponse<RESTVoid>>> cleanupActions = new Stack<Func<ClientResponse<RESTVoid>>>();
 
     public Application application;
 
@@ -86,57 +90,61 @@ namespace io.fusionauth {
       return this;
     }
 
-    public TestBuilder callClient(Action<FusionAuthSyncClient> action) {
-      action(client);
-      return this;
+    public void addCleanup(Func<ClientResponse<RESTVoid>> cleanup) {
+      cleanupActions.Push(cleanup);
+    }
+
+    public void cleanup() {
+      // Delete dependents first and attempt every cleanup even when a deletion fails.
+      var failures = new List<string>();
+      while (cleanupActions.Count > 0) {
+        var response = cleanupActions.Pop()();
+        // Some tests explicitly delete resources while exercising the API.
+        if (response.exception != null || response.errorResponse != null ||
+            (response.statusCode != 200 && response.statusCode != 404)) {
+          failures.Add("Status [" + response.statusCode + "]: " +
+            (response.errorResponse != null ? JsonConvert.SerializeObject(response.errorResponse) : response.exception?.ToString()));
+        }
+      }
+
+      Assert.IsEmpty(failures, "Resource cleanup failed");
     }
 
     public TestBuilder createUser() {
-      var retrieveResponse = client.RetrieveUserByEmail(emailAddress);
-      if (retrieveResponse.WasSuccessful()) {
-        assertSuccess(client.DeleteUser(retrieveResponse.successResponse.user.id));
-      }
-
       var newUser = new User()
         .with(u => u.email = emailAddress)
-        .with(u => u.username = "csharpclient")
+        .with(u => u.username = "csharpclient-" + ApplicationId)
         .with(u => u.password = "password");
 
       var newRegistration = new UserRegistration()
         .with(r => r.applicationId = ApplicationId)
-        .with(r => r.username = "csharpclient");
+        .with(r => r.username = newUser.username);
 
       var response = client.Register(null, new RegistrationRequest().with(rr => rr.user = newUser)
         .with(rr => rr.registration = newRegistration)
         .with(rr => rr.sendSetPasswordEmail = false)
         .with(rr => rr.skipVerification = true));
       assertSuccess(response);
-      Assert.AreEqual(newUser.username, response.successResponse.user.username);
-
       user = response.successResponse.user;
+      var userId = user.id;
+      addCleanup(() => client.DeleteUser(userId));
+      waitForLogin(client, user);
+      Assert.AreEqual(newUser.username, user.username);
       return this;
     }
 
     public TestBuilder createUserAction(string actionName, bool isTemporal) {
-      var retrieveResponse = client.RetrieveUserActions();
-      assertSuccess(retrieveResponse);
-      if (retrieveResponse.successResponse.userActions != null) {
-        foreach (UserAction userAction in retrieveResponse.successResponse.userActions) {
-          if (userAction.name.Equals(actionName)) {
-            assertSuccess(client.DeleteUserAction(userAction.id));
-          }
-        }
-      }
-
       var request = new UserActionRequest() {
         userAction = new UserAction() {
-          name = actionName,
+          name = actionName + "-" + ApplicationId,
           temporal = isTemporal
         }
       };
       var response = client.CreateUserAction(null, request);
       assertSuccess(response);
       this.userAction = response.successResponse.userAction;
+      var userActionId = this.userAction.id;
+      addCleanup(() => client.DeleteUserAction(userActionId));
       return this;
     }
 
@@ -156,16 +164,53 @@ namespace io.fusionauth {
       return this;
     }
 
-    public TestBuilder login() {
+    public TestBuilder login(string ipAddress = null) {
       var response = client.Login(new LoginRequest()
         .with(lr => lr.applicationId = application.id)
         .with(lr => lr.loginId = user.email)
-        .with(lr => lr.password = "password"));
+        .with(lr => lr.password = "password")
+        .with(lr => lr.ipAddress = ipAddress));
       assertSuccess(response);
 
       token = response.successResponse.token;
       user = response.successResponse.user;
+      waitForLogin(client, user);
       return this;
+    }
+
+    public void waitForLogin(FusionAuthSyncClient client, User user) {
+      Assert.IsNotNull(user.lastLoginInstant);
+      var statusResponse = client.RetrieveSystemStatusUsingAPIKey();
+      assertSuccess(statusResponse);
+      var healthChecks = statusResponse.successResponse["healthChecks"] as JObject;
+      Assert.IsNotNull(healthChecks);
+      var usesElasticsearch = healthChecks["ElasticsearchCluster"] != null;
+      var searchRequest = new SearchRequest()
+        .with(sr => sr.search = new UserSearchCriteria()
+          .with(sc => sc.queryString = "id:\"" + user.id + "\" AND lastLoginInstant:" + user.lastLoginInstant.Value.ToUnixTimeMilliseconds()));
+
+      // LoginQueue writes metrics and the database timestamp before reindexing. Filter on the indexed timestamp,
+      // because search responses reload users from the database and can otherwise hide a stale search document.
+      var timer = Stopwatch.StartNew();
+      while (timer.Elapsed < TimeSpan.FromSeconds(10)) {
+        var response = client.RetrieveUser(user.id);
+        assertSuccess(response);
+        if (response.successResponse.user.lastLoginInstant == user.lastLoginInstant) {
+          if (!usesElasticsearch) {
+            return;
+          }
+
+          var searchResponse = client.SearchUsersByQuery(searchRequest);
+          assertSuccess(searchResponse);
+          if (searchResponse.successResponse.users.Any(u => u.id == user.id)) {
+            return;
+          }
+        }
+
+        System.Threading.Thread.Sleep(50);
+      }
+
+      Assert.Fail("Timed out waiting for login metrics and search indexing for user [" + user.id + "]");
     }
 
     public TestBuilder updateApplication(Application application) {
@@ -178,31 +223,15 @@ namespace io.fusionauth {
     }
 
     public TestBuilder createApplication() {
-      var retrieveResponse = client.RetrieveApplication(ApplicationId);
-      if (retrieveResponse.WasSuccessful()) {
-        assertSuccess(client.DeleteApplication(ApplicationId));
-        // Allow FusionAuth time to fully commit the delete before creating with the same ID
-        System.Threading.Thread.Sleep(1000);
-      }
-
       var application = new Application()
-        .with(app => app.name = "CSharp Client Test");
+        .with(app => app.name = "CSharp Client Test-" + ApplicationId);
 
-      // Retry up to 5 times in case FusionAuth needs additional time to process the delete
-      ClientResponse<ApplicationResponse> response = null;
-      for (int attempt = 1; attempt <= 5; attempt++) {
-        response = client.CreateApplication(ApplicationId,
-          new ApplicationRequest()
-            .with(ar => ar.application = new Application()
-              .with(app => app.name = "CSharp Client Test")));
-        if (response.statusCode != 500) break;
-        System.Threading.Thread.Sleep(1000 * attempt);
-      }
-
+      var response = client.CreateApplication(ApplicationId,
+        new ApplicationRequest().with(ar => ar.application = application));
       assertSuccess(response);
-      Assert.AreEqual(application.name, response.successResponse.application.name);
-
       this.application = response.successResponse.application;
+      addCleanup(() => client.DeleteApplication(ApplicationId));
+      Assert.AreEqual(application.name, this.application.name);
       return this;
     }
   }
@@ -214,6 +243,11 @@ namespace io.fusionauth {
     [SetUp]
     public void initialize() {
       test = new TestBuilder();
+    }
+
+    [TearDown]
+    public void cleanup() {
+      test.cleanup();
     }
 
     [Test]
@@ -276,6 +310,8 @@ namespace io.fusionauth {
 
       var createTenantResponse = test.client.CreateTenant(null, new TenantRequest().with(tr => tr.tenant = tenant));
       test.assertSuccess(createTenantResponse);
+      var tenantId = createTenantResponse.successResponse.tenant.id;
+      test.addCleanup(() => test.client.DeleteTenant(tenantId));
 
       var retrieveTenantResponse = test.client.RetrieveTenant(createTenantResponse.successResponse.tenant.id);
       test.assertSuccess(retrieveTenantResponse);
@@ -293,7 +329,7 @@ namespace io.fusionauth {
       test.createApplication();
 
       var response = test.client.RetrieveApplication(test.application.id);
-      Assert.AreEqual("CSharp Client Test", response.successResponse.application.name);
+      Assert.AreEqual("CSharp Client Test-" + test.ApplicationId, response.successResponse.application.name);
       test.assertSuccess(response);
     }
 
@@ -315,14 +351,14 @@ namespace io.fusionauth {
       // Null out multiFactorConfiguration to avoid sending deprecated enum values (e.g. ChallengeOnHighRisk)
       // that the current FusionAuth version no longer accepts
       test.application.multiFactorConfiguration = null;
-      test.updateApplication(test.application.with(a => a.name = "CSharp Client Test (Updated)"));
+      test.updateApplication(test.application.with(a => a.name = "CSharp Client Test (Updated)-" + test.ApplicationId));
 
       var application = new Application()
-        .with(app => app.name = "CSharp Client Test (updated)");
-      var response = test.client.UpdateApplication(TestBuilder.ApplicationId,
+        .with(app => app.name = "CSharp Client Test (updated)-" + test.ApplicationId);
+      var response = test.client.UpdateApplication(test.ApplicationId,
         new ApplicationRequest()
           .with(ar => ar.application = application));
-      Assert.AreEqual("CSharp Client Test (updated)", response.successResponse.application.name);
+      Assert.AreEqual(application.name, response.successResponse.application.name);
       test.assertSuccess(response);
     }
 
@@ -352,7 +388,7 @@ namespace io.fusionauth {
     [Test]
     public void Deactivate_Application_Test() {
       var response = test.createApplication()
-        .client.DeactivateApplication(TestBuilder.ApplicationId);
+        .client.DeactivateApplication(test.ApplicationId);
       test.assertSuccess(response);
     }
 
@@ -360,11 +396,11 @@ namespace io.fusionauth {
     public void Reactivate_Application_Test() {
       Deactivate_Application_Test();
 
-      var response = test.client.ReactivateApplication(TestBuilder.ApplicationId);
+      var response = test.client.ReactivateApplication(test.ApplicationId);
       test.assertSuccess(response);
 
-      var retrieveResponse = test.client.RetrieveApplication(TestBuilder.ApplicationId);
-      Assert.AreEqual("CSharp Client Test", retrieveResponse.successResponse.application.name);
+      var retrieveResponse = test.client.RetrieveApplication(test.ApplicationId);
+      Assert.AreEqual("CSharp Client Test-" + test.ApplicationId, retrieveResponse.successResponse.application.name);
       Assert.IsTrue(retrieveResponse.successResponse.application.active);
       test.assertSuccess(retrieveResponse);
     }
@@ -374,13 +410,13 @@ namespace io.fusionauth {
       test.createApplication().createUser();
 
       //test retrieval
-      var testRetrieve = test.client.RetrieveRegistration(test.user.id, TestBuilder.ApplicationId);
+      var testRetrieve = test.client.RetrieveRegistration(test.user.id, test.ApplicationId);
       Assert.AreEqual(test.user.username, testRetrieve.successResponse.registration.username);
       test.assertSuccess(testRetrieve);
 
       //test update
       var userRegistration = new UserRegistration()
-        .with(ur => ur.applicationId = TestBuilder.ApplicationId)
+        .with(ur => ur.applicationId = test.ApplicationId)
         .with(ur => ur.username = test.user.username)
         .with(ur => ur.usernameStatus = ContentStatus.ACTIVE)
         .with(ur => ur.cleanSpeakId = new Guid("9af3fc1d-9236-4793-93df-aeac5f67f23e"));
@@ -392,12 +428,12 @@ namespace io.fusionauth {
       test.assertSuccess(updateResponse);
 
       // Delete Registration and User
-      test.assertSuccess(test.client.DeleteRegistration(test.user.id, TestBuilder.ApplicationId));
+      test.assertSuccess(test.client.DeleteRegistration(test.user.id, test.ApplicationId));
       test.assertSuccess(test.client.DeleteUser(test.user.id));
 
       // test empty retrieval
       var randomUserId = new Guid("f64992f5-c705-47b2-bc88-4046ac8a82ee");
-      test.assertMissing(test.client.RetrieveRegistration(randomUserId, TestBuilder.ApplicationId));
+      test.assertMissing(test.client.RetrieveRegistration(randomUserId, test.ApplicationId));
     }
 
     [Test]
@@ -411,17 +447,11 @@ namespace io.fusionauth {
       var retrieveResponse = test.client.RetrieveGroups();
       test.assertSuccess(retrieveResponse);
 
-      if (retrieveResponse.successResponse.groups != null && retrieveResponse.successResponse.groups.Count > 0) {
-        retrieveResponse.successResponse.groups.ForEach(g => {
-          if (g.name.Equals("C# Group")) {
-            test.client.DeleteGroup(g.id);
-          }
-        });
-      }
-
       var createResponse = test.client.CreateGroup(null, new GroupRequest()
-        .with(gr => gr.@group = new Group().with(g => g.name = "C# Group")));
+        .with(gr => gr.@group = new Group().with(g => g.name = "C# Group-" + test.ApplicationId)));
       test.assertSuccess(createResponse);
+      var groupId = createResponse.successResponse.group.id;
+      test.addCleanup(() => test.client.DeleteGroup(groupId));
       retrieveResponse = test.client.RetrieveGroups();
       test.assertSuccess(retrieveResponse);
 
@@ -447,6 +477,8 @@ namespace io.fusionauth {
           .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant"))
           .with(tr => tr.sourceTenantId = tenantId));
       test.assertSuccess(createTenantResponse);
+      var wrongTenantId = createTenantResponse.successResponse.tenant.id;
+      test.addCleanup(() => test.client.DeleteTenant(wrongTenantId));
 
       var wrongTenantClient =
         test.newClientWithTenantId(createTenantResponse.successResponse.tenant.id ??
@@ -464,38 +496,29 @@ namespace io.fusionauth {
       var retrieveResponse = test.client.RetrieveIdentityProviders();
       test.assertSuccess(retrieveResponse);
 
-      if (retrieveResponse.successResponse.identityProviders != null &&
-          retrieveResponse.successResponse.identityProviders.Count > 0) {
-        retrieveResponse.successResponse.identityProviders.ForEach(idp => {
-          if (idp.GetType() == typeof(ExternalJWTIdentityProvider)) {
-            var identityProvider = (ExternalJWTIdentityProvider) idp;
-            if (identityProvider.name.Equals("C# IdentityProvider")) {
-              test.client.DeleteIdentityProvider(identityProvider.id);
-            }
-          }
-        });
-      }
-
       var keyResponse =
         test.client.GenerateKey(null,
           new KeyRequest()
             .with(kr => kr.key = new Key()
               .with(k => k.algorithm = KeyAlgorithm.HS256)
-              .with(k => k.name = "C# IdentityProvider Verification Key")));
+              .with(k => k.name = "C# IdentityProvider Verification Key-" + test.ApplicationId)));
       test.assertSuccess(keyResponse);
       var keyId = keyResponse.successResponse.key.id ?? throw new InvalidOperationException("Expected a key id to be returned from GenerateKey.");
+      test.addCleanup(() => test.client.DeleteKey(keyId));
 
       var createResponse =
         test.client.CreateIdentityProvider(null,
           new IdentityProviderRequest()
             .with(ipr => ipr.identityProvider = new ExternalJWTIdentityProvider()
               .with(idp => idp.type = IdentityProviderType.ExternalJWT)
-              .with(idp => idp.name = "C# IdentityProvider")
+              .with(idp => idp.name = "C# IdentityProvider-" + test.ApplicationId)
               .with(idp => idp.headerKeyParameter = "kid")
               .with(idp => idp.uniqueIdentityClaim = "username")
               .with(idp => idp.verificationKeyIds = new List<Guid> {keyId})));
 
       test.assertSuccess(createResponse);
+      var identityProviderId = ((ExternalJWTIdentityProvider) createResponse.successResponse.identityProvider).id;
+      test.addCleanup(() => test.client.DeleteIdentityProvider(identityProviderId));
       retrieveResponse = test.client.RetrieveIdentityProviders();
       test.assertSuccess(retrieveResponse);
     }
@@ -513,11 +536,7 @@ namespace io.fusionauth {
     public void Login_Test() {
       test.createApplication()
         .createUser()
-        .callClient(client => test.assertSuccess(client.Login(new LoginRequest()
-          .with(lr => lr.applicationId = TestBuilder.ApplicationId)
-          .with(lr => lr.loginId = TestBuilder.emailAddress)
-          .with(lr => lr.password = "password")
-          .with(lr => lr.ipAddress = "10.0.1.129"))));
+        .login("10.0.1.129");
     }
 
     [Test]
@@ -534,6 +553,8 @@ namespace io.fusionauth {
           .with(tr => tr.tenant = new Tenant().with(t => t.name = "C# Tenant"))
           .with(tr => tr.sourceTenantId = response.successResponse.tenants[0].id));
       test.assertSuccess(createResponse);
+      var tenantId = createResponse.successResponse.tenant.id;
+      test.addCleanup(() => test.client.DeleteTenant(tenantId));
       Assert.AreEqual(createResponse.successResponse.tenant.name, "C# Tenant");
       Assert.IsNotNull(createResponse.successResponse.tenant.id);
 
@@ -573,6 +594,8 @@ namespace io.fusionauth {
         test.client.CreateTenant(null, new TenantRequest().with(request => request.tenant = defaultTenant));
       test.assertSuccess(tenantResponse);
       var verificationRequiredTenant = tenantResponse.successResponse.tenant;
+      var verificationRequiredTenantId = verificationRequiredTenant.id;
+      test.addCleanup(() => test.client.DeleteTenant(verificationRequiredTenantId));
 
       // Create a new application within the new tenant requiring email verification
       var applicationResponse = test.client.RetrieveApplications();
@@ -612,6 +635,7 @@ namespace io.fusionauth {
 
       Assert.AreEqual(loginResponse.statusCode, 212);
       Assert.NotNull(loginResponse.successResponse);
+      test.waitForLogin(tenantClient, loginResponse.successResponse.user);
 
       // Cleanup the verificationRequiredTenant, this will also delete the verificationRequiredApplication
       var deleteTenantResponse = test.client.DeleteTenant(verificationRequiredTenant.id);
@@ -639,6 +663,24 @@ namespace io.fusionauth {
           },
           ContractResolver = new DefaultContractResolver()
         };
+    }
+
+    [Test]
+    public void Cleanup_Resources_Reports_Failure_Test() {
+      var builder = new TestBuilder();
+      var deleted = new List<int>();
+      builder.addCleanup(() => {
+        deleted.Add(1);
+        return new ClientResponse<RESTVoid> {statusCode = 200};
+      });
+      builder.addCleanup(() => {
+        deleted.Add(2);
+        return new ClientResponse<RESTVoid> {statusCode = 500};
+      });
+
+      Assert.Throws<AssertionException>(() => builder.cleanup());
+
+      CollectionAssert.AreEqual(new[] {2, 1}, deleted);
     }
     
     [Test]
