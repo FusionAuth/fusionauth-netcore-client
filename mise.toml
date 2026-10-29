@@ -1,0 +1,6 @@
+[tools]
+dotnet = "8"
+
+[tasks.install]
+description="Installs dependencies"
+run = "dotnet restore fusionauth-netcore-client/fusionauth-netcore-client.csproj"
