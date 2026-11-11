@@ -32,6 +32,8 @@ namespace io.fusionauth.domain
 
     public RateLimitedRequestConfiguration forgotPassword;
 
+    public RateLimitedRequestConfiguration passwordlessLogin;
+
     public RateLimitedRequestConfiguration sendEmailVerification;
 
     public RateLimitedRequestConfiguration sendPasswordless;
