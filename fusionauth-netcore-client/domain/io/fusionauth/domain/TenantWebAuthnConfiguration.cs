@@ -28,6 +28,8 @@ namespace io.fusionauth.domain
    */
   public class TenantWebAuthnConfiguration: Enableable {
 
+    public List<string> allowedOrigins;
+
     public TenantWebAuthnWorkflowConfiguration bootstrapWorkflow;
 
     public bool? debug;
